@@ -1,0 +1,16 @@
+{
+  "name": "app-gym",
+  "version": "1.0.0",
+  "description": "PWA para registrar el plan de gimnasio de 4 semanas y exportarlo al Excel original",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node tools/e2e.mjs",
+    "test:xlsx": "node tools/test-export.mjs",
+    "shots": "node tools/shots.mjs"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "playwright": "^1.61.1"
+  }
+}

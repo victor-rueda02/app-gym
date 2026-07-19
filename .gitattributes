@@ -1,0 +1,5 @@
+# Los ficheros que se publican en Pages van con LF, sin depender de la
+# configuración autocrlf de cada máquina.
+* text=auto eol=lf
+*.xlsx binary
+*.png binary
