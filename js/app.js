@@ -5,6 +5,7 @@ const view = document.getElementById('view');
 const titleEl = document.getElementById('title');
 const subtitleEl = document.getElementById('subtitle');
 const backBtn = document.getElementById('back');
+const chipTimer = document.getElementById('chip-timer');
 
 const state = {
   tab: 'today',
@@ -72,10 +73,12 @@ function render() {
   document.querySelectorAll('.tabbar button')
     .forEach((b) => b.classList.toggle('active', b.dataset.tab === state.tab));
 
-  if (state.exercise) return renderExercise();
-  if (state.tab === 'today') return renderToday();
-  if (state.tab === 'plan') return renderPlan();
-  return renderData();
+  if (state.exercise) renderExercise();
+  else if (state.tab === 'today') renderToday();
+  else if (state.tab === 'plan') renderPlan();
+  else renderData();
+
+  paintTimer();   // el DOM es nuevo: hay que devolverle el estado del cronómetro
 }
 
 /* --- Hoy ------------------------------------------------------------------ */
@@ -209,6 +212,8 @@ function renderExercise() {
     return;
   }
 
+  view.appendChild(stopwatch(pres, date, exId));
+
   const prev = Store.lastPerformance(exId, date);
   if (prev) {
     const summary = prev.sets.filter(isLogged).map((s) => setSummary(s, pres.kind)).join(' · ');
@@ -281,6 +286,70 @@ function renderExercise() {
   const back = el('<button class="btn">Hecho</button>');
   back.addEventListener('click', () => { state.exercise = null; render(); });
   view.appendChild(back);
+}
+
+/* Cronómetro manual. Es único para toda la app, así que sigue contando si sales
+   del ejercicio; el chip de la barra superior lo recuerda. */
+const toggleLabel = (ms, running) => (running ? 'Pausar' : (ms ? 'Seguir' : 'Iniciar'));
+
+/* Vuelca el estado del cronómetro en el DOM. Se llama desde la suscripción y al
+   final de cada render: los elementos recién creados tienen que nacer con la
+   hora correcta, y en pausa no hay ticks que la corrijan después. */
+function paintTimer(ms = Timer.elapsed(), running = Timer.isRunning()) {
+  const txt = Timer.fmt(ms);
+  const clock = document.getElementById('sw-clock');
+  if (clock) {
+    clock.textContent = txt;
+    clock.parentElement.classList.toggle('on', running);
+    const toggle = document.getElementById('sw-toggle');
+    if (toggle) toggle.textContent = toggleLabel(ms, running);
+  }
+  const showChip = running && !clock;   // redundante si el reloj grande está a la vista
+  chipTimer.hidden = !showChip;
+  if (showChip) chipTimer.textContent = txt;
+}
+
+Timer.subscribe(paintTimer);
+
+function stopwatch(pres, date, exId) {
+  const ms = Timer.elapsed();
+  const running = Timer.isRunning();
+  const box = el(`
+    <div class="stopwatch ${running ? 'on' : ''}">
+      <span class="clock" id="sw-clock">${Timer.fmt(ms)}</span>
+      <button id="sw-toggle">${toggleLabel(ms, running)}</button>
+      <button class="sec" id="sw-reset">A cero</button>
+    </div>`);
+
+  box.querySelector('#sw-toggle').addEventListener('click', () => Timer.toggle());
+  box.querySelector('#sw-reset').addEventListener('click', () => Timer.reset());
+
+  if (pres.kind !== 'iso') return box;
+
+  // En los isométricos el tiempo ES el dato, así que se puede volcar a la serie.
+  const wrap = document.createDocumentFragment();
+  wrap.appendChild(box);
+
+  const list = Store.sets(date, exId);
+  let target = list.findIndex((s) => !s.secs);
+  if (target === -1) target = list.length;
+
+  const stamp = el(`<button class="stamp">Anotar el tiempo en la serie ${target + 1}</button>`);
+  stamp.addEventListener('click', () => {
+    const secs = Timer.seconds();
+    if (!secs) { toast('El cronómetro está a cero'); return; }
+    const updated = Store.sets(date, exId).slice();
+    while (updated.length <= target) updated.push({ kg: '', reps: '', secs: '', rir: '' });
+    updated[target] = { ...updated[target], secs: String(secs) };
+    Store.saveSets(date, exId, updated.filter(isLogged));
+    state.rows[rowsKey(date, exId)] = Math.max(updated.length, state.rows[rowsKey(date, exId)] || 0);
+    Timer.pause();
+    Timer.reset();
+    toast(`${secs} s anotados en la serie ${target + 1}`);
+    renderExercise();
+  });
+  wrap.appendChild(stamp);
+  return wrap;
 }
 
 /* --- Plan ------------------------------------------------------------------ */

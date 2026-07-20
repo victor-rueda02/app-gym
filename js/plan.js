@@ -33,8 +33,8 @@ const BLOCK_A = {
   L: {
     id: 'A-L', dow: 1, name: 'Lunes', title: 'Rehab + Isquios + Hombro',
     exercises: [
-      ex('Laterales', 'Hombro lat.', rir(2, 2), rir(2, 1)),
-      ex('Laterales medio posterior', 'Posterior', rir(1, 2), rir(2, 1)),
+      ex('Laterales de pie', 'Hombro lat.', rir(2, 2), rir(2, 1)),
+      ex('Laterales banco inclinado posterior', 'Posterior', rir(1, 2), rir(2, 1)),
       ex('Unilateral Abduction', 'Rehab', fix(2, '15–20'), fix(2, '15–20'), 'fijo'),
       ex('Touchdown squat', 'Rehab', fix(2, '15–20'), fix(2, '15–20'), 'fijo'),
       ex('Unilateral Bridge iso', 'Rehab', iso(2, 20), iso(2, 20), 'fijo'),
@@ -61,7 +61,7 @@ const BLOCK_A = {
       ex('Remo apoyado', 'Espalda', rir(3, 2), rir(3, 1)),
       ex('Pullover manc + gomas', 'Dorsal', rir(2, 2), rir(2, 1)),
       ex('Dominadas abducción hombro', 'Espalda/post.', rir(1, 2), rir(1, 1)),
-      ex('Laterales', 'Hombro lat.', rir(2, 2), rir(3, 1)),
+      ex('Laterales sentado inclinado', 'Hombro lat.', rir(2, 2), rir(3, 1)),
       ex('Arnold laterales', 'Hombro', rir(1, 2), rir(1, 1)),
       ex('Curl biceps', 'Bíceps', rir(3, 2), rir(3, 1)),
     ],
@@ -84,7 +84,7 @@ const BLOCK_A = {
     exercises: [
       ex('Dominadas neutras dorsal', 'Espalda', rir(2, 2), rir(2, 1)),
       ex('Press incl manc cerrado', 'Pecho/tríceps', rir(2, 2), rir(2, 1)),
-      ex('Laterales', 'Hombro lat.', rir(2, 2), rir(2, 1)),
+      ex('Laterales inclinado estiramiento', 'Hombro lat.', rir(2, 2), rir(2, 1)),
       ex('Triceps tras nuca', 'Tríceps', rir(2, 2), rir(3, 1)),
       ex('Triceps conc', 'Tríceps', rir(1, 1), rir(1, 0), 'última al fallo ok'),
       ex('Curl biceps incl', 'Bíceps', rir(2, 2), rir(2, 1)),

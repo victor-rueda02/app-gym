@@ -53,6 +53,12 @@ de inicio**. Se abre a pantalla completa, sin barra del navegador.
   de los 3 días haces, porque el plan los deja libres. Las series prescritas
   aparecen ya como filas vacías: solo rellenas kg / reps / RIR. Se guarda al
   teclear. Debajo, notas del día para el semáforo de rodilla.
+- **Cronómetro** — dentro de cada ejercicio, con *Iniciar / Pausar / A cero*.
+  Cuenta hacia arriba y solo se mueve cuando tú lo dices: no hay cuenta atrás
+  ni avisos. Es único para toda la app, así que puedes arrancarlo al acabar una
+  serie y seguir navegando; mientras corre aparece un reloj verde en la barra
+  superior. En los ejercicios isométricos hay además un botón para volcar el
+  tiempo medido a la columna *Seg* de la serie.
 - **Plan** — las 4 semanas completas en solo lectura, con las reglas de rodilla.
 - **Datos** — exportar el .xlsx, copia de seguridad en JSON e historial.
 
@@ -62,13 +68,29 @@ prescripciones son fijas las 4 semanas.
 ## Mantenimiento
 
 ```bash
-python tools/embed.py        # re-empotra el .xlsx si cambias el plan original
-node tools/test-export.mjs   # genera .xlsx de prueba en tools/out/
-node tools/e2e.mjs           # recorrido completo en iPhone emulado (requiere playwright)
-node tools/shots.mjs         # capturas de pantalla
+python tools/embed.py           # re-empotra el .xlsx si cambias el plan original
+node tools/test-export.mjs      # genera .xlsx de prueba en tools/out/
+node tools/e2e.mjs              # recorrido completo en iPhone emulado (requiere playwright)
+node tools/test-migracion.mjs   # comprueba las migraciones de datos ya registrados
+node tools/shots.mjs            # capturas de pantalla
 ```
 
-Si editas el plan en el Excel, hay que reflejarlo también en `js/plan.js`: la
-app no lee las hojas, las tiene transcritas. Tras cualquier cambio en los
-ficheros estáticos, sube el número de `CACHE` en `sw.js` para que el service
-worker sirva la versión nueva.
+Playwright no viene instalado. Para las dos pruebas que lo necesitan:
+
+```bash
+npm install && npx playwright install --only-shell chromium
+```
+
+### Al cambiar el plan
+
+El plan vive en dos sitios que hay que mantener a la vez: las hojas del
+`.xlsx` y `js/plan.js` (la app no lee el Excel, lo tiene transcrito). Tras
+tocar el Excel, ejecuta `python tools/embed.py`.
+
+**Renombrar un ejercicio rompe su historial**: el identificador se calcula a
+partir del nombre, así que lo ya registrado queda huérfano. Hay que añadir una
+migración en `MIGRATIONS` de `js/store.js` y subir `VERSION`; se aplican solas
+al abrir la app. `tools/test-migracion.mjs` las verifica.
+
+Tras cualquier cambio en los ficheros estáticos, sube el número de `CACHE` en
+`sw.js` para que el service worker sirva la versión nueva en vez de la cacheada.

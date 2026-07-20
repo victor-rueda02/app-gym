@@ -40,8 +40,42 @@ async function idbGet() {
 }
 
 /* Estructura:
-   { days: { "2026-07-20": { sessionId, notes, entries: { exId: [ {kg,reps,secs,rir,done} ] } } } } */
-function empty() { return { days: {} }; }
+   { v, days: { "2026-07-20": { sessionId, notes, entries: { exId: [ {kg,reps,secs,rir} ] } } } } */
+const VERSION = 2;
+
+function empty() { return { v: VERSION, days: {} }; }
+
+/* Los identificadores de ejercicio salen del nombre, así que renombrar uno deja
+   huérfano lo ya registrado. Cada migración recoloca esas entradas. */
+const MIGRATIONS = {
+  // v1 -> v2: las tres "Laterales" del bloque A pasan a nombres propios por día.
+  // Bloque B mantiene su "Laterales" genérico y no se toca.
+  2(data) {
+    const porSesion = {
+      'A-L': 'laterales-de-pie',
+      'A-X': 'laterales-sentado-inclinado',
+      'A-V': 'laterales-inclinado-estiramiento',
+    };
+    const mover = (entries, from, to) => {
+      if (!entries[from]) return;
+      entries[to] = (entries[to] || []).concat(entries[from]);
+      delete entries[from];
+    };
+    for (const rec of Object.values(data.days)) {
+      const destino = porSesion[rec.sessionId];
+      if (destino) mover(rec.entries, 'laterales', destino);
+      mover(rec.entries, 'laterales-medio-posterior', 'laterales-banco-inclinado-posterior');
+    }
+  },
+};
+
+function migrate(data) {
+  for (let v = (data.v || 1) + 1; v <= VERSION; v++) {
+    if (MIGRATIONS[v]) MIGRATIONS[v](data);
+  }
+  data.v = VERSION;
+  return data;
+}
 
 /* Arranca leyendo localStorage y, si está vacío, recupera del espejo IDB. */
 async function init() {
@@ -58,6 +92,9 @@ async function init() {
     } catch { /* IDB no disponible: seguimos solo con localStorage */ }
   }
   if (!cache) cache = empty();
+  const before = cache.v || 1;
+  cache = migrate(cache);
+  if (cache.v !== before) persist();
   return cache;
 }
 
@@ -111,7 +148,7 @@ function lastPerformance(exId, beforeDate) {
 
 function importAll(data) {
   if (!data || typeof data !== 'object' || !data.days) throw new Error('Formato no válido');
-  cache = data;
+  cache = migrate(data);   // una copia antigua puede venir de antes de un renombrado
   persist();
 }
 

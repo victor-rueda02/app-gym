@@ -26,11 +26,15 @@ const browser = await chromium.launch();
 const ctx = await browser.newContext({ ...devices['iPhone 13'], locale: 'es-ES' });
 const page = await ctx.newPage();
 await page.addInitScript(() => {
-  const fixed = new Date('2026-07-21T10:00:00');   // martes = Push, sesión con carga
   const RealDate = Date;
+  const fixed = new RealDate('2026-07-21T10:00:00').getTime();   // martes = Push
+  const origin = RealDate.now();
+  const shifted = () => fixed + (RealDate.now() - origin);
   Date = class extends RealDate {
-    constructor(...a) { return a.length ? new RealDate(...a) : new RealDate(fixed); }
-    static now() { return fixed.getTime(); }
+    constructor(...a) { return a.length ? new RealDate(...a) : new RealDate(shifted()); }
+    static now() { return shifted(); }
+    static parse(...a) { return RealDate.parse(...a); }
+    static UTC(...a) { return RealDate.UTC(...a); }
   };
 });
 await page.goto('http://localhost:8124/index.html');
@@ -46,7 +50,8 @@ const i = page.locator('.set-row:not(.head) input');
 await i.nth(0).fill('30'); await i.nth(1).fill('10'); await i.nth(2).fill('2');
 await i.nth(3).fill('30'); await i.nth(4).fill('9'); await i.nth(5).fill('2');
 await i.nth(6).fill('27,5'); await i.nth(7).fill('9'); await i.nth(8).fill('2');
-await page.locator('.btn.ghost').first().click();
+await page.click('#sw-toggle');
+await page.waitForTimeout(1500);
 await shot('2-ejercicio');
 
 await page.locator('.btn', { hasText: 'Hecho' }).click();

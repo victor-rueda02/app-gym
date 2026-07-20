@@ -146,6 +146,43 @@ main { padding: 12px; max-width: 640px; margin: 0 auto; }
   color: var(--muted); font-size: 20px;
 }
 
+/* Cronómetro --------------------------------------------------------------- */
+.stopwatch {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: 16px; padding: 10px 12px; margin-bottom: 10px;
+}
+.stopwatch .clock {
+  flex: 1; min-width: 0;
+  font-size: 34px; font-weight: 700; letter-spacing: -.02em;
+  font-variant-numeric: tabular-nums;
+  padding-left: 4px;
+}
+.stopwatch.on .clock { color: var(--ok); }
+.stopwatch button {
+  flex: none; height: 46px; padding: 0 16px;
+  border: 0; border-radius: 12px;
+  font-size: 15px; font-weight: 650;
+  background: var(--accent); color: #fff;
+}
+.stopwatch button.sec { background: var(--surface-2); color: var(--text); }
+.stopwatch button:active { filter: brightness(.9); }
+
+.stamp {
+  display: block; width: 100%; height: 42px;
+  margin: 0 0 10px; border: 1px dashed var(--line); border-radius: 12px;
+  background: none; color: var(--muted); font: inherit; font-size: 14px;
+}
+.stamp:active { background: var(--surface-2); }
+
+.chip-timer {
+  flex: none; margin-right: 2px;
+  font-size: 14px; font-weight: 650;
+  font-variant-numeric: tabular-nums;
+  color: var(--ok); background: rgba(61, 220, 151, .12);
+  padding: 5px 9px; border-radius: 9px;
+}
+
 .prev {
   font-size: 12.5px; color: var(--muted);
   background: var(--surface-2); border-radius: 10px;

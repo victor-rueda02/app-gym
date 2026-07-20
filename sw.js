@@ -2,7 +2,7 @@
    vez instalada funciona sin cobertura (sótanos de gimnasio incluidos).
    Sube CACHE al desplegar cambios para forzar la actualización. */
 
-const CACHE = 'gym-v1';
+const CACHE = 'gym-v2';
 const ASSETS = [
   './',
   './index.html',
@@ -11,6 +11,7 @@ const ASSETS = [
   './vendor/fflate.js',
   './js/plan.js',
   './js/store.js',
+  './js/timer.js',
   './js/original-xlsx.js',
   './js/xlsx.js',
   './js/export.js',

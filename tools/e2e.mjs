@@ -54,14 +54,20 @@ page.on('console', (m) => { if (m.type() === 'error') errors.push(m.text()); });
 // forzamos la rama de descarga.
 await page.addInitScript(() => { delete window.showSaveFilePicker; });
 
-// El plan empieza el 20 jul 2026 (lunes): fijamos el reloj para caer en Semana 1.
+// El plan empieza el 20 jul 2026 (lunes): desplazamos el reloj para caer en
+// Semana 1, pero dejando que el tiempo AVANCE — si lo congelásemos en un
+// instante fijo el cronómetro nunca contaría y no podríamos probarlo.
 await page.addInitScript(() => {
-  const fixed = new Date('2026-07-20T10:00:00');
   const RealDate = Date;
+  const fixed = new RealDate('2026-07-20T10:00:00').getTime();
+  const origin = RealDate.now();
+  const shifted = () => fixed + (RealDate.now() - origin);
   // eslint-disable-next-line no-global-assign
   Date = class extends RealDate {
-    constructor(...args) { return args.length ? new RealDate(...args) : new RealDate(fixed); }
-    static now() { return fixed.getTime(); }
+    constructor(...args) { return args.length ? new RealDate(...args) : new RealDate(shifted()); }
+    static now() { return shifted(); }
+    static parse(...args) { return RealDate.parse(...args); }
+    static UTC(...args) { return RealDate.UTC(...args); }
   };
 });
 
@@ -77,11 +83,14 @@ check('Semana 1 detectada',
 check('8 ejercicios el lunes',
   (await page.locator('main .ex').count()) === 8,
   `${await page.locator('main .ex').count()} filas`);
-check('Prescripción Semana 1 en Laterales (2 @ RIR2)',
-  (await page.locator('main .ex', { hasText: 'Laterales' }).first().locator('.pres').textContent()) === '2 @ RIR2');
+check('Prescripción Semana 1 en Laterales de pie (2 @ RIR2)',
+  (await page.locator('main .ex', { hasText: 'Laterales de pie' }).first().locator('.pres').textContent()) === '2 @ RIR2');
+check('Ejercicios renombrados del lunes',
+  (await page.textContent('main')).includes('Laterales de pie')
+  && (await page.textContent('main')).includes('Laterales banco inclinado posterior'));
 
 /* --- Registrar series en un ejercicio con RIR --- */
-await page.locator('main .ex', { hasText: 'Laterales' }).first().click();
+await page.locator('main .ex', { hasText: 'Laterales de pie' }).first().click();
 await page.waitForSelector('.set-row input');
 check('Se pintan las 2 series prescritas',
   (await page.locator('.set-row:not(.head)').count()) === 2);
@@ -109,13 +118,64 @@ await third.nth(2).fill('1');
 await page.locator('.btn', { hasText: 'Hecho' }).click();
 await page.waitForSelector('main .ex');
 check('Contador 3/2 tras registrar',
-  (await page.locator('main .ex', { hasText: 'Laterales' }).first().locator('.pres').textContent()) === '3/2');
+  (await page.locator('main .ex', { hasText: 'Laterales de pie' }).first().locator('.pres').textContent()) === '3/2');
 
-/* --- Ejercicio isométrico: columnas Kg/Seg --- */
+/* --- Cronómetro: control manual, global y persistente --- */
+await page.locator('main .ex', { hasText: 'Laterales de pie' }).first().click();
+await page.waitForSelector('#sw-clock');
+check('El cronómetro arranca a cero y parado',
+  (await page.textContent('#sw-clock')) === '00:00'
+  && (await page.textContent('#sw-toggle')) === 'Iniciar');
+
+await page.click('#sw-toggle');
+await page.waitForTimeout(1400);
+const corriendo = await page.textContent('#sw-clock');
+check('Cuenta hacia arriba al iniciarlo', /^00:0[1-9]$/.test(corriendo), corriendo);
+check('El botón pasa a Pausar', (await page.textContent('#sw-toggle')) === 'Pausar');
+
+await page.locator('.btn', { hasText: 'Hecho' }).click();
+await page.waitForSelector('main .ex');
+check('Sigue contando fuera del ejercicio, avisando en la barra',
+  !(await page.locator('#chip-timer').isHidden()));
+
+await page.locator('main .ex', { hasText: 'Laterales de pie' }).first().click();
+await page.waitForSelector('#sw-clock');
+check('Al volver al ejercicio sigue en marcha',
+  (await page.textContent('#sw-toggle')) === 'Pausar');
+check('El chip desaparece cuando se ve el reloj grande',
+  await page.locator('#chip-timer').isHidden());
+
+await page.click('#sw-toggle');
+const pausado = await page.textContent('#sw-clock');
+await page.waitForTimeout(900);
+check('Al pausar se queda quieto',
+  (await page.textContent('#sw-clock')) === pausado
+  && (await page.textContent('#sw-toggle')) === 'Seguir', pausado);
+
+await page.click('#sw-reset');
+check('"A cero" lo devuelve a 00:00',
+  (await page.textContent('#sw-clock')) === '00:00');
+await page.locator('.btn', { hasText: 'Hecho' }).click();
+
+/* --- Ejercicio isométrico: columnas Kg/Seg y volcado del cronómetro --- */
 await page.locator('main .ex', { hasText: 'Unilateral Bridge iso' }).click();
 await page.waitForSelector('.set-row input');
 check('Columnas Kg/Seg para prescripción isométrica',
   (await page.locator('.set-row.head span').allTextContents()).join(',') === ',Kg,Seg,');
+
+check('En isométricos aparece el botón para volcar el tiempo',
+  (await page.locator('.stamp').count()) === 1,
+  await page.locator('.stamp').textContent());
+await page.click('#sw-toggle');
+await page.waitForTimeout(2200);
+await page.click('.stamp');
+await page.waitForTimeout(200);
+const anotado = await page.locator('.set-row:not(.head) input').nth(1).inputValue();
+check('El tiempo se anota en la serie', /^[12]$/.test(anotado), `${anotado} s`);
+check('Tras anotar, el cronómetro vuelve a cero y parado',
+  (await page.textContent('#sw-clock')) === '00:00'
+  && (await page.textContent('#sw-toggle')) === 'Iniciar');
+
 const isoIn = page.locator('.set-row:not(.head) input');
 await isoIn.nth(1).fill('20');
 await isoIn.nth(3).fill('22');
@@ -128,7 +188,7 @@ await page.fill('#daynotes', 'rodilla 2/10, dormí 7h');
 await page.reload();
 await page.waitForFunction(() => document.querySelectorAll('.ex').length > 0);
 check('El registro sobrevive a recargar',
-  (await page.locator('main .ex', { hasText: 'Laterales' }).first().locator('.pres').textContent()) === '3/2');
+  (await page.locator('main .ex', { hasText: 'Laterales de pie' }).first().locator('.pres').textContent()) === '3/2');
 check('Las notas del día sobreviven',
   (await page.inputValue('#daynotes')) === 'rodilla 2/10, dormí 7h');
 
@@ -141,6 +201,17 @@ check('El plan lista los ejercicios de la Semana 1',
 await page.locator('.card .btn', { hasText: 'S2' }).click();
 check('Semana 2 muestra la prescripción a RIR1',
   (await page.locator('main .ex', { hasText: 'Press inclinado manc' }).first().locator('.pres').textContent()) === '4 @ RIR1');
+await page.locator('.card .btn', { hasText: 'S3' }).click();
+// Comparamos el nombre exacto: hasText mira todo el texto de la fila
+// (nombre + objetivo + prescripción), así que "Laterales" casaría de más.
+const nombresB = await page.locator('main .ex .nm').allTextContents();
+check('Bloque B conserva sus "Laterales" genéricos',
+  nombresB.includes('Laterales'),
+  nombresB.filter((n) => n.startsWith('Laterales')).join(', '));
+await page.locator('.card .btn', { hasText: 'S1' }).click();
+check('Miércoles y viernes renombrados',
+  (await page.textContent('main')).includes('Laterales sentado inclinado')
+  && (await page.textContent('main')).includes('Laterales inclinado estiramiento'));
 await page.locator('.card .btn', { hasText: 'S3' }).click();
 check('Semana 3 muestra los 3 días del bloque B',
   (await page.textContent('main')).includes('Día 3'));
