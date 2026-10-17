@@ -1,6 +1,7 @@
 """Regenera js/original-xlsx.js empotrando el .xlsx del plan en base64.
 
-Ejecutar tras cualquier cambio en Plan_4semanas_20jul-16ago.xlsx:
+Ejecutar tras cualquier cambio en Plan_8sem_vol.xlsx (contiene también las
+hojas del plan de 4 semanas):
     python tools/embed.py
 """
 import base64
@@ -8,7 +9,7 @@ import io
 import pathlib
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-SRC = ROOT / "Plan_4semanas_20jul-16ago.xlsx"
+SRC = ROOT / "Plan_8sem_vol.xlsx"
 OUT = ROOT / "js" / "original-xlsx.js"
 
 b64 = base64.b64encode(SRC.read_bytes()).decode("ascii")

@@ -11,13 +11,21 @@ const state = {
   tab: 'today',
   date: PLAN.isoDate(new Date()),
   exercise: null,     // {sessionId, exId} cuando estamos en el detalle
-  planWeek: 1,
+  planId: null,       // null: el plan en curso (o el próximo) según la fecha
+  planWeek: null,     // null: la semana de la fecha si cae en ese plan, si no la 1
   // Filas visibles por ejercicio. Las series vacías no se guardan, así que sin
   // esto un "+ Añadir serie" se perdería en el siguiente render.
   rows: {},
 };
 
 const rowsKey = (date, exId) => `${date}|${exId}`;
+
+/* Cambiar de fecha devuelve la pestaña Plan al plan y semana de esa fecha. */
+function setDate(d) {
+  state.date = d;
+  state.planId = null;
+  state.planWeek = null;
+}
 
 /* Utilidades -------------------------------------------------------------- */
 const el = (html) => {
@@ -52,6 +60,7 @@ function toast(msg) {
 function sessionById(id) {
   return Object.values(PLAN.BLOCK_A).find((d) => d.id === id)
     || Object.values(PLAN.BLOCK_B).find((d) => d.id === id)
+    || Object.values(PLAN.BLOCK_VOL).find((d) => d.id === id)
     || null;
 }
 
@@ -104,11 +113,12 @@ function renderToday() {
                     color:var(--text);font:inherit;font-size:15px;padding:8px 10px">
     </div>`);
   picker.querySelector('#datepick').addEventListener('change', (e) => {
-    if (e.target.value) { state.date = e.target.value; render(); }
+    if (e.target.value) { setDate(e.target.value); render(); }
   });
 
   if (!week) {
-    view.appendChild(el('<div class="empty">Esta fecha queda fuera del plan de 4 semanas (20 jul – 16 ago).</div>'));
+    view.appendChild(el(`<div class="empty">Esta fecha queda fuera de los planes
+      (${escapeHtml(PLAN.PLANS.map((p) => p.range).join(' y '))}).</div>`));
     view.appendChild(picker);
     return;
   }
@@ -135,7 +145,7 @@ function renderToday() {
     return;
   }
 
-  const session = week.block === 'A' ? options[0] : sessionById(rec.sessionId);
+  const session = week.block === 'B' ? sessionById(rec.sessionId) : options[0];
   if (!session) { view.appendChild(picker); return; }
   if (!rec.sessionId) Store.setSession(date, session.id);
 
@@ -240,7 +250,9 @@ function renderExercise() {
 
   function addRow(index) {
     const s = list[index];
-    const placeholder = { Kg: '—', Reps: pres.reps || '', Seg: pres.secs || '', RIR: pres.rir ?? '' };
+    // "RIR1/0" lleva un objetivo por serie (1, 1, …, 0); el resto, uno común.
+    const rirGoal = pres.rirs ? pres.rirs[index] : pres.rir;
+    const placeholder = { Kg: '—', Reps: pres.reps || '', Seg: pres.secs || '', RIR: rirGoal ?? '' };
     const field = { Kg: 'kg', Reps: 'reps', Seg: 'secs', RIR: 'rir' };
 
     const row = el(`
@@ -354,28 +366,43 @@ function stopwatch(pres, date, exId) {
 
 /* --- Plan ------------------------------------------------------------------ */
 function renderPlan() {
+  const plan = PLAN.planById(state.planId) || PLAN.planFor(state.date);
+  const current = PLAN.weekFor(state.date);
+  const weekN = state.planWeek || (current && current.plan === plan.id ? current.n : 1);
+
   titleEl.textContent = 'Plan';
-  subtitleEl.textContent = '4 semanas · 20 jul – 16 ago';
+  subtitleEl.textContent = `${plan.name} · ${plan.range}`;
   view.innerHTML = '';
 
+  const plans = el('<div class="card" style="display:flex;gap:6px;padding:6px"></div>');
+  PLAN.PLANS.forEach((p) => {
+    const b = el(`<button class="btn ${p.id === plan.id ? '' : 'ghost'}" data-plan="${p.id}"
+                          style="height:40px;margin:0;font-size:14px">${escapeHtml(p.name)}</button>`);
+    b.addEventListener('click', () => { state.planId = p.id; state.planWeek = null; render(); });
+    plans.appendChild(b);
+  });
+  view.appendChild(plans);
+
   const tabs = el('<div class="card" style="display:flex;gap:6px;padding:6px"></div>');
-  PLAN.WEEKS.forEach((w) => {
-    const b = el(`<button class="btn ${state.planWeek === w.n ? '' : 'ghost'}"
+  plan.weeks.forEach((w) => {
+    const b = el(`<button class="btn ${weekN === w.n ? '' : 'ghost'}" data-week="${w.n}"
                           style="height:40px;margin:0;font-size:14px">S${w.n}</button>`);
-    b.addEventListener('click', () => { state.planWeek = w.n; render(); });
+    b.addEventListener('click', () => { state.planId = plan.id; state.planWeek = w.n; render(); });
     tabs.appendChild(b);
   });
   view.appendChild(tabs);
 
-  const week = PLAN.WEEKS.find((w) => w.n === state.planWeek);
+  const week = plan.weeks.find((w) => w.n === weekN);
+  // En el plan de volumen el subtítulo ya es el rango de fechas.
+  const range = week.plan === 'vol' ? ''
+    : ` · ${shortDate(week.from)} – ${shortDate(week.to)}`;
   view.appendChild(el(`
     <div class="card">
       <h2>${escapeHtml(week.title)}</h2>
-      <p>${escapeHtml(week.sub)} · ${escapeHtml(shortDate(week.from))} – ${escapeHtml(shortDate(week.to))}</p>
+      <p>${escapeHtml(week.sub + range)}</p>
     </div>`));
 
-  const days = week.block === 'A' ? Object.values(PLAN.BLOCK_A) : Object.values(PLAN.BLOCK_B);
-  days.forEach((session) => {
+  PLAN.sessionsFor(week).forEach((session) => {
     view.appendChild(el(`<div class="section-label">${escapeHtml(session.name)} · ${escapeHtml(session.title)}</div>`));
     if (!session.exercises.length) {
       view.appendChild(el(`<div class="card"><p>${escapeHtml(session.note || 'Descanso')}</p></div>`));
@@ -394,9 +421,13 @@ function renderPlan() {
     });
   });
 
-  view.appendChild(el('<div class="section-label">Reglas de rodilla</div>'));
-  view.appendChild(el(
-    `<div class="card"><ul class="rules">${PLAN.RULES.map((r) => `<li>${escapeHtml(r)}</li>`).join('')}</ul></div>`));
+  const list = (items) => `<ul class="rules">${items.map((r) => `<li>${escapeHtml(r)}</li>`).join('')}</ul>`;
+  view.appendChild(el(`<div class="section-label">${escapeHtml(plan.rulesTitle)}</div>`));
+  view.appendChild(el(`<div class="card">${list(plan.rules)}</div>`));
+  if (plan.notes) {
+    view.appendChild(el(`<div class="section-label">${escapeHtml(plan.notesTitle)}</div>`));
+    view.appendChild(el(`<div class="card">${list(plan.notes)}</div>`));
+  }
 }
 
 /* --- Datos ----------------------------------------------------------------- */
@@ -413,7 +444,7 @@ function renderData() {
   view.appendChild(el(`
     <div class="card">
       <h2>Exportar al Excel</h2>
-      <p>Reconstruye <b>${escapeHtml(ORIGINAL_XLSX_NAME)}</b> con tus 3 hojas
+      <p>Reconstruye <b>${escapeHtml(ORIGINAL_XLSX_NAME)}</b> con tus 4 hojas
          originales intactas + la hoja <b>Registro</b>. Sustituye el fichero
          de tu ordenador por el exportado.</p>
     </div>`));
@@ -476,7 +507,7 @@ function renderData() {
           <span class="pres">${n} series</span>
         </button>`);
       row.addEventListener('click', () => {
-        state.date = d; state.tab = 'today'; render(); window.scrollTo(0, 0);
+        setDate(d); state.tab = 'today'; render(); window.scrollTo(0, 0);
       });
       view.appendChild(row);
     });
@@ -500,11 +531,12 @@ document.getElementById('sheet-close').addEventListener('click', () => { sheet.h
 sheet.addEventListener('click', (e) => { if (e.target === sheet) sheet.hidden = true; });
 
 document.getElementById('menu').addEventListener('click', () => {
-  document.getElementById('sheet-title').textContent = 'Reglas de rodilla';
+  const plan = PLAN.planFor(state.date);
+  document.getElementById('sheet-title').textContent = plan.rulesTitle;
   document.getElementById('sheet-content').innerHTML =
-    `<ul class="rules">${PLAN.RULES.map((r) => `<li>${escapeHtml(r)}</li>`).join('')}</ul>
-     <p style="color:var(--muted);font-size:12.5px;margin-top:14px">
-       Rehab FIJA las 4 semanas. Techo en MAV2: nada de MRV antes de la fiesta.</p>`;
+    `<ul class="rules">${plan.rules.map((r) => `<li>${escapeHtml(r)}</li>`).join('')}</ul>` +
+    (plan.sheetNote ? `<p style="color:var(--muted);font-size:12.5px;margin-top:14px">
+       ${escapeHtml(plan.sheetNote)}</p>` : '');
   sheet.hidden = false;
 });
 

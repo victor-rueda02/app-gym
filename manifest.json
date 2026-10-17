@@ -1,7 +1,7 @@
 {
-  "name": "Gym · Plan 4 semanas",
+  "name": "Gym · Volumen 8 semanas",
   "short_name": "Gym",
-  "description": "Registro de entrenamiento del plan 20 jul – 16 ago, exportable al Excel original.",
+  "description": "Registro de entrenamiento del plan de volumen 19 oct – 13 dic, exportable al Excel original.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",

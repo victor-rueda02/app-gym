@@ -1,7 +1,7 @@
 {
   "name": "app-gym",
   "version": "1.0.0",
-  "description": "PWA para registrar el plan de gimnasio de 4 semanas y exportarlo al Excel original",
+  "description": "PWA para registrar el plan de gimnasio de volumen de 8 semanas y exportarlo al Excel original",
   "private": true,
   "type": "module",
   "scripts": {

@@ -1,8 +1,16 @@
-/* Plan de 4 semanas · 20 jul – 16 ago 2026
-   Transcrito desde Plan_4semanas_20jul-16ago.xlsx (hojas "Bloque A" y "Bloque B"). */
+/* Dos planes:
+   - 4 semanas · 20 jul – 16 ago 2026, transcrito desde las hojas "Bloque A" y
+     "Bloque B" del Excel.
+   - Volumen 8 semanas · 19 oct – 13 dic 2026, transcrito desde la hoja
+     "Volumen (1910-1112)". tools/verify_plan.py lo compara celda a celda. */
 
 /* Prescripciones ------------------------------------------------------- */
 const rir = (sets, r) => ({ sets, kind: 'rir', rir: r, label: `${sets} @ RIR${r}` });
+// "N @ RIR1/0": todas a RIR1 salvo la última, a RIR0. `rirs` da el objetivo de cada serie.
+const rir10 = (sets) => ({
+  sets, kind: 'rir', rir: 0, rirs: Array.from({ length: sets }, (_, i) => (i === sets - 1 ? 0 : 1)),
+  label: `${sets} @ RIR1/0`,
+});
 const fix = (sets, reps) => ({ sets, kind: 'fixed', reps, label: `${sets} x${reps}` });
 const iso = (sets, secs) => ({ sets, kind: 'iso', secs, label: `${sets} (${secs} s)` });
 const none = () => ({ sets: 0, kind: 'none', label: '—' });
@@ -16,15 +24,34 @@ const ex = (name, target, s1, s2, notes = '') => ({
   id: slug(name), name, target, s1, s2: s2 || s1, notes,
 });
 
+/* Prescripción a partir del texto de la celda del Excel. La etiqueta se
+   conserva tal cual para poder compararla con la hoja. */
+function parsePres(text) {
+  let m;
+  let p;
+  if (text === '-') p = none();
+  else if ((m = text.match(/^(\d+) @ RIR1\/0$/))) p = rir10(+m[1]);
+  else if ((m = text.match(/^(\d+) @ RIR(\d)$/))) p = rir(+m[1], +m[2]);
+  else if ((m = text.match(/^(\d+) x(\d+)$/))) p = fix(+m[1], +m[2]);
+  else if ((m = text.match(/^(\d+) x(\d+–\d+)$/))) p = fix(+m[1], m[2]);
+  else throw new Error(`Prescripción desconocida: "${text}"`);
+  return { ...p, label: text };
+}
+
+/* vx(nombre, objetivo, [presc. Sem1..Sem8], notas) */
+const vx = (name, target, weeks, notes = '') => ({
+  id: slug(name), name, target, pres: weeks.map(parsePres), notes,
+});
+
 /* Semanas --------------------------------------------------------------- */
 const WEEKS = [
-  { n: 1, block: 'A', col: 's1', from: '2026-07-20', to: '2026-07-26',
+  { plan: 'jul', n: 1, block: 'A', col: 's1', from: '2026-07-20', to: '2026-07-26',
     title: 'Semana 1 · MAV1 torso', sub: 'Torso 2 RIR · Pierna MEV' },
-  { n: 2, block: 'A', col: 's2', from: '2026-07-27', to: '2026-08-02',
+  { plan: 'jul', n: 2, block: 'A', col: 's2', from: '2026-07-27', to: '2026-08-02',
     title: 'Semana 2 · MAV2 torso', sub: 'Torso 1 RIR · Pierna MAV1' },
-  { n: 3, block: 'B', col: 's1', from: '2026-08-03', to: '2026-08-09',
+  { plan: 'jul', n: 3, block: 'B', col: 's1', from: '2026-08-03', to: '2026-08-09',
     title: 'Semana 3 · Mantenimiento', sub: '3 días cortos · 2–3 RIR · sin fallo' },
-  { n: 4, block: 'B', col: 's1', from: '2026-08-10', to: '2026-08-16',
+  { plan: 'jul', n: 4, block: 'B', col: 's1', from: '2026-08-10', to: '2026-08-16',
     title: 'Semana 4 · Mantenimiento', sub: '3 días cortos · 2–3 RIR · sin fallo' },
 ];
 
@@ -159,13 +186,195 @@ const RULES = [
   'Tras el 16/08: retoma tu mesociclo normal reentrando en MEV.',
 ];
 
+/* Volumen · 19 oct – 13 dic · 8 semanas ----------------------------------
+   Lunes a sábado, sesión fija. El domingo no tiene sesión en el Excel: la app
+   lo trata como descanso (VOL_REST). Las semanas 9 (viaje = descarga) y 10 no van en el calendario: sus textos
+   están en VOL_NOTES. */
+const VOL_WEEKS = [
+  ['2026-10-19', '2026-10-25', '19–25 oct'],
+  ['2026-10-26', '2026-11-01', '26 oct – 1 nov'],
+  ['2026-11-02', '2026-11-08', '2–8 nov'],
+  ['2026-11-09', '2026-11-15', '9–15 nov'],
+  ['2026-11-16', '2026-11-22', '16–22 nov'],
+  ['2026-11-23', '2026-11-29', '23–29 nov'],
+  ['2026-11-30', '2026-12-06', '30 nov – 6 dic'],
+  ['2026-12-07', '2026-12-13', '7–13 dic'],
+].map(([from, to, sub], i) => ({
+  plan: 'vol', n: i + 1, block: 'Volumen', from, to, title: `Semana ${i + 1} · Volumen`, sub,
+}));
+
+const BLOCK_VOL = {
+  L: {
+    id: 'VOL-L', dow: 1, name: 'Lunes', title: 'Rehab + Isquios + Hombro + Gemelo',
+    exercises: [
+      vx('Elev laterales polea', 'Hombro lat.',
+        ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0']),
+      vx('Elev laterales mancuerna', 'Hombro lat.',
+        ['1 @ RIR0', '1 @ RIR0', '1 @ RIR0', '1 @ RIR0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0']),
+      vx('Unilateral abduction', 'Rehab',
+        ['2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20'],
+        'Antes del rehab: sentadilla española 5×45 s'),
+      vx('Touchdown squat', 'Rehab',
+        ['2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20'],
+        'fijo'),
+      vx('Prensa unil', 'Rehab',
+        ['2 x12', '2 x10', '2 x10', '2 x10', '2 x8', '2 x8', '2 x8', '2 x8'],
+        'fijo · Tempo 3-1-3 · dolor ≤3/10'),
+      vx('Gemelos', 'Gemelos',
+        ['3 @ RIR1/0', '3 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0', '5 @ RIR1/0', '5 @ RIR1/0']),
+      vx('Hiperextensiones', 'Isquios',
+        ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '4 @ RIR1/0']),
+    ],
+  },
+  M: {
+    id: 'VOL-M', dow: 2, name: 'Martes', title: 'Push',
+    exercises: [
+      vx('Press inclinado barra', 'Pecho',
+        ['2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '4 @ RIR1/0']),
+      vx('Extensión tríceps unil polea', 'Tríceps',
+        ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0']),
+      vx('Aperturas polea', 'Pecho',
+        ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0']),
+      vx('Triceps tras nuca unil polea', 'Tríceps',
+        ['1 @ RIR0', '1 @ RIR0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0']),
+      vx('Abs', 'Abs',
+        ['3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0', '5 @ RIR1/0']),
+    ],
+  },
+  X: {
+    id: 'VOL-X', dow: 3, name: 'Miércoles', title: 'Pull',
+    exercises: [
+      vx('Jalón neutro', 'Espalda',
+        ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0']),
+      vx('Remo gironda abierto', 'Espalda',
+        ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0']),
+      vx('Laterales sentado', 'Hombro lat.',
+        ['1 @ RIR0', '1 @ RIR0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0']),
+      vx('Dominadas medio abiertas', 'Espalda',
+        ['1 @ RIR0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0']),
+      vx('Curl martillo scott', 'Bíceps',
+        ['2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0']),
+      vx('Posterior polea', 'Hombro post.',
+        ['1 @ RIR0', '1 @ RIR0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0']),
+      vx('Curl bayesian', 'Bíceps',
+        ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '4 @ RIR1/0']),
+    ],
+  },
+  J: {
+    id: 'VOL-J', dow: 4, name: 'Jueves', title: 'Rehab + Isquios + Aductores',
+    exercises: [
+      vx('Unilateral Abduction', 'Rehab',
+        ['2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20'],
+        'Antes del rehab: sentadilla española 5×45 s'),
+      vx('Touchdown squat', 'Rehab',
+        ['2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20']),
+      vx('Back squat', 'Rehab',
+        ['3 x12', '3 x10', '3 x10', '3 x10', '3 x8', '3 x8', '3 x8', '3 x8'],
+        'Al cajón: tope + pausa 1 s · tempo 3-1-3'),
+      vx('Bulgarian split squat', 'Rehab',
+        ['2 x12', '2 x10', '2 x10', '2 x10', '2 x8', '2 x8', '2 x8', '2 x8'],
+        'Tempo 3-1-3 · empieza por la lesionada'),
+      vx('Isquios sentado', 'Isquios',
+        ['3 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0', '5 @ RIR1/0', '5 @ RIR1/0', '5 @ RIR1/0']),
+      vx('Aductores', 'Aductores',
+        ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0']),
+      vx('Gemelos', 'Gemelos',
+        ['2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0', '5 @ RIR1/0']),
+    ],
+  },
+  V: {
+    id: 'VOL-V', dow: 5, name: 'Viernes', title: 'Torso',
+    exercises: [
+      vx('Triceps conc polea', 'Tríceps',
+        ['1 @ RIR0', '1 @ RIR0', '1 @ RIR0', '1 @ RIR0', '1 @ RIR0', '1 @ RIR0', '1 @ RIR0', '1 @ RIR0']),
+      vx('Laterales polea', 'Hombro lat.',
+        ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0']),
+      vx('Curl francés manc', 'Tríceps',
+        ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0']),
+      vx('Curl biceps barra z', 'Bíceps',
+        ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0']),
+      vx('Press incl máquina', 'Pecho',
+        ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0']),
+      vx('Dominada neutra dorsal', 'Espalda',
+        ['1 @ RIR0', '1 @ RIR0', '1 @ RIR0', '1 @ RIR0', '1 @ RIR0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0']),
+      vx('Remo máquina', 'Espalda',
+        ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0']),
+      vx('Pullover', 'Espalda',
+        ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0']),
+    ],
+  },
+  S: {
+    id: 'VOL-S', dow: 6, name: 'Sábado', title: 'Rehab + Movilidad',
+    exercises: [
+      vx('Unilateral Abduction', 'Rehab',
+        ['2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20'],
+        'fijo · Antes del rehab: sentadilla española 5×45 s'),
+      vx('Touchdown squat', 'Rehab',
+        ['2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20'],
+        'fijo'),
+      vx('Bulgarian split squat', 'Rehab',
+        ['2 x12', '2 x10', '2 x10', '2 x10', '2 x8', '2 x8', '2 x8', '2 x8'],
+        'fijo · Tempo 3-1-3 · empieza por la lesionada'),
+      vx('Abs wesley banco', 'Abs',
+        ['2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0']),
+      vx('Movilidad - trapecio inferior', '-',
+        ['-', '-', '-', '-', '-', '-', '-', '-']),
+    ],
+  },
+};
+
+const VOL_REST = { id: 'VOL-D', dow: 0, name: 'Domingo', title: 'Descanso', rest: true, exercises: [] };
+
+/* Celdas A2 y A61 */
+const VOL_RULES = [
+  'RIR1/0 = todas las series a RIR1 y la ÚLTIMA a RIR0 (si solo hay 1 serie, RIR0).  Rehab (Rebuilding Milo): ×12 sem 1 → ×10 sem 2-4 → ×8 sem 5-8 → ×6 tras el viaje; peso con el que la última serie quede cerca del fallo sin perder tempo 3-1-3 ni profundidad, dolor ≤3/10; sube peso solo si el test de 24 h está igual o mejor.',
+  'Autorregulación: si un músculo pierde reps 2 sesiones seguidas, esa semana NO le subas series. Si se estancan varios a la vez o la rodilla empeora en el test, repite la semana anterior.',
+];
+
+/* Celdas A63–A66 */
+const VOL_NOTES = [
+  'Semana 9 (14-20/12) · Viaje = descarga  ·  Semana 10 · Vuelta progresiva',
+  'Hipertrofia: la semana sin entrenar hace de descarga justo después del pico de volumen de la semana 8.',
+  'Rodilla (libro): nunca dejes el tendón en reposo total. Llévate la goma: sentadilla española 5×45 s cada día (sin anclaje → wall sit a 1 pierna). Sigue haciendo el test en declive por la mañana.',
+  'Semana 10 (vuelta): hipertrofia con las series de la sem 3-4 y a RIR2. Rehab ×8 al ~80% del peso de la sem 8. Si el test de 24 h aguanta, semana 11 a peso completo y siguiente escalón del libro (×6).',
+];
+
+const PLANS = [
+  { id: 'jul', name: '4 semanas', range: '20 jul – 16 ago', from: '2026-07-20', to: '2026-08-16',
+    weeks: WEEKS, rules: RULES, rulesTitle: 'Reglas de rodilla',
+    sheetNote: 'Rehab FIJA las 4 semanas. Techo en MAV2: nada de MRV antes de la fiesta.' },
+  { id: 'vol', name: 'Volumen 8 semanas', range: '19 oct – 13 dic', from: '2026-10-19', to: '2026-12-13',
+    weeks: VOL_WEEKS, rules: VOL_RULES, rulesTitle: 'Reglas',
+    notes: VOL_NOTES, notesTitle: 'Semanas 9–10' },
+];
+
 /* Helpers de fecha ------------------------------------------------------- */
 function isoDate(d) {
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
 }
 
+const dowOf = (dateStr) => new Date(dateStr + 'T12:00:00').getDay();
+
 function weekFor(dateStr) {
-  return WEEKS.find((w) => dateStr >= w.from && dateStr <= w.to) || null;
+  for (const plan of PLANS) {
+    const week = plan.weeks.find((w) => dateStr >= w.from && dateStr <= w.to);
+    if (week) return week;
+  }
+  return null;
+}
+
+const planById = (id) => PLANS.find((p) => p.id === id);
+
+/* El plan en curso para una fecha; si no hay, el próximo; si ya pasaron
+   todos, el último. */
+function planFor(dateStr) {
+  return PLANS.find((p) => dateStr <= p.to) || PLANS[PLANS.length - 1];
+}
+
+/* Sesiones de la semana, en el orden del plan. */
+function sessionsFor(week) {
+  if (week.plan === 'vol') return Object.values(BLOCK_VOL);
+  return Object.values(week.block === 'A' ? BLOCK_A : BLOCK_B);
 }
 
 /* Sesión prevista para una fecha. En bloque B el día es libre: devuelve la
@@ -173,16 +382,25 @@ function weekFor(dateStr) {
 function sessionFor(dateStr) {
   const week = weekFor(dateStr);
   if (!week) return { week: null, options: [] };
+  const dow = dowOf(dateStr);
+  if (week.plan === 'vol') {
+    const day = Object.values(BLOCK_VOL).find((d) => d.dow === dow) || VOL_REST;
+    return { week, options: [day] };
+  }
   if (week.block === 'A') {
-    const dow = new Date(dateStr + 'T12:00:00').getDay();
     const day = Object.values(BLOCK_A).find((d) => d.dow === dow);
     return { week, options: [day] };
   }
   return { week, options: [BLOCK_B[1], BLOCK_B[2], BLOCK_B[3]] };
 }
 
+/* Plan de volumen: una prescripción por semana. Plan de 4 semanas: s1/s2. */
 function presFor(exercise, week) {
+  if (exercise.pres) return exercise.pres[week.n - 1];
   return week.col === 's2' ? exercise.s2 : exercise.s1;
 }
 
-const PLAN = { WEEKS, BLOCK_A, BLOCK_B, RULES, weekFor, sessionFor, presFor, isoDate };
+const PLAN = {
+  WEEKS, BLOCK_A, BLOCK_B, RULES, VOL_WEEKS, BLOCK_VOL, VOL_RULES, VOL_NOTES, PLANS,
+  weekFor, planById, planFor, sessionsFor, sessionFor, presFor, isoDate,
+};

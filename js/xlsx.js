@@ -1,5 +1,5 @@
 /* Inyecta una hoja "Registro" en el .xlsx original mediante cirugía sobre el ZIP.
-   Las hojas Resumen / Bloque A / Bloque B se copian byte a byte: conservan
+   Las hojas Resumen / Bloque A / Bloque B / Volumen se copian byte a byte: conservan
    colores, anchos y formato al 100%. La operación es idempotente: siempre se
    parte del fichero original embebido, nunca de una exportación previa. */
 
@@ -28,7 +28,7 @@ function colName(i) {
 
 function cell(ref, value, bold) {
   if (value === null || value === undefined || value === '') return '';
-  const style = bold ? ' s="6"' : '';  // xf 6 = cabecera de tabla del propio plan
+  const style = bold ? ' s="13"' : '';  // xf 13 = cabecera de las tablas de la hoja Volumen (fila 5)
   if (typeof value === 'number' && Number.isFinite(value)) {
     return `<c r="${ref}"${style}><v>${value}</v></c>`;
   }

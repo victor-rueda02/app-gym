@@ -53,9 +53,30 @@ const ANTIGUO = {
   },
 };
 
+// Filas que exportaba este mismo registro antes de añadir el plan de volumen
+// (capturadas con la versión anterior de la app). Deben salir idénticas.
+const EXPORT_ANTES = [
+  ['2026-07-20', 'Sem 1', 'A', 'Lunes · Rehab + Isquios + Hombro', 'Laterales de pie', 'Hombro lat.', 1, 10, 15, '', 2, '2 @ RIR2', 'previo'],
+  ['2026-07-20', 'Sem 1', 'A', 'Lunes · Rehab + Isquios + Hombro', 'Laterales banco inclinado posterior', 'Posterior', 1, 6, 12, '', 2, '1 @ RIR2', ''],
+  ['2026-07-22', 'Sem 1', 'A', 'Miércoles · Pull', 'Laterales sentado inclinado', 'Hombro lat.', 1, 11, 13, '', 2, '2 @ RIR2', ''],
+  ['2026-08-05', 'Sem 3', 'B', 'Día 1 · Rehab + Push mínimo', 'Laterales', 'Hombro lat.', 1, 8, 15, '', 3, '2 @ RIR2', ''],
+];
+
 await page.addInitScript((data) => {
   localStorage.setItem('gym.log.v1', JSON.stringify(data));
 }, ANTIGUO);
+
+// La pantalla Hoy depende de la fecha: fijamos el reloj en el lunes 20 jul
+// para que el registro antiguo caiga en el día que se muestra.
+await page.addInitScript(() => {
+  const RealDate = Date;
+  const fixed = new RealDate('2026-07-20T10:00:00').getTime();
+  // eslint-disable-next-line no-global-assign
+  Date = class extends RealDate {
+    constructor(...args) { return args.length ? new RealDate(...args) : new RealDate(fixed); }
+    static now() { return fixed; }
+  };
+});
 
 await page.goto('http://localhost:8125/index.html');
 await page.waitForFunction(() => document.querySelectorAll('.ex').length > 0);
@@ -82,6 +103,10 @@ check('Bloque B: sus laterales quedan intactas',
 const visible = await page.locator('main .ex', { hasText: 'Laterales de pie' }).first()
   .locator('.pres').textContent();
 check('El lunes muestra la serie ya registrada', visible === '1/2', visible);
+
+const filas = await page.evaluate(() => buildRows());
+check('Se exporta igual que antes del plan de volumen',
+  JSON.stringify(filas) === JSON.stringify(EXPORT_ANTES), `${filas.length} filas`);
 
 // Volver a arrancar no debe duplicar nada (migración idempotente).
 await page.reload();

@@ -9,6 +9,9 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
+// fflate es UMD y package.json es "type": "module", así que no vale require.
+// eslint-disable-next-line no-new-func
+const fflate = new Function(`${fs.readFileSync(path.join(root, 'vendor/fflate.js'), 'utf8')};return fflate;`)();
 const outDir = path.join(root, 'tools', 'out');
 fs.mkdirSync(outDir, { recursive: true });
 
@@ -216,6 +219,118 @@ await page.locator('.card .btn', { hasText: 'S3' }).click();
 check('Semana 3 muestra los 3 días del bloque B',
   (await page.textContent('main')).includes('Día 3'));
 
+/* --- Plan de volumen (19 oct – 13 dic) desde el selector de fecha de Hoy --- */
+async function goToDate(d) {
+  await page.click('[data-tab="today"]');
+  await page.fill('#datepick', d);
+  await page.waitForFunction((v) => document.getElementById('datepick').value === v, d);
+}
+const presOf = (name) => page.locator('main .ex', { has: page.locator('.nm', { hasText: new RegExp(`^${name}$`) }) })
+  .locator('.pres').textContent();
+
+await goToDate('2026-10-19');
+check('19/10: sesión L de la semana 1',
+  (await page.textContent('#hero-name')) === 'Rehab + Isquios + Hombro + Gemelo'
+  && (await page.textContent('.hero .week')) === 'Semana 1 · Volumen',
+  `${await page.textContent('#hero-name')} / ${await page.textContent('.hero .week')}`);
+check('19/10: 7 ejercicios', (await page.locator('main .ex').count()) === 7,
+  `${await page.locator('main .ex').count()} filas`);
+check('19/10: Elev laterales polea 2 @ RIR1/0', (await presOf('Elev laterales polea')) === '2 @ RIR1/0');
+check('19/10: Elev laterales mancuerna 1 @ RIR0', (await presOf('Elev laterales mancuerna')) === '1 @ RIR0');
+
+await page.locator('main .ex', { hasText: 'Elev laterales polea' }).click();
+await page.waitForSelector('.set-row input');
+const rirPh = await page.locator('.set-row:not(.head) input[data-f="rir"]')
+  .evaluateAll((els) => els.map((e) => e.placeholder));
+check('RIR1/0: objetivo 1 y 0 en la última serie', rirPh.join(',') === '1,0', rirPh.join(','));
+const lat = page.locator('.set-row:not(.head) input');
+await lat.nth(0).fill('9');
+await lat.nth(1).fill('15');
+await lat.nth(2).fill('1');
+await page.locator('.btn', { hasText: 'Hecho' }).click();
+await page.waitForSelector('main .ex');
+check('19/10: contador 1/2 tras registrar', (await presOf('Elev laterales polea')) === '1/2');
+
+await page.locator('main .ex', { hasText: 'Gemelos' }).click();
+await page.waitForSelector('.set-row input');
+const gemPh = await page.locator('.set-row:not(.head) input[data-f="rir"]')
+  .evaluateAll((els) => els.map((e) => e.placeholder));
+check('Gemelos 3 @ RIR1/0: objetivos 1,1,0', gemPh.join(',') === '1,1,0', gemPh.join(','));
+await page.locator('.btn', { hasText: 'Hecho' }).click();
+
+await page.locator('main .ex', { hasText: 'Prensa unil' }).click();
+await page.waitForSelector('.set-row input');
+check('Prensa unil semana 1: Kg/Reps con ×12 de referencia',
+  (await page.locator('.set-row.head span').allTextContents()).join(',') === ',Kg,Reps,'
+  && (await page.locator('.set-row:not(.head) input[data-f="reps"]').first().getAttribute('placeholder')) === '12');
+await page.locator('.btn', { hasText: 'Hecho' }).click();
+
+await goToDate('2026-10-24');
+check('24/10 (sábado): sesión Rehab + Movilidad',
+  (await page.textContent('#hero-name')) === 'Rehab + Movilidad'
+  && (await page.locator('main .ex').count()) === 5, await page.textContent('#hero-name'));
+check('Movilidad sin series (-)', (await presOf('Movilidad - trapecio inferior')) === '-');
+await page.locator('main .ex', { hasText: 'Abs wesley banco' }).click();
+await page.waitForSelector('.set-row input');
+await page.locator('.set-row:not(.head) input').nth(1).fill('15');
+await page.locator('.btn', { hasText: 'Hecho' }).click();
+await goToDate('2026-10-25');
+check('25/10 (domingo): descanso, sin ejercicios',
+  (await page.textContent('#hero-name')) === 'Descanso'
+  && (await page.textContent('.hero .week')) === 'Semana 1 · Volumen'
+  && (await page.locator('main .ex').count()) === 0, await page.textContent('#hero-name'));
+
+await goToDate('2026-12-10');
+check('10/12: semana 8, jueves',
+  (await page.textContent('.hero .week')) === 'Semana 8 · Volumen'
+  && (await page.textContent('#hero-name')) === 'Rehab + Isquios + Aductores');
+check('10/12: Back squat 3 x8', (await presOf('Back squat')) === '3 x8');
+check('10/12: Isquios sentado 5 @ RIR1/0', (await presOf('Isquios sentado')) === '5 @ RIR1/0');
+
+await goToDate('2026-07-21');
+check('21/07 sigue en el plan viejo (martes, semana 1)',
+  (await page.textContent('#hero-name')) === 'Push'
+  && (await presOf('Press inclinado manc')) === '3 @ RIR2');
+
+for (const d of ['2026-10-17', '2026-12-14']) {
+  await goToDate(d);
+  check(`${d}: fuera de plan sin romperse`,
+    (await page.textContent('main .empty')).includes('fuera de los planes')
+    && (await page.textContent('.hero .week')) === 'Sin plan para esta fecha');
+}
+
+// Con la fecha en 14/12 ya no queda plan por delante: Plan abre el último.
+await page.click('[data-tab="plan"]');
+await page.waitForSelector('main .ex');
+check('Plan abre el plan de volumen por defecto',
+  (await page.textContent('#subtitle')) === 'Volumen 8 semanas · 19 oct – 13 dic',
+  await page.textContent('#subtitle'));
+check('Selector con las 8 semanas', (await page.locator('[data-week]').count()) === 8);
+await page.click('[data-week="8"]');
+check('Semana 8: título y fechas',
+  (await page.textContent('main .card h2')) === 'Semana 8 · Volumen'
+  && (await page.textContent('main')).includes('7–13 dic'));
+check('Semana 8: Back squat 3 x8 en el jueves', (await presOf('Back squat')) === '3 x8');
+check('El plan nombra la sesión del sábado como en el Excel',
+  (await page.locator('main .section-label').allTextContents()).includes('Sábado · Rehab + Movilidad'));
+check('Notas de semanas 9–10 en el plan',
+  (await page.textContent('main')).includes('Semana 9 (14-20/12) · Viaje = descarga'));
+check('Reglas del plan nuevo (RIR1/0 y autorregulación)',
+  (await page.textContent('main')).includes('RIR1/0 = todas las series a RIR1')
+  && (await page.textContent('main')).includes('Autorregulación:'));
+await page.click('[data-plan="jul"]');
+check('Desde Plan se ve el plan viejo',
+  (await page.locator('[data-week]').count()) === 4
+  && (await page.textContent('main')).includes('Laterales de pie')
+  && (await page.textContent('main')).includes('Tras el 16/08'));
+
+await goToDate('2026-10-17');
+await page.click('[data-tab="plan"]');
+await page.waitForSelector('main .ex');
+check('El 17/10 Plan abre el próximo plan (volumen, S1)',
+  (await page.textContent('#subtitle')).startsWith('Volumen 8 semanas')
+  && (await page.textContent('main .card h2')) === 'Semana 1 · Volumen');
+
 /* --- Exportar y comprobar el .xlsx --- */
 await page.click('[data-tab="data"]');
 await page.waitForSelector('.btn');
@@ -226,10 +341,21 @@ const [download] = await Promise.all([
 const saved = path.join(outDir, 'e2e.xlsx');
 await download.saveAs(saved);
 check('El fichero descargado conserva el nombre original',
-  download.suggestedFilename() === 'Plan_4semanas_20jul-16ago.xlsx',
+  download.suggestedFilename() === 'Plan_8sem_vol.xlsx',
   download.suggestedFilename());
 check('El .xlsx descargado no está vacío', fs.statSync(saved).size > 10000,
   `${fs.statSync(saved).size} bytes`);
+
+const zipOut = fflate.unzipSync(new Uint8Array(fs.readFileSync(saved)));
+const zipSrc = fflate.unzipSync(new Uint8Array(fs.readFileSync(path.join(root, 'Plan_8sem_vol.xlsx'))));
+const registro = new TextDecoder().decode(zipOut['xl/worksheets/sheet5.xml'] || new Uint8Array());
+check('Registro con filas de julio y del plan de volumen',
+  registro.includes('2026-07-20') && registro.includes('2026-10-19')
+  && registro.includes('2026-10-24') && registro.includes('>Volumen<'));
+check('Las 4 hojas originales salen intactas',
+  [1, 2, 3, 4].every((n) => Buffer.compare(
+    Buffer.from(zipOut[`xl/worksheets/sheet${n}.xml`]),
+    Buffer.from(zipSrc[`xl/worksheets/sheet${n}.xml`])) === 0));
 
 check('Sin errores de JavaScript', errors.length === 0, errors.join(' | '));
 

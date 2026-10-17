@@ -20,9 +20,8 @@ function buildRows() {
     const week = PLAN.weekFor(date);
     if (!week) continue;
 
-    const session = week.block === 'A'
-      ? Object.values(PLAN.BLOCK_A).find((d) => d.id === rec.sessionId)
-      : Object.values(PLAN.BLOCK_B).find((d) => d.id === rec.sessionId);
+    // La columna Bloque identifica el plan: A / B (4 semanas) o Volumen.
+    const session = PLAN.sessionsFor(week).find((d) => d.id === rec.sessionId);
     if (!session) continue;
 
     const sessionLabel = `${session.name} · ${session.title}`;
