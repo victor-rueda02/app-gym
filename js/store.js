@@ -41,7 +41,7 @@ async function idbGet() {
 
 /* Estructura:
    { v, days: { "2026-07-20": { sessionId, notes, entries: { exId: [ {kg,reps,secs,rir} ] } } } } */
-const VERSION = 2;
+const VERSION = 3;
 
 function empty() { return { v: VERSION, days: {} }; }
 
@@ -65,6 +65,40 @@ const MIGRATIONS = {
       const destino = porSesion[rec.sessionId];
       if (destino) mover(rec.entries, 'laterales', destino);
       mover(rec.entries, 'laterales-medio-posterior', 'laterales-banco-inclinado-posterior');
+    }
+  },
+
+  // v2 -> v3: el Excel con cardio renombra o sustituye ejercicios del plan de
+  // volumen. Se recolocan por sesión: las sesiones de julio/agosto no se tocan.
+  // En el miércoles el orden importa: "Jalón neutro" pasa a "Jalón ancho plano
+  // frontal" y solo después "Dominadas medio abiertas" ocupa el nombre "Jalón neutro".
+  3(data) {
+    const porSesion = {
+      'VOL-L': [['gemelos', 'gemelos-prensa']],
+      'VOL-M': [
+        ['press-inclinado-barra', 'press-inclinado-barra-30-40'],
+        ['aperturas-polea', 'contractora-pec-deck'],
+        ['abs', 'abs-colgado-retroversion'],
+      ],
+      'VOL-X': [
+        ['jalon-neutro', 'jalon-ancho-plano-frontal'],
+        ['dominadas-medio-abiertas', 'jalon-neutro'],
+      ],
+      'VOL-J': [['gemelos', 'gemelos-prensa']],
+      'VOL-V': [
+        ['triceps-conc-polea', 'triceps-conc-polea-15'],
+        ['curl-frances-manc', 'press-frances-manc-banco-plano'],
+        ['press-incl-maquina', 'press-maquina-neutro-ascendente'],
+        ['remo-maquina', 'remo-maquina-pecho-apoyado-30'],
+        ['pullover', 'aduccion-unil-polea-alta-pull-in'],
+      ],
+    };
+    for (const rec of Object.values(data.days)) {
+      for (const [from, to] of porSesion[rec.sessionId] || []) {
+        if (!rec.entries[from]) continue;
+        rec.entries[to] = (rec.entries[to] || []).concat(rec.entries[from]);
+        delete rec.entries[from];
+      }
     }
   },
 };

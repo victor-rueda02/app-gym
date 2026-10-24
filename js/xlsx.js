@@ -10,7 +10,7 @@ const REL_WS = 'http://schemas.openxmlformats.org/officeDocument/2006/relationsh
 const COLS = [
   ['Fecha', 12], ['Semana', 9], ['Bloque', 8], ['Sesión', 26], ['Ejercicio', 30],
   ['Objetivo', 18], ['Serie', 7], ['Peso (kg)', 10], ['Reps', 7], ['Seg', 7],
-  ['RIR', 6], ['Prescrito', 12], ['Notas', 28],
+  ['Min', 7], ['RIR', 6], ['Prescrito', 12], ['Notas', 28],
 ];
 
 const esc = (s) => String(s)

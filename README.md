@@ -1,7 +1,7 @@
 # Gym · Volumen 8 semanas (19 oct – 13 dic) + plan de 4 semanas (20 jul – 16 ago)
 
 PWA para registrar el entrenamiento desde el iPhone y volcarlo al Excel
-`Plan_8sem_vol.xlsx` sin perder el formato original.
+`Plan_8sem_vol_definitivo_con_cardio.xlsx` sin perder el formato original.
 
 La app lleva dos planes:
 
@@ -32,7 +32,7 @@ Fuera de esas fechas, la pestaña Hoy avisa de que no hay plan.
 
 En **iPhone/Safari** no existe la File System Access API, así que la app no
 puede escribir en un fichero del disco. Descarga siempre con el mismo nombre,
-`Plan_8sem_vol.xlsx`, y como el fichero está completo basta con copiarlo
+`Plan_8sem_vol_definitivo_con_cardio.xlsx`, y como el fichero está completo basta con copiarlo
 encima del tuyo.
 
 En **Chrome/Edge de escritorio** sí se usa esa API: eliges el fichero una vez y
@@ -65,9 +65,9 @@ de inicio**. Se abre a pantalla completa, sin barra del navegador.
 - **Hoy** — la sesión que toca según la fecha. Las series prescritas aparecen
   ya como filas vacías: solo rellenas kg / reps / RIR. Se guarda al teclear.
   Debajo, notas del día para el semáforo de rodilla.
-  - *Volumen:* de lunes a sábado, la sesión fija de ese día. El domingo no
-    tiene sesión en el Excel y sale como descanso. En `N @ RIR1/0`, el RIR
-    objetivo de cada serie aparece como 1, 1, …, 0.
+  - *Volumen:* la sesión fija de ese día; sábado y domingo comparten la sesión
+    `(S/D)`. En `N @ RIR1/0`, el RIR objetivo de cada serie aparece como
+    1, 1, …, 0.
   - *4 semanas:* en las semanas 3 y 4 eliges cuál de los 3 días haces, porque
     el plan los deja libres.
 - **Cronómetro** — dentro de cada ejercicio, con *Iniciar / Pausar / A cero*.
@@ -81,7 +81,10 @@ de inicio**. Se abre a pantalla completa, sin barra del navegador.
   fecha elegida. Arriba se cambia al otro plan.
 - **Datos** — exportar el .xlsx, copia de seguridad en JSON e historial.
 
-Los ejercicios de rehab llevan una barra verde a la izquierda.
+Los ejercicios de rehab llevan una barra verde a la izquierda y el **cardio**
+(bici, martes y viernes, al final de la sesión) una barra azul. El cardio es un
+ejercicio más, pero se registra con una sola entrada en minutos (columna *Min*
+de la hoja `Registro`); sus pautas largas se leen dentro del ejercicio.
 
 ## Mantenimiento
 

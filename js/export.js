@@ -24,7 +24,7 @@ function buildRows() {
     const session = PLAN.sessionsFor(week).find((d) => d.id === rec.sessionId);
     if (!session) continue;
 
-    const sessionLabel = `${session.name} · ${session.title}`;
+    const sessionLabel = session.title ? `${session.name} · ${session.title}` : session.name;
 
     const first = rows.length;
 
@@ -37,8 +37,8 @@ function buildRows() {
         rows.push([
           date, `Sem ${week.n}`, week.block, sessionLabel, exercise.name,
           exercise.target, i + 1,
-          num(s.kg), num(s.reps), num(s.secs), num(s.rir),
-          pres.label, exercise.notes,
+          num(s.kg), num(s.reps), num(s.secs), num(s.mins), num(s.rir),
+          pres.label, exercise.notes.length <= 40 ? exercise.notes : '',   // las pautas largas ya están en la hoja del plan
         ]);
       });
     });
@@ -46,8 +46,8 @@ function buildRows() {
     // La nota del día es una sola: va en la primera fila de esa fecha, no
     // repetida al final de cada ejercicio.
     if (rec.notes && rows.length > first) {
-      const cell = rows[first][12];
-      rows[first][12] = cell ? `${cell} · ${rec.notes}` : rec.notes;
+      const cell = rows[first][13];
+      rows[first][13] = cell ? `${cell} · ${rec.notes}` : rec.notes;
     }
   }
   return rows;

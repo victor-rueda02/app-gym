@@ -14,6 +14,8 @@ const rir10 = (sets) => ({
 const fix = (sets, reps) => ({ sets, kind: 'fixed', reps, label: `${sets} x${reps}` });
 const iso = (sets, secs) => ({ sets, kind: 'iso', secs, label: `${sets} (${secs} s)` });
 const none = () => ({ sets: 0, kind: 'none', label: '—' });
+// Cardio: una sola entrada en minutos. El texto de la celda puede llevar intervalos.
+const cardio = (mins) => ({ sets: 1, kind: 'cardio', mins, label: `${mins} min` });
 
 const slug = (s) => s.toLowerCase()
   .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
@@ -34,6 +36,7 @@ function parsePres(text) {
   else if ((m = text.match(/^(\d+) @ RIR(\d)$/))) p = rir(+m[1], +m[2]);
   else if ((m = text.match(/^(\d+) x(\d+)$/))) p = fix(+m[1], +m[2]);
   else if ((m = text.match(/^(\d+) x(\d+–\d+)$/))) p = fix(+m[1], m[2]);
+  else if ((m = text.match(/^(\d+) min(?: \([^)]+\))?$/))) p = cardio(+m[1]);
   else throw new Error(`Prescripción desconocida: "${text}"`);
   return { ...p, label: text };
 }
@@ -187,9 +190,10 @@ const RULES = [
 ];
 
 /* Volumen · 19 oct – 13 dic · 8 semanas ----------------------------------
-   Lunes a sábado, sesión fija. El domingo no tiene sesión en el Excel: la app
-   lo trata como descanso (VOL_REST). Las semanas 9 (viaje = descarga) y 10 no van en el calendario: sus textos
-   están en VOL_NOTES. */
+   Lunes a viernes, sesión fija; sábado y domingo comparten la sesión "(S/D)". El
+   cardio (bici, martes y viernes) va como un ejercicio más al final de la sesión, con
+   objetivo 'Cardio'. Las semanas 9 (viaje = descarga) y 10 no van en el calendario:
+   sus textos están en VOL_NOTES. */
 const VOL_WEEKS = [
   ['2026-10-19', '2026-10-25', '19–25 oct'],
   ['2026-10-26', '2026-11-01', '26 oct – 1 nov'],
@@ -208,56 +212,75 @@ const BLOCK_VOL = {
     id: 'VOL-L', dow: 1, name: 'Lunes', title: 'Rehab + Isquios + Hombro + Gemelo',
     exercises: [
       vx('Elev laterales polea', 'Hombro lat.',
-        ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0']),
-      vx('Elev laterales mancuerna', 'Hombro lat.',
-        ['1 @ RIR0', '1 @ RIR0', '1 @ RIR0', '1 @ RIR0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0']),
+        ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0'],
+        'Prioridad 1 · Polea altura muñeca/muslo en plano escapular (~30° adelante). Intercalar en superserie alterna con Unilateral abduction para dar 3-4 min de descanso al deltoides antes de las mancuernas.'),
       vx('Unilateral abduction', 'Rehab',
         ['2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20'],
         'Antes del rehab: sentadilla española 5×45 s'),
+      vx('Elev laterales mancuerna', 'Hombro lat.',
+        ['1 @ RIR0', '1 @ RIR0', '1 @ RIR0', '1 @ RIR0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0'],
+        'Prioridad 1 · Hacer tras el 1er bloque de Unilateral abduction · Perfil en acortamiento, controlar bajada sin rebotar.'),
       vx('Touchdown squat', 'Rehab',
         ['2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20'],
         'fijo'),
       vx('Prensa unil', 'Rehab',
         ['2 x12', '2 x10', '2 x10', '2 x10', '2 x8', '2 x8', '2 x8', '2 x8'],
         'fijo · Tempo 3-1-3 · dolor ≤3/10'),
-      vx('Gemelos', 'Gemelos',
-        ['3 @ RIR1/0', '3 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0', '5 @ RIR1/0', '5 @ RIR1/0']),
+      vx('Gemelos prensa', 'Gemelos',
+        ['3 @ RIR1/0', '3 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0', '5 @ RIR1/0', '5 @ RIR1/0'],
+        'Prensa con pies abajo · Pausa estricta de 2 s en máximo estiramiento abajo (sin rebotar en el tendón de Aquiles) + rodilla semirrígida.'),
       vx('Hiperextensiones', 'Isquios',
-        ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '4 @ RIR1/0']),
+        ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '4 @ RIR1/0'],
+        'Extensión de cadera · Rodillas con ligera flexión fija (~10-15°), subir empujando talones sin hiperextender zona lumbar.'),
     ],
   },
   M: {
     id: 'VOL-M', dow: 2, name: 'Martes', title: 'Push',
     exercises: [
-      vx('Press inclinado barra', 'Pecho',
-        ['2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '4 @ RIR1/0']),
+      vx('Press inclinado barra (30–40°)', 'Pecho',
+        ['2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '4 @ RIR1/0'],
+        'Prioridad 4 (Haz clavicular) · Agarre ~1.3x ancho hombros y codos a 45–60° (plano escapular) para proteger hombro y codo.'),
       vx('Extensión tríceps unil polea', 'Tríceps',
-        ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0']),
-      vx('Aperturas polea', 'Pecho',
-        ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0']),
+        ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0'],
+        'Prioridad 2 (Tríceps) · Hombro a 0° pegado al costado (máxima palanca de cabeza larga sin estrés articular en codo).'),
+      vx('Contractora (Pec Deck)', 'Pecho',
+        ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0'],
+        'Prioridad 4 (Haz clavicular/esternal) · Asiento medio-bajo (manos altura clavícula/esternón sup.) · NO hiperextender húmeros detrás del torso al abrir para no irritar cápsula anterior del hombro.'),
       vx('Triceps tras nuca unil polea', 'Tríceps',
-        ['1 @ RIR0', '1 @ RIR0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0']),
-      vx('Abs', 'Abs',
-        ['3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0', '5 @ RIR1/0']),
+        ['1 @ RIR0', '1 @ RIR0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0'],
+        'Prioridad 2 (Tríceps en estiramiento) · Dejar que el codo apunte ligeramente hacia fuera (~20-30° plano escapular) para no forzar cápsula del hombro ni tendón olecraniano.'),
+      vx('Abs colgado (retroversión)', 'Abs',
+        ['3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0', '5 @ RIR1/0'],
+        'Colgado con depresión escapular (activa dorsal) · Enrollar pelvis hacia costillas (retroversión). Usar straps si el agarre molesta al codo.'),
+      vx('Bici Z2 (65–75% FC)', 'Cardio',
+        ['15 min', '15 min', '18 min', '20 min', '20 min', '22 min', '25 min', '20 min'],
+        'Cadencia alta 85–90 rpm, sillín alto (rodilla a 20-25° abajo), 100% sentado. Cero impacto.'),
     ],
   },
   X: {
     id: 'VOL-X', dow: 3, name: 'Miércoles', title: 'Pull',
     exercises: [
-      vx('Jalón neutro', 'Espalda',
-        ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0']),
+      vx('Jalón ancho plano frontal', 'Espalda',
+        ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0'],
+        'Prioridad 3 (Dorsal Bajo) · 1º fresco · Torso vertical, codos abiertos en plano frontal hasta ~90° · No encoger hombros.'),
       vx('Remo gironda abierto', 'Espalda',
-        ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0']),
+        ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0'],
+        'Plano transversal (Espalda Alta) · Codos abiertos y retracción escapular completa.'),
       vx('Laterales sentado', 'Hombro lat.',
-        ['1 @ RIR0', '1 @ RIR0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0']),
-      vx('Dominadas medio abiertas', 'Espalda',
-        ['1 @ RIR0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0']),
+        ['1 @ RIR0', '1 @ RIR0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0'],
+        'Prioridad 1 (Hombro Lat.) · Sentado en banco a 75–80°, abducir en plano escapular (~30° adelante) sin rotar internamente el hombro.'),
+      vx('Jalón neutro', 'Espalda',
+        ['1 @ RIR0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0'],
+        'Plano sagital (Dorsal Sup.) · Agarre neutro ancho hombros, llevar codos a los bolsillos cortando a 90° (protege codo/bíceps).'),
       vx('Curl martillo scott', 'Bíceps',
-        ['2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0']),
+        ['2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0'],
+        'Prioridad 2 (Bíceps/Braquiorradial) · Agarre neutro (muy amigable para el codo). Bajar en 2-3 s y parar a ~15° de la extensión total para no sobrecargar tendón distal.'),
       vx('Posterior polea', 'Hombro post.',
-        ['1 @ RIR0', '1 @ RIR0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0']),
+        ['1 @ RIR0', '1 @ RIR0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0'],
+        'Salud Hombro / Transversal · Clave para centrar cabeza humeral y compensar presses.'),
       vx('Curl bayesian', 'Bíceps',
-        ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '4 @ RIR1/0']),
+        ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '4 @ RIR1/0'],
+        'Prioridad 2 (Bíceps en estiramiento) · Hombro en extensión detrás del torso; no dejar que el hombro rote hacia delante al subir.'),
     ],
   },
   J: {
@@ -275,36 +298,50 @@ const BLOCK_VOL = {
         ['2 x12', '2 x10', '2 x10', '2 x10', '2 x8', '2 x8', '2 x8', '2 x8'],
         'Tempo 3-1-3 · empieza por la lesionada'),
       vx('Isquios sentado', 'Isquios',
-        ['3 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0', '5 @ RIR1/0', '5 @ RIR1/0', '5 @ RIR1/0']),
+        ['3 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0', '5 @ RIR1/0', '5 @ RIR1/0', '5 @ RIR1/0'],
+        'Isquios en estiramiento máximo (cadera a 90°) · Controlar fase excéntrica.'),
       vx('Aductores', 'Aductores',
-        ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0']),
-      vx('Gemelos', 'Gemelos',
-        ['2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0', '5 @ RIR1/0']),
+        ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0'],
+        'Plano transversal/frontal · Pausa de 1 s en apertura máxima sin dolor inguinal/rodilla.'),
+      vx('Gemelos prensa', 'Gemelos',
+        ['2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0', '5 @ RIR1/0'],
+        'Prensa con pies abajo · Pausa estricta de 2 s en máximo estiramiento abajo (sin rebote elástico).'),
     ],
   },
   V: {
     id: 'VOL-V', dow: 5, name: 'Viernes', title: 'Torso',
     exercises: [
-      vx('Triceps conc polea', 'Tríceps',
-        ['1 @ RIR0', '1 @ RIR0', '1 @ RIR0', '1 @ RIR0', '1 @ RIR0', '1 @ RIR0', '1 @ RIR0', '1 @ RIR0']),
+      vx('Triceps conc polea (-15°)', 'Tríceps',
+        ['1 @ RIR0', '1 @ RIR0', '1 @ RIR0', '1 @ RIR0', '1 @ RIR0', '1 @ RIR0', '1 @ RIR0', '1 @ RIR0'],
+        'Prioridad 2 + Potenciación de codo · Hombro a -15° (extensión): máximo acortamiento de cabeza larga con torque nulo en flexión máxima de codo (calienta tendón para el francés).'),
       vx('Laterales polea', 'Hombro lat.',
-        ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0']),
-      vx('Curl francés manc', 'Tríceps',
-        ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0']),
+        ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0'],
+        'Prioridad 1 (Hombro Lat.) · Polea a altura de muñeca/muslo, abducción en plano escapular.'),
+      vx('Press francés manc (banco plano)', 'Tríceps',
+        ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0'],
+        'Prioridad 2 (Tríceps) · Agarre neutro (martillo) y brazos inclinados a ~100° hacia la cabeza: quita cizalla en epitróclea/olécranon y mantiene tensión constante.'),
       vx('Curl biceps barra z', 'Bíceps',
-        ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0']),
-      vx('Press incl máquina', 'Pecho',
-        ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0']),
+        ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0'],
+        'Prioridad 2 (Bíceps rango medio) · Usar el agarre de la barra Z (ancho o estrecho) que resulte 100% libre de molestia en muñeca y codo.'),
+      vx('Press máquina neutro ascendente', 'Pecho',
+        ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0'],
+        'Prioridad 4 (Haz clavicular) · 10/10 tras brazos: el agarre neutro y la trayectoria convergente ascendente aíslan el haz clavicular sin estrés en hombro ni codo.'),
       vx('Dominada neutra dorsal', 'Espalda',
-        ['1 @ RIR0', '1 @ RIR0', '1 @ RIR0', '1 @ RIR0', '1 @ RIR0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0']),
-      vx('Remo máquina', 'Espalda',
-        ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0']),
-      vx('Pullover', 'Espalda',
-        ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0']),
+        ['1 @ RIR0', '1 @ RIR0', '1 @ RIR0', '1 @ RIR0', '1 @ RIR0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0'],
+        'Plano sagital (Dorsal Sup.) · Usar STRAPS obligatoriamente para anular fatiga previa de bíceps y proteger codos.'),
+      vx('Remo máquina (pecho apoyado 30°)', 'Espalda',
+        ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0'],
+        'Plano sagital/híbrido (Dorsal Sup.) · Usar STRAPS, codos a ~30° hasta línea del torso.'),
+      vx('Aducción unil. polea alta (Pull-in)', 'Espalda',
+        ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0'],
+        'Prioridad 3 (Dorsal Bajo) · De lado a la polea (con tobillera en muñeca o codo semirrígido) para aislar haz inferior sin usar bíceps ni codo · Sem 1-2 a RIR 1-2.'),
+      vx('Bici Z2 / Z3 (Prog.)', 'Cardio',
+        ['12 min', '15 min', '15 min', '18 min', '20 min (4x30s Z3)', '20 min (5x30s Z3)', '20 min (4x45s Z3)', '18 min (4x30s Z3)'],
+        'Sem 1-4: Z2 continua. Sem 5-8: Intervalos cortos a 95-100 rpm (Z3 / Umbral) controlando acidosis local.'),
     ],
   },
   S: {
-    id: 'VOL-S', dow: 6, name: 'Sábado', title: 'Rehab + Movilidad',
+    id: 'VOL-S', dow: 6, dows: [6, 0], name: 'Sábado/Domingo', title: '',
     exercises: [
       vx('Unilateral Abduction', 'Rehab',
         ['2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20'],
@@ -322,8 +359,6 @@ const BLOCK_VOL = {
     ],
   },
 };
-
-const VOL_REST = { id: 'VOL-D', dow: 0, name: 'Domingo', title: 'Descanso', rest: true, exercises: [] };
 
 /* Celdas A2 y A61 */
 const VOL_RULES = [
@@ -384,7 +419,7 @@ function sessionFor(dateStr) {
   if (!week) return { week: null, options: [] };
   const dow = dowOf(dateStr);
   if (week.plan === 'vol') {
-    const day = Object.values(BLOCK_VOL).find((d) => d.dow === dow) || VOL_REST;
+    const day = Object.values(BLOCK_VOL).find((d) => (d.dows || [d.dow]).includes(dow));
     return { week, options: [day] };
   }
   if (week.block === 'A') {

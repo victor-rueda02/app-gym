@@ -66,6 +66,7 @@ function sessionById(id) {
 
 /* Resumen de una serie ya guardada, p. ej. "40kg × 10 @2" */
 function setSummary(s, kind) {
+  if (kind === 'cardio') return s.mins ? `${s.mins} min` : '—';
   const parts = [];
   if (s.kg !== '' && s.kg != null) parts.push(`${s.kg}kg`);
   if (kind === 'iso') { if (s.secs) parts.push(`${s.secs}s`); }
@@ -74,7 +75,16 @@ function setSummary(s, kind) {
   return parts.join(' ') || '—';
 }
 
-const isLogged = (s) => [s.kg, s.reps, s.secs].some((v) => v !== '' && v != null);
+const isLogged = (s) => [s.kg, s.reps, s.secs, s.mins].some((v) => v !== '' && v != null);
+
+// Barra de color a la izquierda: verde = rehab, azul = cardio
+const typeClass = (exercise) => (exercise.target === 'Rehab' ? 'rehab'
+  : exercise.target === 'Cardio' ? 'cardio' : '');
+
+// En la lista solo caben notas cortas; las largas se leen dentro del ejercicio.
+const shortNote = (n) => (n && n.length <= 40 ? n : '');
+
+const sessionName = (s) => (s.title ? `${s.name} · ${s.title}` : s.name);
 
 /* Render ------------------------------------------------------------------ */
 function render() {
@@ -134,7 +144,7 @@ function renderToday() {
         <button class="ex">
           <div class="grow">
             <div class="nm">${escapeHtml(s.name)}</div>
-            <div class="meta">${escapeHtml(s.title)}</div>
+            <div class="meta">${escapeHtml(s.title || s.name)}</div>
           </div>
           <span class="pres">${s.exercises.length} ej.</span>
         </button>`);
@@ -150,7 +160,7 @@ function renderToday() {
   if (!rec.sessionId) Store.setSession(date, session.id);
 
   document.getElementById('hero-name').textContent = session.rest
-    ? 'Descanso' : session.title;
+    ? 'Descanso' : (session.title || session.name);
 
   if (session.note) {
     view.appendChild(el(`<div class="card"><p>${escapeHtml(session.note)}</p></div>`));
@@ -188,10 +198,10 @@ function exerciseRow(exercise, week, date, session) {
   const done = pres.sets > 0 && logged >= pres.sets;
 
   const row = el(`
-    <button class="ex ${exercise.target === 'Rehab' ? 'rehab' : ''} ${done ? 'done' : ''}">
+    <button class="ex ${typeClass(exercise)} ${done ? 'done' : ''}">
       <div class="grow">
         <div class="nm">${escapeHtml(exercise.name)}</div>
-        <div class="meta">${escapeHtml(exercise.target)}${exercise.notes ? ' · ' + escapeHtml(exercise.notes) : ''}</div>
+        <div class="meta">${escapeHtml(exercise.target)}${shortNote(exercise.notes) ? ' · ' + escapeHtml(shortNote(exercise.notes)) : ''}</div>
       </div>
       <span class="pres">${logged ? `${logged}/${pres.sets}` : escapeHtml(pres.label)}</span>
     </button>`);
@@ -222,6 +232,8 @@ function renderExercise() {
     return;
   }
 
+  if (exercise.notes) view.appendChild(el(`<div class="card"><p>${escapeHtml(exercise.notes)}</p></div>`));
+
   view.appendChild(stopwatch(pres, date, exId));
 
   const prev = Store.lastPerformance(exId, date);
@@ -232,8 +244,8 @@ function renderExercise() {
   }
 
   const card = el('<div class="card"></div>');
-  const cols = pres.kind === 'iso'
-    ? ['Kg', 'Seg'] : pres.kind === 'rir' ? ['Kg', 'Reps', 'RIR'] : ['Kg', 'Reps'];
+  const cols = pres.kind === 'cardio' ? ['Min']
+    : pres.kind === 'iso' ? ['Kg', 'Seg'] : pres.kind === 'rir' ? ['Kg', 'Reps', 'RIR'] : ['Kg', 'Reps'];
 
   const grid = (extra) => `grid-template-columns: 30px ${'1fr '.repeat(cols.length)}40px;${extra || ''}`;
   card.appendChild(el(
@@ -244,7 +256,7 @@ function renderExercise() {
   const list = Store.sets(date, exId).slice();
   // Arranca con las series prescritas para que solo haya que rellenar huecos.
   const wanted = Math.max(pres.sets, 1, state.rows[rowsKey(date, exId)] || 0, list.length);
-  while (list.length < wanted) list.push({ kg: '', reps: '', secs: '', rir: '' });
+  while (list.length < wanted) list.push({ kg: '', reps: '', secs: '', rir: '', mins: '' });
 
   const save = () => Store.saveSets(date, exId, list.filter(isLogged));
 
@@ -252,8 +264,8 @@ function renderExercise() {
     const s = list[index];
     // "RIR1/0" lleva un objetivo por serie (1, 1, …, 0); el resto, uno común.
     const rirGoal = pres.rirs ? pres.rirs[index] : pres.rir;
-    const placeholder = { Kg: '—', Reps: pres.reps || '', Seg: pres.secs || '', RIR: rirGoal ?? '' };
-    const field = { Kg: 'kg', Reps: 'reps', Seg: 'secs', RIR: 'rir' };
+    const placeholder = { Kg: '—', Reps: pres.reps || '', Seg: pres.secs || '', RIR: rirGoal ?? '', Min: pres.mins || '' };
+    const field = { Kg: 'kg', Reps: 'reps', Seg: 'secs', RIR: 'rir', Min: 'mins' };
 
     const row = el(`
       <div class="set-row" style="${grid()}">
@@ -284,16 +296,18 @@ function renderExercise() {
   list.forEach((_, i) => addRow(i));
   view.appendChild(card);
 
-  const add = el('<button class="btn ghost">+ Añadir serie</button>');
-  add.addEventListener('click', () => {
-    const last = list[list.length - 1] || {};
-    // Copiamos la carga de la serie anterior: casi siempre se repite.
-    list.push({ kg: last.kg ?? '', reps: '', secs: '', rir: '' });
-    state.rows[rowsKey(date, exId)] = list.length;
-    save();   // persiste la carga heredada; si va vacía, la mantiene state.rows
-    renderExercise();
-  });
-  view.appendChild(add);
+  if (pres.kind !== 'cardio') {   // el cardio es una sola entrada, sin series
+    const add = el('<button class="btn ghost">+ Añadir serie</button>');
+    add.addEventListener('click', () => {
+      const last = list[list.length - 1] || {};
+      // Copiamos la carga de la serie anterior: casi siempre se repite.
+      list.push({ kg: last.kg ?? '', reps: '', secs: '', rir: '', mins: '' });
+      state.rows[rowsKey(date, exId)] = list.length;
+      save();   // persiste la carga heredada; si va vacía, la mantiene state.rows
+      renderExercise();
+    });
+    view.appendChild(add);
+  }
 
   const back = el('<button class="btn">Hecho</button>');
   back.addEventListener('click', () => { state.exercise = null; render(); });
@@ -351,7 +365,7 @@ function stopwatch(pres, date, exId) {
     const secs = Timer.seconds();
     if (!secs) { toast('El cronómetro está a cero'); return; }
     const updated = Store.sets(date, exId).slice();
-    while (updated.length <= target) updated.push({ kg: '', reps: '', secs: '', rir: '' });
+    while (updated.length <= target) updated.push({ kg: '', reps: '', secs: '', rir: '', mins: '' });
     updated[target] = { ...updated[target], secs: String(secs) };
     Store.saveSets(date, exId, updated.filter(isLogged));
     state.rows[rowsKey(date, exId)] = Math.max(updated.length, state.rows[rowsKey(date, exId)] || 0);
@@ -403,7 +417,7 @@ function renderPlan() {
     </div>`));
 
   PLAN.sessionsFor(week).forEach((session) => {
-    view.appendChild(el(`<div class="section-label">${escapeHtml(session.name)} · ${escapeHtml(session.title)}</div>`));
+    view.appendChild(el(`<div class="section-label">${escapeHtml(sessionName(session))}</div>`));
     if (!session.exercises.length) {
       view.appendChild(el(`<div class="card"><p>${escapeHtml(session.note || 'Descanso')}</p></div>`));
       return;
@@ -411,7 +425,7 @@ function renderPlan() {
     session.exercises.forEach((exercise) => {
       const pres = PLAN.presFor(exercise, week);
       view.appendChild(el(`
-        <div class="ex ${exercise.target === 'Rehab' ? 'rehab' : ''}">
+        <div class="ex ${typeClass(exercise)}">
           <div class="grow">
             <div class="nm">${escapeHtml(exercise.name)}</div>
             <div class="meta">${escapeHtml(exercise.target)}</div>
@@ -502,7 +516,7 @@ function renderData() {
         <button class="ex">
           <div class="grow">
             <div class="nm">${escapeHtml(shortDate(d))}</div>
-            <div class="meta">${escapeHtml(session ? session.title : '—')}</div>
+            <div class="meta">${escapeHtml(session ? (session.title || session.name) : '—')}</div>
           </div>
           <span class="pres">${n} series</span>
         </button>`);

@@ -1,5 +1,5 @@
 """Comprueba que el plan de volumen de js/plan.js coincide celda a celda con la
-hoja "Volumen (1910-1112)" de Plan_8sem_vol.xlsx.
+hoja "Volumen (1910-1112)" de Plan_8sem_vol_definitivo_con_cardio.xlsx.
 
     python tools/verify_plan.py
 
@@ -16,8 +16,12 @@ import sys
 import openpyxl
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-XLSX = ROOT / "Plan_8sem_vol.xlsx"
+XLSX = ROOT / "Plan_8sem_vol_definitivo_con_cardio.xlsx"
 SHEET = "Volumen (1910-1112)"
+
+# Bloque de cardio del final de la hoja: (clave en BLOCK_VOL, fila). Va como último
+# ejercicio de esa sesión, con objetivo "Cardio".
+CARDIO = [("M", 92), ("V", 93)]
 
 # (clave en BLOCK_VOL, fila de cabecera, última fila de ejercicio)
 BLOCKS = [("L", 4, 12), ("M", 14, 20), ("X", 23, 31), ("J", 33, 41), ("V", 43, 52), ("S", 54, 60)]
@@ -58,13 +62,13 @@ def main():
             errors.append(f"Falta la sesión {key} en BLOCK_VOL")
             continue
         h = text(ws.cell(head, 1).value)
-        title = h.split("·", 1)[1].strip() if "·" in h else None
+        title = h.split("·", 1)[1].strip() if "·" in h else ""   # la sesión (S/D) no lleva título
         check(f"A{head} (título)", title, session["title"])
         check(f"A{head} (día)", h.split(")", 1)[1].split("·", 1)[0].strip(), session["name"])
 
         rows = [r for r in range(head + 2, last + 1) if text(ws.cell(r, 1).value)]
         covered.update(range(head, last + 1))
-        exercises = session["exercises"]
+        exercises = [e for e in session["exercises"] if e["target"] != "Cardio"]
         if len(rows) != len(exercises):
             errors.append(f"Sesión {key}: {len(rows)} ejercicios en el Excel, {len(exercises)} en plan.js")
         for r, ex in zip(rows, exercises):
@@ -80,6 +84,19 @@ def main():
                 if p["label"].endswith("RIR1/0") and p.get("rirs") != [1] * (n - 1) + [0]:
                     errors.append(f"{col}{r}: RIR por serie {p.get('rirs')} en vez de 1,…,1,0")
             check(f"K{r}", text(ws.cell(r, 11).value), ex["notes"])
+
+    for key, r in CARDIO:
+        cardio = [e for e in plan["blocks"][key]["exercises"] if e["target"] == "Cardio"]
+        if len(cardio) != 1 or plan["blocks"][key]["exercises"][-1]["target"] != "Cardio":
+            errors.append(f"Sesión {key}: el cardio debe ser un único ejercicio, el último")
+            continue
+        ex = cardio[0]
+        check(f"B{r}", text(ws.cell(r, 2).value), ex["name"])
+        for w, col in enumerate("CDEFGHIJ"):
+            check(f"{col}{r}", text(ws[f"{col}{r}"].value), ex["pres"][w]["label"])
+            if ex["pres"][w]["kind"] != "cardio":
+                errors.append(f"{col}{r}: no se interpretó como cardio")
+        check(f"K{r}", text(ws.cell(r, 11).value), ex["notes"])
 
     # Ninguna fila con ejercicio fuera de los bloques conocidos (filas 3–60).
     for r in range(3, 61):

@@ -28,12 +28,13 @@ const load = new Function('__data', `const Store = { all: () => __data };\n${src
   ;return { buildRows, build: (rows) => buildXlsx(originalXlsxBytes(), rows), original: originalXlsxBytes(), fflate };`);
 
 const set = (kg, reps, rir, secs = '') => ({ kg, reps, secs, rir });
+const cardio = (mins) => ({ kg: '', reps: '', secs: '', rir: '', mins });
 
 // Registro con días de los dos planes: los tres tipos de prescripción del plan
 // viejo (rir / fixed / iso), RIR1/0, RIR0 y reps por semana del nuevo, acentos,
 // y texto con comillas, < > y & para comprobar el escapado XML.
 const DATA = {
-  v: 2,
+  v: 3,
   days: {
     '2026-07-20': {
       sessionId: 'A-L', notes: 'hombro "cargado" <ojo>',
@@ -56,6 +57,13 @@ const DATA = {
         'elev-laterales-polea': [set('9', '15', '1'), set('9', '13', '0')],
         'elev-laterales-mancuerna': [set('10', '12', '0')],
         'prensa-unil': [set('60', '12', '')],
+      },
+    },
+    '2026-10-20': {                       // martes: el cardio es el último ejercicio
+      sessionId: 'VOL-M', notes: '',
+      entries: {
+        'press-inclinado-barra-30-40': [set('40', '10', '1')],
+        'bici-z2-65-75-fc': [cardio('16')],
       },
     },
     '2026-10-24': {
@@ -85,14 +93,23 @@ check('Las fechas fuera de plan no se exportan', !rows.some((r) => r[0] === '202
 const lunes = rows.find((r) => r[0] === '2026-10-19' && r[4] === 'Elev laterales polea');
 check('Fila del plan nuevo: semana, bloque, sesión y prescripción',
   lunes && lunes[1] === 'Sem 1' && lunes[2] === 'Volumen'
-  && lunes[3] === 'Lunes · Rehab + Isquios + Hombro + Gemelo' && lunes[11] === '2 @ RIR1/0',
+  && lunes[3] === 'Lunes · Rehab + Isquios + Hombro + Gemelo' && lunes[12] === '2 @ RIR1/0',
   JSON.stringify(lunes));
 const squat = rows.find((r) => r[0] === '2026-12-10' && r[4] === 'Back squat');
-check('Semana 8: Back squat 3 x8', squat && squat[1] === 'Sem 8' && squat[11] === '3 x8',
-  squat && squat[11]);
+check('Semana 8: Back squat 3 x8', squat && squat[1] === 'Sem 8' && squat[12] === '3 x8',
+  squat && squat[12]);
+const bici = rows.find((r) => r[0] === '2026-10-20' && r[4].startsWith('Bici Z2'));
+check('Cardio: una fila con los minutos en la columna Min',
+  bici && bici[5] === 'Cardio' && bici[10] === 16 && bici[7] === '' && bici[12] === '15 min',
+  JSON.stringify(bici));
+check('Cardio: va tras el ejercicio de fuerza de su sesión',
+  rows.findIndex((r) => r[4].startsWith('Bici Z2')) > rows.findIndex((r) => r[4].startsWith('Press inclinado barra')));
+check('Cardio: las pautas largas no se repiten en Registro', bici && bici[13] === '', JSON.stringify(bici && bici[13]));
+const domingo = rows.find((r) => r[0] === '2026-10-24');
+check('Sábado/Domingo: sesión sin título', domingo && domingo[3] === 'Sábado/Domingo', domingo && domingo[3]);
 const julio = rows.find((r) => r[0] === '2026-07-20' && r[4] === 'Laterales de pie');
 check('Fila del plan viejo intacta',
-  julio && julio[1] === 'Sem 1' && julio[2] === 'A' && julio[11] === '2 @ RIR2', JSON.stringify(julio));
+  julio && julio[1] === 'Sem 1' && julio[2] === 'A' && julio[12] === '2 @ RIR2', JSON.stringify(julio));
 
 const outDir = path.join(root, 'tools', 'out');
 fs.mkdirSync(outDir, { recursive: true });
