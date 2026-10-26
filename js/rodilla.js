@@ -26,7 +26,7 @@ const Rodilla = (() => {
     carga: [C.decimalPositivo, 'Escribe un número en kg (0 o más)'],
   };
 
-  const esc = escapeHtml;
+  const esc = (s) => escapeHtml(s);   // app.js se carga después: no leer sus globales al cargar
   const fmt = (v) => (v === '' || v === undefined || v === null ? '—' : String(v).replace('.', ','));
   const val = (v) => (v === undefined || v === null ? '' : esc(String(v).replace('.', ',')));
   const knee = () => Store.knee();
