@@ -50,8 +50,11 @@ const VERSION = 4;
 //   days  { 'YYYY-MM-DD': { decline, steps, during, back60:'Sí'|'No', click:'Sí'|'No', notes,
 //                           session?, rule?, novelty? } }   (session/rule/novelty: solo si se
 //                           edita lo precargado; ausente = el del plan, presente aunque sea '' = lo editado)
-//   weeks { 'S2'…'S10': { runLevel, depthStep, notes } }
-//   entry { walk|touchdown|hops: { ok:'Sí'|'No', notes } }
+//   weeks { 'S2'…'S10': { pressLevel?, runLevel?, notes } }   (niveles reales apuntados a
+//                           mano: índices de PLAN.PRENSA_NIVELES y de PLAN.CARRERA_NIVELES;
+//                           ausentes = la propuesta del semáforo)
+//   entry { 'S2'…'S8': { walkPain, walkBack60, tdPain, hopsPain: 'Sí'|'No', notes } }
+//                           (un intento de entrada a la carrera por semana)
 //   tests { t1…t4: { load, repsD, repsI, notes } }
 //   depth { '0'…'4': { angle, press, box, split, touchdown, validated, notes } }
 const KNEE_SECCIONES = ['days', 'weeks', 'entry', 'tests', 'depth'];

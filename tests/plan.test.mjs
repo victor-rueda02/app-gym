@@ -44,8 +44,12 @@ test('parsePres: formatos nuevos', () => {
   assert.deepEqual([P('-').kind, P('-').skip], ['none', undefined]);
   const a = P('3 x10-15\n@RIR1-2');
   assert.deepEqual([a.kind, a.sets, a.reps], ['fixed', 3, '10-15']);
-  assert.equal(P('2-3 x15-20\n5-10 s fuera').sets, 3);
+  // «2-3 x»: se precargan 2 series; la tercera se añade a mano.
+  assert.deepEqual([P('2-3 x15-20\n5-10 s fuera').sets, P('2-3 x15-20\n5-10 s fuera').setsMax], [2, 3]);
   assert.equal(P('2 x10\nnov: +1 escalón').reps, 10);
+  const pp = P('2 x10/pierna\nnov: +1 escalón');
+  assert.deepEqual([pp.kind, pp.sets, pp.reps], ['fixed', 2, 10]);
+  assert.equal(P('3 x10-15/pierna\n@RIR1-2').reps, '10-15');
   assert.equal(P('2 aprox. +\n1 al fallo\npor pierna').sets, 3);
   const op = P('Opcional:\nrango completo');
   assert.deepEqual([op.kind, op.sets, op.optional], ['fixed', 3, true]);
@@ -124,7 +128,6 @@ test('sidesFor: solo unilaterales y solo desde S2', () => {
   assert.deepEqual(marcados, [
     'VOL-J|Abducción de pie unilateral (máquina)',
     'VOL-J|Bulgarian split squat',
-    'VOL-J|TEST fuerza · extensión unilateral en máquina 90→45°',
     'VOL-L|Abducción de pie unilateral (máquina)',
     'VOL-L|Prensa unil · pesado y lento n.º 1',
     'VOL-L|Touchdown squat',
@@ -134,6 +137,42 @@ test('sidesFor: solo unilaterales y solo desde S2', () => {
   assert.equal(PLAN.sidesFor(ej, PLAN.VOL_WEEKS[1]), true);
   assert.equal(PLAN.sidesFor(PLAN.BLOCK_VOL.M.exercises[0], PLAN.VOL_WEEKS[3]), false);
   assert.equal(PLAN.sidesFor(PLAN.BLOCK_A.L.exercises[2], PLAN.WEEKS[0]), false);
+});
+
+test('unilaterales: «/pierna» de S2 a S8 y S1 sin tocar', () => {
+  for (const s of Object.values(PLAN.BLOCK_VOL)) {
+    for (const e of s.exercises.filter((x) => x.sides)) {
+      e.pres.slice(1).forEach((p, i) => assert.ok(p.skip || /\/pierna|por pierna/.test(p.label), `${e.name} S${i + 2}`));
+      assert.ok(!e.pres[0].label.includes('/pierna'), `${e.name} S1`);
+    }
+  }
+});
+
+test('el test de fuerza es un enlace a Rodilla › Test, sin D/I', () => {
+  const t = PLAN.BLOCK_VOL.J.exercises[0];
+  assert.deepEqual([t.link, t.sides, t.target], ['test', undefined, 'Test']);
+});
+
+test('escaleras de progresión coherentes con las celdas del calendario', () => {
+  const prensa = PLAN.BLOCK_VOL.L.exercises.find((e) => e.prog === 'prensa');
+  const carrera = PLAN.BLOCK_VOL.X.exercises.find((e) => e.prog === 'carrera');
+  for (let n = 2; n <= 8; n++) {
+    const p = PLAN.PRENSA_NIVELES[PLAN.PRENSA_MAX[n]];
+    assert.ok(prensa.pres[n - 1].label.startsWith(`2 x${p.reps}/pierna`), `prensa S${n}`);
+    const k = PLAN.CARRERA_MAX[n];
+    const celda = carrera.pres[n - 1].label;
+    assert.ok(celda === `N${k} · ${PLAN.CARRERA_NIVELES[k]}` || celda === `repite N${k}`, `carrera S${n}: ${celda}`);
+  }
+  // Escalones: +1 en S3, S4, S6 y S7; reps x10 en S2 y x8 en S5.
+  assert.deepEqual([2, 3, 4, 5, 6, 7, 8].map((n) => PLAN.PRENSA_NIVELES[PLAN.PRENSA_MAX[n]].esc), [0, 1, 2, 2, 3, 4, 4]);
+  // Nivel intermedio: el tramo continuo más largo pasa de 5 a 8 y a 12 min.
+  assert.deepEqual(PLAN.CARRERA_NIVELES.slice(4, 7), ["4×(5'/1')", "3×(8'/1')", "2×(12'/1')"]);
+});
+
+test('el sábado de S1 conserva su nombre (aún tenía pierna)', () => {
+  const s = PLAN.BLOCK_VOL.S;
+  assert.deepEqual([PLAN.sessionLabel(s, PLAN.VOL_WEEKS[0]).name, PLAN.sessionLabel(s, PLAN.VOL_WEEKS[0]).title], ['Sábado/Domingo', '']);
+  assert.ok(PLAN.sessionLabel(s, PLAN.VOL_WEEKS[1]).title.includes('desde S2, sin pierna'));
 });
 
 test('hitos, nota de hitos y reglas del bloque, como en el volcado', () => {

@@ -4,7 +4,7 @@
    "v": "Volumen · 19/10 – 13/12 · 8 semanas (sem 9 = viaje/descarga)"
   },
   "A2": {
-   "v": "RIR1/0 = todas las series a RIR1 y la ÚLTIMA a RIR0 (si solo hay 1 serie, RIR0).  REHAB RODILLA S2-S8 en 2 días: lunes (touchdown + prensa) y jueves (sentadilla + búlgara), pesado y lento, tempo 3-1-3; D a RIR 2 y en su escalón de profundidad, I a RIR 1-2 y rango completo. Reps: ×12 S1 → ×10 S2-4 → ×8 S5-8 → ×6 tras el viaje. Una novedad por día (lunes profundidad/reps · miércoles carrera), solo si esa mañana estás igual o mejor. Reglas al final de la hoja; registro diario en «Seguimiento rodilla»."
+   "v": "RIR1/0 = todas las series a RIR1 y la ÚLTIMA a RIR0 (si solo hay 1 serie, RIR0).  REHAB RODILLA S2-S8 en 2 días: lunes (touchdown + prensa) y jueves (sentadilla + búlgara), pesado y lento, tempo 3-1-3; D a RIR 2 y en su escalón de profundidad, I a RIR 1-2 y rango completo. Reps: ×12 S1 → ×10 S2-4 → ×8 S5-8 → ×6 tras el viaje. Una novedad por día (lunes profundidad/reps · miércoles carrera), solo si esa mañana estás igual o mejor. El calendario marca el máximo de cada semana: se progresa según el semáforo (Avanzar / Mantener / Retroceder) y la app prescribe con el nivel real. Reglas al final de la hoja; registro diario en «Seguimiento rodilla»."
   },
   "A4": {
    "v": "(L) Lunes  ·  Rehab + Isquios + Hombro + Gemelo"
@@ -85,25 +85,25 @@
    "v": "2 x15–20"
   },
   "D7": {
-   "v": "3 x10-15\n@RIR1-2"
+   "v": "3 x10-15/pierna\n@RIR1-2"
   },
   "E7": {
-   "v": "3 x10-15\n@RIR1-2"
+   "v": "3 x10-15/pierna\n@RIR1-2"
   },
   "F7": {
-   "v": "3 x10-15\n@RIR1-2"
+   "v": "3 x10-15/pierna\n@RIR1-2"
   },
   "G7": {
-   "v": "3 x10-15\n@RIR1-2"
+   "v": "3 x10-15/pierna\n@RIR1-2"
   },
   "H7": {
-   "v": "3 x10-15\n@RIR1-2"
+   "v": "3 x10-15/pierna\n@RIR1-2"
   },
   "I7": {
-   "v": "3 x10-15\n@RIR1-2"
+   "v": "3 x10-15/pierna\n@RIR1-2"
   },
   "J7": {
-   "v": "3 x10-15\n@RIR1-2"
+   "v": "3 x10-15/pierna\n@RIR1-2"
   },
   "K7": {
    "v": "Cadera: de pie, unilateral, en máquina; empieza por la D y sube carga cuando llegues a 15 con RIR 1-2. Cadera + rodilla combinadas = primera línea en los consensos de 2016 y 2018 [EVIDENCIA]. No cuenta como novedad: apenas carga la rodilla [LÓGICA]. Antes del rehab: sentadilla española 2-3×45 s."
@@ -151,25 +151,25 @@
    "v": "2 x15–20"
   },
   "D9": {
-   "v": "2 x10-15\n/pierna"
+   "v": "2 x10-15/pierna"
   },
   "E9": {
-   "v": "2 x10-15\n/pierna"
+   "v": "2 x10-15/pierna"
   },
   "F9": {
-   "v": "2 x10-15\n/pierna"
+   "v": "2 x10-15/pierna"
   },
   "G9": {
-   "v": "2 x10-15\n/pierna"
+   "v": "2 x10-15/pierna"
   },
   "H9": {
-   "v": "2 x10-15\n/pierna"
+   "v": "2 x10-15/pierna"
   },
   "I9": {
-   "v": "2 x10-15\n/pierna"
+   "v": "2 x10-15/pierna"
   },
   "J9": {
-   "v": "2 x10-15\nrepite S7"
+   "v": "2 x10-15/pierna\nrepite S7"
   },
   "K9": {
    "v": "Control antes de la prensa. D a la profundidad YA validada (la de la semana anterior), I completa; tempo 2-0-2, RIR 3; pelvis nivelada y rodilla hacia el 2.º-4.º dedo. Hace de filtro: si la D pasa de 3/10 aquí, ese lunes no se sube escalón en la prensa [LÓGICA]."
@@ -184,25 +184,25 @@
    "v": "2 x12"
   },
   "D10": {
-   "v": "2 x10\nnov: x10"
+   "v": "2 x10/pierna\nnov: x10"
   },
   "E10": {
-   "v": "2 x10\nnov: +1 escalón"
+   "v": "2 x10/pierna\nnov: +1 escalón"
   },
   "F10": {
-   "v": "2 x10\nnov: +1 escalón"
+   "v": "2 x10/pierna\nnov: +1 escalón"
   },
   "G10": {
-   "v": "2 x8\nnov: x8"
+   "v": "2 x8/pierna\nnov: x8"
   },
   "H10": {
-   "v": "2 x8\nnov: +1 escalón"
+   "v": "2 x8/pierna\nnov: +1 escalón"
   },
   "I10": {
-   "v": "2 x8\nnov: +1 escalón"
+   "v": "2 x8/pierna\nnov: +1 escalón"
   },
   "J10": {
-   "v": "2 x8\nrepite S7"
+   "v": "2 x8/pierna\nrepite S7"
   },
   "K10": {
    "v": "Pesado y lento para el tendón [EVIDENCIA: Kongsgaard 2009; 1-2 veces/semana para mantenerlo: LÓGICA]. Tempo 3-1-3. D primero: RIR 2 y profundidad de su escalón. I: RIR 1-2, rango completo y mismas reps. Lunes = día de novedad (escalón o reps): solo si esa mañana estás igual o mejor y la touchdown no pasa de 3/10; si no, repite la semana anterior. En la sesión con novedad no cambies nada más (con escalón nuevo, mismo peso)."
@@ -853,25 +853,25 @@
    "v": "2 x12"
   },
   "D37": {
-   "v": "2 x10"
+   "v": "2 x10/pierna"
   },
   "E37": {
-   "v": "2 x10"
+   "v": "2 x10/pierna"
   },
   "F37": {
-   "v": "2 x10"
+   "v": "2 x10/pierna"
   },
   "G37": {
-   "v": "2 x8"
+   "v": "2 x8/pierna"
   },
   "H37": {
-   "v": "2 x8"
+   "v": "2 x8/pierna"
   },
   "I37": {
-   "v": "2 x8"
+   "v": "2 x8/pierna"
   },
   "J37": {
-   "v": "2 x8\nrepite S7"
+   "v": "2 x8/pierna\nrepite S7"
   },
   "K37": {
    "v": "D primero: RIR 2 y profundidad validada el lunes. I: RIR 1-2 y rango completo. Tempo 3-1-3. Alterna piernas, 60-90 s entre una y otra."
@@ -886,25 +886,25 @@
    "v": "2 x15–20"
   },
   "D38": {
-   "v": "3 x10-15\n@RIR1-2"
+   "v": "3 x10-15/pierna\n@RIR1-2"
   },
   "E38": {
-   "v": "3 x10-15\n@RIR1-2"
+   "v": "3 x10-15/pierna\n@RIR1-2"
   },
   "F38": {
-   "v": "3 x10-15\n@RIR1-2"
+   "v": "3 x10-15/pierna\n@RIR1-2"
   },
   "G38": {
-   "v": "3 x10-15\n@RIR1-2"
+   "v": "3 x10-15/pierna\n@RIR1-2"
   },
   "H38": {
-   "v": "3 x10-15\n@RIR1-2"
+   "v": "3 x10-15/pierna\n@RIR1-2"
   },
   "I38": {
-   "v": "3 x10-15\n@RIR1-2"
+   "v": "3 x10-15/pierna\n@RIR1-2"
   },
   "J38": {
-   "v": "3 x10-15\n@RIR1-2"
+   "v": "3 x10-15/pierna\n@RIR1-2"
   },
   "K38": {
    "v": "Misma máquina que el lunes; empieza por la D. Va DESPUÉS de la búlgara, para no fatigar el glúteo medio antes del trabajo a una pierna [LÓGICA]. Lunes + jueves = 72-96 h entre sesiones de cadera."
@@ -1342,7 +1342,7 @@
    "v": "Prioridad 3 (Dorsal Bajo) · De lado a la polea (con tobillera en muñeca o codo semirrígido) para aislar haz inferior sin usar bíceps ni codo · Sem 1-2 a RIR 1-2."
   },
   "A55": {
-   "v": "(S) Sábado  ·  casa, sin máquinas ni poleas  ·  sin pierna (el domingo: carrera)"
+   "v": "(S) Sábado  ·  casa, sin máquinas ni poleas  ·  desde S2, sin pierna (el domingo: carrera)"
   },
   "A56": {
    "v": "Ejercicio"
@@ -1657,429 +1657,429 @@
    "v": "Espalda"
   },
   "B73": {
-   "v": "10 → 14",
+   "v": null,
    "f": "=C73&\" → \"&J73"
   },
   "C73": {
-   "v": 10,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA05010>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855B8DD2B0>"
   },
   "D73": {
-   "v": 11,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23E95ED50>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855B928CD0>"
   },
   "E73": {
-   "v": 11,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23E95CF50>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855B928E10>"
   },
   "F73": {
-   "v": 12,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA0E9E0>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855B8EEB10>"
   },
   "G73": {
-   "v": 12,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA0EB10>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855B8EEC40>"
   },
   "H73": {
-   "v": 13,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA096D0>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855B8FD6D0>"
   },
   "I73": {
-   "v": 13,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23F3C07C0>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C2D86B0>"
   },
   "J73": {
-   "v": 14,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23F3C08D0>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C2D87C0>"
   },
   "A74": {
    "v": "Pecho"
   },
   "B74": {
-   "v": "6 → 10",
+   "v": null,
    "f": "=C74&\" → \"&J74"
   },
   "C74": {
-   "v": 6,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23E9ADF50>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855B8AE050>"
   },
   "D74": {
-   "v": 7,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23E9AE050>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855B8AE150>"
   },
   "E74": {
-   "v": 7,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23E9B5040>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855B8B5130>"
   },
   "F74": {
-   "v": 8,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23E9B5130>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855B8B5220>"
   },
   "G74": {
-   "v": 8,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA110F0>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C1E11D0>"
   },
   "H74": {
-   "v": 9,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA111D0>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C1E1010>"
   },
   "I74": {
-   "v": 9,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23F2CB6C0>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855B86AF70>"
   },
   "J74": {
-   "v": 10,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23E97E5D0>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855B87DF10>"
   },
   "A75": {
    "v": "Hombro lat."
   },
   "B75": {
-   "v": "6 → 10",
+   "v": null,
    "f": "=C75&\" → \"&J75"
   },
   "C75": {
-   "v": 6,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23E97E750>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855B87DFD0>"
   },
   "D75": {
-   "v": 6,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23E9C5860>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855B8C6FC0>"
   },
   "E75": {
-   "v": 7,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23E9C6990>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855B8C7070>"
   },
   "F75": {
-   "v": 7,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23C189450>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855B8CD6D0>"
   },
   "G75": {
-   "v": 8,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23E9D4F50>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855B8CD630>"
   },
   "H75": {
-   "v": 8,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23F3BDAC0>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C2CDAC0>"
   },
   "I75": {
-   "v": 9,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23E97B950>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855B91AA50>"
   },
   "J75": {
-   "v": 10,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23E9EA3D0>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855B92D4D0>"
   },
   "A76": {
    "v": "Hombro post."
   },
   "B76": {
-   "v": "1 → 3",
+   "v": null,
    "f": "=C76&\" → \"&J76"
   },
   "C76": {
-   "v": 1,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23F248B40>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C3040C0>"
   },
   "D76": {
-   "v": 1,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23F248BB0>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C304130>"
   },
   "E76": {
-   "v": 2,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA141D0>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C270CB0>"
   },
   "F76": {
-   "v": 2,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA14230>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C270D10>"
   },
   "G76": {
-   "v": 2,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA14290>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C270D70>"
   },
   "H76": {
-   "v": 3,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA142F0>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C270DD0>"
   },
   "I76": {
-   "v": 3,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA14350>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C270E30>"
   },
   "J76": {
-   "v": 3,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA143B0>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C270E90>"
   },
   "A77": {
    "v": "Bíceps"
   },
   "B77": {
-   "v": "6 → 10",
+   "v": null,
    "f": "=C77&\" → \"&J77"
   },
   "C77": {
-   "v": 6,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA14470>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C270470>"
   },
   "D77": {
-   "v": 7,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA144D0>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C2704D0>"
   },
   "E77": {
-   "v": 7,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA14530>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C270530>"
   },
   "F77": {
-   "v": 8,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA14590>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C270590>"
   },
   "G77": {
-   "v": 8,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA145F0>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C2705F0>"
   },
   "H77": {
-   "v": 9,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA14650>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C270650>"
   },
   "I77": {
-   "v": 9,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA146B0>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C2706B0>"
   },
   "J77": {
-   "v": 10,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA14710>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C270710>"
   },
   "A78": {
    "v": "Tríceps"
   },
   "B78": {
-   "v": "6 → 10",
+   "v": null,
    "f": "=C78&\" → \"&J78"
   },
   "C78": {
-   "v": 6,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA147D0>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C270770>"
   },
   "D78": {
-   "v": 6,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA14830>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C2707D0>"
   },
   "E78": {
-   "v": 7,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA14890>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C270830>"
   },
   "F78": {
-   "v": 7,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA148F0>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C270890>"
   },
   "G78": {
-   "v": 8,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA14950>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C2708F0>"
   },
   "H78": {
-   "v": 8,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA149B0>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C270950>"
   },
   "I78": {
-   "v": 9,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA14A10>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C2709B0>"
   },
   "J78": {
-   "v": 10,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA14EF0>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C270A10>"
   },
   "A79": {
    "v": "Isquios"
   },
   "B79": {
-   "v": "5 → 9",
+   "v": null,
    "f": "=C79&\" → \"&J79"
   },
   "C79": {
-   "v": 5,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA14FB0>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C271010>"
   },
   "D79": {
-   "v": 6,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA15010>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C271070>"
   },
   "E79": {
-   "v": 6,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA15070>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C2710D0>"
   },
   "F79": {
-   "v": 7,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA150D0>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C271130>"
   },
   "G79": {
-   "v": 7,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA15130>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C271190>"
   },
   "H79": {
-   "v": 8,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA15190>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C2711F0>"
   },
   "I79": {
-   "v": 8,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA151F0>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C271250>"
   },
   "J79": {
-   "v": 9,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA15250>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C2712B0>"
   },
   "A80": {
    "v": "Abs"
   },
   "B80": {
-   "v": "5 → 9",
+   "v": null,
    "f": "=C80&\" → \"&J80"
   },
   "C80": {
-   "v": 5,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA15310>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C271370>"
   },
   "D80": {
-   "v": 5,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA15370>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C2713D0>"
   },
   "E80": {
-   "v": 6,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA153D0>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C271430>"
   },
   "F80": {
-   "v": 6,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA15430>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C271490>"
   },
   "G80": {
-   "v": 7,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA15490>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C2714F0>"
   },
   "H80": {
-   "v": 7,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA154F0>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C271550>"
   },
   "I80": {
-   "v": 8,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA15550>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C2715B0>"
   },
   "J80": {
-   "v": 9,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA155B0>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C271610>"
   },
   "A81": {
    "v": "Gemelos"
   },
   "B81": {
-   "v": "5 → 10",
+   "v": null,
    "f": "=C81&\" → \"&J81"
   },
   "C81": {
-   "v": 5,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA15670>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C270A70>"
   },
   "D81": {
-   "v": 6,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA156D0>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C272570>"
   },
   "E81": {
-   "v": 7,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA15730>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C2725D0>"
   },
   "F81": {
-   "v": 7,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA15790>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C272630>"
   },
   "G81": {
-   "v": 8,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA157F0>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C272690>"
   },
   "H81": {
-   "v": 8,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA15850>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C2726F0>"
   },
   "I81": {
-   "v": 9,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA158B0>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C272750>"
   },
   "J81": {
-   "v": 10,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA15910>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C2727B0>"
   },
   "A82": {
    "v": "Aductores"
   },
   "B82": {
-   "v": "2 → 3",
+   "v": null,
    "f": "=C82&\" → \"&J82"
   },
   "C82": {
-   "v": 2,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA159D0>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C272870>"
   },
   "D82": {
-   "v": 2,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA15A30>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C2728D0>"
   },
   "E82": {
-   "v": 2,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA15A90>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C272930>"
   },
   "F82": {
-   "v": 2,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA15AF0>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C272990>"
   },
   "G82": {
-   "v": 3,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA15B50>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C2729F0>"
   },
   "H82": {
-   "v": 3,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA15BB0>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C272A50>"
   },
   "I82": {
-   "v": 3,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA15C10>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C272AB0>"
   },
   "J82": {
-   "v": 3,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA15C70>"
+   "v": null,
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C272B10>"
   },
   "A83": {
    "v": "TOTAL hipertrofia"
   },
   "B83": {
-   "v": "52 → 88",
+   "v": null,
    "f": "=C83&\" → \"&J83"
   },
   "C83": {
-   "v": 52,
+   "v": null,
    "f": "=SUM(C73:C82)"
   },
   "D83": {
-   "v": 57,
+   "v": null,
    "f": "=SUM(D73:D82)"
   },
   "E83": {
-   "v": 62,
+   "v": null,
    "f": "=SUM(E73:E82)"
   },
   "F83": {
-   "v": 66,
+   "v": null,
    "f": "=SUM(F73:F82)"
   },
   "G83": {
-   "v": 71,
+   "v": null,
    "f": "=SUM(G73:G82)"
   },
   "H83": {
-   "v": 76,
+   "v": null,
    "f": "=SUM(H73:H82)"
   },
   "I83": {
-   "v": 80,
+   "v": null,
    "f": "=SUM(I73:I82)"
   },
   "J83": {
-   "v": 88,
+   "v": null,
    "f": "=SUM(J73:J82)"
   },
   "A85": {
@@ -2122,39 +2122,39 @@
    "v": "Dorsal Bajo (Plano Frontal)"
   },
   "B87": {
-   "v": "4 → 5",
+   "v": null,
    "f": "=C87&\" → \"&J87"
   },
   "C87": {
-   "v": 4,
+   "v": null,
    "f": "=IFERROR(VALUE(LEFT(C25,FIND(\" \",C25&\" \")-1)),0)+IFERROR(VALUE(LEFT(C53,FIND(\" \",C53&\" \")-1)),0)"
   },
   "D87": {
-   "v": 4,
+   "v": null,
    "f": "=IFERROR(VALUE(LEFT(D25,FIND(\" \",D25&\" \")-1)),0)+IFERROR(VALUE(LEFT(D53,FIND(\" \",D53&\" \")-1)),0)"
   },
   "E87": {
-   "v": 4,
+   "v": null,
    "f": "=IFERROR(VALUE(LEFT(E25,FIND(\" \",E25&\" \")-1)),0)+IFERROR(VALUE(LEFT(E53,FIND(\" \",E53&\" \")-1)),0)"
   },
   "F87": {
-   "v": 5,
+   "v": null,
    "f": "=IFERROR(VALUE(LEFT(F25,FIND(\" \",F25&\" \")-1)),0)+IFERROR(VALUE(LEFT(F53,FIND(\" \",F53&\" \")-1)),0)"
   },
   "G87": {
-   "v": 5,
+   "v": null,
    "f": "=IFERROR(VALUE(LEFT(G25,FIND(\" \",G25&\" \")-1)),0)+IFERROR(VALUE(LEFT(G53,FIND(\" \",G53&\" \")-1)),0)"
   },
   "H87": {
-   "v": 5,
+   "v": null,
    "f": "=IFERROR(VALUE(LEFT(H25,FIND(\" \",H25&\" \")-1)),0)+IFERROR(VALUE(LEFT(H53,FIND(\" \",H53&\" \")-1)),0)"
   },
   "I87": {
-   "v": 5,
+   "v": null,
    "f": "=IFERROR(VALUE(LEFT(I25,FIND(\" \",I25&\" \")-1)),0)+IFERROR(VALUE(LEFT(I53,FIND(\" \",I53&\" \")-1)),0)"
   },
   "J87": {
-   "v": 5,
+   "v": null,
    "f": "=IFERROR(VALUE(LEFT(J25,FIND(\" \",J25&\" \")-1)),0)+IFERROR(VALUE(LEFT(J53,FIND(\" \",J53&\" \")-1)),0)"
   },
   "K87": {
@@ -2164,39 +2164,39 @@
    "v": "Dorsal Superior (Plano Sagital)"
   },
   "B88": {
-   "v": "4 → 6",
+   "v": null,
    "f": "=C88&\" → \"&J88"
   },
   "C88": {
-   "v": 4,
+   "v": null,
    "f": "=IFERROR(VALUE(LEFT(C28,FIND(\" \",C28&\" \")-1)),0)+IFERROR(VALUE(LEFT(C51,FIND(\" \",C51&\" \")-1)),0)+IFERROR(VALUE(LEFT(C52,FIND(\" \",C52&\" \")-1)),0)"
   },
   "D88": {
-   "v": 5,
+   "v": null,
    "f": "=IFERROR(VALUE(LEFT(D28,FIND(\" \",D28&\" \")-1)),0)+IFERROR(VALUE(LEFT(D51,FIND(\" \",D51&\" \")-1)),0)+IFERROR(VALUE(LEFT(D52,FIND(\" \",D52&\" \")-1)),0)"
   },
   "E88": {
-   "v": 5,
+   "v": null,
    "f": "=IFERROR(VALUE(LEFT(E28,FIND(\" \",E28&\" \")-1)),0)+IFERROR(VALUE(LEFT(E51,FIND(\" \",E51&\" \")-1)),0)+IFERROR(VALUE(LEFT(E52,FIND(\" \",E52&\" \")-1)),0)"
   },
   "F88": {
-   "v": 5,
+   "v": null,
    "f": "=IFERROR(VALUE(LEFT(F28,FIND(\" \",F28&\" \")-1)),0)+IFERROR(VALUE(LEFT(F51,FIND(\" \",F51&\" \")-1)),0)+IFERROR(VALUE(LEFT(F52,FIND(\" \",F52&\" \")-1)),0)"
   },
   "G88": {
-   "v": 5,
+   "v": null,
    "f": "=IFERROR(VALUE(LEFT(G28,FIND(\" \",G28&\" \")-1)),0)+IFERROR(VALUE(LEFT(G51,FIND(\" \",G51&\" \")-1)),0)+IFERROR(VALUE(LEFT(G52,FIND(\" \",G52&\" \")-1)),0)"
   },
   "H88": {
-   "v": 6,
+   "v": null,
    "f": "=IFERROR(VALUE(LEFT(H28,FIND(\" \",H28&\" \")-1)),0)+IFERROR(VALUE(LEFT(H51,FIND(\" \",H51&\" \")-1)),0)+IFERROR(VALUE(LEFT(H52,FIND(\" \",H52&\" \")-1)),0)"
   },
   "I88": {
-   "v": 6,
+   "v": null,
    "f": "=IFERROR(VALUE(LEFT(I28,FIND(\" \",I28&\" \")-1)),0)+IFERROR(VALUE(LEFT(I51,FIND(\" \",I51&\" \")-1)),0)+IFERROR(VALUE(LEFT(I52,FIND(\" \",I52&\" \")-1)),0)"
   },
   "J88": {
-   "v": 6,
+   "v": null,
    "f": "=IFERROR(VALUE(LEFT(J28,FIND(\" \",J28&\" \")-1)),0)+IFERROR(VALUE(LEFT(J51,FIND(\" \",J51&\" \")-1)),0)+IFERROR(VALUE(LEFT(J52,FIND(\" \",J52&\" \")-1)),0)"
   },
   "K88": {
@@ -2206,39 +2206,39 @@
    "v": "Espalda Alta (Plano Transversal)"
   },
   "B89": {
-   "v": "2 → 3",
+   "v": null,
    "f": "=C89&\" → \"&J89"
   },
   "C89": {
-   "v": 2,
+   "v": null,
    "f": "=IFERROR(VALUE(LEFT(C26,FIND(\" \",C26&\" \")-1)),0)"
   },
   "D89": {
-   "v": 2,
+   "v": null,
    "f": "=IFERROR(VALUE(LEFT(D26,FIND(\" \",D26&\" \")-1)),0)"
   },
   "E89": {
-   "v": 2,
+   "v": null,
    "f": "=IFERROR(VALUE(LEFT(E26,FIND(\" \",E26&\" \")-1)),0)"
   },
   "F89": {
-   "v": 2,
+   "v": null,
    "f": "=IFERROR(VALUE(LEFT(F26,FIND(\" \",F26&\" \")-1)),0)"
   },
   "G89": {
-   "v": 2,
+   "v": null,
    "f": "=IFERROR(VALUE(LEFT(G26,FIND(\" \",G26&\" \")-1)),0)"
   },
   "H89": {
-   "v": 2,
+   "v": null,
    "f": "=IFERROR(VALUE(LEFT(H26,FIND(\" \",H26&\" \")-1)),0)"
   },
   "I89": {
-   "v": 2,
+   "v": null,
    "f": "=IFERROR(VALUE(LEFT(I26,FIND(\" \",I26&\" \")-1)),0)"
   },
   "J89": {
-   "v": 3,
+   "v": null,
    "f": "=IFERROR(VALUE(LEFT(J26,FIND(\" \",J26&\" \")-1)),0)"
   },
   "K89": {
@@ -2248,39 +2248,39 @@
    "v": "Total Transversal (Espalda Alta + Post.)"
   },
   "B90": {
-   "v": "3 → 6",
+   "v": null,
    "f": "=C90&\" → \"&J90"
   },
   "C90": {
-   "v": 3,
+   "v": null,
    "f": "=IFERROR(VALUE(LEFT(C26,FIND(\" \",C26&\" \")-1)),0)+IFERROR(VALUE(LEFT(C30,FIND(\" \",C30&\" \")-1)),0)"
   },
   "D90": {
-   "v": 3,
+   "v": null,
    "f": "=IFERROR(VALUE(LEFT(D26,FIND(\" \",D26&\" \")-1)),0)+IFERROR(VALUE(LEFT(D30,FIND(\" \",D30&\" \")-1)),0)"
   },
   "E90": {
-   "v": 4,
+   "v": null,
    "f": "=IFERROR(VALUE(LEFT(E26,FIND(\" \",E26&\" \")-1)),0)+IFERROR(VALUE(LEFT(E30,FIND(\" \",E30&\" \")-1)),0)"
   },
   "F90": {
-   "v": 4,
+   "v": null,
    "f": "=IFERROR(VALUE(LEFT(F26,FIND(\" \",F26&\" \")-1)),0)+IFERROR(VALUE(LEFT(F30,FIND(\" \",F30&\" \")-1)),0)"
   },
   "G90": {
-   "v": 4,
+   "v": null,
    "f": "=IFERROR(VALUE(LEFT(G26,FIND(\" \",G26&\" \")-1)),0)+IFERROR(VALUE(LEFT(G30,FIND(\" \",G30&\" \")-1)),0)"
   },
   "H90": {
-   "v": 5,
+   "v": null,
    "f": "=IFERROR(VALUE(LEFT(H26,FIND(\" \",H26&\" \")-1)),0)+IFERROR(VALUE(LEFT(H30,FIND(\" \",H30&\" \")-1)),0)"
   },
   "I90": {
-   "v": 5,
+   "v": null,
    "f": "=IFERROR(VALUE(LEFT(I26,FIND(\" \",I26&\" \")-1)),0)+IFERROR(VALUE(LEFT(I30,FIND(\" \",I30&\" \")-1)),0)"
   },
   "J90": {
-   "v": 6,
+   "v": null,
    "f": "=IFERROR(VALUE(LEFT(J26,FIND(\" \",J26&\" \")-1)),0)+IFERROR(VALUE(LEFT(J30,FIND(\" \",J30&\" \")-1)),0)"
   },
   "K90": {
@@ -2353,7 +2353,7 @@
    "v": "10' Z2"
   },
   "K95": {
-   "v": "No se hizo en S1: estímulo NUEVO [LÓGICA]. Entra en S4 (el viernes) solo si S2 y S3 cumplieron la regla; desde S5, martes y viernes. Sin Z3 en este bloque. Lo primero que se quita si hay brote. Sillín alto (rodilla a 20-25° abajo), 85-90 rpm, sentado. 10 min fijos en el bloque; subir a 15 después del viaje, como novedad única."
+   "v": "No se hizo en S1: estímulo NUEVO [LÓGICA]. Entra en S4 (el viernes) solo si S2 y S3 cumplieron la regla; desde S5, martes y viernes. Sin Z3 en este bloque. En la regla de 48-72 h se mantiene si ya estaba introducida. Sillín alto (rodilla a 20-25° abajo), 85-90 rpm, sentado. 10 min fijos en el bloque; subir a 15 después del viaje, como novedad única."
   },
   "A96": {
    "v": "Viernes (Post-Torso)"
@@ -2410,16 +2410,16 @@
    "v": "N4 · 4×(5'/1')"
   },
   "H97": {
-   "v": "N5 · 2×(13'/1')"
+   "v": "N5 · 3×(8'/1')"
   },
   "I97": {
-   "v": "N6 · 30' seguidos"
+   "v": "N6 · 2×(12'/1')"
   },
   "J97": {
    "v": "repite N6"
   },
   "K97": {
-   "v": "Formato: minutos trotando / minutos andando. Nivel nuevo solo si esa mañana estás igual o mejor; si no, repite el anterior (los niveles son objetivos, no fechas). 5 min andando antes; llano y firme. Regla de carrera: ≤2/10 durante, vuelta al nivel previo en ≤60 min y la mañana siguiente no peor; para avanzar, además, peor valor 24-48 h ≤ referencia [EVIDENCIA de uso: TREK Education, basada en Esculier; no comparada con otros umbrales]. Cadencia +5-10% opcional [EVIDENCIA mixta: Bramah 2019, serie de 12 corredores con mejora de dolor y función mantenida a 3 meses; Esculier 2018, sin beneficio extra sobre la educación]."
+   "v": "Formato: minutos trotando / minutos andando. Niveles: N1 8×(1'/2') · N2 6×(2'/1') · N3 4×(4'/1') · N4 4×(5'/1') · N5 3×(8'/1') · N6 2×(12'/1') · N7 30' seguidos (después del viaje). N5 es un nivel intermedio para que el tramo continuo más largo no crezca más de un 50 % por nivel (5 → 8 → 12 min) [LÓGICA]. El calendario marca el máximo de cada semana; el nivel real sale del semáforo: Avanzar = +1, Mantener = el mismo, Retroceder = −1. Nivel nuevo solo si esa mañana estás igual o mejor. 5 min andando antes; llano y firme. Regla de carrera: Retroceder si pasas de 2/10 durante, no vuelves al nivel previo en ≤60 min o la mañana siguiente estás peor; Mantener si cumple pero el peor valor 24-48 h supera la referencia; Avanzar si cumple y el peor 24-48 h ≤ referencia [EVIDENCIA de uso: TREK Education, basada en Esculier; no comparada con otros umbrales]. Cadencia +5-10% opcional [EVIDENCIA mixta: Bramah 2019, serie de 12 corredores con mejora de dolor y función mantenida a 3 meses; Esculier 2018, sin beneficio extra sobre la educación]."
   },
   "A98": {
    "v": "Domingo · Carrera (repite)"
@@ -2452,7 +2452,7 @@
    "v": "repite el\nmiércoles"
   },
   "K98": {
-   "v": "Repite el nivel validado el miércoles. Nunca dos días seguidos corriendo [LÓGICA]. El sábado no hay pierna: llegas descansado."
+   "v": "Repite el nivel validado el miércoles. Si el miércoles no se cumplieron los criterios de entrada, esa semana no hay carrera: el domingo no se corre (como mucho, un paseo). Nunca dos días seguidos corriendo [LÓGICA]. El sábado no hay pierna: llegas descansado."
   },
   "A99": {
    "v": "Hitos y avisos"
@@ -2485,7 +2485,7 @@
    "v": "Repite S7\nJue: test opc.\nrango completo"
   },
   "K99": {
-   "v": "Entrada a la carrera (S2), con la regla de carrera: martes, paseo de 30 min a paso rápido (≤2/10, nivel previo en ≤60 min y el miércoles por la mañana no peor); miércoles antes de correr, 10 touchdown con cada pierna y 20 saltitos a dos piernas (≤2/10). Si se cumplen los tres, 1.ª carrera ese miércoles (N1); si no, se repiten la semana siguiente [LÓGICA]."
+   "v": "Entrada a la carrera (S2), con la regla de carrera: martes, paseo de 30 min a paso rápido (≤2/10, nivel previo en ≤60 min y el miércoles por la mañana no peor: el criterio 1 se evalúa solo con esa mañana, sin esperar a las 48 h); miércoles antes de correr, 10 touchdown con cada pierna y 20 saltitos a dos piernas (≤2/10). Si se cumplen los tres, 1.ª carrera ese miércoles (N1). Si no, esa semana no hay carrera (el domingo, como mucho, un paseo) y los criterios se repiten el miércoles siguiente [LÓGICA]."
   },
   "A101": {
    "v": "REGLAS DEL BLOQUE RODILLA (S2-S8)"
@@ -2494,34 +2494,34 @@
    "v": "Base [EVIDENCIA]: ejercicio combinado de cadera y rodilla (consensos de 2016 y 2018). Rodilla en 2 días, lunes y jueves (72-96 h entre sesiones, dentro de la ventana de 2-3 días de recuperación del tendón que describe el libro), pesado y lento en ambos; sábado sin pierna para llegar descansado a la carrera del domingo [LÓGICA]."
   },
   "A103": {
-   "v": "Mediciones: cada mañana, en casa, con las mismas pruebas: test en declive y 10 subidas con la D al mismo escalón o banco. Vale la peor de las dos (el declive solo no basta: te sale 0 aunque haya molestia). Se apuntan en «Seguimiento rodilla»."
+   "v": "Mediciones: cada mañana, en casa, con las mismas pruebas: test en declive y 10 subidas con la D al mismo escalón o banco. Vale la peor de las dos (el declive solo no basta: te sale 0 aunque haya molestia). Si falta la medición de la mañana, ese día no se evalúa y la primera medición disponible hace de referencia (en S2, la del martes). Se apuntan en «Seguimiento rodilla»."
   },
   "A104": {
-   "v": "Regla de gimnasio [LÓGICA]: ≤3/10 durante y el peor valor entre 24 y 48 h igual o mejor que la mañana del día de la sesión. Si no se cumple, retrocede un escalón en la siguiente sesión."
+   "v": "Regla de gimnasio [LÓGICA], en semáforo (solo días con carga de rodilla: lunes y jueves): Retroceder si pasas de 3/10 durante o la mañana siguiente estás peor que la de la sesión; Mantener si cumple, pero el peor valor entre 24 y 48 h supera la referencia (no avanzas, pero no has fallado); Avanzar si cumple y el peor valor 24-48 h es igual o mejor que la referencia. Los días sin carga de rodilla no se evalúan («—»)."
   },
   "A105": {
-   "v": "Regla de carrera [EVIDENCIA de uso]: ≤2/10 durante, vuelta al nivel previo en ≤60 min y la mañana siguiente no peor; para avanzar, además, peor valor 24-48 h ≤ referencia. Se aplica también a la entrada a la carrera y a las fases hacia el fútbol [LÓGICA]."
+   "v": "Regla de carrera [EVIDENCIA de uso], en semáforo (miércoles y domingo): Retroceder si pasas de 2/10 durante, no vuelves al nivel previo en ≤60 min o la mañana siguiente estás peor; Mantener si cumple, pero el peor valor 24-48 h supera la referencia; Avanzar si cumple y el peor valor 24-48 h ≤ referencia. El paseo de entrada se valida solo con la mañana siguiente. Se aplica también a las fases hacia el fútbol [LÓGICA]."
   },
   "A106": {
-   "v": "Novedades [LÓGICA]: una por día y validada a las 24 y 48 h antes de repetirla. Lunes: escalón o reps (prensa) · miércoles: nivel de carrera · viernes de S4: bici. Solo si esa mañana estás igual o mejor. Si una medición falla, retrocede la última novedad anterior a ella. Lo validado se repite: el jueves usa la profundidad del lunes y el domingo repite el nivel del miércoles."
+   "v": "Novedades [LÓGICA]: una por día y validada a las 24 y 48 h antes de repetirla. Lunes: escalón o reps (prensa) · miércoles: nivel de carrera · viernes de S4: bici. Solo si esa mañana estás igual o mejor. El calendario marca el máximo de cada semana; el nivel real sale del semáforo: Avanzar = nivel +1 (sin pasar del calendario), Mantener = el mismo, Retroceder = nivel −1. Lo validado se repite: el jueves usa la profundidad del lunes y el domingo repite el nivel del miércoles."
   },
   "A107": {
-   "v": "S2: el test del jueves cae dentro de las 48 h de la 1.ª carrera. Si el viernes de S2 sale peor, cuenta para las dos: el domingo repites N1 y el miércoles de S3 no subes de nivel [LÓGICA]."
+   "v": "S2 = semana de referencia [LÓGICA]: el paseo del martes no cuenta como novedad (caminas a diario). Si alguna mañana de S2 sale peor que la referencia (la primera medición de S2), en S3 no sube nada y se repite S2 entera, en lugar de intentar atribuir el empeoramiento."
   },
   "A108": {
-   "v": "Escalones de profundidad de la D [LÓGICA; no hay pautas de rango validadas para la rótula: INCERTIDUMBRE]: escalón 0 = la profundidad que ya usas con la D; escalón 4 = la de la I. Reparte la diferencia en 4 partes iguales (como mucho ~15° cada una; si sale más, se termina después del bloque). Se sube los lunes de S3, S4, S6 y S7 en la prensa; la touchdown del lunes va a la profundidad ya validada y hace de filtro. Apunta las marcas en «Seguimiento rodilla»."
+   "v": "Escalones de profundidad de la D [LÓGICA; no hay pautas de rango validadas para la rótula: INCERTIDUMBRE]: escalón 0 = la profundidad que ya usas con la D; escalón 4 = la de la I. Reparte la diferencia en 4 partes iguales (como mucho ~15° cada una; si sale más, se termina después del bloque). Se sube, como mucho, los lunes de S3, S4, S6 y S7 en la prensa (según el semáforo); la touchdown del lunes va a la profundidad ya validada y hace de filtro. Apunta las marcas en «Seguimiento rodilla»."
   },
   "A109": {
    "v": "Chasquido: si no duele, no se quita ni se cambia nada. Si duele, cuenta como dolor."
   },
   "A110": {
-   "v": "Brote [LÓGICA]: lo primero que se quita es la bici. Si fallan dos mediciones seguidas: 48-72 h solo sentadilla española 5×45 s diaria y caminar; luego retomas un escalón por debajo."
+   "v": "Retroceso y brote [LÓGICA]: si una medición falla, se retrocede solo la última novedad anterior a ella (p. ej., jueves bien y viernes peor → se retrocede la carrera del miércoles y el escalón se mantiene); si tras el retroceso la siguiente medición vuelve a fallar, se retrocede la novedad anterior, y así hacia atrás. Si falla sin ninguna novedad reciente, o fallan dos sesiones seguidas: 48-72 h solo isométricos (sentadilla española 5×45 s diaria), y la bici si ya estaba introducida; luego se retoma un escalón por debajo en todo."
   },
   "A111": {
    "v": "Alarma: bloqueo real, fallos repetidos de la rodilla o hinchazón visible → se para la progresión y toca valoración clínica."
   },
   "A112": {
-   "v": "AVISO S4 (fisio deportivo pendiente): si la molestia a las 24-48 h de S4 está igual o peor que en S2, o si el chasquido empieza a doler, la valoración pasa a ser prioritaria; si estás peor, se para la progresión hasta entonces. «Seguimiento rodilla» lo calcula."
+   "v": "AVISO S4 (fisio deportivo pendiente): se calcula al cerrar S4 (domingo 15/11) si hay al menos 5 mañanas registradas en S2 y en S4. Compara la media de las mañanas: PEOR si la de S4 supera en 0,5 o más a la de S2; MEJOR si queda 0,5 o más por debajo; si no, IGUAL. IGUAL o PEOR, o un chasquido que empieza a doler: la valoración del fisio pasa a ser prioritaria; PEOR además para la progresión [LÓGICA]. «Seguimiento rodilla» lo calcula."
   },
   "A113": {
    "v": "Fases hacia el fútbol, después del viaje [LÓGICA], siempre con la regla de carrera: cambios de dirección ← 30 min seguidos dos veces sin reacción y rango D = I · pliometría ← 2 semanas de cambios de dirección y 10 saltos a una pierna sin dolor · balón ← cuádriceps D ≥90% de la I en el test y pliometría media sin reacción · equipo ← 2 semanas de balón sin reacción."
@@ -2532,7 +2532,7 @@
    "v": "Seguimiento rodilla · S2-S10 (26/10 – 27/12)"
   },
   "A2": {
-   "v": "Cada mañana, en casa y antes de nada: test en declive y 10 subidas con la D al mismo escalón o banco (0-10) → columnas G y H. Después de la sesión: molestia máxima durante (J); en carrera o en el paseo de entrada, si vuelves al nivel previo en ≤60 min (K); y si el chasquido dolió (L). El resto se calcula solo: 24 h y 48 h salen de las mañanas siguientes, y «¿Cumple?» aplica ≤3/10 en gimnasio o ≤2/10 en carrera y que el peor valor 24-48 h no supere la referencia (la mañana del día de la sesión). «Novedad» trae lo planificado: si no la aplicas porque esa mañana estabas peor, cámbiala por «ninguna». Las celdas amarillas son para rellenar."
+   "v": "Cada mañana, en casa y antes de nada: test en declive y 10 subidas con la D al mismo escalón o banco (0-10) → columnas G y H; si falta, ese día no se evalúa y la primera medición disponible hace de referencia. Después de la sesión: molestia máxima durante (J); en carrera, si vuelves al nivel previo en ≤60 min (K); y si el chasquido dolió (L). El resto se calcula solo: 24 h y 48 h salen de las mañanas siguientes, y el semáforo (P) da «Retroceder» (más de 3/10 en gimnasio o 2/10 en carrera, no vuelves al nivel previo, o la mañana siguiente peor), «Mantener» (cumple, pero el peor valor 24-48 h supera la referencia: la mañana del día de la sesión) o «Avanzar». Solo se evalúan los días con carga de rodilla (regla distinta de «—»). «Novedad» trae lo planificado: si no la aplicas porque esa mañana estabas peor, cámbiala por «ninguna». Las celdas amarillas son para rellenar."
   },
   "A3": {
    "v": "Registro diario"
@@ -2583,7 +2583,7 @@
    "v": "Peor 24-48 h (auto)"
   },
   "P4": {
-   "v": "¿Cumple? (auto)"
+   "v": "Semáforo (auto)"
   },
   "Q4": {
    "v": "Notas"
@@ -2625,7 +2625,7 @@
   },
   "P5": {
    "v": null,
-   "f": "=IF(J5=\"\",\"\",IF(I5=\"\",\"sin referencia\",IF(AND(E5=\"Carrera (≤2/10)\",K5=\"\"),\"falta K\",IF(O5=\"\",\"pendiente\",IF(E5=\"Carrera (≤2/10)\",IF(AND(J5<=2,K5=\"Sí\",M5<=I5,O5<=I5),\"Sí\",\"No\"),IF(AND(J5<=3,O5<=I5),\"Sí\",\"No\"))))))"
+   "f": "=IF($E5=\"—\",\"—\",IF($J5=\"\",\"\",IF($I5=\"\",\"sin referencia\",IF(AND($E5=\"Carrera (≤2/10)\",$K5=\"\"),\"falta K\",IF(OR($J5>IF($E5=\"Carrera (≤2/10)\",2,3),AND($E5=\"Carrera (≤2/10)\",$K5=\"No\")),\"Retroceder\",IF($M5=\"\",\"pendiente\",IF($M5>$I5,\"Retroceder\",IF($N5=\"\",\"pendiente\",IF($O5<=$I5,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A6": {
    "v": "2026-10-27T00:00:00",
@@ -2641,7 +2641,7 @@
    "v": "Push + paseo 30' (entrada)"
   },
   "E6": {
-   "v": "Carrera (≤2/10)"
+   "v": "—"
   },
   "F6": {
    "v": "Paseo 30' (criterio 1)"
@@ -2664,7 +2664,7 @@
   },
   "P6": {
    "v": null,
-   "f": "=IF(J6=\"\",\"\",IF(I6=\"\",\"sin referencia\",IF(AND(E6=\"Carrera (≤2/10)\",K6=\"\"),\"falta K\",IF(O6=\"\",\"pendiente\",IF(E6=\"Carrera (≤2/10)\",IF(AND(J6<=2,K6=\"Sí\",M6<=I6,O6<=I6),\"Sí\",\"No\"),IF(AND(J6<=3,O6<=I6),\"Sí\",\"No\"))))))"
+   "f": "=IF($E6=\"—\",\"—\",IF($J6=\"\",\"\",IF($I6=\"\",\"sin referencia\",IF(AND($E6=\"Carrera (≤2/10)\",$K6=\"\"),\"falta K\",IF(OR($J6>IF($E6=\"Carrera (≤2/10)\",2,3),AND($E6=\"Carrera (≤2/10)\",$K6=\"No\")),\"Retroceder\",IF($M6=\"\",\"pendiente\",IF($M6>$I6,\"Retroceder\",IF($N6=\"\",\"pendiente\",IF($O6<=$I6,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A7": {
    "v": "2026-10-28T00:00:00",
@@ -2703,7 +2703,7 @@
   },
   "P7": {
    "v": null,
-   "f": "=IF(J7=\"\",\"\",IF(I7=\"\",\"sin referencia\",IF(AND(E7=\"Carrera (≤2/10)\",K7=\"\"),\"falta K\",IF(O7=\"\",\"pendiente\",IF(E7=\"Carrera (≤2/10)\",IF(AND(J7<=2,K7=\"Sí\",M7<=I7,O7<=I7),\"Sí\",\"No\"),IF(AND(J7<=3,O7<=I7),\"Sí\",\"No\"))))))"
+   "f": "=IF($E7=\"—\",\"—\",IF($J7=\"\",\"\",IF($I7=\"\",\"sin referencia\",IF(AND($E7=\"Carrera (≤2/10)\",$K7=\"\"),\"falta K\",IF(OR($J7>IF($E7=\"Carrera (≤2/10)\",2,3),AND($E7=\"Carrera (≤2/10)\",$K7=\"No\")),\"Retroceder\",IF($M7=\"\",\"pendiente\",IF($M7>$I7,\"Retroceder\",IF($N7=\"\",\"pendiente\",IF($O7<=$I7,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A8": {
    "v": "2026-10-29T00:00:00",
@@ -2742,7 +2742,7 @@
   },
   "P8": {
    "v": null,
-   "f": "=IF(J8=\"\",\"\",IF(I8=\"\",\"sin referencia\",IF(AND(E8=\"Carrera (≤2/10)\",K8=\"\"),\"falta K\",IF(O8=\"\",\"pendiente\",IF(E8=\"Carrera (≤2/10)\",IF(AND(J8<=2,K8=\"Sí\",M8<=I8,O8<=I8),\"Sí\",\"No\"),IF(AND(J8<=3,O8<=I8),\"Sí\",\"No\"))))))"
+   "f": "=IF($E8=\"—\",\"—\",IF($J8=\"\",\"\",IF($I8=\"\",\"sin referencia\",IF(AND($E8=\"Carrera (≤2/10)\",$K8=\"\"),\"falta K\",IF(OR($J8>IF($E8=\"Carrera (≤2/10)\",2,3),AND($E8=\"Carrera (≤2/10)\",$K8=\"No\")),\"Retroceder\",IF($M8=\"\",\"pendiente\",IF($M8>$I8,\"Retroceder\",IF($N8=\"\",\"pendiente\",IF($O8<=$I8,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A9": {
    "v": "2026-10-30T00:00:00",
@@ -2781,7 +2781,7 @@
   },
   "P9": {
    "v": null,
-   "f": "=IF(J9=\"\",\"\",IF(I9=\"\",\"sin referencia\",IF(AND(E9=\"Carrera (≤2/10)\",K9=\"\"),\"falta K\",IF(O9=\"\",\"pendiente\",IF(E9=\"Carrera (≤2/10)\",IF(AND(J9<=2,K9=\"Sí\",M9<=I9,O9<=I9),\"Sí\",\"No\"),IF(AND(J9<=3,O9<=I9),\"Sí\",\"No\"))))))"
+   "f": "=IF($E9=\"—\",\"—\",IF($J9=\"\",\"\",IF($I9=\"\",\"sin referencia\",IF(AND($E9=\"Carrera (≤2/10)\",$K9=\"\"),\"falta K\",IF(OR($J9>IF($E9=\"Carrera (≤2/10)\",2,3),AND($E9=\"Carrera (≤2/10)\",$K9=\"No\")),\"Retroceder\",IF($M9=\"\",\"pendiente\",IF($M9>$I9,\"Retroceder\",IF($N9=\"\",\"pendiente\",IF($O9<=$I9,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A10": {
    "v": "2026-10-31T00:00:00",
@@ -2820,7 +2820,7 @@
   },
   "P10": {
    "v": null,
-   "f": "=IF(J10=\"\",\"\",IF(I10=\"\",\"sin referencia\",IF(AND(E10=\"Carrera (≤2/10)\",K10=\"\"),\"falta K\",IF(O10=\"\",\"pendiente\",IF(E10=\"Carrera (≤2/10)\",IF(AND(J10<=2,K10=\"Sí\",M10<=I10,O10<=I10),\"Sí\",\"No\"),IF(AND(J10<=3,O10<=I10),\"Sí\",\"No\"))))))"
+   "f": "=IF($E10=\"—\",\"—\",IF($J10=\"\",\"\",IF($I10=\"\",\"sin referencia\",IF(AND($E10=\"Carrera (≤2/10)\",$K10=\"\"),\"falta K\",IF(OR($J10>IF($E10=\"Carrera (≤2/10)\",2,3),AND($E10=\"Carrera (≤2/10)\",$K10=\"No\")),\"Retroceder\",IF($M10=\"\",\"pendiente\",IF($M10>$I10,\"Retroceder\",IF($N10=\"\",\"pendiente\",IF($O10<=$I10,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A11": {
    "v": "2026-11-01T00:00:00",
@@ -2859,7 +2859,7 @@
   },
   "P11": {
    "v": null,
-   "f": "=IF(J11=\"\",\"\",IF(I11=\"\",\"sin referencia\",IF(AND(E11=\"Carrera (≤2/10)\",K11=\"\"),\"falta K\",IF(O11=\"\",\"pendiente\",IF(E11=\"Carrera (≤2/10)\",IF(AND(J11<=2,K11=\"Sí\",M11<=I11,O11<=I11),\"Sí\",\"No\"),IF(AND(J11<=3,O11<=I11),\"Sí\",\"No\"))))))"
+   "f": "=IF($E11=\"—\",\"—\",IF($J11=\"\",\"\",IF($I11=\"\",\"sin referencia\",IF(AND($E11=\"Carrera (≤2/10)\",$K11=\"\"),\"falta K\",IF(OR($J11>IF($E11=\"Carrera (≤2/10)\",2,3),AND($E11=\"Carrera (≤2/10)\",$K11=\"No\")),\"Retroceder\",IF($M11=\"\",\"pendiente\",IF($M11>$I11,\"Retroceder\",IF($N11=\"\",\"pendiente\",IF($O11<=$I11,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A12": {
    "v": "2026-11-02T00:00:00",
@@ -2898,7 +2898,7 @@
   },
   "P12": {
    "v": null,
-   "f": "=IF(J12=\"\",\"\",IF(I12=\"\",\"sin referencia\",IF(AND(E12=\"Carrera (≤2/10)\",K12=\"\"),\"falta K\",IF(O12=\"\",\"pendiente\",IF(E12=\"Carrera (≤2/10)\",IF(AND(J12<=2,K12=\"Sí\",M12<=I12,O12<=I12),\"Sí\",\"No\"),IF(AND(J12<=3,O12<=I12),\"Sí\",\"No\"))))))"
+   "f": "=IF($E12=\"—\",\"—\",IF($J12=\"\",\"\",IF($I12=\"\",\"sin referencia\",IF(AND($E12=\"Carrera (≤2/10)\",$K12=\"\"),\"falta K\",IF(OR($J12>IF($E12=\"Carrera (≤2/10)\",2,3),AND($E12=\"Carrera (≤2/10)\",$K12=\"No\")),\"Retroceder\",IF($M12=\"\",\"pendiente\",IF($M12>$I12,\"Retroceder\",IF($N12=\"\",\"pendiente\",IF($O12<=$I12,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A13": {
    "v": "2026-11-03T00:00:00",
@@ -2937,7 +2937,7 @@
   },
   "P13": {
    "v": null,
-   "f": "=IF(J13=\"\",\"\",IF(I13=\"\",\"sin referencia\",IF(AND(E13=\"Carrera (≤2/10)\",K13=\"\"),\"falta K\",IF(O13=\"\",\"pendiente\",IF(E13=\"Carrera (≤2/10)\",IF(AND(J13<=2,K13=\"Sí\",M13<=I13,O13<=I13),\"Sí\",\"No\"),IF(AND(J13<=3,O13<=I13),\"Sí\",\"No\"))))))"
+   "f": "=IF($E13=\"—\",\"—\",IF($J13=\"\",\"\",IF($I13=\"\",\"sin referencia\",IF(AND($E13=\"Carrera (≤2/10)\",$K13=\"\"),\"falta K\",IF(OR($J13>IF($E13=\"Carrera (≤2/10)\",2,3),AND($E13=\"Carrera (≤2/10)\",$K13=\"No\")),\"Retroceder\",IF($M13=\"\",\"pendiente\",IF($M13>$I13,\"Retroceder\",IF($N13=\"\",\"pendiente\",IF($O13<=$I13,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A14": {
    "v": "2026-11-04T00:00:00",
@@ -2976,7 +2976,7 @@
   },
   "P14": {
    "v": null,
-   "f": "=IF(J14=\"\",\"\",IF(I14=\"\",\"sin referencia\",IF(AND(E14=\"Carrera (≤2/10)\",K14=\"\"),\"falta K\",IF(O14=\"\",\"pendiente\",IF(E14=\"Carrera (≤2/10)\",IF(AND(J14<=2,K14=\"Sí\",M14<=I14,O14<=I14),\"Sí\",\"No\"),IF(AND(J14<=3,O14<=I14),\"Sí\",\"No\"))))))"
+   "f": "=IF($E14=\"—\",\"—\",IF($J14=\"\",\"\",IF($I14=\"\",\"sin referencia\",IF(AND($E14=\"Carrera (≤2/10)\",$K14=\"\"),\"falta K\",IF(OR($J14>IF($E14=\"Carrera (≤2/10)\",2,3),AND($E14=\"Carrera (≤2/10)\",$K14=\"No\")),\"Retroceder\",IF($M14=\"\",\"pendiente\",IF($M14>$I14,\"Retroceder\",IF($N14=\"\",\"pendiente\",IF($O14<=$I14,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A15": {
    "v": "2026-11-05T00:00:00",
@@ -3015,7 +3015,7 @@
   },
   "P15": {
    "v": null,
-   "f": "=IF(J15=\"\",\"\",IF(I15=\"\",\"sin referencia\",IF(AND(E15=\"Carrera (≤2/10)\",K15=\"\"),\"falta K\",IF(O15=\"\",\"pendiente\",IF(E15=\"Carrera (≤2/10)\",IF(AND(J15<=2,K15=\"Sí\",M15<=I15,O15<=I15),\"Sí\",\"No\"),IF(AND(J15<=3,O15<=I15),\"Sí\",\"No\"))))))"
+   "f": "=IF($E15=\"—\",\"—\",IF($J15=\"\",\"\",IF($I15=\"\",\"sin referencia\",IF(AND($E15=\"Carrera (≤2/10)\",$K15=\"\"),\"falta K\",IF(OR($J15>IF($E15=\"Carrera (≤2/10)\",2,3),AND($E15=\"Carrera (≤2/10)\",$K15=\"No\")),\"Retroceder\",IF($M15=\"\",\"pendiente\",IF($M15>$I15,\"Retroceder\",IF($N15=\"\",\"pendiente\",IF($O15<=$I15,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A16": {
    "v": "2026-11-06T00:00:00",
@@ -3054,7 +3054,7 @@
   },
   "P16": {
    "v": null,
-   "f": "=IF(J16=\"\",\"\",IF(I16=\"\",\"sin referencia\",IF(AND(E16=\"Carrera (≤2/10)\",K16=\"\"),\"falta K\",IF(O16=\"\",\"pendiente\",IF(E16=\"Carrera (≤2/10)\",IF(AND(J16<=2,K16=\"Sí\",M16<=I16,O16<=I16),\"Sí\",\"No\"),IF(AND(J16<=3,O16<=I16),\"Sí\",\"No\"))))))"
+   "f": "=IF($E16=\"—\",\"—\",IF($J16=\"\",\"\",IF($I16=\"\",\"sin referencia\",IF(AND($E16=\"Carrera (≤2/10)\",$K16=\"\"),\"falta K\",IF(OR($J16>IF($E16=\"Carrera (≤2/10)\",2,3),AND($E16=\"Carrera (≤2/10)\",$K16=\"No\")),\"Retroceder\",IF($M16=\"\",\"pendiente\",IF($M16>$I16,\"Retroceder\",IF($N16=\"\",\"pendiente\",IF($O16<=$I16,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A17": {
    "v": "2026-11-07T00:00:00",
@@ -3093,7 +3093,7 @@
   },
   "P17": {
    "v": null,
-   "f": "=IF(J17=\"\",\"\",IF(I17=\"\",\"sin referencia\",IF(AND(E17=\"Carrera (≤2/10)\",K17=\"\"),\"falta K\",IF(O17=\"\",\"pendiente\",IF(E17=\"Carrera (≤2/10)\",IF(AND(J17<=2,K17=\"Sí\",M17<=I17,O17<=I17),\"Sí\",\"No\"),IF(AND(J17<=3,O17<=I17),\"Sí\",\"No\"))))))"
+   "f": "=IF($E17=\"—\",\"—\",IF($J17=\"\",\"\",IF($I17=\"\",\"sin referencia\",IF(AND($E17=\"Carrera (≤2/10)\",$K17=\"\"),\"falta K\",IF(OR($J17>IF($E17=\"Carrera (≤2/10)\",2,3),AND($E17=\"Carrera (≤2/10)\",$K17=\"No\")),\"Retroceder\",IF($M17=\"\",\"pendiente\",IF($M17>$I17,\"Retroceder\",IF($N17=\"\",\"pendiente\",IF($O17<=$I17,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A18": {
    "v": "2026-11-08T00:00:00",
@@ -3132,7 +3132,7 @@
   },
   "P18": {
    "v": null,
-   "f": "=IF(J18=\"\",\"\",IF(I18=\"\",\"sin referencia\",IF(AND(E18=\"Carrera (≤2/10)\",K18=\"\"),\"falta K\",IF(O18=\"\",\"pendiente\",IF(E18=\"Carrera (≤2/10)\",IF(AND(J18<=2,K18=\"Sí\",M18<=I18,O18<=I18),\"Sí\",\"No\"),IF(AND(J18<=3,O18<=I18),\"Sí\",\"No\"))))))"
+   "f": "=IF($E18=\"—\",\"—\",IF($J18=\"\",\"\",IF($I18=\"\",\"sin referencia\",IF(AND($E18=\"Carrera (≤2/10)\",$K18=\"\"),\"falta K\",IF(OR($J18>IF($E18=\"Carrera (≤2/10)\",2,3),AND($E18=\"Carrera (≤2/10)\",$K18=\"No\")),\"Retroceder\",IF($M18=\"\",\"pendiente\",IF($M18>$I18,\"Retroceder\",IF($N18=\"\",\"pendiente\",IF($O18<=$I18,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A19": {
    "v": "2026-11-09T00:00:00",
@@ -3171,7 +3171,7 @@
   },
   "P19": {
    "v": null,
-   "f": "=IF(J19=\"\",\"\",IF(I19=\"\",\"sin referencia\",IF(AND(E19=\"Carrera (≤2/10)\",K19=\"\"),\"falta K\",IF(O19=\"\",\"pendiente\",IF(E19=\"Carrera (≤2/10)\",IF(AND(J19<=2,K19=\"Sí\",M19<=I19,O19<=I19),\"Sí\",\"No\"),IF(AND(J19<=3,O19<=I19),\"Sí\",\"No\"))))))"
+   "f": "=IF($E19=\"—\",\"—\",IF($J19=\"\",\"\",IF($I19=\"\",\"sin referencia\",IF(AND($E19=\"Carrera (≤2/10)\",$K19=\"\"),\"falta K\",IF(OR($J19>IF($E19=\"Carrera (≤2/10)\",2,3),AND($E19=\"Carrera (≤2/10)\",$K19=\"No\")),\"Retroceder\",IF($M19=\"\",\"pendiente\",IF($M19>$I19,\"Retroceder\",IF($N19=\"\",\"pendiente\",IF($O19<=$I19,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A20": {
    "v": "2026-11-10T00:00:00",
@@ -3210,7 +3210,7 @@
   },
   "P20": {
    "v": null,
-   "f": "=IF(J20=\"\",\"\",IF(I20=\"\",\"sin referencia\",IF(AND(E20=\"Carrera (≤2/10)\",K20=\"\"),\"falta K\",IF(O20=\"\",\"pendiente\",IF(E20=\"Carrera (≤2/10)\",IF(AND(J20<=2,K20=\"Sí\",M20<=I20,O20<=I20),\"Sí\",\"No\"),IF(AND(J20<=3,O20<=I20),\"Sí\",\"No\"))))))"
+   "f": "=IF($E20=\"—\",\"—\",IF($J20=\"\",\"\",IF($I20=\"\",\"sin referencia\",IF(AND($E20=\"Carrera (≤2/10)\",$K20=\"\"),\"falta K\",IF(OR($J20>IF($E20=\"Carrera (≤2/10)\",2,3),AND($E20=\"Carrera (≤2/10)\",$K20=\"No\")),\"Retroceder\",IF($M20=\"\",\"pendiente\",IF($M20>$I20,\"Retroceder\",IF($N20=\"\",\"pendiente\",IF($O20<=$I20,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A21": {
    "v": "2026-11-11T00:00:00",
@@ -3249,7 +3249,7 @@
   },
   "P21": {
    "v": null,
-   "f": "=IF(J21=\"\",\"\",IF(I21=\"\",\"sin referencia\",IF(AND(E21=\"Carrera (≤2/10)\",K21=\"\"),\"falta K\",IF(O21=\"\",\"pendiente\",IF(E21=\"Carrera (≤2/10)\",IF(AND(J21<=2,K21=\"Sí\",M21<=I21,O21<=I21),\"Sí\",\"No\"),IF(AND(J21<=3,O21<=I21),\"Sí\",\"No\"))))))"
+   "f": "=IF($E21=\"—\",\"—\",IF($J21=\"\",\"\",IF($I21=\"\",\"sin referencia\",IF(AND($E21=\"Carrera (≤2/10)\",$K21=\"\"),\"falta K\",IF(OR($J21>IF($E21=\"Carrera (≤2/10)\",2,3),AND($E21=\"Carrera (≤2/10)\",$K21=\"No\")),\"Retroceder\",IF($M21=\"\",\"pendiente\",IF($M21>$I21,\"Retroceder\",IF($N21=\"\",\"pendiente\",IF($O21<=$I21,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A22": {
    "v": "2026-11-12T00:00:00",
@@ -3288,7 +3288,7 @@
   },
   "P22": {
    "v": null,
-   "f": "=IF(J22=\"\",\"\",IF(I22=\"\",\"sin referencia\",IF(AND(E22=\"Carrera (≤2/10)\",K22=\"\"),\"falta K\",IF(O22=\"\",\"pendiente\",IF(E22=\"Carrera (≤2/10)\",IF(AND(J22<=2,K22=\"Sí\",M22<=I22,O22<=I22),\"Sí\",\"No\"),IF(AND(J22<=3,O22<=I22),\"Sí\",\"No\"))))))"
+   "f": "=IF($E22=\"—\",\"—\",IF($J22=\"\",\"\",IF($I22=\"\",\"sin referencia\",IF(AND($E22=\"Carrera (≤2/10)\",$K22=\"\"),\"falta K\",IF(OR($J22>IF($E22=\"Carrera (≤2/10)\",2,3),AND($E22=\"Carrera (≤2/10)\",$K22=\"No\")),\"Retroceder\",IF($M22=\"\",\"pendiente\",IF($M22>$I22,\"Retroceder\",IF($N22=\"\",\"pendiente\",IF($O22<=$I22,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A23": {
    "v": "2026-11-13T00:00:00",
@@ -3304,7 +3304,7 @@
    "v": "Torso + bici 10' Z2 (1.ª vez)"
   },
   "E23": {
-   "v": "Gimnasio (≤3/10)"
+   "v": "—"
   },
   "F23": {
    "v": "Bici (1.ª vez)"
@@ -3327,7 +3327,7 @@
   },
   "P23": {
    "v": null,
-   "f": "=IF(J23=\"\",\"\",IF(I23=\"\",\"sin referencia\",IF(AND(E23=\"Carrera (≤2/10)\",K23=\"\"),\"falta K\",IF(O23=\"\",\"pendiente\",IF(E23=\"Carrera (≤2/10)\",IF(AND(J23<=2,K23=\"Sí\",M23<=I23,O23<=I23),\"Sí\",\"No\"),IF(AND(J23<=3,O23<=I23),\"Sí\",\"No\"))))))"
+   "f": "=IF($E23=\"—\",\"—\",IF($J23=\"\",\"\",IF($I23=\"\",\"sin referencia\",IF(AND($E23=\"Carrera (≤2/10)\",$K23=\"\"),\"falta K\",IF(OR($J23>IF($E23=\"Carrera (≤2/10)\",2,3),AND($E23=\"Carrera (≤2/10)\",$K23=\"No\")),\"Retroceder\",IF($M23=\"\",\"pendiente\",IF($M23>$I23,\"Retroceder\",IF($N23=\"\",\"pendiente\",IF($O23<=$I23,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A24": {
    "v": "2026-11-14T00:00:00",
@@ -3366,7 +3366,7 @@
   },
   "P24": {
    "v": null,
-   "f": "=IF(J24=\"\",\"\",IF(I24=\"\",\"sin referencia\",IF(AND(E24=\"Carrera (≤2/10)\",K24=\"\"),\"falta K\",IF(O24=\"\",\"pendiente\",IF(E24=\"Carrera (≤2/10)\",IF(AND(J24<=2,K24=\"Sí\",M24<=I24,O24<=I24),\"Sí\",\"No\"),IF(AND(J24<=3,O24<=I24),\"Sí\",\"No\"))))))"
+   "f": "=IF($E24=\"—\",\"—\",IF($J24=\"\",\"\",IF($I24=\"\",\"sin referencia\",IF(AND($E24=\"Carrera (≤2/10)\",$K24=\"\"),\"falta K\",IF(OR($J24>IF($E24=\"Carrera (≤2/10)\",2,3),AND($E24=\"Carrera (≤2/10)\",$K24=\"No\")),\"Retroceder\",IF($M24=\"\",\"pendiente\",IF($M24>$I24,\"Retroceder\",IF($N24=\"\",\"pendiente\",IF($O24<=$I24,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A25": {
    "v": "2026-11-15T00:00:00",
@@ -3405,7 +3405,7 @@
   },
   "P25": {
    "v": null,
-   "f": "=IF(J25=\"\",\"\",IF(I25=\"\",\"sin referencia\",IF(AND(E25=\"Carrera (≤2/10)\",K25=\"\"),\"falta K\",IF(O25=\"\",\"pendiente\",IF(E25=\"Carrera (≤2/10)\",IF(AND(J25<=2,K25=\"Sí\",M25<=I25,O25<=I25),\"Sí\",\"No\"),IF(AND(J25<=3,O25<=I25),\"Sí\",\"No\"))))))"
+   "f": "=IF($E25=\"—\",\"—\",IF($J25=\"\",\"\",IF($I25=\"\",\"sin referencia\",IF(AND($E25=\"Carrera (≤2/10)\",$K25=\"\"),\"falta K\",IF(OR($J25>IF($E25=\"Carrera (≤2/10)\",2,3),AND($E25=\"Carrera (≤2/10)\",$K25=\"No\")),\"Retroceder\",IF($M25=\"\",\"pendiente\",IF($M25>$I25,\"Retroceder\",IF($N25=\"\",\"pendiente\",IF($O25<=$I25,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A26": {
    "v": "2026-11-16T00:00:00",
@@ -3444,7 +3444,7 @@
   },
   "P26": {
    "v": null,
-   "f": "=IF(J26=\"\",\"\",IF(I26=\"\",\"sin referencia\",IF(AND(E26=\"Carrera (≤2/10)\",K26=\"\"),\"falta K\",IF(O26=\"\",\"pendiente\",IF(E26=\"Carrera (≤2/10)\",IF(AND(J26<=2,K26=\"Sí\",M26<=I26,O26<=I26),\"Sí\",\"No\"),IF(AND(J26<=3,O26<=I26),\"Sí\",\"No\"))))))"
+   "f": "=IF($E26=\"—\",\"—\",IF($J26=\"\",\"\",IF($I26=\"\",\"sin referencia\",IF(AND($E26=\"Carrera (≤2/10)\",$K26=\"\"),\"falta K\",IF(OR($J26>IF($E26=\"Carrera (≤2/10)\",2,3),AND($E26=\"Carrera (≤2/10)\",$K26=\"No\")),\"Retroceder\",IF($M26=\"\",\"pendiente\",IF($M26>$I26,\"Retroceder\",IF($N26=\"\",\"pendiente\",IF($O26<=$I26,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A27": {
    "v": "2026-11-17T00:00:00",
@@ -3460,7 +3460,7 @@
    "v": "Push + bici 10' Z2"
   },
   "E27": {
-   "v": "Gimnasio (≤3/10)"
+   "v": "—"
   },
   "F27": {
    "v": "—"
@@ -3483,7 +3483,7 @@
   },
   "P27": {
    "v": null,
-   "f": "=IF(J27=\"\",\"\",IF(I27=\"\",\"sin referencia\",IF(AND(E27=\"Carrera (≤2/10)\",K27=\"\"),\"falta K\",IF(O27=\"\",\"pendiente\",IF(E27=\"Carrera (≤2/10)\",IF(AND(J27<=2,K27=\"Sí\",M27<=I27,O27<=I27),\"Sí\",\"No\"),IF(AND(J27<=3,O27<=I27),\"Sí\",\"No\"))))))"
+   "f": "=IF($E27=\"—\",\"—\",IF($J27=\"\",\"\",IF($I27=\"\",\"sin referencia\",IF(AND($E27=\"Carrera (≤2/10)\",$K27=\"\"),\"falta K\",IF(OR($J27>IF($E27=\"Carrera (≤2/10)\",2,3),AND($E27=\"Carrera (≤2/10)\",$K27=\"No\")),\"Retroceder\",IF($M27=\"\",\"pendiente\",IF($M27>$I27,\"Retroceder\",IF($N27=\"\",\"pendiente\",IF($O27<=$I27,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A28": {
    "v": "2026-11-18T00:00:00",
@@ -3522,7 +3522,7 @@
   },
   "P28": {
    "v": null,
-   "f": "=IF(J28=\"\",\"\",IF(I28=\"\",\"sin referencia\",IF(AND(E28=\"Carrera (≤2/10)\",K28=\"\"),\"falta K\",IF(O28=\"\",\"pendiente\",IF(E28=\"Carrera (≤2/10)\",IF(AND(J28<=2,K28=\"Sí\",M28<=I28,O28<=I28),\"Sí\",\"No\"),IF(AND(J28<=3,O28<=I28),\"Sí\",\"No\"))))))"
+   "f": "=IF($E28=\"—\",\"—\",IF($J28=\"\",\"\",IF($I28=\"\",\"sin referencia\",IF(AND($E28=\"Carrera (≤2/10)\",$K28=\"\"),\"falta K\",IF(OR($J28>IF($E28=\"Carrera (≤2/10)\",2,3),AND($E28=\"Carrera (≤2/10)\",$K28=\"No\")),\"Retroceder\",IF($M28=\"\",\"pendiente\",IF($M28>$I28,\"Retroceder\",IF($N28=\"\",\"pendiente\",IF($O28<=$I28,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A29": {
    "v": "2026-11-19T00:00:00",
@@ -3561,7 +3561,7 @@
   },
   "P29": {
    "v": null,
-   "f": "=IF(J29=\"\",\"\",IF(I29=\"\",\"sin referencia\",IF(AND(E29=\"Carrera (≤2/10)\",K29=\"\"),\"falta K\",IF(O29=\"\",\"pendiente\",IF(E29=\"Carrera (≤2/10)\",IF(AND(J29<=2,K29=\"Sí\",M29<=I29,O29<=I29),\"Sí\",\"No\"),IF(AND(J29<=3,O29<=I29),\"Sí\",\"No\"))))))"
+   "f": "=IF($E29=\"—\",\"—\",IF($J29=\"\",\"\",IF($I29=\"\",\"sin referencia\",IF(AND($E29=\"Carrera (≤2/10)\",$K29=\"\"),\"falta K\",IF(OR($J29>IF($E29=\"Carrera (≤2/10)\",2,3),AND($E29=\"Carrera (≤2/10)\",$K29=\"No\")),\"Retroceder\",IF($M29=\"\",\"pendiente\",IF($M29>$I29,\"Retroceder\",IF($N29=\"\",\"pendiente\",IF($O29<=$I29,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A30": {
    "v": "2026-11-20T00:00:00",
@@ -3577,7 +3577,7 @@
    "v": "Torso + bici 10' Z2"
   },
   "E30": {
-   "v": "Gimnasio (≤3/10)"
+   "v": "—"
   },
   "F30": {
    "v": "—"
@@ -3600,7 +3600,7 @@
   },
   "P30": {
    "v": null,
-   "f": "=IF(J30=\"\",\"\",IF(I30=\"\",\"sin referencia\",IF(AND(E30=\"Carrera (≤2/10)\",K30=\"\"),\"falta K\",IF(O30=\"\",\"pendiente\",IF(E30=\"Carrera (≤2/10)\",IF(AND(J30<=2,K30=\"Sí\",M30<=I30,O30<=I30),\"Sí\",\"No\"),IF(AND(J30<=3,O30<=I30),\"Sí\",\"No\"))))))"
+   "f": "=IF($E30=\"—\",\"—\",IF($J30=\"\",\"\",IF($I30=\"\",\"sin referencia\",IF(AND($E30=\"Carrera (≤2/10)\",$K30=\"\"),\"falta K\",IF(OR($J30>IF($E30=\"Carrera (≤2/10)\",2,3),AND($E30=\"Carrera (≤2/10)\",$K30=\"No\")),\"Retroceder\",IF($M30=\"\",\"pendiente\",IF($M30>$I30,\"Retroceder\",IF($N30=\"\",\"pendiente\",IF($O30<=$I30,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A31": {
    "v": "2026-11-21T00:00:00",
@@ -3639,7 +3639,7 @@
   },
   "P31": {
    "v": null,
-   "f": "=IF(J31=\"\",\"\",IF(I31=\"\",\"sin referencia\",IF(AND(E31=\"Carrera (≤2/10)\",K31=\"\"),\"falta K\",IF(O31=\"\",\"pendiente\",IF(E31=\"Carrera (≤2/10)\",IF(AND(J31<=2,K31=\"Sí\",M31<=I31,O31<=I31),\"Sí\",\"No\"),IF(AND(J31<=3,O31<=I31),\"Sí\",\"No\"))))))"
+   "f": "=IF($E31=\"—\",\"—\",IF($J31=\"\",\"\",IF($I31=\"\",\"sin referencia\",IF(AND($E31=\"Carrera (≤2/10)\",$K31=\"\"),\"falta K\",IF(OR($J31>IF($E31=\"Carrera (≤2/10)\",2,3),AND($E31=\"Carrera (≤2/10)\",$K31=\"No\")),\"Retroceder\",IF($M31=\"\",\"pendiente\",IF($M31>$I31,\"Retroceder\",IF($N31=\"\",\"pendiente\",IF($O31<=$I31,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A32": {
    "v": "2026-11-22T00:00:00",
@@ -3678,7 +3678,7 @@
   },
   "P32": {
    "v": null,
-   "f": "=IF(J32=\"\",\"\",IF(I32=\"\",\"sin referencia\",IF(AND(E32=\"Carrera (≤2/10)\",K32=\"\"),\"falta K\",IF(O32=\"\",\"pendiente\",IF(E32=\"Carrera (≤2/10)\",IF(AND(J32<=2,K32=\"Sí\",M32<=I32,O32<=I32),\"Sí\",\"No\"),IF(AND(J32<=3,O32<=I32),\"Sí\",\"No\"))))))"
+   "f": "=IF($E32=\"—\",\"—\",IF($J32=\"\",\"\",IF($I32=\"\",\"sin referencia\",IF(AND($E32=\"Carrera (≤2/10)\",$K32=\"\"),\"falta K\",IF(OR($J32>IF($E32=\"Carrera (≤2/10)\",2,3),AND($E32=\"Carrera (≤2/10)\",$K32=\"No\")),\"Retroceder\",IF($M32=\"\",\"pendiente\",IF($M32>$I32,\"Retroceder\",IF($N32=\"\",\"pendiente\",IF($O32<=$I32,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A33": {
    "v": "2026-11-23T00:00:00",
@@ -3717,7 +3717,7 @@
   },
   "P33": {
    "v": null,
-   "f": "=IF(J33=\"\",\"\",IF(I33=\"\",\"sin referencia\",IF(AND(E33=\"Carrera (≤2/10)\",K33=\"\"),\"falta K\",IF(O33=\"\",\"pendiente\",IF(E33=\"Carrera (≤2/10)\",IF(AND(J33<=2,K33=\"Sí\",M33<=I33,O33<=I33),\"Sí\",\"No\"),IF(AND(J33<=3,O33<=I33),\"Sí\",\"No\"))))))"
+   "f": "=IF($E33=\"—\",\"—\",IF($J33=\"\",\"\",IF($I33=\"\",\"sin referencia\",IF(AND($E33=\"Carrera (≤2/10)\",$K33=\"\"),\"falta K\",IF(OR($J33>IF($E33=\"Carrera (≤2/10)\",2,3),AND($E33=\"Carrera (≤2/10)\",$K33=\"No\")),\"Retroceder\",IF($M33=\"\",\"pendiente\",IF($M33>$I33,\"Retroceder\",IF($N33=\"\",\"pendiente\",IF($O33<=$I33,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A34": {
    "v": "2026-11-24T00:00:00",
@@ -3733,7 +3733,7 @@
    "v": "Push + bici 10' Z2"
   },
   "E34": {
-   "v": "Gimnasio (≤3/10)"
+   "v": "—"
   },
   "F34": {
    "v": "—"
@@ -3756,7 +3756,7 @@
   },
   "P34": {
    "v": null,
-   "f": "=IF(J34=\"\",\"\",IF(I34=\"\",\"sin referencia\",IF(AND(E34=\"Carrera (≤2/10)\",K34=\"\"),\"falta K\",IF(O34=\"\",\"pendiente\",IF(E34=\"Carrera (≤2/10)\",IF(AND(J34<=2,K34=\"Sí\",M34<=I34,O34<=I34),\"Sí\",\"No\"),IF(AND(J34<=3,O34<=I34),\"Sí\",\"No\"))))))"
+   "f": "=IF($E34=\"—\",\"—\",IF($J34=\"\",\"\",IF($I34=\"\",\"sin referencia\",IF(AND($E34=\"Carrera (≤2/10)\",$K34=\"\"),\"falta K\",IF(OR($J34>IF($E34=\"Carrera (≤2/10)\",2,3),AND($E34=\"Carrera (≤2/10)\",$K34=\"No\")),\"Retroceder\",IF($M34=\"\",\"pendiente\",IF($M34>$I34,\"Retroceder\",IF($N34=\"\",\"pendiente\",IF($O34<=$I34,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A35": {
    "v": "2026-11-25T00:00:00",
@@ -3795,7 +3795,7 @@
   },
   "P35": {
    "v": null,
-   "f": "=IF(J35=\"\",\"\",IF(I35=\"\",\"sin referencia\",IF(AND(E35=\"Carrera (≤2/10)\",K35=\"\"),\"falta K\",IF(O35=\"\",\"pendiente\",IF(E35=\"Carrera (≤2/10)\",IF(AND(J35<=2,K35=\"Sí\",M35<=I35,O35<=I35),\"Sí\",\"No\"),IF(AND(J35<=3,O35<=I35),\"Sí\",\"No\"))))))"
+   "f": "=IF($E35=\"—\",\"—\",IF($J35=\"\",\"\",IF($I35=\"\",\"sin referencia\",IF(AND($E35=\"Carrera (≤2/10)\",$K35=\"\"),\"falta K\",IF(OR($J35>IF($E35=\"Carrera (≤2/10)\",2,3),AND($E35=\"Carrera (≤2/10)\",$K35=\"No\")),\"Retroceder\",IF($M35=\"\",\"pendiente\",IF($M35>$I35,\"Retroceder\",IF($N35=\"\",\"pendiente\",IF($O35<=$I35,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A36": {
    "v": "2026-11-26T00:00:00",
@@ -3834,7 +3834,7 @@
   },
   "P36": {
    "v": null,
-   "f": "=IF(J36=\"\",\"\",IF(I36=\"\",\"sin referencia\",IF(AND(E36=\"Carrera (≤2/10)\",K36=\"\"),\"falta K\",IF(O36=\"\",\"pendiente\",IF(E36=\"Carrera (≤2/10)\",IF(AND(J36<=2,K36=\"Sí\",M36<=I36,O36<=I36),\"Sí\",\"No\"),IF(AND(J36<=3,O36<=I36),\"Sí\",\"No\"))))))"
+   "f": "=IF($E36=\"—\",\"—\",IF($J36=\"\",\"\",IF($I36=\"\",\"sin referencia\",IF(AND($E36=\"Carrera (≤2/10)\",$K36=\"\"),\"falta K\",IF(OR($J36>IF($E36=\"Carrera (≤2/10)\",2,3),AND($E36=\"Carrera (≤2/10)\",$K36=\"No\")),\"Retroceder\",IF($M36=\"\",\"pendiente\",IF($M36>$I36,\"Retroceder\",IF($N36=\"\",\"pendiente\",IF($O36<=$I36,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A37": {
    "v": "2026-11-27T00:00:00",
@@ -3850,7 +3850,7 @@
    "v": "Torso + bici 10' Z2"
   },
   "E37": {
-   "v": "Gimnasio (≤3/10)"
+   "v": "—"
   },
   "F37": {
    "v": "—"
@@ -3873,7 +3873,7 @@
   },
   "P37": {
    "v": null,
-   "f": "=IF(J37=\"\",\"\",IF(I37=\"\",\"sin referencia\",IF(AND(E37=\"Carrera (≤2/10)\",K37=\"\"),\"falta K\",IF(O37=\"\",\"pendiente\",IF(E37=\"Carrera (≤2/10)\",IF(AND(J37<=2,K37=\"Sí\",M37<=I37,O37<=I37),\"Sí\",\"No\"),IF(AND(J37<=3,O37<=I37),\"Sí\",\"No\"))))))"
+   "f": "=IF($E37=\"—\",\"—\",IF($J37=\"\",\"\",IF($I37=\"\",\"sin referencia\",IF(AND($E37=\"Carrera (≤2/10)\",$K37=\"\"),\"falta K\",IF(OR($J37>IF($E37=\"Carrera (≤2/10)\",2,3),AND($E37=\"Carrera (≤2/10)\",$K37=\"No\")),\"Retroceder\",IF($M37=\"\",\"pendiente\",IF($M37>$I37,\"Retroceder\",IF($N37=\"\",\"pendiente\",IF($O37<=$I37,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A38": {
    "v": "2026-11-28T00:00:00",
@@ -3912,7 +3912,7 @@
   },
   "P38": {
    "v": null,
-   "f": "=IF(J38=\"\",\"\",IF(I38=\"\",\"sin referencia\",IF(AND(E38=\"Carrera (≤2/10)\",K38=\"\"),\"falta K\",IF(O38=\"\",\"pendiente\",IF(E38=\"Carrera (≤2/10)\",IF(AND(J38<=2,K38=\"Sí\",M38<=I38,O38<=I38),\"Sí\",\"No\"),IF(AND(J38<=3,O38<=I38),\"Sí\",\"No\"))))))"
+   "f": "=IF($E38=\"—\",\"—\",IF($J38=\"\",\"\",IF($I38=\"\",\"sin referencia\",IF(AND($E38=\"Carrera (≤2/10)\",$K38=\"\"),\"falta K\",IF(OR($J38>IF($E38=\"Carrera (≤2/10)\",2,3),AND($E38=\"Carrera (≤2/10)\",$K38=\"No\")),\"Retroceder\",IF($M38=\"\",\"pendiente\",IF($M38>$I38,\"Retroceder\",IF($N38=\"\",\"pendiente\",IF($O38<=$I38,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A39": {
    "v": "2026-11-29T00:00:00",
@@ -3951,7 +3951,7 @@
   },
   "P39": {
    "v": null,
-   "f": "=IF(J39=\"\",\"\",IF(I39=\"\",\"sin referencia\",IF(AND(E39=\"Carrera (≤2/10)\",K39=\"\"),\"falta K\",IF(O39=\"\",\"pendiente\",IF(E39=\"Carrera (≤2/10)\",IF(AND(J39<=2,K39=\"Sí\",M39<=I39,O39<=I39),\"Sí\",\"No\"),IF(AND(J39<=3,O39<=I39),\"Sí\",\"No\"))))))"
+   "f": "=IF($E39=\"—\",\"—\",IF($J39=\"\",\"\",IF($I39=\"\",\"sin referencia\",IF(AND($E39=\"Carrera (≤2/10)\",$K39=\"\"),\"falta K\",IF(OR($J39>IF($E39=\"Carrera (≤2/10)\",2,3),AND($E39=\"Carrera (≤2/10)\",$K39=\"No\")),\"Retroceder\",IF($M39=\"\",\"pendiente\",IF($M39>$I39,\"Retroceder\",IF($N39=\"\",\"pendiente\",IF($O39<=$I39,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A40": {
    "v": "2026-11-30T00:00:00",
@@ -3990,7 +3990,7 @@
   },
   "P40": {
    "v": null,
-   "f": "=IF(J40=\"\",\"\",IF(I40=\"\",\"sin referencia\",IF(AND(E40=\"Carrera (≤2/10)\",K40=\"\"),\"falta K\",IF(O40=\"\",\"pendiente\",IF(E40=\"Carrera (≤2/10)\",IF(AND(J40<=2,K40=\"Sí\",M40<=I40,O40<=I40),\"Sí\",\"No\"),IF(AND(J40<=3,O40<=I40),\"Sí\",\"No\"))))))"
+   "f": "=IF($E40=\"—\",\"—\",IF($J40=\"\",\"\",IF($I40=\"\",\"sin referencia\",IF(AND($E40=\"Carrera (≤2/10)\",$K40=\"\"),\"falta K\",IF(OR($J40>IF($E40=\"Carrera (≤2/10)\",2,3),AND($E40=\"Carrera (≤2/10)\",$K40=\"No\")),\"Retroceder\",IF($M40=\"\",\"pendiente\",IF($M40>$I40,\"Retroceder\",IF($N40=\"\",\"pendiente\",IF($O40<=$I40,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A41": {
    "v": "2026-12-01T00:00:00",
@@ -4006,7 +4006,7 @@
    "v": "Push + bici 10' Z2"
   },
   "E41": {
-   "v": "Gimnasio (≤3/10)"
+   "v": "—"
   },
   "F41": {
    "v": "—"
@@ -4029,7 +4029,7 @@
   },
   "P41": {
    "v": null,
-   "f": "=IF(J41=\"\",\"\",IF(I41=\"\",\"sin referencia\",IF(AND(E41=\"Carrera (≤2/10)\",K41=\"\"),\"falta K\",IF(O41=\"\",\"pendiente\",IF(E41=\"Carrera (≤2/10)\",IF(AND(J41<=2,K41=\"Sí\",M41<=I41,O41<=I41),\"Sí\",\"No\"),IF(AND(J41<=3,O41<=I41),\"Sí\",\"No\"))))))"
+   "f": "=IF($E41=\"—\",\"—\",IF($J41=\"\",\"\",IF($I41=\"\",\"sin referencia\",IF(AND($E41=\"Carrera (≤2/10)\",$K41=\"\"),\"falta K\",IF(OR($J41>IF($E41=\"Carrera (≤2/10)\",2,3),AND($E41=\"Carrera (≤2/10)\",$K41=\"No\")),\"Retroceder\",IF($M41=\"\",\"pendiente\",IF($M41>$I41,\"Retroceder\",IF($N41=\"\",\"pendiente\",IF($O41<=$I41,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A42": {
    "v": "2026-12-02T00:00:00",
@@ -4048,7 +4048,7 @@
    "v": "Carrera (≤2/10)"
   },
   "F42": {
-   "v": "Carrera N6 (30')"
+   "v": "Carrera N6 (2×12')"
   },
   "I42": {
    "v": null,
@@ -4068,7 +4068,7 @@
   },
   "P42": {
    "v": null,
-   "f": "=IF(J42=\"\",\"\",IF(I42=\"\",\"sin referencia\",IF(AND(E42=\"Carrera (≤2/10)\",K42=\"\"),\"falta K\",IF(O42=\"\",\"pendiente\",IF(E42=\"Carrera (≤2/10)\",IF(AND(J42<=2,K42=\"Sí\",M42<=I42,O42<=I42),\"Sí\",\"No\"),IF(AND(J42<=3,O42<=I42),\"Sí\",\"No\"))))))"
+   "f": "=IF($E42=\"—\",\"—\",IF($J42=\"\",\"\",IF($I42=\"\",\"sin referencia\",IF(AND($E42=\"Carrera (≤2/10)\",$K42=\"\"),\"falta K\",IF(OR($J42>IF($E42=\"Carrera (≤2/10)\",2,3),AND($E42=\"Carrera (≤2/10)\",$K42=\"No\")),\"Retroceder\",IF($M42=\"\",\"pendiente\",IF($M42>$I42,\"Retroceder\",IF($N42=\"\",\"pendiente\",IF($O42<=$I42,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A43": {
    "v": "2026-12-03T00:00:00",
@@ -4107,7 +4107,7 @@
   },
   "P43": {
    "v": null,
-   "f": "=IF(J43=\"\",\"\",IF(I43=\"\",\"sin referencia\",IF(AND(E43=\"Carrera (≤2/10)\",K43=\"\"),\"falta K\",IF(O43=\"\",\"pendiente\",IF(E43=\"Carrera (≤2/10)\",IF(AND(J43<=2,K43=\"Sí\",M43<=I43,O43<=I43),\"Sí\",\"No\"),IF(AND(J43<=3,O43<=I43),\"Sí\",\"No\"))))))"
+   "f": "=IF($E43=\"—\",\"—\",IF($J43=\"\",\"\",IF($I43=\"\",\"sin referencia\",IF(AND($E43=\"Carrera (≤2/10)\",$K43=\"\"),\"falta K\",IF(OR($J43>IF($E43=\"Carrera (≤2/10)\",2,3),AND($E43=\"Carrera (≤2/10)\",$K43=\"No\")),\"Retroceder\",IF($M43=\"\",\"pendiente\",IF($M43>$I43,\"Retroceder\",IF($N43=\"\",\"pendiente\",IF($O43<=$I43,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A44": {
    "v": "2026-12-04T00:00:00",
@@ -4123,7 +4123,7 @@
    "v": "Torso + bici 10' Z2"
   },
   "E44": {
-   "v": "Gimnasio (≤3/10)"
+   "v": "—"
   },
   "F44": {
    "v": "—"
@@ -4146,7 +4146,7 @@
   },
   "P44": {
    "v": null,
-   "f": "=IF(J44=\"\",\"\",IF(I44=\"\",\"sin referencia\",IF(AND(E44=\"Carrera (≤2/10)\",K44=\"\"),\"falta K\",IF(O44=\"\",\"pendiente\",IF(E44=\"Carrera (≤2/10)\",IF(AND(J44<=2,K44=\"Sí\",M44<=I44,O44<=I44),\"Sí\",\"No\"),IF(AND(J44<=3,O44<=I44),\"Sí\",\"No\"))))))"
+   "f": "=IF($E44=\"—\",\"—\",IF($J44=\"\",\"\",IF($I44=\"\",\"sin referencia\",IF(AND($E44=\"Carrera (≤2/10)\",$K44=\"\"),\"falta K\",IF(OR($J44>IF($E44=\"Carrera (≤2/10)\",2,3),AND($E44=\"Carrera (≤2/10)\",$K44=\"No\")),\"Retroceder\",IF($M44=\"\",\"pendiente\",IF($M44>$I44,\"Retroceder\",IF($N44=\"\",\"pendiente\",IF($O44<=$I44,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A45": {
    "v": "2026-12-05T00:00:00",
@@ -4185,7 +4185,7 @@
   },
   "P45": {
    "v": null,
-   "f": "=IF(J45=\"\",\"\",IF(I45=\"\",\"sin referencia\",IF(AND(E45=\"Carrera (≤2/10)\",K45=\"\"),\"falta K\",IF(O45=\"\",\"pendiente\",IF(E45=\"Carrera (≤2/10)\",IF(AND(J45<=2,K45=\"Sí\",M45<=I45,O45<=I45),\"Sí\",\"No\"),IF(AND(J45<=3,O45<=I45),\"Sí\",\"No\"))))))"
+   "f": "=IF($E45=\"—\",\"—\",IF($J45=\"\",\"\",IF($I45=\"\",\"sin referencia\",IF(AND($E45=\"Carrera (≤2/10)\",$K45=\"\"),\"falta K\",IF(OR($J45>IF($E45=\"Carrera (≤2/10)\",2,3),AND($E45=\"Carrera (≤2/10)\",$K45=\"No\")),\"Retroceder\",IF($M45=\"\",\"pendiente\",IF($M45>$I45,\"Retroceder\",IF($N45=\"\",\"pendiente\",IF($O45<=$I45,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A46": {
    "v": "2026-12-06T00:00:00",
@@ -4224,7 +4224,7 @@
   },
   "P46": {
    "v": null,
-   "f": "=IF(J46=\"\",\"\",IF(I46=\"\",\"sin referencia\",IF(AND(E46=\"Carrera (≤2/10)\",K46=\"\"),\"falta K\",IF(O46=\"\",\"pendiente\",IF(E46=\"Carrera (≤2/10)\",IF(AND(J46<=2,K46=\"Sí\",M46<=I46,O46<=I46),\"Sí\",\"No\"),IF(AND(J46<=3,O46<=I46),\"Sí\",\"No\"))))))"
+   "f": "=IF($E46=\"—\",\"—\",IF($J46=\"\",\"\",IF($I46=\"\",\"sin referencia\",IF(AND($E46=\"Carrera (≤2/10)\",$K46=\"\"),\"falta K\",IF(OR($J46>IF($E46=\"Carrera (≤2/10)\",2,3),AND($E46=\"Carrera (≤2/10)\",$K46=\"No\")),\"Retroceder\",IF($M46=\"\",\"pendiente\",IF($M46>$I46,\"Retroceder\",IF($N46=\"\",\"pendiente\",IF($O46<=$I46,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A47": {
    "v": "2026-12-07T00:00:00",
@@ -4263,7 +4263,7 @@
   },
   "P47": {
    "v": null,
-   "f": "=IF(J47=\"\",\"\",IF(I47=\"\",\"sin referencia\",IF(AND(E47=\"Carrera (≤2/10)\",K47=\"\"),\"falta K\",IF(O47=\"\",\"pendiente\",IF(E47=\"Carrera (≤2/10)\",IF(AND(J47<=2,K47=\"Sí\",M47<=I47,O47<=I47),\"Sí\",\"No\"),IF(AND(J47<=3,O47<=I47),\"Sí\",\"No\"))))))"
+   "f": "=IF($E47=\"—\",\"—\",IF($J47=\"\",\"\",IF($I47=\"\",\"sin referencia\",IF(AND($E47=\"Carrera (≤2/10)\",$K47=\"\"),\"falta K\",IF(OR($J47>IF($E47=\"Carrera (≤2/10)\",2,3),AND($E47=\"Carrera (≤2/10)\",$K47=\"No\")),\"Retroceder\",IF($M47=\"\",\"pendiente\",IF($M47>$I47,\"Retroceder\",IF($N47=\"\",\"pendiente\",IF($O47<=$I47,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A48": {
    "v": "2026-12-08T00:00:00",
@@ -4279,7 +4279,7 @@
    "v": "Push + bici 10' Z2"
   },
   "E48": {
-   "v": "Gimnasio (≤3/10)"
+   "v": "—"
   },
   "F48": {
    "v": "—"
@@ -4302,7 +4302,7 @@
   },
   "P48": {
    "v": null,
-   "f": "=IF(J48=\"\",\"\",IF(I48=\"\",\"sin referencia\",IF(AND(E48=\"Carrera (≤2/10)\",K48=\"\"),\"falta K\",IF(O48=\"\",\"pendiente\",IF(E48=\"Carrera (≤2/10)\",IF(AND(J48<=2,K48=\"Sí\",M48<=I48,O48<=I48),\"Sí\",\"No\"),IF(AND(J48<=3,O48<=I48),\"Sí\",\"No\"))))))"
+   "f": "=IF($E48=\"—\",\"—\",IF($J48=\"\",\"\",IF($I48=\"\",\"sin referencia\",IF(AND($E48=\"Carrera (≤2/10)\",$K48=\"\"),\"falta K\",IF(OR($J48>IF($E48=\"Carrera (≤2/10)\",2,3),AND($E48=\"Carrera (≤2/10)\",$K48=\"No\")),\"Retroceder\",IF($M48=\"\",\"pendiente\",IF($M48>$I48,\"Retroceder\",IF($N48=\"\",\"pendiente\",IF($O48<=$I48,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A49": {
    "v": "2026-12-09T00:00:00",
@@ -4341,7 +4341,7 @@
   },
   "P49": {
    "v": null,
-   "f": "=IF(J49=\"\",\"\",IF(I49=\"\",\"sin referencia\",IF(AND(E49=\"Carrera (≤2/10)\",K49=\"\"),\"falta K\",IF(O49=\"\",\"pendiente\",IF(E49=\"Carrera (≤2/10)\",IF(AND(J49<=2,K49=\"Sí\",M49<=I49,O49<=I49),\"Sí\",\"No\"),IF(AND(J49<=3,O49<=I49),\"Sí\",\"No\"))))))"
+   "f": "=IF($E49=\"—\",\"—\",IF($J49=\"\",\"\",IF($I49=\"\",\"sin referencia\",IF(AND($E49=\"Carrera (≤2/10)\",$K49=\"\"),\"falta K\",IF(OR($J49>IF($E49=\"Carrera (≤2/10)\",2,3),AND($E49=\"Carrera (≤2/10)\",$K49=\"No\")),\"Retroceder\",IF($M49=\"\",\"pendiente\",IF($M49>$I49,\"Retroceder\",IF($N49=\"\",\"pendiente\",IF($O49<=$I49,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A50": {
    "v": "2026-12-10T00:00:00",
@@ -4380,7 +4380,7 @@
   },
   "P50": {
    "v": null,
-   "f": "=IF(J50=\"\",\"\",IF(I50=\"\",\"sin referencia\",IF(AND(E50=\"Carrera (≤2/10)\",K50=\"\"),\"falta K\",IF(O50=\"\",\"pendiente\",IF(E50=\"Carrera (≤2/10)\",IF(AND(J50<=2,K50=\"Sí\",M50<=I50,O50<=I50),\"Sí\",\"No\"),IF(AND(J50<=3,O50<=I50),\"Sí\",\"No\"))))))"
+   "f": "=IF($E50=\"—\",\"—\",IF($J50=\"\",\"\",IF($I50=\"\",\"sin referencia\",IF(AND($E50=\"Carrera (≤2/10)\",$K50=\"\"),\"falta K\",IF(OR($J50>IF($E50=\"Carrera (≤2/10)\",2,3),AND($E50=\"Carrera (≤2/10)\",$K50=\"No\")),\"Retroceder\",IF($M50=\"\",\"pendiente\",IF($M50>$I50,\"Retroceder\",IF($N50=\"\",\"pendiente\",IF($O50<=$I50,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A51": {
    "v": "2026-12-11T00:00:00",
@@ -4396,7 +4396,7 @@
    "v": "Torso + bici 10' Z2"
   },
   "E51": {
-   "v": "Gimnasio (≤3/10)"
+   "v": "—"
   },
   "F51": {
    "v": "—"
@@ -4419,7 +4419,7 @@
   },
   "P51": {
    "v": null,
-   "f": "=IF(J51=\"\",\"\",IF(I51=\"\",\"sin referencia\",IF(AND(E51=\"Carrera (≤2/10)\",K51=\"\"),\"falta K\",IF(O51=\"\",\"pendiente\",IF(E51=\"Carrera (≤2/10)\",IF(AND(J51<=2,K51=\"Sí\",M51<=I51,O51<=I51),\"Sí\",\"No\"),IF(AND(J51<=3,O51<=I51),\"Sí\",\"No\"))))))"
+   "f": "=IF($E51=\"—\",\"—\",IF($J51=\"\",\"\",IF($I51=\"\",\"sin referencia\",IF(AND($E51=\"Carrera (≤2/10)\",$K51=\"\"),\"falta K\",IF(OR($J51>IF($E51=\"Carrera (≤2/10)\",2,3),AND($E51=\"Carrera (≤2/10)\",$K51=\"No\")),\"Retroceder\",IF($M51=\"\",\"pendiente\",IF($M51>$I51,\"Retroceder\",IF($N51=\"\",\"pendiente\",IF($O51<=$I51,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A52": {
    "v": "2026-12-12T00:00:00",
@@ -4458,7 +4458,7 @@
   },
   "P52": {
    "v": null,
-   "f": "=IF(J52=\"\",\"\",IF(I52=\"\",\"sin referencia\",IF(AND(E52=\"Carrera (≤2/10)\",K52=\"\"),\"falta K\",IF(O52=\"\",\"pendiente\",IF(E52=\"Carrera (≤2/10)\",IF(AND(J52<=2,K52=\"Sí\",M52<=I52,O52<=I52),\"Sí\",\"No\"),IF(AND(J52<=3,O52<=I52),\"Sí\",\"No\"))))))"
+   "f": "=IF($E52=\"—\",\"—\",IF($J52=\"\",\"\",IF($I52=\"\",\"sin referencia\",IF(AND($E52=\"Carrera (≤2/10)\",$K52=\"\"),\"falta K\",IF(OR($J52>IF($E52=\"Carrera (≤2/10)\",2,3),AND($E52=\"Carrera (≤2/10)\",$K52=\"No\")),\"Retroceder\",IF($M52=\"\",\"pendiente\",IF($M52>$I52,\"Retroceder\",IF($N52=\"\",\"pendiente\",IF($O52<=$I52,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A53": {
    "v": "2026-12-13T00:00:00",
@@ -4497,7 +4497,7 @@
   },
   "P53": {
    "v": null,
-   "f": "=IF(J53=\"\",\"\",IF(I53=\"\",\"sin referencia\",IF(AND(E53=\"Carrera (≤2/10)\",K53=\"\"),\"falta K\",IF(O53=\"\",\"pendiente\",IF(E53=\"Carrera (≤2/10)\",IF(AND(J53<=2,K53=\"Sí\",M53<=I53,O53<=I53),\"Sí\",\"No\"),IF(AND(J53<=3,O53<=I53),\"Sí\",\"No\"))))))"
+   "f": "=IF($E53=\"—\",\"—\",IF($J53=\"\",\"\",IF($I53=\"\",\"sin referencia\",IF(AND($E53=\"Carrera (≤2/10)\",$K53=\"\"),\"falta K\",IF(OR($J53>IF($E53=\"Carrera (≤2/10)\",2,3),AND($E53=\"Carrera (≤2/10)\",$K53=\"No\")),\"Retroceder\",IF($M53=\"\",\"pendiente\",IF($M53>$I53,\"Retroceder\",IF($N53=\"\",\"pendiente\",IF($O53<=$I53,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A54": {
    "v": "2026-12-14T00:00:00",
@@ -4536,7 +4536,7 @@
   },
   "P54": {
    "v": null,
-   "f": "=IF(J54=\"\",\"\",IF(I54=\"\",\"sin referencia\",IF(AND(E54=\"Carrera (≤2/10)\",K54=\"\"),\"falta K\",IF(O54=\"\",\"pendiente\",IF(E54=\"Carrera (≤2/10)\",IF(AND(J54<=2,K54=\"Sí\",M54<=I54,O54<=I54),\"Sí\",\"No\"),IF(AND(J54<=3,O54<=I54),\"Sí\",\"No\"))))))"
+   "f": "=IF($E54=\"—\",\"—\",IF($J54=\"\",\"\",IF($I54=\"\",\"sin referencia\",IF(AND($E54=\"Carrera (≤2/10)\",$K54=\"\"),\"falta K\",IF(OR($J54>IF($E54=\"Carrera (≤2/10)\",2,3),AND($E54=\"Carrera (≤2/10)\",$K54=\"No\")),\"Retroceder\",IF($M54=\"\",\"pendiente\",IF($M54>$I54,\"Retroceder\",IF($N54=\"\",\"pendiente\",IF($O54<=$I54,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A55": {
    "v": "2026-12-15T00:00:00",
@@ -4575,7 +4575,7 @@
   },
   "P55": {
    "v": null,
-   "f": "=IF(J55=\"\",\"\",IF(I55=\"\",\"sin referencia\",IF(AND(E55=\"Carrera (≤2/10)\",K55=\"\"),\"falta K\",IF(O55=\"\",\"pendiente\",IF(E55=\"Carrera (≤2/10)\",IF(AND(J55<=2,K55=\"Sí\",M55<=I55,O55<=I55),\"Sí\",\"No\"),IF(AND(J55<=3,O55<=I55),\"Sí\",\"No\"))))))"
+   "f": "=IF($E55=\"—\",\"—\",IF($J55=\"\",\"\",IF($I55=\"\",\"sin referencia\",IF(AND($E55=\"Carrera (≤2/10)\",$K55=\"\"),\"falta K\",IF(OR($J55>IF($E55=\"Carrera (≤2/10)\",2,3),AND($E55=\"Carrera (≤2/10)\",$K55=\"No\")),\"Retroceder\",IF($M55=\"\",\"pendiente\",IF($M55>$I55,\"Retroceder\",IF($N55=\"\",\"pendiente\",IF($O55<=$I55,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A56": {
    "v": "2026-12-16T00:00:00",
@@ -4614,7 +4614,7 @@
   },
   "P56": {
    "v": null,
-   "f": "=IF(J56=\"\",\"\",IF(I56=\"\",\"sin referencia\",IF(AND(E56=\"Carrera (≤2/10)\",K56=\"\"),\"falta K\",IF(O56=\"\",\"pendiente\",IF(E56=\"Carrera (≤2/10)\",IF(AND(J56<=2,K56=\"Sí\",M56<=I56,O56<=I56),\"Sí\",\"No\"),IF(AND(J56<=3,O56<=I56),\"Sí\",\"No\"))))))"
+   "f": "=IF($E56=\"—\",\"—\",IF($J56=\"\",\"\",IF($I56=\"\",\"sin referencia\",IF(AND($E56=\"Carrera (≤2/10)\",$K56=\"\"),\"falta K\",IF(OR($J56>IF($E56=\"Carrera (≤2/10)\",2,3),AND($E56=\"Carrera (≤2/10)\",$K56=\"No\")),\"Retroceder\",IF($M56=\"\",\"pendiente\",IF($M56>$I56,\"Retroceder\",IF($N56=\"\",\"pendiente\",IF($O56<=$I56,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A57": {
    "v": "2026-12-17T00:00:00",
@@ -4653,7 +4653,7 @@
   },
   "P57": {
    "v": null,
-   "f": "=IF(J57=\"\",\"\",IF(I57=\"\",\"sin referencia\",IF(AND(E57=\"Carrera (≤2/10)\",K57=\"\"),\"falta K\",IF(O57=\"\",\"pendiente\",IF(E57=\"Carrera (≤2/10)\",IF(AND(J57<=2,K57=\"Sí\",M57<=I57,O57<=I57),\"Sí\",\"No\"),IF(AND(J57<=3,O57<=I57),\"Sí\",\"No\"))))))"
+   "f": "=IF($E57=\"—\",\"—\",IF($J57=\"\",\"\",IF($I57=\"\",\"sin referencia\",IF(AND($E57=\"Carrera (≤2/10)\",$K57=\"\"),\"falta K\",IF(OR($J57>IF($E57=\"Carrera (≤2/10)\",2,3),AND($E57=\"Carrera (≤2/10)\",$K57=\"No\")),\"Retroceder\",IF($M57=\"\",\"pendiente\",IF($M57>$I57,\"Retroceder\",IF($N57=\"\",\"pendiente\",IF($O57<=$I57,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A58": {
    "v": "2026-12-18T00:00:00",
@@ -4692,7 +4692,7 @@
   },
   "P58": {
    "v": null,
-   "f": "=IF(J58=\"\",\"\",IF(I58=\"\",\"sin referencia\",IF(AND(E58=\"Carrera (≤2/10)\",K58=\"\"),\"falta K\",IF(O58=\"\",\"pendiente\",IF(E58=\"Carrera (≤2/10)\",IF(AND(J58<=2,K58=\"Sí\",M58<=I58,O58<=I58),\"Sí\",\"No\"),IF(AND(J58<=3,O58<=I58),\"Sí\",\"No\"))))))"
+   "f": "=IF($E58=\"—\",\"—\",IF($J58=\"\",\"\",IF($I58=\"\",\"sin referencia\",IF(AND($E58=\"Carrera (≤2/10)\",$K58=\"\"),\"falta K\",IF(OR($J58>IF($E58=\"Carrera (≤2/10)\",2,3),AND($E58=\"Carrera (≤2/10)\",$K58=\"No\")),\"Retroceder\",IF($M58=\"\",\"pendiente\",IF($M58>$I58,\"Retroceder\",IF($N58=\"\",\"pendiente\",IF($O58<=$I58,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A59": {
    "v": "2026-12-19T00:00:00",
@@ -4731,7 +4731,7 @@
   },
   "P59": {
    "v": null,
-   "f": "=IF(J59=\"\",\"\",IF(I59=\"\",\"sin referencia\",IF(AND(E59=\"Carrera (≤2/10)\",K59=\"\"),\"falta K\",IF(O59=\"\",\"pendiente\",IF(E59=\"Carrera (≤2/10)\",IF(AND(J59<=2,K59=\"Sí\",M59<=I59,O59<=I59),\"Sí\",\"No\"),IF(AND(J59<=3,O59<=I59),\"Sí\",\"No\"))))))"
+   "f": "=IF($E59=\"—\",\"—\",IF($J59=\"\",\"\",IF($I59=\"\",\"sin referencia\",IF(AND($E59=\"Carrera (≤2/10)\",$K59=\"\"),\"falta K\",IF(OR($J59>IF($E59=\"Carrera (≤2/10)\",2,3),AND($E59=\"Carrera (≤2/10)\",$K59=\"No\")),\"Retroceder\",IF($M59=\"\",\"pendiente\",IF($M59>$I59,\"Retroceder\",IF($N59=\"\",\"pendiente\",IF($O59<=$I59,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A60": {
    "v": "2026-12-20T00:00:00",
@@ -4770,7 +4770,7 @@
   },
   "P60": {
    "v": null,
-   "f": "=IF(J60=\"\",\"\",IF(I60=\"\",\"sin referencia\",IF(AND(E60=\"Carrera (≤2/10)\",K60=\"\"),\"falta K\",IF(O60=\"\",\"pendiente\",IF(E60=\"Carrera (≤2/10)\",IF(AND(J60<=2,K60=\"Sí\",M60<=I60,O60<=I60),\"Sí\",\"No\"),IF(AND(J60<=3,O60<=I60),\"Sí\",\"No\"))))))"
+   "f": "=IF($E60=\"—\",\"—\",IF($J60=\"\",\"\",IF($I60=\"\",\"sin referencia\",IF(AND($E60=\"Carrera (≤2/10)\",$K60=\"\"),\"falta K\",IF(OR($J60>IF($E60=\"Carrera (≤2/10)\",2,3),AND($E60=\"Carrera (≤2/10)\",$K60=\"No\")),\"Retroceder\",IF($M60=\"\",\"pendiente\",IF($M60>$I60,\"Retroceder\",IF($N60=\"\",\"pendiente\",IF($O60<=$I60,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A61": {
    "v": "2026-12-21T00:00:00",
@@ -4809,7 +4809,7 @@
   },
   "P61": {
    "v": null,
-   "f": "=IF(J61=\"\",\"\",IF(I61=\"\",\"sin referencia\",IF(AND(E61=\"Carrera (≤2/10)\",K61=\"\"),\"falta K\",IF(O61=\"\",\"pendiente\",IF(E61=\"Carrera (≤2/10)\",IF(AND(J61<=2,K61=\"Sí\",M61<=I61,O61<=I61),\"Sí\",\"No\"),IF(AND(J61<=3,O61<=I61),\"Sí\",\"No\"))))))"
+   "f": "=IF($E61=\"—\",\"—\",IF($J61=\"\",\"\",IF($I61=\"\",\"sin referencia\",IF(AND($E61=\"Carrera (≤2/10)\",$K61=\"\"),\"falta K\",IF(OR($J61>IF($E61=\"Carrera (≤2/10)\",2,3),AND($E61=\"Carrera (≤2/10)\",$K61=\"No\")),\"Retroceder\",IF($M61=\"\",\"pendiente\",IF($M61>$I61,\"Retroceder\",IF($N61=\"\",\"pendiente\",IF($O61<=$I61,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A62": {
    "v": "2026-12-22T00:00:00",
@@ -4825,7 +4825,7 @@
    "v": "Push + bici 10' Z2"
   },
   "E62": {
-   "v": "Gimnasio (≤3/10)"
+   "v": "—"
   },
   "F62": {
    "v": "—"
@@ -4848,7 +4848,7 @@
   },
   "P62": {
    "v": null,
-   "f": "=IF(J62=\"\",\"\",IF(I62=\"\",\"sin referencia\",IF(AND(E62=\"Carrera (≤2/10)\",K62=\"\"),\"falta K\",IF(O62=\"\",\"pendiente\",IF(E62=\"Carrera (≤2/10)\",IF(AND(J62<=2,K62=\"Sí\",M62<=I62,O62<=I62),\"Sí\",\"No\"),IF(AND(J62<=3,O62<=I62),\"Sí\",\"No\"))))))"
+   "f": "=IF($E62=\"—\",\"—\",IF($J62=\"\",\"\",IF($I62=\"\",\"sin referencia\",IF(AND($E62=\"Carrera (≤2/10)\",$K62=\"\"),\"falta K\",IF(OR($J62>IF($E62=\"Carrera (≤2/10)\",2,3),AND($E62=\"Carrera (≤2/10)\",$K62=\"No\")),\"Retroceder\",IF($M62=\"\",\"pendiente\",IF($M62>$I62,\"Retroceder\",IF($N62=\"\",\"pendiente\",IF($O62<=$I62,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A63": {
    "v": "2026-12-23T00:00:00",
@@ -4887,7 +4887,7 @@
   },
   "P63": {
    "v": null,
-   "f": "=IF(J63=\"\",\"\",IF(I63=\"\",\"sin referencia\",IF(AND(E63=\"Carrera (≤2/10)\",K63=\"\"),\"falta K\",IF(O63=\"\",\"pendiente\",IF(E63=\"Carrera (≤2/10)\",IF(AND(J63<=2,K63=\"Sí\",M63<=I63,O63<=I63),\"Sí\",\"No\"),IF(AND(J63<=3,O63<=I63),\"Sí\",\"No\"))))))"
+   "f": "=IF($E63=\"—\",\"—\",IF($J63=\"\",\"\",IF($I63=\"\",\"sin referencia\",IF(AND($E63=\"Carrera (≤2/10)\",$K63=\"\"),\"falta K\",IF(OR($J63>IF($E63=\"Carrera (≤2/10)\",2,3),AND($E63=\"Carrera (≤2/10)\",$K63=\"No\")),\"Retroceder\",IF($M63=\"\",\"pendiente\",IF($M63>$I63,\"Retroceder\",IF($N63=\"\",\"pendiente\",IF($O63<=$I63,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A64": {
    "v": "2026-12-24T00:00:00",
@@ -4926,7 +4926,7 @@
   },
   "P64": {
    "v": null,
-   "f": "=IF(J64=\"\",\"\",IF(I64=\"\",\"sin referencia\",IF(AND(E64=\"Carrera (≤2/10)\",K64=\"\"),\"falta K\",IF(O64=\"\",\"pendiente\",IF(E64=\"Carrera (≤2/10)\",IF(AND(J64<=2,K64=\"Sí\",M64<=I64,O64<=I64),\"Sí\",\"No\"),IF(AND(J64<=3,O64<=I64),\"Sí\",\"No\"))))))"
+   "f": "=IF($E64=\"—\",\"—\",IF($J64=\"\",\"\",IF($I64=\"\",\"sin referencia\",IF(AND($E64=\"Carrera (≤2/10)\",$K64=\"\"),\"falta K\",IF(OR($J64>IF($E64=\"Carrera (≤2/10)\",2,3),AND($E64=\"Carrera (≤2/10)\",$K64=\"No\")),\"Retroceder\",IF($M64=\"\",\"pendiente\",IF($M64>$I64,\"Retroceder\",IF($N64=\"\",\"pendiente\",IF($O64<=$I64,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A65": {
    "v": "2026-12-25T00:00:00",
@@ -4942,7 +4942,7 @@
    "v": "Torso + bici 10' Z2"
   },
   "E65": {
-   "v": "Gimnasio (≤3/10)"
+   "v": "—"
   },
   "F65": {
    "v": "—"
@@ -4965,7 +4965,7 @@
   },
   "P65": {
    "v": null,
-   "f": "=IF(J65=\"\",\"\",IF(I65=\"\",\"sin referencia\",IF(AND(E65=\"Carrera (≤2/10)\",K65=\"\"),\"falta K\",IF(O65=\"\",\"pendiente\",IF(E65=\"Carrera (≤2/10)\",IF(AND(J65<=2,K65=\"Sí\",M65<=I65,O65<=I65),\"Sí\",\"No\"),IF(AND(J65<=3,O65<=I65),\"Sí\",\"No\"))))))"
+   "f": "=IF($E65=\"—\",\"—\",IF($J65=\"\",\"\",IF($I65=\"\",\"sin referencia\",IF(AND($E65=\"Carrera (≤2/10)\",$K65=\"\"),\"falta K\",IF(OR($J65>IF($E65=\"Carrera (≤2/10)\",2,3),AND($E65=\"Carrera (≤2/10)\",$K65=\"No\")),\"Retroceder\",IF($M65=\"\",\"pendiente\",IF($M65>$I65,\"Retroceder\",IF($N65=\"\",\"pendiente\",IF($O65<=$I65,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A66": {
    "v": "2026-12-26T00:00:00",
@@ -5004,7 +5004,7 @@
   },
   "P66": {
    "v": null,
-   "f": "=IF(J66=\"\",\"\",IF(I66=\"\",\"sin referencia\",IF(AND(E66=\"Carrera (≤2/10)\",K66=\"\"),\"falta K\",IF(O66=\"\",\"pendiente\",IF(E66=\"Carrera (≤2/10)\",IF(AND(J66<=2,K66=\"Sí\",M66<=I66,O66<=I66),\"Sí\",\"No\"),IF(AND(J66<=3,O66<=I66),\"Sí\",\"No\"))))))"
+   "f": "=IF($E66=\"—\",\"—\",IF($J66=\"\",\"\",IF($I66=\"\",\"sin referencia\",IF(AND($E66=\"Carrera (≤2/10)\",$K66=\"\"),\"falta K\",IF(OR($J66>IF($E66=\"Carrera (≤2/10)\",2,3),AND($E66=\"Carrera (≤2/10)\",$K66=\"No\")),\"Retroceder\",IF($M66=\"\",\"pendiente\",IF($M66>$I66,\"Retroceder\",IF($N66=\"\",\"pendiente\",IF($O66<=$I66,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A67": {
    "v": "2026-12-27T00:00:00",
@@ -5043,7 +5043,7 @@
   },
   "P67": {
    "v": null,
-   "f": "=IF(J67=\"\",\"\",IF(I67=\"\",\"sin referencia\",IF(AND(E67=\"Carrera (≤2/10)\",K67=\"\"),\"falta K\",IF(O67=\"\",\"pendiente\",IF(E67=\"Carrera (≤2/10)\",IF(AND(J67<=2,K67=\"Sí\",M67<=I67,O67<=I67),\"Sí\",\"No\"),IF(AND(J67<=3,O67<=I67),\"Sí\",\"No\"))))))"
+   "f": "=IF($E67=\"—\",\"—\",IF($J67=\"\",\"\",IF($I67=\"\",\"sin referencia\",IF(AND($E67=\"Carrera (≤2/10)\",$K67=\"\"),\"falta K\",IF(OR($J67>IF($E67=\"Carrera (≤2/10)\",2,3),AND($E67=\"Carrera (≤2/10)\",$K67=\"No\")),\"Retroceder\",IF($M67=\"\",\"pendiente\",IF($M67>$I67,\"Retroceder\",IF($N67=\"\",\"pendiente\",IF($O67<=$I67,\"Avanzar\",\"Mantener\")))))))))"
   },
   "A70": {
    "v": "Resumen semanal"
@@ -5058,7 +5058,7 @@
    "v": "Peor mañana"
   },
   "F71": {
-   "v": "Sesiones que no cumplen"
+   "v": "Sesiones a retroceder"
   },
   "G71": {
    "v": "Chasquidos dolorosos"
@@ -5081,14 +5081,14 @@
   },
   "E72": {
    "v": null,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA16630>"
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C2737D0>"
   },
   "F72": {
-   "v": 0,
-   "f": "=COUNTIFS($C$5:$C$67,$A72,$P$5:$P$67,\"No\")"
+   "v": null,
+   "f": "=COUNTIFS($C$5:$C$67,$A72,$P$5:$P$67,\"Retroceder\")"
   },
   "G72": {
-   "v": 0,
+   "v": null,
    "f": "=COUNTIFS($C$5:$C$67,$A72,$L$5:$L$67,\"Sí\")"
   },
   "A73": {
@@ -5100,14 +5100,14 @@
   },
   "E73": {
    "v": null,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA16510>"
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C273A10>"
   },
   "F73": {
-   "v": 0,
-   "f": "=COUNTIFS($C$5:$C$67,$A73,$P$5:$P$67,\"No\")"
+   "v": null,
+   "f": "=COUNTIFS($C$5:$C$67,$A73,$P$5:$P$67,\"Retroceder\")"
   },
   "G73": {
-   "v": 0,
+   "v": null,
    "f": "=COUNTIFS($C$5:$C$67,$A73,$L$5:$L$67,\"Sí\")"
   },
   "A74": {
@@ -5119,14 +5119,14 @@
   },
   "E74": {
    "v": null,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA165D0>"
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C273B30>"
   },
   "F74": {
-   "v": 0,
-   "f": "=COUNTIFS($C$5:$C$67,$A74,$P$5:$P$67,\"No\")"
+   "v": null,
+   "f": "=COUNTIFS($C$5:$C$67,$A74,$P$5:$P$67,\"Retroceder\")"
   },
   "G74": {
-   "v": 0,
+   "v": null,
    "f": "=COUNTIFS($C$5:$C$67,$A74,$L$5:$L$67,\"Sí\")"
   },
   "A75": {
@@ -5138,14 +5138,14 @@
   },
   "E75": {
    "v": null,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA16690>"
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C273C50>"
   },
   "F75": {
-   "v": 0,
-   "f": "=COUNTIFS($C$5:$C$67,$A75,$P$5:$P$67,\"No\")"
+   "v": null,
+   "f": "=COUNTIFS($C$5:$C$67,$A75,$P$5:$P$67,\"Retroceder\")"
   },
   "G75": {
-   "v": 0,
+   "v": null,
    "f": "=COUNTIFS($C$5:$C$67,$A75,$L$5:$L$67,\"Sí\")"
   },
   "A76": {
@@ -5157,14 +5157,14 @@
   },
   "E76": {
    "v": null,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA16750>"
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C273D70>"
   },
   "F76": {
-   "v": 0,
-   "f": "=COUNTIFS($C$5:$C$67,$A76,$P$5:$P$67,\"No\")"
+   "v": null,
+   "f": "=COUNTIFS($C$5:$C$67,$A76,$P$5:$P$67,\"Retroceder\")"
   },
   "G76": {
-   "v": 0,
+   "v": null,
    "f": "=COUNTIFS($C$5:$C$67,$A76,$L$5:$L$67,\"Sí\")"
   },
   "A77": {
@@ -5176,14 +5176,14 @@
   },
   "E77": {
    "v": null,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA16810>"
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C273E90>"
   },
   "F77": {
-   "v": 0,
-   "f": "=COUNTIFS($C$5:$C$67,$A77,$P$5:$P$67,\"No\")"
+   "v": null,
+   "f": "=COUNTIFS($C$5:$C$67,$A77,$P$5:$P$67,\"Retroceder\")"
   },
   "G77": {
-   "v": 0,
+   "v": null,
    "f": "=COUNTIFS($C$5:$C$67,$A77,$L$5:$L$67,\"Sí\")"
   },
   "A78": {
@@ -5195,14 +5195,14 @@
   },
   "E78": {
    "v": null,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA16450>"
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C273FB0>"
   },
   "F78": {
-   "v": 0,
-   "f": "=COUNTIFS($C$5:$C$67,$A78,$P$5:$P$67,\"No\")"
+   "v": null,
+   "f": "=COUNTIFS($C$5:$C$67,$A78,$P$5:$P$67,\"Retroceder\")"
   },
   "G78": {
-   "v": 0,
+   "v": null,
    "f": "=COUNTIFS($C$5:$C$67,$A78,$L$5:$L$67,\"Sí\")"
   },
   "A79": {
@@ -5214,14 +5214,14 @@
   },
   "E79": {
    "v": null,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA15E50>"
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C273EF0>"
   },
   "F79": {
-   "v": 0,
-   "f": "=COUNTIFS($C$5:$C$67,$A79,$P$5:$P$67,\"No\")"
+   "v": null,
+   "f": "=COUNTIFS($C$5:$C$67,$A79,$P$5:$P$67,\"Retroceder\")"
   },
   "G79": {
-   "v": 0,
+   "v": null,
    "f": "=COUNTIFS($C$5:$C$67,$A79,$L$5:$L$67,\"Sí\")"
   },
   "A80": {
@@ -5233,44 +5233,60 @@
   },
   "E80": {
    "v": null,
-   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA16AB0>"
+   "f": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C273CB0>"
   },
   "F80": {
-   "v": 0,
-   "f": "=COUNTIFS($C$5:$C$67,$A80,$P$5:$P$67,\"No\")"
+   "v": null,
+   "f": "=COUNTIFS($C$5:$C$67,$A80,$P$5:$P$67,\"Retroceder\")"
   },
   "G80": {
-   "v": 0,
+   "v": null,
    "f": "=COUNTIFS($C$5:$C$67,$A80,$L$5:$L$67,\"Sí\")"
+  },
+  "A81": {
+   "v": "S2 · semana de referencia"
+  },
+  "E81": {
+   "v": null,
+   "f": "=IF(COUNT(I5:I11)=0,\"Pendiente: falta la primera medición de S2\",IF(MAX(I5:I11)>IF(ISNUMBER(I5),I5,IF(ISNUMBER(I6),I6,IF(ISNUMBER(I7),I7,IF(ISNUMBER(I8),I8,IF(ISNUMBER(I9),I9,IF(ISNUMBER(I10),I10,IF(ISNUMBER(I11),I11,\"x\"))))))),\"REPITE S2: alguna mañana salió peor que la referencia; en S3 no sube nada\",\"S2 estable por ahora: en S3 se sigue el plan\"))"
   },
   "A82": {
    "v": "AVISO S4 (fisio)"
   },
   "E82": {
-   "v": "Se calcula cuando haya datos de S2 y S4",
-   "f": "=IF(OR(B72=\"\",B74=\"\"),\"Se calcula cuando haya datos de S2 y S4\",IF(B74>B72,\"PEOR que en S2: para la progresión y la valoración del fisio pasa a ser prioritaria\",IF(B74=B72,\"IGUAL que en S2: la valoración del fisio pasa a ser prioritaria\",\"MEJOR que en S2: sigue el plan\")))"
+   "v": null,
+   "f": "=IF(TODAY()<DATE(2026,11,15),\"Pendiente: se calcula al cerrar S4 (domingo 15/11)\",IF(OR(COUNTIFS($C$5:$C$67,\"S2\",$I$5:$I$67,\">=0\")<5,COUNTIFS($C$5:$C$67,\"S4\",$I$5:$I$67,\">=0\")<5),\"Pendiente: hacen falta al menos 5 mañanas registradas en S2 y en S4\",IF(ROUND(B74-B72,1)>=0.5,\"PEOR que en S2 (+0,5 o más): para la progresión y la valoración del fisio pasa a ser prioritaria\",IF(ROUND(B72-B74,1)>=0.5,\"MEJOR que en S2 (−0,5 o más): sigue el plan\",\"IGUAL que en S2 (menos de 0,5 de diferencia): la valoración del fisio pasa a ser prioritaria\"))))"
   },
   "A83": {
    "v": "Chasquido doloroso"
   },
   "E83": {
-   "v": "Sin chasquido doloroso por ahora",
+   "v": null,
    "f": "=IF(COUNTIF($L$5:$L$67,\"Sí\")>0,\"Registrado: la valoración del fisio pasa a ser prioritaria\",\"Sin chasquido doloroso por ahora\")"
   },
   "A84": {
-   "v": "La molestia de cada semana es la media de las mañanas (peor de las dos pruebas). Si la media de S4 es igual o mayor que la de S2, la valoración del fisio pasa a ser prioritaria; si es mayor, además se para la progresión."
+   "v": "La molestia de cada semana es la media de las mañanas (peor de las dos pruebas). El aviso S4 se calcula al cerrar S4 (domingo 15/11) con al menos 5 mañanas en S2 y en S4: PEOR si la media de S4 supera en 0,5 o más a la de S2, MEJOR si queda 0,5 o más por debajo y, si no, IGUAL. IGUAL o PEOR: la valoración del fisio pasa a ser prioritaria; PEOR además para la progresión [LÓGICA]."
   },
   "A87": {
-   "v": "Entrada a la carrera (S2) · regla de carrera: ≤2/10"
+   "v": "Entrada a la carrera · regla de carrera: ≤2/10 (si no se cumple, se repite el miércoles siguiente: apunta aquí el último intento)"
   },
   "A88": {
    "v": "Criterio"
+  },
+  "D88": {
+   "v": "≤2/10 durante"
+  },
+  "E88": {
+   "v": "Nivel previo en ≤60 min"
+  },
+  "F88": {
+   "v": "Mañana siguiente no peor (auto)"
   },
   "G88": {
    "v": "Día"
   },
   "H88": {
-   "v": "¿Cumple?"
+   "v": "¿Cumple? (auto)"
   },
   "I88": {
    "v": "Notas"
@@ -5278,27 +5294,58 @@
   "A89": {
    "v": "Paseo de 30 min a paso rápido: ≤2/10, nivel previo en ≤60 min y el miércoles por la mañana no peor"
   },
+  "F89": {
+   "v": null,
+   "f": "=IF(G89=\"\",\"\",IFERROR(IF(OR(INDEX($I$5:$I$67,MATCH(G89,$A$5:$A$67,0))=\"\",INDEX($I$5:$I$67,MATCH(G89+1,$A$5:$A$67,0))=\"\"),\"\",IF(INDEX($I$5:$I$67,MATCH(G89+1,$A$5:$A$67,0))<=INDEX($I$5:$I$67,MATCH(G89,$A$5:$A$67,0)),\"Sí\",\"No\")),\"\"))"
+  },
   "G89": {
-   "v": "Mar 27/10"
+   "v": "2026-10-27T00:00:00",
+   "f": "2026-10-27 00:00:00"
+  },
+  "H89": {
+   "v": null,
+   "f": "=IF(OR(D89=\"No\",E89=\"No\",F89=\"No\"),\"No\",IF(AND(D89=\"Sí\",E89=\"Sí\",F89=\"Sí\"),\"Sí\",\"\"))"
   },
   "A90": {
    "v": "10 touchdown con cada pierna: ≤2/10"
   },
+  "E90": {
+   "v": "—"
+  },
+  "F90": {
+   "v": "—"
+  },
   "G90": {
-   "v": "Mié 28/10"
+   "v": null,
+   "f": "=G89+1"
+  },
+  "H90": {
+   "v": null,
+   "f": "=IF(D90=\"\",\"\",D90)"
   },
   "A91": {
    "v": "20 saltitos a dos piernas: ≤2/10"
   },
+  "E91": {
+   "v": "—"
+  },
+  "F91": {
+   "v": "—"
+  },
   "G91": {
-   "v": "Mié 28/10"
+   "v": null,
+   "f": "=G89+1"
+  },
+  "H91": {
+   "v": null,
+   "f": "=IF(D91=\"\",\"\",D91)"
   },
   "A92": {
    "v": "Resultado"
   },
   "H92": {
-   "v": "Pendiente",
-   "f": "=IF(COUNTIF(H89:H91,\"Sí\")=3,\"SÍ: 1.ª carrera hoy (N1)\",IF(COUNTIF(H89:H91,\"No\")>0,\"NO: hoy no corres; repite los criterios la semana que viene\",\"Pendiente\"))"
+   "v": null,
+   "f": "=IF(COUNTIF(H89:H91,\"Sí\")=3,\"SÍ: 1.ª carrera hoy (N1)\",IF(COUNTIF(H89:H91,\"No\")>0,\"NO: esta semana no hay carrera (el domingo, como mucho, un paseo); repite los criterios el miércoles siguiente\",\"Pendiente\"))"
   },
   "A95": {
    "v": "Test de fuerza · extensión unilateral en máquina, rango fijo 90→45° (jueves, al empezar la sesión)"

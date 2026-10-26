@@ -25,14 +25,17 @@ const CARDIO = { M: 95, V: 96, X: 97 };
 for (const s of SES) if (CARDIO[s.clave]) s.ejercicios.push({ nombre: c(`B${CARDIO[s.clave]}`), semanas: COLS.map((k) => c(`${k}${CARDIO[s.clave]}`)) });
 SES.push({ clave: 'D', label: 'Domingo · Carrera', titulo: 'Carrera', desdeSemana: 2,
   ejercicios: [{ nombre: c('B98'), semanas: COLS.map((k) => c(`${k}98`)) }] });
-const sesionesDe = (n) => SES.filter((s) => !s.desdeSemana || n >= s.desdeSemana);
+// En S1 el sábado (y el domingo) se llama como entonces: «Sábado/Domingo», sin título.
+const S1_SABADO = 'Sábado/Domingo';
+const sesionesDe = (n) => SES.filter((s) => !s.desdeSemana || n >= s.desdeSemana)
+  .map((s) => (n === 1 && s.clave === 'S' ? { ...s, label: S1_SABADO, titulo: S1_SABADO } : s));
 const DOW = { L: 1, M: 2, X: 3, J: 4, V: 5, S: 6, D: 0 };
 const inicioSemana = (n) => new Date(Date.UTC(2026, 9, 19 + 7 * (n - 1), 12));
 const iso = (d) => d.toISOString().slice(0, 10);
 const fechaDe = (n, dow) => iso(new Date(inicioSemana(n).getTime() + ((dow + 6) % 7) * 86400000));
 // Sesión de una fecha: S1 el domingo repite el sábado; desde S2 el domingo es la carrera.
 const sesionDe = (n, dow) => {
-  if (n === 1 && dow === 0) return SES.find((s) => s.clave === 'S');
+  if (n === 1 && dow === 0) return sesionesDe(1).find((s) => s.clave === 'S');
   return sesionesDe(n).find((s) => DOW[s.clave] === dow);
 };
 
@@ -132,6 +135,13 @@ async function irA(fecha) {
   await page.waitForFunction((v) => document.getElementById('datepick').value === v, fecha);
   await page.waitForTimeout(40);
 }
+// Desde S2, Hoy prescribe la rehab y la carrera con el nivel real (Rodilla.prescripcion) y el
+// test de fuerza es un enlace («Test ›»); el resto, igual que la celda del calendario.
+const progDeHoy = (fecha) => page.evaluate((f) => {
+  const { week, options } = PLAN.sessionFor(f);
+  return options[0].exercises.filter((e) => !PLAN.presFor(e, week).skip).map((e) => (e.link === 'test' ? 'Test ›'
+    : e.prog && Rodilla.prescripcion(e, week) ? Rodilla.prescripcion(e, week).label : null));
+}, fecha);
 const leerHoy = () => page.evaluate(() => ({
   nombre: document.getElementById('hero-name').textContent,
   semana: document.querySelector('.hero .week').textContent,
@@ -149,7 +159,9 @@ for (let n = 1; n <= 8; n++) {
     igual(`${tag}: semana`, hoy.semana, `Semana ${n} · Volumen`);
     igual(`${tag}: título`, hoy.nombre, s.titulo);
     igual(`${tag}: ejercicios (sin «—»)`, hoy.ex.map((e) => e.nombre), visibles.map((e) => e.nombre));
-    igual(`${tag}: prescripciones`, hoy.ex.map((e) => e.pres), visibles.map((e) => e.semanas[n - 1]));
+    const reales = await progDeHoy(fecha);
+    igual(`${tag}: prescripciones`, hoy.ex.map((e) => e.pres), visibles.map((e, i) => reales[i] ?? e.semanas[n - 1]));
+    if (n === 1) check(`${tag}: S1 sin progresión real`, reales.every((x) => x === null), JSON.stringify(reales));
     check(`${tag}: ningún «—» visible`, !hoy.ex.some((e) => e.pres === '—'));
     const hito = c(`${COLS[n - 1]}99`);
     if (n === 1 || hito === '—') check(`${tag}: sin tarjeta de hitos`, hoy.hitos === null, JSON.stringify(hoy.hitos));
@@ -159,10 +171,10 @@ for (let n = 1; n <= 8; n++) {
 // Casos pedidos de forma explícita
 await irA('2026-11-08');
 let h = await leerHoy();
-igual('Hoy 2026-11-08 (domingo S2): solo la carrera', h.ex.map((e) => [e.nombre, e.pres]), [['Andar-correr en llano', c('D98')]]);
+igual('Hoy 2026-11-08 (domingo S3): solo la carrera', h.ex.map((e) => e.nombre), ['Andar-correr en llano']);
 await irA('2026-10-25');
 h = await leerHoy();
-check('Hoy 2026-10-25 (domingo S1): es la sesión del sábado', h.nombre === SES.find((s) => s.clave === 'S').titulo && h.ex.length === 5, `${h.ex.length} ejercicios`);
+check('Hoy 2026-10-25 (domingo S1): es la sesión del sábado', h.nombre === S1_SABADO && h.ex.length === 5, `${h.nombre} · ${h.ex.length} ejercicios`);
 await irA('2026-11-05');
 h = await leerHoy();
 check('Hoy 2026-11-05 (jueves S2): sin touchdown', !h.ex.some((e) => e.nombre === 'Touchdown squat'));

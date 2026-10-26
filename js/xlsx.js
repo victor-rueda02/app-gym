@@ -70,9 +70,13 @@ const KNEE_DAY_COLS = {
   decline: 'G', steps: 'H', during: 'J', back60: 'K', click: 'L', notes: 'Q',
   session: 'D', rule: 'E', novelty: 'F',
 };
-const KNEE_WEEK_COLS = { runLevel: 'I', depthStep: 'K', notes: 'M' };
-const KNEE_ENTRY_ROWS = { walk: 89, touchdown: 90, hops: 91 };
-const KNEE_ENTRY_COLS = { ok: 'H', notes: 'I' };
+// runLevelText y depthStep son los niveles reales que calcula la app (export.js los añade).
+const KNEE_WEEK_COLS = { runLevelText: 'I', depthStep: 'K', notes: 'M' };
+// Entrada a la carrera: la hoja tiene sitio para un intento, así que va el último
+// (la semana más alta con datos). G89 = fecha del martes de esa semana.
+const KNEE_ENTRY_CELLS = {
+  walkPain: 'D89', walkBack60: 'E89', tdPain: 'D90', hopsPain: 'D91', notes: 'I89',
+};
 const KNEE_TEST_ROWS = { t1: 97, t2: 98, t3: 99, t4: 100 };
 const KNEE_TEST_COLS = { load: 'F', repsD: 'G', repsI: 'H', notes: 'M' };
 const KNEE_DEPTH_COLS = {
@@ -113,7 +117,17 @@ function kneeCells(knee) {
 
   for (const [date, rec] of Object.entries(knee.days || {})) put(KNEE_DAY_COLS, kneeDayRow(date), rec);
   for (const [key, rec] of Object.entries(knee.weeks || {})) put(KNEE_WEEK_COLS, kneeWeekRow(key), rec);
-  for (const [key, rec] of Object.entries(knee.entry || {})) put(KNEE_ENTRY_COLS, KNEE_ENTRY_ROWS[key], rec);
+  const intentos = Object.keys(knee.entry || {}).filter((k) => kneeWeekRow(k) && kneeWeekRow(k) <= 78)
+    .sort((a, b) => kneeWeekRow(a) - kneeWeekRow(b));
+  if (intentos.length) {
+    const sem = intentos[intentos.length - 1];
+    const rec = knee.entry[sem] || {};
+    for (const [field, ref] of Object.entries(KNEE_ENTRY_CELLS)) {
+      if (typeof rec[field] === 'string') out[ref] = rec[field];
+    }
+    // Serie de Excel del martes de esa semana (27/10/2026 = 46322, S2).
+    out.G89 = 46322 + 7 * (kneeWeekRow(sem) - 72);
+  }
   for (const [key, rec] of Object.entries(knee.tests || {})) put(KNEE_TEST_COLS, KNEE_TEST_ROWS[key], rec);
   for (const [key, rec] of Object.entries(knee.depth || {})) put(KNEE_DEPTH_COLS, /^[0-4]$/.test(key) ? 105 + +key : null, rec);
   return out;

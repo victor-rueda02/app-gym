@@ -120,9 +120,102 @@ y la especificación en la lógica (cálculos, reglas, avisos).
 
 ## Pendiente o a revisar por el usuario
 
-22. El texto de ayuda A2 de «Seguimiento rodilla» se muestra literal y habla de
-    «columnas G y H» y «celdas amarillas», que solo tienen sentido en el Excel.
-23. El título del sábado (A55) dice «(el domingo: carrera)» también en S1, donde
-    el domingo repitió la sesión del sábado: es el texto del Excel.
+22. ~~La ayuda de la pestaña Rodilla hablaba de columnas y celdas del Excel.~~
+    Resuelto en la revisión del 26/10 (punto 37).
+23. ~~El título del sábado decía «sin pierna» también en S1.~~ Resuelto (punto 36).
 24. Falta abrir un exportado con datos reales en Excel/Numbers del iPhone para
     ver el recálculo en vivo (comprobado con `formulas` y openpyxl, no con Excel).
+
+## Revisión del usuario (26/10) · respuestas aplicadas
+
+Los cambios del Excel están en `tools/ajusta_excel_rodilla.py`, que parte siempre
+del Excel recibido (`docs/plan-rodilla/`) y escribe el de la raíz.
+
+25. **Excel editado con openpyxl.** Se comprobó que el resto del libro queda igual
+    (valores, estilos, celdas combinadas, fórmulas de matriz, formato condicional).
+    openpyxl no guarda valores calculados: el libro lleva `fullCalcOnLoad` y se
+    recalcula al abrirlo. Por eso `verify_plan.py` replica la fórmula del recuento
+    en vez de leer su valor (sigue dando 52 → 88).
+26. **Unilaterales por pierna (1).** «/pierna» en la primera línea de abducción,
+    touchdown, prensa y búlgara de S2 a S8 (la extensión ya decía «por pierna»);
+    S1 no se toca. La app ya precargaba 2 × series alternando D e I.
+27. **Test de fuerza (2).** En Hoy es un enlace a Rodilla › Test y no un ejercicio
+    con series. La fila sigue en la hoja Volumen, porque marca el orden de la sesión
+    (test → sentadilla → búlgara → abducción), y no cuenta en el recuento.
+28. **Semáforo (3).** Columna P «Semáforo (auto)». Orden: día sin carga «—» →
+    sin «Durante» vacío → sin mañana «sin referencia» → carrera sin K «falta K» →
+    Retroceder por la sesión (más de 3/10 o 2/10, o K = No) → sin 24 h «pendiente» →
+    Retroceder si la mañana siguiente es peor → sin 48 h «pendiente» → Avanzar si el
+    peor 24-48 h ≤ referencia, si no Mantener. Un fallo de la sesión o de las 24 h
+    ya da Retroceder aunque falte la de 48 h. Solo «Retroceder» cuenta en «Sesiones
+    a retroceder» (antes «que no cumplen»).
+29. **Aviso S4 (4).** El Excel usa `TODAY()`: hasta el 15/11 muestra «Pendiente».
+    Hacen falta 5 mañanas en S2 y en S4. El umbral de ±0,5 se aplica sobre las
+    medias ya redondeadas (las que se ven), con la diferencia también redondeada,
+    para evitar el 0,4999… de la coma flotante.
+30. **Retroceso (5).** Cómo se atribuye un fallo:
+    - Dolor durante (o no volver al nivel previo): a la escalera de esa sesión
+      (lunes y jueves → prensa; miércoles y domingo → carrera).
+    - Mañana peor: a la última novedad aplicada antes de esa mañana, en los 7 días
+      previos, que no se haya retrocedido ya. Así, un segundo fallo va a la novedad
+      anterior.
+    - Brote: un fallo sin novedad reciente, o dos sesiones evaluadas seguidas en
+      Retroceder. Supone −1 en prensa y carrera, más el aviso de 48-72 h.
+    - La bici del viernes de S4 cuenta como novedad para atribuir. Si se le atribuye
+      un fallo, la app avisa de que se quita, pero no lleva su nivel: la bici sigue
+      el calendario.
+31. **S2 de referencia (6).** La referencia es la primera mañana medida de S2 (el
+    martes, al no haber medido el lunes). Aviso nuevo en la fila 81 del Excel y en
+    la app. El paso de S2 a S3 lo decide solo ese aviso (estable → S3 según el plan;
+    repite → S3 igual que S2), y los fallos de S2 no se atribuyen.
+32. **Sin entrada no hay carrera (7).** Ese domingo «No se corre (como mucho, un
+    paseo)», y los criterios vuelven el miércoles siguiente. La app guarda un intento
+    por semana; el Excel tiene sitio para uno, así que exporta el último, con la
+    fecha de su martes en G89.
+33. **Progreso real (8).** Dos escaleras:
+    - **Prensa**, de 0 a 6: x12/esc. 0 · x10/esc. 0 · x10/esc. 1 · x10/esc. 2 ·
+      x8/esc. 2 · x8/esc. 3 · x8/esc. 4. Rige también la sentadilla y la búlgara del
+      jueves y la touchdown del lunes, que va al escalón de la semana anterior.
+    - **Carrera**, de 0 a 6 (0 = sin entrar).
+
+    Cada lunes y cada miércoles:
+    - **Avanzar (+1)** si las dos sesiones de esa escalera de la semana anterior
+      salieron en verde.
+    - **Retroceder (−1)** si se le atribuyó un fallo.
+    - **Mantener** en cualquier otro caso, también si faltan datos o hay «pendiente».
+
+    Nunca pasa del máximo del calendario. Tampoco hay novedad si esa mañana estás
+    peor que la del día anterior, ni desde S5 si el aviso de S4 es PEOR. Hoy y el
+    Registro prescriben con el nivel real; la pestaña Plan sigue mostrando el
+    calendario (el máximo). En Rodilla › Progresión se ven el máximo, la propuesta y
+    el motivo, y se puede apuntar el nivel real, que manda sobre la propuesta. Se
+    calcula hasta la semana siguiente a hoy. En el Excel, las columnas «Nivel de
+    carrera real» y «Escalón D real» reciben los niveles de las semanas ya empezadas.
+34. **Sin referencia (9).** Un día sin medición no se evalúa y no permite avanzar
+    (salvo el paso de S2 a S3, que va por el punto 31).
+35. **Carrera N4 → N5 (10).** Nuevo nivel N5 = 3×(8'/1') y N6 = 2×(12'/1'). Los
+    30' seguidos pasan a N7, después del viaje; S8 repite N6. La regla del 50 % solo
+    se ha aplicado donde pediste: N1 → N2 → N3 doblan el tramo (100 %), y N6 → N7
+    pasa de 12 a 30 minutos.
+36. **Semáforo solo en días con carga de rodilla (10).** Lunes, jueves y días de
+    carrera. Martes y viernes pasan a «—», incluidos el paseo del martes de S2 (se
+    valida con el criterio 1 de la entrada) y la bici del viernes de S4.
+    **El sábado no se evalúa:** desde S2 es «sin pierna», así que se aplica tu
+    criterio de «días con carga de rodilla» y no la lista. A confirmar.
+37. **Paseo y criterios (10).** Casillas Sí/No: el paseo lleva dos («≤2/10
+    durante» y «nivel previo en ≤60 min») y cada criterio del miércoles, una. La
+    mañana del miércoles no peor (24 h) se calcula sola.
+38. **«2-3 x…» (10)** precarga 2 series; la tercera se añade con «+ Añadir serie».
+39. **Sábado de S1 (10).** La app lo vuelve a llamar «Sábado/Domingo» (también en
+    la exportación). En el Excel, A55 dice «desde S2, sin pierna».
+40. **Ayuda (10).** Hay una ayuda nueva para la app, en `tools/genera_rodilla_data.py`,
+    sin referencias al Excel. La ayuda A2 del Excel se actualiza al semáforo pero
+    sigue hablando de sus columnas, porque es la del Excel.
+41. **Bici y brote: contradicción a confirmar.** Tu punto 5 dice que en las 48-72 h
+    se mantiene la bici si ya estaba introducida. K95 decía «lo primero que se
+    quita si hay brote». Se ha aplicado tu respuesta y K95 se ha cambiado en ese
+    sentido.
+42. **«Esa mañana igual o mejor».** Se compara la mañana del día de la novedad con
+    la del día anterior.
+43. **Esquema del registro.** La versión 4 no llegó a publicarse (`main` sigue en la
+    3): `knee.weeks` y `knee.entry` cambian sin migración nueva.

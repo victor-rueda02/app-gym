@@ -75,6 +75,11 @@ de inicio**. Se abre a pantalla completa, sin barra del navegador.
     RIR objetivo de cada serie aparece como 1, 1, …, 0. Los ejercicios con «—»
     esa semana no se listan. Desde S2 los unilaterales de rehab se registran
     por pierna: cada serie lleva un botón D/I (D = derecha, la afectada).
+  - *Progreso real:* desde S2, la prensa, la sentadilla, la búlgara, la
+    touchdown y la carrera se prescriben con tu nivel real (el semáforo de la
+    semana anterior), no con el calendario; dentro del ejercicio se ve el motivo
+    y el máximo del calendario. El test de fuerza del jueves es un enlace a
+    Rodilla › Test.
   - Arriba, la tarjeta de rodilla con las dos pruebas de la mañana, y desde S2
     los «Hitos y avisos» de la semana.
   - *4 semanas:* en las semanas 3 y 4 eliges cuál de los 3 días haces, porque
@@ -92,9 +97,13 @@ de inicio**. Se abre a pantalla completa, sin barra del navegador.
   con sus etiquetas [EVIDENCIA], [LÓGICA] e [INCERTIDUMBRE]).
 - **Rodilla** — el seguimiento diario del 26/10 al 27/12: pruebas de la mañana,
   dolor durante, nivel previo en ≤60 min (carrera) y chasquido; calcula 24 h,
-  48 h, peor 24-48 h y «¿Cumple?». Además, resumen semanal con los avisos de S4
-  y del chasquido, entrada a la carrera, test de fuerza y escalones de
-  profundidad. Los cálculos están en `js/rodilla-calc.js` (funciones puras).
+  48 h, peor 24-48 h y el semáforo (Avanzar / Mantener / Retroceder; solo en los
+  días con carga de rodilla). Además: resumen semanal con los avisos de S2
+  (semana de referencia), S4 y chasquido; **Progresión** (máximo del calendario,
+  propuesta del semáforo y nivel real, que se puede apuntar); entrada a la
+  carrera con casillas, una por semana hasta superarla; test de fuerza y
+  escalones de profundidad. Los cálculos están en `js/rodilla-calc.js`
+  (funciones puras) y las reglas, en `DECISIONES.md`.
 - **Datos** — exportar el .xlsx, copia de seguridad en JSON e historial.
 
 Los ejercicios de rehab (y el test de fuerza) llevan una barra verde a la
@@ -109,13 +118,16 @@ ejercicio. Los correctivos no cuentan como series de hipertrofia.
 ```bash
 python tools/embed.py           # re-empotra el .xlsx si cambias el plan original
 python tools/verify_plan.py     # compara la hoja Volumen celda a celda con js/plan.js
+python tools/ajusta_excel_rodilla.py  # aplica la revisión del 26/10 al Excel recibido -> Excel de la raíz
 python tools/volcado_excel.py   # vuelca el Excel a docs/plan-rodilla/ (y el diff con c3ece19)
+python tools/genera_rodilla_data.py  # regenera js/rodilla-data.js desde el volcado
 node tools/test-export.mjs      # genera .xlsx de prueba en tools/out/ y los valida (usa openpyxl)
 node tools/e2e.mjs              # recorrido completo en iPhone emulado (requiere playwright)
 node tools/test-migracion.mjs   # comprueba las migraciones de datos ya registrados
 node tools/shots.mjs            # capturas de pantalla
 for t in tests/*.test.mjs; do node "$t"; done   # pruebas de Node sin dependencias
 node tests/contenido-ui.mjs     # Plan y Hoy contra el Excel en iPhone emulado (requiere playwright)
+node tests/progresion-ui.mjs    # progresión real, entrada a la carrera y test (requiere playwright)
 ```
 
 `tests/rodilla-logica.test.mjs` contrasta los cálculos de rodilla con las

@@ -101,6 +101,24 @@ const shortNote = (n) => (n && n.length <= 40 ? n : '');
 
 const sessionName = (s) => (s.title ? `${s.name} · ${s.title}` : s.name);
 
+/* Prescripción del día: con el nivel real para los ejercicios con progresión
+   (prensa, sentadilla, búlgara, touchdown y carrera, desde S2); si no, la del plan. */
+const presHoy = (exercise, week) => Rodilla.prescripcion(exercise, week) || PLAN.presFor(exercise, week);
+
+/* El test de fuerza no es un ejercicio: es un enlace a Rodilla › Test (y no cuenta series). */
+function testCard(exercise, week) {
+  const card = el(`
+    <button class="ex rehab">
+      <div class="grow">
+        <div class="nm">${escapeHtml(exercise.name)}</div>
+        <div class="meta">${escapeHtml(PLAN.presFor(exercise, week).label.replace(/\n/g, ' '))} · se apunta en Rodilla › Test</div>
+      </div>
+      <span class="pres">Test ›</span>
+    </button>`);
+  card.addEventListener('click', () => Rodilla.abrir('test'));
+  return card;
+}
+
 /* Render ------------------------------------------------------------------ */
 function render() {
   backBtn.hidden = !state.exercise;
@@ -180,8 +198,9 @@ function renderToday() {
   if (!session) { view.appendChild(picker); return; }
   if (!rec.sessionId) Store.setSession(date, session.id);
 
+  const label = PLAN.sessionLabel(session, week);
   document.getElementById('hero-name').textContent = session.rest
-    ? 'Descanso' : (session.title || session.name);
+    ? 'Descanso' : (label.title || label.name);
 
   if (session.note) {
     view.appendChild(el(`<div class="card"><p class="multi">${escapeHtml(session.note)}</p></div>`));
@@ -194,7 +213,7 @@ function renderToday() {
   view.appendChild(el('<div class="section-label">Ejercicios</div>'));
   session.exercises.forEach((exercise) => {
     if (PLAN.presFor(exercise, week).skip) return;   // «—»: esa semana no se hace
-    view.appendChild(exerciseRow(exercise, week, date, session));
+    view.appendChild(exercise.link === 'test' ? testCard(exercise, week) : exerciseRow(exercise, week, date, session));
   });
 
   const notes = el(`
@@ -215,7 +234,7 @@ function renderToday() {
 }
 
 function exerciseRow(exercise, week, date, session) {
-  const pres = PLAN.presFor(exercise, week);
+  const pres = presHoy(exercise, week);
   const logged = Store.sets(date, exercise.id).filter(isLogged).length;
   // En los unilaterales (D/I) cada serie prescrita se hace con las dos piernas.
   const total = PLAN.sidesFor(exercise, week) ? pres.sets * 2 : pres.sets;
@@ -244,7 +263,8 @@ function renderExercise() {
   const session = sessionById(sessionId);
   const week = PLAN.weekFor(date);
   const exercise = session.exercises.find((e) => e.id === exId);
-  const pres = PLAN.presFor(exercise, week);
+  const pres = presHoy(exercise, week);
+  const delPlan = PLAN.presFor(exercise, week);
 
   titleEl.textContent = exercise.name;
   subtitleEl.textContent = `${exercise.target} · objetivo ${pres.label.replace(/\n/g, ' · ')}`;
@@ -260,6 +280,13 @@ function renderExercise() {
 
   if (pres.label.includes('\n') || pres.optional) {
     view.appendChild(el(`<div class="card"><p class="multi">${escapeHtml(pres.label)}</p></div>`));
+  }
+
+  // Con progresión real: por qué este nivel y cuál es el máximo del calendario.
+  if (pres.motivo) {
+    view.appendChild(el(`
+      <div class="card"><p class="multi">${escapeHtml(pres.motivo)}${pres.provisional ? ' (provisional)' : ''}</p>
+        <p class="multi" style="margin-top:6px">Máximo del calendario: ${escapeHtml(delPlan.label)}</p></div>`));
   }
 
   if (exercise.notes) view.appendChild(el(`<div class="card"><p class="multi">${escapeHtml(exercise.notes)}</p></div>`));
@@ -461,6 +488,8 @@ function renderPlan() {
     <div class="card">
       <h2>${escapeHtml(week.title)}</h2>
       <p>${escapeHtml(week.sub + range)}</p>
+      ${week.plan === 'vol' && week.n >= 2 ? `<p style="margin-top:6px">Rehab y carrera: el plan marca el
+        máximo de la semana; lo que toca según tu progreso está en Hoy y en Rodilla › Progresión.</p>` : ''}
     </div>`));
 
   if (week.plan === 'vol') {
@@ -472,7 +501,7 @@ function renderPlan() {
   }
 
   PLAN.sessionsFor(week).forEach((session) => {
-    view.appendChild(el(`<div class="section-label">${escapeHtml(sessionName(session))}</div>`));
+    view.appendChild(el(`<div class="section-label">${escapeHtml(sessionName(PLAN.sessionLabel(session, week)))}</div>`));
     if (!session.exercises.length) {
       view.appendChild(el(`<div class="card"><p>${escapeHtml(session.note || 'Descanso')}</p></div>`));
       return;

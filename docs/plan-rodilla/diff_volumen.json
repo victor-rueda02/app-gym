@@ -2,7 +2,7 @@
  {
   "celda": "A2",
   "antes": "RIR1/0 = todas las series a RIR1 y la ÚLTIMA a RIR0 (si solo hay 1 serie, RIR0).  Rehab (Rebuilding Milo): ×12 sem 1 → ×10 sem 2-4 → ×8 sem 5-8 → ×6 tras el viaje; peso con el que la última serie quede cerca del fallo sin perder tempo 3-1-3 ni profundidad, dolor ≤3/10; sube peso solo si el test de 24 h está igual o mejor.",
-  "ahora": "RIR1/0 = todas las series a RIR1 y la ÚLTIMA a RIR0 (si solo hay 1 serie, RIR0).  REHAB RODILLA S2-S8 en 2 días: lunes (touchdown + prensa) y jueves (sentadilla + búlgara), pesado y lento, tempo 3-1-3; D a RIR 2 y en su escalón de profundidad, I a RIR 1-2 y rango completo. Reps: ×12 S1 → ×10 S2-4 → ×8 S5-8 → ×6 tras el viaje. Una novedad por día (lunes profundidad/reps · miércoles carrera), solo si esa mañana estás igual o mejor. Reglas al final de la hoja; registro diario en «Seguimiento rodilla»."
+  "ahora": "RIR1/0 = todas las series a RIR1 y la ÚLTIMA a RIR0 (si solo hay 1 serie, RIR0).  REHAB RODILLA S2-S8 en 2 días: lunes (touchdown + prensa) y jueves (sentadilla + búlgara), pesado y lento, tempo 3-1-3; D a RIR 2 y en su escalón de profundidad, I a RIR 1-2 y rango completo. Reps: ×12 S1 → ×10 S2-4 → ×8 S5-8 → ×6 tras el viaje. Una novedad por día (lunes profundidad/reps · miércoles carrera), solo si esa mañana estás igual o mejor. El calendario marca el máximo de cada semana: se progresa según el semáforo (Avanzar / Mantener / Retroceder) y la app prescribe con el nivel real. Reglas al final de la hoja; registro diario en «Seguimiento rodilla»."
  },
  {
   "celda": "K6",
@@ -22,37 +22,37 @@
  {
   "celda": "D7",
   "antes": "2 x15–20",
-  "ahora": "3 x10-15\n@RIR1-2"
+  "ahora": "3 x10-15/pierna\n@RIR1-2"
  },
  {
   "celda": "E7",
   "antes": "2 x15–20",
-  "ahora": "3 x10-15\n@RIR1-2"
+  "ahora": "3 x10-15/pierna\n@RIR1-2"
  },
  {
   "celda": "F7",
   "antes": "2 x15–20",
-  "ahora": "3 x10-15\n@RIR1-2"
+  "ahora": "3 x10-15/pierna\n@RIR1-2"
  },
  {
   "celda": "G7",
   "antes": "2 x15–20",
-  "ahora": "3 x10-15\n@RIR1-2"
+  "ahora": "3 x10-15/pierna\n@RIR1-2"
  },
  {
   "celda": "H7",
   "antes": "2 x15–20",
-  "ahora": "3 x10-15\n@RIR1-2"
+  "ahora": "3 x10-15/pierna\n@RIR1-2"
  },
  {
   "celda": "I7",
   "antes": "2 x15–20",
-  "ahora": "3 x10-15\n@RIR1-2"
+  "ahora": "3 x10-15/pierna\n@RIR1-2"
  },
  {
   "celda": "J7",
   "antes": "2 x15–20",
-  "ahora": "3 x10-15\n@RIR1-2"
+  "ahora": "3 x10-15/pierna\n@RIR1-2"
  },
  {
   "celda": "K7",
@@ -67,37 +67,37 @@
  {
   "celda": "D9",
   "antes": "2 x15–20",
-  "ahora": "2 x10-15\n/pierna"
+  "ahora": "2 x10-15/pierna"
  },
  {
   "celda": "E9",
   "antes": "2 x15–20",
-  "ahora": "2 x10-15\n/pierna"
+  "ahora": "2 x10-15/pierna"
  },
  {
   "celda": "F9",
   "antes": "2 x15–20",
-  "ahora": "2 x10-15\n/pierna"
+  "ahora": "2 x10-15/pierna"
  },
  {
   "celda": "G9",
   "antes": "2 x15–20",
-  "ahora": "2 x10-15\n/pierna"
+  "ahora": "2 x10-15/pierna"
  },
  {
   "celda": "H9",
   "antes": "2 x15–20",
-  "ahora": "2 x10-15\n/pierna"
+  "ahora": "2 x10-15/pierna"
  },
  {
   "celda": "I9",
   "antes": "2 x15–20",
-  "ahora": "2 x10-15\n/pierna"
+  "ahora": "2 x10-15/pierna"
  },
  {
   "celda": "J9",
   "antes": "2 x15–20",
-  "ahora": "2 x10-15\nrepite S7"
+  "ahora": "2 x10-15/pierna\nrepite S7"
  },
  {
   "celda": "K9",
@@ -112,37 +112,37 @@
  {
   "celda": "D10",
   "antes": "2 x10",
-  "ahora": "2 x10\nnov: x10"
+  "ahora": "2 x10/pierna\nnov: x10"
  },
  {
   "celda": "E10",
   "antes": "2 x10",
-  "ahora": "2 x10\nnov: +1 escalón"
+  "ahora": "2 x10/pierna\nnov: +1 escalón"
  },
  {
   "celda": "F10",
   "antes": "2 x10",
-  "ahora": "2 x10\nnov: +1 escalón"
+  "ahora": "2 x10/pierna\nnov: +1 escalón"
  },
  {
   "celda": "G10",
   "antes": "2 x8",
-  "ahora": "2 x8\nnov: x8"
+  "ahora": "2 x8/pierna\nnov: x8"
  },
  {
   "celda": "H10",
   "antes": "2 x8",
-  "ahora": "2 x8\nnov: +1 escalón"
+  "ahora": "2 x8/pierna\nnov: +1 escalón"
  },
  {
   "celda": "I10",
   "antes": "2 x8",
-  "ahora": "2 x8\nnov: +1 escalón"
+  "ahora": "2 x8/pierna\nnov: +1 escalón"
  },
  {
   "celda": "J10",
   "antes": "2 x8",
-  "ahora": "2 x8\nrepite S7"
+  "ahora": "2 x8/pierna\nrepite S7"
  },
  {
   "celda": "K10",
@@ -277,37 +277,37 @@
  {
   "celda": "D37",
   "antes": "3 x10",
-  "ahora": "2 x10"
+  "ahora": "2 x10/pierna"
  },
  {
   "celda": "E37",
   "antes": "3 x10",
-  "ahora": "2 x10"
+  "ahora": "2 x10/pierna"
  },
  {
   "celda": "F37",
   "antes": "3 x10",
-  "ahora": "2 x10"
+  "ahora": "2 x10/pierna"
  },
  {
   "celda": "G37",
   "antes": "3 x8",
-  "ahora": "2 x8"
+  "ahora": "2 x8/pierna"
  },
  {
   "celda": "H37",
   "antes": "3 x8",
-  "ahora": "2 x8"
+  "ahora": "2 x8/pierna"
  },
  {
   "celda": "I37",
   "antes": "3 x8",
-  "ahora": "2 x8"
+  "ahora": "2 x8/pierna"
  },
  {
   "celda": "J37",
   "antes": "3 x8",
-  "ahora": "2 x8\nrepite S7"
+  "ahora": "2 x8/pierna\nrepite S7"
  },
  {
   "celda": "K37",
@@ -332,37 +332,37 @@
  {
   "celda": "D38",
   "antes": "2 x10",
-  "ahora": "3 x10-15\n@RIR1-2"
+  "ahora": "3 x10-15/pierna\n@RIR1-2"
  },
  {
   "celda": "E38",
   "antes": "2 x10",
-  "ahora": "3 x10-15\n@RIR1-2"
+  "ahora": "3 x10-15/pierna\n@RIR1-2"
  },
  {
   "celda": "F38",
   "antes": "2 x10",
-  "ahora": "3 x10-15\n@RIR1-2"
+  "ahora": "3 x10-15/pierna\n@RIR1-2"
  },
  {
   "celda": "G38",
   "antes": "2 x8",
-  "ahora": "3 x10-15\n@RIR1-2"
+  "ahora": "3 x10-15/pierna\n@RIR1-2"
  },
  {
   "celda": "H38",
   "antes": "2 x8",
-  "ahora": "3 x10-15\n@RIR1-2"
+  "ahora": "3 x10-15/pierna\n@RIR1-2"
  },
  {
   "celda": "I38",
   "antes": "2 x8",
-  "ahora": "3 x10-15\n@RIR1-2"
+  "ahora": "3 x10-15/pierna\n@RIR1-2"
  },
  {
   "celda": "J38",
   "antes": "2 x8",
-  "ahora": "3 x10-15\n@RIR1-2"
+  "ahora": "3 x10-15/pierna\n@RIR1-2"
  },
  {
   "celda": "K38",
@@ -997,7 +997,7 @@
  {
   "celda": "A55",
   "antes": "Ejercicio",
-  "ahora": "(S) Sábado  ·  casa, sin máquinas ni poleas  ·  sin pierna (el domingo: carrera)"
+  "ahora": "(S) Sábado  ·  casa, sin máquinas ni poleas  ·  desde S2, sin pierna (el domingo: carrera)"
  },
  {
   "celda": "B55",
@@ -1707,42 +1707,42 @@
  {
   "celda": "C73",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Hombro post.\")*IFERROR(VALUE(LEFT(C$3:C$65,FIND(\" \",C$3:C$65&\" \")-1)),0))",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA05010>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855B8DD2B0>"
  },
  {
   "celda": "D73",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Hombro post.\")*IFERROR(VALUE(LEFT(D$3:D$65,FIND(\" \",D$3:D$65&\" \")-1)),0))",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23E95ED50>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855B928CD0>"
  },
  {
   "celda": "E73",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Hombro post.\")*IFERROR(VALUE(LEFT(E$3:E$65,FIND(\" \",E$3:E$65&\" \")-1)),0))",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23E95CF50>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855B928E10>"
  },
  {
   "celda": "F73",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Hombro post.\")*IFERROR(VALUE(LEFT(F$3:F$65,FIND(\" \",F$3:F$65&\" \")-1)),0))",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA0E9E0>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855B8EEB10>"
  },
  {
   "celda": "G73",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Hombro post.\")*IFERROR(VALUE(LEFT(G$3:G$65,FIND(\" \",G$3:G$65&\" \")-1)),0))",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA0EB10>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855B8EEC40>"
  },
  {
   "celda": "H73",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Hombro post.\")*IFERROR(VALUE(LEFT(H$3:H$65,FIND(\" \",H$3:H$65&\" \")-1)),0))",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA096D0>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855B8FD6D0>"
  },
  {
   "celda": "I73",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Hombro post.\")*IFERROR(VALUE(LEFT(I$3:I$65,FIND(\" \",I$3:I$65&\" \")-1)),0))",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23F3C07C0>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C2D86B0>"
  },
  {
   "celda": "J73",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Hombro post.\")*IFERROR(VALUE(LEFT(J$3:J$65,FIND(\" \",J$3:J$65&\" \")-1)),0))",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23F3C08D0>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C2D87C0>"
  },
  {
   "celda": "A74",
@@ -1752,42 +1752,42 @@
  {
   "celda": "C74",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Bíceps\")*IFERROR(VALUE(LEFT(C$3:C$65,FIND(\" \",C$3:C$65&\" \")-1)),0))",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23E9ADF50>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855B8AE050>"
  },
  {
   "celda": "D74",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Bíceps\")*IFERROR(VALUE(LEFT(D$3:D$65,FIND(\" \",D$3:D$65&\" \")-1)),0))",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23E9AE050>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855B8AE150>"
  },
  {
   "celda": "E74",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Bíceps\")*IFERROR(VALUE(LEFT(E$3:E$65,FIND(\" \",E$3:E$65&\" \")-1)),0))",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23E9B5040>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855B8B5130>"
  },
  {
   "celda": "F74",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Bíceps\")*IFERROR(VALUE(LEFT(F$3:F$65,FIND(\" \",F$3:F$65&\" \")-1)),0))",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23E9B5130>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855B8B5220>"
  },
  {
   "celda": "G74",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Bíceps\")*IFERROR(VALUE(LEFT(G$3:G$65,FIND(\" \",G$3:G$65&\" \")-1)),0))",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA110F0>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C1E11D0>"
  },
  {
   "celda": "H74",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Bíceps\")*IFERROR(VALUE(LEFT(H$3:H$65,FIND(\" \",H$3:H$65&\" \")-1)),0))",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA111D0>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C1E1010>"
  },
  {
   "celda": "I74",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Bíceps\")*IFERROR(VALUE(LEFT(I$3:I$65,FIND(\" \",I$3:I$65&\" \")-1)),0))",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23F2CB6C0>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855B86AF70>"
  },
  {
   "celda": "J74",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Bíceps\")*IFERROR(VALUE(LEFT(J$3:J$65,FIND(\" \",J$3:J$65&\" \")-1)),0))",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23E97E5D0>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855B87DF10>"
  },
  {
   "celda": "A75",
@@ -1797,42 +1797,42 @@
  {
   "celda": "C75",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Tríceps\")*IFERROR(VALUE(LEFT(C$3:C$65,FIND(\" \",C$3:C$65&\" \")-1)),0))",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23E97E750>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855B87DFD0>"
  },
  {
   "celda": "D75",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Tríceps\")*IFERROR(VALUE(LEFT(D$3:D$65,FIND(\" \",D$3:D$65&\" \")-1)),0))",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23E9C5860>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855B8C6FC0>"
  },
  {
   "celda": "E75",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Tríceps\")*IFERROR(VALUE(LEFT(E$3:E$65,FIND(\" \",E$3:E$65&\" \")-1)),0))",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23E9C6990>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855B8C7070>"
  },
  {
   "celda": "F75",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Tríceps\")*IFERROR(VALUE(LEFT(F$3:F$65,FIND(\" \",F$3:F$65&\" \")-1)),0))",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23C189450>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855B8CD6D0>"
  },
  {
   "celda": "G75",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Tríceps\")*IFERROR(VALUE(LEFT(G$3:G$65,FIND(\" \",G$3:G$65&\" \")-1)),0))",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23E9D4F50>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855B8CD630>"
  },
  {
   "celda": "H75",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Tríceps\")*IFERROR(VALUE(LEFT(H$3:H$65,FIND(\" \",H$3:H$65&\" \")-1)),0))",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23F3BDAC0>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C2CDAC0>"
  },
  {
   "celda": "I75",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Tríceps\")*IFERROR(VALUE(LEFT(I$3:I$65,FIND(\" \",I$3:I$65&\" \")-1)),0))",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23E97B950>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855B91AA50>"
  },
  {
   "celda": "J75",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Tríceps\")*IFERROR(VALUE(LEFT(J$3:J$65,FIND(\" \",J$3:J$65&\" \")-1)),0))",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23E9EA3D0>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855B92D4D0>"
  },
  {
   "celda": "A76",
@@ -1842,42 +1842,42 @@
  {
   "celda": "C76",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Isquios\")*IFERROR(VALUE(LEFT(C$3:C$65,FIND(\" \",C$3:C$65&\" \")-1)),0))",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23F248B40>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C3040C0>"
  },
  {
   "celda": "D76",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Isquios\")*IFERROR(VALUE(LEFT(D$3:D$65,FIND(\" \",D$3:D$65&\" \")-1)),0))",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23F248BB0>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C304130>"
  },
  {
   "celda": "E76",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Isquios\")*IFERROR(VALUE(LEFT(E$3:E$65,FIND(\" \",E$3:E$65&\" \")-1)),0))",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA141D0>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C270CB0>"
  },
  {
   "celda": "F76",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Isquios\")*IFERROR(VALUE(LEFT(F$3:F$65,FIND(\" \",F$3:F$65&\" \")-1)),0))",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA14230>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C270D10>"
  },
  {
   "celda": "G76",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Isquios\")*IFERROR(VALUE(LEFT(G$3:G$65,FIND(\" \",G$3:G$65&\" \")-1)),0))",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA14290>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C270D70>"
  },
  {
   "celda": "H76",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Isquios\")*IFERROR(VALUE(LEFT(H$3:H$65,FIND(\" \",H$3:H$65&\" \")-1)),0))",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA142F0>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C270DD0>"
  },
  {
   "celda": "I76",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Isquios\")*IFERROR(VALUE(LEFT(I$3:I$65,FIND(\" \",I$3:I$65&\" \")-1)),0))",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA14350>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C270E30>"
  },
  {
   "celda": "J76",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Isquios\")*IFERROR(VALUE(LEFT(J$3:J$65,FIND(\" \",J$3:J$65&\" \")-1)),0))",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA143B0>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C270E90>"
  },
  {
   "celda": "A77",
@@ -1887,42 +1887,42 @@
  {
   "celda": "C77",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Abs\")*IFERROR(VALUE(LEFT(C$3:C$65,FIND(\" \",C$3:C$65&\" \")-1)),0))",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA14470>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C270470>"
  },
  {
   "celda": "D77",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Abs\")*IFERROR(VALUE(LEFT(D$3:D$65,FIND(\" \",D$3:D$65&\" \")-1)),0))",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA144D0>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C2704D0>"
  },
  {
   "celda": "E77",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Abs\")*IFERROR(VALUE(LEFT(E$3:E$65,FIND(\" \",E$3:E$65&\" \")-1)),0))",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA14530>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C270530>"
  },
  {
   "celda": "F77",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Abs\")*IFERROR(VALUE(LEFT(F$3:F$65,FIND(\" \",F$3:F$65&\" \")-1)),0))",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA14590>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C270590>"
  },
  {
   "celda": "G77",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Abs\")*IFERROR(VALUE(LEFT(G$3:G$65,FIND(\" \",G$3:G$65&\" \")-1)),0))",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA145F0>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C2705F0>"
  },
  {
   "celda": "H77",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Abs\")*IFERROR(VALUE(LEFT(H$3:H$65,FIND(\" \",H$3:H$65&\" \")-1)),0))",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA14650>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C270650>"
  },
  {
   "celda": "I77",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Abs\")*IFERROR(VALUE(LEFT(I$3:I$65,FIND(\" \",I$3:I$65&\" \")-1)),0))",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA146B0>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C2706B0>"
  },
  {
   "celda": "J77",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Abs\")*IFERROR(VALUE(LEFT(J$3:J$65,FIND(\" \",J$3:J$65&\" \")-1)),0))",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA14710>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C270710>"
  },
  {
   "celda": "A78",
@@ -1932,42 +1932,42 @@
  {
   "celda": "C78",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Gemelos\")*IFERROR(VALUE(LEFT(C$3:C$65,FIND(\" \",C$3:C$65&\" \")-1)),0))",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA147D0>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C270770>"
  },
  {
   "celda": "D78",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Gemelos\")*IFERROR(VALUE(LEFT(D$3:D$65,FIND(\" \",D$3:D$65&\" \")-1)),0))",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA14830>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C2707D0>"
  },
  {
   "celda": "E78",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Gemelos\")*IFERROR(VALUE(LEFT(E$3:E$65,FIND(\" \",E$3:E$65&\" \")-1)),0))",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA14890>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C270830>"
  },
  {
   "celda": "F78",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Gemelos\")*IFERROR(VALUE(LEFT(F$3:F$65,FIND(\" \",F$3:F$65&\" \")-1)),0))",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA148F0>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C270890>"
  },
  {
   "celda": "G78",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Gemelos\")*IFERROR(VALUE(LEFT(G$3:G$65,FIND(\" \",G$3:G$65&\" \")-1)),0))",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA14950>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C2708F0>"
  },
  {
   "celda": "H78",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Gemelos\")*IFERROR(VALUE(LEFT(H$3:H$65,FIND(\" \",H$3:H$65&\" \")-1)),0))",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA149B0>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C270950>"
  },
  {
   "celda": "I78",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Gemelos\")*IFERROR(VALUE(LEFT(I$3:I$65,FIND(\" \",I$3:I$65&\" \")-1)),0))",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA14A10>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C2709B0>"
  },
  {
   "celda": "J78",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Gemelos\")*IFERROR(VALUE(LEFT(J$3:J$65,FIND(\" \",J$3:J$65&\" \")-1)),0))",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA14EF0>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C270A10>"
  },
  {
   "celda": "A79",
@@ -1977,42 +1977,42 @@
  {
   "celda": "C79",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Aductores\")*IFERROR(VALUE(LEFT(C$3:C$65,FIND(\" \",C$3:C$65&\" \")-1)),0))",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA14FB0>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C271010>"
  },
  {
   "celda": "D79",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Aductores\")*IFERROR(VALUE(LEFT(D$3:D$65,FIND(\" \",D$3:D$65&\" \")-1)),0))",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA15010>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C271070>"
  },
  {
   "celda": "E79",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Aductores\")*IFERROR(VALUE(LEFT(E$3:E$65,FIND(\" \",E$3:E$65&\" \")-1)),0))",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA15070>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C2710D0>"
  },
  {
   "celda": "F79",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Aductores\")*IFERROR(VALUE(LEFT(F$3:F$65,FIND(\" \",F$3:F$65&\" \")-1)),0))",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA150D0>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C271130>"
  },
  {
   "celda": "G79",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Aductores\")*IFERROR(VALUE(LEFT(G$3:G$65,FIND(\" \",G$3:G$65&\" \")-1)),0))",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA15130>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C271190>"
  },
  {
   "celda": "H79",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Aductores\")*IFERROR(VALUE(LEFT(H$3:H$65,FIND(\" \",H$3:H$65&\" \")-1)),0))",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA15190>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C2711F0>"
  },
  {
   "celda": "I79",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Aductores\")*IFERROR(VALUE(LEFT(I$3:I$65,FIND(\" \",I$3:I$65&\" \")-1)),0))",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA151F0>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C271250>"
  },
  {
   "celda": "J79",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Aductores\")*IFERROR(VALUE(LEFT(J$3:J$65,FIND(\" \",J$3:J$65&\" \")-1)),0))",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA15250>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C2712B0>"
  },
  {
   "celda": "A80",
@@ -2022,42 +2022,42 @@
  {
   "celda": "C80",
   "antes": "=SUM(C70:C79)",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA15310>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C271370>"
  },
  {
   "celda": "D80",
   "antes": "=SUM(D70:D79)",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA15370>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C2713D0>"
  },
  {
   "celda": "E80",
   "antes": "=SUM(E70:E79)",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA153D0>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C271430>"
  },
  {
   "celda": "F80",
   "antes": "=SUM(F70:F79)",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA15430>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C271490>"
  },
  {
   "celda": "G80",
   "antes": "=SUM(G70:G79)",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA15490>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C2714F0>"
  },
  {
   "celda": "H80",
   "antes": "=SUM(H70:H79)",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA154F0>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C271550>"
  },
  {
   "celda": "I80",
   "antes": "=SUM(I70:I79)",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA15550>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C2715B0>"
  },
  {
   "celda": "J80",
   "antes": "=SUM(J70:J79)",
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA155B0>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C271610>"
  },
  {
   "celda": "A81",
@@ -2072,42 +2072,42 @@
  {
   "celda": "C81",
   "antes": null,
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA15670>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C270A70>"
  },
  {
   "celda": "D81",
   "antes": null,
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA156D0>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C272570>"
  },
  {
   "celda": "E81",
   "antes": null,
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA15730>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C2725D0>"
  },
  {
   "celda": "F81",
   "antes": null,
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA15790>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C272630>"
  },
  {
   "celda": "G81",
   "antes": null,
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA157F0>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C272690>"
  },
  {
   "celda": "H81",
   "antes": null,
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA15850>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C2726F0>"
  },
  {
   "celda": "I81",
   "antes": null,
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA158B0>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C272750>"
  },
  {
   "celda": "J81",
   "antes": null,
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA15910>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C2727B0>"
  },
  {
   "celda": "A82",
@@ -2122,42 +2122,42 @@
  {
   "celda": "C82",
   "antes": null,
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA159D0>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C272870>"
  },
  {
   "celda": "D82",
   "antes": null,
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA15A30>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C2728D0>"
  },
  {
   "celda": "E82",
   "antes": null,
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA15A90>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C272930>"
  },
  {
   "celda": "F82",
   "antes": null,
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA15AF0>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C272990>"
  },
  {
   "celda": "G82",
   "antes": null,
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA15B50>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C2729F0>"
  },
  {
   "celda": "H82",
   "antes": null,
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA15BB0>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C272A50>"
  },
  {
   "celda": "I82",
   "antes": null,
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA15C10>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C272AB0>"
  },
  {
   "celda": "J82",
   "antes": null,
-  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002A23EA15C70>"
+  "ahora": "<openpyxl.worksheet.formula.ArrayFormula object at 0x000002855C272B10>"
  },
  {
   "celda": "A83",
@@ -2867,7 +2867,7 @@
  {
   "celda": "K95",
   "antes": null,
-  "ahora": "No se hizo en S1: estímulo NUEVO [LÓGICA]. Entra en S4 (el viernes) solo si S2 y S3 cumplieron la regla; desde S5, martes y viernes. Sin Z3 en este bloque. Lo primero que se quita si hay brote. Sillín alto (rodilla a 20-25° abajo), 85-90 rpm, sentado. 10 min fijos en el bloque; subir a 15 después del viaje, como novedad única."
+  "ahora": "No se hizo en S1: estímulo NUEVO [LÓGICA]. Entra en S4 (el viernes) solo si S2 y S3 cumplieron la regla; desde S5, martes y viernes. Sin Z3 en este bloque. En la regla de 48-72 h se mantiene si ya estaba introducida. Sillín alto (rodilla a 20-25° abajo), 85-90 rpm, sentado. 10 min fijos en el bloque; subir a 15 después del viaje, como novedad única."
  },
  {
   "celda": "A96",
@@ -2962,12 +2962,12 @@
  {
   "celda": "H97",
   "antes": null,
-  "ahora": "N5 · 2×(13'/1')"
+  "ahora": "N5 · 3×(8'/1')"
  },
  {
   "celda": "I97",
   "antes": null,
-  "ahora": "N6 · 30' seguidos"
+  "ahora": "N6 · 2×(12'/1')"
  },
  {
   "celda": "J97",
@@ -2977,7 +2977,7 @@
  {
   "celda": "K97",
   "antes": null,
-  "ahora": "Formato: minutos trotando / minutos andando. Nivel nuevo solo si esa mañana estás igual o mejor; si no, repite el anterior (los niveles son objetivos, no fechas). 5 min andando antes; llano y firme. Regla de carrera: ≤2/10 durante, vuelta al nivel previo en ≤60 min y la mañana siguiente no peor; para avanzar, además, peor valor 24-48 h ≤ referencia [EVIDENCIA de uso: TREK Education, basada en Esculier; no comparada con otros umbrales]. Cadencia +5-10% opcional [EVIDENCIA mixta: Bramah 2019, serie de 12 corredores con mejora de dolor y función mantenida a 3 meses; Esculier 2018, sin beneficio extra sobre la educación]."
+  "ahora": "Formato: minutos trotando / minutos andando. Niveles: N1 8×(1'/2') · N2 6×(2'/1') · N3 4×(4'/1') · N4 4×(5'/1') · N5 3×(8'/1') · N6 2×(12'/1') · N7 30' seguidos (después del viaje). N5 es un nivel intermedio para que el tramo continuo más largo no crezca más de un 50 % por nivel (5 → 8 → 12 min) [LÓGICA]. El calendario marca el máximo de cada semana; el nivel real sale del semáforo: Avanzar = +1, Mantener = el mismo, Retroceder = −1. Nivel nuevo solo si esa mañana estás igual o mejor. 5 min andando antes; llano y firme. Regla de carrera: Retroceder si pasas de 2/10 durante, no vuelves al nivel previo en ≤60 min o la mañana siguiente estás peor; Mantener si cumple pero el peor valor 24-48 h supera la referencia; Avanzar si cumple y el peor 24-48 h ≤ referencia [EVIDENCIA de uso: TREK Education, basada en Esculier; no comparada con otros umbrales]. Cadencia +5-10% opcional [EVIDENCIA mixta: Bramah 2019, serie de 12 corredores con mejora de dolor y función mantenida a 3 meses; Esculier 2018, sin beneficio extra sobre la educación]."
  },
  {
   "celda": "A98",
@@ -3032,7 +3032,7 @@
  {
   "celda": "K98",
   "antes": null,
-  "ahora": "Repite el nivel validado el miércoles. Nunca dos días seguidos corriendo [LÓGICA]. El sábado no hay pierna: llegas descansado."
+  "ahora": "Repite el nivel validado el miércoles. Si el miércoles no se cumplieron los criterios de entrada, esa semana no hay carrera: el domingo no se corre (como mucho, un paseo). Nunca dos días seguidos corriendo [LÓGICA]. El sábado no hay pierna: llegas descansado."
  },
  {
   "celda": "A99",
@@ -3087,7 +3087,7 @@
  {
   "celda": "K99",
   "antes": null,
-  "ahora": "Entrada a la carrera (S2), con la regla de carrera: martes, paseo de 30 min a paso rápido (≤2/10, nivel previo en ≤60 min y el miércoles por la mañana no peor); miércoles antes de correr, 10 touchdown con cada pierna y 20 saltitos a dos piernas (≤2/10). Si se cumplen los tres, 1.ª carrera ese miércoles (N1); si no, se repiten la semana siguiente [LÓGICA]."
+  "ahora": "Entrada a la carrera (S2), con la regla de carrera: martes, paseo de 30 min a paso rápido (≤2/10, nivel previo en ≤60 min y el miércoles por la mañana no peor: el criterio 1 se evalúa solo con esa mañana, sin esperar a las 48 h); miércoles antes de correr, 10 touchdown con cada pierna y 20 saltitos a dos piernas (≤2/10). Si se cumplen los tres, 1.ª carrera ese miércoles (N1). Si no, esa semana no hay carrera (el domingo, como mucho, un paseo) y los criterios se repiten el miércoles siguiente [LÓGICA]."
  },
  {
   "celda": "A101",
@@ -3102,32 +3102,32 @@
  {
   "celda": "A103",
   "antes": null,
-  "ahora": "Mediciones: cada mañana, en casa, con las mismas pruebas: test en declive y 10 subidas con la D al mismo escalón o banco. Vale la peor de las dos (el declive solo no basta: te sale 0 aunque haya molestia). Se apuntan en «Seguimiento rodilla»."
+  "ahora": "Mediciones: cada mañana, en casa, con las mismas pruebas: test en declive y 10 subidas con la D al mismo escalón o banco. Vale la peor de las dos (el declive solo no basta: te sale 0 aunque haya molestia). Si falta la medición de la mañana, ese día no se evalúa y la primera medición disponible hace de referencia (en S2, la del martes). Se apuntan en «Seguimiento rodilla»."
  },
  {
   "celda": "A104",
   "antes": null,
-  "ahora": "Regla de gimnasio [LÓGICA]: ≤3/10 durante y el peor valor entre 24 y 48 h igual o mejor que la mañana del día de la sesión. Si no se cumple, retrocede un escalón en la siguiente sesión."
+  "ahora": "Regla de gimnasio [LÓGICA], en semáforo (solo días con carga de rodilla: lunes y jueves): Retroceder si pasas de 3/10 durante o la mañana siguiente estás peor que la de la sesión; Mantener si cumple, pero el peor valor entre 24 y 48 h supera la referencia (no avanzas, pero no has fallado); Avanzar si cumple y el peor valor 24-48 h es igual o mejor que la referencia. Los días sin carga de rodilla no se evalúan («—»)."
  },
  {
   "celda": "A105",
   "antes": null,
-  "ahora": "Regla de carrera [EVIDENCIA de uso]: ≤2/10 durante, vuelta al nivel previo en ≤60 min y la mañana siguiente no peor; para avanzar, además, peor valor 24-48 h ≤ referencia. Se aplica también a la entrada a la carrera y a las fases hacia el fútbol [LÓGICA]."
+  "ahora": "Regla de carrera [EVIDENCIA de uso], en semáforo (miércoles y domingo): Retroceder si pasas de 2/10 durante, no vuelves al nivel previo en ≤60 min o la mañana siguiente estás peor; Mantener si cumple, pero el peor valor 24-48 h supera la referencia; Avanzar si cumple y el peor valor 24-48 h ≤ referencia. El paseo de entrada se valida solo con la mañana siguiente. Se aplica también a las fases hacia el fútbol [LÓGICA]."
  },
  {
   "celda": "A106",
   "antes": null,
-  "ahora": "Novedades [LÓGICA]: una por día y validada a las 24 y 48 h antes de repetirla. Lunes: escalón o reps (prensa) · miércoles: nivel de carrera · viernes de S4: bici. Solo si esa mañana estás igual o mejor. Si una medición falla, retrocede la última novedad anterior a ella. Lo validado se repite: el jueves usa la profundidad del lunes y el domingo repite el nivel del miércoles."
+  "ahora": "Novedades [LÓGICA]: una por día y validada a las 24 y 48 h antes de repetirla. Lunes: escalón o reps (prensa) · miércoles: nivel de carrera · viernes de S4: bici. Solo si esa mañana estás igual o mejor. El calendario marca el máximo de cada semana; el nivel real sale del semáforo: Avanzar = nivel +1 (sin pasar del calendario), Mantener = el mismo, Retroceder = nivel −1. Lo validado se repite: el jueves usa la profundidad del lunes y el domingo repite el nivel del miércoles."
  },
  {
   "celda": "A107",
   "antes": null,
-  "ahora": "S2: el test del jueves cae dentro de las 48 h de la 1.ª carrera. Si el viernes de S2 sale peor, cuenta para las dos: el domingo repites N1 y el miércoles de S3 no subes de nivel [LÓGICA]."
+  "ahora": "S2 = semana de referencia [LÓGICA]: el paseo del martes no cuenta como novedad (caminas a diario). Si alguna mañana de S2 sale peor que la referencia (la primera medición de S2), en S3 no sube nada y se repite S2 entera, en lugar de intentar atribuir el empeoramiento."
  },
  {
   "celda": "A108",
   "antes": null,
-  "ahora": "Escalones de profundidad de la D [LÓGICA; no hay pautas de rango validadas para la rótula: INCERTIDUMBRE]: escalón 0 = la profundidad que ya usas con la D; escalón 4 = la de la I. Reparte la diferencia en 4 partes iguales (como mucho ~15° cada una; si sale más, se termina después del bloque). Se sube los lunes de S3, S4, S6 y S7 en la prensa; la touchdown del lunes va a la profundidad ya validada y hace de filtro. Apunta las marcas en «Seguimiento rodilla»."
+  "ahora": "Escalones de profundidad de la D [LÓGICA; no hay pautas de rango validadas para la rótula: INCERTIDUMBRE]: escalón 0 = la profundidad que ya usas con la D; escalón 4 = la de la I. Reparte la diferencia en 4 partes iguales (como mucho ~15° cada una; si sale más, se termina después del bloque). Se sube, como mucho, los lunes de S3, S4, S6 y S7 en la prensa (según el semáforo); la touchdown del lunes va a la profundidad ya validada y hace de filtro. Apunta las marcas en «Seguimiento rodilla»."
  },
  {
   "celda": "A109",
@@ -3137,7 +3137,7 @@
  {
   "celda": "A110",
   "antes": null,
-  "ahora": "Brote [LÓGICA]: lo primero que se quita es la bici. Si fallan dos mediciones seguidas: 48-72 h solo sentadilla española 5×45 s diaria y caminar; luego retomas un escalón por debajo."
+  "ahora": "Retroceso y brote [LÓGICA]: si una medición falla, se retrocede solo la última novedad anterior a ella (p. ej., jueves bien y viernes peor → se retrocede la carrera del miércoles y el escalón se mantiene); si tras el retroceso la siguiente medición vuelve a fallar, se retrocede la novedad anterior, y así hacia atrás. Si falla sin ninguna novedad reciente, o fallan dos sesiones seguidas: 48-72 h solo isométricos (sentadilla española 5×45 s diaria), y la bici si ya estaba introducida; luego se retoma un escalón por debajo en todo."
  },
  {
   "celda": "A111",
@@ -3147,7 +3147,7 @@
  {
   "celda": "A112",
   "antes": null,
-  "ahora": "AVISO S4 (fisio deportivo pendiente): si la molestia a las 24-48 h de S4 está igual o peor que en S2, o si el chasquido empieza a doler, la valoración pasa a ser prioritaria; si estás peor, se para la progresión hasta entonces. «Seguimiento rodilla» lo calcula."
+  "ahora": "AVISO S4 (fisio deportivo pendiente): se calcula al cerrar S4 (domingo 15/11) si hay al menos 5 mañanas registradas en S2 y en S4. Compara la media de las mañanas: PEOR si la de S4 supera en 0,5 o más a la de S2; MEJOR si queda 0,5 o más por debajo; si no, IGUAL. IGUAL o PEOR, o un chasquido que empieza a doler: la valoración del fisio pasa a ser prioritaria; PEOR además para la progresión [LÓGICA]. «Seguimiento rodilla» lo calcula."
  },
  {
   "celda": "A113",

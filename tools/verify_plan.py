@@ -8,7 +8,7 @@ por cada fila de ejercicio las columnas A (ejercicio), B (objetivo), C–J
 (semanas 1–8) y K (notas), además del día y título de cada sesión, el bloque de
 cardio y carrera (filas 95–98), los hitos (fila 99), los textos de reglas (A2,
 A64), semanas 9–10 (A66–A69), títulos (A93, A101) y reglas del bloque rodilla
-(A102–A113), y el recuento de series por grupo (filas 73–83). Sale con código 1
+(A102–A113), y el recuento de series por grupo (filas 73–83, 52 → 88). Sale con código 1
 si algo difiere.
 """
 import json
@@ -61,12 +61,13 @@ def raw(v):
 
 
 def expected_sets(label):
-    """Series que debe tener una etiqueta: «N-M x» → M; test → 3; «—»/«-» → 0."""
+    """Series que debe tener una etiqueta: «N-M x» → N (la M se añade a mano); test → 3;
+    «—»/«-» → 0."""
     if label in ("-", "—"):
         return 0
     m = re.match(r"^(\d+)(?:-(\d+))? x", label)
     if m:
-        return int(m.group(2) or m.group(1))
+        return int(m.group(1))
     if label.startswith("2 aprox.") or label.startswith("Opcional:"):
         return 3
     m = re.match(r"^(\d+) @ RIR", label)
@@ -81,7 +82,6 @@ def main():
                          capture_output=True, check=True, encoding="utf-8").stdout
     plan = json.loads(out)
     ws = openpyxl.load_workbook(xlsx)[SHEET]
-    ws_val = openpyxl.load_workbook(xlsx, data_only=True)[SHEET]
 
     errors = []
     compared = 0
@@ -167,17 +167,31 @@ def main():
         if len(plan[field]) != refs:
             errors.append(f"{field}: {len(plan[field])} textos, se esperaban {refs}")
 
-    # Recuento de series por grupo (filas 73–83, valores calculados de la tabla).
-    filas = {text(ws_val.cell(r, 1).value): r for r in COUNT_ROWS}
-    for grupo in plan["grupos"] + ["TOTAL"]:
-        row = next((r for n, r in filas.items() if n == grupo or (grupo == "TOTAL" and n.startswith("TOTAL"))), None)
+    # Recuento de series por grupo (filas 73–83). El Excel ajustado se guarda sin
+    # valores calculados, así que se replica aquí su fórmula de matriz
+    # (=SUM(($B$3:$B$63="grupo")*IFERROR(VALUE(LEFT(C$3:C$63,FIND(" ",C$3:C$63&" ")-1)),0)))
+    # y se comprueba que la tabla sigue usándola.
+    def series(grupo, col):
+        total = 0
+        for r in range(3, 64):
+            if raw(ws.cell(r, 2).value) == grupo:
+                cabeza = text(ws[f"{col}{r}"].value).split(" ")[0]
+                total += int(cabeza) if cabeza.isdigit() else 0
+        return total
+
+    filas = {text(ws.cell(r, 1).value): r for r in COUNT_ROWS}
+    for grupo in plan["grupos"]:
+        row = filas.get(grupo)
         if row is None:
             errors.append(f"Recuento: no hay fila para {grupo!r} en la hoja")
             continue
+        formula = getattr(ws[f"C{row}"].value, "text", "")
+        if f'="{grupo}")' not in formula or "C$3:C$63" not in formula:
+            errors.append(f"C{row}: la fórmula del recuento de {grupo!r} ha cambiado: {formula!r}")
         for w, col in enumerate(WEEKCOLS):
-            check(f"{col}{row} ({grupo} S{w + 1})", ws_val[f"{col}{row}"].value, plan["series"][w][grupo])
-    check("TOTAL S1", 52, plan["series"][0]["TOTAL"])
-    check("TOTAL S8", 88, plan["series"][7]["TOTAL"])
+            check(f"{col}{row} ({grupo} S{w + 1})", series(grupo, col), plan["series"][w][grupo])
+    for w, total in enumerate([52, 57, 62, 66, 71, 76, 80, 88]):
+        check(f"TOTAL S{w + 1}", total, plan["series"][w]["TOTAL"])
 
     # Ningún correctivo ni cardio suma al recuento: su objetivo no es un grupo.
     for key, s in plan["blocks"].items():

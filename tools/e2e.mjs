@@ -300,8 +300,8 @@ check('20/11 (viernes, semana 5): bici de 10 min en Z2 (sin Z3)',
   (await page.locator('main .ex.cardio .pres').textContent()) === "10' Z2");
 
 await goToDate('2026-10-24');
-check('24/10 (sábado): sesión del fin de semana de S1',
-  (await page.textContent('#hero-name')) === 'casa, sin máquinas ni poleas  ·  sin pierna (el domingo: carrera)'
+check('24/10 (sábado): sesión del fin de semana de S1, con su nombre de entonces',
+  (await page.textContent('#hero-name')) === 'Sábado/Domingo'
   && (await page.locator('main .ex').count()) === 5, await page.textContent('#hero-name'));
 check('«T» en prono (correctivo) sin series en S1 (-)', (await presOf('Elevación lateral en prono «T» (mancuernas, banco)')) === '-');
 await page.locator('main .ex', { hasText: 'Abs wesley banco' }).click();
@@ -310,7 +310,7 @@ await page.locator('.set-row:not(.head) input').nth(1).fill('15');
 await page.locator('.btn', { hasText: 'Hecho' }).click();
 await goToDate('2026-10-25');
 check('25/10 (domingo, S1): comparte la sesión del sábado',
-  (await page.textContent('#hero-name')) === 'casa, sin máquinas ni poleas  ·  sin pierna (el domingo: carrera)'
+  (await page.textContent('#hero-name')) === 'Sábado/Domingo'
   && (await page.textContent('.hero .week')) === 'Semana 1 · Volumen'
   && (await page.locator('main .ex').count()) === 5, await page.textContent('#hero-name'));
 
@@ -349,7 +349,7 @@ check('Semana 8: título y fechas',
 check('Semana 8: sentadilla 3 x8 en el jueves', (await presOf(SENT)) === SQ8);
 const etiquetas = await page.locator('main .section-label').allTextContents();
 check('El plan nombra el sábado y el domingo de carrera (S8) como en el Excel',
-  etiquetas.includes('Sábado · casa, sin máquinas ni poleas  ·  sin pierna (el domingo: carrera)')
+  etiquetas.includes('Sábado · casa, sin máquinas ni poleas  ·  desde S2, sin pierna (el domingo: carrera)')
   && etiquetas.includes('Domingo · Carrera'), etiquetas.join(' | '));
 check('El plan marca el cardio en azul (bici martes y viernes, carrera miércoles y domingo)',
   (await page.locator('main .ex.cardio').count()) === 4);

@@ -118,7 +118,8 @@ check('Cardio: va tras el ejercicio de fuerza de su sesión',
   rows.findIndex((r) => r[4].startsWith('Bici Z2')) > rows.findIndex((r) => r[4].startsWith('Press inclinado barra')));
 check('Cardio: las pautas largas no se repiten en Registro', bici && bici[14] === '', JSON.stringify(bici && bici[14]));
 const domingo = rows.find((r) => r[0] === '2026-10-24');
-check('Sábado: sesión con nombre y título', domingo && domingo[3].startsWith('Sábado · casa'), domingo && domingo[3]);
+// En S1 el sábado aún tenía pierna: conserva el nombre de entonces.
+check('Sábado de S1: sesión «Sábado/Domingo»', domingo && domingo[3] === 'Sábado/Domingo', domingo && domingo[3]);
 const julio = rows.find((r) => r[0] === '2026-07-20' && r[4] === 'Laterales de pie');
 check('Fila del plan viejo intacta',
   julio && julio[1] === 'Sem 1' && julio[2] === 'A' && julio[13] === '2 @ RIR2', JSON.stringify(julio));
@@ -145,8 +146,13 @@ const KNEE = {
     '2026-12-28': { decline: 9, notes: 'fuera de calendario' },
     '2026-10-25': { decline: 9, notes: 'fuera de calendario' },
   },
-  weeks: { S2: { runLevel: 1, depthStep: 0, notes: 'sem 2' }, S10: { runLevel: 4, depthStep: 4, notes: 'fin' }, S1: { notes: 'no existe' } },
-  entry: { walk: { ok: 'Sí', notes: 'ok' }, touchdown: { ok: 'No', notes: '' }, hops: { ok: 'Sí' } },
+  // runLevelText/depthStep: los niveles reales que añade export.js (kneeParaExportar).
+  weeks: { S2: { runLevelText: 'N1', depthStep: 0, notes: 'sem 2' }, S10: { runLevelText: 'Sin entrar', depthStep: 4, notes: 'fin' }, S1: { notes: 'no existe' } },
+  // Dos intentos de entrada: va el último (S3), con la fecha de su martes en G89.
+  entry: {
+    S2: { walkPain: 'No', walkBack60: 'Sí', tdPain: 'Sí', hopsPain: 'Sí', notes: 'primero' },
+    S3: { walkPain: 'Sí', walkBack60: 'Sí', tdPain: 'No', notes: 'ok' },
+  },
   tests: { t1: { load: 80, repsD: 8, repsI: 9, notes: 't1' }, t4: { load: 100.5, repsD: 5, repsI: 5 } },
   depth: { 0: { angle: 30, press: 40, box: 10, split: 12, touchdown: 'Sí', validated: 'Sí', notes: 'e0' }, 4: { angle: 90, notes: 'e4' } },
 };
@@ -157,8 +163,9 @@ const SC = {
   G6: 3, H6: 5, J6: 4, K6: 'No', L6: 'Sí', Q6: '', D6: 'Sesión propia', E6: 'Carrera (≤2/10)', F6: '',
   G15: 1, H15: 1, D15: 'Solo sesión',
   G67: 0, H67: 0, J67: 0, K67: 'Sí', L67: 'No', Q67: 'último día',
-  I72: 1, K72: 0, M72: 'sem 2', I80: 4, K80: 4, M80: 'fin',
-  H89: 'Sí', I89: 'ok', H90: 'No', I90: '', H91: 'Sí',
+  I72: 'N1', K72: 0, M72: 'sem 2', I80: 'Sin entrar', K80: 4, M80: 'fin',
+  D89: 'Sí', E89: 'Sí', D90: 'No', I89: 'ok', G89: 46329,   // martes 3/11
+
   F97: 80, G97: 8, H97: 9, M97: 't1', F100: 100.5, G100: 5, H100: 5,
   D105: 30, E105: 40, F105: 10, G105: 12, I105: 'Sí', K105: 'Sí', M105: 'e0', D109: 90, M109: 'e4',
 };
@@ -247,6 +254,9 @@ def norm(v):
     if v is None: return ""
     t = type(v).__name__
     if t == "ArrayFormula": return "ARR:" + v.ref + ":" + str(v.text)
+    if t == "datetime":   # celdas con formato de fecha (G89): se comparan como serie de Excel
+        import datetime
+        return (v - datetime.datetime(1899, 12, 30)).days
     return v
 res = {"formulas": 0, "formulaDiff": [], "styleDiff": [], "otherDiff": [], "valueDiff": [], "dims": [a.dimensions, b.dimensions]}
 for row in a.iter_rows():

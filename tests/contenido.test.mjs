@@ -156,7 +156,9 @@ test('hipertrofia idéntica: los ejercicios con series @RIR conservan las 8 pres
   assert.ok(n >= 20, `solo ${n} ejercicios @RIR`);
 });
 
-test('recuento por grupo: 52 → 88 y coincide con las filas 73–83 del Excel y con un recuento propio', () => {
+// El Excel ajustado se guarda sin valores calculados (se recalcula al abrirlo): la tabla
+// 73–83 se compara con un recuento propio y con los totales del Excel recibido.
+test('recuento por grupo: 52 → 88 y coincide con un recuento propio', () => {
   const grupos = Array.from({ length: 10 }, (_, i) => c(`A${73 + i}`));
   assert.deepEqual(grupos, PLAN.VOL_GRUPOS);
   const totales = [];
@@ -172,10 +174,8 @@ test('recuento por grupo: 52 → 88 y coincide con las filas 73–83 del Excel y
     const app = PLAN.seriesPorGrupo(w + 1);
     grupos.forEach((g, i) => {
       assert.equal(app[g], prop[g], `S${w + 1} ${g}`);
-      assert.equal(app[g], c(`${SEM[w]}${73 + i}`), `S${w + 1} ${g} vs Excel`);
     });
     totales.push(app.TOTAL);
-    assert.equal(app.TOTAL, c(`${SEM[w]}83`), `S${w + 1} total vs Excel`);
   }
   assert.deepEqual(totales, [52, 57, 62, 66, 71, 76, 80, 88]);
 });

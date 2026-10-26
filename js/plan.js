@@ -47,9 +47,11 @@ function parsePres(text, target = '') {
   else if ((m = text.match(/^(\d+) @ RIR(\d)$/))) p = rir(+m[1], +m[2]);
   else if ((m = text.match(/^(\d+) x(\d+)$/))) p = fix(+m[1], +m[2]);
   else if ((m = text.match(/^(\d+) x(\d+–\d+)$/))) p = fix(+m[1], m[2]);
-  // "N x R" o "N-M x R" (R entero o rango con - o –) y líneas de aclaración opcionales.
-  else if ((m = text.match(/^(\d+)(?:-(\d+))? x(\d+(?:[-–]\d+)?)(?:\n[\s\S]*)?$/))) {
-    p = fix(+(m[2] || m[1]), /^\d+$/.test(m[3]) ? +m[3] : m[3]);
+  // "N x R" o "N-M x R" (R entero o rango con - o –), "/pierna" opcional y líneas de
+  // aclaración. En "N-M" se precargan N series (la M se añade a mano si se hace).
+  else if ((m = text.match(/^(\d+)(?:-(\d+))? x(\d+(?:[-–]\d+)?)(\/pierna)?(?:\n[\s\S]*)?$/))) {
+    p = fix(+m[1], /^\d+$/.test(m[3]) ? +m[3] : m[3]);
+    if (m[2]) p.setsMax = +m[2];
   } else if (/^2 aprox\. \+\n1 al fallo\npor pierna$/.test(text)) {
     p = { ...fix(3, ''), reps: '' };   // test de fuerza: 2 de aproximación + 1 al fallo
   } else if (/^Opcional:\nrango completo$/.test(text)) {
@@ -60,7 +62,10 @@ function parsePres(text, target = '') {
 }
 
 /* vx(nombre, objetivo, [presc. Sem1..Sem8], notas, extra) */
-/* `extra`: { sides: true } marca los unilaterales que se registran por pierna (D/I). */
+/* `extra`: { sides: true } marca los unilaterales que se registran por pierna (D/I);
+   { prog } los que se prescriben con el nivel real (ver PRENSA_NIVELES y CARRERA_NIVELES);
+   { link: 'test' } el test de fuerza, que no se registra como ejercicio sino en
+   Rodilla › Test. */
 const vx = (name, target, weeks, notes = '', extra = {}) => ({
   id: slug(name), name, target, pres: weeks.map((w) => parsePres(w, target)), notes, ...extra,
 });
@@ -235,17 +240,17 @@ const BLOCK_VOL = {
         ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0'],
         'Prioridad 1 · Polea altura muñeca/muslo en plano escapular (~30° adelante). Intercalar en superserie alterna con la abducción (máquina) para dar 3-4 min de descanso al deltoides antes de las mancuernas.'),
       vx('Abducción de pie unilateral (máquina)', 'Rehab (cadera)',
-        ['2 x15–20', '3 x10-15\n@RIR1-2', '3 x10-15\n@RIR1-2', '3 x10-15\n@RIR1-2', '3 x10-15\n@RIR1-2', '3 x10-15\n@RIR1-2', '3 x10-15\n@RIR1-2', '3 x10-15\n@RIR1-2'],
+        ['2 x15–20', '3 x10-15/pierna\n@RIR1-2', '3 x10-15/pierna\n@RIR1-2', '3 x10-15/pierna\n@RIR1-2', '3 x10-15/pierna\n@RIR1-2', '3 x10-15/pierna\n@RIR1-2', '3 x10-15/pierna\n@RIR1-2', '3 x10-15/pierna\n@RIR1-2'],
         'Cadera: de pie, unilateral, en máquina; empieza por la D y sube carga cuando llegues a 15 con RIR 1-2. Cadera + rodilla combinadas = primera línea en los consensos de 2016 y 2018 [EVIDENCIA]. No cuenta como novedad: apenas carga la rodilla [LÓGICA]. Antes del rehab: sentadilla española 2-3×45 s.', { sides: true }),
       vx('Elev laterales mancuerna', 'Hombro lat.',
         ['1 @ RIR0', '1 @ RIR0', '1 @ RIR0', '1 @ RIR0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0'],
         'Prioridad 1 · Hacer tras el 1er bloque de la abducción (máquina) · Perfil en acortamiento, controlar bajada sin rebotar.'),
       vx('Touchdown squat', 'Rehab',
-        ['2 x15–20', '2 x10-15\n/pierna', '2 x10-15\n/pierna', '2 x10-15\n/pierna', '2 x10-15\n/pierna', '2 x10-15\n/pierna', '2 x10-15\n/pierna', '2 x10-15\nrepite S7'],
-        'Control antes de la prensa. D a la profundidad YA validada (la de la semana anterior), I completa; tempo 2-0-2, RIR 3; pelvis nivelada y rodilla hacia el 2.º-4.º dedo. Hace de filtro: si la D pasa de 3/10 aquí, ese lunes no se sube escalón en la prensa [LÓGICA].', { sides: true }),
+        ['2 x15–20', '2 x10-15/pierna', '2 x10-15/pierna', '2 x10-15/pierna', '2 x10-15/pierna', '2 x10-15/pierna', '2 x10-15/pierna', '2 x10-15/pierna\nrepite S7'],
+        'Control antes de la prensa. D a la profundidad YA validada (la de la semana anterior), I completa; tempo 2-0-2, RIR 3; pelvis nivelada y rodilla hacia el 2.º-4.º dedo. Hace de filtro: si la D pasa de 3/10 aquí, ese lunes no se sube escalón en la prensa [LÓGICA].', { sides: true, prog: 'touchdown' }),
       vx('Prensa unil · pesado y lento n.º 1', 'Rehab',
-        ['2 x12', '2 x10\nnov: x10', '2 x10\nnov: +1 escalón', '2 x10\nnov: +1 escalón', '2 x8\nnov: x8', '2 x8\nnov: +1 escalón', '2 x8\nnov: +1 escalón', '2 x8\nrepite S7'],
-        'Pesado y lento para el tendón [EVIDENCIA: Kongsgaard 2009; 1-2 veces/semana para mantenerlo: LÓGICA]. Tempo 3-1-3. D primero: RIR 2 y profundidad de su escalón. I: RIR 1-2, rango completo y mismas reps. Lunes = día de novedad (escalón o reps): solo si esa mañana estás igual o mejor y la touchdown no pasa de 3/10; si no, repite la semana anterior. En la sesión con novedad no cambies nada más (con escalón nuevo, mismo peso).', { sides: true }),
+        ['2 x12', '2 x10/pierna\nnov: x10', '2 x10/pierna\nnov: +1 escalón', '2 x10/pierna\nnov: +1 escalón', '2 x8/pierna\nnov: x8', '2 x8/pierna\nnov: +1 escalón', '2 x8/pierna\nnov: +1 escalón', '2 x8/pierna\nrepite S7'],
+        'Pesado y lento para el tendón [EVIDENCIA: Kongsgaard 2009; 1-2 veces/semana para mantenerlo: LÓGICA]. Tempo 3-1-3. D primero: RIR 2 y profundidad de su escalón. I: RIR 1-2, rango completo y mismas reps. Lunes = día de novedad (escalón o reps): solo si esa mañana estás igual o mejor y la touchdown no pasa de 3/10; si no, repite la semana anterior. En la sesión con novedad no cambies nada más (con escalón nuevo, mismo peso).', { sides: true, prog: 'prensa' }),
       vx('Gemelos prensa', 'Gemelos',
         ['3 @ RIR1/0', '3 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0', '5 @ RIR1/0', '5 @ RIR1/0'],
         'Prensa con pies abajo · Pausa estricta de 2 s en máximo estiramiento abajo (sin rebotar en el tendón de Aquiles) + rodilla semirrígida.'),
@@ -274,7 +279,7 @@ const BLOCK_VOL = {
         'Colgado con depresión escapular (activa dorsal) · Enrollar pelvis hacia costillas (retroversión). Usar straps si el agarre molesta al codo.'),
       vx('Bici Z2 (65–75% FC)', 'Cardio',
         ['15 min', '—', '—', '—', '10\' Z2', '10\' Z2', '10\' Z2', '10\' Z2'],
-        'No se hizo en S1: estímulo NUEVO [LÓGICA]. Entra en S4 (el viernes) solo si S2 y S3 cumplieron la regla; desde S5, martes y viernes. Sin Z3 en este bloque. Lo primero que se quita si hay brote. Sillín alto (rodilla a 20-25° abajo), 85-90 rpm, sentado. 10 min fijos en el bloque; subir a 15 después del viaje, como novedad única.'),
+        'No se hizo en S1: estímulo NUEVO [LÓGICA]. Entra en S4 (el viernes) solo si S2 y S3 cumplieron la regla; desde S5, martes y viernes. Sin Z3 en este bloque. En la regla de 48-72 h se mantiene si ya estaba introducida. Sillín alto (rodilla a 20-25° abajo), 85-90 rpm, sentado. 10 min fijos en el bloque; subir a 15 después del viaje, como novedad única.'),
     ],
   },
   X: {
@@ -302,8 +307,8 @@ const BLOCK_VOL = {
         ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '4 @ RIR1/0'],
         'Prioridad 2 (Bíceps en estiramiento) · Hombro en extensión detrás del torso; no dejar que el hombro rote hacia delante al subir.'),
       vx('Andar-correr en llano', 'Cardio',
-        ['—', 'N1 · 8×(1\'/2\')', 'N2 · 6×(2\'/1\')', 'N3 · 4×(4\'/1\')', 'N4 · 4×(5\'/1\')', 'N5 · 2×(13\'/1\')', 'N6 · 30\' seguidos', 'repite N6'],
-        'Formato: minutos trotando / minutos andando. Nivel nuevo solo si esa mañana estás igual o mejor; si no, repite el anterior (los niveles son objetivos, no fechas). 5 min andando antes; llano y firme. Regla de carrera: ≤2/10 durante, vuelta al nivel previo en ≤60 min y la mañana siguiente no peor; para avanzar, además, peor valor 24-48 h ≤ referencia [EVIDENCIA de uso: TREK Education, basada en Esculier; no comparada con otros umbrales]. Cadencia +5-10% opcional [EVIDENCIA mixta: Bramah 2019, serie de 12 corredores con mejora de dolor y función mantenida a 3 meses; Esculier 2018, sin beneficio extra sobre la educación].'),
+        ['—', 'N1 · 8×(1\'/2\')', 'N2 · 6×(2\'/1\')', 'N3 · 4×(4\'/1\')', 'N4 · 4×(5\'/1\')', 'N5 · 3×(8\'/1\')', 'N6 · 2×(12\'/1\')', 'repite N6'],
+        'Formato: minutos trotando / minutos andando. Niveles: N1 8×(1\'/2\') · N2 6×(2\'/1\') · N3 4×(4\'/1\') · N4 4×(5\'/1\') · N5 3×(8\'/1\') · N6 2×(12\'/1\') · N7 30\' seguidos (después del viaje). N5 es un nivel intermedio para que el tramo continuo más largo no crezca más de un 50 % por nivel (5 → 8 → 12 min) [LÓGICA]. El calendario marca el máximo de cada semana; el nivel real sale del semáforo: Avanzar = +1, Mantener = el mismo, Retroceder = −1. Nivel nuevo solo si esa mañana estás igual o mejor. 5 min andando antes; llano y firme. Regla de carrera: Retroceder si pasas de 2/10 durante, no vuelves al nivel previo en ≤60 min o la mañana siguiente estás peor; Mantener si cumple pero el peor valor 24-48 h supera la referencia; Avanzar si cumple y el peor 24-48 h ≤ referencia [EVIDENCIA de uso: TREK Education, basada en Esculier; no comparada con otros umbrales]. Cadencia +5-10% opcional [EVIDENCIA mixta: Bramah 2019, serie de 12 corredores con mejora de dolor y función mantenida a 3 meses; Esculier 2018, sin beneficio extra sobre la educación].', { prog: 'carrera' }),
     ],
   },
   J: {
@@ -311,15 +316,15 @@ const BLOCK_VOL = {
     exercises: [
       vx('TEST fuerza · extensión unilateral en máquina 90→45°', 'Test',
         ['—', '2 aprox. +\n1 al fallo\npor pierna', '—', '—', '2 aprox. +\n1 al fallo\npor pierna', '—', '2 aprox. +\n1 al fallo\npor pierna', 'Opcional:\nrango completo'],
-        'Al empezar la sesión, tras la española 2-3×45 s y 2 series de aproximación. Mismo asiento y SIEMPRE rango fijo 90→45° (si el rango cambia, la comparación entre semanas no vale). Misma carga en las dos piernas (la que la I haga unas 10-15 reps), tempo 2-0-2, D primero, 3 min de descanso y luego la I; para si pasa de 3/10. Apunta carga y reps en «Seguimiento rodilla», que calcula la simetría. Objetivo ≥90% antes del balón [LÓGICA; el 90% viene de la vuelta al deporte tras LCA, no está validado en dolor femoropatelar: INCERTIDUMBRE]. Test en rango completo opcional en S8 y no en S7, para que sea la única novedad de su semana.', { sides: true }),
+        'Al empezar la sesión, tras la española 2-3×45 s y 2 series de aproximación. Mismo asiento y SIEMPRE rango fijo 90→45° (si el rango cambia, la comparación entre semanas no vale). Misma carga en las dos piernas (la que la I haga unas 10-15 reps), tempo 2-0-2, D primero, 3 min de descanso y luego la I; para si pasa de 3/10. Apunta carga y reps en «Seguimiento rodilla», que calcula la simetría. Objetivo ≥90% antes del balón [LÓGICA; el 90% viene de la vuelta al deporte tras LCA, no está validado en dolor femoropatelar: INCERTIDUMBRE]. Test en rango completo opcional en S8 y no en S7, para que sea la única novedad de su semana.', { link: 'test' }),
       vx('Sentadilla al cajón o desde pines · pesado y lento n.º 2', 'Rehab',
         ['3 x12', '3 x10', '3 x10\nprof. del lunes', '3 x10\nprof. del lunes', '3 x8', '3 x8\nprof. del lunes', '3 x8\nprof. del lunes', '3 x8\nrepite S7'],
-        'Tras el test (S2/S5/S7), carga por RIR. Tempo 3-1-3, RIR 2. Profundidad = la validada el lunes en la prensa. Postura habitual: un chasquido sin dolor no cambia nada; el apoyo ancho solo si te reduce el DOLOR [LÓGICA]. Antes del rehab (si no hay test): sentadilla española 2-3×45 s.'),
+        'Tras el test (S2/S5/S7), carga por RIR. Tempo 3-1-3, RIR 2. Profundidad = la validada el lunes en la prensa. Postura habitual: un chasquido sin dolor no cambia nada; el apoyo ancho solo si te reduce el DOLOR [LÓGICA]. Antes del rehab (si no hay test): sentadilla española 2-3×45 s.', { prog: 'sentadilla' }),
       vx('Bulgarian split squat', 'Rehab',
-        ['2 x12', '2 x10', '2 x10', '2 x10', '2 x8', '2 x8', '2 x8', '2 x8\nrepite S7'],
-        'D primero: RIR 2 y profundidad validada el lunes. I: RIR 1-2 y rango completo. Tempo 3-1-3. Alterna piernas, 60-90 s entre una y otra.', { sides: true }),
+        ['2 x12', '2 x10/pierna', '2 x10/pierna', '2 x10/pierna', '2 x8/pierna', '2 x8/pierna', '2 x8/pierna', '2 x8/pierna\nrepite S7'],
+        'D primero: RIR 2 y profundidad validada el lunes. I: RIR 1-2 y rango completo. Tempo 3-1-3. Alterna piernas, 60-90 s entre una y otra.', { sides: true, prog: 'bulgara' }),
       vx('Abducción de pie unilateral (máquina)', 'Rehab (cadera)',
-        ['2 x15–20', '3 x10-15\n@RIR1-2', '3 x10-15\n@RIR1-2', '3 x10-15\n@RIR1-2', '3 x10-15\n@RIR1-2', '3 x10-15\n@RIR1-2', '3 x10-15\n@RIR1-2', '3 x10-15\n@RIR1-2'],
+        ['2 x15–20', '3 x10-15/pierna\n@RIR1-2', '3 x10-15/pierna\n@RIR1-2', '3 x10-15/pierna\n@RIR1-2', '3 x10-15/pierna\n@RIR1-2', '3 x10-15/pierna\n@RIR1-2', '3 x10-15/pierna\n@RIR1-2', '3 x10-15/pierna\n@RIR1-2'],
         'Misma máquina que el lunes; empieza por la D. Va DESPUÉS de la búlgara, para no fatigar el glúteo medio antes del trabajo a una pierna [LÓGICA]. Lunes + jueves = 72-96 h entre sesiones de cadera.', { sides: true }),
       vx('Touchdown squat', 'Rehab',
         ['2 x15–20', '—', '—', '—', '—', '—', '—', '—'],
@@ -368,7 +373,9 @@ const BLOCK_VOL = {
     ],
   },
   S: {
-    id: 'VOL-S', dow: 6, dows: [6, 0], name: 'Sábado', title: 'casa, sin máquinas ni poleas  ·  sin pierna (el domingo: carrera)',
+    id: 'VOL-S', dow: 6, dows: [6, 0], name: 'Sábado',
+    // En S1 el sábado (y el domingo) aún tenía pierna: se ve como entonces.
+    byWeek: { 1: { name: 'Sábado/Domingo', title: '' } }, title: 'casa, sin máquinas ni poleas  ·  desde S2, sin pierna (el domingo: carrera)',
     exercises: [
       vx('Abducción unilateral', 'Rehab (cadera)',
         ['2 x15–20', '—', '—', '—', '—', '—', '—', '—'],
@@ -398,14 +405,14 @@ const BLOCK_VOL = {
     exercises: [
       vx('Andar-correr en llano', 'Cardio',
         ['—', 'repite el\nmiércoles', 'repite el\nmiércoles', 'repite el\nmiércoles', 'repite el\nmiércoles', 'repite el\nmiércoles', 'repite el\nmiércoles', 'repite el\nmiércoles'],
-        'Repite el nivel validado el miércoles. Nunca dos días seguidos corriendo [LÓGICA]. El sábado no hay pierna: llegas descansado.'),
+        'Repite el nivel validado el miércoles. Si el miércoles no se cumplieron los criterios de entrada, esa semana no hay carrera: el domingo no se corre (como mucho, un paseo). Nunca dos días seguidos corriendo [LÓGICA]. El sábado no hay pierna: llegas descansado.', { prog: 'carrera-domingo' }),
     ],
   },
 };
 
 /* Celdas A2 y A64 */
 const VOL_RULES = [
-  'RIR1/0 = todas las series a RIR1 y la ÚLTIMA a RIR0 (si solo hay 1 serie, RIR0).  REHAB RODILLA S2-S8 en 2 días: lunes (touchdown + prensa) y jueves (sentadilla + búlgara), pesado y lento, tempo 3-1-3; D a RIR 2 y en su escalón de profundidad, I a RIR 1-2 y rango completo. Reps: ×12 S1 → ×10 S2-4 → ×8 S5-8 → ×6 tras el viaje. Una novedad por día (lunes profundidad/reps · miércoles carrera), solo si esa mañana estás igual o mejor. Reglas al final de la hoja; registro diario en «Seguimiento rodilla».',
+  'RIR1/0 = todas las series a RIR1 y la ÚLTIMA a RIR0 (si solo hay 1 serie, RIR0).  REHAB RODILLA S2-S8 en 2 días: lunes (touchdown + prensa) y jueves (sentadilla + búlgara), pesado y lento, tempo 3-1-3; D a RIR 2 y en su escalón de profundidad, I a RIR 1-2 y rango completo. Reps: ×12 S1 → ×10 S2-4 → ×8 S5-8 → ×6 tras el viaje. Una novedad por día (lunes profundidad/reps · miércoles carrera), solo si esa mañana estás igual o mejor. El calendario marca el máximo de cada semana: se progresa según el semáforo (Avanzar / Mantener / Retroceder) y la app prescribe con el nivel real. Reglas al final de la hoja; registro diario en «Seguimiento rodilla».',
   'Autorregulación: si un músculo pierde reps 2 sesiones seguidas, esa semana NO le subas series. Si se estancan varios a la vez o la rodilla empeora en el test, repite la semana anterior.',
 ];
 
@@ -429,7 +436,7 @@ const VOL_HITOS = [
   'Repite S7\nJue: test opc.\nrango completo',
 ];
 // Celda K99: nota general bajo los hitos.
-const VOL_HITOS_NOTE = 'Entrada a la carrera (S2), con la regla de carrera: martes, paseo de 30 min a paso rápido (≤2/10, nivel previo en ≤60 min y el miércoles por la mañana no peor); miércoles antes de correr, 10 touchdown con cada pierna y 20 saltitos a dos piernas (≤2/10). Si se cumplen los tres, 1.ª carrera ese miércoles (N1); si no, se repiten la semana siguiente [LÓGICA].';
+const VOL_HITOS_NOTE = 'Entrada a la carrera (S2), con la regla de carrera: martes, paseo de 30 min a paso rápido (≤2/10, nivel previo en ≤60 min y el miércoles por la mañana no peor: el criterio 1 se evalúa solo con esa mañana, sin esperar a las 48 h); miércoles antes de correr, 10 touchdown con cada pierna y 20 saltitos a dos piernas (≤2/10). Si se cumplen los tres, 1.ª carrera ese miércoles (N1). Si no, esa semana no hay carrera (el domingo, como mucho, un paseo) y los criterios se repiten el miércoles siguiente [LÓGICA].';
 
 /* Celdas A93 (título del bloque de cardio y carrera) y A101 (título de las reglas) */
 const VOL_CARDIO_TITLE = 'BLOQUE DE CARDIO Y CARRERA (S2-S8)';
@@ -437,18 +444,36 @@ const VOL_BLOCK_RULES_TITLE = 'REGLAS DEL BLOQUE RODILLA (S2-S8)';
 /* Celdas A102–A113: las 12 reglas del bloque rodilla. */
 const VOL_BLOCK_RULES = [
   'Base [EVIDENCIA]: ejercicio combinado de cadera y rodilla (consensos de 2016 y 2018). Rodilla en 2 días, lunes y jueves (72-96 h entre sesiones, dentro de la ventana de 2-3 días de recuperación del tendón que describe el libro), pesado y lento en ambos; sábado sin pierna para llegar descansado a la carrera del domingo [LÓGICA].',
-  'Mediciones: cada mañana, en casa, con las mismas pruebas: test en declive y 10 subidas con la D al mismo escalón o banco. Vale la peor de las dos (el declive solo no basta: te sale 0 aunque haya molestia). Se apuntan en «Seguimiento rodilla».',
-  'Regla de gimnasio [LÓGICA]: ≤3/10 durante y el peor valor entre 24 y 48 h igual o mejor que la mañana del día de la sesión. Si no se cumple, retrocede un escalón en la siguiente sesión.',
-  'Regla de carrera [EVIDENCIA de uso]: ≤2/10 durante, vuelta al nivel previo en ≤60 min y la mañana siguiente no peor; para avanzar, además, peor valor 24-48 h ≤ referencia. Se aplica también a la entrada a la carrera y a las fases hacia el fútbol [LÓGICA].',
-  'Novedades [LÓGICA]: una por día y validada a las 24 y 48 h antes de repetirla. Lunes: escalón o reps (prensa) · miércoles: nivel de carrera · viernes de S4: bici. Solo si esa mañana estás igual o mejor. Si una medición falla, retrocede la última novedad anterior a ella. Lo validado se repite: el jueves usa la profundidad del lunes y el domingo repite el nivel del miércoles.',
-  'S2: el test del jueves cae dentro de las 48 h de la 1.ª carrera. Si el viernes de S2 sale peor, cuenta para las dos: el domingo repites N1 y el miércoles de S3 no subes de nivel [LÓGICA].',
-  'Escalones de profundidad de la D [LÓGICA; no hay pautas de rango validadas para la rótula: INCERTIDUMBRE]: escalón 0 = la profundidad que ya usas con la D; escalón 4 = la de la I. Reparte la diferencia en 4 partes iguales (como mucho ~15° cada una; si sale más, se termina después del bloque). Se sube los lunes de S3, S4, S6 y S7 en la prensa; la touchdown del lunes va a la profundidad ya validada y hace de filtro. Apunta las marcas en «Seguimiento rodilla».',
+  'Mediciones: cada mañana, en casa, con las mismas pruebas: test en declive y 10 subidas con la D al mismo escalón o banco. Vale la peor de las dos (el declive solo no basta: te sale 0 aunque haya molestia). Si falta la medición de la mañana, ese día no se evalúa y la primera medición disponible hace de referencia (en S2, la del martes). Se apuntan en «Seguimiento rodilla».',
+  'Regla de gimnasio [LÓGICA], en semáforo (solo días con carga de rodilla: lunes y jueves): Retroceder si pasas de 3/10 durante o la mañana siguiente estás peor que la de la sesión; Mantener si cumple, pero el peor valor entre 24 y 48 h supera la referencia (no avanzas, pero no has fallado); Avanzar si cumple y el peor valor 24-48 h es igual o mejor que la referencia. Los días sin carga de rodilla no se evalúan («—»).',
+  'Regla de carrera [EVIDENCIA de uso], en semáforo (miércoles y domingo): Retroceder si pasas de 2/10 durante, no vuelves al nivel previo en ≤60 min o la mañana siguiente estás peor; Mantener si cumple, pero el peor valor 24-48 h supera la referencia; Avanzar si cumple y el peor valor 24-48 h ≤ referencia. El paseo de entrada se valida solo con la mañana siguiente. Se aplica también a las fases hacia el fútbol [LÓGICA].',
+  'Novedades [LÓGICA]: una por día y validada a las 24 y 48 h antes de repetirla. Lunes: escalón o reps (prensa) · miércoles: nivel de carrera · viernes de S4: bici. Solo si esa mañana estás igual o mejor. El calendario marca el máximo de cada semana; el nivel real sale del semáforo: Avanzar = nivel +1 (sin pasar del calendario), Mantener = el mismo, Retroceder = nivel −1. Lo validado se repite: el jueves usa la profundidad del lunes y el domingo repite el nivel del miércoles.',
+  'S2 = semana de referencia [LÓGICA]: el paseo del martes no cuenta como novedad (caminas a diario). Si alguna mañana de S2 sale peor que la referencia (la primera medición de S2), en S3 no sube nada y se repite S2 entera, en lugar de intentar atribuir el empeoramiento.',
+  'Escalones de profundidad de la D [LÓGICA; no hay pautas de rango validadas para la rótula: INCERTIDUMBRE]: escalón 0 = la profundidad que ya usas con la D; escalón 4 = la de la I. Reparte la diferencia en 4 partes iguales (como mucho ~15° cada una; si sale más, se termina después del bloque). Se sube, como mucho, los lunes de S3, S4, S6 y S7 en la prensa (según el semáforo); la touchdown del lunes va a la profundidad ya validada y hace de filtro. Apunta las marcas en «Seguimiento rodilla».',
   'Chasquido: si no duele, no se quita ni se cambia nada. Si duele, cuenta como dolor.',
-  'Brote [LÓGICA]: lo primero que se quita es la bici. Si fallan dos mediciones seguidas: 48-72 h solo sentadilla española 5×45 s diaria y caminar; luego retomas un escalón por debajo.',
+  'Retroceso y brote [LÓGICA]: si una medición falla, se retrocede solo la última novedad anterior a ella (p. ej., jueves bien y viernes peor → se retrocede la carrera del miércoles y el escalón se mantiene); si tras el retroceso la siguiente medición vuelve a fallar, se retrocede la novedad anterior, y así hacia atrás. Si falla sin ninguna novedad reciente, o fallan dos sesiones seguidas: 48-72 h solo isométricos (sentadilla española 5×45 s diaria), y la bici si ya estaba introducida; luego se retoma un escalón por debajo en todo.',
   'Alarma: bloqueo real, fallos repetidos de la rodilla o hinchazón visible → se para la progresión y toca valoración clínica.',
-  'AVISO S4 (fisio deportivo pendiente): si la molestia a las 24-48 h de S4 está igual o peor que en S2, o si el chasquido empieza a doler, la valoración pasa a ser prioritaria; si estás peor, se para la progresión hasta entonces. «Seguimiento rodilla» lo calcula.',
+  'AVISO S4 (fisio deportivo pendiente): se calcula al cerrar S4 (domingo 15/11) si hay al menos 5 mañanas registradas en S2 y en S4. Compara la media de las mañanas: PEOR si la de S4 supera en 0,5 o más a la de S2; MEJOR si queda 0,5 o más por debajo; si no, IGUAL. IGUAL o PEOR, o un chasquido que empieza a doler: la valoración del fisio pasa a ser prioritaria; PEOR además para la progresión [LÓGICA]. «Seguimiento rodilla» lo calcula.',
   'Fases hacia el fútbol, después del viaje [LÓGICA], siempre con la regla de carrera: cambios de dirección ← 30 min seguidos dos veces sin reacción y rango D = I · pliometría ← 2 semanas de cambios de dirección y 10 saltos a una pierna sin dolor · balón ← cuádriceps D ≥90% de la I en el test y pliometría media sin reacción · equipo ← 2 semanas de balón sin reacción.',
 ];
+
+/* Progresión real -------------------------------------------------------
+   El calendario (las celdas de la hoja) marca el máximo de cada semana; el nivel
+   real sale del semáforo (js/rodilla-calc.js: Avanzar +1, Mantener =, Retroceder −1).
+   Dos escaleras: la prensa del lunes (reps y escalón de profundidad de la D, que el
+   jueves repiten la sentadilla y la búlgara) y la carrera del miércoles (el domingo
+   repite su nivel). */
+// Prensa: nivel 0 = S1 (x12, escalón 0); cada subida es la novedad de un lunes.
+const PRENSA_NIVELES = [
+  { reps: 12, esc: 0 }, { reps: 10, esc: 0 }, { reps: 10, esc: 1 }, { reps: 10, esc: 2 },
+  { reps: 8, esc: 2 }, { reps: 8, esc: 3 }, { reps: 8, esc: 4 },
+];
+// Carrera (K97): nivel 0 = aún sin entrar (criterios de entrada); N7, después del viaje.
+const CARRERA_NIVELES = ['', "8×(1'/2')", "6×(2'/1')", "4×(4'/1')", "4×(5'/1')",
+  "3×(8'/1')", "2×(12'/1')", "30' seguidos"];
+// Máximo del calendario por semana (índice = semana 1–8), según las celdas D10–J10 y D97–J97.
+const PRENSA_MAX = [null, 0, 1, 2, 3, 4, 5, 6, 6];
+const CARRERA_MAX = [null, 0, 1, 2, 3, 4, 5, 6, 6];
 
 const PLANS = [
   { id: 'jul', name: '4 semanas', range: '20 jul – 16 ago', from: '2026-07-20', to: '2026-08-16',
@@ -510,6 +535,9 @@ function sessionFor(dateStr) {
   return { week, options: [BLOCK_B[1], BLOCK_B[2], BLOCK_B[3]] };
 }
 
+/* Nombre y título de una sesión esa semana (el sábado de S1 conserva los de entonces). */
+const sessionLabel = (session, week) => ({ ...session, ...((week && session.byWeek && session.byWeek[week.n]) || {}) });
+
 /* Plan de volumen: una prescripción por semana. Plan de 4 semanas: s1/s2. */
 function presFor(exercise, week) {
   if (exercise.pres) return exercise.pres[week.n - 1];
@@ -545,5 +573,6 @@ const PLAN = {
   WEEKS, BLOCK_A, BLOCK_B, RULES, VOL_WEEKS, BLOCK_VOL, VOL_RULES, VOL_NOTES, PLANS,
   VOL_HITOS, VOL_HITOS_NOTE, VOL_BLOCK_RULES, VOL_BLOCK_RULES_TITLE, VOL_CARDIO_TITLE, VOL_GRUPOS,
   weekFor, planById, planFor, sessionsFor, sessionFor, presFor, isoDate,
-  parsePres, sidesFor, seriesPorGrupo, slug,
+  parsePres, sidesFor, seriesPorGrupo, slug, sessionLabel,
+  PRENSA_NIVELES, CARRERA_NIVELES, PRENSA_MAX, CARRERA_MAX,
 };

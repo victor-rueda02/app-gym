@@ -1,12 +1,17 @@
-"""Vuelca el Excel nuevo del plan rodilla a docs/plan-rodilla/volcado.json y
-compara la hoja de volumen con la versión anterior (la del commit c3ece19, que
-es la que la app tenía empotrada antes del plan rodilla).
+"""Vuelca el Excel del plan rodilla (el de la raíz, que es el que empotra la app:
+el recibido más los ajustes de tools/ajusta_excel_rodilla.py) a
+docs/plan-rodilla/volcado.json y compara la hoja de volumen con la versión
+anterior (la del commit c3ece19, la que la app tenía empotrada antes del plan
+rodilla).
 
     python tools/volcado_excel.py
 
 volcado.json: {hoja: {celda: {"v": valor calculado, "f": fórmula}}} con todas
 las celdas con valor de "Volumen (1910-1112)" y "Seguimiento rodilla".
 diff_volumen.json / diff_volumen.txt: celdas de la hoja Volumen que cambian.
+
+openpyxl no guarda valores calculados al escribir, así que en las celdas con
+fórmula del Excel ajustado "v" sale vacío: se recalculan al abrir el libro.
 """
 import datetime
 import io
@@ -19,7 +24,7 @@ import openpyxl
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 DOCS = ROOT / "docs" / "plan-rodilla"
-NUEVO = DOCS / "Plan_8sem_vol_definitivo_con_cardio.xlsx"
+NUEVO = ROOT / "Plan_8sem_vol_definitivo_con_cardio.xlsx"
 # La versión anterior se lee de git: el fichero de la raíz pasa a ser el nuevo.
 ANTERIOR = "c3ece19:Plan_8sem_vol_definitivo_con_cardio.xlsx"
 HOJAS = ["Volumen (1910-1112)", "Seguimiento rodilla"]

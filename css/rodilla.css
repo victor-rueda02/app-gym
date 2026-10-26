@@ -108,3 +108,13 @@
 /* Tarjeta de Hoy */
 .rod-hoy { border-left: 3px solid var(--rehab); }
 .rod-hoy .rod-grid2.rod-calc { margin-top: 10px; }
+
+/* Avisos de S2 y estados pendientes */
+.rod-a-repite { border-left-color: var(--rod-bad); background: rgba(255, 107, 107, .1); }
+.rod-a-estable { border-left-color: var(--ok); background: rgba(61, 220, 151, .1); }
+
+/* Progresión: máximo, propuesta y nivel real por semana */
+.rod-prog-l { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--line); }
+.rod-prog-l > b { font-size: 14.5px; }
+.rod-prog-g { display: grid; grid-template-columns: auto 1fr; gap: 2px 10px; margin: 6px 0; font-size: 14px; }
+.rod-prog-g small { color: var(--muted); font-size: 12.5px; align-self: center; }
