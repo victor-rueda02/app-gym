@@ -140,7 +140,7 @@ async function irA(fecha) {
 const progDeHoy = (fecha) => page.evaluate((f) => {
   const { week, options } = PLAN.sessionFor(f);
   return options[0].exercises.filter((e) => !PLAN.presFor(e, week).skip).map((e) => (e.link === 'test' ? 'Test ›'
-    : e.prog && Rodilla.prescripcion(e, week) ? Rodilla.prescripcion(e, week).label : null));
+    : e.prog && Rodilla.prescripcion(e, week, f) ? Rodilla.prescripcion(e, week, f).label : null));
 }, fecha);
 const leerHoy = () => page.evaluate(() => ({
   nombre: document.getElementById('hero-name').textContent,

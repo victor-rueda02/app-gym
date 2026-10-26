@@ -2,7 +2,7 @@
    vez instalada funciona sin cobertura (sótanos de gimnasio incluidos).
    Sube CACHE al desplegar cambios para forzar la actualización. */
 
-const CACHE = 'gym-v6';
+const CACHE = 'gym-v7';
 const ASSETS = [
   './',
   './index.html',

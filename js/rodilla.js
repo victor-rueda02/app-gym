@@ -4,8 +4,9 @@
    - `Rodilla.render()`: pinta la pestaña (data-tab="knee") en `#view`.
    - `Rodilla.todayCard(date)`: tarjeta de rodilla de Hoy, o null fuera del 26/10–27/12.
    - `Rodilla.abrir(sec, fecha)`: lleva a la pestaña, en esa sección (y día).
-   - `Rodilla.prescripcion(exercise, week)`: prescripción con el nivel real para los
-     ejercicios con `prog` (prensa, sentadilla, búlgara, touchdown, carrera), o null.
+   - `Rodilla.prescripcion(exercise, week, date)`: prescripción con el nivel real para los
+     ejercicios con `prog` (prensa, sentadilla, búlgara, touchdown, carrera) y la bici
+     quitada (brote o fallo atribuido), o null para usar la del calendario.
    - `Rodilla.nivelesReales()`: { S2: { runLevel, depthStep } … } de las semanas ya
      empezadas, para la exportación.
    El registro vive en `Store.knee()` y se escribe con `Store.setKnee()` al teclear.
@@ -43,6 +44,8 @@ const Rodilla = (() => {
   const texto = (t) => (typeof Reglas !== 'undefined' && Reglas.marcarEtiquetas ? Reglas.marcarEtiquetas(t) : esc(t));
 
   // Semáforo: verde Avanzar, ámbar Mantener, rojo Retroceder; el resto, neutro.
+  const BROTE = 'Lo primero que se quita es la bici: 48-72 h solo isométricos (sentadilla española 5×45 s diaria) y caminar, sin bici; luego, un escalón por debajo en todo. La bici vuelve tras una semana entera en verde.';
+
   const claseSemaforo = (s) => ({ Avanzar: 'ok', Mantener: 'warn', Retroceder: 'bad' }[s] || 'none');
   const claseSiNo = (c) => (c === 'Sí' ? 'ok' : c === 'No' ? 'bad' : 'none');
   const nombreCarrera = (n) => (n ? `N${n} · ${PLAN.CARRERA_NIVELES[n]}` : 'Sin entrar');
@@ -234,7 +237,7 @@ const Rodilla = (() => {
       + aviso(p.s4.nivel, 'Aviso S4 (fisio)', p.s4.texto)
       + aviso(c.activo ? 'peor' : 'sin', 'Chasquido doloroso', c.texto)
       + p.brotes.map((b) => aviso('peor', 'Brote',
-        `${shortDate(b.fecha)}: ${b.motivo}. 48-72 h solo isométricos (sentadilla española 5×45 s diaria), y la bici si ya estaba introducida; luego, un escalón por debajo en todo.`)).join('');
+        `${shortDate(b.fecha)}: ${b.motivo}. ${BROTE}`)).join('');
   }
 
   function seccionResumen(root) {
@@ -268,6 +271,11 @@ const Rodilla = (() => {
     root.appendChild(el(`<div>${bannerAvisos(tabla())}
       <p class="rod-txt rod-nota">El calendario marca el máximo de cada semana. La propuesta sale del semáforo: Avanzar = nivel +1, Mantener = el mismo, Retroceder = nivel −1. Si haces otra cosa, elige el nivel real: manda sobre la propuesta y las semanas siguientes parten de él.</p></div>`));
     const sems = Object.keys(p.semanas);
+    if (p.bici.quitas.length) {
+      root.appendChild(el(`<div class="card rod-aviso rod-a-igual"><h2>Bici</h2>${p.bici.quitas.map((q) =>
+        `<p>Quitada desde el ${esc(shortDate(q.desde))}${q.hasta ? ` hasta el ${esc(shortDate(q.hasta))}` : ''}: ${esc(q.motivo)}.</p>`).join('')}
+        <p class="rod-txt">Vuelve al nivel del calendario el lunes siguiente a una semana entera en verde.</p></div>`));
+    }
     if (!sems.length) root.appendChild(el('<div class="empty">La progresión empieza en S2 (26/10).</div>'));
     const opciones = (sem, f, n, nombre, desde) => `
       <select data-sec="weeks" data-key="${sem}" data-f="${f}" data-num="1">
@@ -437,7 +445,9 @@ const Rodilla = (() => {
     if (p.s4.nivel === 'peor' || p.s4.nivel === 'igual') avisos.push(`Aviso S4: ${p.s4.texto}`);
     if (ch.activo) avisos.push(`Chasquido doloroso: ${ch.texto}`);
     p.brotes.filter((b) => b.fecha >= C.sumarDias(date, -3) && b.fecha <= date)
-      .forEach((b) => avisos.push(`Brote (${b.motivo}): 48-72 h solo isométricos y luego un escalón por debajo en todo.`));
+      .forEach((b) => avisos.push(`Brote (${b.motivo}): ${BROTE}`));
+    const q = C.biciQuitada(p.bici, date);
+    if (q && (plan.dia === 'M' || plan.dia === 'V')) avisos.push(`Sin bici: ${q.motivo}.`);
     const semana = p.semanas[plan.sem];
     const entrada = semana && semana.carrera.entrada && (plan.dia === 'M' || plan.dia === 'X');
     const card = el(`
@@ -464,10 +474,15 @@ const Rodilla = (() => {
   }
 
   /* Prescripción real de un ejercicio con progresión (null: se usa la del calendario). */
-  function prescripcion(exercise, week) {
+  function prescripcion(exercise, week, date) {
     if (!exercise.prog || !week || week.plan !== 'vol' || week.n < 2) return null;
     const p = prog();
     const semana = p.semanas[`S${week.n}`];
+    if (exercise.prog === 'bici') {
+      const q = semana && date && C.biciQuitada(p.bici, date);
+      if (!q || PLAN.presFor(exercise, week).skip) return null;
+      return { sets: 0, kind: 'none', label: 'Sin bici\n(quitada)', motivo: `Bici quitada: ${q.motivo}. ${BROTE}` };
+    }
     const pres = C.prescripcion(exercise.prog, semana, PLAN);
     if (!pres) return null;
     const x = exercise.prog.startsWith('carrera') ? semana.carrera : semana.prensa;

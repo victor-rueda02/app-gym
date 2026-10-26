@@ -219,3 +219,64 @@ del Excel recibido (`docs/plan-rodilla/`) y escribe el de la raíz.
     la del día anterior.
 43. **Esquema del registro.** La versión 4 no llegó a publicarse (`main` sigue en la
     3): `knee.weeks` y `knee.entry` cambian sin migración nueva.
+
+## Segunda ronda de la revisión (26/10) · ajustes del usuario
+
+Sustituyen a los puntos anteriores donde se contradicen (30, 35, 41 y 42).
+
+44. **Sábado (1): confirmado.** Sin pierna y sin semáforo. La pierna se queda en
+    lunes y jueves; la abducción, en máquina esos dos días.
+45. **Extensión de rodilla con escalera de rango (1): no existe.** No aparece en
+    ninguna de las entradas: ni en la especificación, ni en el Excel recibido, ni en
+    las versiones anteriores del plan ni de la app. Lo único que hay es el **test de
+    fuerza** (extensión unilateral en máquina, rango fijo 90→45°, jueves de S2, S5 y
+    S7; rango completo opcional en S8), que no lleva escalera. No se ha inventado:
+    queda pendiente de que la definas (ver «Pendiente», punto 52).
+46. **Bici en el brote (2).** Vuelve la nota original de K95: «lo primero que se quita
+    si hay brote». Durante las 48-72 h, solo isométricos y caminar, sin bici (A110).
+47. **Carrera después del viaje (3).** N7 = 18', N8 = 25' y N9 = 30' seguidos
+    (12 → 18 → 25 → 30: como mucho +50 % por nivel). De N1 a N3 el tramo se dobla,
+    como aceptaste. S8 repite N6.
+48. **«Esa mañana igual o mejor» (4).** Se compara con la referencia: la mañana del
+    mismo día de la semana anterior, es decir, la referencia de la última sesión de
+    esa escalera en el mismo día; en S3, la primera medición de S2. Si la mañana aún
+    no está apuntada, la propuesta lo indica («solo si esa mañana estás en X/10 o
+    menos»). Así, un empeoramiento lento, un poco cada día, también bloquea la novedad
+    (hay prueba: martes y miércoles a 3 con referencia 2).
+49. **Atribución (6).**
+    - El dolor durante la sesión retrocede la escalera de esa sesión.
+    - Una mañana peor se atribuye a la **última novedad aún no validada**: la que
+      todavía no tiene en verde sus dos mañanas (24 y 48 h), ni las de una sesión
+      posterior de su escalera. Se quita la ventana de 7 días: una novedad validada no
+      se culpa.
+    - Si no queda ninguna novedad sin validar, o hay dos sesiones seguidas en
+      «Retroceder», hay brote.
+50. **Bici (7).**
+    - Entra el viernes de S4 solo si S2 y S3 no tuvieron sesiones en «Retroceder»
+      (K95: «solo si S2 y S3 cumplieron la regla»).
+    - Se quita si se le atribuye un fallo o si hay un brote.
+    - Vuelve al nivel del calendario el lunes siguiente a una semana entera en verde:
+      todas las sesiones hechas con carga de rodilla de esa semana en «Avanzar».
+    - Mientras está quitada, Hoy la muestra como «Sin bici (quitada)», con el motivo.
+      En Progresión se ve desde cuándo está quitada y por qué.
+51. **Excel para iPhone (11).** No queda ninguna fórmula matricial en el libro:
+    - La tabla de series por grupo (C73:J82) suma ahora fila a fila las de cada grupo,
+      igual que el desglose de espalda. Si se añade un ejercicio a un grupo, hay que
+      volver a ejecutar `tools/ajusta_excel_rodilla.py`.
+    - La peor mañana de cada semana (E72:E80) usa `MAX` sobre sus 7 filas.
+    - `verify_plan.py` comprueba que no hay matrices y que cada celda suma las filas
+      de su grupo.
+    - La evaluación de las fórmulas da 52 → 88. Falta tu prueba en el iPhone.
+
+## Pendiente o a revisar por el usuario (segunda ronda)
+
+52. **Extensión con escalera de rango.** Para añadirla hace falta:
+    - series y repeticiones (¿y RIR?);
+    - si la escalera de rango (90→45°, 35°, 25°, 15°, 5°, completo) tiene un máximo
+      por semana en el calendario, como la prensa, o sube libre según el semáforo;
+    - si va en todas las semanas o solo en algunas;
+    - qué pasa los jueves de test, en los que el test ya es una extensión 90→45°.
+
+    La regla de subida ya está decidida: sube si el jueves y sus dos mañanas
+    siguientes salen en verde, con el rango nuevo estrenado el jueves (después del
+    test en las semanas de test) y validado con las mañanas del viernes y el sábado.

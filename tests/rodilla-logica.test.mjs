@@ -130,8 +130,9 @@ import formulas
 m = formulas.ExcelModel().loads(sys.argv[1]).finish()
 sol = m.calculate()
 def get(ref):
+    hoja, celda = ref.split("!") if "!" in ref else ("Seguimiento rodilla", ref)
     for k, v in sol.items():
-        if k.upper().endswith("SEGUIMIENTO RODILLA'!" + ref):
+        if k.upper().endswith(hoja.upper() + "'!" + celda):
             x = v.value[0][0]
             if hasattr(x, 'item'): x = x.item()
             if x is None or str(x) in ('', 'empty'): return ''
@@ -178,6 +179,9 @@ test('contraste con las fórmulas del Excel (evaluadas con «formulas»)', () =>
     const t = C.calcularTest(KNEE.tests['t' + (i + 1)]);
     exp['I' + r] = t.estD; exp['J' + r] = t.estI; exp['K' + r] = t.sim; exp['L' + r] = t.ok;
   });
+
+  // Tabla de series por grupo (hoja Volumen), sin fórmulas matriciales: 52 -> 88.
+  [52, 57, 62, 66, 71, 76, 80, 88].forEach((n, i) => { exp[`Volumen (1910-1112)!${'CDEFGHIJ'[i]}83`] = n; });
 
   const res = spawnSync('python', ['-X', 'utf8', '-c', PYSRC, file, PYPATH, JSON.stringify(Object.keys(exp))], { encoding: 'utf8', maxBuffer: 1 << 26, timeout: 300000 });
   const line = (res.stdout || '').split(/\r?\n/).find((l) => l.startsWith('@@'));

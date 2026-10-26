@@ -258,6 +258,75 @@ test('progresión: dos sesiones seguidas en Retroceder -> brote y −1 en todo',
   assert.equal(p.semanas.S4.carrera.nivel, 1);
 });
 
+// Mañanas y sesiones de una semana: m = mañanas L..D; s = { dia: durante } (carrera con K = Sí).
+const semana = (lunes, m, s = {}) => {
+  const out = {};
+  m.forEach((v, i) => {
+    const f = C.sumarDias(lunes, i);
+    const d = 'LMXJVSD'[i];
+    out[f] = { decline: v };
+    if (s[d] !== undefined) Object.assign(out[f], { during: s[d] }, d === 'X' || d === 'D' ? { back60: 'Sí' } : {});
+  });
+  return out;
+};
+const VERDE = { L: 2, X: 1, J: 2, D: 1 };
+
+test('novedad: se compara con la referencia, no con el día anterior (empeoramiento lento)', () => {
+  // S3: el martes ya sube a 3 y el miércoles sigue en 3: «igual que ayer», pero peor que la referencia (2).
+  const p = progresar({ ...S2_BIEN, ...semana('2026-11-02', [2, 3, 3], { L: 2 }) }, '2026-11-04');
+  assert.equal(p.semanas.S3.prensa.nivel, 2);                       // el lunes, a 2: hay novedad
+  assert.equal(p.semanas.S3.carrera.nivel, 1, p.semanas.S3.carrera.motivo);
+  assert.match(p.semanas.S3.carrera.motivo, /esa mañana \(3\) peor que la referencia \(2\)/);
+});
+
+test('atribución: una novedad ya validada no se culpa; sin novedad sin validar -> brote', () => {
+  // S3 en verde (las novedades del lunes y del miércoles validan sus dos mañanas); el domingo,
+  // la mañana del lunes sale peor: no queda novedad sin validar.
+  const dias = { ...S2_BIEN, ...semana('2026-11-02', [2, 2, 2, 2, 2, 2, 2], VERDE), ...semana('2026-11-09', [3, 3, 3]) };
+  const p = progresar(dias, '2026-11-11');
+  assert.equal(p.brotes.length, 1);
+  assert.match(p.brotes[0].motivo, /sin ninguna novedad sin validar/);
+  assert.deepEqual([p.semanas.S4.prensa.nivel, p.semanas.S4.carrera.nivel], [1, 1]);
+});
+
+test('bici: no entra el viernes de S4 si S2 o S3 tuvieron sesiones en Retroceder', () => {
+  const dias = { ...S2_BIEN, ...semana('2026-11-02', [2, 2, 2, 2, 3, 2, 2], VERDE), ...semana('2026-11-09', [2, 2, 2, 2, 2]) };
+  const p = progresar(dias, '2026-11-13');
+  assert.equal(p.bici.quitas.length, 1);
+  assert.equal(p.bici.quitas[0].desde, '2026-11-13');
+  assert.match(p.bici.quitas[0].motivo, /S2 o S3 tuvieron sesiones en Retroceder \(J 05\/11\)/);
+  assert.ok(C.biciQuitada(p.bici, '2026-11-13'));
+});
+
+// S3 y S4 en verde; la bici entra el viernes 13/11; el domingo sube a 3 y el lunes 16/11, a 4:
+// el fallo del domingo (24 h) es de la última novedad sin validar, la bici.
+const BICI = {
+  ...S2_BIEN, ...semana('2026-11-02', [2, 2, 2, 2, 2, 2, 2], VERDE),
+  ...semana('2026-11-09', [2, 2, 2, 2, 2, 2, 3], VERDE),
+  ...semana('2026-11-16', [4, 3, 3, 3, 3, 3, 3], VERDE), ...semana('2026-11-23', [3, 3, 3]),
+};
+
+test('bici: se quita si se le atribuye un fallo y vuelve tras una semana entera en verde', () => {
+  const p = progresar(BICI, '2026-11-24');
+  assert.equal(p.brotes.length, 0);
+  assert.equal(p.bici.quitas.length, 1, JSON.stringify(p.bici.quitas));
+  const q = p.bici.quitas[0];
+  assert.deepEqual([q.desde, q.hasta], ['2026-11-16', '2026-11-22']);
+  assert.match(q.motivo, /fallo atribuido a la bici \(D 15\/11\)/);
+  assert.ok(C.biciQuitada(p.bici, '2026-11-17'));
+  assert.equal(C.biciQuitada(p.bici, '2026-11-24'), null);
+  // La prensa y la carrera no pagan el fallo de la bici.
+  assert.ok(!/^Retroceder/.test(p.semanas.S5.prensa.motivo) && !/^Retroceder/.test(p.semanas.S5.carrera.motivo));
+  assert.deepEqual([p.semanas.S5.prensa.nivel, p.semanas.S5.carrera.nivel], [p.semanas.S4.prensa.nivel, p.semanas.S4.carrera.nivel]);
+});
+
+test('bici: un brote también la quita (lo primero que se quita)', () => {
+  const dias = { ...BICI, ...semana('2026-11-16', [4, 3, 3, 3, 3, 3, 3], { L: 4, X: 3 }) };   // lunes 4/10 y miércoles 3/10: dos seguidas
+  const p = progresar(dias, '2026-11-19');
+  assert.ok(p.brotes.some((b) => /dos sesiones seguidas/.test(b.motivo)));
+  assert.ok(C.biciQuitada(p.bici, '2026-11-20'));
+});
+
 test('progresión: un nivel real apuntado manda sobre la propuesta y las semanas siguientes parten de él', () => {
   const p = progresar(S2_BIEN, '2026-11-02', { weeks: { S2: { pressLevel: 0 } } });
   assert.equal(p.semanas.S2.prensa.nivel, 0);

@@ -19,6 +19,14 @@ volver a ejecutar sin acumular cambios. Lo que cambia, por punto de la revisión
 10. Nivel intermedio de carrera (N5 = 3×(8'/1'), N6 = 2×(12'/1')); semáforo solo en días con
     carga de rodilla (regla «—» en martes y viernes); paseo y criterios de entrada con
     casillas; título del sábado «desde S2».
+
+Segunda ronda de la revisión:
+- La bici es lo primero que se quita en un brote (K95 original; A110).
+- Carrera después del viaje: N7 18' · N8 25' · N9 30' seguidos (K97).
+- La novedad se compara con la referencia, no con el día anterior (A106); un fallo se
+  atribuye a la última novedad aún no validada (A110).
+- Sin fórmulas matriciales (Excel para iPhone las calcula a 0): la tabla de series por
+  grupo (C73:J82) y la peor mañana de cada semana (E72:E80) pasan a fórmulas normales.
 """
 import copy
 import pathlib
@@ -67,9 +75,10 @@ def volumen(ws):
     ws["I97"] = "N6 · 2×(12'/1')"
     ws["K97"] = (
         "Formato: minutos trotando / minutos andando. Niveles: N1 8×(1'/2') · N2 6×(2'/1') · "
-        "N3 4×(4'/1') · N4 4×(5'/1') · N5 3×(8'/1') · N6 2×(12'/1') · N7 30' seguidos (después "
-        "del viaje). N5 es un nivel intermedio para que el tramo continuo más largo no crezca más "
-        "de un 50 % por nivel (5 → 8 → 12 min) [LÓGICA]. El calendario marca el máximo de cada "
+        "N3 4×(4'/1') · N4 4×(5'/1') · N5 3×(8'/1') · N6 2×(12'/1'); después del viaje, N7 18' · "
+        "N8 25' · N9 30' seguidos. Desde N4 el tramo continuo más largo crece como mucho un 50 % "
+        "por nivel (5 → 8 → 12 → 18 → 25 → 30 min); de N1 a N3 se dobla porque los tramos son muy "
+        "cortos [LÓGICA]. El calendario marca el máximo de cada "
         "semana; el nivel real sale del semáforo: Avanzar = +1, Mantener = el mismo, Retroceder "
         "= −1. Nivel nuevo solo si esa mañana estás igual o mejor. 5 min andando antes; llano y "
         "firme. Regla de carrera: Retroceder si pasas de 2/10 durante, no vuelves al nivel previo "
@@ -89,9 +98,7 @@ def volumen(ws):
         "touchdown con cada pierna y 20 saltitos a dos piernas (≤2/10). Si se cumplen los tres, "
         "1.ª carrera ese miércoles (N1). Si no, esa semana no hay carrera (el domingo, como mucho, "
         "un paseo) y los criterios se repiten el miércoles siguiente [LÓGICA].")
-    ws["K95"] = ws["K95"].value.replace(
-        "Lo primero que se quita si hay brote.",
-        "En la regla de 48-72 h se mantiene si ya estaba introducida.")
+    # K95 se queda como en el Excel recibido: la bici es lo primero que se quita si hay brote.
 
     # Reglas del bloque (A102-A113).
     ws["A103"] = (
@@ -115,7 +122,9 @@ def volumen(ws):
     ws["A106"] = (
         "Novedades [LÓGICA]: una por día y validada a las 24 y 48 h antes de repetirla. Lunes: "
         "escalón o reps (prensa) · miércoles: nivel de carrera · viernes de S4: bici. Solo si esa "
-        "mañana estás igual o mejor. El calendario marca el máximo de cada semana; el nivel real "
+        "mañana estás igual o mejor que la referencia (la mañana del mismo día de la semana "
+        "anterior; en S3, la primera medición de S2), no que el día anterior: así un empeoramiento "
+        "lento también salta. El calendario marca el máximo de cada semana; el nivel real "
         "sale del semáforo: Avanzar = nivel +1 (sin pasar del calendario), Mantener = el mismo, "
         "Retroceder = nivel −1. Lo validado se repite: el jueves usa la profundidad del lunes y el "
         "domingo repite el nivel del miércoles.")
@@ -127,19 +136,35 @@ def volumen(ws):
         "Se sube los lunes de S3, S4, S6 y S7 en la prensa",
         "Se sube, como mucho, los lunes de S3, S4, S6 y S7 en la prensa (según el semáforo)")
     ws["A110"] = (
-        "Retroceso y brote [LÓGICA]: si una medición falla, se retrocede solo la última novedad "
-        "anterior a ella (p. ej., jueves bien y viernes peor → se retrocede la carrera del "
-        "miércoles y el escalón se mantiene); si tras el retroceso la siguiente medición vuelve a "
-        "fallar, se retrocede la novedad anterior, y así hacia atrás. Si falla sin ninguna novedad "
-        "reciente, o fallan dos sesiones seguidas: 48-72 h solo isométricos (sentadilla española "
-        "5×45 s diaria), y la bici si ya estaba introducida; luego se retoma un escalón por debajo "
-        "en todo.")
+        "Retroceso y brote [LÓGICA]: un dolor durante la sesión retrocede la escalera de esa "
+        "sesión. Si una mañana sale peor, se retrocede la última novedad aún no validada (la que "
+        "todavía no tiene en verde sus dos mañanas, 24 y 48 h; p. ej., jueves bien y viernes peor "
+        "→ se retrocede la carrera del miércoles y el escalón se mantiene); una novedad ya validada "
+        "no se culpa. Si tras el retroceso vuelve a fallar, se retrocede la novedad anterior sin "
+        "validar. Brote = un fallo sin ninguna novedad sin validar, o dos sesiones seguidas en "
+        "Retroceder: lo primero que se quita es la bici; 48-72 h solo isométricos (sentadilla "
+        "española 5×45 s diaria) y caminar, sin bici; luego se retoma un escalón por debajo en "
+        "todo. La bici vuelve al nivel del calendario cuando lleves una semana entera en verde.")
     ws["A112"] = (
         "AVISO S4 (fisio deportivo pendiente): se calcula al cerrar S4 (domingo 15/11) si hay al "
         "menos 5 mañanas registradas en S2 y en S4. Compara la media de las mañanas: PEOR si la "
         "de S4 supera en 0,5 o más a la de S2; MEJOR si queda 0,5 o más por debajo; si no, IGUAL. "
         "IGUAL o PEOR, o un chasquido que empieza a doler: la valoración del fisio pasa a ser "
         "prioritaria; PEOR además para la progresión [LÓGICA]. «Seguimiento rodilla» lo calcula.")
+
+
+def series_sin_matrices(ws):
+    """C73:J82: el recuento por grupo deja de ser una fórmula matricial (en Excel para iPhone
+    salía a 0). Cada celda suma, fila a fila, el entero inicial de los ejercicios de ese grupo,
+    como ya hacía el desglose de espalda (filas 87-90). Si se añade un ejercicio a un grupo,
+    hay que volver a ejecutar este script."""
+    for r in range(73, 83):
+        grupo = ws[f"A{r}"].value
+        filas = [f for f in range(3, 64) if ws[f"B{f}"].value == grupo]
+        assert filas, grupo
+        for col in "CDEFGHIJ":
+            ws[f"{col}{r}"] = "=" + "+".join(
+                f'IFERROR(VALUE(LEFT({col}{f},FIND(" ",{col}{f}&" ")-1)),0)' for f in filas)
 
 
 def semaforo(r):
@@ -209,6 +234,11 @@ def seguimiento(ws):
         'IF(ROUND(B74-B72,1)>=0.5,"PEOR que en S2 (+0,5 o más): para la progresión y la valoración del fisio pasa a ser prioritaria",'
         'IF(ROUND(B72-B74,1)>=0.5,"MEJOR que en S2 (−0,5 o más): sigue el plan",'
         '"IGUAL que en S2 (menos de 0,5 de diferencia): la valoración del fisio pasa a ser prioritaria"))))')
+    # Peor mañana de cada semana (E72:E80) sin fórmula matricial: cada semana son 7 filas seguidas.
+    for i, r in enumerate(range(72, 81)):
+        a, b = 5 + 7 * i, 11 + 7 * i
+        ws[f"E{r}"] = f'=IF(COUNT(I{a}:I{b})=0,"",MAX(I{a}:I{b}))'
+
     ws["A84"] = (
         "La molestia de cada semana es la media de las mañanas (peor de las dos pruebas). El aviso "
         "S4 se calcula al cerrar S4 (domingo 15/11) con al menos 5 mañanas en S2 y en S4: PEOR si "
@@ -292,6 +322,7 @@ def seguimiento(ws):
 def main():
     wb = openpyxl.load_workbook(SRC, rich_text=True)
     volumen(wb["Volumen (1910-1112)"])
+    series_sin_matrices(wb["Volumen (1910-1112)"])
     seguimiento(wb["Seguimiento rodilla"])
     wb.calculation.fullCalcOnLoad = True
     wb.save(OUT)

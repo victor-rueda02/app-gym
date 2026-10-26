@@ -78,8 +78,9 @@ de inicio**. Se abre a pantalla completa, sin barra del navegador.
   - *Progreso real:* desde S2, la prensa, la sentadilla, la búlgara, la
     touchdown y la carrera se prescriben con tu nivel real (el semáforo de la
     semana anterior), no con el calendario; dentro del ejercicio se ve el motivo
-    y el máximo del calendario. El test de fuerza del jueves es un enlace a
-    Rodilla › Test.
+    y el máximo del calendario. La bici sale «Sin bici (quitada)» tras un brote
+    o un fallo atribuido a ella, hasta una semana entera en verde. El test de
+    fuerza del jueves es un enlace a Rodilla › Test.
   - Arriba, la tarjeta de rodilla con las dos pruebas de la mañana, y desde S2
     los «Hitos y avisos» de la semana.
   - *4 semanas:* en las semanas 3 y 4 eliges cuál de los 3 días haces, porque
@@ -147,7 +148,8 @@ El plan vive en dos sitios que hay que mantener a la vez: las hojas del
 `.xlsx` y `js/plan.js` (la app no lee el Excel, lo tiene transcrito). Tras
 tocar el Excel, ejecuta `python tools/embed.py`. Si el cambio es en la hoja
 Volumen, actualiza `BLOCK_VOL` y comprueba con `python tools/verify_plan.py`.
-Allí las prescripciones se escriben igual que en la celda (`2 @ RIR1/0`,
+El Excel no puede llevar fórmulas matriciales: Excel para iPhone las calcula a
+0 (`verify_plan.py` lo comprueba). Allí las prescripciones se escriben igual que en la celda (`2 @ RIR1/0`,
 `1 @ RIR0`, `3 x10`, `2 x15–20`, `'3 x10-15\n@RIR1-2'`, `—`, `-`). Un formato
 nuevo hace fallar `parsePres` a propósito. Las decisiones del plan rodilla
 están en `DECISIONES.md`.
