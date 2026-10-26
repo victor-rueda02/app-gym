@@ -2,12 +2,13 @@
    vez instalada funciona sin cobertura (sótanos de gimnasio incluidos).
    Sube CACHE al desplegar cambios para forzar la actualización. */
 
-const CACHE = 'gym-v4';
+const CACHE = 'gym-v6';
 const ASSETS = [
   './',
   './index.html',
   './manifest.json',
   './css/styles.css',
+  './css/rodilla.css',
   './vendor/fflate.js',
   './js/plan.js',
   './js/store.js',
@@ -15,6 +16,10 @@ const ASSETS = [
   './js/original-xlsx.js',
   './js/xlsx.js',
   './js/export.js',
+  './js/rodilla-data.js',
+  './js/rodilla-calc.js',
+  './js/rodilla.js',
+  './js/reglas.js',
   './js/app.js',
   './icons/icon-180.png',
   './icons/icon-192.png',

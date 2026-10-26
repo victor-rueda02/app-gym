@@ -84,7 +84,7 @@ await page.waitForFunction(() => document.querySelectorAll('.ex').length > 0);
 
 const tras = await page.evaluate(() => JSON.parse(localStorage.getItem('gym.log.v1')));
 
-check('El registro se marca con la versión nueva', tras.v === 3, `v=${tras.v}`);
+check('El registro se marca con la versión nueva', tras.v === 4, `v=${tras.v}`);
 check('Lunes: laterales -> laterales-de-pie',
   !!tras.days['2026-07-20'].entries['laterales-de-pie']
   && !tras.days['2026-07-20'].entries.laterales,
@@ -106,8 +106,9 @@ const visible = await page.locator('main .ex', { hasText: 'Laterales de pie' }).
 check('El lunes muestra la serie ya registrada', visible === '1/2', visible);
 
 const filas = await page.evaluate(() => buildRows());
-// La hoja Registro ganó la columna Min (índice 10): se inserta vacía en las filas de antes.
-const conMin = (r) => [...r.slice(0, 10), '', ...r.slice(10)];
+// La hoja Registro ganó dos columnas: Lado (índice 7, tras Serie) y Min (tras Seg).
+// Se insertan vacías en las filas de antes.
+const conMin = (r) => { const a = [...r.slice(0, 7), '', ...r.slice(7)]; return [...a.slice(0, 11), '', ...a.slice(11)]; };
 check('Se exporta igual que antes del plan de volumen',
   JSON.stringify(filas) === JSON.stringify(EXPORT_ANTES.map(conMin)), `${filas.length} filas`);
 
@@ -149,7 +150,8 @@ check('v3 · miércoles: el jalón neutro viejo pasa a jalón ancho y las domina
   keys('2026-10-21') === 'jalon-ancho-plano-frontal, jalon-neutro'
   && t2.days['2026-10-21'].entries['jalon-ancho-plano-frontal'][0].kg === '50'
   && t2.days['2026-10-21'].entries['jalon-neutro'][0].kg === '0', keys('2026-10-21'));
-check('v3 · jueves: gemelos-prensa y back squat intacto', keys('2026-10-22') === 'back-squat, gemelos-prensa', keys('2026-10-22'));
+check('v3 · jueves: gemelos-prensa y la sentadilla (back squat) renombrada por la migración v4',
+  keys('2026-10-22') === 'gemelos-prensa, sentadilla-al-cajon-o-desde-pines-pesado-y-lento-n-2', keys('2026-10-22'));
 check('v3 · viernes: los 5 ejercicios renombrados',
   keys('2026-10-23') === 'aduccion-unil-polea-alta-pull-in, press-frances-manc-banco-plano, press-maquina-neutro-ascendente, remo-maquina-pecho-apoyado-30, triceps-conc-polea-15',
   keys('2026-10-23'));
@@ -157,6 +159,55 @@ check('v3 · julio conserva sus gemelos', keys('2026-07-23') === 'gemelos', keys
 const ids = await page2.evaluate(() => PLAN.sessionFor('2026-10-23').options[0].exercises.map((e) => e.id));
 check('v3 · todos los ids migrados existen en el plan',
   Object.keys(t2.days['2026-10-23'].entries).every((k) => ids.includes(k)), ids.join(', '));
+
+/* --- v3 -> v4: plan rodilla; los ids antiguos del plan de volumen se recolocan --- */
+const V3 = {
+  v: 3,
+  days: {
+    '2026-10-19': { sessionId: 'VOL-L', notes: '', entries: {
+      'unilateral-abduction': [s('30', '15', '2')], 'prensa-unil': [s('100', '12', '')] } },
+    '2026-10-22': { sessionId: 'VOL-J', notes: '', entries: {
+      'unilateral-abduction': [s('32', '15', '2')], 'back-squat': [s('60', '12', '')] } },
+    '2026-10-23': { sessionId: 'VOL-V', notes: '', entries: { 'bici-z2-z3-prog': [{ kg: '', reps: '', secs: '', rir: '', mins: '12' }] } },
+    '2026-10-24': { sessionId: 'VOL-S', notes: '', entries: {
+      'unilateral-abduction': [s('25', '15', '2')], 'movilidad-trapecio-inferior': [s('', '', '')] } },
+    '2026-07-23': { sessionId: 'A-J', notes: '', entries: { 'unilateral-abduction': [s('20', '16', '2')] } },   // julio: no se toca
+  },
+};
+const page3 = await ctx.newPage();
+await page3.addInitScript((data) => { localStorage.setItem('gym.log.v1', JSON.stringify(data)); }, V3);
+await page3.goto('http://localhost:8125/index.html');
+await page3.waitForFunction(() => document.querySelectorAll('.ex').length > 0 || document.querySelector('.empty'));
+const t3 = await page3.evaluate(() => JSON.parse(localStorage.getItem('gym.log.v1')));
+const k3 = (d) => Object.keys(t3.days[d].entries).sort().join(', ');
+check('v4 · versión 4 y registro de rodilla creado', t3.v === 4 && !!t3.knee);
+check('v4 · lunes: abducción y prensa renombradas',
+  k3('2026-10-19') === 'abduccion-de-pie-unilateral-maquina, prensa-unil-pesado-y-lento-n-1', k3('2026-10-19'));
+check('v4 · jueves: abducción y sentadilla renombradas',
+  k3('2026-10-22') === 'abduccion-de-pie-unilateral-maquina, sentadilla-al-cajon-o-desde-pines-pesado-y-lento-n-2', k3('2026-10-22'));
+check('v4 · viernes: bici', k3('2026-10-23') === 'bici-z2-sin-z3-en-este-bloque', k3('2026-10-23'));
+check('v4 · sábado: abducción y T', k3('2026-10-24') === 'abduccion-unilateral, elevacion-lateral-en-prono-t-mancuernas-banco', k3('2026-10-24'));
+check('v4 · julio no se toca', k3('2026-07-23') === 'unilateral-abduction', k3('2026-07-23'));
+check('v4 · conserva los datos (kg)',
+  t3.days['2026-10-19'].entries['abduccion-de-pie-unilateral-maquina'][0].kg === '30'
+  && t3.days['2026-10-22'].entries['sentadilla-al-cajon-o-desde-pines-pesado-y-lento-n-2'][0].kg === '60');
+const ids3 = await page3.evaluate(() => ['2026-10-19', '2026-10-22', '2026-10-23', '2026-10-24']
+  .map((d) => PLAN.sessionFor(d).options[0].exercises.map((e) => e.id)));
+check('v4 · todos los ids migrados existen en su sesión',
+  ['2026-10-19', '2026-10-22', '2026-10-23', '2026-10-24']
+    .every((d, i) => Object.keys(t3.days[d].entries).every((k) => ids3[i].includes(k))));
+// Y se ve en pantalla: las series aparecen en los ejercicios renombrados (Hoy, S1).
+const verPres = async (fecha, nombre) => {
+  await page3.click('[data-tab="today"]');
+  await page3.fill('#datepick', fecha);
+  await page3.waitForFunction((v) => document.getElementById('datepick').value === v, fecha);
+  return page3.locator('main .ex', { has: page3.locator('.nm', { hasText: nombre }) }).first().locator('.pres').textContent();
+};
+check('v4 · lunes: abducción renombrada muestra 1/2', (await verPres('2026-10-19', 'Abducción de pie unilateral (máquina)')) === '1/2');
+check('v4 · lunes: prensa renombrada muestra 1/2', (await verPres('2026-10-19', 'Prensa unil')) === '1/2');
+check('v4 · jueves: sentadilla renombrada muestra 1/3', (await verPres('2026-10-22', 'Sentadilla al cajón')) === '1/3');
+check('v4 · viernes: bici renombrada cuenta como hecha (1/1)', (await verPres('2026-10-23', 'Bici Z2')) === '1/1');
+check('v4 · sábado: abducción renombrada muestra 1/2', (await verPres('2026-10-24', 'Abducción unilateral')) === '1/2');
 
 await browser.close();
 server.close();

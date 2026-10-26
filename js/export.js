@@ -24,19 +24,23 @@ function buildRows() {
     const session = PLAN.sessionsFor(week).find((d) => d.id === rec.sessionId);
     if (!session) continue;
 
-    const sessionLabel = session.title ? `${session.name} · ${session.title}` : session.name;
+    const label = PLAN.sessionLabel(session, week);   // el sábado de S1 conserva su nombre
+    const sessionLabel = label.title ? `${label.name} · ${label.title}` : label.name;
 
     const first = rows.length;
 
     session.exercises.forEach((exercise) => {
       const list = rec.entries[exercise.id];
       if (!list || !list.length) return;
-      const pres = PLAN.presFor(exercise, week);
+      // Lo prescrito con el nivel real (prensa, sentadilla, búlgara, touchdown, carrera).
+      const real = typeof Rodilla !== 'undefined' ? Rodilla.prescripcion(exercise, week) : null;
+      const pres = real || PLAN.presFor(exercise, week);
 
       list.forEach((s, i) => {
         rows.push([
           date, `Sem ${week.n}`, week.block, sessionLabel, exercise.name,
           exercise.target, i + 1,
+          PLAN.sidesFor(exercise, week) ? (s.side || '') : '',
           num(s.kg), num(s.reps), num(s.secs), num(s.mins), num(s.rir),
           pres.label, exercise.notes.length <= 40 ? exercise.notes : '',   // las pautas largas ya están en la hoja del plan
         ]);
@@ -46,8 +50,8 @@ function buildRows() {
     // La nota del día es una sola: va en la primera fila de esa fecha, no
     // repetida al final de cada ejercicio.
     if (rec.notes && rows.length > first) {
-      const cell = rows[first][13];
-      rows[first][13] = cell ? `${cell} · ${rec.notes}` : rec.notes;
+      const cell = rows[first][14];
+      rows[first][14] = cell ? `${cell} · ${rec.notes}` : rec.notes;
     }
   }
   return rows;
@@ -73,10 +77,23 @@ function download(bytes) {
   setTimeout(() => URL.revokeObjectURL(url), 5000);
 }
 
+/* Registro de rodilla tal cual, más el nivel real de carrera y el escalón de cada
+   semana ya empezada (columnas I y K del resumen semanal), que calcula la app. */
+function kneeParaExportar() {
+  const knee = Store.all().knee;
+  if (!knee || typeof Rodilla === 'undefined') return knee;
+  const weeks = {};
+  for (const [sem, rec] of Object.entries(knee.weeks || {})) weeks[sem] = { notes: rec.notes };
+  for (const [sem, n] of Object.entries(Rodilla.nivelesReales())) {
+    weeks[sem] = { ...weeks[sem], runLevelText: n.runLevel, depthStep: n.depthStep };
+  }
+  return { ...knee, weeks };
+}
+
 /* Devuelve un mensaje describiendo qué ha pasado, para mostrarlo en la UI. */
 async function exportXlsx() {
   const rows = buildRows();
-  const bytes = buildXlsx(originalXlsxBytes(), rows);
+  const bytes = buildXlsx(originalXlsxBytes(), rows, kneeParaExportar());
 
   if (supportsFsa()) {
     try {

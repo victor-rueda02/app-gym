@@ -1,7 +1,7 @@
 """Regenera js/original-xlsx.js empotrando el .xlsx del plan en base64.
 
-Ejecutar tras cualquier cambio en Plan_8sem_vol_definitivo_con_cardio.xlsx (contiene también las
-hojas del plan de 4 semanas):
+Ejecutar tras cualquier cambio en Plan_8sem_vol_definitivo_con_cardio.xlsx (contiene las hojas
+del plan de 4 semanas, el de volumen y «Seguimiento rodilla»):
     python tools/embed.py
 """
 import base64
@@ -19,7 +19,7 @@ body = "\n  '" + "'\n  + '".join(chunks) + "'"
 js = f"""/* GENERADO por tools/embed.py — no editar a mano.
    {SRC.name} ({SRC.stat().st_size} bytes) en base64. Cada exportación parte de
    estos bytes, de modo que el .xlsx resultante es siempre idéntico al original
-   más la hoja Registro. */
+   más la hoja Registro y los datos de «Seguimiento rodilla». */
 
 const ORIGINAL_XLSX_NAME = '{SRC.name}';
 

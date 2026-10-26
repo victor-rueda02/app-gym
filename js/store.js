@@ -40,10 +40,34 @@ async function idbGet() {
 }
 
 /* Estructura:
-   { v, days: { "2026-07-20": { sessionId, notes, entries: { exId: [ {kg,reps,secs,rir} ] } } } } */
-const VERSION = 3;
+   { v, days: { "2026-07-20": { sessionId, notes, entries: { exId: [ {kg,reps,secs,rir,mins,side} ] } } },
+     knee: { days, weeks, entry, tests, depth } }
+   `side` ('D' | 'I' | '') solo se usa en los unilaterales desde la semana 2 del plan de volumen.
+   `knee` es el registro de la pestaña Rodilla (ver KNEE_SECCIONES y setKnee). */
+const VERSION = 4;
 
-function empty() { return { v: VERSION, days: {} }; }
+// Secciones de `knee`, cada una un mapa clave -> { campo: valor }:
+//   days  { 'YYYY-MM-DD': { decline, steps, during, back60:'Sí'|'No', click:'Sí'|'No', notes,
+//                           session?, rule?, novelty? } }   (session/rule/novelty: solo si se
+//                           edita lo precargado; ausente = el del plan, presente aunque sea '' = lo editado)
+//   weeks { 'S2'…'S10': { pressLevel?, runLevel?, notes } }   (niveles reales apuntados a
+//                           mano: índices de PLAN.PRENSA_NIVELES y de PLAN.CARRERA_NIVELES;
+//                           ausentes = la propuesta del semáforo)
+//   entry { 'S2'…'S8': { walkPain, walkBack60, tdPain, hopsPain: 'Sí'|'No', notes } }
+//                           (un intento de entrada a la carrera por semana)
+//   tests { t1…t4: { load, repsD, repsI, notes } }
+//   depth { '0'…'4': { angle, press, box, split, touchdown, validated, notes } }
+const KNEE_SECCIONES = ['days', 'weeks', 'entry', 'tests', 'depth'];
+
+function ensureKnee(data) {
+  if (!data.knee || typeof data.knee !== 'object') data.knee = {};
+  for (const sec of KNEE_SECCIONES) {
+    if (!data.knee[sec] || typeof data.knee[sec] !== 'object') data.knee[sec] = {};
+  }
+  return data.knee;
+}
+
+function empty() { return ensureKnee({ v: VERSION, days: {} }); }
 
 /* Los identificadores de ejercicio salen del nombre, así que renombrar uno deja
    huérfano lo ya registrado. Cada migración recoloca esas entradas. */
@@ -101,6 +125,35 @@ const MIGRATIONS = {
       }
     }
   },
+
+  // v3 -> v4: el Excel del plan rodilla renombra o sustituye ejercicios del plan de
+  // volumen (ids escritos a mano: son el slug del nombre en js/plan.js) y añade el
+  // registro de rodilla. Por sesión: las de julio/agosto (A-*, B-*) no se tocan.
+  4(data) {
+    const porSesion = {
+      'VOL-L': [
+        ['unilateral-abduction', 'abduccion-de-pie-unilateral-maquina'],
+        ['prensa-unil', 'prensa-unil-pesado-y-lento-n-1'],
+      ],
+      'VOL-J': [
+        ['unilateral-abduction', 'abduccion-de-pie-unilateral-maquina'],
+        ['back-squat', 'sentadilla-al-cajon-o-desde-pines-pesado-y-lento-n-2'],
+      ],
+      'VOL-S': [
+        ['unilateral-abduction', 'abduccion-unilateral'],
+        ['movilidad-trapecio-inferior', 'elevacion-lateral-en-prono-t-mancuernas-banco'],
+      ],
+      'VOL-V': [['bici-z2-z3-prog', 'bici-z2-sin-z3-en-este-bloque']],
+    };
+    for (const rec of Object.values(data.days)) {
+      for (const [from, to] of porSesion[rec.sessionId] || []) {
+        if (!rec.entries[from]) continue;
+        rec.entries[to] = (rec.entries[to] || []).concat(rec.entries[from]);
+        delete rec.entries[from];
+      }
+    }
+    ensureKnee(data);
+  },
 };
 
 function migrate(data) {
@@ -108,6 +161,7 @@ function migrate(data) {
     if (MIGRATIONS[v]) MIGRATIONS[v](data);
   }
   data.v = VERSION;
+  ensureKnee(data);
   return data;
 }
 
@@ -180,6 +234,26 @@ function lastPerformance(exId, beforeDate) {
   return null;
 }
 
+/* Registro de rodilla (garantiza las secciones). */
+const knee = () => ensureKnee(cache);
+
+/* Escribe un campo del registro de rodilla y persiste. `value === undefined` borra
+   el campo (y la clave si se queda sin campos). */
+function setKnee(section, key, field, value) {
+  if (!KNEE_SECCIONES.includes(section)) throw new Error(`Sección de rodilla desconocida: ${section}`);
+  const sec = knee()[section];
+  if (value === undefined) {
+    if (sec[key]) {
+      delete sec[key][field];
+      if (!Object.keys(sec[key]).length) delete sec[key];
+    }
+  } else {
+    if (!sec[key]) sec[key] = {};
+    sec[key][field] = value;
+  }
+  persist();
+}
+
 function importAll(data) {
   if (!data || typeof data !== 'object' || !data.days) throw new Error('Formato no válido');
   cache = migrate(data);   // una copia antigua puede venir de antes de un renombrado
@@ -188,4 +262,5 @@ function importAll(data) {
 
 const Store = {
   init, all, day, setSession, sets, saveSets, setNotes, lastPerformance, importAll,
+  knee, setKnee,
 };

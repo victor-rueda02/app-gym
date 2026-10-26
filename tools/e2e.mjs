@@ -225,7 +225,8 @@ async function goToDate(d) {
   await page.fill('#datepick', d);
   await page.waitForFunction((v) => document.getElementById('datepick').value === v, d);
 }
-const presOf = (name) => page.locator('main .ex', { has: page.locator('.nm', { hasText: new RegExp(`^${name}$`) }) })
+const reEsc = (t) => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+const presOf = (name) => page.locator('main .ex', { has: page.locator('.nm', { hasText: new RegExp(`^${reEsc(name)}$`) }) })
   .locator('.pres').textContent();
 
 await goToDate('2026-10-19');
@@ -286,7 +287,7 @@ check('Cardio: una sola fila con columna Min y sin añadir serie',
   && (await page.locator('.set-row:not(.head)').count()) === 1
   && (await page.locator('.btn.ghost', { hasText: 'Añadir serie' }).count()) === 0);
 check('Cardio: pautas visibles y valor prescrito de referencia',
-  (await page.textContent('main')).includes('Cadencia alta 85–90 rpm')
+  (await page.textContent('main')).includes('Sillín alto (rodilla a 20-25° abajo), 85-90 rpm')
   && (await page.locator('.set-row:not(.head) input').getAttribute('placeholder')) === '15');
 await page.locator('.set-row:not(.head) input').fill('16');
 await page.locator('.btn', { hasText: 'Hecho' }).click();
@@ -295,20 +296,20 @@ check('Cardio registrado cuenta como hecho (1/1)',
   (await cardioRow.locator('.pres').textContent()) === '1/1'
   && (await cardioRow.getAttribute('class')).includes('done'));
 await goToDate('2026-11-20');
-check('20/11 (viernes, semana 5): cardio con intervalos Z3',
-  (await page.locator('main .ex.cardio .pres').textContent()) === '20 min (4x30s Z3)');
+check('20/11 (viernes, semana 5): bici de 10 min en Z2 (sin Z3)',
+  (await page.locator('main .ex.cardio .pres').textContent()) === "10' Z2");
 
 await goToDate('2026-10-24');
-check('24/10 (sábado): sesión Sábado/Domingo',
+check('24/10 (sábado): sesión del fin de semana de S1, con su nombre de entonces',
   (await page.textContent('#hero-name')) === 'Sábado/Domingo'
   && (await page.locator('main .ex').count()) === 5, await page.textContent('#hero-name'));
-check('Movilidad sin series (-)', (await presOf('Movilidad - trapecio inferior')) === '-');
+check('«T» en prono (correctivo) sin series en S1 (-)', (await presOf('Elevación lateral en prono «T» (mancuernas, banco)')) === '-');
 await page.locator('main .ex', { hasText: 'Abs wesley banco' }).click();
 await page.waitForSelector('.set-row input');
 await page.locator('.set-row:not(.head) input').nth(1).fill('15');
 await page.locator('.btn', { hasText: 'Hecho' }).click();
 await goToDate('2026-10-25');
-check('25/10 (domingo): comparte la sesión Sábado/Domingo',
+check('25/10 (domingo, S1): comparte la sesión del sábado',
   (await page.textContent('#hero-name')) === 'Sábado/Domingo'
   && (await page.textContent('.hero .week')) === 'Semana 1 · Volumen'
   && (await page.locator('main .ex').count()) === 5, await page.textContent('#hero-name'));
@@ -316,8 +317,10 @@ check('25/10 (domingo): comparte la sesión Sábado/Domingo',
 await goToDate('2026-12-10');
 check('10/12: semana 8, jueves',
   (await page.textContent('.hero .week')) === 'Semana 8 · Volumen'
-  && (await page.textContent('#hero-name')) === 'Rehab + Isquios + Aductores');
-check('10/12: Back squat 3 x8', (await presOf('Back squat')) === '3 x8');
+  && (await page.textContent('#hero-name')) === 'Rehab + Isquios + Aductores  ·  test de fuerza S2 / S5 / S7');
+const SQ8 = ['3 x8', 'repite S7'].join(String.fromCharCode(10));
+const SENT = 'Sentadilla al cajón o desde pines · pesado y lento n.º 2';
+check('10/12: sentadilla 3 x8 (repite S7)', (await presOf(SENT)) === SQ8);
 check('10/12: Isquios sentado 5 @ RIR1/0', (await presOf('Isquios sentado')) === '5 @ RIR1/0');
 
 await goToDate('2026-07-21');
@@ -343,11 +346,13 @@ await page.click('[data-week="8"]');
 check('Semana 8: título y fechas',
   (await page.textContent('main .card h2')) === 'Semana 8 · Volumen'
   && (await page.textContent('main')).includes('7–13 dic'));
-check('Semana 8: Back squat 3 x8 en el jueves', (await presOf('Back squat')) === '3 x8');
-check('El plan nombra la sesión del fin de semana como en el Excel',
-  (await page.locator('main .section-label').allTextContents()).includes('Sábado/Domingo'));
-check('El plan marca el cardio en azul (martes y viernes)',
-  (await page.locator('main .ex.cardio').count()) === 2);
+check('Semana 8: sentadilla 3 x8 en el jueves', (await presOf(SENT)) === SQ8);
+const etiquetas = await page.locator('main .section-label').allTextContents();
+check('El plan nombra el sábado y el domingo de carrera (S8) como en el Excel',
+  etiquetas.includes('Sábado · casa, sin máquinas ni poleas  ·  desde S2, sin pierna (el domingo: carrera)')
+  && etiquetas.includes('Domingo · Carrera'), etiquetas.join(' | '));
+check('El plan marca el cardio en azul (bici martes y viernes, carrera miércoles y domingo)',
+  (await page.locator('main .ex.cardio').count()) === 4);
 check('Notas de semanas 9–10 en el plan',
   (await page.textContent('main')).includes('Semana 9 (14-20/12) · Viaje = descarga'));
 check('Reglas del plan nuevo (RIR1/0 y autorregulación)',
@@ -383,7 +388,7 @@ check('El .xlsx descargado no está vacío', fs.statSync(saved).size > 10000,
 
 const zipOut = fflate.unzipSync(new Uint8Array(fs.readFileSync(saved)));
 const zipSrc = fflate.unzipSync(new Uint8Array(fs.readFileSync(path.join(root, 'Plan_8sem_vol_definitivo_con_cardio.xlsx'))));
-const registro = new TextDecoder().decode(zipOut['xl/worksheets/sheet5.xml'] || new Uint8Array());
+const registro = new TextDecoder().decode(zipOut['xl/worksheets/sheet6.xml'] || new Uint8Array());
 check('Registro con filas de julio y del plan de volumen',
   registro.includes('2026-07-20') && registro.includes('2026-10-19')
   && registro.includes('2026-10-24') && registro.includes('>Volumen<'));
