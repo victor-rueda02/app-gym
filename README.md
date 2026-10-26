@@ -136,8 +136,7 @@ El plan vive en dos sitios que hay que mantener a la vez: las hojas del
 tocar el Excel, ejecuta `python tools/embed.py`. Si el cambio es en la hoja
 Volumen, actualiza `BLOCK_VOL` y comprueba con `python tools/verify_plan.py`.
 Allí las prescripciones se escriben igual que en la celda (`2 @ RIR1/0`,
-`1 @ RIR0`, `3 x10`, `2 x15–20`, `3 x10-15
-@RIR1-2`, `—`, `-`). Un formato
+`1 @ RIR0`, `3 x10`, `2 x15–20`, `'3 x10-15\n@RIR1-2'`, `—`, `-`). Un formato
 nuevo hace fallar `parsePres` a propósito. Las decisiones del plan rodilla
 están en `DECISIONES.md`.
 
