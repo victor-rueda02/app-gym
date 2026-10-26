@@ -513,8 +513,9 @@ function renderData() {
   view.appendChild(el(`
     <div class="card">
       <h2>Exportar al Excel</h2>
-      <p>Reconstruye <b>${escapeHtml(ORIGINAL_XLSX_NAME)}</b> con tus 4 hojas
-         originales intactas + la hoja <b>Registro</b>. Sustituye el fichero
+      <p>Reconstruye <b>${escapeHtml(ORIGINAL_XLSX_NAME)}</b> con las hojas
+         del plan intactas, la hoja <b>Seguimiento rodilla</b> rellena con lo
+         que apuntes en Rodilla y la hoja <b>Registro</b>. Sustituye el fichero
          de tu ordenador por el exportado.</p>
     </div>`));
 

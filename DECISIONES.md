@@ -106,3 +106,23 @@ y la especificación en la lógica (cálculos, reglas, avisos).
     - La hoja `Registro` gana la columna «Lado» tras «Serie»; su cabecera usa el
       xf 12, que es el de las cabeceras de la hoja Volumen en el `styles.xml`
       nuevo (el 13 ya no lo es).
+
+## Fase 3 · Verificación
+
+20. **Fórmulas del Excel sin LibreOffice.** No hay LibreOffice en la máquina; el
+    contraste de los cálculos de rodilla con el Excel se hace evaluando las
+    fórmulas reales del .xlsx exportado con el paquete de Python `formulas`
+    (370 celdas, 0 diferencias). No es dependencia del repo: el test lo busca en
+    `tools/out/py` o en `RODILLA_PY` y, si no está, omite ese contraste con aviso.
+21. **Playwright.** `npm install` dentro de la carpeta de Google Drive dejó el
+    paquete corrupto (error de tar); se instaló fuera y se copió a
+    `node_modules/` (ignorado en git).
+
+## Pendiente o a revisar por el usuario
+
+22. El texto de ayuda A2 de «Seguimiento rodilla» se muestra literal y habla de
+    «columnas G y H» y «celdas amarillas», que solo tienen sentido en el Excel.
+23. El título del sábado (A55) dice «(el domingo: carrera)» también en S1, donde
+    el domingo repitió la sesión del sábado: es el texto del Excel.
+24. Falta abrir un exportado con datos reales en Excel/Numbers del iPhone para
+    ver el recálculo en vivo (comprobado con `formulas` y openpyxl, no con Excel).

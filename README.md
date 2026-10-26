@@ -6,8 +6,11 @@ PWA para registrar el entrenamiento desde el iPhone y volcarlo al Excel
 La app lleva dos planes:
 
 - **Volumen 8 semanas**, del lunes 19/10/2026 al domingo 13/12/2026, sacado de
-  la hoja `Volumen (1910-1112)`. Las semanas 9 (viaje = descarga) y 10 no
-  están en el calendario; sus indicaciones salen como notas en la pestaña Plan.
+  la hoja `Volumen (1910-1112)`. Desde S2 incluye el plan rodilla: rehab de
+  rodilla lunes y jueves, sábado en casa sin pierna, carrera miércoles y
+  domingo, y la hoja `Seguimiento rodilla` (pestaña Rodilla, del 26/10 al
+  27/12). Las semanas 9 (viaje = descarga) y 10 no están en el calendario de
+  sesiones; sus indicaciones salen como notas en la pestaña Plan.
 - **4 semanas**, del 20/07 al 16/08/2026 (hojas `Bloque A` y `Bloque B`). Lo
   registrado en esas fechas se sigue viendo y exportando igual que antes.
 
@@ -22,8 +25,10 @@ Fuera de esas fechas, la pestaña Hoy avisa de que no hay plan.
 - **El Excel se reconstruye, no se parchea.** El .xlsx original va empotrado en
   `js/original-xlsx.js`. Al exportar se abre ese ZIP, se le inyecta una hoja
   `Registro` y se vuelve a comprimir. Las hojas Resumen / Bloque A / Bloque B /
-  Volumen se copian byte a byte: conservan colores, anchos y estilos. Como se
-  parte siempre del original, exportar dos veces da el mismo resultado.
+  Volumen se copian byte a byte: conservan colores, anchos y estilos. En
+  `Seguimiento rodilla` solo se rellenan las celdas de entrada (con su estilo);
+  sus fórmulas no se tocan y el libro se marca para recalcularse al abrirlo.
+  Como se parte siempre del original, exportar dos veces da el mismo resultado.
 - **Registro con los dos planes.** En la hoja `Registro`, la columna *Bloque*
   dice de qué plan es cada fila: `A` o `B` para el de 4 semanas y `Volumen`
   para el de 8. La columna *Semana* es la semana dentro de ese plan.
@@ -65,9 +70,13 @@ de inicio**. Se abre a pantalla completa, sin barra del navegador.
 - **Hoy** — la sesión que toca según la fecha. Las series prescritas aparecen
   ya como filas vacías: solo rellenas kg / reps / RIR. Se guarda al teclear.
   Debajo, notas del día para el semáforo de rodilla.
-  - *Volumen:* la sesión fija de ese día; sábado y domingo comparten la sesión
-    `(S/D)`. En `N @ RIR1/0`, el RIR objetivo de cada serie aparece como
-    1, 1, …, 0.
+  - *Volumen:* la sesión fija de ese día. En S1 sábado y domingo comparten la
+    sesión del sábado; desde S2 el domingo es la carrera. En `N @ RIR1/0`, el
+    RIR objetivo de cada serie aparece como 1, 1, …, 0. Los ejercicios con «—»
+    esa semana no se listan. Desde S2 los unilaterales de rehab se registran
+    por pierna: cada serie lleva un botón D/I (D = derecha, la afectada).
+  - Arriba, la tarjeta de rodilla con las dos pruebas de la mañana, y desde S2
+    los «Hitos y avisos» de la semana.
   - *4 semanas:* en las semanas 3 y 4 eliges cuál de los 3 días haces, porque
     el plan los deja libres.
 - **Cronómetro** — dentro de cada ejercicio, con *Iniciar / Pausar / A cero*.
@@ -78,26 +87,43 @@ de inicio**. Se abre a pantalla completa, sin barra del navegador.
   tiempo medido a la columna *Seg* de la serie.
 - **Plan** — el plan completo en solo lectura, con un selector de semana y las
   reglas. Por defecto abre el plan en curso, o el próximo, en la semana de la
-  fecha elegida. Arriba se cambia al otro plan.
+  fecha elegida. Arriba se cambia al otro plan. En el de volumen, los hitos de
+  la semana y el botón **Reglas del bloque** (las 12 reglas del plan rodilla,
+  con sus etiquetas [EVIDENCIA], [LÓGICA] e [INCERTIDUMBRE]).
+- **Rodilla** — el seguimiento diario del 26/10 al 27/12: pruebas de la mañana,
+  dolor durante, nivel previo en ≤60 min (carrera) y chasquido; calcula 24 h,
+  48 h, peor 24-48 h y «¿Cumple?». Además, resumen semanal con los avisos de S4
+  y del chasquido, entrada a la carrera, test de fuerza y escalones de
+  profundidad. Los cálculos están en `js/rodilla-calc.js` (funciones puras).
 - **Datos** — exportar el .xlsx, copia de seguridad en JSON e historial.
 
-Los ejercicios de rehab llevan una barra verde a la izquierda y el **cardio**
-(bici, martes y viernes, al final de la sesión) una barra azul. El cardio es un
-ejercicio más, pero se registra con una sola entrada en minutos (columna *Min*
-de la hoja `Registro`); sus pautas largas se leen dentro del ejercicio.
+Los ejercicios de rehab (y el test de fuerza) llevan una barra verde a la
+izquierda, los correctivos del sábado una ámbar y el **cardio** (bici martes y
+viernes, carrera miércoles y domingo, al final de la sesión) una azul. El
+cardio es un ejercicio más, pero se registra con una sola entrada en minutos
+(columna *Min* de la hoja `Registro`); sus pautas largas se leen dentro del
+ejercicio. Los correctivos no cuentan como series de hipertrofia.
 
 ## Mantenimiento
 
 ```bash
 python tools/embed.py           # re-empotra el .xlsx si cambias el plan original
 python tools/verify_plan.py     # compara la hoja Volumen celda a celda con js/plan.js
+python tools/volcado_excel.py   # vuelca el Excel a docs/plan-rodilla/ (y el diff con c3ece19)
 node tools/test-export.mjs      # genera .xlsx de prueba en tools/out/ y los valida (usa openpyxl)
 node tools/e2e.mjs              # recorrido completo en iPhone emulado (requiere playwright)
 node tools/test-migracion.mjs   # comprueba las migraciones de datos ya registrados
 node tools/shots.mjs            # capturas de pantalla
+for t in tests/*.test.mjs; do node "$t"; done   # pruebas de Node sin dependencias
+node tests/contenido-ui.mjs     # Plan y Hoy contra el Excel en iPhone emulado (requiere playwright)
 ```
 
-Playwright no viene instalado. Para las dos pruebas que lo necesitan:
+`tests/rodilla-logica.test.mjs` contrasta los cálculos de rodilla con las
+fórmulas reales del Excel si encuentra el paquete de Python `formulas`
+(`pip install --target tools/out/py formulas`, o en otra carpeta indicada con
+`RODILLA_PY`); si no, omite ese contraste con un aviso.
+
+Playwright no viene instalado. Para las pruebas que lo necesitan:
 
 ```bash
 npm install && npx playwright install --only-shell chromium
@@ -110,8 +136,10 @@ El plan vive en dos sitios que hay que mantener a la vez: las hojas del
 tocar el Excel, ejecuta `python tools/embed.py`. Si el cambio es en la hoja
 Volumen, actualiza `BLOCK_VOL` y comprueba con `python tools/verify_plan.py`.
 Allí las prescripciones se escriben igual que en la celda (`2 @ RIR1/0`,
-`1 @ RIR0`, `3 x10`, `2 x15–20`, `-`). Un formato nuevo hace fallar
-`parsePres` a propósito.
+`1 @ RIR0`, `3 x10`, `2 x15–20`, `3 x10-15
+@RIR1-2`, `—`, `-`). Un formato
+nuevo hace fallar `parsePres` a propósito. Las decisiones del plan rodilla
+están en `DECISIONES.md`.
 
 **Renombrar un ejercicio rompe su historial**: el identificador se calcula a
 partir del nombre, así que lo ya registrado queda huérfano. Hay que añadir una
