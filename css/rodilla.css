@@ -1,2 +1,110 @@
-/* Estilos de la pestaña Rodilla (js/rodilla.js). ESQUELETO: lo rellena la tarea C.
+/* Estilos de la pestaña Rodilla (js/rodilla.js). Prefijo rod-.
    Usa las variables de css/styles.css (--surface, --line, --accent, --ok, --warn…). */
+
+:root { --rod-bad: #ff6b6b; }
+
+.rod { min-width: 0; }
+.rod * { min-width: 0; }
+
+/* Selector de secciones: rejilla de 3 x 2, sin scroll horizontal */
+.rod-tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 12px; }
+.rod-tabs button {
+  height: 44px; border-radius: 12px; border: 1px solid var(--line);
+  background: var(--surface); color: var(--muted); font: inherit; font-size: 14px; font-weight: 600;
+}
+.rod-tabs button.on { background: var(--accent-dim); color: var(--accent); border-color: transparent; }
+
+/* Navegación entre días */
+.rod-nav { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+.rod-nav button {
+  flex: none; width: 52px; height: 52px; border-radius: 14px; border: 1px solid var(--line);
+  background: var(--surface); color: var(--accent); font-size: 28px; line-height: 1;
+}
+.rod-nav button:disabled { opacity: .3; }
+.rod-nav-t { flex: 1; text-align: center; }
+.rod-nav-t b { display: block; font-size: 16px; }
+.rod-nav-t small { color: var(--muted); font-size: 12.5px; }
+
+/* Campos */
+.rod-f { display: block; margin-top: 10px; }
+.rod-f > span { display: block; font-size: 12.5px; color: var(--muted); margin-bottom: 4px; }
+.rod-f input[type="text"], .rod-f select {
+  width: 100%; height: 48px; padding: 0 12px;
+  background: var(--surface-2); border: 1px solid var(--line); border-radius: 11px;
+  color: var(--text); font: inherit; font-size: 16px;   /* 16px: iOS no hace zoom */
+}
+.rod-f input[inputmode="numeric"], .rod-f input[inputmode="decimal"] { text-align: center; font-weight: 600; font-variant-numeric: tabular-nums; }
+.rod-f input:focus, .rod-f select:focus, .rod-f textarea:focus { outline: 2px solid var(--accent); border-color: transparent; }
+.rod-f input.rod-bad { border-color: var(--rod-bad); outline: 2px solid var(--rod-bad); }
+.rod-err { display: block; margin-top: 4px; font-style: normal; font-size: 12.5px; color: var(--rod-bad); }
+.rod-plans { display: flex; gap: 8px; flex-wrap: wrap; }
+.rod-plan {
+  margin-top: 6px; height: 36px; padding: 0 12px; border-radius: 10px;
+  border: 1px solid var(--line); background: none; color: var(--accent); font: inherit; font-size: 13px;
+}
+
+/* Sí / No / — */
+.rod-seg { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.rod-seg button {
+  height: 48px; border-radius: 11px; border: 1px solid var(--line);
+  background: var(--surface-2); color: var(--muted); font: inherit; font-size: 16px; font-weight: 650;
+}
+.rod-seg button.on { background: var(--accent-dim); color: var(--accent); border-color: transparent; }
+
+/* Rejillas */
+.rod-grid2, .rod-grid3, .rod-grid4 { display: grid; gap: 10px; }
+.rod-grid2 { grid-template-columns: 1fr 1fr; }
+.rod-grid3 { grid-template-columns: 1fr 1fr 1fr; }
+.rod-grid4 { grid-template-columns: repeat(4, 1fr); margin: 10px 0; }
+.rod-grid4 > div, .rod-grid2 > div { text-align: center; }
+.rod-grid4 small, .rod-cumple small, .rod-res small, .rod-grid2 > div > small { display: block; font-size: 11.5px; color: var(--muted); }
+.rod-grid4 b, .rod-grid2 > div > b { font-size: 20px; font-variant-numeric: tabular-nums; }
+@media (max-width: 360px) { .rod-grid4 { grid-template-columns: 1fr 1fr; } .rod-grid3 { grid-template-columns: 1fr 1fr; } }
+
+/* Colores de estado */
+.rod-ok { color: var(--ok); }
+.rod-bad { color: var(--rod-bad); }
+.rod-warn { color: var(--warn); }
+.rod-none { color: var(--muted); }
+.rod-calc .rod-cumple { text-align: center; margin-top: 4px; }
+.rod-big { display: block; font-size: 22px; font-weight: 700; }
+
+/* Registro */
+.rod-row { padding: 10px 12px; gap: 8px; }
+.rod-row.hoy { border-color: var(--accent); }
+.rod-row .meta { overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.rod-cols { flex: none; width: 36px; text-align: center; }
+.rod-cols.rod-w { width: 66px; }
+.rod-cols small { display: block; font-size: 10.5px; color: var(--muted); }
+.rod-cols b { font-size: 14px; }
+
+/* Avisos */
+.rod-aviso { border-left: 3px solid var(--line); }
+.rod-aviso p { color: var(--text); margin-top: 2px; }
+.rod-a-peor { border-left-color: var(--rod-bad); background: rgba(255, 107, 107, .1); }
+.rod-a-igual { border-left-color: var(--warn); background: rgba(255, 176, 32, .1); }
+.rod-a-mejor { border-left-color: var(--ok); background: rgba(61, 220, 151, .1); }
+.rod-linea {
+  margin-top: 10px; padding: 8px 10px; border-radius: 10px; font-size: 13px;
+  background: rgba(255, 176, 32, .12); color: var(--warn);
+}
+
+/* Entrada y resultado */
+.rod-titulo { font-weight: 650; font-size: 15px; margin: 4px 4px 10px; }
+.rod-crit { color: var(--text) !important; font-size: 14.5px !important; }
+.rod-dia { color: var(--muted); font-size: 12.5px; }
+.rod-res { text-align: center; }
+.rod-res b { display: block; font-size: 18px; margin-top: 4px; }
+
+/* Textos explicativos y ayuda */
+.rod-txt { white-space: pre-line; font-size: 13px; color: var(--muted); line-height: 1.5; }
+.rod-nota { margin: 8px 4px 12px; }
+.rod-help summary { font-weight: 650; font-size: 14px; min-height: 28px; }
+.rod-help p { margin-top: 8px; }
+.rod .reglas-tag { font-weight: 650; color: var(--warn); }
+.rod .reglas-tag-evidencia { color: var(--ok); }
+.rod .reglas-tag-logica { color: var(--accent); }
+
+/* Tarjeta de Hoy */
+.rod-hoy { border-left: 3px solid var(--rehab); }
+.rod-hoy .rod-grid2.rod-calc { margin-top: 10px; }

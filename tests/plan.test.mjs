@@ -136,11 +136,12 @@ test('sidesFor: solo unilaterales y solo desde S2', () => {
   assert.equal(PLAN.sidesFor(PLAN.BLOCK_A.L.exercises[2], PLAN.WEEKS[0]), false);
 });
 
-test('huecos para otras tareas y hitos del volcado', () => {
+test('hitos, nota de hitos y reglas del bloque, como en el volcado', () => {
   assert.equal(PLAN.VOL_HITOS.length, 8);
   PLAN.VOL_HITOS.forEach((h, i) => assert.equal(h, cell(COLS[i], 99)));
-  assert.equal(PLAN.VOL_HITOS_NOTE, '');
-  assert.deepEqual(PLAN.VOL_BLOCK_RULES, []);
+  assert.equal(PLAN.VOL_HITOS_NOTE, cell('K', 99));
+  assert.equal(PLAN.VOL_BLOCK_RULES.length, 12);
+  PLAN.VOL_BLOCK_RULES.forEach((r, i) => assert.equal(r, cell('A', 102 + i)));
 });
 
 console.log(fallos ? `\n${fallos} fallo(s)` : '\nTodo OK');

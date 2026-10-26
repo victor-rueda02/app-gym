@@ -46,3 +46,63 @@ y la especificación en la lógica (cálculos, reglas, avisos).
 7. **«—» frente a «-».** «—» (raya) = no se hace esa semana: se oculta en Hoy y se
    ve atenuado en Plan. «-» (guion, la fila de S1 que antes era «Movilidad -
    trapecio inferior») se comporta como hasta ahora.
+
+## Fase 1 · Modelo de datos
+
+8. **Formatos de celda nuevos.** `parsePres(text, objetivo)`: «N-M x R» prescribe M
+   series (las filas que se precargan); el test de fuerza («2 aprox. + 1 al fallo
+   por pierna») son 3 series, y «Opcional: rango completo» también, marcado como
+   opcional; el cardio y la carrera son texto libre con una sola entrada en
+   minutos (los minutos se precargan solo si la celda empieza por «N min» o «N'»).
+9. **Carrera.** Es un ejercicio de cardio (barra azul) llamado como la columna B
+   del Excel, «Andar-correr en llano»: último ejercicio del miércoles y único de
+   la sesión nueva del domingo (`VOL-D`, desde S2).
+10. **Marca D/I.** Los unilaterales de rehab (lunes: abducción, touchdown y prensa;
+    jueves: test, búlgara y abducción) se registran por pierna desde S2: cada
+    serie lleva un botón D/I y se precargan 2 × series, alternando D e I con la D
+    primero («D primero» en las notas del Excel). En S1 nada cambia. La sentadilla
+    es bilateral y no lleva marca.
+11. **Correctivos.** Objetivos «Hombro (correctivo)» y «Codo (correctivo)», con
+    barra ámbar. El recuento (`seriesPorGrupo`) replica la fórmula del Excel, que
+    solo suma objetivos idénticos a los 10 grupos: los correctivos y el cardio no
+    cuentan. Da 52, 57, 62, 66, 71, 76, 80, 88.
+12. **Renombrados → migración v4** (por sesión; julio/agosto no se toca): abducción
+    de lunes y jueves, prensa, sentadilla, abducción y T del sábado, y bici del
+    viernes. Ver la tabla en `js/store.js`.
+13. **Registro de rodilla** en el mismo almacén (`knee` dentro de `gym.log.v1`, con
+    su espejo en IndexedDB y en la copia JSON). Los precargados de sesión, regla y
+    novedad solo se guardan si el usuario los edita.
+14. **Interfaz.** Pestaña nueva «Rodilla»; tarjeta «Hitos y avisos» en Plan y en
+    Hoy (S2+); botón «Reglas del bloque» en Plan. En la lista de Hoy, «hecho»
+    cuenta 2 × series en los unilaterales.
+
+## Fase 2 · Contenido, reglas, seguimiento y exportación
+
+15. **Cabeceras de sesión.** Nombre y título salen de la fila de cabecera del Excel
+    (título = todo lo que va tras el primer «·», con sus dobles espacios). El
+    domingo de carrera no tiene cabecera en el Excel: «Domingo · Carrera».
+16. **Textos del plan.** `VOL_RULES` = A2 y A64; semanas 9-10 = A66–A69; hitos =
+    C99–J99 y su nota K99; reglas del bloque = A102–A113 con su título A101.
+17. **Panel de reglas.** Hoja inferior con las 12 reglas numeradas y una leyenda de
+    las etiquetas. Las etiquetas se resaltan por su primera palabra (la regla 7,
+    «[LÓGICA; …: INCERTIDUMBRE]», se pinta como LÓGICA) sin cambiar el texto.
+18. **Seguimiento rodilla.**
+    - Una sola prueba de la mañana rellena: la molestia vale esa (como `MAX` en el
+      Excel).
+    - «Nivel previo ≤60 min» solo se pide con la regla Carrera; si se cambia la
+      regla, el dato se conserva pero no cuenta (como en el Excel).
+    - La regla «—» cae en la rama de gimnasio de «¿Cumple?» (igual que la fórmula
+      P del Excel). Cuenta la regla editada, si se editó.
+    - «Escalón D real» se valida como entero 0-4; «Nivel de carrera real», texto
+      libre; la carga del test admite decimales con coma o punto.
+    - El texto de ayuda A2 habla de «columnas G y H» y «celdas amarillas» del
+      Excel: se muestra literal, plegado bajo «Cómo se rellena».
+19. **Exportación.**
+    - La hoja «Seguimiento rodilla» se rellena en su sitio: solo las celdas de
+      entrada, con su estilo; las fórmulas no se tocan. El libro se marca con
+      `fullCalcOnLoad` para que Excel y Calc recalculen al abrir. Sin datos de
+      rodilla la hoja sale byte a byte igual al original.
+    - Los precargados (sesión, regla, novedad) solo se escriben si se editaron.
+    - La hoja `Registro` gana la columna «Lado» tras «Serie»; su cabecera usa el
+      xf 12, que es el de las cabeceras de la hoja Volumen en el `styles.xml`
+      nuevo (el 13 ya no lo es).

@@ -37,6 +37,7 @@ function buildRows() {
         rows.push([
           date, `Sem ${week.n}`, week.block, sessionLabel, exercise.name,
           exercise.target, i + 1,
+          PLAN.sidesFor(exercise, week) ? (s.side || '') : '',
           num(s.kg), num(s.reps), num(s.secs), num(s.mins), num(s.rir),
           pres.label, exercise.notes.length <= 40 ? exercise.notes : '',   // las pautas largas ya están en la hoja del plan
         ]);
@@ -46,8 +47,8 @@ function buildRows() {
     // La nota del día es una sola: va en la primera fila de esa fecha, no
     // repetida al final de cada ejercicio.
     if (rec.notes && rows.length > first) {
-      const cell = rows[first][13];
-      rows[first][13] = cell ? `${cell} · ${rec.notes}` : rec.notes;
+      const cell = rows[first][14];
+      rows[first][14] = cell ? `${cell} · ${rec.notes}` : rec.notes;
     }
   }
   return rows;
@@ -76,7 +77,7 @@ function download(bytes) {
 /* Devuelve un mensaje describiendo qué ha pasado, para mostrarlo en la UI. */
 async function exportXlsx() {
   const rows = buildRows();
-  const bytes = buildXlsx(originalXlsxBytes(), rows);
+  const bytes = buildXlsx(originalXlsxBytes(), rows, Store.all().knee);
 
   if (supportsFsa()) {
     try {

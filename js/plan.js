@@ -233,19 +233,19 @@ const BLOCK_VOL = {
     exercises: [
       vx('Elev laterales polea', 'Hombro lat.',
         ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0'],
-        'Prioridad 1 · Polea altura muñeca/muslo en plano escapular (~30° adelante). Intercalar en superserie alterna con Unilateral abduction para dar 3-4 min de descanso al deltoides antes de las mancuernas.'),
+        'Prioridad 1 · Polea altura muñeca/muslo en plano escapular (~30° adelante). Intercalar en superserie alterna con la abducción (máquina) para dar 3-4 min de descanso al deltoides antes de las mancuernas.'),
       vx('Abducción de pie unilateral (máquina)', 'Rehab (cadera)',
         ['2 x15–20', '3 x10-15\n@RIR1-2', '3 x10-15\n@RIR1-2', '3 x10-15\n@RIR1-2', '3 x10-15\n@RIR1-2', '3 x10-15\n@RIR1-2', '3 x10-15\n@RIR1-2', '3 x10-15\n@RIR1-2'],
-        'Antes del rehab: sentadilla española 5×45 s', { sides: true }),
+        'Cadera: de pie, unilateral, en máquina; empieza por la D y sube carga cuando llegues a 15 con RIR 1-2. Cadera + rodilla combinadas = primera línea en los consensos de 2016 y 2018 [EVIDENCIA]. No cuenta como novedad: apenas carga la rodilla [LÓGICA]. Antes del rehab: sentadilla española 2-3×45 s.', { sides: true }),
       vx('Elev laterales mancuerna', 'Hombro lat.',
         ['1 @ RIR0', '1 @ RIR0', '1 @ RIR0', '1 @ RIR0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0'],
-        'Prioridad 1 · Hacer tras el 1er bloque de Unilateral abduction · Perfil en acortamiento, controlar bajada sin rebotar.'),
+        'Prioridad 1 · Hacer tras el 1er bloque de la abducción (máquina) · Perfil en acortamiento, controlar bajada sin rebotar.'),
       vx('Touchdown squat', 'Rehab',
         ['2 x15–20', '2 x10-15\n/pierna', '2 x10-15\n/pierna', '2 x10-15\n/pierna', '2 x10-15\n/pierna', '2 x10-15\n/pierna', '2 x10-15\n/pierna', '2 x10-15\nrepite S7'],
-        'fijo', { sides: true }),
+        'Control antes de la prensa. D a la profundidad YA validada (la de la semana anterior), I completa; tempo 2-0-2, RIR 3; pelvis nivelada y rodilla hacia el 2.º-4.º dedo. Hace de filtro: si la D pasa de 3/10 aquí, ese lunes no se sube escalón en la prensa [LÓGICA].', { sides: true }),
       vx('Prensa unil · pesado y lento n.º 1', 'Rehab',
         ['2 x12', '2 x10\nnov: x10', '2 x10\nnov: +1 escalón', '2 x10\nnov: +1 escalón', '2 x8\nnov: x8', '2 x8\nnov: +1 escalón', '2 x8\nnov: +1 escalón', '2 x8\nrepite S7'],
-        'fijo · Tempo 3-1-3 · dolor ≤3/10', { sides: true }),
+        'Pesado y lento para el tendón [EVIDENCIA: Kongsgaard 2009; 1-2 veces/semana para mantenerlo: LÓGICA]. Tempo 3-1-3. D primero: RIR 2 y profundidad de su escalón. I: RIR 1-2, rango completo y mismas reps. Lunes = día de novedad (escalón o reps): solo si esa mañana estás igual o mejor y la touchdown no pasa de 3/10; si no, repite la semana anterior. En la sesión con novedad no cambies nada más (con escalón nuevo, mismo peso).', { sides: true }),
       vx('Gemelos prensa', 'Gemelos',
         ['3 @ RIR1/0', '3 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0', '5 @ RIR1/0', '5 @ RIR1/0'],
         'Prensa con pies abajo · Pausa estricta de 2 s en máximo estiramiento abajo (sin rebotar en el tendón de Aquiles) + rodilla semirrígida.'),
@@ -274,11 +274,11 @@ const BLOCK_VOL = {
         'Colgado con depresión escapular (activa dorsal) · Enrollar pelvis hacia costillas (retroversión). Usar straps si el agarre molesta al codo.'),
       vx('Bici Z2 (65–75% FC)', 'Cardio',
         ['15 min', '—', '—', '—', '10\' Z2', '10\' Z2', '10\' Z2', '10\' Z2'],
-        'Cadencia alta 85–90 rpm, sillín alto (rodilla a 20-25° abajo), 100% sentado. Cero impacto.'),
+        'No se hizo en S1: estímulo NUEVO [LÓGICA]. Entra en S4 (el viernes) solo si S2 y S3 cumplieron la regla; desde S5, martes y viernes. Sin Z3 en este bloque. Lo primero que se quita si hay brote. Sillín alto (rodilla a 20-25° abajo), 85-90 rpm, sentado. 10 min fijos en el bloque; subir a 15 después del viaje, como novedad única.'),
     ],
   },
   X: {
-    id: 'VOL-X', dow: 3, name: 'Miércoles', title: 'Pull',
+    id: 'VOL-X', dow: 3, name: 'Miércoles', title: 'Pull  ·  + carrera (ver bloque de carrera)',
     exercises: [
       vx('Jalón ancho plano frontal', 'Espalda',
         ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0'],
@@ -303,27 +303,27 @@ const BLOCK_VOL = {
         'Prioridad 2 (Bíceps en estiramiento) · Hombro en extensión detrás del torso; no dejar que el hombro rote hacia delante al subir.'),
       vx('Andar-correr en llano', 'Cardio',
         ['—', 'N1 · 8×(1\'/2\')', 'N2 · 6×(2\'/1\')', 'N3 · 4×(4\'/1\')', 'N4 · 4×(5\'/1\')', 'N5 · 2×(13\'/1\')', 'N6 · 30\' seguidos', 'repite N6'],
-        ''),
+        'Formato: minutos trotando / minutos andando. Nivel nuevo solo si esa mañana estás igual o mejor; si no, repite el anterior (los niveles son objetivos, no fechas). 5 min andando antes; llano y firme. Regla de carrera: ≤2/10 durante, vuelta al nivel previo en ≤60 min y la mañana siguiente no peor; para avanzar, además, peor valor 24-48 h ≤ referencia [EVIDENCIA de uso: TREK Education, basada en Esculier; no comparada con otros umbrales]. Cadencia +5-10% opcional [EVIDENCIA mixta: Bramah 2019, serie de 12 corredores con mejora de dolor y función mantenida a 3 meses; Esculier 2018, sin beneficio extra sobre la educación].'),
     ],
   },
   J: {
-    id: 'VOL-J', dow: 4, name: 'Jueves', title: 'Rehab + Isquios + Aductores',
+    id: 'VOL-J', dow: 4, name: 'Jueves', title: 'Rehab + Isquios + Aductores  ·  test de fuerza S2 / S5 / S7',
     exercises: [
       vx('TEST fuerza · extensión unilateral en máquina 90→45°', 'Test',
         ['—', '2 aprox. +\n1 al fallo\npor pierna', '—', '—', '2 aprox. +\n1 al fallo\npor pierna', '—', '2 aprox. +\n1 al fallo\npor pierna', 'Opcional:\nrango completo'],
-        '', { sides: true }),
+        'Al empezar la sesión, tras la española 2-3×45 s y 2 series de aproximación. Mismo asiento y SIEMPRE rango fijo 90→45° (si el rango cambia, la comparación entre semanas no vale). Misma carga en las dos piernas (la que la I haga unas 10-15 reps), tempo 2-0-2, D primero, 3 min de descanso y luego la I; para si pasa de 3/10. Apunta carga y reps en «Seguimiento rodilla», que calcula la simetría. Objetivo ≥90% antes del balón [LÓGICA; el 90% viene de la vuelta al deporte tras LCA, no está validado en dolor femoropatelar: INCERTIDUMBRE]. Test en rango completo opcional en S8 y no en S7, para que sea la única novedad de su semana.', { sides: true }),
       vx('Sentadilla al cajón o desde pines · pesado y lento n.º 2', 'Rehab',
         ['3 x12', '3 x10', '3 x10\nprof. del lunes', '3 x10\nprof. del lunes', '3 x8', '3 x8\nprof. del lunes', '3 x8\nprof. del lunes', '3 x8\nrepite S7'],
-        'Al cajón: tope + pausa 1 s · tempo 3-1-3'),
+        'Tras el test (S2/S5/S7), carga por RIR. Tempo 3-1-3, RIR 2. Profundidad = la validada el lunes en la prensa. Postura habitual: un chasquido sin dolor no cambia nada; el apoyo ancho solo si te reduce el DOLOR [LÓGICA]. Antes del rehab (si no hay test): sentadilla española 2-3×45 s.'),
       vx('Bulgarian split squat', 'Rehab',
         ['2 x12', '2 x10', '2 x10', '2 x10', '2 x8', '2 x8', '2 x8', '2 x8\nrepite S7'],
-        'Tempo 3-1-3 · empieza por la lesionada', { sides: true }),
+        'D primero: RIR 2 y profundidad validada el lunes. I: RIR 1-2 y rango completo. Tempo 3-1-3. Alterna piernas, 60-90 s entre una y otra.', { sides: true }),
       vx('Abducción de pie unilateral (máquina)', 'Rehab (cadera)',
         ['2 x15–20', '3 x10-15\n@RIR1-2', '3 x10-15\n@RIR1-2', '3 x10-15\n@RIR1-2', '3 x10-15\n@RIR1-2', '3 x10-15\n@RIR1-2', '3 x10-15\n@RIR1-2', '3 x10-15\n@RIR1-2'],
-        'Antes del rehab: sentadilla española 5×45 s', { sides: true }),
+        'Misma máquina que el lunes; empieza por la D. Va DESPUÉS de la búlgara, para no fatigar el glúteo medio antes del trabajo a una pierna [LÓGICA]. Lunes + jueves = 72-96 h entre sesiones de cadera.', { sides: true }),
       vx('Touchdown squat', 'Rehab',
         ['2 x15–20', '—', '—', '—', '—', '—', '—', '—'],
-        ''),
+        'Sale del jueves desde S2: va el lunes, antes de la prensa [LÓGICA].'),
       vx('Isquios sentado', 'Isquios',
         ['3 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0', '5 @ RIR1/0', '5 @ RIR1/0', '5 @ RIR1/0'],
         'Isquios en estiramiento máximo (cadera a 90°) · Controlar fase excéntrica.'),
@@ -364,33 +364,33 @@ const BLOCK_VOL = {
         'Prioridad 3 (Dorsal Bajo) · De lado a la polea (con tobillera en muñeca o codo semirrígido) para aislar haz inferior sin usar bíceps ni codo · Sem 1-2 a RIR 1-2.'),
       vx('Bici Z2 (sin Z3 en este bloque)', 'Cardio',
         ['12 min', '—', '—', '10\' Z2\nnov: 1.ª vez', '10\' Z2', '10\' Z2', '10\' Z2', '10\' Z2'],
-        'Sem 1-4: Z2 continua. Sem 5-8: Intervalos cortos a 95-100 rpm (Z3 / Umbral) controlando acidosis local.'),
+        'S4: primera vez, solo si esa mañana estás igual o mejor; se valida con las mediciones del sábado y del domingo (el sábado no hay pierna). Ver la nota del martes.'),
     ],
   },
   S: {
-    id: 'VOL-S', dow: 6, dows: [6, 0], name: 'Sábado', title: '',
+    id: 'VOL-S', dow: 6, dows: [6, 0], name: 'Sábado', title: 'casa, sin máquinas ni poleas  ·  sin pierna (el domingo: carrera)',
     exercises: [
       vx('Abducción unilateral', 'Rehab (cadera)',
         ['2 x15–20', '—', '—', '—', '—', '—', '—', '—'],
-        'fijo · Antes del rehab: sentadilla española 5×45 s'),
+        'Sale del sábado desde S2: la abducción va el lunes y el jueves en máquina; la pierna se concentra en 2 días [LÓGICA].'),
       vx('Touchdown squat', 'Rehab',
         ['2 x15–20', '—', '—', '—', '—', '—', '—', '—'],
-        'fijo'),
+        'Sale del sábado desde S2: va el lunes, antes de la prensa [LÓGICA].'),
       vx('Bulgarian split squat', 'Rehab',
         ['2 x12', '—', '—', '—', '—', '—', '—', '—'],
-        'fijo · Tempo 3-1-3 · empieza por la lesionada'),
+        'Sale del sábado desde S2: la pierna se concentra en el lunes y el jueves [LÓGICA].'),
       vx('Abs wesley banco', 'Abs',
         ['2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0'],
         ''),
       vx('Elevación lateral en prono «T» (mancuernas, banco)', 'Hombro (correctivo)',
         ['-', '2-3 x10-15\n5 s arriba', '2-3 x10-15\n5 s arriba', '2-3 x10-15\n5 s arriba', '2-3 x10-15\n5 s arriba', '2-3 x10-15\n5 s arriba', '2-3 x10-15\n5 s arriba', '2-3 x10-15\n5 s arriba'],
-        ''),
+        'Postura: trapecio medio e inferior y deltoides posterior. Boca abajo en el banco, pulgar arriba, muy poco peso. RIR 3-4; no cuenta como serie de hipertrofia. Libro, p. 290.'),
       vx('Rotación externa con banda «W»', 'Hombro (correctivo)',
         ['—', '2-3 x15-20\n5-10 s fuera', '2-3 x15-20\n5-10 s fuera', '2-3 x15-20\n5-10 s fuera', '2-3 x15-20\n5-10 s fuera', '2-3 x15-20\n5-10 s fuera', '2-3 x15-20\n5-10 s fuera', '2-3 x15-20\n5-10 s fuera'],
-        ''),
+        'Codos pegados al cuerpo a 90°. RIR 3-4. Libro, p. 288.'),
       vx('Curl de muñeca en extensión (mancuerna)', 'Codo (correctivo)',
         ['—', '3 x10-15\n3 s / 3 s', '3 x10-15\n3 s / 3 s', '3 x10-15\n3 s / 3 s', '3 x10-15\n3 s / 3 s', '3 x10-15\n3 s / 3 s', '3 x10-15\n3 s / 3 s', '3 x10-15\n3 s / 3 s'],
-        ''),
+        'Codo (cara externa). Antebrazo apoyado, palma abajo. Si ahora agarrar te duele: isométrico 4-5×30-45 s las 1-2 primeras semanas. Antes, test del nervio radial (libro, p. 323): si es positivo, se cambia por deslizamientos del nervio (p. 338). Dolor ≤3/10 y no peor al día siguiente. Libro, pp. 332-333.'),
     ],
   },
   D: {
@@ -398,26 +398,26 @@ const BLOCK_VOL = {
     exercises: [
       vx('Andar-correr en llano', 'Cardio',
         ['—', 'repite el\nmiércoles', 'repite el\nmiércoles', 'repite el\nmiércoles', 'repite el\nmiércoles', 'repite el\nmiércoles', 'repite el\nmiércoles', 'repite el\nmiércoles'],
-        ''),
+        'Repite el nivel validado el miércoles. Nunca dos días seguidos corriendo [LÓGICA]. El sábado no hay pierna: llegas descansado.'),
     ],
   },
 };
 
-/* Celdas A2 y A61 */
+/* Celdas A2 y A64 */
 const VOL_RULES = [
-  'RIR1/0 = todas las series a RIR1 y la ÚLTIMA a RIR0 (si solo hay 1 serie, RIR0).  Rehab (Rebuilding Milo): ×12 sem 1 → ×10 sem 2-4 → ×8 sem 5-8 → ×6 tras el viaje; peso con el que la última serie quede cerca del fallo sin perder tempo 3-1-3 ni profundidad, dolor ≤3/10; sube peso solo si el test de 24 h está igual o mejor.',
+  'RIR1/0 = todas las series a RIR1 y la ÚLTIMA a RIR0 (si solo hay 1 serie, RIR0).  REHAB RODILLA S2-S8 en 2 días: lunes (touchdown + prensa) y jueves (sentadilla + búlgara), pesado y lento, tempo 3-1-3; D a RIR 2 y en su escalón de profundidad, I a RIR 1-2 y rango completo. Reps: ×12 S1 → ×10 S2-4 → ×8 S5-8 → ×6 tras el viaje. Una novedad por día (lunes profundidad/reps · miércoles carrera), solo si esa mañana estás igual o mejor. Reglas al final de la hoja; registro diario en «Seguimiento rodilla».',
   'Autorregulación: si un músculo pierde reps 2 sesiones seguidas, esa semana NO le subas series. Si se estancan varios a la vez o la rodilla empeora en el test, repite la semana anterior.',
 ];
 
-/* Celdas A63–A66 */
+/* Celdas A66–A69 */
 const VOL_NOTES = [
   'Semana 9 (14-20/12) · Viaje = descarga  ·  Semana 10 · Vuelta progresiva',
   'Hipertrofia: la semana sin entrenar hace de descarga justo después del pico de volumen de la semana 8.',
-  'Rodilla (libro): nunca dejes el tendón en reposo total. Llévate la goma: sentadilla española 5×45 s cada día (sin anclaje → wall sit a 1 pierna). Sigue haciendo el test en declive por la mañana.',
-  'Semana 10 (vuelta): hipertrofia con las series de la sem 3-4 y a RIR2. Rehab ×8 al ~80% del peso de la sem 8. Si el test de 24 h aguanta, semana 11 a peso completo y siguiente escalón del libro (×6).',
+  'Rodilla en el viaje: nunca reposo total del tendón. Sentadilla española 5×45 s cada día (sin anclaje → wall sit a 1 pierna) y las dos pruebas de la mañana (declive + 10 subidas). Carrera: si puedes, 2 rodajes suaves sin pasar del nivel de S8 y nunca dos días seguidos, con la regla de carrera (≤2/10, nivel previo en ≤60 min, mañana siguiente no peor).',
+  'Semana 10 (vuelta): hipertrofia con las series de la sem 3-4 y a RIR2. Rehab ×8 al ~80% del peso de la sem 8; si se cumple la regla de 24-48 h, semana 11 a peso completo y siguiente escalón del libro (×6). Carrera: retomas el nivel de S8, o uno por debajo si no pudiste correr en el viaje.',
 ];
 
-/* Fila 99 «Hitos y avisos»: un texto por semana ('—' = nada que avisar). */
+/* Fila 99 «Hitos y avisos»: celdas C99–J99, un texto por semana ('—' = nada que avisar). */
 const VOL_HITOS = [
   '—',
   'Mar: paseo 30\'\nMié: TD + saltitos\n→ 1.ª carrera\nJue: test 1',
@@ -428,9 +428,27 @@ const VOL_HITOS = [
   'Jue: test 3',
   'Repite S7\nJue: test opc.\nrango completo',
 ];
-// Los rellena otra tarea: nota general bajo los hitos y reglas del bloque (filas A102–A113).
-const VOL_HITOS_NOTE = '';
-const VOL_BLOCK_RULES = [];
+// Celda K99: nota general bajo los hitos.
+const VOL_HITOS_NOTE = 'Entrada a la carrera (S2), con la regla de carrera: martes, paseo de 30 min a paso rápido (≤2/10, nivel previo en ≤60 min y el miércoles por la mañana no peor); miércoles antes de correr, 10 touchdown con cada pierna y 20 saltitos a dos piernas (≤2/10). Si se cumplen los tres, 1.ª carrera ese miércoles (N1); si no, se repiten la semana siguiente [LÓGICA].';
+
+/* Celdas A93 (título del bloque de cardio y carrera) y A101 (título de las reglas) */
+const VOL_CARDIO_TITLE = 'BLOQUE DE CARDIO Y CARRERA (S2-S8)';
+const VOL_BLOCK_RULES_TITLE = 'REGLAS DEL BLOQUE RODILLA (S2-S8)';
+/* Celdas A102–A113: las 12 reglas del bloque rodilla. */
+const VOL_BLOCK_RULES = [
+  'Base [EVIDENCIA]: ejercicio combinado de cadera y rodilla (consensos de 2016 y 2018). Rodilla en 2 días, lunes y jueves (72-96 h entre sesiones, dentro de la ventana de 2-3 días de recuperación del tendón que describe el libro), pesado y lento en ambos; sábado sin pierna para llegar descansado a la carrera del domingo [LÓGICA].',
+  'Mediciones: cada mañana, en casa, con las mismas pruebas: test en declive y 10 subidas con la D al mismo escalón o banco. Vale la peor de las dos (el declive solo no basta: te sale 0 aunque haya molestia). Se apuntan en «Seguimiento rodilla».',
+  'Regla de gimnasio [LÓGICA]: ≤3/10 durante y el peor valor entre 24 y 48 h igual o mejor que la mañana del día de la sesión. Si no se cumple, retrocede un escalón en la siguiente sesión.',
+  'Regla de carrera [EVIDENCIA de uso]: ≤2/10 durante, vuelta al nivel previo en ≤60 min y la mañana siguiente no peor; para avanzar, además, peor valor 24-48 h ≤ referencia. Se aplica también a la entrada a la carrera y a las fases hacia el fútbol [LÓGICA].',
+  'Novedades [LÓGICA]: una por día y validada a las 24 y 48 h antes de repetirla. Lunes: escalón o reps (prensa) · miércoles: nivel de carrera · viernes de S4: bici. Solo si esa mañana estás igual o mejor. Si una medición falla, retrocede la última novedad anterior a ella. Lo validado se repite: el jueves usa la profundidad del lunes y el domingo repite el nivel del miércoles.',
+  'S2: el test del jueves cae dentro de las 48 h de la 1.ª carrera. Si el viernes de S2 sale peor, cuenta para las dos: el domingo repites N1 y el miércoles de S3 no subes de nivel [LÓGICA].',
+  'Escalones de profundidad de la D [LÓGICA; no hay pautas de rango validadas para la rótula: INCERTIDUMBRE]: escalón 0 = la profundidad que ya usas con la D; escalón 4 = la de la I. Reparte la diferencia en 4 partes iguales (como mucho ~15° cada una; si sale más, se termina después del bloque). Se sube los lunes de S3, S4, S6 y S7 en la prensa; la touchdown del lunes va a la profundidad ya validada y hace de filtro. Apunta las marcas en «Seguimiento rodilla».',
+  'Chasquido: si no duele, no se quita ni se cambia nada. Si duele, cuenta como dolor.',
+  'Brote [LÓGICA]: lo primero que se quita es la bici. Si fallan dos mediciones seguidas: 48-72 h solo sentadilla española 5×45 s diaria y caminar; luego retomas un escalón por debajo.',
+  'Alarma: bloqueo real, fallos repetidos de la rodilla o hinchazón visible → se para la progresión y toca valoración clínica.',
+  'AVISO S4 (fisio deportivo pendiente): si la molestia a las 24-48 h de S4 está igual o peor que en S2, o si el chasquido empieza a doler, la valoración pasa a ser prioritaria; si estás peor, se para la progresión hasta entonces. «Seguimiento rodilla» lo calcula.',
+  'Fases hacia el fútbol, después del viaje [LÓGICA], siempre con la regla de carrera: cambios de dirección ← 30 min seguidos dos veces sin reacción y rango D = I · pliometría ← 2 semanas de cambios de dirección y 10 saltos a una pierna sin dolor · balón ← cuádriceps D ≥90% de la I en el test y pliometría media sin reacción · equipo ← 2 semanas de balón sin reacción.',
+];
 
 const PLANS = [
   { id: 'jul', name: '4 semanas', range: '20 jul – 16 ago', from: '2026-07-20', to: '2026-08-16',
@@ -525,7 +543,7 @@ function seriesPorGrupo(n) {
 
 const PLAN = {
   WEEKS, BLOCK_A, BLOCK_B, RULES, VOL_WEEKS, BLOCK_VOL, VOL_RULES, VOL_NOTES, PLANS,
-  VOL_HITOS, VOL_HITOS_NOTE, VOL_BLOCK_RULES, VOL_GRUPOS,
+  VOL_HITOS, VOL_HITOS_NOTE, VOL_BLOCK_RULES, VOL_BLOCK_RULES_TITLE, VOL_CARDIO_TITLE, VOL_GRUPOS,
   weekFor, planById, planFor, sessionsFor, sessionFor, presFor, isoDate,
   parsePres, sidesFor, seriesPorGrupo, slug,
 };
