@@ -63,7 +63,8 @@ function parsePres(text, target = '') {
 
 /* vx(nombre, objetivo, [presc. Sem1..Sem8], notas, extra) */
 /* `extra`: { sides: true } marca los unilaterales que se registran por pierna (D/I);
-   { prog } los que se prescriben con el nivel real (ver PRENSA_NIVELES y CARRERA_NIVELES);
+   { prog } los que se prescriben con el nivel real (ver PRENSA_NIVELES y CARRERA_NIVELES)
+   o, la bici, según esté quitada o no;
    { link: 'test' } el test de fuerza, que no se registra como ejercicio sino en
    Rodilla › Test. */
 const vx = (name, target, weeks, notes = '', extra = {}) => ({
@@ -279,7 +280,7 @@ const BLOCK_VOL = {
         'Colgado con depresión escapular (activa dorsal) · Enrollar pelvis hacia costillas (retroversión). Usar straps si el agarre molesta al codo.'),
       vx('Bici Z2 (65–75% FC)', 'Cardio',
         ['15 min', '—', '—', '—', '10\' Z2', '10\' Z2', '10\' Z2', '10\' Z2'],
-        'No se hizo en S1: estímulo NUEVO [LÓGICA]. Entra en S4 (el viernes) solo si S2 y S3 cumplieron la regla; desde S5, martes y viernes. Sin Z3 en este bloque. En la regla de 48-72 h se mantiene si ya estaba introducida. Sillín alto (rodilla a 20-25° abajo), 85-90 rpm, sentado. 10 min fijos en el bloque; subir a 15 después del viaje, como novedad única.'),
+        'No se hizo en S1: estímulo NUEVO [LÓGICA]. Entra en S4 (el viernes) solo si S2 y S3 cumplieron la regla; desde S5, martes y viernes. Sin Z3 en este bloque. Lo primero que se quita si hay brote. Sillín alto (rodilla a 20-25° abajo), 85-90 rpm, sentado. 10 min fijos en el bloque; subir a 15 después del viaje, como novedad única.', { prog: 'bici' }),
     ],
   },
   X: {
@@ -308,7 +309,7 @@ const BLOCK_VOL = {
         'Prioridad 2 (Bíceps en estiramiento) · Hombro en extensión detrás del torso; no dejar que el hombro rote hacia delante al subir.'),
       vx('Andar-correr en llano', 'Cardio',
         ['—', 'N1 · 8×(1\'/2\')', 'N2 · 6×(2\'/1\')', 'N3 · 4×(4\'/1\')', 'N4 · 4×(5\'/1\')', 'N5 · 3×(8\'/1\')', 'N6 · 2×(12\'/1\')', 'repite N6'],
-        'Formato: minutos trotando / minutos andando. Niveles: N1 8×(1\'/2\') · N2 6×(2\'/1\') · N3 4×(4\'/1\') · N4 4×(5\'/1\') · N5 3×(8\'/1\') · N6 2×(12\'/1\') · N7 30\' seguidos (después del viaje). N5 es un nivel intermedio para que el tramo continuo más largo no crezca más de un 50 % por nivel (5 → 8 → 12 min) [LÓGICA]. El calendario marca el máximo de cada semana; el nivel real sale del semáforo: Avanzar = +1, Mantener = el mismo, Retroceder = −1. Nivel nuevo solo si esa mañana estás igual o mejor. 5 min andando antes; llano y firme. Regla de carrera: Retroceder si pasas de 2/10 durante, no vuelves al nivel previo en ≤60 min o la mañana siguiente estás peor; Mantener si cumple pero el peor valor 24-48 h supera la referencia; Avanzar si cumple y el peor 24-48 h ≤ referencia [EVIDENCIA de uso: TREK Education, basada en Esculier; no comparada con otros umbrales]. Cadencia +5-10% opcional [EVIDENCIA mixta: Bramah 2019, serie de 12 corredores con mejora de dolor y función mantenida a 3 meses; Esculier 2018, sin beneficio extra sobre la educación].', { prog: 'carrera' }),
+        'Formato: minutos trotando / minutos andando. Niveles: N1 8×(1\'/2\') · N2 6×(2\'/1\') · N3 4×(4\'/1\') · N4 4×(5\'/1\') · N5 3×(8\'/1\') · N6 2×(12\'/1\'); después del viaje, N7 18\' · N8 25\' · N9 30\' seguidos. Desde N4 el tramo continuo más largo crece como mucho un 50 % por nivel (5 → 8 → 12 → 18 → 25 → 30 min); de N1 a N3 se dobla porque los tramos son muy cortos [LÓGICA]. El calendario marca el máximo de cada semana; el nivel real sale del semáforo: Avanzar = +1, Mantener = el mismo, Retroceder = −1. Nivel nuevo solo si esa mañana estás igual o mejor. 5 min andando antes; llano y firme. Regla de carrera: Retroceder si pasas de 2/10 durante, no vuelves al nivel previo en ≤60 min o la mañana siguiente estás peor; Mantener si cumple pero el peor valor 24-48 h supera la referencia; Avanzar si cumple y el peor 24-48 h ≤ referencia [EVIDENCIA de uso: TREK Education, basada en Esculier; no comparada con otros umbrales]. Cadencia +5-10% opcional [EVIDENCIA mixta: Bramah 2019, serie de 12 corredores con mejora de dolor y función mantenida a 3 meses; Esculier 2018, sin beneficio extra sobre la educación].', { prog: 'carrera' }),
     ],
   },
   J: {
@@ -369,7 +370,7 @@ const BLOCK_VOL = {
         'Prioridad 3 (Dorsal Bajo) · De lado a la polea (con tobillera en muñeca o codo semirrígido) para aislar haz inferior sin usar bíceps ni codo · Sem 1-2 a RIR 1-2.'),
       vx('Bici Z2 (sin Z3 en este bloque)', 'Cardio',
         ['12 min', '—', '—', '10\' Z2\nnov: 1.ª vez', '10\' Z2', '10\' Z2', '10\' Z2', '10\' Z2'],
-        'S4: primera vez, solo si esa mañana estás igual o mejor; se valida con las mediciones del sábado y del domingo (el sábado no hay pierna). Ver la nota del martes.'),
+        'S4: primera vez, solo si esa mañana estás igual o mejor; se valida con las mediciones del sábado y del domingo (el sábado no hay pierna). Ver la nota del martes.', { prog: 'bici' }),
     ],
   },
   S: {
@@ -447,11 +448,11 @@ const VOL_BLOCK_RULES = [
   'Mediciones: cada mañana, en casa, con las mismas pruebas: test en declive y 10 subidas con la D al mismo escalón o banco. Vale la peor de las dos (el declive solo no basta: te sale 0 aunque haya molestia). Si falta la medición de la mañana, ese día no se evalúa y la primera medición disponible hace de referencia (en S2, la del martes). Se apuntan en «Seguimiento rodilla».',
   'Regla de gimnasio [LÓGICA], en semáforo (solo días con carga de rodilla: lunes y jueves): Retroceder si pasas de 3/10 durante o la mañana siguiente estás peor que la de la sesión; Mantener si cumple, pero el peor valor entre 24 y 48 h supera la referencia (no avanzas, pero no has fallado); Avanzar si cumple y el peor valor 24-48 h es igual o mejor que la referencia. Los días sin carga de rodilla no se evalúan («—»).',
   'Regla de carrera [EVIDENCIA de uso], en semáforo (miércoles y domingo): Retroceder si pasas de 2/10 durante, no vuelves al nivel previo en ≤60 min o la mañana siguiente estás peor; Mantener si cumple, pero el peor valor 24-48 h supera la referencia; Avanzar si cumple y el peor valor 24-48 h ≤ referencia. El paseo de entrada se valida solo con la mañana siguiente. Se aplica también a las fases hacia el fútbol [LÓGICA].',
-  'Novedades [LÓGICA]: una por día y validada a las 24 y 48 h antes de repetirla. Lunes: escalón o reps (prensa) · miércoles: nivel de carrera · viernes de S4: bici. Solo si esa mañana estás igual o mejor. El calendario marca el máximo de cada semana; el nivel real sale del semáforo: Avanzar = nivel +1 (sin pasar del calendario), Mantener = el mismo, Retroceder = nivel −1. Lo validado se repite: el jueves usa la profundidad del lunes y el domingo repite el nivel del miércoles.',
+  'Novedades [LÓGICA]: una por día y validada a las 24 y 48 h antes de repetirla. Lunes: escalón o reps (prensa) · miércoles: nivel de carrera · viernes de S4: bici. Solo si esa mañana estás igual o mejor que la referencia (la mañana del mismo día de la semana anterior; en S3, la primera medición de S2), no que el día anterior: así un empeoramiento lento también salta. El calendario marca el máximo de cada semana; el nivel real sale del semáforo: Avanzar = nivel +1 (sin pasar del calendario), Mantener = el mismo, Retroceder = nivel −1. Lo validado se repite: el jueves usa la profundidad del lunes y el domingo repite el nivel del miércoles.',
   'S2 = semana de referencia [LÓGICA]: el paseo del martes no cuenta como novedad (caminas a diario). Si alguna mañana de S2 sale peor que la referencia (la primera medición de S2), en S3 no sube nada y se repite S2 entera, en lugar de intentar atribuir el empeoramiento.',
   'Escalones de profundidad de la D [LÓGICA; no hay pautas de rango validadas para la rótula: INCERTIDUMBRE]: escalón 0 = la profundidad que ya usas con la D; escalón 4 = la de la I. Reparte la diferencia en 4 partes iguales (como mucho ~15° cada una; si sale más, se termina después del bloque). Se sube, como mucho, los lunes de S3, S4, S6 y S7 en la prensa (según el semáforo); la touchdown del lunes va a la profundidad ya validada y hace de filtro. Apunta las marcas en «Seguimiento rodilla».',
   'Chasquido: si no duele, no se quita ni se cambia nada. Si duele, cuenta como dolor.',
-  'Retroceso y brote [LÓGICA]: si una medición falla, se retrocede solo la última novedad anterior a ella (p. ej., jueves bien y viernes peor → se retrocede la carrera del miércoles y el escalón se mantiene); si tras el retroceso la siguiente medición vuelve a fallar, se retrocede la novedad anterior, y así hacia atrás. Si falla sin ninguna novedad reciente, o fallan dos sesiones seguidas: 48-72 h solo isométricos (sentadilla española 5×45 s diaria), y la bici si ya estaba introducida; luego se retoma un escalón por debajo en todo.',
+  'Retroceso y brote [LÓGICA]: un dolor durante la sesión retrocede la escalera de esa sesión. Si una mañana sale peor, se retrocede la última novedad aún no validada (la que todavía no tiene en verde sus dos mañanas, 24 y 48 h; p. ej., jueves bien y viernes peor → se retrocede la carrera del miércoles y el escalón se mantiene); una novedad ya validada no se culpa. Si tras el retroceso vuelve a fallar, se retrocede la novedad anterior sin validar. Brote = un fallo sin ninguna novedad sin validar, o dos sesiones seguidas en Retroceder: lo primero que se quita es la bici; 48-72 h solo isométricos (sentadilla española 5×45 s diaria) y caminar, sin bici; luego se retoma un escalón por debajo en todo. La bici vuelve al nivel del calendario cuando lleves una semana entera en verde.',
   'Alarma: bloqueo real, fallos repetidos de la rodilla o hinchazón visible → se para la progresión y toca valoración clínica.',
   'AVISO S4 (fisio deportivo pendiente): se calcula al cerrar S4 (domingo 15/11) si hay al menos 5 mañanas registradas en S2 y en S4. Compara la media de las mañanas: PEOR si la de S4 supera en 0,5 o más a la de S2; MEJOR si queda 0,5 o más por debajo; si no, IGUAL. IGUAL o PEOR, o un chasquido que empieza a doler: la valoración del fisio pasa a ser prioritaria; PEOR además para la progresión [LÓGICA]. «Seguimiento rodilla» lo calcula.',
   'Fases hacia el fútbol, después del viaje [LÓGICA], siempre con la regla de carrera: cambios de dirección ← 30 min seguidos dos veces sin reacción y rango D = I · pliometría ← 2 semanas de cambios de dirección y 10 saltos a una pierna sin dolor · balón ← cuádriceps D ≥90% de la I en el test y pliometría media sin reacción · equipo ← 2 semanas de balón sin reacción.',
@@ -468,9 +469,10 @@ const PRENSA_NIVELES = [
   { reps: 12, esc: 0 }, { reps: 10, esc: 0 }, { reps: 10, esc: 1 }, { reps: 10, esc: 2 },
   { reps: 8, esc: 2 }, { reps: 8, esc: 3 }, { reps: 8, esc: 4 },
 ];
-// Carrera (K97): nivel 0 = aún sin entrar (criterios de entrada); N7, después del viaje.
+// Carrera (K97): nivel 0 = aún sin entrar (criterios de entrada); N7-N9, después del viaje
+// (el tramo continuo crece como mucho un 50 % por nivel: 12 -> 18 -> 25 -> 30 min).
 const CARRERA_NIVELES = ['', "8×(1'/2')", "6×(2'/1')", "4×(4'/1')", "4×(5'/1')",
-  "3×(8'/1')", "2×(12'/1')", "30' seguidos"];
+  "3×(8'/1')", "2×(12'/1')", "18' seguidos", "25' seguidos", "30' seguidos"];
 // Máximo del calendario por semana (índice = semana 1–8), según las celdas D10–J10 y D97–J97.
 const PRENSA_MAX = [null, 0, 1, 2, 3, 4, 5, 6, 6];
 const CARRERA_MAX = [null, 0, 1, 2, 3, 4, 5, 6, 6];

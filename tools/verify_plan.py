@@ -168,9 +168,9 @@ def main():
             errors.append(f"{field}: {len(plan[field])} textos, se esperaban {refs}")
 
     # Recuento de series por grupo (filas 73–83). El Excel ajustado se guarda sin
-    # valores calculados, así que se replica aquí su fórmula de matriz
-    # (=SUM(($B$3:$B$63="grupo")*IFERROR(VALUE(LEFT(C$3:C$63,FIND(" ",C$3:C$63&" ")-1)),0)))
-    # y se comprueba que la tabla sigue usándola.
+    # valores calculados, así que se replica aquí lo que suma cada celda: el entero
+    # inicial de las filas de ese grupo. Las celdas no pueden ser fórmulas matriciales
+    # (Excel para iPhone las calcula a 0): cada una suma, fila a fila, las de su grupo.
     def series(grupo, col):
         total = 0
         for r in range(3, 64):
@@ -185,13 +185,26 @@ def main():
         if row is None:
             errors.append(f"Recuento: no hay fila para {grupo!r} en la hoja")
             continue
-        formula = getattr(ws[f"C{row}"].value, "text", "")
-        if f'="{grupo}")' not in formula or "C$3:C$63" not in formula:
-            errors.append(f"C{row}: la fórmula del recuento de {grupo!r} ha cambiado: {formula!r}")
+        filas_grupo = [r for r in range(3, 64) if raw(ws.cell(r, 2).value) == grupo]
+        for col in WEEKCOLS:
+            formula = ws[f"{col}{row}"].value
+            if not isinstance(formula, str) or not formula.startswith("="):
+                errors.append(f"{col}{row}: el recuento de {grupo!r} no es una fórmula normal ({type(formula).__name__})")
+                continue
+            refs = sorted(int(x) for x in re.findall(rf"LEFT\({col}(\d+),", formula))
+            if refs != filas_grupo:
+                errors.append(f"{col}{row}: suma las filas {refs}, las de {grupo!r} son {filas_grupo}")
         for w, col in enumerate(WEEKCOLS):
             check(f"{col}{row} ({grupo} S{w + 1})", series(grupo, col), plan["series"][w][grupo])
     for w, total in enumerate([52, 57, 62, 66, 71, 76, 80, 88]):
         check(f"TOTAL S{w + 1}", total, plan["series"][w]["TOTAL"])
+
+    # Ninguna fórmula matricial en todo el libro.
+    for hoja in openpyxl.load_workbook(xlsx):
+        for fila in hoja.iter_rows():
+            for celda in fila:
+                if type(celda.value).__name__ == "ArrayFormula":
+                    errors.append(f"{hoja.title}!{celda.coordinate}: fórmula matricial")
 
     # Ningún correctivo ni cardio suma al recuento: su objetivo no es un grupo.
     for key, s in plan["blocks"].items():

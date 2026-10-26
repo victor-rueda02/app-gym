@@ -112,6 +112,34 @@ await page.waitForSelector('main .ex');
 check('Hoy usa el nivel real apuntado (escalón 0, mantiene)', (await presDe('Prensa unil')) === '2 x10/pierna\nescalón 0 · mantiene', await presDe('Prensa unil'));
 check('Sin scroll horizontal', await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth));
 
+// Bici quitada: S3 y S4 en verde, la bici entra el viernes 13/11 y el domingo 15/11 la mañana
+// siguiente sale peor sin otra novedad sin validar -> se quita la bici desde el lunes 16/11.
+const verde = (lunes, m) => Object.fromEntries(m.map((v, i) => {
+  const d = new Date(`${lunes}T12:00:00Z`); d.setUTCDate(d.getUTCDate() + i);
+  const dia = 'LMXJVSD'[i];
+  const x = { decline: v };
+  if (dia === 'L' || dia === 'J') x.during = 2;
+  if (dia === 'X' || dia === 'D') Object.assign(x, { during: 1, back60: 'Sí' });
+  return [d.toISOString().slice(0, 10), x];
+}));
+const BICI = {
+  v: 4, days: {},
+  knee: {
+    days: { ...S2, ...verde('2026-11-02', [2, 2, 2, 2, 2, 2, 2]), ...verde('2026-11-09', [2, 2, 2, 2, 2, 2, 3]), ...verde('2026-11-16', [4, 3]) },
+    weeks: {}, entry: { S2: { walkPain: 'Sí', walkBack60: 'Sí', tdPain: 'Sí', hopsPain: 'Sí' } }, tests: {}, depth: {},
+  },
+};
+const page2 = await (await browser.newContext({ ...devices['iPhone 13'], locale: 'es-ES' })).newPage();
+page2.on('pageerror', (e) => errores.push(`pageerror: ${e}`));
+page2.on('console', (m) => { if (m.type() === 'error') errores.push(`console.error: ${m.text()}`); });
+await page2.clock.setFixedTime(new Date('2026-11-17T08:00:00'));
+await page2.addInitScript((r) => localStorage.setItem('gym.log.v1', JSON.stringify(r)), BICI);
+await page2.goto(`http://localhost:${PORT}/index.html`);
+await page2.waitForSelector('main .ex');
+const bici = await page2.locator('main .ex', { hasText: 'Bici' }).first().locator('.pres').textContent();
+check('Hoy (mar 17/11): la bici sale quitada', bici === 'Sin bici\n(quitada)', bici);
+check('Hoy (mar 17/11): aviso de la bici en la tarjeta de rodilla', (await page2.textContent('.rod-hoy')).includes('Sin bici: fallo atribuido a la bici'));
+
 check('Sin errores de consola ni pageerror', errores.length === 0, errores.join(' || '));
 await browser.close();
 server.close();

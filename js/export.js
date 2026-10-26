@@ -33,7 +33,7 @@ function buildRows() {
       const list = rec.entries[exercise.id];
       if (!list || !list.length) return;
       // Lo prescrito con el nivel real (prensa, sentadilla, búlgara, touchdown, carrera).
-      const real = typeof Rodilla !== 'undefined' ? Rodilla.prescripcion(exercise, week) : null;
+      const real = typeof Rodilla !== 'undefined' ? Rodilla.prescripcion(exercise, week, date) : null;
       const pres = real || PLAN.presFor(exercise, week);
 
       list.forEach((s, i) => {

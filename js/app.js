@@ -103,7 +103,7 @@ const sessionName = (s) => (s.title ? `${s.name} · ${s.title}` : s.name);
 
 /* Prescripción del día: con el nivel real para los ejercicios con progresión
    (prensa, sentadilla, búlgara, touchdown y carrera, desde S2); si no, la del plan. */
-const presHoy = (exercise, week) => Rodilla.prescripcion(exercise, week) || PLAN.presFor(exercise, week);
+const presHoy = (exercise, week, date) => Rodilla.prescripcion(exercise, week, date) || PLAN.presFor(exercise, week);
 
 /* El test de fuerza no es un ejercicio: es un enlace a Rodilla › Test (y no cuenta series). */
 function testCard(exercise, week) {
@@ -234,7 +234,7 @@ function renderToday() {
 }
 
 function exerciseRow(exercise, week, date, session) {
-  const pres = presHoy(exercise, week);
+  const pres = presHoy(exercise, week, date);
   const logged = Store.sets(date, exercise.id).filter(isLogged).length;
   // En los unilaterales (D/I) cada serie prescrita se hace con las dos piernas.
   const total = PLAN.sidesFor(exercise, week) ? pres.sets * 2 : pres.sets;
@@ -263,7 +263,7 @@ function renderExercise() {
   const session = sessionById(sessionId);
   const week = PLAN.weekFor(date);
   const exercise = session.exercises.find((e) => e.id === exId);
-  const pres = presHoy(exercise, week);
+  const pres = presHoy(exercise, week, date);
   const delPlan = PLAN.presFor(exercise, week);
 
   titleEl.textContent = exercise.name;
@@ -272,9 +272,9 @@ function renderExercise() {
   view.innerHTML = '';
 
   if (pres.kind === 'none') {
-    view.appendChild(el(pres.skip
-      ? '<div class="empty">Este ejercicio no se hace esta semana.</div>'
-      : '<div class="empty">Sin series que registrar. Haz tu rutina de movilidad.</div>'));
+    view.appendChild(el(pres.skip ? '<div class="empty">Este ejercicio no se hace esta semana.</div>'
+      : pres.motivo ? `<div class="empty">${escapeHtml(pres.motivo)}</div>`   // p. ej., la bici quitada
+        : '<div class="empty">Sin series que registrar. Haz tu rutina de movilidad.</div>'));
     return;
   }
 

@@ -167,6 +167,8 @@ test('escaleras de progresión coherentes con las celdas del calendario', () => 
   assert.deepEqual([2, 3, 4, 5, 6, 7, 8].map((n) => PLAN.PRENSA_NIVELES[PLAN.PRENSA_MAX[n]].esc), [0, 1, 2, 2, 3, 4, 4]);
   // Nivel intermedio: el tramo continuo más largo pasa de 5 a 8 y a 12 min.
   assert.deepEqual(PLAN.CARRERA_NIVELES.slice(4, 7), ["4×(5'/1')", "3×(8'/1')", "2×(12'/1')"]);
+  // Después del viaje: 12 -> 18 -> 25 -> 30 min seguidos (como mucho +50 % por nivel).
+  assert.deepEqual(PLAN.CARRERA_NIVELES.slice(7), ["18' seguidos", "25' seguidos", "30' seguidos"]);
 });
 
 test('el sábado de S1 conserva su nombre (aún tenía pierna)', () => {
