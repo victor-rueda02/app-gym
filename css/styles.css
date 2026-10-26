@@ -13,6 +13,7 @@
   --ok: #3ddc97;
   --rehab: #2f7d5b;
   --cardio: #2f6fd1;
+  --correctivo: #d9892b;   /* ámbar: hombro y codo correctivos */
   --warn: #ffb020;
   --safe-top: env(safe-area-inset-top, 0px);
   --safe-bottom: env(safe-area-inset-bottom, 0px);
@@ -85,6 +86,9 @@ main { padding: 12px; max-width: 640px; margin: 0 auto; }
 }
 .card h2 { margin: 0 0 2px; font-size: 15px; font-weight: 650; }
 .card p { margin: 0; font-size: 13px; color: var(--muted); }
+.card p.multi { white-space: pre-line; }   /* respeta los saltos de línea de las celdas */
+.card.hitos { border-left: 3px solid var(--warn); }
+.card.hitos p { color: var(--text); }
 
 .section-label {
   margin: 18px 4px 8px;
@@ -110,13 +114,17 @@ main { padding: 12px; max-width: 640px; margin: 0 auto; }
 .ex:active { background: var(--surface-2); }
 .ex.rehab { border-left: 3px solid var(--rehab); }
 .ex.cardio { border-left: 3px solid var(--cardio); }
+.ex.corr { border-left: 3px solid var(--correctivo); }
+/* «—» en el Excel: esa semana no se hace; se lista atenuado en el Plan */
+.ex.skip { opacity: .4; }
 .ex .grow { flex: 1; min-width: 0; }
 .ex .nm { font-weight: 600; font-size: 15px; }
-.ex .meta { font-size: 12.5px; color: var(--muted); margin-top: 2px; }
+.ex .meta { font-size: 12.5px; color: var(--muted); margin-top: 2px; white-space: pre-line; }
 .ex .pres {
   flex: none; font-size: 13px; font-weight: 650;
   color: var(--accent); background: var(--accent-dim);
-  padding: 5px 9px; border-radius: 9px; white-space: nowrap;
+  padding: 5px 9px; border-radius: 9px;
+  white-space: pre-line; text-align: right; max-width: 45%;   /* las celdas llevan saltos de línea */
 }
 .ex.done .pres { color: var(--ok); background: rgba(61, 220, 151, .12); }
 .ex.done .nm::after { content: ' ✓'; color: var(--ok); }
@@ -143,6 +151,14 @@ main { padding: 12px; max-width: 640px; margin: 0 auto; }
 }
 .set-row input:focus { outline: 2px solid var(--accent); border-color: transparent; }
 .set-row input::placeholder { color: #55607a; font-weight: 400; }
+/* Botón de pierna (D = derecha, la afectada; I = izquierda) */
+.set-row .side {
+  height: 48px; border-radius: 11px; border: 1px solid var(--line);
+  background: var(--surface-2); color: var(--muted);
+  font: inherit; font-size: 16px; font-weight: 700;
+}
+.set-row .side.d { color: var(--accent); background: var(--accent-dim); }
+.set-row .side.i { color: var(--ok); background: rgba(61, 220, 151, .12); }
 .set-row .del {
   height: 40px; background: none; border: 0;
   color: var(--muted); font-size: 20px;
@@ -189,6 +205,7 @@ main { padding: 12px; max-width: 640px; margin: 0 auto; }
   font-size: 12.5px; color: var(--muted);
   background: var(--surface-2); border-radius: 10px;
   padding: 8px 10px; margin-bottom: 10px;
+  white-space: pre-line;
 }
 .prev b { color: var(--text); font-weight: 600; }
 
@@ -212,7 +229,7 @@ textarea {
 }
 
 .rules { padding-left: 18px; margin: 0; font-size: 13.5px; color: var(--muted); }
-.rules li { margin-bottom: 6px; }
+.rules li { margin-bottom: 6px; white-space: pre-line; }
 
 .empty { text-align: center; color: var(--muted); padding: 40px 20px; font-size: 14px; }
 

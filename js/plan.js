@@ -26,24 +26,43 @@ const ex = (name, target, s1, s2, notes = '') => ({
   id: slug(name), name, target, s1, s2: s2 || s1, notes,
 });
 
+/* Cardio y carrera: la celda es texto libre ("15 min", "10' Z2", "N1 · 8×(1'/2')",
+   "repite N6"…). Los minutos solo se conocen si el texto empieza por "N min" o "N'". */
+function cardioTexto(text) {
+  const m = text.match(/^(\d+)(?: min|')/);
+  return cardio(m ? +m[1] : '');
+}
+
 /* Prescripción a partir del texto de la celda del Excel. La etiqueta se
-   conserva tal cual para poder compararla con la hoja. */
-function parsePres(text) {
+   conserva tal cual para poder compararla con la hoja. `target` (el objetivo
+   del ejercicio) solo importa para el cardio, cuyo texto es libre.
+   "—" = no se hace esa semana (skip); "-" = sin series, pero se lista. */
+function parsePres(text, target = '') {
   let m;
   let p;
   if (text === '-') p = none();
+  else if (text === '—') p = { ...none(), skip: true };
+  else if (target === 'Cardio') p = cardioTexto(text);
   else if ((m = text.match(/^(\d+) @ RIR1\/0$/))) p = rir10(+m[1]);
   else if ((m = text.match(/^(\d+) @ RIR(\d)$/))) p = rir(+m[1], +m[2]);
   else if ((m = text.match(/^(\d+) x(\d+)$/))) p = fix(+m[1], +m[2]);
   else if ((m = text.match(/^(\d+) x(\d+–\d+)$/))) p = fix(+m[1], m[2]);
-  else if ((m = text.match(/^(\d+) min(?: \([^)]+\))?$/))) p = cardio(+m[1]);
+  // "N x R" o "N-M x R" (R entero o rango con - o –) y líneas de aclaración opcionales.
+  else if ((m = text.match(/^(\d+)(?:-(\d+))? x(\d+(?:[-–]\d+)?)(?:\n[\s\S]*)?$/))) {
+    p = fix(+(m[2] || m[1]), /^\d+$/.test(m[3]) ? +m[3] : m[3]);
+  } else if (/^2 aprox\. \+\n1 al fallo\npor pierna$/.test(text)) {
+    p = { ...fix(3, ''), reps: '' };   // test de fuerza: 2 de aproximación + 1 al fallo
+  } else if (/^Opcional:\nrango completo$/.test(text)) {
+    p = { ...fix(3, ''), reps: '', optional: true };
+  } else if ((m = text.match(/^(\d+) min(?: \([^)]+\))?$/))) p = cardio(+m[1]);
   else throw new Error(`Prescripción desconocida: "${text}"`);
   return { ...p, label: text };
 }
 
-/* vx(nombre, objetivo, [presc. Sem1..Sem8], notas) */
-const vx = (name, target, weeks, notes = '') => ({
-  id: slug(name), name, target, pres: weeks.map(parsePres), notes,
+/* vx(nombre, objetivo, [presc. Sem1..Sem8], notas, extra) */
+/* `extra`: { sides: true } marca los unilaterales que se registran por pierna (D/I). */
+const vx = (name, target, weeks, notes = '', extra = {}) => ({
+  id: slug(name), name, target, pres: weeks.map((w) => parsePres(w, target)), notes, ...extra,
 });
 
 /* Semanas --------------------------------------------------------------- */
@@ -190,10 +209,11 @@ const RULES = [
 ];
 
 /* Volumen · 19 oct – 13 dic · 8 semanas ----------------------------------
-   Lunes a viernes, sesión fija; sábado y domingo comparten la sesión "(S/D)". El
-   cardio (bici, martes y viernes) va como un ejercicio más al final de la sesión, con
-   objetivo 'Cardio'. Las semanas 9 (viaje = descarga) y 10 no van en el calendario:
-   sus textos están en VOL_NOTES. */
+   Lunes a viernes, sesión fija. El sábado es la sesión de casa (sin pierna desde S2);
+   el domingo es carrera (VOL-D) solo desde S2: en S1 el domingo sigue siendo la sesión
+   del sábado. El cardio (bici martes y viernes, carrera miércoles y domingo) va como
+   un ejercicio más al final de la sesión, con objetivo 'Cardio'. Las semanas 9 (viaje
+   = descarga) y 10 no van en el calendario: sus textos están en VOL_NOTES. */
 const VOL_WEEKS = [
   ['2026-10-19', '2026-10-25', '19–25 oct'],
   ['2026-10-26', '2026-11-01', '26 oct – 1 nov'],
@@ -214,18 +234,18 @@ const BLOCK_VOL = {
       vx('Elev laterales polea', 'Hombro lat.',
         ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0'],
         'Prioridad 1 · Polea altura muñeca/muslo en plano escapular (~30° adelante). Intercalar en superserie alterna con Unilateral abduction para dar 3-4 min de descanso al deltoides antes de las mancuernas.'),
-      vx('Unilateral abduction', 'Rehab',
-        ['2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20'],
-        'Antes del rehab: sentadilla española 5×45 s'),
+      vx('Abducción de pie unilateral (máquina)', 'Rehab (cadera)',
+        ['2 x15–20', '3 x10-15\n@RIR1-2', '3 x10-15\n@RIR1-2', '3 x10-15\n@RIR1-2', '3 x10-15\n@RIR1-2', '3 x10-15\n@RIR1-2', '3 x10-15\n@RIR1-2', '3 x10-15\n@RIR1-2'],
+        'Antes del rehab: sentadilla española 5×45 s', { sides: true }),
       vx('Elev laterales mancuerna', 'Hombro lat.',
         ['1 @ RIR0', '1 @ RIR0', '1 @ RIR0', '1 @ RIR0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0'],
         'Prioridad 1 · Hacer tras el 1er bloque de Unilateral abduction · Perfil en acortamiento, controlar bajada sin rebotar.'),
       vx('Touchdown squat', 'Rehab',
-        ['2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20'],
-        'fijo'),
-      vx('Prensa unil', 'Rehab',
-        ['2 x12', '2 x10', '2 x10', '2 x10', '2 x8', '2 x8', '2 x8', '2 x8'],
-        'fijo · Tempo 3-1-3 · dolor ≤3/10'),
+        ['2 x15–20', '2 x10-15\n/pierna', '2 x10-15\n/pierna', '2 x10-15\n/pierna', '2 x10-15\n/pierna', '2 x10-15\n/pierna', '2 x10-15\n/pierna', '2 x10-15\nrepite S7'],
+        'fijo', { sides: true }),
+      vx('Prensa unil · pesado y lento n.º 1', 'Rehab',
+        ['2 x12', '2 x10\nnov: x10', '2 x10\nnov: +1 escalón', '2 x10\nnov: +1 escalón', '2 x8\nnov: x8', '2 x8\nnov: +1 escalón', '2 x8\nnov: +1 escalón', '2 x8\nrepite S7'],
+        'fijo · Tempo 3-1-3 · dolor ≤3/10', { sides: true }),
       vx('Gemelos prensa', 'Gemelos',
         ['3 @ RIR1/0', '3 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0', '5 @ RIR1/0', '5 @ RIR1/0'],
         'Prensa con pies abajo · Pausa estricta de 2 s en máximo estiramiento abajo (sin rebotar en el tendón de Aquiles) + rodilla semirrígida.'),
@@ -253,7 +273,7 @@ const BLOCK_VOL = {
         ['3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0', '5 @ RIR1/0'],
         'Colgado con depresión escapular (activa dorsal) · Enrollar pelvis hacia costillas (retroversión). Usar straps si el agarre molesta al codo.'),
       vx('Bici Z2 (65–75% FC)', 'Cardio',
-        ['15 min', '15 min', '18 min', '20 min', '20 min', '22 min', '25 min', '20 min'],
+        ['15 min', '—', '—', '—', '10\' Z2', '10\' Z2', '10\' Z2', '10\' Z2'],
         'Cadencia alta 85–90 rpm, sillín alto (rodilla a 20-25° abajo), 100% sentado. Cero impacto.'),
     ],
   },
@@ -281,22 +301,29 @@ const BLOCK_VOL = {
       vx('Curl bayesian', 'Bíceps',
         ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '4 @ RIR1/0'],
         'Prioridad 2 (Bíceps en estiramiento) · Hombro en extensión detrás del torso; no dejar que el hombro rote hacia delante al subir.'),
+      vx('Andar-correr en llano', 'Cardio',
+        ['—', 'N1 · 8×(1\'/2\')', 'N2 · 6×(2\'/1\')', 'N3 · 4×(4\'/1\')', 'N4 · 4×(5\'/1\')', 'N5 · 2×(13\'/1\')', 'N6 · 30\' seguidos', 'repite N6'],
+        ''),
     ],
   },
   J: {
     id: 'VOL-J', dow: 4, name: 'Jueves', title: 'Rehab + Isquios + Aductores',
     exercises: [
-      vx('Unilateral Abduction', 'Rehab',
-        ['2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20'],
-        'Antes del rehab: sentadilla española 5×45 s'),
-      vx('Touchdown squat', 'Rehab',
-        ['2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20']),
-      vx('Back squat', 'Rehab',
-        ['3 x12', '3 x10', '3 x10', '3 x10', '3 x8', '3 x8', '3 x8', '3 x8'],
+      vx('TEST fuerza · extensión unilateral en máquina 90→45°', 'Test',
+        ['—', '2 aprox. +\n1 al fallo\npor pierna', '—', '—', '2 aprox. +\n1 al fallo\npor pierna', '—', '2 aprox. +\n1 al fallo\npor pierna', 'Opcional:\nrango completo'],
+        '', { sides: true }),
+      vx('Sentadilla al cajón o desde pines · pesado y lento n.º 2', 'Rehab',
+        ['3 x12', '3 x10', '3 x10\nprof. del lunes', '3 x10\nprof. del lunes', '3 x8', '3 x8\nprof. del lunes', '3 x8\nprof. del lunes', '3 x8\nrepite S7'],
         'Al cajón: tope + pausa 1 s · tempo 3-1-3'),
       vx('Bulgarian split squat', 'Rehab',
-        ['2 x12', '2 x10', '2 x10', '2 x10', '2 x8', '2 x8', '2 x8', '2 x8'],
-        'Tempo 3-1-3 · empieza por la lesionada'),
+        ['2 x12', '2 x10', '2 x10', '2 x10', '2 x8', '2 x8', '2 x8', '2 x8\nrepite S7'],
+        'Tempo 3-1-3 · empieza por la lesionada', { sides: true }),
+      vx('Abducción de pie unilateral (máquina)', 'Rehab (cadera)',
+        ['2 x15–20', '3 x10-15\n@RIR1-2', '3 x10-15\n@RIR1-2', '3 x10-15\n@RIR1-2', '3 x10-15\n@RIR1-2', '3 x10-15\n@RIR1-2', '3 x10-15\n@RIR1-2', '3 x10-15\n@RIR1-2'],
+        'Antes del rehab: sentadilla española 5×45 s', { sides: true }),
+      vx('Touchdown squat', 'Rehab',
+        ['2 x15–20', '—', '—', '—', '—', '—', '—', '—'],
+        ''),
       vx('Isquios sentado', 'Isquios',
         ['3 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0', '5 @ RIR1/0', '5 @ RIR1/0', '5 @ RIR1/0'],
         'Isquios en estiramiento máximo (cadera a 90°) · Controlar fase excéntrica.'),
@@ -335,27 +362,43 @@ const BLOCK_VOL = {
       vx('Aducción unil. polea alta (Pull-in)', 'Espalda',
         ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0'],
         'Prioridad 3 (Dorsal Bajo) · De lado a la polea (con tobillera en muñeca o codo semirrígido) para aislar haz inferior sin usar bíceps ni codo · Sem 1-2 a RIR 1-2.'),
-      vx('Bici Z2 / Z3 (Prog.)', 'Cardio',
-        ['12 min', '15 min', '15 min', '18 min', '20 min (4x30s Z3)', '20 min (5x30s Z3)', '20 min (4x45s Z3)', '18 min (4x30s Z3)'],
+      vx('Bici Z2 (sin Z3 en este bloque)', 'Cardio',
+        ['12 min', '—', '—', '10\' Z2\nnov: 1.ª vez', '10\' Z2', '10\' Z2', '10\' Z2', '10\' Z2'],
         'Sem 1-4: Z2 continua. Sem 5-8: Intervalos cortos a 95-100 rpm (Z3 / Umbral) controlando acidosis local.'),
     ],
   },
   S: {
-    id: 'VOL-S', dow: 6, dows: [6, 0], name: 'Sábado/Domingo', title: '',
+    id: 'VOL-S', dow: 6, dows: [6, 0], name: 'Sábado', title: '',
     exercises: [
-      vx('Unilateral Abduction', 'Rehab',
-        ['2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20'],
+      vx('Abducción unilateral', 'Rehab (cadera)',
+        ['2 x15–20', '—', '—', '—', '—', '—', '—', '—'],
         'fijo · Antes del rehab: sentadilla española 5×45 s'),
       vx('Touchdown squat', 'Rehab',
-        ['2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20', '2 x15–20'],
+        ['2 x15–20', '—', '—', '—', '—', '—', '—', '—'],
         'fijo'),
       vx('Bulgarian split squat', 'Rehab',
-        ['2 x12', '2 x10', '2 x10', '2 x10', '2 x8', '2 x8', '2 x8', '2 x8'],
+        ['2 x12', '—', '—', '—', '—', '—', '—', '—'],
         'fijo · Tempo 3-1-3 · empieza por la lesionada'),
       vx('Abs wesley banco', 'Abs',
-        ['2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0']),
-      vx('Movilidad - trapecio inferior', '-',
-        ['-', '-', '-', '-', '-', '-', '-', '-']),
+        ['2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0'],
+        ''),
+      vx('Elevación lateral en prono «T» (mancuernas, banco)', 'Hombro (correctivo)',
+        ['-', '2-3 x10-15\n5 s arriba', '2-3 x10-15\n5 s arriba', '2-3 x10-15\n5 s arriba', '2-3 x10-15\n5 s arriba', '2-3 x10-15\n5 s arriba', '2-3 x10-15\n5 s arriba', '2-3 x10-15\n5 s arriba'],
+        ''),
+      vx('Rotación externa con banda «W»', 'Hombro (correctivo)',
+        ['—', '2-3 x15-20\n5-10 s fuera', '2-3 x15-20\n5-10 s fuera', '2-3 x15-20\n5-10 s fuera', '2-3 x15-20\n5-10 s fuera', '2-3 x15-20\n5-10 s fuera', '2-3 x15-20\n5-10 s fuera', '2-3 x15-20\n5-10 s fuera'],
+        ''),
+      vx('Curl de muñeca en extensión (mancuerna)', 'Codo (correctivo)',
+        ['—', '3 x10-15\n3 s / 3 s', '3 x10-15\n3 s / 3 s', '3 x10-15\n3 s / 3 s', '3 x10-15\n3 s / 3 s', '3 x10-15\n3 s / 3 s', '3 x10-15\n3 s / 3 s', '3 x10-15\n3 s / 3 s'],
+        ''),
+    ],
+  },
+  D: {
+    id: 'VOL-D', dow: 0, fromWeek: 2, name: 'Domingo', title: 'Carrera',
+    exercises: [
+      vx('Andar-correr en llano', 'Cardio',
+        ['—', 'repite el\nmiércoles', 'repite el\nmiércoles', 'repite el\nmiércoles', 'repite el\nmiércoles', 'repite el\nmiércoles', 'repite el\nmiércoles', 'repite el\nmiércoles'],
+        ''),
     ],
   },
 };
@@ -373,6 +416,21 @@ const VOL_NOTES = [
   'Rodilla (libro): nunca dejes el tendón en reposo total. Llévate la goma: sentadilla española 5×45 s cada día (sin anclaje → wall sit a 1 pierna). Sigue haciendo el test en declive por la mañana.',
   'Semana 10 (vuelta): hipertrofia con las series de la sem 3-4 y a RIR2. Rehab ×8 al ~80% del peso de la sem 8. Si el test de 24 h aguanta, semana 11 a peso completo y siguiente escalón del libro (×6).',
 ];
+
+/* Fila 99 «Hitos y avisos»: un texto por semana ('—' = nada que avisar). */
+const VOL_HITOS = [
+  '—',
+  'Mar: paseo 30\'\nMié: TD + saltitos\n→ 1.ª carrera\nJue: test 1',
+  '—',
+  'AVISO fisio\n(ver Seguimiento)\nVie: bici',
+  'Lun: x8\nJue: test 2',
+  '—',
+  'Jue: test 3',
+  'Repite S7\nJue: test opc.\nrango completo',
+];
+// Los rellena otra tarea: nota general bajo los hitos y reglas del bloque (filas A102–A113).
+const VOL_HITOS_NOTE = '';
+const VOL_BLOCK_RULES = [];
 
 const PLANS = [
   { id: 'jul', name: '4 semanas', range: '20 jul – 16 ago', from: '2026-07-20', to: '2026-08-16',
@@ -406,9 +464,14 @@ function planFor(dateStr) {
   return PLANS.find((p) => dateStr <= p.to) || PLANS[PLANS.length - 1];
 }
 
+/* Días de la semana (0 = domingo) en que cae una sesión. En S1 del plan de volumen
+   el domingo repite la sesión del sábado (dows); desde S2 el sábado es solo sábado y
+   el domingo es la carrera (VOL-D, fromWeek: 2). */
+const sessionDows = (s, week) => (week.plan === 'vol' && week.n === 1 && s.dows) || [s.dow];
+
 /* Sesiones de la semana, en el orden del plan. */
 function sessionsFor(week) {
-  if (week.plan === 'vol') return Object.values(BLOCK_VOL);
+  if (week.plan === 'vol') return Object.values(BLOCK_VOL).filter((s) => !s.fromWeek || week.n >= s.fromWeek);
   return Object.values(week.block === 'A' ? BLOCK_A : BLOCK_B);
 }
 
@@ -419,7 +482,7 @@ function sessionFor(dateStr) {
   if (!week) return { week: null, options: [] };
   const dow = dowOf(dateStr);
   if (week.plan === 'vol') {
-    const day = Object.values(BLOCK_VOL).find((d) => (d.dows || [d.dow]).includes(dow));
+    const day = sessionsFor(week).find((d) => sessionDows(d, week).includes(dow));
     return { week, options: [day] };
   }
   if (week.block === 'A') {
@@ -435,7 +498,34 @@ function presFor(exercise, week) {
   return week.col === 's2' ? exercise.s2 : exercise.s1;
 }
 
+/* ¿Se registra este ejercicio por pierna (D/I) esa semana? Solo desde S2 del plan
+   de volumen: S1 ya está hecha y se ve como siempre. */
+const sidesFor = (exercise, week) => !!exercise.sides && week.plan === 'vol' && week.n >= 2;
+
+/* Grupos de la tabla «series por grupo» de la hoja Volumen (filas 71–83). */
+const VOL_GRUPOS = ['Espalda', 'Pecho', 'Hombro lat.', 'Hombro post.', 'Bíceps', 'Tríceps',
+  'Isquios', 'Abs', 'Gemelos', 'Aductores'];
+
+/* Series de hipertrofia de la semana n (1–8) por grupo, como la fórmula del Excel
+   (=SUM((B="grupo")*IFERROR(VALUE(LEFT(C, FIND(" ", C&" ")-1)),0))): el entero inicial
+   de la celda, hasta el primer espacio, de los ejercicios cuyo objetivo es exactamente
+   el grupo. Cardio, rehab, test y correctivos no cuentan. Devuelve { grupo: n, …, TOTAL }. */
+function seriesPorGrupo(n) {
+  const out = Object.fromEntries(VOL_GRUPOS.map((g) => [g, 0]));
+  for (const session of Object.values(BLOCK_VOL)) {
+    for (const exercise of session.exercises) {
+      if (!(exercise.target in out)) continue;
+      const first = exercise.pres[n - 1].label.split(' ')[0];
+      if (/^\d+$/.test(first)) out[exercise.target] += +first;
+    }
+  }
+  out.TOTAL = VOL_GRUPOS.reduce((acc, g) => acc + out[g], 0);
+  return out;
+}
+
 const PLAN = {
   WEEKS, BLOCK_A, BLOCK_B, RULES, VOL_WEEKS, BLOCK_VOL, VOL_RULES, VOL_NOTES, PLANS,
+  VOL_HITOS, VOL_HITOS_NOTE, VOL_BLOCK_RULES, VOL_GRUPOS,
   weekFor, planById, planFor, sessionsFor, sessionFor, presFor, isoDate,
+  parsePres, sidesFor, seriesPorGrupo, slug,
 };

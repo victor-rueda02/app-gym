@@ -1,5 +1,5 @@
-/* Interfaz. Tres pestañas (Hoy / Plan / Datos) y una vista de detalle por
-   ejercicio. Todo se guarda al teclear: no hay botón de "guardar" que olvidar. */
+/* Interfaz. Cuatro pestañas (Hoy / Plan / Rodilla / Datos) y una vista de detalle por
+   ejercicio. La pestaña Rodilla la pinta js/rodilla.js (Rodilla.render). Todo se guarda al teclear: no hay botón de "guardar" que olvidar. */
 
 const view = document.getElementById('view');
 const titleEl = document.getElementById('title');
@@ -68,6 +68,7 @@ function sessionById(id) {
 function setSummary(s, kind) {
   if (kind === 'cardio') return s.mins ? `${s.mins} min` : '—';
   const parts = [];
+  if (s.side) parts.push(s.side);   // pierna (D/I) en los unilaterales
   if (s.kg !== '' && s.kg != null) parts.push(`${s.kg}kg`);
   if (kind === 'iso') { if (s.secs) parts.push(`${s.secs}s`); }
   else if (s.reps !== '' && s.reps != null) parts.push(`×${s.reps}`);
@@ -77,9 +78,23 @@ function setSummary(s, kind) {
 
 const isLogged = (s) => [s.kg, s.reps, s.secs, s.mins].some((v) => v !== '' && v != null);
 
-// Barra de color a la izquierda: verde = rehab, azul = cardio
-const typeClass = (exercise) => (exercise.target === 'Rehab' ? 'rehab'
-  : exercise.target === 'Cardio' ? 'cardio' : '');
+// Barra de color a la izquierda: verde = rehab y test, azul = cardio, ámbar = correctivos
+const typeClass = (exercise) => (exercise.target.startsWith('Rehab') || exercise.target === 'Test' ? 'rehab'
+  : exercise.target === 'Cardio' ? 'cardio'
+    : exercise.target.endsWith('(correctivo)') ? 'corr' : '');
+
+// Hueco de serie vacío. En los unilaterales (D/I) las series alternan, D primero.
+const blankSet = (side) => ({ kg: '', reps: '', secs: '', rir: '', mins: '', ...(side ? { side } : {}) });
+const sideAt = (index) => (index % 2 ? 'I' : 'D');
+
+/* Tarjeta «Hitos y avisos» de una semana del plan de volumen (null si no hay nada). */
+function hitosCard(week) {
+  if (!week || week.plan !== 'vol') return null;
+  const hito = PLAN.VOL_HITOS[week.n - 1];
+  if (!hito || hito === '—') return null;
+  const note = PLAN.VOL_HITOS_NOTE ? `<p class="multi" style="margin-top:8px">${escapeHtml(PLAN.VOL_HITOS_NOTE)}</p>` : '';
+  return el(`<div class="card hitos"><h2>Hitos y avisos</h2><p class="multi">${escapeHtml(hito)}</p>${note}</div>`);
+}
 
 // En la lista solo caben notas cortas; las largas se leen dentro del ejercicio.
 const shortNote = (n) => (n && n.length <= 40 ? n : '');
@@ -95,6 +110,7 @@ function render() {
   if (state.exercise) renderExercise();
   else if (state.tab === 'today') renderToday();
   else if (state.tab === 'plan') renderPlan();
+  else if (state.tab === 'knee') Rodilla.render();
   else renderData();
 
   paintTimer();   // el DOM es nuevo: hay que devolverle el estado del cronómetro
@@ -114,6 +130,11 @@ function renderToday() {
       <div class="name" id="hero-name"></div>
       <div class="week">${week ? escapeHtml(week.title) : 'Sin plan para esta fecha'}</div>
     </div>`));
+
+  const kneeCard = Rodilla.todayCard(date);
+  if (kneeCard) view.appendChild(kneeCard);
+  const hitos = week && week.n >= 2 ? hitosCard(week) : null;
+  if (hitos) view.appendChild(hitos);
 
   const picker = el(`
     <div class="card" style="display:flex;align-items:center;gap:10px">
@@ -163,7 +184,7 @@ function renderToday() {
     ? 'Descanso' : (session.title || session.name);
 
   if (session.note) {
-    view.appendChild(el(`<div class="card"><p>${escapeHtml(session.note)}</p></div>`));
+    view.appendChild(el(`<div class="card"><p class="multi">${escapeHtml(session.note)}</p></div>`));
   }
   if (session.rest || !session.exercises.length) {
     view.appendChild(picker);
@@ -172,6 +193,7 @@ function renderToday() {
 
   view.appendChild(el('<div class="section-label">Ejercicios</div>'));
   session.exercises.forEach((exercise) => {
+    if (PLAN.presFor(exercise, week).skip) return;   // «—»: esa semana no se hace
     view.appendChild(exerciseRow(exercise, week, date, session));
   });
 
@@ -195,7 +217,9 @@ function renderToday() {
 function exerciseRow(exercise, week, date, session) {
   const pres = PLAN.presFor(exercise, week);
   const logged = Store.sets(date, exercise.id).filter(isLogged).length;
-  const done = pres.sets > 0 && logged >= pres.sets;
+  // En los unilaterales (D/I) cada serie prescrita se hace con las dos piernas.
+  const total = PLAN.sidesFor(exercise, week) ? pres.sets * 2 : pres.sets;
+  const done = total > 0 && logged >= total;
 
   const row = el(`
     <button class="ex ${typeClass(exercise)} ${done ? 'done' : ''}">
@@ -203,7 +227,7 @@ function exerciseRow(exercise, week, date, session) {
         <div class="nm">${escapeHtml(exercise.name)}</div>
         <div class="meta">${escapeHtml(exercise.target)}${shortNote(exercise.notes) ? ' · ' + escapeHtml(shortNote(exercise.notes)) : ''}</div>
       </div>
-      <span class="pres">${logged ? `${logged}/${pres.sets}` : escapeHtml(pres.label)}</span>
+      <span class="pres">${logged ? `${logged}/${total}` : escapeHtml(pres.label)}</span>
     </button>`);
 
   row.addEventListener('click', () => {
@@ -223,16 +247,22 @@ function renderExercise() {
   const pres = PLAN.presFor(exercise, week);
 
   titleEl.textContent = exercise.name;
-  subtitleEl.textContent = `${exercise.target} · objetivo ${pres.label}`;
+  subtitleEl.textContent = `${exercise.target} · objetivo ${pres.label.replace(/\n/g, ' · ')}`;
 
   view.innerHTML = '';
 
   if (pres.kind === 'none') {
-    view.appendChild(el('<div class="empty">Sin series que registrar. Haz tu rutina de movilidad.</div>'));
+    view.appendChild(el(pres.skip
+      ? '<div class="empty">Este ejercicio no se hace esta semana.</div>'
+      : '<div class="empty">Sin series que registrar. Haz tu rutina de movilidad.</div>'));
     return;
   }
 
-  if (exercise.notes) view.appendChild(el(`<div class="card"><p>${escapeHtml(exercise.notes)}</p></div>`));
+  if (pres.label.includes('\n') || pres.optional) {
+    view.appendChild(el(`<div class="card"><p class="multi">${escapeHtml(pres.label)}</p></div>`));
+  }
+
+  if (exercise.notes) view.appendChild(el(`<div class="card"><p class="multi">${escapeHtml(exercise.notes)}</p></div>`));
 
   view.appendChild(stopwatch(pres, date, exId));
 
@@ -247,16 +277,20 @@ function renderExercise() {
   const cols = pres.kind === 'cardio' ? ['Min']
     : pres.kind === 'iso' ? ['Kg', 'Seg'] : pres.kind === 'rir' ? ['Kg', 'Reps', 'RIR'] : ['Kg', 'Reps'];
 
-  const grid = (extra) => `grid-template-columns: 30px ${'1fr '.repeat(cols.length)}40px;${extra || ''}`;
+  // Unilaterales desde S2: una columna con el botón de pierna (D = derecha, la afectada; I = izquierda).
+  const sides = PLAN.sidesFor(exercise, week);
+  const grid = (extra) => `grid-template-columns: 30px ${sides ? '44px ' : ''}${'1fr '.repeat(cols.length)}40px;${extra || ''}`;
   card.appendChild(el(
     `<div class="set-row head" style="${grid()}">
-       <span></span>${cols.map((c) => `<span>${c}</span>`).join('')}<span></span>
+       <span></span>${sides ? '<span>Lado</span>' : ''}${cols.map((c) => `<span>${c}</span>`).join('')}<span></span>
      </div>`));
 
   const list = Store.sets(date, exId).slice();
   // Arranca con las series prescritas para que solo haya que rellenar huecos.
-  const wanted = Math.max(pres.sets, 1, state.rows[rowsKey(date, exId)] || 0, list.length);
-  while (list.length < wanted) list.push({ kg: '', reps: '', secs: '', rir: '', mins: '' });
+  // En los unilaterales son 2 × series (una por pierna), alternando D, I.
+  const prescritas = sides ? pres.sets * 2 : pres.sets;
+  const wanted = Math.max(prescritas, 1, state.rows[rowsKey(date, exId)] || 0, list.length);
+  while (list.length < wanted) list.push(blankSet(sides && sideAt(list.length)));
 
   const save = () => Store.saveSets(date, exId, list.filter(isLogged));
 
@@ -270,6 +304,8 @@ function renderExercise() {
     const row = el(`
       <div class="set-row" style="${grid()}">
         <span class="n">${index + 1}</span>
+        ${sides ? `<button class="side ${s.side === 'I' ? 'i' : s.side === 'D' ? 'd' : ''}"
+                           aria-label="Pierna de la serie ${index + 1}">${s.side || '–'}</button>` : ''}
         ${cols.map((c) => `
           <input inputmode="decimal" enterkeyhint="next"
                  data-f="${field[c]}" value="${s[field[c]] ?? ''}"
@@ -284,6 +320,16 @@ function renderExercise() {
         save();
       });
     });
+    const sideBtn = row.querySelector('.side');
+    if (sideBtn) {
+      sideBtn.addEventListener('click', () => {
+        s.side = s.side === 'D' ? 'I' : 'D';
+        sideBtn.textContent = s.side;
+        sideBtn.classList.toggle('d', s.side === 'D');
+        sideBtn.classList.toggle('i', s.side === 'I');
+        save();
+      });
+    }
     row.querySelector('.del').addEventListener('click', () => {
       list.splice(index, 1);
       save();
@@ -301,7 +347,8 @@ function renderExercise() {
     add.addEventListener('click', () => {
       const last = list[list.length - 1] || {};
       // Copiamos la carga de la serie anterior: casi siempre se repite.
-      list.push({ kg: last.kg ?? '', reps: '', secs: '', rir: '', mins: '' });
+      const nextSide = sides ? (last.side === 'D' ? 'I' : 'D') : '';
+      list.push({ ...blankSet(nextSide), kg: last.kg ?? '' });
       state.rows[rowsKey(date, exId)] = list.length;
       save();   // persiste la carga heredada; si va vacía, la mantiene state.rows
       renderExercise();
@@ -365,7 +412,7 @@ function stopwatch(pres, date, exId) {
     const secs = Timer.seconds();
     if (!secs) { toast('El cronómetro está a cero'); return; }
     const updated = Store.sets(date, exId).slice();
-    while (updated.length <= target) updated.push({ kg: '', reps: '', secs: '', rir: '', mins: '' });
+    while (updated.length <= target) updated.push(blankSet());
     updated[target] = { ...updated[target], secs: String(secs) };
     Store.saveSets(date, exId, updated.filter(isLogged));
     state.rows[rowsKey(date, exId)] = Math.max(updated.length, state.rows[rowsKey(date, exId)] || 0);
@@ -416,6 +463,14 @@ function renderPlan() {
       <p>${escapeHtml(week.sub + range)}</p>
     </div>`));
 
+  if (week.plan === 'vol') {
+    const hitos = hitosCard(week);
+    if (hitos) view.appendChild(hitos);
+    const reglas = el('<button class="btn line" style="margin:0 0 10px">Reglas del bloque</button>');
+    reglas.addEventListener('click', () => Reglas.open());
+    view.appendChild(reglas);
+  }
+
   PLAN.sessionsFor(week).forEach((session) => {
     view.appendChild(el(`<div class="section-label">${escapeHtml(sessionName(session))}</div>`));
     if (!session.exercises.length) {
@@ -425,7 +480,7 @@ function renderPlan() {
     session.exercises.forEach((exercise) => {
       const pres = PLAN.presFor(exercise, week);
       view.appendChild(el(`
-        <div class="ex ${typeClass(exercise)}">
+        <div class="ex ${typeClass(exercise)} ${pres.skip ? 'skip' : ''}">
           <div class="grow">
             <div class="nm">${escapeHtml(exercise.name)}</div>
             <div class="meta">${escapeHtml(exercise.target)}</div>
