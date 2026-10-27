@@ -24,6 +24,14 @@ for (let r = 1; r <= 70; r++) {
 // Bloque de cardio y carrera: las filas con «sesion=X» en la columna App (L) van al final de
 // su sesión; el domingo de carrera es una sesión solo desde la primera semana que tiene celda.
 const app = (r) => Object.fromEntries(String(c(`L${r}`) || '').split(';').filter(Boolean).map((p) => p.split('=')));
+// Filas por su etiqueta en la columna App, no por número (se mueven al insertar o quitar
+// filas): hitos, reglas y notas sueltas, y las reglas del bloque (de la etiqueta a la fila vacía).
+const FILAS = Array.from({ length: 200 }, (_, i) => i + 1);
+const HITOS = FILAS.find((r) => 'hitos' in app(r));
+const REGLAS = FILAS.filter((r) => 'regla' in app(r));
+const NOTAS = FILAS.filter((r) => 'nota' in app(r));
+const REGLAS_BLOQUE = [];
+for (let r = FILAS.find((f) => 'reglas-bloque' in app(f)) + 1; c(`A${r}`); r++) REGLAS_BLOQUE.push(r);
 for (let r = 1; r <= 200; r++) {
   const letra = app(r).sesion;
   if (!letra) continue;
@@ -110,13 +118,13 @@ for (let n = 1; n <= 8; n++) {
     igual(`Plan S${n} ${s.label.split(' ')[0]}: «—» atenuado`, d.ex.map((e) => e.skip), s.ejercicios.map((e) => e.semanas[n - 1] === '—'));
   });
   // Hitos y avisos
-  const hito = c(`${COLS[n - 1]}99`);
+  const hito = c(`${COLS[n - 1]}${HITOS}`);
   const tarjeta = await page.evaluate(() => {
     const t = document.querySelector('main .card.hitos');
     return t ? { h2: t.querySelector('h2').textContent, ps: [...t.querySelectorAll('p')].map((p) => p.textContent) } : null;
   });
   if (hito === '—') check(`Plan S${n}: sin tarjeta «Hitos y avisos»`, tarjeta === null);
-  else igual(`Plan S${n}: Hitos y avisos`, tarjeta && [tarjeta.h2, ...tarjeta.ps], ['Hitos y avisos', hito, c('K99')]);
+  else igual(`Plan S${n}: Hitos y avisos`, tarjeta && [tarjeta.h2, ...tarjeta.ps], ['Hitos y avisos', hito, c(`K${HITOS}`)]);
   // Reglas del bloque
   const btn = page.locator('main .btn', { hasText: 'Reglas del bloque' });
   check(`Plan S${n}: botón «Reglas del bloque»`, (await btn.count()) === 1);
@@ -124,8 +132,8 @@ for (let n = 1; n <= 8; n++) {
     await btn.click();
     await page.waitForSelector('#sheet .reglas-item', { state: 'visible' });
     const reglas = await page.locator('#sheet .reglas-txt').allTextContents();
-    igual(`Plan S${n}: 12 reglas`, reglas.length, 12);
-    reglas.forEach((t, i) => check(`Plan S${n}: regla ${i + 1} literal (A${102 + i})`, t.includes(c(`A${102 + i}`)) , t.slice(0, 60)));
+    igual(`Plan S${n}: ${REGLAS_BLOQUE.length} reglas`, reglas.length, REGLAS_BLOQUE.length);
+    reglas.forEach((t, i) => check(`Plan S${n}: regla ${i + 1} literal (A${REGLAS_BLOQUE[i]})`, t.includes(c(`A${REGLAS_BLOQUE[i]}`)) , t.slice(0, 60)));
     check(`Plan S${n}: título de las reglas`, (await page.textContent('#sheet-title')).trim().length > 0, await page.textContent('#sheet-title'));
     // etiquetas resaltadas
     check(`Plan S${n}: etiquetas resaltadas`, (await page.locator('#sheet .reglas-tag').count()) >= 10);
@@ -133,11 +141,11 @@ for (let n = 1; n <= 8; n++) {
     await page.waitForSelector('#sheet', { state: 'hidden' });
   }
 }
-// Textos de A2/A64 y semanas 9-10 en el pie del Plan
+// Reglas sueltas (A2 y la de autorregulación) y notas de las semanas 9-10 en el pie del Plan
 await page.click('[data-week="2"]');
 const pie = await page.textContent('main');
-check('Plan: reglas A2 y A64', pie.includes(c('A2')) && pie.includes(c('A64')));
-check('Plan: notas A66–A69', [66, 67, 68, 69].every((r) => pie.includes(c(`A${r}`))));
+check(`Plan: reglas ${REGLAS.map((r) => `A${r}`).join(' y ')}`, REGLAS.length === 2 && REGLAS.every((r) => pie.includes(c(`A${r}`))));
+check(`Plan: notas A${NOTAS[0]}–A${NOTAS.at(-1)}`, NOTAS.length === 4 && NOTAS.every((r) => pie.includes(c(`A${r}`))));
 
 /* ---------- Hoy: todos los días de S1…S8 ---------- */
 async function irA(fecha) {
@@ -174,9 +182,9 @@ for (let n = 1; n <= 8; n++) {
     igual(`${tag}: prescripciones`, hoy.ex.map((e) => e.pres), visibles.map((e, i) => reales[i] ?? e.semanas[n - 1]));
     if (n === 1) check(`${tag}: S1 sin progresión real`, reales.every((x) => x === null), JSON.stringify(reales));
     check(`${tag}: ningún «—» visible`, !hoy.ex.some((e) => e.pres === '—'));
-    const hito = c(`${COLS[n - 1]}99`);
+    const hito = c(`${COLS[n - 1]}${HITOS}`);
     if (n === 1 || hito === '—') check(`${tag}: sin tarjeta de hitos`, hoy.hitos === null, JSON.stringify(hoy.hitos));
-    else igual(`${tag}: hitos`, hoy.hitos, [hito, c('K99')]);
+    else igual(`${tag}: hitos`, hoy.hitos, [hito, c(`K${HITOS}`)]);
   }
 }
 // Casos pedidos de forma explícita

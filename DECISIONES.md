@@ -312,3 +312,22 @@ Sustituyen a los puntos anteriores donde se contradicen (30, 35, 41 y 42).
     seguimiento tampoco las lee la app: el cálculo de la app las replica, y
     `tests/rodilla-logica.test.mjs` comprueba que coinciden. Si se cambia una fórmula
     del Excel, hay que cambiar también la app.
+
+## Abs del martes: colgado + máquina (27/10)
+
+59. **Desde S2, 1 serie de abs colgado y el resto en máquina.** Fila nueva «Abs en
+    máquina (crunch)» (`id=abs-maquina-crunch`, objetivo «Abs») justo debajo del
+    colgado, en la sesión del martes. S1 no cambia (colgado 3 series, máquina «—»).
+    Desde S2 el colgado es «1 @ RIR0» (una sola serie de RIR1/0 es RIR0) y la máquina
+    lleva las series que tenía el colgado menos una, con el mismo RIR1/0: 2, 2, 2, 3,
+    3, 3, 4. Las series de Abs (5→9) y el total (52→88) quedan igual. El colgado
+    conserva su id, así que su historial no se pierde.
+60. **Notas.** Ninguna nota ni regla del Excel hablaba del número de series del
+    colgado, así que no se ha tocado ninguna. La nota técnica del colgado (K) se deja
+    igual; la de la máquina dice que recoge sus series desde S2, para que se entienda
+    en el Excel por qué el colgado baja a 1.
+61. **Pruebas.** `tests/contenido.test.mjs` («hipertrofia como antes») tiene una
+    excepción explícita para el colgado: comprueba que colgado + máquina suman lo de
+    antes con el mismo RIR. `tests/contenido-ui.mjs` buscaba filas por número (hitos
+    en la 99, reglas del bloque en la 102-113, notas en la 66-69) y fallaba al insertar
+    una fila; ahora las busca por su etiqueta de la columna «App», como la app.

@@ -58,12 +58,30 @@ test('S1: el domingo es la sesión del sábado («Sábado/Domingo»), sin D/I, s
 });
 
 test('hipertrofia como antes: los ejercicios con series @RIR conservan las 8 prescripciones', () => {
+  // Excepción pedida (27/10): desde S2 el abs colgado del martes se queda en 1 serie y el
+  // resto pasa al abs en máquina, justo debajo. Se comprueba que entre los dos suman lo
+  // de antes, con el mismo RIR; el total de Abs no cambia (ver «series por grupo»).
+  const repartidos = { M: { 'abs-colgado-retroversion': 'abs-maquina-crunch' } };
   let n = 0;
   for (const [k, vieja] of Object.entries(VIEJO.BLOCK_VOL)) {
     for (const e of vieja.exercises) {
       if (!e.pres.some((p) => / @ RIR/.test(p.label))) continue;
       const nuevo = PLAN.BLOCK_VOL[k].exercises.find((x) => x.id === e.id);
       assert.ok(nuevo, `${k}: ${e.name} no está`);
+      const otro = (repartidos[k] || {})[e.id];
+      if (otro) {
+        const maquina = PLAN.BLOCK_VOL[k].exercises.find((x) => x.id === otro);
+        assert.equal(nuevo.pres[0].label, e.pres[0].label, `${k} ${e.name}: S1`);
+        assert.equal(maquina.pres[0].label, '—', `${k} ${maquina.name}: S1`);
+        for (let s = 1; s < 8; s++) {
+          const antes = e.pres[s].label.match(/^(\d+) @ (RIR.*)$/);
+          assert.equal(nuevo.pres[s].label, '1 @ RIR0', `${k} ${e.name}: S${s + 1}`);
+          assert.equal(maquina.pres[s].label, `${antes[1] - 1} @ ${antes[2]}`, `${k} ${maquina.name}: S${s + 1}`);
+        }
+        assert.equal(maquina.target, e.target, `${k} ${maquina.name}: objetivo`);
+        n++;
+        continue;
+      }
       assert.deepEqual(nuevo.pres.map((p) => p.label), e.pres.map((p) => p.label), `${k} ${e.name}`);
       assert.equal(nuevo.target, e.target, `${k} ${e.name}: objetivo`);
       n++;
