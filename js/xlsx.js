@@ -12,8 +12,6 @@
 const SHEET_NAME = 'Registro';
 const NS_WS = 'application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml';
 const KNEE_SHEET = 'Seguimiento rodilla';
-const KNEE_FIRST_DAY = Date.UTC(2026, 9, 26);   // 26/10/2026 = fila 5
-const KNEE_DAYS = 63;                           // 26/10 ... 27/12 (filas 5..67)
 const REL_WS = 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet';
 
 const COLS = [
@@ -65,7 +63,8 @@ function sheetXml(rows) {
 
 /* ---- Hoja "Seguimiento rodilla" ---------------------------------------- */
 
-/* Campos de cada sección -> columna. Las filas se calculan por sección. */
+/* Campos de cada sección -> columna. Las filas salen de RODILLA_DATA (js/rodilla-data.js),
+   que las lee de la propia hoja: si la hoja cambia, la exportación sigue escribiendo en su sitio. */
 const KNEE_DAY_COLS = {
   decline: 'G', steps: 'H', during: 'J', back60: 'K', click: 'L', notes: 'Q',
   session: 'D', rule: 'E', novelty: 'F',
@@ -73,11 +72,10 @@ const KNEE_DAY_COLS = {
 // runLevelText y depthStep son los niveles reales que calcula la app (export.js los añade).
 const KNEE_WEEK_COLS = { runLevelText: 'I', depthStep: 'K', notes: 'M' };
 // Entrada a la carrera: la hoja tiene sitio para un intento, así que va el último
-// (la semana más alta con datos). G89 = fecha del martes de esa semana.
-const KNEE_ENTRY_CELLS = {
-  walkPain: 'D89', walkBack60: 'E89', tdPain: 'D90', hopsPain: 'D91', notes: 'I89',
+// (la semana más alta con datos). G de la fila del paseo = fecha del paseo de esa semana.
+const KNEE_ENTRY_CELLS = {   // [criterio, columna]
+  walkPain: ['walk', 'D'], walkBack60: ['walk', 'E'], tdPain: ['touchdown', 'D'], hopsPain: ['hops', 'D'], notes: ['walk', 'I'],
 };
-const KNEE_TEST_ROWS = { t1: 97, t2: 98, t3: 99, t4: 100 };
 const KNEE_TEST_COLS = { load: 'F', repsD: 'G', repsI: 'H', notes: 'M' };
 const KNEE_DEPTH_COLS = {
   angle: 'D', press: 'E', box: 'F', split: 'G', touchdown: 'I', validated: 'K', notes: 'M',
@@ -85,18 +83,17 @@ const KNEE_DEPTH_COLS = {
 
 /* Fila de un día (YYYY-MM-DD) en la hoja; null si cae fuera del calendario. */
 function kneeDayRow(date) {
-  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(date);
-  if (!m) return null;
-  const diff = Math.round((Date.UTC(+m[1], +m[2] - 1, +m[3]) - KNEE_FIRST_DAY) / 86400000);
-  return diff >= 0 && diff < KNEE_DAYS ? 5 + diff : null;
+  const d = RODILLA_DATA.dias.find((x) => x.fecha === date);
+  return d ? d.fila : null;
 }
 
-/* Fila de una semana 'S2'..'S10' (filas 72..80); null si no es válida. */
-function kneeWeekRow(key) {
-  const m = /^S(\d+)$/.exec(key);
-  const n = m ? +m[1] : 0;
-  return n >= 2 && n <= 10 ? 70 + n : null;
-}
+/* Fila de una semana ('S2'…) en el resumen semanal; null si no es válida. */
+const kneeWeekRow = (key) => RODILLA_DATA.filasSemana[key] || null;
+
+const filaDe = (lista, clave) => (lista.find((x) => x.clave === clave) || {}).fila || null;
+
+/* Serie de Excel (días desde 1899-12-30) de una fecha ISO. */
+const serieExcel = (iso) => Math.round((Date.UTC(+iso.slice(0, 4), +iso.slice(5, 7) - 1, +iso.slice(8, 10)) - Date.UTC(1899, 11, 30)) / 86400000);
 
 /* knee -> { 'G5': valor, ... }. Pura: no toca el ZIP, se prueba sola.
    Solo salen los campos presentes en `knee` (los ausentes dejan la celda como
@@ -117,19 +114,24 @@ function kneeCells(knee) {
 
   for (const [date, rec] of Object.entries(knee.days || {})) put(KNEE_DAY_COLS, kneeDayRow(date), rec);
   for (const [key, rec] of Object.entries(knee.weeks || {})) put(KNEE_WEEK_COLS, kneeWeekRow(key), rec);
-  const intentos = Object.keys(knee.entry || {}).filter((k) => kneeWeekRow(k) && kneeWeekRow(k) <= 78)
-    .sort((a, b) => kneeWeekRow(a) - kneeWeekRow(b));
+  // Paseo de entrada: el día anterior a la carrera (PLAN.ESCALERAS.carrera.dia).
+  const diaCarrera = PLAN.ESCALERAS.carrera.dia;
+  const diaPaseo = PLAN.DIAS_PLAN[PLAN.DIAS_PLAN.indexOf(diaCarrera) - 1];
+  const intentos = Object.keys(knee.entry || {}).filter((k) => RODILLA_DATA.dias.some((d) => d.sem === k && d.dia === diaPaseo))
+    .sort((a, b) => +a.slice(1) - +b.slice(1));
   if (intentos.length) {
     const sem = intentos[intentos.length - 1];
     const rec = knee.entry[sem] || {};
-    for (const [field, ref] of Object.entries(KNEE_ENTRY_CELLS)) {
-      if (typeof rec[field] === 'string') out[ref] = rec[field];
+    for (const [field, [criterio, col]] of Object.entries(KNEE_ENTRY_CELLS)) {
+      const fila = filaDe(RODILLA_DATA.entrada, criterio);
+      if (fila && typeof rec[field] === 'string') out[col + fila] = rec[field];
     }
-    // Serie de Excel del martes de esa semana (27/10/2026 = 46322, S2).
-    out.G89 = 46322 + 7 * (kneeWeekRow(sem) - 72);
+    const paseo = RODILLA_DATA.dias.find((d) => d.sem === sem && d.dia === diaPaseo);
+    const filaPaseo = filaDe(RODILLA_DATA.entrada, 'walk');
+    if (filaPaseo) out[`G${filaPaseo}`] = serieExcel(paseo.fecha);
   }
-  for (const [key, rec] of Object.entries(knee.tests || {})) put(KNEE_TEST_COLS, KNEE_TEST_ROWS[key], rec);
-  for (const [key, rec] of Object.entries(knee.depth || {})) put(KNEE_DEPTH_COLS, /^[0-4]$/.test(key) ? 105 + +key : null, rec);
+  for (const [key, rec] of Object.entries(knee.tests || {})) put(KNEE_TEST_COLS, filaDe(RODILLA_DATA.tests, key), rec);
+  for (const [key, rec] of Object.entries(knee.depth || {})) put(KNEE_DEPTH_COLS, filaDe(RODILLA_DATA.escalones, key), rec);
   return out;
 }
 

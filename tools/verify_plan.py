@@ -1,16 +1,21 @@
-"""Comprueba que el plan de volumen de js/plan.js coincide celda a celda con la
-hoja "Volumen (1910-1112)" de Plan_8sem_vol_definitivo_con_cardio.xlsx.
+"""Comprueba, con openpyxl, que el plan que construye la app (js/plan.js a partir del Excel
+empotrado) es el de la hoja «Volumen (1910-1112)» del Excel de la raíz, y que el Excel
+sirve para el iPhone.
 
-    python tools/verify_plan.py [ruta/al/excel.xlsx]
+    python tools/verify_plan.py [ruta.xlsx]
 
-Lee la hoja con openpyxl y el plan evaluando js/plan.js con Node, y compara
-por cada fila de ejercicio las columnas A (ejercicio), B (objetivo), C–J
-(semanas 1–8) y K (notas), además del día y título de cada sesión, el bloque de
-cardio y carrera (filas 95–98), los hitos (fila 99), los textos de reglas (A2,
-A64), semanas 9–10 (A66–A69), títulos (A93, A101) y reglas del bloque rodilla
-(A102–A113), y el recuento de series por grupo (filas 73–83, 52 → 88). Sale con código 1
-si algo difiere.
+Genérico: localiza sesiones, ejercicios y textos por las etiquetas de la columna «App» (L)
+— no por números de fila —, así que vale tras cualquier edición del plan. Comprueba:
+  - sesiones (nombre y título), ejercicios (nombre, objetivo, id, celdas C–J, notas K) y
+    el bloque de cardio y carrera;
+  - textos: reglas, notas, hitos, títulos y reglas del bloque;
+  - la tabla de series por grupo: cada celda es una fórmula normal que suma exactamente las
+    filas de su grupo, y la app da el mismo recuento;
+  - que no hay fórmulas matriciales en todo el libro (Excel para iPhone las calcula a 0);
+  - que el Excel empotrado en la app (js/original-xlsx.js) es este mismo fichero.
+Sale con código 1 si algo difiere.
 """
+import base64
 import json
 import pathlib
 import re
@@ -24,35 +29,22 @@ XLSX = ROOT / "Plan_8sem_vol_definitivo_con_cardio.xlsx"
 SHEET = "Volumen (1910-1112)"
 WEEKCOLS = "CDEFGHIJ"
 
-# Bloque de cardio y carrera: (clave en BLOCK_VOL, fila). Cada fila es el último
-# ejercicio de esa sesión (el único en D), con objetivo "Cardio"; el nombre sale de B.
-CARDIO = [("M", 95), ("V", 96), ("X", 97), ("D", 98)]
-HITOS_ROW = 99
-
-# (clave en BLOCK_VOL, fila de cabecera, última fila de ejercicio)
-BLOCKS = [("L", 4, 12), ("M", 14, 20), ("X", 23, 31), ("J", 33, 42), ("V", 44, 53), ("S", 55, 63)]
-TEXTS = {"A2": ("rules", 0), "A64": ("rules", 1),
-         "A66": ("notes", 0), "A67": ("notes", 1), "A68": ("notes", 2), "A69": ("notes", 3),
-         "A93": ("cardioTitle", None), "A101": ("blockRulesTitle", None),
-         "K99": ("hitosNote", None)}
-TEXTS.update({f"A{102 + i}": ("blockRules", i) for i in range(12)})
-# Filas 73–82: grupos, 83: TOTAL. Columnas C–J = semanas 1–8.
-COUNT_ROWS = range(73, 84)
-
-DUMP = (
-    "const src = require('fs').readFileSync(process.argv[1], 'utf8');"
-    "const PLAN = new Function(src + ';return PLAN;')();"
-    "process.stdout.write(JSON.stringify({"
-    "  blocks: PLAN.BLOCK_VOL, rules: PLAN.VOL_RULES, notes: PLAN.VOL_NOTES,"
-    "  hitos: PLAN.VOL_HITOS, hitosNote: PLAN.VOL_HITOS_NOTE,"
-    "  blockRules: PLAN.VOL_BLOCK_RULES, blockRulesTitle: PLAN.VOL_BLOCK_RULES_TITLE,"
-    "  cardioTitle: PLAN.VOL_CARDIO_TITLE, grupos: PLAN.VOL_GRUPOS,"
-    "  series: [1, 2, 3, 4, 5, 6, 7, 8].map((n) => PLAN.seriesPorGrupo(n)) }));"
-)
-
-
-def text(v):
-    return "" if v is None else str(v).strip()
+# La app se carga en Node igual que en el navegador: el plan sale del Excel empotrado.
+# (module/exports a undefined: así fflate se define como global, como en el navegador).
+DUMP = r"""
+const fs = require('fs');
+const src = ['vendor/fflate.js', 'js/original-xlsx.js', 'js/lector-xlsx.js', 'js/plan.js']
+  .map((f) => fs.readFileSync(f, 'utf8')).join('\n;\n');
+const r = new Function('module', 'exports', src + ';return { PLAN, ORIGINAL_XLSX_B64 };')(undefined, undefined);
+const PLAN = r.PLAN;
+process.stdout.write(JSON.stringify({
+  blocks: PLAN.BLOCK_VOL, rules: PLAN.VOL_RULES, notes: PLAN.VOL_NOTES,
+  hitos: PLAN.VOL_HITOS, hitosNote: PLAN.VOL_HITOS_NOTE,
+  blockRules: PLAN.VOL_BLOCK_RULES, blockRulesTitle: PLAN.VOL_BLOCK_RULES_TITLE,
+  cardioTitle: PLAN.VOL_CARDIO_TITLE, grupos: PLAN.VOL_GRUPOS,
+  series: [1, 2, 3, 4, 5, 6, 7, 8].map((n) => PLAN.seriesPorGrupo(n)),
+  empotrado: r.ORIGINAL_XLSX_B64 }));
+"""
 
 
 def raw(v):
@@ -60,28 +52,23 @@ def raw(v):
     return "" if v is None else str(v)
 
 
-def expected_sets(label):
-    """Series que debe tener una etiqueta: «N-M x» → N (la M se añade a mano); test → 3;
-    «—»/«-» → 0."""
-    if label in ("-", "—"):
-        return 0
-    m = re.match(r"^(\d+)(?:-(\d+))? x", label)
-    if m:
-        return int(m.group(1))
-    if label.startswith("2 aprox.") or label.startswith("Opcional:"):
-        return 3
-    m = re.match(r"^(\d+) @ RIR", label)
-    if m:
-        return int(m.group(1))
-    return None
+def etiquetas(valor):
+    out = {}
+    for parte in raw(valor).split(";"):
+        parte = parte.strip()
+        if parte:
+            k, _, v = parte.partition("=")
+            out[k.strip()] = v.strip() if _ else True
+    return out
 
 
 def main():
     xlsx = pathlib.Path(sys.argv[1]) if len(sys.argv) > 1 else XLSX
-    out = subprocess.run(["node", "-e", DUMP, str(ROOT / "js" / "plan.js")],
-                         capture_output=True, check=True, encoding="utf-8").stdout
+    out = subprocess.run(["node", "-e", DUMP], cwd=ROOT, capture_output=True, check=True, encoding="utf-8").stdout
     plan = json.loads(out)
-    ws = openpyxl.load_workbook(xlsx)[SHEET]
+    wb = openpyxl.load_workbook(xlsx)
+    ws = wb[SHEET]
+    app = lambda r: etiquetas(ws[f"L{r}"].value)
 
     errors = []
     compared = 0
@@ -90,127 +77,95 @@ def main():
         nonlocal compared
         compared += 1
         if expected != actual:
-            errors.append(f"{ref}: Excel {expected!r} != plan.js {actual!r}")
+            errors.append(f"{ref}: Excel {expected!r} != app {actual!r}")
 
-    def check_sets(ref, p, cardio=False):
-        """La prescripción interpretada debe cuadrar con la etiqueta."""
-        n = expected_sets(p["label"])
-        if cardio:
-            n = 0 if p["label"] in ("-", "—") else 1
-        if n is None or p["sets"] != n:
-            errors.append(f"{ref}: {p['label']!r} interpretado como {p['sets']} series (esperadas {n})")
-        elif p["label"].endswith("RIR1/0") and p.get("rirs") != [1] * (n - 1) + [0]:
-            errors.append(f"{ref}: RIR por serie {p.get('rirs')} en vez de 1,…,1,0")
-
-    covered = set()
-    for key, head, last in BLOCKS:
-        session = plan["blocks"].get(key)
-        if session is None:
-            errors.append(f"Falta la sesión {key} en BLOCK_VOL")
-            continue
-        h = text(ws.cell(head, 1).value)
-        # «(X) Día  ·  título»: el día va entre ") " y el primer «·»; el título, tras él.
-        check(f"A{head} (día)", h.split(") ", 1)[1].split("·", 1)[0].strip(), session["name"])
-        check(f"A{head} (título)", h.split("·", 1)[1].strip() if "·" in h else "", session["title"])
-
-        rows = [r for r in range(head + 2, last + 1) if text(ws.cell(r, 1).value)]
-        covered.update(range(head, last + 1))
-        exercises = [e for e in session["exercises"] if e["target"] != "Cardio"]
-        if len(rows) != len(exercises):
-            errors.append(f"Sesión {key}: {len(rows)} ejercicios en el Excel, {len(exercises)} en plan.js")
-        for r, ex in zip(rows, exercises):
-            check(f"A{r}", text(ws.cell(r, 1).value), ex["name"])
-            check(f"B{r}", raw(ws.cell(r, 2).value), ex["target"])
-            for w, col in enumerate(WEEKCOLS):
-                p = ex["pres"][w]
-                check(f"{col}{r}", raw(ws[f"{col}{r}"].value), p["label"])
-                check_sets(f"{col}{r}", p)
-            check(f"K{r}", raw(ws.cell(r, 11).value), ex["notes"])
-
-    # Cardio y carrera (filas 95–98): último ejercicio de la sesión; nombre = B.
-    for key, r in CARDIO:
-        exs = plan["blocks"][key]["exercises"]
-        cardio = [e for e in exs if e["target"] == "Cardio"]
-        if len(cardio) != 1 or exs[-1]["target"] != "Cardio":
-            errors.append(f"Sesión {key}: el cardio debe ser un único ejercicio, el último")
-            continue
-        if key == "D" and len(exs) != 1:
-            errors.append("Sesión D: la carrera del domingo debe ser el único ejercicio")
-        ex = cardio[0]
-        check(f"B{r}", raw(ws.cell(r, 2).value), ex["name"])
+    def check_ejercicio(r, ex, nombre, objetivo):
+        check(f"A{r} (nombre)", nombre, ex["name"])
+        check(f"B{r}", objetivo, ex["target"])
+        check(f"L{r} (id)", app(r).get("id", ex["id"]), ex["id"])
         for w, col in enumerate(WEEKCOLS):
             check(f"{col}{r}", raw(ws[f"{col}{r}"].value), ex["pres"][w]["label"])
-            if ex["pres"][w]["kind"] not in ("cardio", "none"):
-                errors.append(f"{col}{r}: no se interpretó como cardio")
-            check_sets(f"{col}{r}", ex["pres"][w], cardio=True)
-        check(f"K{r}", raw(ws.cell(r, 11).value), ex["notes"])
+        check(f"K{r}", raw(ws[f"K{r}"].value), ex["notes"])
 
-    # Hitos y avisos (fila 99): C–J por semana; la nota general está en K99.
-    if len(plan["hitos"]) != 8:
-        errors.append(f"VOL_HITOS: {len(plan['hitos'])} textos, se esperaban 8")
-    for w, col in enumerate(WEEKCOLS):
-        check(f"{col}{HITOS_ROW}", raw(ws[f"{col}{HITOS_ROW}"].value),
-              plan["hitos"][w] if w < len(plan["hitos"]) else None)
-
-    # Ninguna fila con datos fuera de los bloques conocidos (filas 3–63).
-    for r in range(3, 64):
-        if r not in covered and any(text(ws.cell(r, c).value) for c in range(2, 12)):
-            errors.append(f"Fila {r}: hay datos fuera de los bloques de sesión")
-
-    for ref, (field, i) in TEXTS.items():
-        values = plan[field]
-        if i is None:
-            check(ref, raw(ws[ref].value), values)
-        else:
-            check(ref, raw(ws[ref].value), values[i] if i < len(values) else None)
-    for field, refs in (("rules", 2), ("notes", 4), ("blockRules", 12)):
-        if len(plan[field]) != refs:
-            errors.append(f"{field}: {len(plan[field])} textos, se esperaban {refs}")
-
-    # Recuento de series por grupo (filas 73–83). El Excel ajustado se guarda sin
-    # valores calculados, así que se replica aquí lo que suma cada celda: el entero
-    # inicial de las filas de ese grupo. Las celdas no pueden ser fórmulas matriciales
-    # (Excel para iPhone las calcula a 0): cada una suma, fila a fila, las de su grupo.
-    def series(grupo, col):
-        total = 0
-        for r in range(3, 64):
-            if raw(ws.cell(r, 2).value) == grupo:
-                cabeza = text(ws[f"{col}{r}"].value).split(" ")[0]
-                total += int(cabeza) if cabeza.isdigit() else 0
-        return total
-
-    filas = {text(ws.cell(r, 1).value): r for r in COUNT_ROWS}
-    for grupo in plan["grupos"]:
-        row = filas.get(grupo)
-        if row is None:
-            errors.append(f"Recuento: no hay fila para {grupo!r} en la hoja")
+    # Sesiones y sus ejercicios (filas con «id=»), y el cardio al final de su sesión.
+    vistos = {}
+    sesion = None
+    for r in range(1, ws.max_row + 1):
+        e = app(r)
+        a = raw(ws[f"A{r}"].value)
+        if e.get("sesion") is True:
+            m = re.match(r"^\(([LMXJVSD])\)\s*([^·]+?)\s*(?:·\s*([\s\S]*))?$", a)
+            sesion = m.group(1)
+            s = plan["blocks"].get(sesion)
+            if not s:
+                errors.append(f"A{r}: la sesión {sesion} no está en la app")
+                continue
+            check(f"A{r} (día)", m.group(2).strip(), s["name"])
+            check(f"A{r} (título)", (m.group(3) or "").strip(), s["title"])
+            vistos[sesion] = 0
             continue
-        filas_grupo = [r for r in range(3, 64) if raw(ws.cell(r, 2).value) == grupo]
-        for col in WEEKCOLS:
-            formula = ws[f"{col}{row}"].value
+        if not a:
+            sesion = None
+        if "id" in e and not isinstance(e.get("sesion"), str) and sesion:
+            ex = plan["blocks"][sesion]["exercises"][vistos[sesion]]
+            vistos[sesion] += 1
+            check_ejercicio(r, ex, a.strip(), raw(ws[f"B{r}"].value))
+        elif isinstance(e.get("sesion"), str):
+            letra = e["sesion"]
+            vistos.setdefault(letra, 0)
+            ex = plan["blocks"][letra]["exercises"][vistos[letra]]
+            vistos[letra] += 1
+            check_ejercicio(r, ex, raw(ws[f"B{r}"].value).strip(), "Cardio")
+    for letra, n in vistos.items():
+        if n != len(plan["blocks"][letra]["exercises"]):
+            errors.append(f"Sesión {letra}: {n} ejercicios en el Excel, {len(plan['blocks'][letra]['exercises'])} en la app")
+
+    # Textos por etiqueta.
+    filas = lambda clave: [r for r in range(1, ws.max_row + 1) if clave in app(r)]
+    check("reglas", [raw(ws[f"A{r}"].value) for r in filas("regla")], plan["rules"])
+    check("notas", [raw(ws[f"A{r}"].value) for r in filas("nota")], plan["notes"])
+    h = filas("hitos")[0]
+    check("hitos", [raw(ws[f"{c}{h}"].value) for c in WEEKCOLS], plan["hitos"])
+    check("nota de hitos", raw(ws[f"K{h}"].value), plan["hitosNote"])
+    check("título del cardio", raw(ws[f"A{filas('cardio')[0]}"].value), plan["cardioTitle"])
+    rb = filas("reglas-bloque")[0]
+    check("título de las reglas del bloque", raw(ws[f"A{rb}"].value), plan["blockRulesTitle"])
+    reglas = []
+    r = rb + 1
+    while ws[f"A{r}"].value:
+        reglas.append(raw(ws[f"A{r}"].value))
+        r += 1
+    check("reglas del bloque", reglas, plan["blockRules"])
+
+    # Series por grupo: fórmulas normales, que suman exactamente las filas de su grupo.
+    g = filas("grupos")[0]
+    r = g + 1
+    while not raw(ws[f"A{r}"].value).startswith("TOTAL"):
+        grupo = raw(ws[f"A{r}"].value)
+        del_grupo = [f for f in range(1, g) if raw(ws[f"B{f}"].value) == grupo]
+        for w, col in enumerate(WEEKCOLS):
+            formula = ws[f"{col}{r}"].value
             if not isinstance(formula, str) or not formula.startswith("="):
-                errors.append(f"{col}{row}: el recuento de {grupo!r} no es una fórmula normal ({type(formula).__name__})")
+                errors.append(f"{col}{r}: el recuento de {grupo!r} no es una fórmula normal")
                 continue
             refs = sorted(int(x) for x in re.findall(rf"LEFT\({col}(\d+),", formula))
-            if refs != filas_grupo:
-                errors.append(f"{col}{row}: suma las filas {refs}, las de {grupo!r} son {filas_grupo}")
-        for w, col in enumerate(WEEKCOLS):
-            check(f"{col}{row} ({grupo} S{w + 1})", series(grupo, col), plan["series"][w][grupo])
-    for w, total in enumerate([52, 57, 62, 66, 71, 76, 80, 88]):
-        check(f"TOTAL S{w + 1}", total, plan["series"][w]["TOTAL"])
+            if refs != del_grupo:
+                errors.append(f"{col}{r}: suma las filas {refs}; las de {grupo!r} son {del_grupo}")
+            propio = sum(int(raw(ws[f"{col}{f}"].value).split(" ")[0]) for f in del_grupo
+                         if raw(ws[f"{col}{f}"].value).split(" ")[0].isdigit())
+            check(f"{col}{r} ({grupo} S{w + 1})", propio, plan["series"][w][grupo])
+        r += 1
 
     # Ninguna fórmula matricial en todo el libro.
-    for hoja in openpyxl.load_workbook(xlsx):
+    for hoja in wb:
         for fila in hoja.iter_rows():
             for celda in fila:
                 if type(celda.value).__name__ == "ArrayFormula":
                     errors.append(f"{hoja.title}!{celda.coordinate}: fórmula matricial")
 
-    # Ningún correctivo ni cardio suma al recuento: su objetivo no es un grupo.
-    for key, s in plan["blocks"].items():
-        for e in s["exercises"]:
-            if (e["target"].endswith("(correctivo)") or e["target"] == "Cardio") and e["target"] in plan["grupos"]:
-                errors.append(f"{key}/{e['name']}: el objetivo {e['target']!r} sumaría al recuento")
+    # El Excel empotrado es este fichero.
+    if base64.b64decode(plan["empotrado"]) != xlsx.read_bytes():
+        errors.append("js/original-xlsx.js no es el Excel de la raíz: ejecuta python tools/excel_app.py")
 
     for e in errors:
         print("DIFERENCIA", e)

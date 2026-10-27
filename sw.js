@@ -1,8 +1,10 @@
 /* Cache-first sobre una lista fija: la app es totalmente estática, así que una
    vez instalada funciona sin cobertura (sótanos de gimnasio incluidos).
-   Sube CACHE al desplegar cambios para forzar la actualización. */
+   CACHE es la huella de los ficheros de ASSETS: la recalcula `python tools/excel_app.py`
+   (o `python tools/excel_app.py --solo-cache` tras tocar código), y al cambiar, el móvil
+   descarga la versión nueva. */
 
-const CACHE = 'gym-v7';
+const CACHE = 'gym-bf8f61b7';
 const ASSETS = [
   './',
   './index.html',
@@ -10,10 +12,11 @@ const ASSETS = [
   './css/styles.css',
   './css/rodilla.css',
   './vendor/fflate.js',
+  './js/original-xlsx.js',
+  './js/lector-xlsx.js',
   './js/plan.js',
   './js/store.js',
   './js/timer.js',
-  './js/original-xlsx.js',
   './js/xlsx.js',
   './js/export.js',
   './js/rodilla-data.js',

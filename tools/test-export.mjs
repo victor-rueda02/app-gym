@@ -24,8 +24,10 @@ import { fileURLToPath } from 'node:url';
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const read = (p) => fs.readFileSync(path.join(root, p), 'utf8');
 
-const src = ['vendor/fflate.js', 'js/plan.js', 'js/original-xlsx.js', 'js/xlsx.js', 'js/export.js']
-  .map(read).join('\n;\n');
+// El plan se construye desde el Excel empotrado: fflate, original-xlsx y lector antes que plan;
+// rodilla-data da las filas de «Seguimiento rodilla» a la exportación.
+const src = ['vendor/fflate.js', 'js/original-xlsx.js', 'js/lector-xlsx.js', 'js/plan.js', 'js/rodilla-data.js',
+  'js/xlsx.js', 'js/export.js'].map(read).join('\n;\n');
 
 // Store mínimo: buildRows solo necesita Store.all().
 // eslint-disable-next-line no-new-func

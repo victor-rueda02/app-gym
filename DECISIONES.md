@@ -280,3 +280,35 @@ Sustituyen a los puntos anteriores donde se contradicen (30, 35, 41 y 42).
     La regla de subida ya está decidida: sube si el jueves y sus dos mañanas
     siguientes salen en verde, con el rango nuevo estrenado el jueves (después del
     test en las semanas de test) y validado con las mañanas del viernes y el sábado.
+
+## El Excel como fuente de verdad (27/10)
+
+53. **La app lee el plan del Excel empotrado al arrancar.** Ya no hay plan copiado en
+    el código (salvo el de julio, ya pasado). Se ha comprobado que el plan leído es
+    idéntico al que estaba escrito a mano (paridad exacta) antes de borrar este último.
+    Para cambiar el plan: editar el Excel y `python tools/excel_app.py`. Ver README,
+    «Cambiar el plan: solo el Excel».
+54. **Columna «App» oculta** (L en Volumen, R en Seguimiento) con etiquetas para lo
+    que la hoja no dice sola: id estable de cada ejercicio (renombrar ya no rompe el
+    historial), papel en la progresión, a qué sesión va cada fila de cardio y qué filas
+    son reglas, notas, hitos y tablas. Está oculta para no estorbar al leer el Excel.
+55. **Fórmulas regeneradas.** `excel_app.py` rehace todas las fórmulas de las dos hojas
+    a partir de las etiquetas, porque openpyxl no actualiza referencias al insertar
+    filas. `insertar_filas`/`quitar_filas` mueven además las celdas combinadas, las
+    alturas, las validaciones y el formato condicional. Las fórmulas regeneradas son
+    idénticas a las anteriores, salvo tres del final de la tabla de días que miraban
+    filas vacías (siguen dando vacío).
+56. **Escaleras genéricas.** Además de prensa, carrera y bici, cualquier ejercicio con
+    `escalera=<nombre>` es una escalera, con las mismas reglas que la prensa (semáforo,
+    novedad frente a la referencia, atribución, validación y topes). Así, la extensión
+    con su escalera de rango (punto 52) se podrá añadir solo desde el Excel en cuanto
+    la definas. Si un día tiene dos escaleras, el dolor durante la sesión se atribuye a
+    la que tuvo novedad ese día; si ninguna la tuvo, a la primera.
+57. **Fechas.** Las semanas del plan salen de la primera fecha de la hoja de
+    seguimiento y de la semana que es; la semana de referencia es la primera con
+    seguimiento (S2), y el cierre de S4, su último día.
+58. **Lo que sigue necesitando código:** reglas o cálculos nuevos (otro tipo de aviso,
+    otra forma de progresar) y formatos de celda nuevos. Las fórmulas de la hoja de
+    seguimiento tampoco las lee la app: el cálculo de la app las replica, y
+    `tests/rodilla-logica.test.mjs` comprueba que coinciden. Si se cambia una fórmula
+    del Excel, hay que cambiar también la app.

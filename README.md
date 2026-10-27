@@ -22,6 +22,9 @@ Fuera de esas fechas, la pestaña Hoy avisa de que no hay plan.
   guarda en el propio móvil (localStorage, con espejo en IndexedDB).
 - **Offline.** Un service worker cachea la app entera, así que funciona en
   sótanos de gimnasio sin cobertura.
+- **El plan sale del Excel.** La app lee al arrancar el plan de volumen y el
+  seguimiento del `.xlsx` empotrado: para cambiar el plan basta con editar el Excel
+  (ver «Cambiar el plan: solo el Excel»).
 - **El Excel se reconstruye, no se parchea.** El .xlsx original va empotrado en
   `js/original-xlsx.js`. Al exportar se abre ese ZIP, se le inyecta una hoja
   `Registro` y se vuelve a comprimir. Las hojas Resumen / Bloque A / Bloque B /
@@ -117,11 +120,10 @@ ejercicio. Los correctivos no cuentan como series de hipertrofia.
 ## Mantenimiento
 
 ```bash
-python tools/embed.py           # re-empotra el .xlsx si cambias el plan original
-python tools/verify_plan.py     # compara la hoja Volumen celda a celda con js/plan.js
-python tools/ajusta_excel_rodilla.py  # aplica la revisión del 26/10 al Excel recibido -> Excel de la raíz
-python tools/volcado_excel.py   # vuelca el Excel a docs/plan-rodilla/ (y el diff con c3ece19)
-python tools/genera_rodilla_data.py  # regenera js/rodilla-data.js desde el volcado
+python tools/excel_app.py       # tras editar el Excel: fórmulas, volcado, empotrado y caché (ver abajo)
+python tools/excel_app.py --solo-cache   # tras tocar código sin cambiar el Excel
+python tools/verify_plan.py     # la app frente al Excel (por etiquetas), sin fórmulas matriciales
+python tools/prueba_edicion.py  # simula una edición del Excel y comprueba que la app la sigue
 node tools/test-export.mjs      # genera .xlsx de prueba en tools/out/ y los valida (usa openpyxl)
 node tools/e2e.mjs              # recorrido completo en iPhone emulado (requiere playwright)
 node tools/test-migracion.mjs   # comprueba las migraciones de datos ya registrados
@@ -131,10 +133,10 @@ node tests/contenido-ui.mjs     # Plan y Hoy contra el Excel en iPhone emulado (
 node tests/progresion-ui.mjs    # progresión real, entrada a la carrera y test (requiere playwright)
 ```
 
-`tests/rodilla-logica.test.mjs` contrasta los cálculos de rodilla con las
-fórmulas reales del Excel si encuentra el paquete de Python `formulas`
+`tests/rodilla-logica.test.mjs` y `tools/prueba_edicion.py` contrastan con las
+fórmulas reales del Excel si encuentran el paquete de Python `formulas`
 (`pip install --target tools/out/py formulas`, o en otra carpeta indicada con
-`RODILLA_PY`); si no, omite ese contraste con un aviso.
+`RODILLA_PY`); si no, omiten ese contraste con un aviso.
 
 Playwright no viene instalado. Para las pruebas que lo necesitan:
 
@@ -142,22 +144,48 @@ Playwright no viene instalado. Para las pruebas que lo necesitan:
 npm install && npx playwright install --only-shell chromium
 ```
 
-### Al cambiar el plan
+### Cambiar el plan: solo el Excel
 
-El plan vive en dos sitios que hay que mantener a la vez: las hojas del
-`.xlsx` y `js/plan.js` (la app no lee el Excel, lo tiene transcrito). Tras
-tocar el Excel, ejecuta `python tools/embed.py`. Si el cambio es en la hoja
-Volumen, actualiza `BLOCK_VOL` y comprueba con `python tools/verify_plan.py`.
-El Excel no puede llevar fórmulas matriciales: Excel para iPhone las calcula a
-0 (`verify_plan.py` lo comprueba). Allí las prescripciones se escriben igual que en la celda (`2 @ RIR1/0`,
-`1 @ RIR0`, `3 x10`, `2 x15–20`, `'3 x10-15\n@RIR1-2'`, `—`, `-`). Un formato
-nuevo hace fallar `parsePres` a propósito. Las decisiones del plan rodilla
-están en `DECISIONES.md`.
+**El Excel de la raíz es la fuente de verdad.** La app lleva el `.xlsx` empotrado
+(`js/original-xlsx.js`) y al arrancar lee de él el plan de volumen entero
+(`js/lector-xlsx.js` → `js/plan.js`) y el seguimiento (`js/rodilla-data.js`):
+sesiones, ejercicios, celdas S1–S8, notas, hitos, reglas, fechas, escaleras de
+progresión y los días y textos del seguimiento. Para cambiar el plan:
 
-**Renombrar un ejercicio rompe su historial**: el identificador se calcula a
-partir del nombre, así que lo ya registrado queda huérfano. Hay que añadir una
-migración en `MIGRATIONS` de `js/store.js` y subir `VERSION`; se aplican solas
-al abrir la app. `tools/test-migracion.mjs` las verifica.
+1. Editar `Plan_8sem_vol_definitivo_con_cardio.xlsx` (a mano o con openpyxl; para
+   insertar o quitar filas, `insertar_filas`/`quitar_filas` de `tools/excel_app.py`,
+   que también mueven celdas combinadas, alturas, validaciones y formato condicional).
+2. `python tools/excel_app.py`: regenera todas las fórmulas a partir de las
+   etiquetas (sin matrices: Excel para iPhone las calcula a 0), vuelca el Excel a
+   `docs/plan-rodilla/`, lo empotra y cambia la versión de la caché.
+3. Pasar las pruebas.
 
-Tras cualquier cambio en los ficheros estáticos, sube el número de `CACHE` en
-`sw.js` para que el service worker sirva la versión nueva en vez de la cacheada.
+Lo que la hoja no dice por sí sola va en la columna oculta **«App»** (L en
+Volumen, R en Seguimiento), con etiquetas `clave` o `clave=valor` separadas por `;`:
+
+| Etiqueta (Volumen, columna L) | Qué hace |
+|---|---|
+| `sesion` | cabecera de sesión `(L) Lunes · título` (`nombreS1=…`: nombre en S1) |
+| `id=…` | id estable del ejercicio: el historial cuelga de él, así que **renombrar es solo cambiar el nombre** |
+| `escalera=prensa` / `prensa:sigue` / `prensa:anterior` | la prensa marca reps y escalón (`nov: xN`, `nov: +1 escalón`); la sentadilla y la búlgara siguen su nivel; la touchdown va al de la semana anterior |
+| `escalera=carrera` / `carrera:domingo` | los niveles salen de las celdas `N1 · 8×(1'/2')`; el domingo repite |
+| `escalera=<otra>` / `<otra>:sigue` | escalera nueva: primera línea `N x R`, segunda la descripción; cada subida, `nov: <descripción>` |
+| `bici` | la bici: entra en su primera celda con seguimiento, se quita en brote o fallo y vuelve |
+| `sesion=X;titulo=…` | (bloque de cardio) fila que va al final de la sesión X |
+| `cardio`, `hitos`, `regla`, `nota`, `grupos`, `reglas-bloque` | títulos, hitos, reglas, notas, tabla de series y reglas del bloque (las de debajo, hasta una fila vacía) |
+| `desglose=id1,id2` | filas del desglose de espalda: qué ejercicios suman |
+
+En Seguimiento (columna R): `dias`, `semanas`, `aviso=s2|s4|chasquido`,
+`texto=…`, `titulo=…`, `entrada=walk|touchdown|hops` (+ `dia=…`),
+`entrada-resultado`, `test=t1…`, `escalon=0…`.
+
+Las celdas siguen la gramática de `parsePres` (`2 @ RIR1/0`, `1 @ RIR0`, `3 x10`,
+`2 x15–20`, `'3 x10-15/pierna\n@RIR1-2'`, `2-3 x…`, `—`, `-`…): un formato nuevo
+hace fallar la carga a propósito, y lo detectan `verify_plan.py` y las pruebas.
+Lo que sí necesita código: reglas o cálculos nuevos (el semáforo, la progresión,
+los avisos) y formatos de celda nuevos. Las decisiones del plan rodilla están en
+`DECISIONES.md`.
+
+Si se renombra un ejercicio **sin** `id=` (o cambia su id), lo ya registrado queda
+huérfano: hay que añadir una migración en `MIGRATIONS` de `js/store.js` y subir
+`VERSION` (`tools/test-migracion.mjs` las verifica).

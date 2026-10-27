@@ -1,106 +1,65 @@
-/* GENERADO por tools/genera_rodilla_data.py — no editar a mano.
-   Datos fijos del seguimiento de rodilla, volcados de la hoja «Seguimiento rodilla» del
-   Excel (docs/plan-rodilla/volcado.json). Contrato: objeto global `RODILLA_DATA`, solo
-   datos, sin lógica. Los textos de cada día son los literales del Excel (columnas D/E/F). */
+/* Datos fijos del seguimiento de rodilla, leídos al arrancar de la hoja «Seguimiento
+   rodilla» del Excel empotrado (PLAN.LIBRO). Contrato: objeto global `RODILLA_DATA`, solo
+   datos, sin lógica de cálculo. Los textos son los literales del Excel; cada elemento
+   lleva su `fila` para que la exportación escriba en su sitio aunque la hoja cambie.
+   La columna «App» (R, oculta) marca las filas: dias, semanas, aviso=…, texto=…,
+   titulo=…, entrada=walk|touchdown|hops (+ dia=…), entrada-resultado, test=t1…,
+   escalon=0… (ver tools/excel_app.py). La ayuda de la pestaña está escrita para la app. */
 
-const RODILLA_DATA = {
-  desde: "2026-10-26",
-  hasta: "2026-12-27",
-  reglas: { gimnasio: 'Gimnasio (≤3/10)', carrera: 'Carrera (≤2/10)', ninguna: '—' },
-  semanas: ["S2", "S3", "S4", "S5", "S6", "S7", "S8", "S9", "S10"],
-  textos: {
-    ayuda: "Cada mañana, en casa y antes de nada, haz las dos pruebas: el test en declive y 10 subidas con la D al mismo escalón o banco, y apunta cada una de 0 a 10. La molestia de la mañana es la peor de las dos y es la referencia del día; si un día no mides, ese día no se evalúa y la siguiente medición hace de referencia.\nDespués de una sesión con carga de rodilla (lunes, jueves y días de carrera) apunta la molestia máxima durante; en carrera, si vuelves al nivel previo en 60 minutos o menos; y si el chasquido dolió.\nCon las mañanas siguientes sale el semáforo: Retroceder (más de 3/10 en gimnasio o 2/10 en carrera, no vuelves al nivel previo o la mañana siguiente estás peor), Mantener (cumples, pero a las 48 h estás peor que la referencia) o Avanzar. Con él, Progresión propone el nivel de la prensa y de la carrera de cada semana, sin pasar del calendario; si haces otra cosa, apunta allí el nivel real.",
-    resumen: "La molestia de cada semana es la media de las mañanas (peor de las dos pruebas). El aviso S4 se calcula al cerrar S4 (domingo 15/11) con al menos 5 mañanas en S2 y en S4: PEOR si la media de S4 supera en 0,5 o más a la de S2, MEJOR si queda 0,5 o más por debajo y, si no, IGUAL. IGUAL o PEOR: la valoración del fisio pasa a ser prioritaria; PEOR además para la progresión [LÓGICA].",
-    fuerza: "Fuerza estimada = carga × (1 + reps/30) (fórmula de Epley; pierde precisión por encima de ~10 reps) [LÓGICA]. Misma carga en las dos piernas, D primero, tempo 2-0-2, al fallo técnico o hasta 3/10. Criterio antes del balón: simetría ≥90% [LÓGICA; viene de la vuelta al deporte tras LCA, no validado en dolor femoropatelar: INCERTIDUMBRE]. El test 1 marca la referencia: la comparación entre semanas solo vale con el mismo rango.",
-    escalones: "Reparte la diferencia entre la D y la I en 4 partes iguales (como mucho ~15° cada una; si sale más, se termina después del bloque). El ángulo se puede medir con una app de goniómetro. Se sube solo los lunes de S3, S4, S6 y S7, en la prensa y si esa mañana estás igual o mejor [LÓGICA]. La touchdown del lunes va a la profundidad ya validada (la de la semana anterior) y hace de filtro; el jueves usa la profundidad nueva validada el lunes.",
-  },
-  titulos: { entrada: "Entrada a la carrera · regla de carrera: ≤2/10 (si no se cumple, se repite el miércoles siguiente: apunta aquí el último intento)", fuerza: "Test de fuerza · extensión unilateral en máquina, rango fijo 90→45° (jueves, al empezar la sesión)", escalones: "Escalones de profundidad de la D (0 = la que usas ahora · 4 = la de la I)" },
-  // Calendario: fecha ISO, día (L/M/X/J/V/S/D), semana, sesión, regla y novedad previstas.
-  dias: [
-    { fecha: "2026-10-26", dia: "L", sem: "S2", sesion: "Rehab: touchdown + prensa (pesado) + abducción · laterales/gemelo/isquio", regla: "Gimnasio (≤3/10)", novedad: "Reps x10 (prensa)" },
-    { fecha: "2026-10-27", dia: "M", sem: "S2", sesion: "Push + paseo 30' (entrada)", regla: "—", novedad: "Paseo 30' (criterio 1)" },
-    { fecha: "2026-10-28", dia: "X", sem: "S2", sesion: "Pull + criterios 2-3 + 1.ª carrera", regla: "Carrera (≤2/10)", novedad: "Criterios 2-3 + carrera N1" },
-    { fecha: "2026-10-29", dia: "J", sem: "S2", sesion: "Test + rehab: sentadilla + búlgara (pesado) + abducción · isquio/aductor/gemelo", regla: "Gimnasio (≤3/10)", novedad: "Test de fuerza 1 (nuevo)" },
-    { fecha: "2026-10-30", dia: "V", sem: "S2", sesion: "Torso", regla: "—", novedad: "—" },
-    { fecha: "2026-10-31", dia: "S", sem: "S2", sesion: "Hombro/codo + abdominales (sin pierna)", regla: "—", novedad: "—" },
-    { fecha: "2026-11-01", dia: "D", sem: "S2", sesion: "Carrera (repite el miércoles)", regla: "Carrera (≤2/10)", novedad: "— (repite)" },
-    { fecha: "2026-11-02", dia: "L", sem: "S3", sesion: "Rehab: touchdown + prensa (pesado) + abducción · laterales/gemelo/isquio", regla: "Gimnasio (≤3/10)", novedad: "Escalón +1 (prensa)" },
-    { fecha: "2026-11-03", dia: "M", sem: "S3", sesion: "Push", regla: "—", novedad: "—" },
-    { fecha: "2026-11-04", dia: "X", sem: "S3", sesion: "Pull + carrera", regla: "Carrera (≤2/10)", novedad: "Carrera N2" },
-    { fecha: "2026-11-05", dia: "J", sem: "S3", sesion: "rehab: sentadilla + búlgara (pesado) + abducción · isquio/aductor/gemelo", regla: "Gimnasio (≤3/10)", novedad: "—" },
-    { fecha: "2026-11-06", dia: "V", sem: "S3", sesion: "Torso", regla: "—", novedad: "—" },
-    { fecha: "2026-11-07", dia: "S", sem: "S3", sesion: "Hombro/codo + abdominales (sin pierna)", regla: "—", novedad: "—" },
-    { fecha: "2026-11-08", dia: "D", sem: "S3", sesion: "Carrera (repite el miércoles)", regla: "Carrera (≤2/10)", novedad: "— (repite)" },
-    { fecha: "2026-11-09", dia: "L", sem: "S4", sesion: "Rehab: touchdown + prensa (pesado) + abducción · laterales/gemelo/isquio", regla: "Gimnasio (≤3/10)", novedad: "Escalón +1 (prensa)" },
-    { fecha: "2026-11-10", dia: "M", sem: "S4", sesion: "Push", regla: "—", novedad: "—" },
-    { fecha: "2026-11-11", dia: "X", sem: "S4", sesion: "Pull + carrera", regla: "Carrera (≤2/10)", novedad: "Carrera N3" },
-    { fecha: "2026-11-12", dia: "J", sem: "S4", sesion: "rehab: sentadilla + búlgara (pesado) + abducción · isquio/aductor/gemelo", regla: "Gimnasio (≤3/10)", novedad: "—" },
-    { fecha: "2026-11-13", dia: "V", sem: "S4", sesion: "Torso + bici 10' Z2 (1.ª vez)", regla: "—", novedad: "Bici (1.ª vez)" },
-    { fecha: "2026-11-14", dia: "S", sem: "S4", sesion: "Hombro/codo + abdominales (sin pierna)", regla: "—", novedad: "—" },
-    { fecha: "2026-11-15", dia: "D", sem: "S4", sesion: "Carrera (repite el miércoles)", regla: "Carrera (≤2/10)", novedad: "— (repite)" },
-    { fecha: "2026-11-16", dia: "L", sem: "S5", sesion: "Rehab: touchdown + prensa (pesado) + abducción · laterales/gemelo/isquio", regla: "Gimnasio (≤3/10)", novedad: "Reps x8 (prensa)" },
-    { fecha: "2026-11-17", dia: "M", sem: "S5", sesion: "Push + bici 10' Z2", regla: "—", novedad: "—" },
-    { fecha: "2026-11-18", dia: "X", sem: "S5", sesion: "Pull + carrera", regla: "Carrera (≤2/10)", novedad: "Carrera N4" },
-    { fecha: "2026-11-19", dia: "J", sem: "S5", sesion: "Test + rehab: sentadilla + búlgara (pesado) + abducción · isquio/aductor/gemelo", regla: "Gimnasio (≤3/10)", novedad: "— (test 2, repetido)" },
-    { fecha: "2026-11-20", dia: "V", sem: "S5", sesion: "Torso + bici 10' Z2", regla: "—", novedad: "—" },
-    { fecha: "2026-11-21", dia: "S", sem: "S5", sesion: "Hombro/codo + abdominales (sin pierna)", regla: "—", novedad: "—" },
-    { fecha: "2026-11-22", dia: "D", sem: "S5", sesion: "Carrera (repite el miércoles)", regla: "Carrera (≤2/10)", novedad: "— (repite)" },
-    { fecha: "2026-11-23", dia: "L", sem: "S6", sesion: "Rehab: touchdown + prensa (pesado) + abducción · laterales/gemelo/isquio", regla: "Gimnasio (≤3/10)", novedad: "Escalón +1 (prensa)" },
-    { fecha: "2026-11-24", dia: "M", sem: "S6", sesion: "Push + bici 10' Z2", regla: "—", novedad: "—" },
-    { fecha: "2026-11-25", dia: "X", sem: "S6", sesion: "Pull + carrera", regla: "Carrera (≤2/10)", novedad: "Carrera N5" },
-    { fecha: "2026-11-26", dia: "J", sem: "S6", sesion: "rehab: sentadilla + búlgara (pesado) + abducción · isquio/aductor/gemelo", regla: "Gimnasio (≤3/10)", novedad: "—" },
-    { fecha: "2026-11-27", dia: "V", sem: "S6", sesion: "Torso + bici 10' Z2", regla: "—", novedad: "—" },
-    { fecha: "2026-11-28", dia: "S", sem: "S6", sesion: "Hombro/codo + abdominales (sin pierna)", regla: "—", novedad: "—" },
-    { fecha: "2026-11-29", dia: "D", sem: "S6", sesion: "Carrera (repite el miércoles)", regla: "Carrera (≤2/10)", novedad: "— (repite)" },
-    { fecha: "2026-11-30", dia: "L", sem: "S7", sesion: "Rehab: touchdown + prensa (pesado) + abducción · laterales/gemelo/isquio", regla: "Gimnasio (≤3/10)", novedad: "Escalón +1 (prensa)" },
-    { fecha: "2026-12-01", dia: "M", sem: "S7", sesion: "Push + bici 10' Z2", regla: "—", novedad: "—" },
-    { fecha: "2026-12-02", dia: "X", sem: "S7", sesion: "Pull + carrera", regla: "Carrera (≤2/10)", novedad: "Carrera N6 (2×12')" },
-    { fecha: "2026-12-03", dia: "J", sem: "S7", sesion: "Test + rehab: sentadilla + búlgara (pesado) + abducción · isquio/aductor/gemelo", regla: "Gimnasio (≤3/10)", novedad: "— (test 3, repetido)" },
-    { fecha: "2026-12-04", dia: "V", sem: "S7", sesion: "Torso + bici 10' Z2", regla: "—", novedad: "—" },
-    { fecha: "2026-12-05", dia: "S", sem: "S7", sesion: "Hombro/codo + abdominales (sin pierna)", regla: "—", novedad: "—" },
-    { fecha: "2026-12-06", dia: "D", sem: "S7", sesion: "Carrera (repite el miércoles)", regla: "Carrera (≤2/10)", novedad: "— (repite)" },
-    { fecha: "2026-12-07", dia: "L", sem: "S8", sesion: "Rehab: touchdown + prensa (pesado) + abducción · laterales/gemelo/isquio", regla: "Gimnasio (≤3/10)", novedad: "ninguna (repite S7)" },
-    { fecha: "2026-12-08", dia: "M", sem: "S8", sesion: "Push + bici 10' Z2", regla: "—", novedad: "—" },
-    { fecha: "2026-12-09", dia: "X", sem: "S8", sesion: "Pull + carrera", regla: "Carrera (≤2/10)", novedad: "ninguna (repite N6)" },
-    { fecha: "2026-12-10", dia: "J", sem: "S8", sesion: "rehab: sentadilla + búlgara (pesado) + abducción · isquio/aductor/gemelo", regla: "Gimnasio (≤3/10)", novedad: "Test opcional rango completo" },
-    { fecha: "2026-12-11", dia: "V", sem: "S8", sesion: "Torso + bici 10' Z2", regla: "—", novedad: "—" },
-    { fecha: "2026-12-12", dia: "S", sem: "S8", sesion: "Hombro/codo + abdominales (sin pierna)", regla: "—", novedad: "—" },
-    { fecha: "2026-12-13", dia: "D", sem: "S8", sesion: "Carrera (repite el miércoles)", regla: "Carrera (≤2/10)", novedad: "— (repite)" },
-    { fecha: "2026-12-14", dia: "L", sem: "S9", sesion: "Viaje · sentadilla española 5×45 s", regla: "—", novedad: "—" },
-    { fecha: "2026-12-15", dia: "M", sem: "S9", sesion: "Viaje · sentadilla española 5×45 s", regla: "—", novedad: "—" },
-    { fecha: "2026-12-16", dia: "X", sem: "S9", sesion: "Viaje · rodaje suave opcional (≤ nivel S8)", regla: "Carrera (≤2/10)", novedad: "—" },
-    { fecha: "2026-12-17", dia: "J", sem: "S9", sesion: "Viaje · sentadilla española 5×45 s", regla: "—", novedad: "—" },
-    { fecha: "2026-12-18", dia: "V", sem: "S9", sesion: "Viaje · sentadilla española 5×45 s", regla: "—", novedad: "—" },
-    { fecha: "2026-12-19", dia: "S", sem: "S9", sesion: "Viaje · sentadilla española 5×45 s", regla: "—", novedad: "—" },
-    { fecha: "2026-12-20", dia: "D", sem: "S9", sesion: "Viaje · rodaje suave opcional (≤ nivel S8)", regla: "Carrera (≤2/10)", novedad: "—" },
-    { fecha: "2026-12-21", dia: "L", sem: "S10", sesion: "Vuelta: touchdown + prensa x8 al ~80% del peso de S8", regla: "Gimnasio (≤3/10)", novedad: "Vuelta (carga reducida)" },
-    { fecha: "2026-12-22", dia: "M", sem: "S10", sesion: "Push + bici 10' Z2", regla: "—", novedad: "—" },
-    { fecha: "2026-12-23", dia: "X", sem: "S10", sesion: "Pull + carrera (nivel S8 o uno menos)", regla: "Carrera (≤2/10)", novedad: "Vuelta a correr" },
-    { fecha: "2026-12-24", dia: "J", sem: "S10", sesion: "Vuelta: sentadilla/búlgara x8 al ~80% + abducción", regla: "Gimnasio (≤3/10)", novedad: "—" },
-    { fecha: "2026-12-25", dia: "V", sem: "S10", sesion: "Torso + bici 10' Z2", regla: "—", novedad: "—" },
-    { fecha: "2026-12-26", dia: "S", sem: "S10", sesion: "Hombro/codo + abdominales (sin pierna)", regla: "—", novedad: "—" },
-    { fecha: "2026-12-27", dia: "D", sem: "S10", sesion: "Carrera (repite el miércoles)", regla: "Carrera (≤2/10)", novedad: "— (repite)" },
-  ],
-  // Criterios de entrada a la carrera (A89–A91). Se registran por semana en
-  // Store.knee().entry; el 1 es el paseo del martes y el 2 y el 3, el miércoles.
-  entrada: [
-    { clave: "walk", texto: "Paseo de 30 min a paso rápido: ≤2/10, nivel previo en ≤60 min y el miércoles por la mañana no peor", dia: "martes" },
-    { clave: "touchdown", texto: "10 touchdown con cada pierna: ≤2/10", dia: "miércoles" },
-    { clave: "hops", texto: "20 saltitos a dos piernas: ≤2/10", dia: "miércoles" },
-  ],
-  // Tests de fuerza: clave en Store.knee().tests.
-  tests: [
-    { clave: "t1", nombre: "Test 1 (S2)", fecha: "2026-10-29", rango: "90→45°" },
-    { clave: "t2", nombre: "Test 2 (S5)", fecha: "2026-11-19", rango: "90→45°" },
-    { clave: "t3", nombre: "Test 3 (S7)", fecha: "2026-12-03", rango: "90→45°" },
-    { clave: "t4", nombre: "Opcional (S8)", fecha: "2026-12-10", rango: "completo" },
-  ],
-  // Escalones de profundidad: clave en Store.knee().depth.
-  escalones: [
-    { clave: "0", nombre: "0 (actual)" },
-    { clave: "1", nombre: "1" },
-    { clave: "2", nombre: "2" },
-    { clave: "3", nombre: "3" },
-    { clave: "4", nombre: "4 (= I)" },
-  ],
-};
+const RODILLA_DATA = (() => {
+  const hoja = PLAN.LIBRO['Seguimiento rodilla'];
+  const v = (ref) => (hoja[ref] === undefined ? '' : hoja[ref]);
+  const t = (ref) => String(v(ref));
+  const max = Math.max(...Object.keys(hoja).map((ref) => +ref.replace(/^[A-Z]+/, '')));
+  const filas = [];
+  for (let r = 1; r <= max; r++) filas.push({ r, app: PLAN.etiquetasApp(v(`R${r}`)) });
+  const con = (clave, valor) => filas.filter((f) => clave in f.app && (valor === undefined || f.app[clave] === valor));
+  const una = (clave, valor) => {
+    const fs = con(clave, valor);
+    if (fs.length !== 1) throw new Error(`Seguimiento rodilla: se esperaba una fila «${clave}${valor ? `=${valor}` : ''}» y hay ${fs.length}`);
+    return fs[0].r;
+  };
+  // Filas de datos bajo una cabecera, mientras la columna A cumpla `vale`.
+  const bajo = (cab, vale = (a) => a !== '') => {
+    const out = [];
+    for (let r = cab + 1; vale(v(`A${r}`)); r++) out.push(r);
+    return out;
+  };
+
+  const dias = bajo(una('dias')).map((r) => ({
+    fecha: LectorXlsx.fecha(v(`A${r}`)), dia: t(`B${r}`), sem: t(`C${r}`),
+    sesion: t(`D${r}`), regla: t(`E${r}`), novedad: t(`F${r}`), fila: r,
+  }));
+  const semanas = bajo(una('semanas'), (a) => /^S\d+$/.test(String(a))).map((r) => ({ sem: t(`A${r}`), fila: r }));
+
+  return {
+    desde: dias[0].fecha,
+    hasta: dias[dias.length - 1].fecha,
+    reglas: { gimnasio: 'Gimnasio (≤3/10)', carrera: 'Carrera (≤2/10)', ninguna: '—' },
+    semanas: semanas.map((s) => s.sem),
+    filasSemana: Object.fromEntries(semanas.map((s) => [s.sem, s.fila])),
+    textos: {
+      ayuda: 'Cada mañana, en casa y antes de nada, haz las dos pruebas: el test en declive y 10 subidas con la D al mismo escalón o banco, y apunta cada una de 0 a 10. La molestia de la mañana es la peor de las dos y es la referencia del día; si un día no mides, ese día no se evalúa y la siguiente medición hace de referencia.\nDespués de una sesión con carga de rodilla (lunes, jueves y días de carrera) apunta la molestia máxima durante; en carrera, si vuelves al nivel previo en 60 minutos o menos; y si el chasquido dolió.\nCon las mañanas siguientes sale el semáforo: Retroceder (más de 3/10 en gimnasio o 2/10 en carrera, no vuelves al nivel previo o la mañana siguiente estás peor), Mantener (cumples, pero a las 48 h estás peor que la referencia) o Avanzar. Con él, Progresión propone el nivel de la prensa y de la carrera de cada semana, sin pasar del calendario; si haces otra cosa, apunta allí el nivel real.',
+      resumen: t(`A${una('texto', 'resumen')}`),
+      fuerza: t(`A${una('texto', 'fuerza')}`),
+      escalones: t(`A${una('texto', 'escalones')}`),
+    },
+    titulos: {
+      entrada: t(`A${una('titulo', 'entrada')}`),
+      fuerza: t(`A${una('titulo', 'fuerza')}`),
+      escalones: t(`A${una('titulo', 'escalones')}`),
+    },
+    // Calendario: fecha ISO, día (L/M/X/J/V/S/D), semana, sesión, regla y novedad previstas.
+    dias,
+    // Criterios de entrada a la carrera: el 1 es el paseo del día anterior a la carrera.
+    entrada: con('entrada').map(({ r, app }) => ({ clave: app.entrada, texto: t(`A${r}`), dia: app.dia || '', fila: r })),
+    filaEntradaResultado: una('entrada-resultado'),
+    filasAviso: { s2: una('aviso', 's2'), s4: una('aviso', 's4'), chasquido: una('aviso', 'chasquido') },
+    // Tests de fuerza: clave en Store.knee().tests.
+    tests: con('test').map(({ r, app }) => ({
+      clave: app.test, nombre: t(`A${r}`), fecha: LectorXlsx.fecha(v(`D${r}`)), rango: t(`E${r}`), fila: r,
+    })),
+    // Escalones de profundidad: clave en Store.knee().depth.
+    escalones: con('escalon').map(({ r, app }) => ({ clave: app.escalon, nombre: t(`A${r}`), fila: r })),
+  };
+})();

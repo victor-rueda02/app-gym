@@ -9,7 +9,6 @@
 const RodillaCalc = (() => {
   const REGLA_CARRERA = 'Carrera (≤2/10)';
   const SIN_REGLA = '—';
-  const CIERRE_S4 = '2026-11-15';
   const esNum = (v) => typeof v === 'number' && Number.isFinite(v);
   const vacio = (v) => v === '' || v === null || v === undefined;
 
@@ -138,6 +137,7 @@ const RodillaCalc = (() => {
       mananas: m.length,
       retroceder: f.filter((x) => x.semaforo === 'Retroceder').length,
       chasquidos: f.filter((x) => x.click === 'Sí').length,
+      ultimo: f.length ? f[f.length - 1].fecha : '',
     };
   }
 
@@ -145,29 +145,35 @@ const RodillaCalc = (() => {
     return semanas.map((s) => resumenSemana(filasCalculadas, s));
   }
 
-  /* Aviso S4 (E82): se calcula al cerrar S4 (domingo 15/11) con al menos 5 mañanas en
-     S2 y en S4; compara las medias (ya redondeadas) con un umbral de 0,5. */
-  function avisoS4(s2, s4, hoy) {
-    if (hoy < CIERRE_S4) return { nivel: 'pendiente', texto: 'Pendiente: se calcula al cerrar S4 (domingo 15/11)' };
-    if (!s2 || !s4 || s2.mananas < 5 || s4.mananas < 5) {
-      return { nivel: 'pendiente', texto: 'Pendiente: hacen falta al menos 5 mañanas registradas en S2 y en S4' };
+  /* Aviso S4 (E82): se calcula al cerrar S4 (su último día, `s4.ultimo`) con al menos 5
+     mañanas en la semana de referencia (`ref`, S2) y en S4; compara las medias (ya
+     redondeadas) con un umbral de 0,5. */
+  function avisoS4(ref, s4, hoy) {
+    const r = (ref && ref.sem) || 'S2';
+    const cierre = (s4 && s4.ultimo) || '';
+    if (!cierre || hoy < cierre) {
+      return { nivel: 'pendiente', texto: `Pendiente: se calcula al cerrar S4 (domingo ${cierre ? `${+cierre.slice(8, 10)}/${+cierre.slice(5, 7)}` : '—'})` };
     }
-    if (redondear1(s4.media - s2.media) >= 0.5) {
-      return { nivel: 'peor', texto: 'PEOR que en S2 (+0,5 o más): para la progresión y la valoración del fisio pasa a ser prioritaria' };
+    if (!ref || ref.mananas < 5 || s4.mananas < 5) {
+      return { nivel: 'pendiente', texto: `Pendiente: hacen falta al menos 5 mañanas registradas en ${r} y en S4` };
     }
-    if (redondear1(s2.media - s4.media) >= 0.5) return { nivel: 'mejor', texto: 'MEJOR que en S2 (−0,5 o más): sigue el plan' };
-    return { nivel: 'igual', texto: 'IGUAL que en S2 (menos de 0,5 de diferencia): la valoración del fisio pasa a ser prioritaria' };
+    if (redondear1(s4.media - ref.media) >= 0.5) {
+      return { nivel: 'peor', texto: `PEOR que en ${r} (+0,5 o más): para la progresión y la valoración del fisio pasa a ser prioritaria` };
+    }
+    if (redondear1(ref.media - s4.media) >= 0.5) return { nivel: 'mejor', texto: `MEJOR que en ${r} (−0,5 o más): sigue el plan` };
+    return { nivel: 'igual', texto: `IGUAL que en ${r} (menos de 0,5 de diferencia): la valoración del fisio pasa a ser prioritaria` };
   }
 
-  /* S2 = semana de referencia (E81): si alguna mañana de S2 sale peor que la primera
-     medición de S2, en S3 no sube nada. */
-  function avisoS2(filasCalculadas) {
-    const m = filasCalculadas.filter((x) => x.sem === 'S2').map((x) => x.morning).filter(esNum);
-    if (!m.length) return { nivel: 'pendiente', texto: 'Pendiente: falta la primera medición de S2' };
+  /* Semana de referencia (E81; la primera con seguimiento, S2): si alguna de sus mañanas
+     sale peor que su primera medición, la semana siguiente no sube nada. */
+  function avisoS2(filasCalculadas, ref = 'S2') {
+    const sig = `S${+ref.slice(1) + 1}`;
+    const m = filasCalculadas.filter((x) => x.sem === ref).map((x) => x.morning).filter(esNum);
+    if (!m.length) return { nivel: 'pendiente', texto: `Pendiente: falta la primera medición de ${ref}` };
     if (Math.max(...m) > m[0]) {
-      return { nivel: 'repite', texto: 'REPITE S2: alguna mañana salió peor que la referencia; en S3 no sube nada' };
+      return { nivel: 'repite', texto: `REPITE ${ref}: alguna mañana salió peor que la referencia; en ${sig} no sube nada` };
     }
-    return { nivel: 'estable', texto: 'S2 estable por ahora: en S3 se sigue el plan' };
+    return { nivel: 'estable', texto: `${ref} estable por ahora: en ${sig} se sigue el plan` };
   }
 
   /* Aviso de chasquido doloroso: alguna fila con click === 'Sí'. */
@@ -188,13 +194,15 @@ const RodillaCalc = (() => {
   }
 
   /* Entrada a la carrera de una semana. `reg` = Store.knee().entry[sem]. El criterio 1
-     (paseo del martes) es Sí si las dos casillas son Sí y la mañana del miércoles no es
-     peor que la del martes (solo 24 h); los criterios 2 y 3 son sus casillas. */
-  function entradaSemana(filasCalculadas, sem, reg) {
+     (paseo del día anterior a la carrera) es Sí si las dos casillas son Sí y la mañana del
+     día de la carrera no es peor que la del paseo (solo 24 h); los criterios 2 y 3 son sus
+     casillas. `diaCarrera` = letra del día de la carrera (PLAN.ESCALERAS.carrera.dia). */
+  function entradaSemana(filasCalculadas, sem, reg, diaCarrera = 'X') {
     reg = reg || {};
     const dia = (d) => filasCalculadas.find((x) => x.sem === sem && x.dia === d) || {};
-    const mar = dia('M').morning;
-    const mie = dia('X').morning;
+    const anterior = 'LMXJVSD'['LMXJVSD'.indexOf(diaCarrera) - 1];
+    const mar = dia(anterior).morning;
+    const mie = dia(diaCarrera).morning;
     const manana = esNum(mar) && esNum(mie) ? (mie <= mar ? 'Sí' : 'No') : '';
     const partes = [reg.walkPain || '', reg.walkBack60 || '', manana];
     const c1 = partes.includes('No') ? 'No' : partes.every((p) => p === 'Sí') ? 'Sí' : '';
@@ -259,14 +267,14 @@ const RodillaCalc = (() => {
      `reales` = Store.knee().weeks: un pressLevel/runLevel apuntado manda sobre la propuesta. */
   const ddmm = (iso) => `${iso.slice(8, 10)}/${iso.slice(5, 7)}`;
 
+  // Campo de Store.knee().weeks[S] con el nivel real apuntado a mano de cada escalera.
+  const campoReal = (escalera) => ({ prensa: 'pressLevel', carrera: 'runLevel' }[escalera] || `nivel:${escalera}`);
+
   function sumarDias(iso, n) {
     const [y, m, d] = iso.split('-').map(Number);
     const t = new Date(Date.UTC(y, m - 1, d + n));
     return t.toISOString().slice(0, 10);
   }
-
-  // Días de las sesiones de cada escalera (para validar una novedad).
-  const DIAS_ESCALERA = { prensa: ['L', 'J'], carrera: ['X', 'D'], bici: ['M', 'V'] };
 
   /* ¿Está la bici quitada ese día? `bici` = progresion(...).bici. */
   const biciQuitada = (bici, fecha) => (bici && bici.quitas.find((q) => fecha >= q.desde && (!q.hasta || fecha <= q.hasta))) || null;
@@ -274,13 +282,23 @@ const RodillaCalc = (() => {
   function progresion(filasCalculadas, plan, reales, entradas, hoy) {
     reales = reales || {};
     entradas = entradas || {};
-    const semanas = [2, 3, 4, 5, 6, 7, 8];
-    const resumen = resumenes(filasCalculadas, ['S2', 'S4']);
-    const s2 = avisoS2(filasCalculadas);
+    // Todo lo que depende del plan sale de él (lo construye js/plan.js desde el Excel): la
+    // semana de referencia (la primera con seguimiento), los días de cada escalera y la
+    // entrada de la bici.
+    const E = plan.ESCALERAS;
+    const REF_N = plan.SEMANA_SEGUIMIENTO;
+    const REF = `S${REF_N}`;
+    const semanas = plan.VOL_WEEKS.map((w) => w.n).filter((n) => n >= REF_N);
+    const DIAS = { prensa: E.prensa.dias, carrera: E.carrera.dias, bici: E.bici.dias };
+    const SIMPLES = E.simples || [];   // escaleras genéricas («escalera=<nombre>» en el Excel)
+    SIMPLES.forEach((L) => { DIAS[L.nombre] = L.dias; });
+    const ESCALERAS_NIVEL = ['prensa', 'carrera', ...SIMPLES.map((L) => L.nombre)];
+    const resumen = resumenes(filasCalculadas, [REF, 'S4']);
+    const s2 = avisoS2(filasCalculadas, REF);
     const s4 = avisoS4(resumen[0], resumen[1], hoy);
     const fila = (sem, dia) => filasCalculadas.find((x) => x.sem === sem && x.dia === dia);
     const manana = (fecha) => { const x = filasCalculadas.find((f) => f.fecha === fecha); return x ? x.morning : ''; };
-    const baseS2 = filasCalculadas.filter((x) => x.sem === 'S2').map((x) => x.morning).find(esNum);
+    const baseS2 = filasCalculadas.filter((x) => x.sem === REF).map((x) => x.morning).find(esNum);
     const tope = (max, v) => Math.max(0, Math.min(max, v));
 
     // Fallos (Retroceder) en orden: la hora decide qué novedades van antes.
@@ -291,13 +309,12 @@ const RodillaCalc = (() => {
       if (x.semaforo !== 'Retroceder') return;
       const t = x.fallo === 'durante' ? `${x.fecha}T18` : `${sumarDias(x.fecha, 1)}T06`;
       const seguidas = i > 0 && evaluadas[i - 1].semaforo === 'Retroceder';
-      const escalera = x.fallo === 'durante'
-        ? ({ L: 'prensa', J: 'prensa', X: 'carrera', D: 'carrera' }[x.dia] || null) : null;
-      fallos.push({ t, fila: x, seguidas, escalera });
+      const escaleras = x.fallo !== 'durante' ? [] : ESCALERAS_NIVEL.filter((L) => DIAS[L].includes(x.dia));
+      fallos.push({ t, fila: x, seguidas, escaleras });
     });
 
     const novedades = [];             // { t, fecha, escalera, retrocedida }
-    const pendiente = { prensa: null, carrera: null };   // motivo de retroceso pendiente
+    const pendiente = Object.fromEntries(ESCALERAS_NIVEL.map((L) => [L, null]));   // motivo de retroceso pendiente
     const brotes = [];
     const bici = { activa: false, quitas: [] };          // quitas: { desde, hasta, motivo }
     let iFallo = 0;
@@ -311,7 +328,7 @@ const RodillaCalc = (() => {
     /* Validada antes del instante t: su día, o una sesión posterior de su escalera, con
        las dos mañanas siguientes (24 y 48 h) igual o mejor que la de ese día. */
     function validadaAntesDe(nov, t) {
-      return filasCalculadas.some((x) => x.fecha >= nov.fecha && DIAS_ESCALERA[nov.escalera].includes(x.dia)
+      return filasCalculadas.some((x) => x.fecha >= nov.fecha && DIAS[nov.escalera].includes(x.dia)
         && `${sumarDias(x.fecha, 2)}T06` < t
         && esNum(x.morning) && esNum(x.h24) && esNum(x.h48) && x.h24 <= x.morning && x.h48 <= x.morning);
     }
@@ -324,14 +341,15 @@ const RodillaCalc = (() => {
         const desde = f.t.endsWith('T06') ? f.t.slice(0, 10) : sumarDias(f.fila.fecha, 1);
         const brote = (motivo) => {
           brotes.push({ fecha: f.fila.fecha, motivo });
-          pendiente.prensa = pendiente.carrera = `brote (${cuando}: ${motivo})`;
+          ESCALERAS_NIVEL.forEach((L) => { pendiente[L] = `brote (${cuando}: ${motivo})`; });
           quitarBici(desde, `brote (${cuando})`);
         };
         if (f.seguidas) { brote('dos sesiones seguidas en Retroceder'); continue; }
-        // S2 es la semana de referencia: sus fallos no se atribuyen (manda el aviso de S2).
-        if (f.fila.sem === 'S2') continue;
-        if (f.escalera) {
-          pendiente[f.escalera] = `dolor durante la sesión del ${cuando}`;
+        // La semana de referencia (S2): sus fallos no se atribuyen (manda su aviso).
+        if (f.fila.sem === REF) continue;
+        if (f.escaleras.length) {
+          const conNovedad = f.escaleras.find((L) => novedades.some((n) => n.escalera === L && n.fecha === f.fila.fecha));
+          pendiente[conNovedad || f.escaleras[0]] = `dolor durante la sesión del ${cuando}`;
           continue;
         }
         const nov = novedades.filter((n) => !n.retrocedida && n.t < f.t && !validadaAntesDe(n, f.t)).pop();
@@ -379,12 +397,12 @@ const RodillaCalc = (() => {
         delta = -1;
         motivo = `Retroceder: ${pendiente[escalera]}`;
         pendiente[escalera] = null;
-      } else if (n === 3) {
-        // De S2 a S3 decide el aviso de S2 (A107), no el semáforo de cada sesión.
+      } else if (n === REF_N + 1) {
+        // Tras la semana de referencia decide su aviso (A107), no el semáforo de cada sesión.
         delta = s2.nivel === 'estable' ? 1 : 0;
-        motivo = s2.nivel === 'estable' ? 'Avanzar: S2 estable (ninguna mañana peor que la referencia)'
-          : s2.nivel === 'repite' ? 'Mantener: S2 repite (alguna mañana peor que la referencia)'
-            : 'Mantener: faltan las mediciones de S2';
+        motivo = s2.nivel === 'estable' ? `Avanzar: ${REF} estable (ninguna mañana peor que la referencia)`
+          : s2.nivel === 'repite' ? `Mantener: ${REF} repite (alguna mañana peor que la referencia)`
+            : `Mantener: faltan las mediciones de ${REF}`;
       } else {
         const r = sesionesAvanzan(`S${n - 1}`, diasDecisivos);
         delta = r.ok ? 1 : 0;
@@ -398,42 +416,44 @@ const RodillaCalc = (() => {
       let propuesta = tope(max, previo + delta);
       if (escalera === 'carrera') propuesta = Math.max(1, propuesta);   // ya dentro: N1 es el mínimo
       if (delta > 0 && propuesta === previo) motivo = 'Mantener: ya está en el máximo del calendario';
-      const real = reales[sem] && esNum(reales[sem][escalera === 'prensa' ? 'pressLevel' : 'runLevel'])
-        ? reales[sem][escalera === 'prensa' ? 'pressLevel' : 'runLevel'] : null;
+      const campo = campoReal(escalera);
+      const real = reales[sem] && esNum(reales[sem][campo]) ? reales[sem][campo] : null;
       const nivel = real !== null ? real : propuesta;
       if (nivel > previo) novedades.push({ t, fecha, escalera, retrocedida: false });
       return { plan: max, propuesta, real, nivel, previo, motivo, provisional: fecha > hoy };
     }
 
     const out = {};
+    const nivelSimple = {};
     let prensa = 0;     // S1: x12, escalón 0
     let carrera = 0;    // sin entrar
     for (const n of semanas) {
       const sem = `S${n}`;
-      const lunes = fila(sem, 'L');
-      const miercoles = fila(sem, 'X');
-      const viernes = fila(sem, 'V');
-      if (!lunes || lunes.fecha > sumarDias(hoy, 7)) break;   // más allá de la semana que viene: solo el plan
+      const delaSemana = filasCalculadas.filter((x) => x.sem === sem);
+      if (!delaSemana.length || delaSemana[0].fecha > sumarDias(hoy, 7)) break;   // más allá de la semana que viene: solo el plan
+      const inicio = delaSemana[0].fecha;
+      const lunes = fila(sem, E.prensa.dia);         // día de la novedad de la prensa
+      const miercoles = fila(sem, E.carrera.dia);    // día de la novedad de la carrera
 
       // Bici quitada: vuelve el lunes siguiente a una semana entera en verde.
-      procesarFallos(`${lunes.fecha}T09`);
+      procesarFallos(`${inicio}T09`);
       const quita = bici.quitas[bici.quitas.length - 1];
-      if (n >= 5 && !bici.activa && quita && !quita.hasta && quita.desde <= sumarDias(lunes.fecha, -7)
-        && semanaEnVerde(`S${n - 1}`)) {
-        quita.hasta = sumarDias(lunes.fecha, -1);
+      if (E.bici.entrada && n > E.bici.entrada.semana && !bici.activa && quita && !quita.hasta
+        && quita.desde <= sumarDias(inicio, -7) && semanaEnVerde(`S${n - 1}`)) {
+        quita.hasta = sumarDias(inicio, -1);
         bici.activa = true;
       }
 
-      // Prensa (lunes). En S2 la novedad x10 es la del plan: S1 no tiene seguimiento.
+      // Prensa. En la semana de referencia la novedad es la del plan: S1 no tiene seguimiento.
       let p;
-      if (n === 2) {
+      if (n === REF_N) {
         const real = reales[sem] && esNum(reales[sem].pressLevel) ? reales[sem].pressLevel : null;
         const nivel = real !== null ? real : 1;
         p = { plan: plan.PRENSA_MAX[n], propuesta: 1, real, nivel, previo: 0,
-          motivo: 'Plan de S2 (semana de referencia)', provisional: lunes.fecha > hoy };
+          motivo: `Plan de ${REF} (semana de referencia)`, provisional: lunes.fecha > hoy };
         if (nivel > 0) novedades.push({ t: `${lunes.fecha}T09`, fecha: lunes.fecha, escalera: 'prensa', retrocedida: false });
       } else {
-        p = decidir('prensa', n, prensa, ['L', 'J'], lunes.fecha, plan.PRENSA_MAX[n]);
+        p = decidir('prensa', n, prensa, DIAS.prensa, lunes.fecha, plan.PRENSA_MAX[n]);
       }
       prensa = p.nivel;
 
@@ -441,7 +461,7 @@ const RodillaCalc = (() => {
       let c;
       if (carrera === 0) {
         procesarFallos(`${miercoles.fecha}T09`);
-        const e = entradaSemana(filasCalculadas, sem, entradas[sem]);
+        const e = entradaSemana(filasCalculadas, sem, entradas[sem], E.carrera.dia);
         const real = reales[sem] && esNum(reales[sem].runLevel) ? reales[sem].runLevel : null;
         const propuesta = e.estado === 'si' ? 1 : 0;
         const nivel = real !== null ? real : propuesta;
@@ -451,17 +471,20 @@ const RodillaCalc = (() => {
           provisional: miercoles.fecha > hoy };
         if (nivel > 0) novedades.push({ t: `${miercoles.fecha}T09`, fecha: miercoles.fecha, escalera: 'carrera', retrocedida: false });
       } else {
-        c = decidir('carrera', n, carrera, ['X', 'D'], miercoles.fecha, plan.CARRERA_MAX[n]);
+        c = decidir('carrera', n, carrera, DIAS.carrera, miercoles.fecha, plan.CARRERA_MAX[n]);
       }
       carrera = c.nivel;
 
-      // Bici: entra el viernes de S4 si S2 y S3 no tuvieron sesiones en Retroceder.
-      if (n === 4) {
+      // Bici: entra el día del calendario (el viernes de S4) si las semanas anteriores con
+      // seguimiento (S2 y S3) no tuvieron sesiones en Retroceder.
+      if (E.bici.entrada && n === E.bici.entrada.semana) {
+        const viernes = fila(sem, E.bici.entrada.dia);
         procesarFallos(`${viernes.fecha}T09`);
-        const fallidas = evaluadas.filter((x) => (x.sem === 'S2' || x.sem === 'S3') && x.semaforo === 'Retroceder');
+        const antes = semanas.filter((k) => k < n).map((k) => `S${k}`);
+        const fallidas = evaluadas.filter((x) => antes.includes(x.sem) && x.semaforo === 'Retroceder');
         bici.activa = true;
         if (fallidas.length) {
-          quitarBici(viernes.fecha, `S2 o S3 tuvieron sesiones en Retroceder (${fallidas.map((x) => `${x.dia} ${ddmm(x.fecha)}`).join(', ')})`);
+          quitarBici(viernes.fecha, `${antes.join(' o ')} tuvieron sesiones en Retroceder (${fallidas.map((x) => `${x.dia} ${ddmm(x.fecha)}`).join(', ')})`);
         } else {
           novedades.push({ t: `${viernes.fecha}T09`, fecha: viernes.fecha, escalera: 'bici', retrocedida: false });
         }
@@ -474,38 +497,60 @@ const RodillaCalc = (() => {
         domingo = Math.max(1, c.nivel - 1);
         motivoDomingo = 'El miércoles salió Retroceder: un nivel menos';
       }
-      out[sem] = { lunes: lunes.fecha, prensa: p, carrera: c, domingo: { nivel: domingo, motivo: motivoDomingo } };
+      // Escaleras genéricas: en su día; sin sesión en las semanas con «—» (el nivel se queda).
+      const simples = {};
+      for (const L of SIMPLES) {
+        const max = L.max[n];
+        if (max === null || max === undefined) { simples[L.nombre] = null; continue; }
+        const fecha = fila(sem, L.dia).fecha;
+        if (nivelSimple[L.nombre] === undefined) {   // primera semana: el nivel 0, que ya es novedad
+          procesarFallos(`${fecha}T09`);
+          const real = reales[sem] && esNum(reales[sem][campoReal(L.nombre)]) ? reales[sem][campoReal(L.nombre)] : null;
+          const nivel = real !== null ? real : 0;
+          simples[L.nombre] = { plan: max, propuesta: 0, real, nivel, previo: -1, motivo: 'Primera semana: el primer nivel', provisional: fecha > hoy };
+          novedades.push({ t: `${fecha}T09`, fecha, escalera: L.nombre, retrocedida: false });
+        } else {
+          simples[L.nombre] = decidir(L.nombre, n, nivelSimple[L.nombre], L.dias, fecha, max);
+        }
+        nivelSimple[L.nombre] = simples[L.nombre].nivel;
+      }
+      out[sem] = { lunes: lunes.fecha, prensa: p, carrera: c, domingo: { nivel: domingo, motivo: motivoDomingo }, simples };
     }
     // Fallos hasta hoy que aún no han llegado a ninguna decisión (para los avisos de brote y bici).
     procesarFallos(`${sumarDias(hoy, 1)}T00`);
     return { semanas: out, brotes, bici: { quitas: bici.quitas }, s2, s4 };
   }
 
-  /* Prescripción del día para un ejercicio con progresión (`prog` en js/plan.js), a
-     partir de la semana calculada por `progresion`. Devuelve { sets, reps, kind, label,
-     mins } o null si no hay datos de esa semana. */
-  function prescripcion(prog, semana, plan) {
-    if (!semana) return null;
+  /* Prescripción del día (semana n) para un ejercicio con progresión (`prog` en js/plan.js,
+     sale de la columna «App» del Excel), a partir de la semana calculada por `progresion`.
+     Devuelve { sets, reps, kind, label, mins } o null si no hay datos de esa semana. */
+  function prescripcion(exercise, semana, plan, n) {
+    if (!semana || !exercise) return null;
     const P = plan.PRENSA_NIVELES;
     const N = plan.CARRERA_NIVELES;
     const { prensa, carrera, domingo } = semana;
     const nov = (x) => (x.nivel > x.previo ? 'nov' : x.nivel < x.previo ? 'retrocede' : 'mantiene');
-    const fijo = (sets, reps, label) => ({ sets, kind: 'fixed', reps, label });
     const lvl = P[prensa.nivel];
-    switch (prog) {
+    // Series y reps: la primera línea de la celda del propio ejercicio en la semana en que el
+    // calendario alcanza ese nivel (o en la semana de hoy, si no sigue las reps de la prensa).
+    const desdeCelda = (semanaCelda, resto) => {
+      const primera = exercise.pres[semanaCelda - 1].label.split('\n')[0];
+      return { ...plan.parsePres(primera), label: `${primera}\n${resto}` };
+    };
+    const diaPrensa = plan.NOMBRE_DIA[plan.ESCALERAS.prensa.dia].toLowerCase();
+    const diaCarrera = plan.NOMBRE_DIA[plan.ESCALERAS.carrera.dia].toLowerCase();
+    switch (exercise.prog) {
       case 'prensa': {
         const ant = P[prensa.previo];
         const cambio = nov(prensa) === 'nov'
           ? (lvl.reps !== ant.reps ? `nov: x${lvl.reps}` : 'nov: +1 escalón')
           : nov(prensa) === 'retrocede' ? 'retrocede un nivel' : 'mantiene';
-        return fijo(2, lvl.reps, `2 x${lvl.reps}/pierna\nescalón ${lvl.esc} · ${cambio}`);
+        return desdeCelda(plan.PRENSA_SEMANA[prensa.nivel], `escalón ${lvl.esc} · ${cambio}`);
       }
-      case 'touchdown':   // a la profundidad ya validada: la de la semana anterior
-        return fijo(2, '10-15', `2 x10-15/pierna\nescalón ${P[prensa.previo].esc}`);
-      case 'sentadilla':
-        return fijo(3, lvl.reps, `3 x${lvl.reps}\nescalón ${lvl.esc} (prof. del lunes)`);
-      case 'bulgara':
-        return fijo(2, lvl.reps, `2 x${lvl.reps}/pierna\nescalón ${lvl.esc} (prof. del lunes)`);
+      case 'prensa:anterior':   // a la profundidad ya validada: la de la semana anterior
+        return desdeCelda(n, `escalón ${P[prensa.previo].esc}`);
+      case 'prensa:sigue':
+        return desdeCelda(plan.PRENSA_SEMANA[prensa.nivel], `escalón ${lvl.esc} (prof. del ${diaPrensa})`);
       case 'carrera': {
         if (!carrera.nivel) {
           const e = carrera.entrada || {};
@@ -517,11 +562,21 @@ const RodillaCalc = (() => {
           : nov(carrera) === 'retrocede' ? 'retrocede un nivel' : 'mantiene';
         return { sets: 1, kind: 'cardio', mins: '', label: `N${carrera.nivel} · ${N[carrera.nivel]}\n${cambio}` };
       }
-      case 'carrera-domingo':
+      case 'carrera:domingo':
         if (!domingo.nivel) return { sets: 1, kind: 'cardio', mins: '', label: 'No se corre\n(como mucho, un paseo)' };
-        return { sets: 1, kind: 'cardio', mins: '', label: `N${domingo.nivel} · ${N[domingo.nivel]}\n${domingo.nivel === carrera.nivel ? 'repite el miércoles' : 'un nivel menos que el miércoles'}` };
-      default:
-        return null;
+        return { sets: 1, kind: 'cardio', mins: '', label: `N${domingo.nivel} · ${N[domingo.nivel]}\n${domingo.nivel === carrera.nivel ? `repite el ${diaCarrera}` : `un nivel menos que el ${diaCarrera}`}` };
+      default: {
+        // Escalera genérica: series y reps de la primera línea de la celda de la semana en que el
+        // calendario alcanza el nivel, la descripción del nivel y si hoy sube, se mantiene o baja.
+        const [nombre, papel] = String(exercise.prog || '').split(':');
+        const L = (plan.ESCALERAS.simples || []).find((x) => x.nombre === nombre);
+        const x = semana.simples && semana.simples[nombre];
+        if (!L || !x) return null;
+        const primera = exercise.pres[L.semana[x.nivel] - 1].label.split('\n')[0];
+        const cambio = papel === 'sigue' ? `(nivel del ${plan.NOMBRE_DIA[L.dia].toLowerCase()})`
+          : x.nivel > x.previo ? 'nov' : x.nivel < x.previo ? 'retrocede un nivel' : 'mantiene';
+        return { ...plan.parsePres(primera), label: `${primera}\n${L.niveles[x.nivel]} · ${cambio}` };
+      }
     }
   }
 
@@ -530,6 +585,6 @@ const RodillaCalc = (() => {
     molestiaManana, evaluarSesion, semaforo, filaDia, calcularDias, tablaDias,
     resumenSemana, resumenes, avisoS4, avisoS2, avisoChasquido, entradaResultado, entradaSemana,
     fuerzaEstimada, simetria, simetriaPct, llega90, calcularTest,
-    sumarDias, progresion, prescripcion, biciQuitada,
+    sumarDias, progresion, prescripcion, biciQuitada, campoReal,
   };
 })();

@@ -9,12 +9,9 @@ import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
-import { fileURLToPath } from 'node:url';
+import { cargar, root } from './cargar.mjs';
 
-const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
-const leer = (f) => fs.readFileSync(path.join(root, f), 'utf8');
-const C = new Function(leer('js/rodilla-calc.js') + ';return RodillaCalc;')();
-const D = new Function(leer('js/rodilla-data.js') + ';return RODILLA_DATA;')();
+const { RodillaCalc: C, RODILLA_DATA: D, PLAN } = cargar(['RodillaCalc', 'RODILLA_DATA', 'PLAN'], { rodilla: true });
 
 let fallos = 0; let total = 0;
 const test = (name, fn) => {
@@ -69,7 +66,7 @@ test('«sesiones que no cumplen» solo cuenta «Retroceder»', () => {
 });
 
 test('aviso S4: umbral de ±0,5 sobre las medias redondeadas, desde el 15/11 y con 5 mañanas', () => {
-  const s = (media, mananas = 5) => ({ media, mananas });
+  const s = (media, mananas = 5) => ({ media, mananas, ultimo: '2026-11-15' });   // ultimo = cierre de S4
   eq(C.avisoS4(s(1), s(3), '2026-11-14').nivel, 'pendiente');
   eq(C.avisoS4(s(1, 4), s(3), '2026-11-15').nivel, 'pendiente');
   eq(C.avisoS4(s(1), s(1.5), '2026-11-15').nivel, 'peor');
@@ -148,9 +145,9 @@ test('contraste con las fórmulas del Excel (evaluadas con «formulas»)', () =>
     console.log(`  --   AVISO: el paquete de Python «formulas» no está disponible en ${PYPATH}; se omite el contraste con el Excel`);
     return;
   }
-  const src = ['vendor/fflate.js', 'js/plan.js', 'js/original-xlsx.js', 'js/xlsx.js', 'js/export.js'].map(leer).join('\n;\n');
-  const load = new Function(`const Store = { all: () => ({}) };\n${src}\n;return { build: (rows, knee) => buildXlsx(originalXlsxBytes(), rows, knee) };`)();
-  const bytes = load.build([], KNEE);
+  const { buildXlsx, originalXlsxBytes } = cargar(['buildXlsx', 'originalXlsxBytes'],
+    { rodilla: true, extra: ['js/xlsx.js', 'js/export.js'], previo: 'const Store = { all: () => ({}) };' });
+  const bytes = buildXlsx(originalXlsxBytes(), [], KNEE);
   const outDir = path.join(root, 'tools', 'out');
   fs.mkdirSync(outDir, { recursive: true });
   const file = path.join(outDir, 'rodilla-logica.xlsx');
@@ -161,27 +158,32 @@ test('contraste con las fórmulas del Excel (evaluadas con «formulas»)', () =>
   const hoy = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
   const tabla = C.tablaDias(D.dias, KNEE.days);
   const exp = {};
+  // Filas de la hoja: las que lee la app (RODILLA_DATA), no números fijos.
   tabla.forEach((f, i) => {
-    const r = 5 + i;
+    const r = D.dias[i].fila;
     exp['I' + r] = f.morning; exp['M' + r] = f.h24; exp['N' + r] = f.h48; exp['O' + r] = f.worst; exp['P' + r] = f.semaforo;
   });
-  D.semanas.forEach((s, i) => {
-    const r = 72 + i; const x = C.resumenSemana(tabla, s);
+  D.semanas.forEach((s) => {
+    const r = D.filasSemana[s]; const x = C.resumenSemana(tabla, s);
     exp['B' + r] = x.media; exp['E' + r] = x.peor; exp['F' + r] = x.retroceder; exp['G' + r] = x.chasquidos;
   });
   const sem = Object.fromEntries(C.resumenes(tabla, D.semanas).map((x) => [x.sem, x]));
-  exp.E81 = C.avisoS2(tabla).texto;
-  exp.E82 = C.avisoS4(sem.S2, sem.S4, hoy).texto;
-  exp.E83 = C.avisoChasquido(tabla).texto;
+  exp[`E${D.filasAviso.s2}`] = C.avisoS2(tabla).texto;
+  exp[`E${D.filasAviso.s4}`] = C.avisoS4(sem.S2, sem.S4, hoy).texto;
+  exp[`E${D.filasAviso.chasquido}`] = C.avisoChasquido(tabla).texto;
   const e = C.entradaSemana(tabla, 'S2', KNEE.entry.S2);
-  exp.F89 = e.manana; exp.H89 = e.c1; exp.H90 = e.c2; exp.H91 = e.c3; exp.H92 = e.texto;
-  [97, 98, 99, 100].forEach((r, i) => {
+  const fe = (clave) => D.entrada.find((x) => x.clave === clave).fila;
+  exp[`F${fe('walk')}`] = e.manana; exp[`H${fe('walk')}`] = e.c1; exp[`H${fe('touchdown')}`] = e.c2;
+  exp[`H${fe('hops')}`] = e.c3; exp[`H${D.filaEntradaResultado}`] = e.texto;
+  D.tests.forEach(({ fila: r }, i) => {
     const t = C.calcularTest(KNEE.tests['t' + (i + 1)]);
     exp['I' + r] = t.estD; exp['J' + r] = t.estI; exp['K' + r] = t.sim; exp['L' + r] = t.ok;
   });
 
   // Tabla de series por grupo (hoja Volumen), sin fórmulas matriciales: 52 -> 88.
-  [52, 57, 62, 66, 71, 76, 80, 88].forEach((n, i) => { exp[`Volumen (1910-1112)!${'CDEFGHIJ'[i]}83`] = n; });
+  const vol = PLAN.LIBRO['Volumen (1910-1112)'];
+  const filaTotal = +Object.keys(vol).find((k) => /^A\d+$/.test(k) && String(vol[k]).startsWith('TOTAL')).slice(1);
+  [...'CDEFGHIJ'].forEach((col, i) => { exp[`Volumen (1910-1112)!${col}${filaTotal}`] = PLAN.seriesPorGrupo(i + 1).TOTAL; });
 
   const res = spawnSync('python', ['-X', 'utf8', '-c', PYSRC, file, PYPATH, JSON.stringify(Object.keys(exp))], { encoding: 'utf8', maxBuffer: 1 << 26, timeout: 300000 });
   const line = (res.stdout || '').split(/\r?\n/).find((l) => l.startsWith('@@'));
@@ -201,7 +203,7 @@ test('contraste con las fórmulas del Excel (evaluadas con «formulas»)', () =>
     total++; if (!cubiertos.has(k)) dif.push(`datos de prueba sin cubrir la rama ${k}`);
   }
   console.log(`       ${Object.keys(exp).length} celdas comparadas; ramas: ${[...cubiertos].sort().join(' · ')}`);
-  console.log(`       avisos: ${exp.E81} | ${exp.E82} | ${exp.H92}`);
+  console.log(`       avisos: ${exp[`E${D.filasAviso.s2}`]} | ${exp[`E${D.filasAviso.s4}`]} | ${exp[`H${D.filaEntradaResultado}`]}`);
   assert.equal(dif.length, 0, dif.join('\n        '));
 });
 

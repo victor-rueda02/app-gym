@@ -1,4 +1,4 @@
-"""Aplica al Excel las respuestas a la revisión del plan rodilla (26/10/2026).
+"""HISTÓRICO (ya aplicado; no volver a ejecutar): aplicó al Excel la revisión del plan rodilla (26/10/2026).
 
     python tools/ajusta_excel_rodilla.py
 
@@ -320,6 +320,12 @@ def seguimiento(ws):
 
 
 def main():
+    # Histórico: ya aplicado. Rehace el Excel de la raíz desde el recibido, así que borraría
+    # las etiquetas «App» y cualquier cambio posterior. Ahora se edita el Excel de la raíz y
+    # se publica con `python tools/excel_app.py`.
+    if "--forzar" not in sys.argv:
+        raise SystemExit("Histórico: ya aplicado; rehacerlo borraría los cambios posteriores del Excel. "
+                         "Edita Plan_8sem_vol_definitivo_con_cardio.xlsx y ejecuta python tools/excel_app.py.")
     wb = openpyxl.load_workbook(SRC, rich_text=True)
     volumen(wb["Volumen (1910-1112)"])
     series_sin_matrices(wb["Volumen (1910-1112)"])

@@ -1,9 +1,21 @@
 A2
   antes: 'RIR1/0 = todas las series a RIR1 y la ÚLTIMA a RIR0 (si solo hay 1 serie, RIR0).  Rehab (Rebuilding Milo): ×12 sem 1 → ×10 sem 2-4 → ×8 sem 5-8 → ×6 tras el viaje; peso con el que la última serie quede cerca del fallo sin perder tempo 3-1-3 ni profundidad, dolor ≤3/10; sube peso solo si el test de 24 h está igual o mejor.'
   ahora: 'RIR1/0 = todas las series a RIR1 y la ÚLTIMA a RIR0 (si solo hay 1 serie, RIR0).  REHAB RODILLA S2-S8 en 2 días: lunes (touchdown + prensa) y jueves (sentadilla + búlgara), pesado y lento, tempo 3-1-3; D a RIR 2 y en su escalón de profundidad, I a RIR 1-2 y rango completo. Reps: ×12 S1 → ×10 S2-4 → ×8 S5-8 → ×6 tras el viaje. Una novedad por día (lunes profundidad/reps · miércoles carrera), solo si esa mañana estás igual o mejor. El calendario marca el máximo de cada semana: se progresa según el semáforo (Avanzar / Mantener / Retroceder) y la app prescribe con el nivel real. Reglas al final de la hoja; registro diario en «Seguimiento rodilla».'
+L2
+  antes: None
+  ahora: 'regla'
+L4
+  antes: None
+  ahora: 'sesion'
+L5
+  antes: None
+  ahora: 'App (no tocar)'
 K6
   antes: 'Prioridad 1 · Polea altura muñeca/muslo en plano escapular (~30° adelante). Intercalar en superserie alterna con Unilateral abduction para dar 3-4 min de descanso al deltoides antes de las mancuernas.'
   ahora: 'Prioridad 1 · Polea altura muñeca/muslo en plano escapular (~30° adelante). Intercalar en superserie alterna con la abducción (máquina) para dar 3-4 min de descanso al deltoides antes de las mancuernas.'
+L6
+  antes: None
+  ahora: 'id=elev-laterales-polea'
 A7
   antes: 'Unilateral abduction'
   ahora: 'Abducción de pie unilateral (máquina)'
@@ -34,9 +46,15 @@ J7
 K7
   antes: 'Antes del rehab: sentadilla española 5×45 s'
   ahora: 'Cadera: de pie, unilateral, en máquina; empieza por la D y sube carga cuando llegues a 15 con RIR 1-2. Cadera + rodilla combinadas = primera línea en los consensos de 2016 y 2018 [EVIDENCIA]. No cuenta como novedad: apenas carga la rodilla [LÓGICA]. Antes del rehab: sentadilla española 2-3×45 s.'
+L7
+  antes: None
+  ahora: 'id=abduccion-de-pie-unilateral-maquina'
 K8
   antes: 'Prioridad 1 · Hacer tras el 1er bloque de Unilateral abduction · Perfil en acortamiento, controlar bajada sin rebotar.'
   ahora: 'Prioridad 1 · Hacer tras el 1er bloque de la abducción (máquina) · Perfil en acortamiento, controlar bajada sin rebotar.'
+L8
+  antes: None
+  ahora: 'id=elev-laterales-mancuerna'
 D9
   antes: '2 x15–20'
   ahora: '2 x10-15/pierna'
@@ -61,6 +79,9 @@ J9
 K9
   antes: 'fijo'
   ahora: 'Control antes de la prensa. D a la profundidad YA validada (la de la semana anterior), I completa; tempo 2-0-2, RIR 3; pelvis nivelada y rodilla hacia el 2.º-4.º dedo. Hace de filtro: si la D pasa de 3/10 aquí, ese lunes no se sube escalón en la prensa [LÓGICA].'
+L9
+  antes: None
+  ahora: 'id=touchdown-squat;escalera=prensa:anterior'
 A10
   antes: 'Prensa unil'
   ahora: 'Prensa unil · pesado y lento n.º 1'
@@ -88,12 +109,75 @@ J10
 K10
   antes: 'fijo · Tempo 3-1-3 · dolor ≤3/10'
   ahora: 'Pesado y lento para el tendón [EVIDENCIA: Kongsgaard 2009; 1-2 veces/semana para mantenerlo: LÓGICA]. Tempo 3-1-3. D primero: RIR 2 y profundidad de su escalón. I: RIR 1-2, rango completo y mismas reps. Lunes = día de novedad (escalón o reps): solo si esa mañana estás igual o mejor y la touchdown no pasa de 3/10; si no, repite la semana anterior. En la sesión con novedad no cambies nada más (con escalón nuevo, mismo peso).'
+L10
+  antes: None
+  ahora: 'id=prensa-unil-pesado-y-lento-n-1;escalera=prensa'
+L11
+  antes: None
+  ahora: 'id=gemelos-prensa'
+L12
+  antes: None
+  ahora: 'id=hiperextensiones'
+L14
+  antes: None
+  ahora: 'sesion'
+L15
+  antes: None
+  ahora: 'App (no tocar)'
+L16
+  antes: None
+  ahora: 'id=press-inclinado-barra-30-40'
+L17
+  antes: None
+  ahora: 'id=extension-triceps-unil-polea'
+L18
+  antes: None
+  ahora: 'id=contractora-pec-deck'
+L19
+  antes: None
+  ahora: 'id=triceps-tras-nuca-unil-polea'
+L20
+  antes: None
+  ahora: 'id=abs-colgado-retroversion'
 A23
   antes: '(X) Miércoles  ·  Pull'
   ahora: '(X) Miércoles  ·  Pull  ·  + carrera (ver bloque de carrera)'
+L23
+  antes: None
+  ahora: 'sesion'
+L24
+  antes: None
+  ahora: 'App (no tocar)'
+L25
+  antes: None
+  ahora: 'id=jalon-ancho-plano-frontal'
+L26
+  antes: None
+  ahora: 'id=remo-gironda-abierto'
+L27
+  antes: None
+  ahora: 'id=laterales-sentado'
+L28
+  antes: None
+  ahora: 'id=jalon-neutro'
+L29
+  antes: None
+  ahora: 'id=curl-martillo-scott'
+L30
+  antes: None
+  ahora: 'id=posterior-polea'
+L31
+  antes: None
+  ahora: 'id=curl-bayesian'
 A33
   antes: '(J) Jueves  ·  Rehab + Isquios + Aductores'
   ahora: '(J) Jueves  ·  Rehab + Isquios + Aductores  ·  test de fuerza S2 / S5 / S7'
+L33
+  antes: None
+  ahora: 'sesion'
+L34
+  antes: None
+  ahora: 'App (no tocar)'
 A35
   antes: 'Unilateral Abduction'
   ahora: 'TEST fuerza · extensión unilateral en máquina 90→45°'
@@ -127,6 +211,9 @@ J35
 K35
   antes: 'Antes del rehab: sentadilla española 5×45 s'
   ahora: 'Al empezar la sesión, tras la española 2-3×45 s y 2 series de aproximación. Mismo asiento y SIEMPRE rango fijo 90→45° (si el rango cambia, la comparación entre semanas no vale). Misma carga en las dos piernas (la que la I haga unas 10-15 reps), tempo 2-0-2, D primero, 3 min de descanso y luego la I; para si pasa de 3/10. Apunta carga y reps en «Seguimiento rodilla», que calcula la simetría. Objetivo ≥90% antes del balón [LÓGICA; el 90% viene de la vuelta al deporte tras LCA, no está validado en dolor femoropatelar: INCERTIDUMBRE]. Test en rango completo opcional en S8 y no en S7, para que sea la única novedad de su semana.'
+L35
+  antes: None
+  ahora: 'id=test-fuerza-extension-unilateral-en-maquina-90-45'
 A36
   antes: 'Touchdown squat'
   ahora: 'Sentadilla al cajón o desde pines · pesado y lento n.º 2'
@@ -157,6 +244,9 @@ J36
 K36
   antes: None
   ahora: 'Tras el test (S2/S5/S7), carga por RIR. Tempo 3-1-3, RIR 2. Profundidad = la validada el lunes en la prensa. Postura habitual: un chasquido sin dolor no cambia nada; el apoyo ancho solo si te reduce el DOLOR [LÓGICA]. Antes del rehab (si no hay test): sentadilla española 2-3×45 s.'
+L36
+  antes: None
+  ahora: 'id=sentadilla-al-cajon-o-desde-pines-pesado-y-lento-n-2;escalera=prensa:sigue'
 A37
   antes: 'Back squat'
   ahora: 'Bulgarian split squat'
@@ -187,6 +277,9 @@ J37
 K37
   antes: 'Al cajón: tope + pausa 1 s · tempo 3-1-3'
   ahora: 'D primero: RIR 2 y profundidad validada el lunes. I: RIR 1-2 y rango completo. Tempo 3-1-3. Alterna piernas, 60-90 s entre una y otra.'
+L37
+  antes: None
+  ahora: 'id=bulgarian-split-squat;escalera=prensa:sigue'
 A38
   antes: 'Bulgarian split squat'
   ahora: 'Abducción de pie unilateral (máquina)'
@@ -220,6 +313,9 @@ J38
 K38
   antes: 'Tempo 3-1-3 · empieza por la lesionada'
   ahora: 'Misma máquina que el lunes; empieza por la D. Va DESPUÉS de la búlgara, para no fatigar el glúteo medio antes del trabajo a una pierna [LÓGICA]. Lunes + jueves = 72-96 h entre sesiones de cadera.'
+L38
+  antes: None
+  ahora: 'id=abduccion-de-pie-unilateral-maquina'
 A39
   antes: 'Isquios sentado'
   ahora: 'Touchdown squat'
@@ -253,6 +349,9 @@ J39
 K39
   antes: 'Isquios en estiramiento máximo (cadera a 90°) · Controlar fase excéntrica.'
   ahora: 'Sale del jueves desde S2: va el lunes, antes de la prensa [LÓGICA].'
+L39
+  antes: None
+  ahora: 'id=touchdown-squat'
 A40
   antes: 'Aductores'
   ahora: 'Isquios sentado'
@@ -286,6 +385,9 @@ J40
 K40
   antes: 'Plano transversal/frontal · Pausa de 1 s en apertura máxima sin dolor inguinal/rodilla.'
   ahora: 'Isquios en estiramiento máximo (cadera a 90°) · Controlar fase excéntrica.'
+L40
+  antes: None
+  ahora: 'id=isquios-sentado'
 A41
   antes: 'Gemelos prensa'
   ahora: 'Aductores'
@@ -316,6 +418,9 @@ J41
 K41
   antes: 'Prensa con pies abajo · Pausa estricta de 2 s en máximo estiramiento abajo (sin rebote elástico).'
   ahora: 'Plano transversal/frontal · Pausa de 1 s en apertura máxima sin dolor inguinal/rodilla.'
+L41
+  antes: None
+  ahora: 'id=aductores'
 A42
   antes: None
   ahora: 'Gemelos prensa'
@@ -349,6 +454,9 @@ J42
 K42
   antes: None
   ahora: 'Prensa con pies abajo · Pausa estricta de 2 s en máximo estiramiento abajo (sin rebote elástico).'
+L42
+  antes: None
+  ahora: 'id=gemelos-prensa'
 A43
   antes: '(V) Viernes  ·  Torso'
   ahora: None
@@ -385,6 +493,9 @@ J44
 K44
   antes: 'Notas'
   ahora: None
+L44
+  antes: None
+  ahora: 'sesion'
 A45
   antes: 'Triceps conc polea (-15°)'
   ahora: 'Ejercicio'
@@ -418,6 +529,9 @@ J45
 K45
   antes: 'Prioridad 2 + Potenciación de codo · Hombro a -15° (extensión): máximo acortamiento de cabeza larga con torque nulo en flexión máxima de codo (calienta tendón para el francés).'
   ahora: 'Notas'
+L45
+  antes: None
+  ahora: 'App (no tocar)'
 A46
   antes: 'Laterales polea'
   ahora: 'Triceps conc polea (-15°)'
@@ -451,6 +565,9 @@ J46
 K46
   antes: 'Prioridad 1 (Hombro Lat.) · Polea a altura de muñeca/muslo, abducción en plano escapular.'
   ahora: 'Prioridad 2 + Potenciación de codo · Hombro a -15° (extensión): máximo acortamiento de cabeza larga con torque nulo en flexión máxima de codo (calienta tendón para el francés).'
+L46
+  antes: None
+  ahora: 'id=triceps-conc-polea-15'
 A47
   antes: 'Press francés manc (banco plano)'
   ahora: 'Laterales polea'
@@ -466,6 +583,9 @@ J47
 K47
   antes: 'Prioridad 2 (Tríceps) · Agarre neutro (martillo) y brazos inclinados a ~100° hacia la cabeza: quita cizalla en epitróclea/olécranon y mantiene tensión constante.'
   ahora: 'Prioridad 1 (Hombro Lat.) · Polea a altura de muñeca/muslo, abducción en plano escapular.'
+L47
+  antes: None
+  ahora: 'id=laterales-polea'
 A48
   antes: 'Curl biceps barra z'
   ahora: 'Press francés manc (banco plano)'
@@ -484,6 +604,9 @@ H48
 K48
   antes: 'Prioridad 2 (Bíceps rango medio) · Usar el agarre de la barra Z (ancho o estrecho) que resulte 100% libre de molestia en muñeca y codo.'
   ahora: 'Prioridad 2 (Tríceps) · Agarre neutro (martillo) y brazos inclinados a ~100° hacia la cabeza: quita cizalla en epitróclea/olécranon y mantiene tensión constante.'
+L48
+  antes: None
+  ahora: 'id=press-frances-manc-banco-plano'
 A49
   antes: 'Press máquina neutro ascendente'
   ahora: 'Curl biceps barra z'
@@ -499,6 +622,9 @@ G49
 K49
   antes: 'Prioridad 4 (Haz clavicular) · 10/10 tras brazos: el agarre neutro y la trayectoria convergente ascendente aíslan el haz clavicular sin estrés en hombro ni codo.'
   ahora: 'Prioridad 2 (Bíceps rango medio) · Usar el agarre de la barra Z (ancho o estrecho) que resulte 100% libre de molestia en muñeca y codo.'
+L49
+  antes: None
+  ahora: 'id=curl-biceps-barra-z'
 A50
   antes: 'Dominada neutra dorsal'
   ahora: 'Press máquina neutro ascendente'
@@ -532,6 +658,9 @@ J50
 K50
   antes: 'Plano sagital (Dorsal Sup.) · Usar STRAPS obligatoriamente para anular fatiga previa de bíceps y proteger codos.'
   ahora: 'Prioridad 4 (Haz clavicular) · 10/10 tras brazos: el agarre neutro y la trayectoria convergente ascendente aíslan el haz clavicular sin estrés en hombro ni codo.'
+L50
+  antes: None
+  ahora: 'id=press-maquina-neutro-ascendente'
 A51
   antes: 'Remo máquina (pecho apoyado 30°)'
   ahora: 'Dominada neutra dorsal'
@@ -553,12 +682,18 @@ G51
 K51
   antes: 'Plano sagital/híbrido (Dorsal Sup.) · Usar STRAPS, codos a ~30° hasta línea del torso.'
   ahora: 'Plano sagital (Dorsal Sup.) · Usar STRAPS obligatoriamente para anular fatiga previa de bíceps y proteger codos.'
+L51
+  antes: None
+  ahora: 'id=dominada-neutra-dorsal'
 A52
   antes: 'Aducción unil. polea alta (Pull-in)'
   ahora: 'Remo máquina (pecho apoyado 30°)'
 K52
   antes: 'Prioridad 3 (Dorsal Bajo) · De lado a la polea (con tobillera en muñeca o codo semirrígido) para aislar haz inferior sin usar bíceps ni codo · Sem 1-2 a RIR 1-2.'
   ahora: 'Plano sagital/híbrido (Dorsal Sup.) · Usar STRAPS, codos a ~30° hasta línea del torso.'
+L52
+  antes: None
+  ahora: 'id=remo-maquina-pecho-apoyado-30'
 A53
   antes: None
   ahora: 'Aducción unil. polea alta (Pull-in)'
@@ -592,6 +727,9 @@ J53
 K53
   antes: None
   ahora: 'Prioridad 3 (Dorsal Bajo) · De lado a la polea (con tobillera en muñeca o codo semirrígido) para aislar haz inferior sin usar bíceps ni codo · Sem 1-2 a RIR 1-2.'
+L53
+  antes: None
+  ahora: 'id=aduccion-unil-polea-alta-pull-in'
 A54
   antes: '(S/D) Sábado/Domingo'
   ahora: None
@@ -628,6 +766,9 @@ J55
 K55
   antes: 'Notas'
   ahora: None
+L55
+  antes: None
+  ahora: 'sesion;nombreS1=Sábado/Domingo'
 A56
   antes: 'Unilateral Abduction'
   ahora: 'Ejercicio'
@@ -661,6 +802,9 @@ J56
 K56
   antes: 'fijo · Antes del rehab: sentadilla española 5×45 s'
   ahora: 'Notas'
+L56
+  antes: None
+  ahora: 'App (no tocar)'
 A57
   antes: 'Touchdown squat'
   ahora: 'Abducción unilateral'
@@ -691,6 +835,9 @@ J57
 K57
   antes: 'fijo'
   ahora: 'Sale del sábado desde S2: la abducción va el lunes y el jueves en máquina; la pierna se concentra en 2 días [LÓGICA].'
+L57
+  antes: None
+  ahora: 'id=abduccion-unilateral'
 A58
   antes: 'Bulgarian split squat'
   ahora: 'Touchdown squat'
@@ -721,6 +868,9 @@ J58
 K58
   antes: 'fijo · Tempo 3-1-3 · empieza por la lesionada'
   ahora: 'Sale del sábado desde S2: va el lunes, antes de la prensa [LÓGICA].'
+L58
+  antes: None
+  ahora: 'id=touchdown-squat'
 A59
   antes: 'Abs wesley banco'
   ahora: 'Bulgarian split squat'
@@ -754,6 +904,9 @@ J59
 K59
   antes: None
   ahora: 'Sale del sábado desde S2: la pierna se concentra en el lunes y el jueves [LÓGICA].'
+L59
+  antes: None
+  ahora: 'id=bulgarian-split-squat'
 A60
   antes: 'Movilidad - trapecio inferior'
   ahora: 'Abs wesley banco'
@@ -784,6 +937,9 @@ I60
 J60
   antes: '-'
   ahora: '4 @ RIR1/0'
+L60
+  antes: None
+  ahora: 'id=abs-wesley-banco'
 A61
   antes: 'Autorregulación: si un músculo pierde reps 2 sesiones seguidas, esa semana NO le subas series. Si se estancan varios a la vez o la rodilla empeora en el test, repite la semana anterior.'
   ahora: 'Elevación lateral en prono «T» (mancuernas, banco)'
@@ -817,6 +973,9 @@ J61
 K61
   antes: None
   ahora: 'Postura: trapecio medio e inferior y deltoides posterior. Boca abajo en el banco, pulgar arriba, muy poco peso. RIR 3-4; no cuenta como serie de hipertrofia. Libro, p. 290.'
+L61
+  antes: None
+  ahora: 'id=elevacion-lateral-en-prono-t-mancuernas-banco'
 A62
   antes: None
   ahora: 'Rotación externa con banda «W»'
@@ -850,6 +1009,9 @@ J62
 K62
   antes: None
   ahora: 'Codos pegados al cuerpo a 90°. RIR 3-4. Libro, p. 288.'
+L62
+  antes: None
+  ahora: 'id=rotacion-externa-con-banda-w'
 A63
   antes: 'Semana 9 (14-20/12) · Viaje = descarga  ·  Semana 10 · Vuelta progresiva'
   ahora: 'Curl de muñeca en extensión (mancuerna)'
@@ -883,21 +1045,36 @@ J63
 K63
   antes: None
   ahora: 'Codo (cara externa). Antebrazo apoyado, palma abajo. Si ahora agarrar te duele: isométrico 4-5×30-45 s las 1-2 primeras semanas. Antes, test del nervio radial (libro, p. 323): si es positivo, se cambia por deslizamientos del nervio (p. 338). Dolor ≤3/10 y no peor al día siguiente. Libro, pp. 332-333.'
+L63
+  antes: None
+  ahora: 'id=curl-de-muneca-en-extension-mancuerna'
 A64
   antes: 'Hipertrofia: la semana sin entrenar hace de descarga justo después del pico de volumen de la semana 8.'
   ahora: 'Autorregulación: si un músculo pierde reps 2 sesiones seguidas, esa semana NO le subas series. Si se estancan varios a la vez o la rodilla empeora en el test, repite la semana anterior.'
+L64
+  antes: None
+  ahora: 'regla'
 A65
   antes: 'Rodilla (libro): nunca dejes el tendón en reposo total. Llévate la goma: sentadilla española 5×45 s cada día (sin anclaje → wall sit a 1 pierna). Sigue haciendo el test en declive por la mañana.'
   ahora: None
 A66
   antes: 'Semana 10 (vuelta): hipertrofia con las series de la sem 3-4 y a RIR2. Rehab ×8 al ~80% del peso de la sem 8. Si el test de 24 h aguanta, semana 11 a peso completo y siguiente escalón del libro (×6).'
   ahora: 'Semana 9 (14-20/12) · Viaje = descarga  ·  Semana 10 · Vuelta progresiva'
+L66
+  antes: None
+  ahora: 'nota'
 A67
   antes: None
   ahora: 'Hipertrofia: la semana sin entrenar hace de descarga justo después del pico de volumen de la semana 8.'
+L67
+  antes: None
+  ahora: 'nota'
 A68
   antes: 'Series semanales por grupo muscular (se recalculan solas al cambiar la tabla)'
   ahora: 'Rodilla en el viaje: nunca reposo total del tendón. Sentadilla española 5×45 s cada día (sin anclaje → wall sit a 1 pierna) y las dos pruebas de la mañana (declive + 10 subidas). Carrera: si puedes, 2 rodajes suaves sin pasar del nivel de S8 y nunca dos días seguidos, con la regla de carrera (≤2/10, nivel previo en ≤60 min, mañana siguiente no peor).'
+L68
+  antes: None
+  ahora: 'nota'
 A69
   antes: 'Grupo muscular'
   ahora: 'Semana 10 (vuelta): hipertrofia con las series de la sem 3-4 y a RIR2. Rehab ×8 al ~80% del peso de la sem 8; si se cumple la regla de 24-48 h, semana 11 a peso completo y siguiente escalón del libro (×6). Carrera: retomas el nivel de S8, o uno por debajo si no pudiste correr en el viaje.'
@@ -928,6 +1105,9 @@ I69
 J69
   antes: 'Sem 8'
   ahora: None
+L69
+  antes: None
+  ahora: 'nota'
 A70
   antes: 'Espalda'
   ahora: None
@@ -1018,6 +1198,9 @@ I72
 J72
   antes: '=SUMPRODUCT(($B$3:$B$65="Hombro lat.")*IFERROR(VALUE(LEFT(J$3:J$65,FIND(" ",J$3:J$65&" ")-1)),0))'
   ahora: 'Sem 8'
+L72
+  antes: None
+  ahora: 'grupos'
 A73
   antes: 'Hombro post.'
   ahora: 'Espalda'
@@ -1456,6 +1639,9 @@ J87
 K87
   antes: 'Remo gironda abierto (X) + Posterior polea (X)'
   ahora: 'Jalón ancho plano frontal (X) + Aducción unil. polea alta (V)'
+L87
+  antes: None
+  ahora: 'desglose=jalon-ancho-plano-frontal,aduccion-unil-polea-alta-pull-in'
 A88
   antes: None
   ahora: 'Dorsal Superior (Plano Sagital)'
@@ -1489,6 +1675,9 @@ J88
 K88
   antes: None
   ahora: 'Jalón neutro bolsillos (X) + Dominada neutra (V) + Remo máq. 30° (V)'
+L88
+  antes: None
+  ahora: 'desglose=jalon-neutro,dominada-neutra-dorsal,remo-maquina-pecho-apoyado-30'
 A89
   antes: None
   ahora: 'Espalda Alta (Plano Transversal)'
@@ -1522,6 +1711,9 @@ J89
 K89
   antes: None
   ahora: 'Remo gironda abierto (X)'
+L89
+  antes: None
+  ahora: 'desglose=remo-gironda-abierto'
 A90
   antes: 'BLOQUE DE CARDIO (Recuperación Tendinosa & Base Aeróbica Z2 / Z3)'
   ahora: 'Total Transversal (Espalda Alta + Post.)'
@@ -1555,6 +1747,9 @@ J90
 K90
   antes: None
   ahora: 'Remo gironda abierto (X) + Posterior polea (X)'
+L90
+  antes: None
+  ahora: 'desglose=remo-gironda-abierto,posterior-polea'
 A91
   antes: 'Día / Sesión'
   ahora: None
@@ -1654,6 +1849,9 @@ J93
 K93
   antes: 'Sem 1-4: Z2 continua. Sem 5-8: Intervalos cortos a 95-100 rpm (Z3 / Umbral) controlando acidosis local.'
   ahora: None
+L93
+  antes: None
+  ahora: 'cardio'
 A94
   antes: None
   ahora: 'Día / Sesión'
@@ -1687,6 +1885,9 @@ J94
 K94
   antes: None
   ahora: 'Pautas Biomecánicas Rodilla & Intensidad'
+L94
+  antes: None
+  ahora: 'App (no tocar)'
 A95
   antes: None
   ahora: 'Martes (Post-Push)'
@@ -1720,6 +1921,9 @@ J95
 K95
   antes: None
   ahora: 'No se hizo en S1: estímulo NUEVO [LÓGICA]. Entra en S4 (el viernes) solo si S2 y S3 cumplieron la regla; desde S5, martes y viernes. Sin Z3 en este bloque. Lo primero que se quita si hay brote. Sillín alto (rodilla a 20-25° abajo), 85-90 rpm, sentado. 10 min fijos en el bloque; subir a 15 después del viaje, como novedad única.'
+L95
+  antes: None
+  ahora: 'id=bici-z2-65-75-fc;sesion=M;bici'
 A96
   antes: None
   ahora: 'Viernes (Post-Torso)'
@@ -1753,6 +1957,9 @@ J96
 K96
   antes: None
   ahora: 'S4: primera vez, solo si esa mañana estás igual o mejor; se valida con las mediciones del sábado y del domingo (el sábado no hay pierna). Ver la nota del martes.'
+L96
+  antes: None
+  ahora: 'id=bici-z2-sin-z3-en-este-bloque;sesion=V;bici'
 A97
   antes: None
   ahora: 'Miércoles · Carrera (nivel nuevo)'
@@ -1786,6 +1993,9 @@ J97
 K97
   antes: None
   ahora: "Formato: minutos trotando / minutos andando. Niveles: N1 8×(1'/2') · N2 6×(2'/1') · N3 4×(4'/1') · N4 4×(5'/1') · N5 3×(8'/1') · N6 2×(12'/1'); después del viaje, N7 18' · N8 25' · N9 30' seguidos. Desde N4 el tramo continuo más largo crece como mucho un 50 % por nivel (5 → 8 → 12 → 18 → 25 → 30 min); de N1 a N3 se dobla porque los tramos son muy cortos [LÓGICA]. El calendario marca el máximo de cada semana; el nivel real sale del semáforo: Avanzar = +1, Mantener = el mismo, Retroceder = −1. Nivel nuevo solo si esa mañana estás igual o mejor. 5 min andando antes; llano y firme. Regla de carrera: Retroceder si pasas de 2/10 durante, no vuelves al nivel previo en ≤60 min o la mañana siguiente estás peor; Mantener si cumple pero el peor valor 24-48 h supera la referencia; Avanzar si cumple y el peor 24-48 h ≤ referencia [EVIDENCIA de uso: TREK Education, basada en Esculier; no comparada con otros umbrales]. Cadencia +5-10% opcional [EVIDENCIA mixta: Bramah 2019, serie de 12 corredores con mejora de dolor y función mantenida a 3 meses; Esculier 2018, sin beneficio extra sobre la educación]."
+L97
+  antes: None
+  ahora: 'id=andar-correr-en-llano;sesion=X;escalera=carrera'
 A98
   antes: None
   ahora: 'Domingo · Carrera (repite)'
@@ -1819,6 +2029,9 @@ J98
 K98
   antes: None
   ahora: 'Repite el nivel validado el miércoles. Si el miércoles no se cumplieron los criterios de entrada, esa semana no hay carrera: el domingo no se corre (como mucho, un paseo). Nunca dos días seguidos corriendo [LÓGICA]. El sábado no hay pierna: llegas descansado.'
+L98
+  antes: None
+  ahora: 'id=andar-correr-en-llano;sesion=D;titulo=Carrera;escalera=carrera:domingo'
 A99
   antes: None
   ahora: 'Hitos y avisos'
@@ -1852,9 +2065,15 @@ J99
 K99
   antes: None
   ahora: 'Entrada a la carrera (S2), con la regla de carrera: martes, paseo de 30 min a paso rápido (≤2/10, nivel previo en ≤60 min y el miércoles por la mañana no peor: el criterio 1 se evalúa solo con esa mañana, sin esperar a las 48 h); miércoles antes de correr, 10 touchdown con cada pierna y 20 saltitos a dos piernas (≤2/10). Si se cumplen los tres, 1.ª carrera ese miércoles (N1). Si no, esa semana no hay carrera (el domingo, como mucho, un paseo) y los criterios se repiten el miércoles siguiente [LÓGICA].'
+L99
+  antes: None
+  ahora: 'hitos'
 A101
   antes: None
   ahora: 'REGLAS DEL BLOQUE RODILLA (S2-S8)'
+L101
+  antes: None
+  ahora: 'reglas-bloque'
 A102
   antes: None
   ahora: 'Base [EVIDENCIA]: ejercicio combinado de cadera y rodilla (consensos de 2016 y 2018). Rodilla en 2 días, lunes y jueves (72-96 h entre sesiones, dentro de la ventana de 2-3 días de recuperación del tendón que describe el libro), pesado y lento en ambos; sábado sin pierna para llegar descansado a la carrera del domingo [LÓGICA].'

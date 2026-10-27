@@ -277,12 +277,16 @@ const Rodilla = (() => {
         <p class="rod-txt">Vuelve al nivel del calendario el lunes siguiente a una semana entera en verde.</p></div>`));
     }
     if (!sems.length) root.appendChild(el('<div class="empty">La progresión empieza en S2 (26/10).</div>'));
-    const opciones = (sem, f, n, nombre, desde) => `
+    const opciones = (sem, f, n, nombre, niveles) => `
       <select data-sec="weeks" data-key="${sem}" data-f="${f}" data-num="1">
         <option value="" ${(w[sem] || {})[f] === undefined ? 'selected' : ''}>Propuesta (${esc(nombre(n.propuesta))})</option>
-        ${Array.from({ length: (f === 'pressLevel' ? PLAN.PRENSA_NIVELES.length : 7) - desde }, (_, i) => i + desde)
+        ${Array.from({ length: niveles }, (_, k) => k)
           .map((k) => `<option value="${k}" ${(w[sem] || {})[f] === k ? 'selected' : ''}>${esc(nombre(k))}</option>`).join('')}
       </select>`;
+    // Escaleras genéricas (las del Excel con «escalera=<nombre>»): cada nivel, por la celda de
+    // su guía en la semana en que el calendario lo alcanza.
+    const guia = (L) => Object.values(PLAN.BLOCK_VOL).flatMap((s) => s.exercises).find((x) => x.prog === L.nombre);
+    const nombreSimple = (L) => (k) => (k < 0 || L.niveles[k] === undefined ? '—' : `${k} · ${L.niveles[k]}`);
     for (const sem of sems) {
       const { prensa, carrera, domingo } = p.semanas[sem];
       const provisional = (x) => (x.provisional ? ' <small class="rod-none">(provisional)</small>' : '');
@@ -292,15 +296,25 @@ const Rodilla = (() => {
             <div class="rod-prog-g"><small>Máximo</small><span>${esc(nombrePrensa(prensa.plan))}</span>
               <small>Propuesta</small><span>${esc(nombrePrensa(prensa.propuesta))}</span></div>
             <p class="rod-txt">${esc(prensa.motivo)}</p>
-            <label class="rod-f"><span>Nivel real</span>${opciones(sem, 'pressLevel', prensa, nombrePrensa, 0)}</label>
+            <label class="rod-f"><span>Nivel real</span>${opciones(sem, 'pressLevel', prensa, nombrePrensa, PLAN.PRENSA_NIVELES.length)}</label>
           </div>
           <div class="rod-prog-l"><b>Carrera (miércoles)${provisional(carrera)}</b>
             <div class="rod-prog-g"><small>Máximo</small><span>${esc(nombreCarrera(carrera.plan))}</span>
               <small>Propuesta</small><span>${esc(nombreCarrera(carrera.propuesta))}</span>
               <small>Domingo</small><span>${esc(domingo.nivel ? nombreCarrera(domingo.nivel) : 'No se corre')}</span></div>
             <p class="rod-txt">${esc(carrera.motivo)} · Domingo: ${esc(domingo.motivo)}</p>
-            <label class="rod-f"><span>Nivel real</span>${opciones(sem, 'runLevel', carrera, nombreCarrera, 0)}</label>
+            <label class="rod-f"><span>Nivel real</span>${opciones(sem, 'runLevel', carrera, nombreCarrera, PLAN.CARRERA_NIVELES.length)}</label>
           </div>
+          ${(PLAN.ESCALERAS.simples || []).filter((L) => p.semanas[sem].simples[L.nombre]).map((L) => {
+            const x = p.semanas[sem].simples[L.nombre];
+            const nombre = nombreSimple(L);
+            return `<div class="rod-prog-l"><b>${esc(guia(L).name)} (${esc(PLAN.NOMBRE_DIA[L.dia].toLowerCase())})${provisional(x)}</b>
+              <div class="rod-prog-g"><small>Máximo</small><span>${esc(nombre(x.plan))}</span>
+                <small>Propuesta</small><span>${esc(nombre(x.propuesta))}</span></div>
+              <p class="rod-txt">${esc(x.motivo)}</p>
+              <label class="rod-f"><span>Nivel real</span>${opciones(sem, C.campoReal(L.nombre), x, nombre, L.semana.length)}</label>
+            </div>`;
+          }).join('')}
         </div>`));
     }
     enlazar(root, () => { Rodilla.render(); });
@@ -339,7 +353,7 @@ const Rodilla = (() => {
           <div class="rod-res"><small>Resultado</small><b data-e="texto"></b></div>
         </div>`);
       const pintar = () => {
-        const e = C.entradaSemana(tabla(), sem, knee().entry[sem]);
+        const e = C.entradaSemana(tabla(), sem, knee().entry[sem], PLAN.ESCALERAS.carrera.dia);
         card.querySelectorAll('[data-e]').forEach((n) => {
           const k = n.dataset.e;
           n.textContent = k === 'texto' ? e.texto : fmt(e[k]);   // el texto lleva «1.ª»: sin formato numérico
@@ -447,9 +461,12 @@ const Rodilla = (() => {
     p.brotes.filter((b) => b.fecha >= C.sumarDias(date, -3) && b.fecha <= date)
       .forEach((b) => avisos.push(`Brote (${b.motivo}): ${BROTE}`));
     const q = C.biciQuitada(p.bici, date);
-    if (q && (plan.dia === 'M' || plan.dia === 'V')) avisos.push(`Sin bici: ${q.motivo}.`);
+    if (q && PLAN.ESCALERAS.bici.dias.includes(plan.dia)) avisos.push(`Sin bici: ${q.motivo}.`);
     const semana = p.semanas[plan.sem];
-    const entrada = semana && semana.carrera.entrada && (plan.dia === 'M' || plan.dia === 'X');
+    // La entrada a la carrera se registra el día del paseo (el anterior a la carrera) y el de la carrera.
+    const diaCarrera = PLAN.ESCALERAS.carrera.dia;
+    const diaPaseo = PLAN.DIAS_PLAN[PLAN.DIAS_PLAN.indexOf(diaCarrera) - 1];
+    const entrada = semana && semana.carrera.entrada && (plan.dia === diaPaseo || plan.dia === diaCarrera);
     const card = el(`
       <div class="card rod-hoy"><h2>Seguimiento rodilla</h2>
         <p>Pruebas de la mañana (0-10)</p>
@@ -483,9 +500,10 @@ const Rodilla = (() => {
       if (!q || PLAN.presFor(exercise, week).skip) return null;
       return { sets: 0, kind: 'none', label: 'Sin bici\n(quitada)', motivo: `Bici quitada: ${q.motivo}. ${BROTE}` };
     }
-    const pres = C.prescripcion(exercise.prog, semana, PLAN);
+    const pres = C.prescripcion(exercise, semana, PLAN, week.n);
     if (!pres) return null;
-    const x = exercise.prog.startsWith('carrera') ? semana.carrera : semana.prensa;
+    const nombre = exercise.prog.split(':')[0];
+    const x = nombre === 'carrera' ? semana.carrera : nombre === 'prensa' ? semana.prensa : semana.simples[nombre];
     return { ...pres, motivo: x.motivo, provisional: x.provisional };
   }
 

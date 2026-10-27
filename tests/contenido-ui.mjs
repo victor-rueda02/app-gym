@@ -21,10 +21,21 @@ for (let r = 1; r <= 70; r++) {
   for (let f = r + 2; c(`A${f}`) && c(`B${f}`); f++) ej.push({ nombre: c(`A${f}`).trim(), semanas: COLS.map((k) => c(`${k}${f}`)) });
   SES.push({ clave: m[1], label: `${m[2]} · ${m[3].trim()}`, titulo: m[3].trim(), ejercicios: ej });
 }
-const CARDIO = { M: 95, V: 96, X: 97 };
-for (const s of SES) if (CARDIO[s.clave]) s.ejercicios.push({ nombre: c(`B${CARDIO[s.clave]}`), semanas: COLS.map((k) => c(`${k}${CARDIO[s.clave]}`)) });
-SES.push({ clave: 'D', label: 'Domingo · Carrera', titulo: 'Carrera', desdeSemana: 2,
-  ejercicios: [{ nombre: c('B98'), semanas: COLS.map((k) => c(`${k}98`)) }] });
+// Bloque de cardio y carrera: las filas con «sesion=X» en la columna App (L) van al final de
+// su sesión; el domingo de carrera es una sesión solo desde la primera semana que tiene celda.
+const app = (r) => Object.fromEntries(String(c(`L${r}`) || '').split(';').filter(Boolean).map((p) => p.split('=')));
+for (let r = 1; r <= 200; r++) {
+  const letra = app(r).sesion;
+  if (!letra) continue;
+  const ej = { nombre: c(`B${r}`), semanas: COLS.map((k) => c(`${k}${r}`)) };
+  let s = SES.find((x) => x.clave === letra);
+  if (!s) {
+    const titulo = app(r).titulo || '';
+    s = { clave: letra, label: `Domingo · ${titulo}`, titulo, desdeSemana: ej.semanas.findIndex((t) => t !== '—') + 1, ejercicios: [] };
+    SES.push(s);
+  }
+  s.ejercicios.push(ej);
+}
 // En S1 el sábado (y el domingo) se llama como entonces: «Sábado/Domingo», sin título.
 const S1_SABADO = 'Sábado/Domingo';
 const sesionesDe = (n) => SES.filter((s) => !s.desdeSemana || n >= s.desdeSemana)

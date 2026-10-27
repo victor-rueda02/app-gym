@@ -1,8 +1,8 @@
 /* Dos planes:
    - 4 semanas · 20 jul – 16 ago 2026, transcrito desde las hojas "Bloque A" y
-     "Bloque B" del Excel.
-   - Volumen 8 semanas · 19 oct – 13 dic 2026, transcrito desde la hoja
-     "Volumen (1910-1112)". tools/verify_plan.py lo compara celda a celda. */
+     "Bloque B" del Excel (ya pasado: no cambia).
+   - Volumen 8 semanas, que se lee al arrancar de la hoja "Volumen (1910-1112)" del
+     Excel empotrado (ver «Volumen · 8 semanas, leído del Excel empotrado»). */
 
 /* Prescripciones ------------------------------------------------------- */
 const rir = (sets, r) => ({ sets, kind: 'rir', rir: r, label: `${sets} @ RIR${r}` });
@@ -214,274 +214,253 @@ const RULES = [
   'Tras el 16/08: retoma tu mesociclo normal reentrando en MEV.',
 ];
 
-/* Volumen · 19 oct – 13 dic · 8 semanas ----------------------------------
-   Lunes a viernes, sesión fija. El sábado es la sesión de casa (sin pierna desde S2);
-   el domingo es carrera (VOL-D) solo desde S2: en S1 el domingo sigue siendo la sesión
-   del sábado. El cardio (bici martes y viernes, carrera miércoles y domingo) va como
-   un ejercicio más al final de la sesión, con objetivo 'Cardio'. Las semanas 9 (viaje
-   = descarga) y 10 no van en el calendario: sus textos están en VOL_NOTES. */
-const VOL_WEEKS = [
-  ['2026-10-19', '2026-10-25', '19–25 oct'],
-  ['2026-10-26', '2026-11-01', '26 oct – 1 nov'],
-  ['2026-11-02', '2026-11-08', '2–8 nov'],
-  ['2026-11-09', '2026-11-15', '9–15 nov'],
-  ['2026-11-16', '2026-11-22', '16–22 nov'],
-  ['2026-11-23', '2026-11-29', '23–29 nov'],
-  ['2026-11-30', '2026-12-06', '30 nov – 6 dic'],
-  ['2026-12-07', '2026-12-13', '7–13 dic'],
-].map(([from, to, sub], i) => ({
-  plan: 'vol', n: i + 1, block: 'Volumen', from, to, title: `Semana ${i + 1} · Volumen`, sub,
-}));
+/* Volumen · 8 semanas, leído del Excel empotrado -------------------------------
+   El plan de volumen no está copiado aquí: se construye al arrancar a partir de la
+   hoja «Volumen (1910-1112)» del .xlsx que lleva la app (js/original-xlsx.js), así
+   que para cambiarlo basta con editar el Excel y empotrarlo (tools/excel_app.py).
+   La columna «App» (L, oculta) etiqueta lo que la hoja no dice por sí sola:
+     sesion[;nombreS1=…]      cabecera de sesión «(L) Lunes · título» (nombre en S1)
+     id=…                     id estable del ejercicio (el historial cuelga de él)
+     escalera=prensa          la prensa: sus celdas definen la escalera (nov: xN / +1 escalón)
+     escalera=prensa:sigue    sigue el nivel de la prensa de esa semana (sentadilla, búlgara)
+     escalera=prensa:anterior va al escalón ya validado, el de la semana anterior (touchdown)
+     escalera=carrera         la carrera del día de novedad: sus celdas definen los niveles
+     escalera=carrera:domingo repite el nivel de la carrera de esa semana
+     bici                     la bici: se quita y vuelve según el semáforo
+     sesion=X[;titulo=…]      (bloque de cardio) a qué sesión va la fila, como último ejercicio
+     cardio · hitos · regla · nota · grupos · reglas-bloque · desglose=…   filas de texto/tablas
+   El sábado de S1 y el domingo sin sesión: si un domingo no tiene sesión esa semana,
+   repite la del sábado (así era S1). */
+const LIBRO = LectorXlsx.leer(originalXlsxBytes());
 
-const BLOCK_VOL = {
-  L: {
-    id: 'VOL-L', dow: 1, name: 'Lunes', title: 'Rehab + Isquios + Hombro + Gemelo',
-    exercises: [
-      vx('Elev laterales polea', 'Hombro lat.',
-        ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0'],
-        'Prioridad 1 · Polea altura muñeca/muslo en plano escapular (~30° adelante). Intercalar en superserie alterna con la abducción (máquina) para dar 3-4 min de descanso al deltoides antes de las mancuernas.'),
-      vx('Abducción de pie unilateral (máquina)', 'Rehab (cadera)',
-        ['2 x15–20', '3 x10-15/pierna\n@RIR1-2', '3 x10-15/pierna\n@RIR1-2', '3 x10-15/pierna\n@RIR1-2', '3 x10-15/pierna\n@RIR1-2', '3 x10-15/pierna\n@RIR1-2', '3 x10-15/pierna\n@RIR1-2', '3 x10-15/pierna\n@RIR1-2'],
-        'Cadera: de pie, unilateral, en máquina; empieza por la D y sube carga cuando llegues a 15 con RIR 1-2. Cadera + rodilla combinadas = primera línea en los consensos de 2016 y 2018 [EVIDENCIA]. No cuenta como novedad: apenas carga la rodilla [LÓGICA]. Antes del rehab: sentadilla española 2-3×45 s.', { sides: true }),
-      vx('Elev laterales mancuerna', 'Hombro lat.',
-        ['1 @ RIR0', '1 @ RIR0', '1 @ RIR0', '1 @ RIR0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0'],
-        'Prioridad 1 · Hacer tras el 1er bloque de la abducción (máquina) · Perfil en acortamiento, controlar bajada sin rebotar.'),
-      vx('Touchdown squat', 'Rehab',
-        ['2 x15–20', '2 x10-15/pierna', '2 x10-15/pierna', '2 x10-15/pierna', '2 x10-15/pierna', '2 x10-15/pierna', '2 x10-15/pierna', '2 x10-15/pierna\nrepite S7'],
-        'Control antes de la prensa. D a la profundidad YA validada (la de la semana anterior), I completa; tempo 2-0-2, RIR 3; pelvis nivelada y rodilla hacia el 2.º-4.º dedo. Hace de filtro: si la D pasa de 3/10 aquí, ese lunes no se sube escalón en la prensa [LÓGICA].', { sides: true, prog: 'touchdown' }),
-      vx('Prensa unil · pesado y lento n.º 1', 'Rehab',
-        ['2 x12', '2 x10/pierna\nnov: x10', '2 x10/pierna\nnov: +1 escalón', '2 x10/pierna\nnov: +1 escalón', '2 x8/pierna\nnov: x8', '2 x8/pierna\nnov: +1 escalón', '2 x8/pierna\nnov: +1 escalón', '2 x8/pierna\nrepite S7'],
-        'Pesado y lento para el tendón [EVIDENCIA: Kongsgaard 2009; 1-2 veces/semana para mantenerlo: LÓGICA]. Tempo 3-1-3. D primero: RIR 2 y profundidad de su escalón. I: RIR 1-2, rango completo y mismas reps. Lunes = día de novedad (escalón o reps): solo si esa mañana estás igual o mejor y la touchdown no pasa de 3/10; si no, repite la semana anterior. En la sesión con novedad no cambies nada más (con escalón nuevo, mismo peso).', { sides: true, prog: 'prensa' }),
-      vx('Gemelos prensa', 'Gemelos',
-        ['3 @ RIR1/0', '3 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0', '5 @ RIR1/0', '5 @ RIR1/0'],
-        'Prensa con pies abajo · Pausa estricta de 2 s en máximo estiramiento abajo (sin rebotar en el tendón de Aquiles) + rodilla semirrígida.'),
-      vx('Hiperextensiones', 'Isquios',
-        ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '4 @ RIR1/0'],
-        'Extensión de cadera · Rodillas con ligera flexión fija (~10-15°), subir empujando talones sin hiperextender zona lumbar.'),
-    ],
-  },
-  M: {
-    id: 'VOL-M', dow: 2, name: 'Martes', title: 'Push',
-    exercises: [
-      vx('Press inclinado barra (30–40°)', 'Pecho',
-        ['2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '4 @ RIR1/0'],
-        'Prioridad 4 (Haz clavicular) · Agarre ~1.3x ancho hombros y codos a 45–60° (plano escapular) para proteger hombro y codo.'),
-      vx('Extensión tríceps unil polea', 'Tríceps',
-        ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0'],
-        'Prioridad 2 (Tríceps) · Hombro a 0° pegado al costado (máxima palanca de cabeza larga sin estrés articular en codo).'),
-      vx('Contractora (Pec Deck)', 'Pecho',
-        ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0'],
-        'Prioridad 4 (Haz clavicular/esternal) · Asiento medio-bajo (manos altura clavícula/esternón sup.) · NO hiperextender húmeros detrás del torso al abrir para no irritar cápsula anterior del hombro.'),
-      vx('Triceps tras nuca unil polea', 'Tríceps',
-        ['1 @ RIR0', '1 @ RIR0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0'],
-        'Prioridad 2 (Tríceps en estiramiento) · Dejar que el codo apunte ligeramente hacia fuera (~20-30° plano escapular) para no forzar cápsula del hombro ni tendón olecraniano.'),
-      vx('Abs colgado (retroversión)', 'Abs',
-        ['3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0', '5 @ RIR1/0'],
-        'Colgado con depresión escapular (activa dorsal) · Enrollar pelvis hacia costillas (retroversión). Usar straps si el agarre molesta al codo.'),
-      vx('Bici Z2 (65–75% FC)', 'Cardio',
-        ['15 min', '—', '—', '—', '10\' Z2', '10\' Z2', '10\' Z2', '10\' Z2'],
-        'No se hizo en S1: estímulo NUEVO [LÓGICA]. Entra en S4 (el viernes) solo si S2 y S3 cumplieron la regla; desde S5, martes y viernes. Sin Z3 en este bloque. Lo primero que se quita si hay brote. Sillín alto (rodilla a 20-25° abajo), 85-90 rpm, sentado. 10 min fijos en el bloque; subir a 15 después del viaje, como novedad única.', { prog: 'bici' }),
-    ],
-  },
-  X: {
-    id: 'VOL-X', dow: 3, name: 'Miércoles', title: 'Pull  ·  + carrera (ver bloque de carrera)',
-    exercises: [
-      vx('Jalón ancho plano frontal', 'Espalda',
-        ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0'],
-        'Prioridad 3 (Dorsal Bajo) · 1º fresco · Torso vertical, codos abiertos en plano frontal hasta ~90° · No encoger hombros.'),
-      vx('Remo gironda abierto', 'Espalda',
-        ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0'],
-        'Plano transversal (Espalda Alta) · Codos abiertos y retracción escapular completa.'),
-      vx('Laterales sentado', 'Hombro lat.',
-        ['1 @ RIR0', '1 @ RIR0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0'],
-        'Prioridad 1 (Hombro Lat.) · Sentado en banco a 75–80°, abducir en plano escapular (~30° adelante) sin rotar internamente el hombro.'),
-      vx('Jalón neutro', 'Espalda',
-        ['1 @ RIR0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0'],
-        'Plano sagital (Dorsal Sup.) · Agarre neutro ancho hombros, llevar codos a los bolsillos cortando a 90° (protege codo/bíceps).'),
-      vx('Curl martillo scott', 'Bíceps',
-        ['2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0'],
-        'Prioridad 2 (Bíceps/Braquiorradial) · Agarre neutro (muy amigable para el codo). Bajar en 2-3 s y parar a ~15° de la extensión total para no sobrecargar tendón distal.'),
-      vx('Posterior polea', 'Hombro post.',
-        ['1 @ RIR0', '1 @ RIR0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0'],
-        'Salud Hombro / Transversal · Clave para centrar cabeza humeral y compensar presses.'),
-      vx('Curl bayesian', 'Bíceps',
-        ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '4 @ RIR1/0'],
-        'Prioridad 2 (Bíceps en estiramiento) · Hombro en extensión detrás del torso; no dejar que el hombro rote hacia delante al subir.'),
-      vx('Andar-correr en llano', 'Cardio',
-        ['—', 'N1 · 8×(1\'/2\')', 'N2 · 6×(2\'/1\')', 'N3 · 4×(4\'/1\')', 'N4 · 4×(5\'/1\')', 'N5 · 3×(8\'/1\')', 'N6 · 2×(12\'/1\')', 'repite N6'],
-        'Formato: minutos trotando / minutos andando. Niveles: N1 8×(1\'/2\') · N2 6×(2\'/1\') · N3 4×(4\'/1\') · N4 4×(5\'/1\') · N5 3×(8\'/1\') · N6 2×(12\'/1\'); después del viaje, N7 18\' · N8 25\' · N9 30\' seguidos. Desde N4 el tramo continuo más largo crece como mucho un 50 % por nivel (5 → 8 → 12 → 18 → 25 → 30 min); de N1 a N3 se dobla porque los tramos son muy cortos [LÓGICA]. El calendario marca el máximo de cada semana; el nivel real sale del semáforo: Avanzar = +1, Mantener = el mismo, Retroceder = −1. Nivel nuevo solo si esa mañana estás igual o mejor. 5 min andando antes; llano y firme. Regla de carrera: Retroceder si pasas de 2/10 durante, no vuelves al nivel previo en ≤60 min o la mañana siguiente estás peor; Mantener si cumple pero el peor valor 24-48 h supera la referencia; Avanzar si cumple y el peor 24-48 h ≤ referencia [EVIDENCIA de uso: TREK Education, basada en Esculier; no comparada con otros umbrales]. Cadencia +5-10% opcional [EVIDENCIA mixta: Bramah 2019, serie de 12 corredores con mejora de dolor y función mantenida a 3 meses; Esculier 2018, sin beneficio extra sobre la educación].', { prog: 'carrera' }),
-    ],
-  },
-  J: {
-    id: 'VOL-J', dow: 4, name: 'Jueves', title: 'Rehab + Isquios + Aductores  ·  test de fuerza S2 / S5 / S7',
-    exercises: [
-      vx('TEST fuerza · extensión unilateral en máquina 90→45°', 'Test',
-        ['—', '2 aprox. +\n1 al fallo\npor pierna', '—', '—', '2 aprox. +\n1 al fallo\npor pierna', '—', '2 aprox. +\n1 al fallo\npor pierna', 'Opcional:\nrango completo'],
-        'Al empezar la sesión, tras la española 2-3×45 s y 2 series de aproximación. Mismo asiento y SIEMPRE rango fijo 90→45° (si el rango cambia, la comparación entre semanas no vale). Misma carga en las dos piernas (la que la I haga unas 10-15 reps), tempo 2-0-2, D primero, 3 min de descanso y luego la I; para si pasa de 3/10. Apunta carga y reps en «Seguimiento rodilla», que calcula la simetría. Objetivo ≥90% antes del balón [LÓGICA; el 90% viene de la vuelta al deporte tras LCA, no está validado en dolor femoropatelar: INCERTIDUMBRE]. Test en rango completo opcional en S8 y no en S7, para que sea la única novedad de su semana.', { link: 'test' }),
-      vx('Sentadilla al cajón o desde pines · pesado y lento n.º 2', 'Rehab',
-        ['3 x12', '3 x10', '3 x10\nprof. del lunes', '3 x10\nprof. del lunes', '3 x8', '3 x8\nprof. del lunes', '3 x8\nprof. del lunes', '3 x8\nrepite S7'],
-        'Tras el test (S2/S5/S7), carga por RIR. Tempo 3-1-3, RIR 2. Profundidad = la validada el lunes en la prensa. Postura habitual: un chasquido sin dolor no cambia nada; el apoyo ancho solo si te reduce el DOLOR [LÓGICA]. Antes del rehab (si no hay test): sentadilla española 2-3×45 s.', { prog: 'sentadilla' }),
-      vx('Bulgarian split squat', 'Rehab',
-        ['2 x12', '2 x10/pierna', '2 x10/pierna', '2 x10/pierna', '2 x8/pierna', '2 x8/pierna', '2 x8/pierna', '2 x8/pierna\nrepite S7'],
-        'D primero: RIR 2 y profundidad validada el lunes. I: RIR 1-2 y rango completo. Tempo 3-1-3. Alterna piernas, 60-90 s entre una y otra.', { sides: true, prog: 'bulgara' }),
-      vx('Abducción de pie unilateral (máquina)', 'Rehab (cadera)',
-        ['2 x15–20', '3 x10-15/pierna\n@RIR1-2', '3 x10-15/pierna\n@RIR1-2', '3 x10-15/pierna\n@RIR1-2', '3 x10-15/pierna\n@RIR1-2', '3 x10-15/pierna\n@RIR1-2', '3 x10-15/pierna\n@RIR1-2', '3 x10-15/pierna\n@RIR1-2'],
-        'Misma máquina que el lunes; empieza por la D. Va DESPUÉS de la búlgara, para no fatigar el glúteo medio antes del trabajo a una pierna [LÓGICA]. Lunes + jueves = 72-96 h entre sesiones de cadera.', { sides: true }),
-      vx('Touchdown squat', 'Rehab',
-        ['2 x15–20', '—', '—', '—', '—', '—', '—', '—'],
-        'Sale del jueves desde S2: va el lunes, antes de la prensa [LÓGICA].'),
-      vx('Isquios sentado', 'Isquios',
-        ['3 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0', '5 @ RIR1/0', '5 @ RIR1/0', '5 @ RIR1/0'],
-        'Isquios en estiramiento máximo (cadera a 90°) · Controlar fase excéntrica.'),
-      vx('Aductores', 'Aductores',
-        ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0'],
-        'Plano transversal/frontal · Pausa de 1 s en apertura máxima sin dolor inguinal/rodilla.'),
-      vx('Gemelos prensa', 'Gemelos',
-        ['2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0', '5 @ RIR1/0'],
-        'Prensa con pies abajo · Pausa estricta de 2 s en máximo estiramiento abajo (sin rebote elástico).'),
-    ],
-  },
-  V: {
-    id: 'VOL-V', dow: 5, name: 'Viernes', title: 'Torso',
-    exercises: [
-      vx('Triceps conc polea (-15°)', 'Tríceps',
-        ['1 @ RIR0', '1 @ RIR0', '1 @ RIR0', '1 @ RIR0', '1 @ RIR0', '1 @ RIR0', '1 @ RIR0', '1 @ RIR0'],
-        'Prioridad 2 + Potenciación de codo · Hombro a -15° (extensión): máximo acortamiento de cabeza larga con torque nulo en flexión máxima de codo (calienta tendón para el francés).'),
-      vx('Laterales polea', 'Hombro lat.',
-        ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0'],
-        'Prioridad 1 (Hombro Lat.) · Polea a altura de muñeca/muslo, abducción en plano escapular.'),
-      vx('Press francés manc (banco plano)', 'Tríceps',
-        ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0'],
-        'Prioridad 2 (Tríceps) · Agarre neutro (martillo) y brazos inclinados a ~100° hacia la cabeza: quita cizalla en epitróclea/olécranon y mantiene tensión constante.'),
-      vx('Curl biceps barra z', 'Bíceps',
-        ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0'],
-        'Prioridad 2 (Bíceps rango medio) · Usar el agarre de la barra Z (ancho o estrecho) que resulte 100% libre de molestia en muñeca y codo.'),
-      vx('Press máquina neutro ascendente', 'Pecho',
-        ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0'],
-        'Prioridad 4 (Haz clavicular) · 10/10 tras brazos: el agarre neutro y la trayectoria convergente ascendente aíslan el haz clavicular sin estrés en hombro ni codo.'),
-      vx('Dominada neutra dorsal', 'Espalda',
-        ['1 @ RIR0', '1 @ RIR0', '1 @ RIR0', '1 @ RIR0', '1 @ RIR0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0'],
-        'Plano sagital (Dorsal Sup.) · Usar STRAPS obligatoriamente para anular fatiga previa de bíceps y proteger codos.'),
-      vx('Remo máquina (pecho apoyado 30°)', 'Espalda',
-        ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0'],
-        'Plano sagital/híbrido (Dorsal Sup.) · Usar STRAPS, codos a ~30° hasta línea del torso.'),
-      vx('Aducción unil. polea alta (Pull-in)', 'Espalda',
-        ['2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0', '2 @ RIR1/0'],
-        'Prioridad 3 (Dorsal Bajo) · De lado a la polea (con tobillera en muñeca o codo semirrígido) para aislar haz inferior sin usar bíceps ni codo · Sem 1-2 a RIR 1-2.'),
-      vx('Bici Z2 (sin Z3 en este bloque)', 'Cardio',
-        ['12 min', '—', '—', '10\' Z2\nnov: 1.ª vez', '10\' Z2', '10\' Z2', '10\' Z2', '10\' Z2'],
-        'S4: primera vez, solo si esa mañana estás igual o mejor; se valida con las mediciones del sábado y del domingo (el sábado no hay pierna). Ver la nota del martes.', { prog: 'bici' }),
-    ],
-  },
-  S: {
-    id: 'VOL-S', dow: 6, dows: [6, 0], name: 'Sábado',
-    // En S1 el sábado (y el domingo) aún tenía pierna: se ve como entonces.
-    byWeek: { 1: { name: 'Sábado/Domingo', title: '' } }, title: 'casa, sin máquinas ni poleas  ·  desde S2, sin pierna (el domingo: carrera)',
-    exercises: [
-      vx('Abducción unilateral', 'Rehab (cadera)',
-        ['2 x15–20', '—', '—', '—', '—', '—', '—', '—'],
-        'Sale del sábado desde S2: la abducción va el lunes y el jueves en máquina; la pierna se concentra en 2 días [LÓGICA].'),
-      vx('Touchdown squat', 'Rehab',
-        ['2 x15–20', '—', '—', '—', '—', '—', '—', '—'],
-        'Sale del sábado desde S2: va el lunes, antes de la prensa [LÓGICA].'),
-      vx('Bulgarian split squat', 'Rehab',
-        ['2 x12', '—', '—', '—', '—', '—', '—', '—'],
-        'Sale del sábado desde S2: la pierna se concentra en el lunes y el jueves [LÓGICA].'),
-      vx('Abs wesley banco', 'Abs',
-        ['2 @ RIR1/0', '2 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '3 @ RIR1/0', '4 @ RIR1/0', '4 @ RIR1/0'],
-        ''),
-      vx('Elevación lateral en prono «T» (mancuernas, banco)', 'Hombro (correctivo)',
-        ['-', '2-3 x10-15\n5 s arriba', '2-3 x10-15\n5 s arriba', '2-3 x10-15\n5 s arriba', '2-3 x10-15\n5 s arriba', '2-3 x10-15\n5 s arriba', '2-3 x10-15\n5 s arriba', '2-3 x10-15\n5 s arriba'],
-        'Postura: trapecio medio e inferior y deltoides posterior. Boca abajo en el banco, pulgar arriba, muy poco peso. RIR 3-4; no cuenta como serie de hipertrofia. Libro, p. 290.'),
-      vx('Rotación externa con banda «W»', 'Hombro (correctivo)',
-        ['—', '2-3 x15-20\n5-10 s fuera', '2-3 x15-20\n5-10 s fuera', '2-3 x15-20\n5-10 s fuera', '2-3 x15-20\n5-10 s fuera', '2-3 x15-20\n5-10 s fuera', '2-3 x15-20\n5-10 s fuera', '2-3 x15-20\n5-10 s fuera'],
-        'Codos pegados al cuerpo a 90°. RIR 3-4. Libro, p. 288.'),
-      vx('Curl de muñeca en extensión (mancuerna)', 'Codo (correctivo)',
-        ['—', '3 x10-15\n3 s / 3 s', '3 x10-15\n3 s / 3 s', '3 x10-15\n3 s / 3 s', '3 x10-15\n3 s / 3 s', '3 x10-15\n3 s / 3 s', '3 x10-15\n3 s / 3 s', '3 x10-15\n3 s / 3 s'],
-        'Codo (cara externa). Antebrazo apoyado, palma abajo. Si ahora agarrar te duele: isométrico 4-5×30-45 s las 1-2 primeras semanas. Antes, test del nervio radial (libro, p. 323): si es positivo, se cambia por deslizamientos del nervio (p. 338). Dolor ≤3/10 y no peor al día siguiente. Libro, pp. 332-333.'),
-    ],
-  },
-  D: {
-    id: 'VOL-D', dow: 0, fromWeek: 2, name: 'Domingo', title: 'Carrera',
-    exercises: [
-      vx('Andar-correr en llano', 'Cardio',
-        ['—', 'repite el\nmiércoles', 'repite el\nmiércoles', 'repite el\nmiércoles', 'repite el\nmiércoles', 'repite el\nmiércoles', 'repite el\nmiércoles', 'repite el\nmiércoles'],
-        'Repite el nivel validado el miércoles. Si el miércoles no se cumplieron los criterios de entrada, esa semana no hay carrera: el domingo no se corre (como mucho, un paseo). Nunca dos días seguidos corriendo [LÓGICA]. El sábado no hay pierna: llegas descansado.', { prog: 'carrera-domingo' }),
-    ],
-  },
+const DIAS_PLAN = 'LMXJVSD';
+const DOW = { L: 1, M: 2, X: 3, J: 4, V: 5, S: 6, D: 0 };
+const NOMBRE_DIA = { L: 'Lunes', M: 'Martes', X: 'Miércoles', J: 'Jueves', V: 'Viernes', S: 'Sábado', D: 'Domingo' };
+const COLS_SEMANA = ['C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
+
+/* 'id=x;bici' -> { id: 'x', bici: true } */
+function etiquetasApp(valor) {
+  const out = {};
+  String(valor || '').split(';').map((p) => p.trim()).filter(Boolean).forEach((p) => {
+    const i = p.indexOf('=');
+    if (i < 0) out[p] = true;
+    else out[p.slice(0, i).trim()] = p.slice(i + 1).trim();
+  });
+  return out;
+}
+
+const ultimaFila = (hoja) => Math.max(...Object.keys(hoja).map((ref) => +ref.replace(/^[A-Z]+/, '')));
+
+function construirVolumen(hoja) {
+  const v = (ref) => (hoja[ref] === undefined ? '' : hoja[ref]);
+  const t = (ref) => String(v(ref));
+  const app = (r) => etiquetasApp(v(`L${r}`));
+  const max = ultimaFila(hoja);
+  const vol = {
+    sesiones: {}, rules: [], notes: [], hitos: [], hitosNote: '', blockRules: [], blockRulesTitle: '',
+    cardioTitle: '', grupos: [],
+  };
+
+  const ejercicio = (r, nombre, objetivo, e) => {
+    const semanas = COLS_SEMANA.map((c) => t(`${c}${r}`));
+    const extra = {};
+    if (objetivo === 'Test') extra.link = 'test';                       // se apunta en Rodilla › Test
+    else if (semanas.slice(1).some((s) => /\/pierna|por pierna/.test(s))) extra.sides = true;   // D/I
+    if (e.escalera) extra.prog = e.escalera;
+    if (e.bici) extra.prog = 'bici';
+    const x = vx(nombre, objetivo, semanas, t(`K${r}`), extra);
+    if (e.id) x.id = e.id;
+    return x;
+  };
+
+  let sesion = null;
+  for (let r = 1; r <= max; r++) {
+    const a = t(`A${r}`).trim();
+    const e = app(r);
+    if (e.sesion === true) {
+      const m = /^\(([LMXJVSD])\)\s*([^·]+?)\s*(?:·\s*([\s\S]*))?$/.exec(a);
+      if (!m) throw new Error(`Volumen!A${r}: cabecera de sesión sin el formato «(L) Lunes · título»`);
+      sesion = { id: `VOL-${m[1]}`, dow: DOW[m[1]], name: m[2].trim(), title: (m[3] || '').trim(), exercises: [] };
+      if (e.nombreS1) sesion.byWeek = { 1: { name: e.nombreS1, title: '' } };
+      vol.sesiones[m[1]] = sesion;
+      continue;
+    }
+    if (!a) { sesion = null; continue; }
+    // Dentro de una sesión: la cabecera de la tabla y los ejercicios (con objetivo en B). Una
+    // fila sin objetivo (p. ej. un texto pegado a la tabla) cierra la sesión.
+    if (sesion && a === 'Ejercicio') continue;
+    if (sesion && t(`B${r}`)) { sesion.exercises.push(ejercicio(r, a, t(`B${r}`), e)); continue; }
+    sesion = null;
+    if (typeof e.sesion === 'string') {   // bloque de cardio y carrera
+      const letra = e.sesion;
+      if (!vol.sesiones[letra]) {
+        vol.sesiones[letra] = { id: `VOL-${letra}`, dow: DOW[letra], name: NOMBRE_DIA[letra], title: e.titulo || '', exercises: [] };
+      }
+      vol.sesiones[letra].exercises.push(ejercicio(r, t(`B${r}`).trim(), 'Cardio', e));
+    }
+    if (e.regla) vol.rules.push(a);
+    if (e.nota) vol.notes.push(a);
+    if (e.cardio) vol.cardioTitle = a;
+    if (e.hitos) { vol.hitos = COLS_SEMANA.map((c) => t(`${c}${r}`)); vol.hitosNote = t(`K${r}`); }
+    if (e.grupos) {
+      for (let f = r + 1; t(`A${f}`) && !t(`A${f}`).startsWith('TOTAL'); f++) vol.grupos.push(t(`A${f}`));
+    }
+    if (e['reglas-bloque']) {
+      vol.blockRulesTitle = a;
+      for (let f = r + 1; t(`A${f}`); f++) vol.blockRules.push(t(`A${f}`));
+    }
+  }
+
+  // Orden de la semana y sesiones que solo existen desde una semana (el domingo de carrera).
+  const ordenadas = {};
+  DIAS_PLAN.split('').filter((l) => vol.sesiones[l]).forEach((l) => { ordenadas[l] = vol.sesiones[l]; });
+  for (const s of Object.values(ordenadas)) {
+    if (s.exercises.every((x) => x.target === 'Cardio')) {
+      const desde = s.exercises.map((x) => x.pres.findIndex((p) => !p.skip)).filter((i) => i >= 0);
+      if (desde.length && Math.min(...desde) > 0) s.fromWeek = Math.min(...desde) + 1;
+    }
+  }
+  vol.sesiones = ordenadas;
+  return vol;
+}
+
+/* Escaleras de progresión, sacadas de las celdas del calendario:
+   - prensa: nivel 0 = S1; «nov: xN» cambia las reps y «nov: +1 escalón» sube el escalón.
+   - carrera: «N1 · 8×(1'/2')» define el nivel 1; «repite N6» repite; «—» = sin entrar. */
+function construirEscaleras(sesiones, desde) {
+  const todos = Object.entries(sesiones).flatMap(([l, s]) => s.exercises.map((x) => ({ l, x })));
+  const con = (prog) => todos.filter(({ x }) => x.prog === prog);
+  const uno = (prog) => {
+    const xs = con(prog);
+    if (xs.length !== 1) throw new Error(`Volumen: tiene que haber un ejercicio con «escalera=${prog}» y hay ${xs.length}`);
+    return xs[0];
+  };
+
+  const prensa = uno('prensa');
+  const PRENSA_NIVELES = [];
+  const PRENSA_MAX = [null];
+  prensa.x.pres.forEach((p, i) => {
+    const reps = +((/x(\d+)/.exec(p.label.split('\n')[0]) || [])[1]);
+    const nov = /nov: (?:x(\d+)|\+1 escalón)/.exec(p.label);
+    if (i === 0) PRENSA_NIVELES.push({ reps, esc: 0 });
+    else if (nov) {
+      const ant = PRENSA_NIVELES[PRENSA_NIVELES.length - 1];
+      PRENSA_NIVELES.push(nov[1] ? { reps: +nov[1], esc: ant.esc } : { reps: ant.reps, esc: ant.esc + 1 });
+    }
+    const nivel = PRENSA_NIVELES.length - 1;
+    if (!p.skip && reps !== PRENSA_NIVELES[nivel].reps) {
+      throw new Error(`Prensa S${i + 1}: «${p.label}» no cuadra con la escalera (x${PRENSA_NIVELES[nivel].reps})`);
+    }
+    PRENSA_MAX.push(nivel);
+  });
+
+  const carrera = uno('carrera');
+  const CARRERA_NIVELES = [''];
+  const CARRERA_MAX = [null];
+  carrera.x.pres.forEach((p) => {
+    let m;
+    if ((m = /^N(\d+) · (.+)$/.exec(p.label))) { CARRERA_NIVELES[+m[1]] = m[2]; CARRERA_MAX.push(+m[1]); }
+    else if ((m = /^repite N(\d+)$/.exec(p.label))) CARRERA_MAX.push(+m[1]);
+    else CARRERA_MAX.push(0);
+  });
+
+  // Semana en la que el calendario alcanza cada nivel de la prensa (su celda da series y reps).
+  const PRENSA_SEMANA = PRENSA_NIVELES.map((_, k) => PRENSA_MAX.indexOf(k));
+
+  // Días de cada escalera y entrada de la bici: la primera celda que no es «—» desde la
+  // primera semana con seguimiento (en S1 ya se hacía bici, pero no se seguía).
+  const dias = (...progs) => [...new Set(todos.filter(({ x }) => progs.includes(x.prog)).map(({ l }) => l))]
+    .sort((a, b) => DIAS_PLAN.indexOf(a) - DIAS_PLAN.indexOf(b));
+  const bici = con('bici').map(({ l, x }) => ({ l, semana: x.pres.findIndex((p, i) => i + 1 >= desde && !p.skip) + 1 }))
+    .filter((b) => b.semana > 0).sort((a, b) => a.semana - b.semana || DIAS_PLAN.indexOf(a.l) - DIAS_PLAN.indexOf(b.l));
+  // Escaleras genéricas: cualquier otro «escalera=<nombre>» (p. ej. un rango que se amplía).
+  // Su ejercicio guía marca cada subida con una línea «nov: …» en la celda; el nivel 0 es su
+  // primera celda que no es «—»; en las semanas con «—» no hay sesión de esa escalera.
+  // «escalera=<nombre>:sigue» = otro ejercicio que va al nivel de esa semana.
+  const ESPECIALES = ['prensa', 'carrera', 'bici'];
+  const simples = [...new Set(todos.map(({ x }) => (x.prog || '').split(':')[0]))]
+    .filter((nombre) => nombre && !ESPECIALES.includes(nombre))
+    .map((nombre) => {
+      const guia = uno(nombre);
+      const max = [null];
+      const semana = [];
+      const niveles = [];   // descripción de cada nivel: el texto tras «nov: » (el 0, su 2.ª línea)
+      let nivel = -1;
+      guia.x.pres.forEach((p, i) => {
+        if (p.skip) { max.push(null); return; }
+        const lineas = p.label.split('\n').slice(1);
+        const nov = lineas.find((l) => l.startsWith('nov: '));
+        if (nivel < 0) { nivel = 0; niveles[0] = lineas.join(' · '); }
+        else if (nov) { nivel += 1; niveles[nivel] = nov.slice(5); }
+        if (semana[nivel] === undefined) semana[nivel] = i + 1;
+        max.push(nivel);
+      });
+      return { nombre, dia: guia.l, dias: dias(nombre, `${nombre}:sigue`), max, semana, niveles };
+    });
+  const ESCALERAS = {
+    prensa: { dia: prensa.l, dias: dias('prensa', 'prensa:sigue') },
+    carrera: { dia: carrera.l, dias: dias('carrera', 'carrera:domingo') },
+    bici: { dias: dias('bici'), entrada: bici.length ? { semana: bici[0].semana, dia: bici[0].l } : null },
+    simples,
+  };
+  return { PRENSA_NIVELES, PRENSA_MAX, PRENSA_SEMANA, CARRERA_NIVELES, CARRERA_MAX, ESCALERAS };
+}
+
+/* Semanas: la primera fecha del seguimiento (lunes de la primera semana con seguimiento)
+   y la semana que es (columna C) dan el lunes de S1; hay tantas semanas como columnas.
+   `semanas.seguimiento` = número de la primera semana con seguimiento (2). */
+function construirSemanas(seguimiento) {
+  const col = (ref) => (seguimiento[ref] === undefined ? '' : seguimiento[ref]);
+  const max = ultimaFila(seguimiento);
+  let cab = 0;
+  for (let r = 1; r <= max && !cab; r++) if (etiquetasApp(col(`R${r}`)).dias) cab = r;
+  if (!cab) throw new Error('Seguimiento rodilla: falta la fila con la etiqueta «dias»');
+  const primera = LectorXlsx.fecha(col(`A${cab + 1}`));
+  const n = +String(col(`C${cab + 1}`)).slice(1);
+  const MESES = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
+  const dia = (iso, k) => { const d = new Date(`${iso}T12:00:00Z`); d.setUTCDate(d.getUTCDate() + k); return d; };
+  const iso = (d) => d.toISOString().slice(0, 10);
+  const corta = (d) => [d.getUTCDate(), MESES[d.getUTCMonth()]];
+  const lunes1 = iso(dia(primera, -7 * (n - 1)));
+  const semanas = COLS_SEMANA.map((_, i) => {
+    const a = dia(lunes1, 7 * i);
+    const b = dia(lunes1, 7 * i + 6);
+    const [da, ma] = corta(a);
+    const [db, mb] = corta(b);
+    return {
+      plan: 'vol', n: i + 1, block: 'Volumen', from: iso(a), to: iso(b), title: `Semana ${i + 1} · Volumen`,
+      sub: ma === mb ? `${da}–${db} ${ma}` : `${da} ${ma} – ${db} ${mb}`,
+    };
+  });
+  return { semanas, seguimiento: n };
+}
+
+const VOLUMEN = construirVolumen(LIBRO['Volumen (1910-1112)']);
+const BLOCK_VOL = VOLUMEN.sesiones;
+const VOL_RULES = VOLUMEN.rules;
+const VOL_NOTES = VOLUMEN.notes;
+const VOL_HITOS = VOLUMEN.hitos;
+const VOL_HITOS_NOTE = VOLUMEN.hitosNote;
+const VOL_CARDIO_TITLE = VOLUMEN.cardioTitle;
+const VOL_BLOCK_RULES_TITLE = VOLUMEN.blockRulesTitle;
+const VOL_BLOCK_RULES = VOLUMEN.blockRules;
+const VOL_GRUPOS = VOLUMEN.grupos;
+const SEMANAS = construirSemanas(LIBRO['Seguimiento rodilla']);
+const VOL_WEEKS = SEMANAS.semanas;
+const SEMANA_SEGUIMIENTO = SEMANAS.seguimiento;   // primera semana con seguimiento (S2): la de referencia
+const { PRENSA_NIVELES, PRENSA_MAX, PRENSA_SEMANA, CARRERA_NIVELES, CARRERA_MAX, ESCALERAS } = construirEscaleras(BLOCK_VOL, SEMANA_SEGUIMIENTO);
+const rangoCorto = (iso) => {
+  const d = new Date(`${iso}T12:00:00Z`);
+  return `${d.getUTCDate()} ${['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'][d.getUTCMonth()]}`;
 };
-
-/* Celdas A2 y A64 */
-const VOL_RULES = [
-  'RIR1/0 = todas las series a RIR1 y la ÚLTIMA a RIR0 (si solo hay 1 serie, RIR0).  REHAB RODILLA S2-S8 en 2 días: lunes (touchdown + prensa) y jueves (sentadilla + búlgara), pesado y lento, tempo 3-1-3; D a RIR 2 y en su escalón de profundidad, I a RIR 1-2 y rango completo. Reps: ×12 S1 → ×10 S2-4 → ×8 S5-8 → ×6 tras el viaje. Una novedad por día (lunes profundidad/reps · miércoles carrera), solo si esa mañana estás igual o mejor. El calendario marca el máximo de cada semana: se progresa según el semáforo (Avanzar / Mantener / Retroceder) y la app prescribe con el nivel real. Reglas al final de la hoja; registro diario en «Seguimiento rodilla».',
-  'Autorregulación: si un músculo pierde reps 2 sesiones seguidas, esa semana NO le subas series. Si se estancan varios a la vez o la rodilla empeora en el test, repite la semana anterior.',
-];
-
-/* Celdas A66–A69 */
-const VOL_NOTES = [
-  'Semana 9 (14-20/12) · Viaje = descarga  ·  Semana 10 · Vuelta progresiva',
-  'Hipertrofia: la semana sin entrenar hace de descarga justo después del pico de volumen de la semana 8.',
-  'Rodilla en el viaje: nunca reposo total del tendón. Sentadilla española 5×45 s cada día (sin anclaje → wall sit a 1 pierna) y las dos pruebas de la mañana (declive + 10 subidas). Carrera: si puedes, 2 rodajes suaves sin pasar del nivel de S8 y nunca dos días seguidos, con la regla de carrera (≤2/10, nivel previo en ≤60 min, mañana siguiente no peor).',
-  'Semana 10 (vuelta): hipertrofia con las series de la sem 3-4 y a RIR2. Rehab ×8 al ~80% del peso de la sem 8; si se cumple la regla de 24-48 h, semana 11 a peso completo y siguiente escalón del libro (×6). Carrera: retomas el nivel de S8, o uno por debajo si no pudiste correr en el viaje.',
-];
-
-/* Fila 99 «Hitos y avisos»: celdas C99–J99, un texto por semana ('—' = nada que avisar). */
-const VOL_HITOS = [
-  '—',
-  'Mar: paseo 30\'\nMié: TD + saltitos\n→ 1.ª carrera\nJue: test 1',
-  '—',
-  'AVISO fisio\n(ver Seguimiento)\nVie: bici',
-  'Lun: x8\nJue: test 2',
-  '—',
-  'Jue: test 3',
-  'Repite S7\nJue: test opc.\nrango completo',
-];
-// Celda K99: nota general bajo los hitos.
-const VOL_HITOS_NOTE = 'Entrada a la carrera (S2), con la regla de carrera: martes, paseo de 30 min a paso rápido (≤2/10, nivel previo en ≤60 min y el miércoles por la mañana no peor: el criterio 1 se evalúa solo con esa mañana, sin esperar a las 48 h); miércoles antes de correr, 10 touchdown con cada pierna y 20 saltitos a dos piernas (≤2/10). Si se cumplen los tres, 1.ª carrera ese miércoles (N1). Si no, esa semana no hay carrera (el domingo, como mucho, un paseo) y los criterios se repiten el miércoles siguiente [LÓGICA].';
-
-/* Celdas A93 (título del bloque de cardio y carrera) y A101 (título de las reglas) */
-const VOL_CARDIO_TITLE = 'BLOQUE DE CARDIO Y CARRERA (S2-S8)';
-const VOL_BLOCK_RULES_TITLE = 'REGLAS DEL BLOQUE RODILLA (S2-S8)';
-/* Celdas A102–A113: las 12 reglas del bloque rodilla. */
-const VOL_BLOCK_RULES = [
-  'Base [EVIDENCIA]: ejercicio combinado de cadera y rodilla (consensos de 2016 y 2018). Rodilla en 2 días, lunes y jueves (72-96 h entre sesiones, dentro de la ventana de 2-3 días de recuperación del tendón que describe el libro), pesado y lento en ambos; sábado sin pierna para llegar descansado a la carrera del domingo [LÓGICA].',
-  'Mediciones: cada mañana, en casa, con las mismas pruebas: test en declive y 10 subidas con la D al mismo escalón o banco. Vale la peor de las dos (el declive solo no basta: te sale 0 aunque haya molestia). Si falta la medición de la mañana, ese día no se evalúa y la primera medición disponible hace de referencia (en S2, la del martes). Se apuntan en «Seguimiento rodilla».',
-  'Regla de gimnasio [LÓGICA], en semáforo (solo días con carga de rodilla: lunes y jueves): Retroceder si pasas de 3/10 durante o la mañana siguiente estás peor que la de la sesión; Mantener si cumple, pero el peor valor entre 24 y 48 h supera la referencia (no avanzas, pero no has fallado); Avanzar si cumple y el peor valor 24-48 h es igual o mejor que la referencia. Los días sin carga de rodilla no se evalúan («—»).',
-  'Regla de carrera [EVIDENCIA de uso], en semáforo (miércoles y domingo): Retroceder si pasas de 2/10 durante, no vuelves al nivel previo en ≤60 min o la mañana siguiente estás peor; Mantener si cumple, pero el peor valor 24-48 h supera la referencia; Avanzar si cumple y el peor valor 24-48 h ≤ referencia. El paseo de entrada se valida solo con la mañana siguiente. Se aplica también a las fases hacia el fútbol [LÓGICA].',
-  'Novedades [LÓGICA]: una por día y validada a las 24 y 48 h antes de repetirla. Lunes: escalón o reps (prensa) · miércoles: nivel de carrera · viernes de S4: bici. Solo si esa mañana estás igual o mejor que la referencia (la mañana del mismo día de la semana anterior; en S3, la primera medición de S2), no que el día anterior: así un empeoramiento lento también salta. El calendario marca el máximo de cada semana; el nivel real sale del semáforo: Avanzar = nivel +1 (sin pasar del calendario), Mantener = el mismo, Retroceder = nivel −1. Lo validado se repite: el jueves usa la profundidad del lunes y el domingo repite el nivel del miércoles.',
-  'S2 = semana de referencia [LÓGICA]: el paseo del martes no cuenta como novedad (caminas a diario). Si alguna mañana de S2 sale peor que la referencia (la primera medición de S2), en S3 no sube nada y se repite S2 entera, en lugar de intentar atribuir el empeoramiento.',
-  'Escalones de profundidad de la D [LÓGICA; no hay pautas de rango validadas para la rótula: INCERTIDUMBRE]: escalón 0 = la profundidad que ya usas con la D; escalón 4 = la de la I. Reparte la diferencia en 4 partes iguales (como mucho ~15° cada una; si sale más, se termina después del bloque). Se sube, como mucho, los lunes de S3, S4, S6 y S7 en la prensa (según el semáforo); la touchdown del lunes va a la profundidad ya validada y hace de filtro. Apunta las marcas en «Seguimiento rodilla».',
-  'Chasquido: si no duele, no se quita ni se cambia nada. Si duele, cuenta como dolor.',
-  'Retroceso y brote [LÓGICA]: un dolor durante la sesión retrocede la escalera de esa sesión. Si una mañana sale peor, se retrocede la última novedad aún no validada (la que todavía no tiene en verde sus dos mañanas, 24 y 48 h; p. ej., jueves bien y viernes peor → se retrocede la carrera del miércoles y el escalón se mantiene); una novedad ya validada no se culpa. Si tras el retroceso vuelve a fallar, se retrocede la novedad anterior sin validar. Brote = un fallo sin ninguna novedad sin validar, o dos sesiones seguidas en Retroceder: lo primero que se quita es la bici; 48-72 h solo isométricos (sentadilla española 5×45 s diaria) y caminar, sin bici; luego se retoma un escalón por debajo en todo. La bici vuelve al nivel del calendario cuando lleves una semana entera en verde.',
-  'Alarma: bloqueo real, fallos repetidos de la rodilla o hinchazón visible → se para la progresión y toca valoración clínica.',
-  'AVISO S4 (fisio deportivo pendiente): se calcula al cerrar S4 (domingo 15/11) si hay al menos 5 mañanas registradas en S2 y en S4. Compara la media de las mañanas: PEOR si la de S4 supera en 0,5 o más a la de S2; MEJOR si queda 0,5 o más por debajo; si no, IGUAL. IGUAL o PEOR, o un chasquido que empieza a doler: la valoración del fisio pasa a ser prioritaria; PEOR además para la progresión [LÓGICA]. «Seguimiento rodilla» lo calcula.',
-  'Fases hacia el fútbol, después del viaje [LÓGICA], siempre con la regla de carrera: cambios de dirección ← 30 min seguidos dos veces sin reacción y rango D = I · pliometría ← 2 semanas de cambios de dirección y 10 saltos a una pierna sin dolor · balón ← cuádriceps D ≥90% de la I en el test y pliometría media sin reacción · equipo ← 2 semanas de balón sin reacción.',
-];
-
-/* Progresión real -------------------------------------------------------
-   El calendario (las celdas de la hoja) marca el máximo de cada semana; el nivel
-   real sale del semáforo (js/rodilla-calc.js: Avanzar +1, Mantener =, Retroceder −1).
-   Dos escaleras: la prensa del lunes (reps y escalón de profundidad de la D, que el
-   jueves repiten la sentadilla y la búlgara) y la carrera del miércoles (el domingo
-   repite su nivel). */
-// Prensa: nivel 0 = S1 (x12, escalón 0); cada subida es la novedad de un lunes.
-const PRENSA_NIVELES = [
-  { reps: 12, esc: 0 }, { reps: 10, esc: 0 }, { reps: 10, esc: 1 }, { reps: 10, esc: 2 },
-  { reps: 8, esc: 2 }, { reps: 8, esc: 3 }, { reps: 8, esc: 4 },
-];
-// Carrera (K97): nivel 0 = aún sin entrar (criterios de entrada); N7-N9, después del viaje
-// (el tramo continuo crece como mucho un 50 % por nivel: 12 -> 18 -> 25 -> 30 min).
-const CARRERA_NIVELES = ['', "8×(1'/2')", "6×(2'/1')", "4×(4'/1')", "4×(5'/1')",
-  "3×(8'/1')", "2×(12'/1')", "18' seguidos", "25' seguidos", "30' seguidos"];
-// Máximo del calendario por semana (índice = semana 1–8), según las celdas D10–J10 y D97–J97.
-const PRENSA_MAX = [null, 0, 1, 2, 3, 4, 5, 6, 6];
-const CARRERA_MAX = [null, 0, 1, 2, 3, 4, 5, 6, 6];
 
 const PLANS = [
   { id: 'jul', name: '4 semanas', range: '20 jul – 16 ago', from: '2026-07-20', to: '2026-08-16',
     weeks: WEEKS, rules: RULES, rulesTitle: 'Reglas de rodilla',
     sheetNote: 'Rehab FIJA las 4 semanas. Techo en MAV2: nada de MRV antes de la fiesta.' },
-  { id: 'vol', name: 'Volumen 8 semanas', range: '19 oct – 13 dic', from: '2026-10-19', to: '2026-12-13',
+  { id: 'vol', name: `Volumen ${VOL_WEEKS.length} semanas`,
+    range: `${rangoCorto(VOL_WEEKS[0].from)} – ${rangoCorto(VOL_WEEKS[VOL_WEEKS.length - 1].to)}`,
+    from: VOL_WEEKS[0].from, to: VOL_WEEKS[VOL_WEEKS.length - 1].to,
     weeks: VOL_WEEKS, rules: VOL_RULES, rulesTitle: 'Reglas',
     notes: VOL_NOTES, notesTitle: 'Semanas 9–10' },
 ];
@@ -509,10 +488,6 @@ function planFor(dateStr) {
   return PLANS.find((p) => dateStr <= p.to) || PLANS[PLANS.length - 1];
 }
 
-/* Días de la semana (0 = domingo) en que cae una sesión. En S1 del plan de volumen
-   el domingo repite la sesión del sábado (dows); desde S2 el sábado es solo sábado y
-   el domingo es la carrera (VOL-D, fromWeek: 2). */
-const sessionDows = (s, week) => (week.plan === 'vol' && week.n === 1 && s.dows) || [s.dow];
 
 /* Sesiones de la semana, en el orden del plan. */
 function sessionsFor(week) {
@@ -527,7 +502,9 @@ function sessionFor(dateStr) {
   if (!week) return { week: null, options: [] };
   const dow = dowOf(dateStr);
   if (week.plan === 'vol') {
-    const day = sessionsFor(week).find((d) => sessionDows(d, week).includes(dow));
+    const sesiones = sessionsFor(week);
+    // Un domingo sin sesión propia esa semana repite la del sábado (así era S1).
+    const day = sesiones.find((d) => d.dow === dow) || (dow === 0 ? sesiones.find((d) => d.dow === 6) : undefined);
     return { week, options: [day] };
   }
   if (week.block === 'A') {
@@ -550,12 +527,8 @@ function presFor(exercise, week) {
    de volumen: S1 ya está hecha y se ve como siempre. */
 const sidesFor = (exercise, week) => !!exercise.sides && week.plan === 'vol' && week.n >= 2;
 
-/* Grupos de la tabla «series por grupo» de la hoja Volumen (filas 71–83). */
-const VOL_GRUPOS = ['Espalda', 'Pecho', 'Hombro lat.', 'Hombro post.', 'Bíceps', 'Tríceps',
-  'Isquios', 'Abs', 'Gemelos', 'Aductores'];
-
 /* Series de hipertrofia de la semana n (1–8) por grupo, como la fórmula del Excel
-   (=SUM((B="grupo")*IFERROR(VALUE(LEFT(C, FIND(" ", C&" ")-1)),0))): el entero inicial
+   (suma de IFERROR(VALUE(LEFT(C, FIND(" ", C&" ")-1)),0) de cada fila del grupo): el entero inicial
    de la celda, hasta el primer espacio, de los ejercicios cuyo objetivo es exactamente
    el grupo. Cardio, rehab, test y correctivos no cuentan. Devuelve { grupo: n, …, TOTAL }. */
 function seriesPorGrupo(n) {
@@ -576,5 +549,6 @@ const PLAN = {
   VOL_HITOS, VOL_HITOS_NOTE, VOL_BLOCK_RULES, VOL_BLOCK_RULES_TITLE, VOL_CARDIO_TITLE, VOL_GRUPOS,
   weekFor, planById, planFor, sessionsFor, sessionFor, presFor, isoDate,
   parsePres, sidesFor, seriesPorGrupo, slug, sessionLabel,
-  PRENSA_NIVELES, CARRERA_NIVELES, PRENSA_MAX, CARRERA_MAX,
+  PRENSA_NIVELES, CARRERA_NIVELES, PRENSA_MAX, CARRERA_MAX, PRENSA_SEMANA, ESCALERAS,
+  LIBRO, etiquetasApp, DIAS_PLAN, NOMBRE_DIA, SEMANA_SEGUIMIENTO,
 };

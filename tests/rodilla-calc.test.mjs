@@ -1,15 +1,12 @@
 /* Prueba de js/rodilla-calc.js y js/rodilla-data.js, sin navegador ni dependencias.
        node tests/rodilla-calc.test.mjs */
-import fs from 'node:fs';
-import path from 'node:path';
 import assert from 'node:assert/strict';
-import { fileURLToPath } from 'node:url';
+import { cargar, leer } from './cargar.mjs';
 
-const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
-const leer = (f) => fs.readFileSync(path.join(root, f), 'utf8');
-const C = new Function(leer('js/rodilla-calc.js') + ';return RodillaCalc;')();
-const DATA = new Function(leer('js/rodilla-data.js') + ';return RODILLA_DATA;')();
-const PLAN = new Function(leer('js/plan.js') + ';return PLAN;')();
+const { RodillaCalc: C, RODILLA_DATA: DATA, PLAN } = cargar(['RodillaCalc', 'RODILLA_DATA', 'PLAN'], { rodilla: true });
+// Ejercicio del plan por su papel en la progresión (y su nombre, si hay varios).
+const ej = (prog, nombre) => Object.values(PLAN.BLOCK_VOL).flatMap((s) => s.exercises)
+  .find((x) => x.prog === prog && (!nombre || x.name.startsWith(nombre)));
 
 let fallos = 0;
 const test = (name, fn) => {
@@ -132,7 +129,7 @@ test('resumenSemana: media con redondeo, peor, mañanas, a retroceder y chasquid
 });
 
 test('avisoS4: pendiente hasta el 15/11 y con menos de 5 mañanas; umbral de 0,5', () => {
-  const s = (media, mananas = 5) => ({ media, mananas });
+  const s = (media, mananas = 5) => ({ media, mananas, ultimo: '2026-11-15' });   // ultimo = cierre de S4
   assert.equal(C.avisoS4(s(2), s(5), '2026-11-14').nivel, 'pendiente');
   assert.equal(C.avisoS4(s(2), s(5), '2026-11-14').texto, 'Pendiente: se calcula al cerrar S4 (domingo 15/11)');
   assert.equal(C.avisoS4(s(2, 4), s(5), '2026-11-15').nivel, 'pendiente');
@@ -219,9 +216,9 @@ test('progresión: sin entrada no se corre esa semana y se repite el miércoles 
   const p = progresar(S2_BIEN, '2026-11-04', { entry: { S2: { ...ENTRADA.S2, hopsPain: 'No' } } });
   assert.equal(p.semanas.S2.carrera.nivel, 0);
   assert.equal(p.semanas.S2.domingo.nivel, 0);
-  assert.equal(C.prescripcion('carrera-domingo', p.semanas.S2, PLAN).label, 'No se corre\n(como mucho, un paseo)');
+  assert.equal(C.prescripcion(ej('carrera:domingo'), p.semanas.S2, PLAN, 2).label, 'No se corre\n(como mucho, un paseo)');
   assert.ok(p.semanas.S3.carrera.entrada, 'en S3 vuelven los criterios');
-  assert.match(C.prescripcion('carrera', p.semanas.S3, PLAN).label, /^Criterios de entrada/);
+  assert.match(C.prescripcion(ej('carrera'), p.semanas.S3, PLAN, 3).label, /^Criterios de entrada/);
 });
 
 // S3: lunes en verde; miércoles N2 en verde a 24 h; jueves cumple pero el viernes peor.
@@ -344,13 +341,14 @@ test('progresión: nunca pasa del máximo del calendario y deja de calcularse m�
 
 test('prescripción: etiquetas de prensa, sentadilla, búlgara, touchdown y carrera', () => {
   const s3 = progresar(S2_BIEN, '2026-11-02').semanas.S3;
-  assert.equal(C.prescripcion('prensa', s3, PLAN).label, '2 x10/pierna\nescalón 1 · nov: +1 escalón');
-  assert.equal(C.prescripcion('touchdown', s3, PLAN).label, '2 x10-15/pierna\nescalón 0');
-  assert.equal(C.prescripcion('sentadilla', s3, PLAN).label, '3 x10\nescalón 1 (prof. del lunes)');
-  assert.equal(C.prescripcion('bulgara', s3, PLAN).sets, 2);
-  assert.equal(C.prescripcion('carrera', s3, PLAN).label, "N2 · 6×(2'/1')\nnivel nuevo");
-  assert.equal(C.prescripcion('carrera-domingo', s3, PLAN).label, "N2 · 6×(2'/1')\nrepite el miércoles");
-  assert.equal(C.prescripcion('otro', s3, PLAN), null);
+  const P = (prog, nombre) => C.prescripcion(ej(prog, nombre), s3, PLAN, 3);
+  assert.equal(P('prensa').label, '2 x10/pierna\nescalón 1 · nov: +1 escalón');
+  assert.equal(P('prensa:anterior').label, '2 x10-15/pierna\nescalón 0');
+  assert.equal(P('prensa:sigue', 'Sentadilla').label, '3 x10\nescalón 1 (prof. del lunes)');
+  assert.deepEqual([P('prensa:sigue', 'Bulgarian').sets, P('prensa:sigue', 'Bulgarian').reps], [2, 10]);
+  assert.equal(P('carrera').label, "N2 · 6×(2'/1')\nnivel nuevo");
+  assert.equal(P('carrera:domingo').label, "N2 · 6×(2'/1')\nrepite el miércoles");
+  assert.equal(C.prescripcion({ prog: 'otro', pres: [] }, s3, PLAN, 3), null);
 });
 
 test('RODILLA_DATA: 63 días del 26/10 al 27/12 con D/E/F del volcado', () => {

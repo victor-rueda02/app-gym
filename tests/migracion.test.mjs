@@ -1,14 +1,11 @@
 /* Prueba de la migración v3 -> v4 de js/store.js, sin navegador: se cargan plan.js
    y store.js con stubs de localStorage e indexedDB.
        node tests/migracion.test.mjs */
-import fs from 'node:fs';
-import path from 'node:path';
 import assert from 'node:assert/strict';
-import { fileURLToPath } from 'node:url';
+import { cargar, leer as leerRaiz } from './cargar.mjs';
 
-const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
-const leer = (f) => fs.readFileSync(path.join(root, 'js', f), 'utf8');
-const PLAN = new Function(leer('plan.js') + ';return PLAN;')();
+const leer = (f) => leerRaiz(`js/${f}`);
+const { PLAN } = cargar(['PLAN']);
 
 let fallos = 0;
 const test = async (name, fn) => {
