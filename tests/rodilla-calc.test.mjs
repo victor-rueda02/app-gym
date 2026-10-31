@@ -186,11 +186,12 @@ test('test de fuerza: Epley, simetría y borde del 90 %', () => {
 /* Progresión real (puntos 5, 6, 7 y 8 de la revisión). */
 const dia = (d, x) => ({ [d]: x });
 // S2 «de libro»: el lunes sin medir (punto 9), mañanas a 2 y entrada superada el miércoles.
+// La pierna 2 de S2 se hizo el viernes 30/10 (el jueves 29/10 fue libre).
 const S2_BIEN = {
   ...dia('2026-10-27', { decline: 2, steps: 2 }),
   ...dia('2026-10-28', { decline: 2, during: 1, back60: 'Sí' }),
-  ...dia('2026-10-29', { decline: 2, during: 2 }),
-  ...dia('2026-10-30', { decline: 2 }), ...dia('2026-10-31', { decline: 2 }),
+  ...dia('2026-10-29', { decline: 2 }),
+  ...dia('2026-10-30', { decline: 2, during: 2 }), ...dia('2026-10-31', { decline: 2 }),
   ...dia('2026-11-01', { decline: 2, during: 1, back60: 'Sí' }),
   ...dia('2026-11-02', { decline: 2 }),
 };
@@ -198,12 +199,13 @@ const ENTRADA = { S2: { walkPain: 'Sí', walkBack60: 'Sí', tdPain: 'Sí', hopsP
 const progresar = (dias, hoy, extra = {}) => C.progresion(C.tablaDias(DATA.dias, dias), PLAN,
   extra.weeks || {}, extra.entry || ENTRADA, hoy);
 
-test('progresión: S2 bien y entrada superada -> S3 sube según el plan', () => {
+test('progresión: S2 bien y entrada superada -> S3 sube según el plan (la prensa no: lunes festivo, sin escalón)', () => {
   const p = progresar(S2_BIEN, '2026-11-02');
   assert.equal(p.s2.nivel, 'estable');
   assert.deepEqual([p.semanas.S2.prensa.nivel, p.semanas.S2.carrera.nivel, p.semanas.S2.domingo.nivel], [1, 1, 1]);
-  assert.deepEqual([p.semanas.S3.prensa.nivel, p.semanas.S3.carrera.nivel], [2, 2]);
-  assert.match(p.semanas.S3.prensa.motivo, /^Avanzar: S2 estable/);
+  assert.deepEqual([p.semanas.S3.prensa.nivel, p.semanas.S3.carrera.nivel], [1, 2]);
+  assert.match(p.semanas.S3.prensa.motivo, /ya está en el máximo del calendario/);
+  assert.match(p.semanas.S3.carrera.motivo, /^Avanzar: S2 estable/);
 });
 
 test('progresión: alguna mañana de S2 peor -> en S3 no sube nada (punto 6)', () => {
@@ -221,37 +223,39 @@ test('progresión: sin entrada no se corre esa semana y se repite el miércoles 
   assert.match(C.prescripcion(ej('carrera'), p.semanas.S3, PLAN, 3).label, /^Criterios de entrada/);
 });
 
-// S3: lunes en verde; miércoles N2 en verde a 24 h; jueves cumple pero el viernes peor.
-const S3_JUEVES_BIEN_VIERNES_PEOR = {
+// S3 (semana nueva): lunes y viernes (pierna) en verde; miércoles N2, pero el jueves por la
+// mañana peor.
+const S3_JUEVES_PEOR = {
   ...S2_BIEN,
   ...dia('2026-11-02', { decline: 2, during: 2 }),
   ...dia('2026-11-03', { decline: 2 }),
   ...dia('2026-11-04', { decline: 2, during: 1, back60: 'Sí' }),
-  ...dia('2026-11-05', { decline: 2, during: 2 }),
-  ...dia('2026-11-06', { decline: 3 }),
+  ...dia('2026-11-05', { decline: 3 }),
+  ...dia('2026-11-06', { decline: 2, during: 2 }),
   ...dia('2026-11-07', { decline: 2 }), ...dia('2026-11-08', { decline: 2, during: 1, back60: 'Sí' }),
   ...dia('2026-11-09', { decline: 2 }), ...dia('2026-11-10', { decline: 2 }), ...dia('2026-11-11', { decline: 2 }),
 };
 
-test('progresión: jueves bien y viernes peor -> se retrocede la carrera y el escalón se mantiene (punto 5)', () => {
-  const p = progresar(S3_JUEVES_BIEN_VIERNES_PEOR, '2026-11-11');
+test('progresión: jueves peor tras la carrera -> se retrocede la carrera y la prensa sube (sus sesiones, en verde) (punto 5)', () => {
+  const p = progresar(S3_JUEVES_PEOR, '2026-11-11');
   const s4 = p.semanas.S4;
-  assert.equal(s4.prensa.nivel, 2, s4.prensa.motivo);            // mantiene x10 · escalón 1
-  assert.match(s4.prensa.motivo, /^Mantener/);
+  assert.equal(s4.prensa.nivel, 2, s4.prensa.motivo);            // x10 · escalón 1 (S4)
+  assert.match(s4.prensa.motivo, /^Avanzar/);
   assert.equal(s4.carrera.nivel, 1, s4.carrera.motivo);          // N2 -> N1
-  assert.match(s4.carrera.motivo, /^Retroceder: mañana peor tras la sesión del J 05\/11/);
+  assert.match(s4.carrera.motivo, /^Retroceder: mañana peor tras la sesión del X 04\/11/);
   assert.equal(p.brotes.length, 0);
 });
 
 test('progresión: dos sesiones seguidas en Retroceder -> brote y −1 en todo', () => {
   const p = progresar({
-    ...S3_JUEVES_BIEN_VIERNES_PEOR,
+    ...S3_JUEVES_PEOR,
     ...dia('2026-11-04', { decline: 2, during: 3, back60: 'Sí' }),   // miércoles: dolor 3/10 en carrera
-    ...dia('2026-11-05', { decline: 2, during: 4 }),                 // jueves: 4/10 durante
+    ...dia('2026-11-05', { decline: 2 }),
+    ...dia('2026-11-06', { decline: 2, during: 4 }),                 // viernes: 4/10 durante
   }, '2026-11-11');
   assert.equal(p.brotes.length, 1);
   assert.match(p.brotes[0].motivo, /dos sesiones seguidas/);
-  assert.equal(p.semanas.S4.prensa.nivel, 1);
+  assert.equal(p.semanas.S4.prensa.nivel, 0);                        // S3 en x10 · escalón 0: −1
   assert.equal(p.semanas.S4.carrera.nivel, 1);
 });
 
@@ -266,12 +270,13 @@ const semana = (lunes, m, s = {}) => {
   });
   return out;
 };
-const VERDE = { L: 2, X: 1, J: 2, D: 1 };
+const VERDE = { L: 2, X: 1, V: 2, D: 1 };   // días con carga de rodilla desde S3
 
 test('novedad: se compara con la referencia, no con el día anterior (empeoramiento lento)', () => {
   // S3: el martes ya sube a 3 y el miércoles sigue en 3: «igual que ayer», pero peor que la referencia (2).
-  const p = progresar({ ...S2_BIEN, ...semana('2026-11-02', [2, 3, 3], { L: 2 }) }, '2026-11-04');
-  assert.equal(p.semanas.S3.prensa.nivel, 2);                       // el lunes, a 2: hay novedad
+  // Sin sesión de rodilla apuntada el lunes: en S3 no hay escalón y un fallo sin novedad sería brote.
+  const p = progresar({ ...S2_BIEN, ...semana('2026-11-02', [2, 3, 3]) }, '2026-11-04');
+  assert.equal(p.semanas.S3.prensa.nivel, 1);                       // en S3 no hay escalón (lunes festivo)
   assert.equal(p.semanas.S3.carrera.nivel, 1, p.semanas.S3.carrera.motivo);
   assert.match(p.semanas.S3.carrera.motivo, /esa mañana \(3\) peor que la referencia \(2\)/);
 });
@@ -283,15 +288,16 @@ test('atribución: una novedad ya validada no se culpa; sin novedad sin validar 
   const p = progresar(dias, '2026-11-11');
   assert.equal(p.brotes.length, 1);
   assert.match(p.brotes[0].motivo, /sin ninguna novedad sin validar/);
-  assert.deepEqual([p.semanas.S4.prensa.nivel, p.semanas.S4.carrera.nivel], [1, 1]);
+  assert.deepEqual([p.semanas.S4.prensa.nivel, p.semanas.S4.carrera.nivel], [0, 1]);   // −1 en todo
 });
 
 test('bici: no entra el viernes de S4 si S2 o S3 tuvieron sesiones en Retroceder', () => {
-  const dias = { ...S2_BIEN, ...semana('2026-11-02', [2, 2, 2, 2, 3, 2, 2], VERDE), ...semana('2026-11-09', [2, 2, 2, 2, 2]) };
+  // El sábado por la mañana peor: el viernes (pierna) sale en Retroceder.
+  const dias = { ...S2_BIEN, ...semana('2026-11-02', [2, 2, 2, 2, 2, 3, 2], VERDE), ...semana('2026-11-09', [2, 2, 2, 2, 2]) };
   const p = progresar(dias, '2026-11-13');
   assert.equal(p.bici.quitas.length, 1);
   assert.equal(p.bici.quitas[0].desde, '2026-11-13');
-  assert.match(p.bici.quitas[0].motivo, /S2 o S3 tuvieron sesiones en Retroceder \(J 05\/11\)/);
+  assert.match(p.bici.quitas[0].motivo, /S2 o S3 tuvieron sesiones en Retroceder \(V 06\/11\)/);
   assert.ok(C.biciQuitada(p.bici, '2026-11-13'));
 });
 
@@ -342,9 +348,10 @@ test('progresión: nunca pasa del máximo del calendario y deja de calcularse m�
 test('prescripción: etiquetas de prensa, sentadilla, búlgara, touchdown y carrera', () => {
   const s3 = progresar(S2_BIEN, '2026-11-02').semanas.S3;
   const P = (prog, nombre) => C.prescripcion(ej(prog, nombre), s3, PLAN, 3);
-  assert.equal(P('prensa').label, '2 x10/pierna\nescalón 1 · nov: +1 escalón');
+  // S3: lunes 2/11 festivo, en casa y sin escalón; la línea con fecha de la celda se añade.
+  assert.equal(P('prensa').label, '2 x10/pierna\nescalón 0 · mantiene\n2/11: búlgara en casa, escalón 0, sin novedad');
   assert.equal(P('prensa:anterior').label, '2 x10-15/pierna\nescalón 0');
-  assert.equal(P('prensa:sigue', 'Sentadilla').label, '3 x10\nescalón 1 (prof. del lunes)');
+  assert.equal(P('prensa:sigue', 'Sentadilla').label, '3 x10\nescalón 0 (prof. del lunes)');
   assert.deepEqual([P('prensa:sigue', 'Bulgarian').sets, P('prensa:sigue', 'Bulgarian').reps], [2, 10]);
   assert.equal(P('carrera').label, "N2 · 6×(2'/1')\nnivel nuevo");
   assert.equal(P('carrera:domingo').label, "N2 · 6×(2'/1')\nrepite el miércoles");
@@ -360,8 +367,9 @@ test('RODILLA_DATA: 63 días del 26/10 al 27/12 con D/E/F del volcado', () => {
     const f = new Date(d.fecha + 'T12:00:00Z');
     assert.equal(d.dia, letras[f.getUTCDay()], d.fecha);
     assert.equal(d.sem, 'S' + (2 + Math.floor(i / 7)), d.fecha);
-    // Semáforo solo en días con carga de rodilla: martes y viernes, «—».
-    if (d.dia === 'M' || d.dia === 'V') assert.equal(d.regla, N, d.fecha);
+    // Semáforo solo en días con carga de rodilla: martes, jueves y sábado, «—» (semana nueva;
+    // el jueves 29/10 de S2 también: su pierna 2 pasó al viernes).
+    if ('MJS'.includes(d.dia)) assert.equal(d.regla, N, d.fecha);
   });
   assert.deepEqual(DATA.reglas, { gimnasio: G, carrera: R, ninguna: N });
   assert.deepEqual(DATA.entrada.map((e) => e.dia), ['martes', 'miércoles', 'miércoles']);

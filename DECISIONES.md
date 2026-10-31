@@ -331,3 +331,52 @@ Sustituyen a los puntos anteriores donde se contradicen (30, 35, 41 y 42).
     antes con el mismo RIR. `tests/contenido-ui.mjs` buscaba filas por número (hitos
     en la 99, reglas del bloque en la 102-113, notas en la 66-69) y fallaba al insertar
     una fila; ahora las busca por su etiqueta de la columna «App», como la app.
+
+## Semana nueva desde S3 (31/10)
+
+62. **Días que cambian según la semana.** Desde S3: L pierna 1 + hombro + espalda · M push ·
+    X solo carrera · J pull · V pierna 2 (+ test y bici) · S torso en casa con peso libre ·
+    D carrera. La app asignaba cada sesión a un día fijo para las 8 semanas: cambiar solo
+    las letras del Excel habría pintado S1-S2 con el plan nuevo y la exportación habría
+    perdido lo registrado esos días. Por eso (con el visto bueno del usuario) se ha tocado
+    el código: en la columna «App», `S1=X;S2=X` dice el día de esas semanas (en una
+    cabecera, toda la sesión; en una fila, solo esa fila) y dos cabeceras con la misma letra
+    son un mismo día. `tests/contenido.test.mjs` comprueba que S1 y S2 se ven día a día
+    igual que en main del 27/10, salvo lo pedido (el torso de S2 al sábado 31/10 y el
+    test 1 a S3).
+63. **Lo registrado nunca se pierde.** Pantalla, historial y exportación usan la sesión de
+    ese día *con lo registrado*: si un ejercicio apuntado ese día no está en su sesión (p.
+    ej. el torso de S2 apuntado el viernes 30/10), sale al final. Así da igual dónde se
+    apuntara. Un día sin sesión es descanso (el viernes 30/10, en el plan).
+64. **El bloque del sábado conserva su cabecera** («(S) Sábado (cont.)»), en vez de
+    borrarla como prefería el documento (lo permitía como alternativa): sin ella, la app no
+    podría saber que en S1 esas filas iban el sábado y el torso el viernes.
+65. **Sin fórmulas matriciales.** El documento pedía mantener las `ArrayFormula` de la tabla
+    de series, pero `excel_app.py` las sustituye por fórmulas normales (Excel para iPhone
+    las calcula a 0, punto 55). Recalculado con el paquete `formulas` (no hay LibreOffice):
+    los mismos totales por grupo y semana (52 → 88), el mismo desglose de espalda y ningún
+    `#REF!`, `#NAME?` ni `#VALUE!`.
+66. **Test 1 en S3 (viernes 6/11).** El documento partía de un Excel en el que el test 1 ya
+    estaba en S3 (citaba «Test 1 → jue 5/11»), pero en el del repo seguía en S2. Se ha
+    aplicado su intención: en S2 la celda del test queda «—», en S3 lleva el test y la
+    nota lo explica. Las fechas de la tabla del test pasan a 6/11, 20/11, 4/12 y 11/12, y
+    la nota de la sentadilla dice «S3/S5/S7».
+67. **Lunes 2/11 en casa.** Las celdas de S3 del lunes llevan el sustituto en una segunda
+    línea («2/11: con goma»): `parsePres` acepta ahora líneas de aclaración tras
+    «N @ RIR…» (era un formato nuevo y necesitaba código), y en la prensa, cuya etiqueta
+    calcula la app, se añade la línea con fecha de la celda. Se ha mantenido «/pierna» en
+    la abducción y la prensa, aunque el documento lo omitía: quitarlo habría cambiado el
+    registro por pierna. Los escalones pasan a S4, S6, S7 y S8. El 4.º escalón «solo si
+    S6-S7 cumplieron» lo aplica la regla de siempre: se sube si la semana anterior salió en
+    verde. La app no mira S6 por separado (eso necesitaría código).
+68. **Notas.** Además de lo pedido: la regla de gimnasio («lunes y viernes») y el ejemplo de
+    «Retroceso y brote». Su ejemplo («jueves bien y viernes peor → se retrocede la
+    carrera») ya no vale porque el jueves no hay pierna, y pasa a ser el de la bici de S4. El
+    ajuste del 31/10 sustituye la nota de S2 = semana de referencia (A110). La app sigue
+    aplicando esa regla (si alguna mañana de S2 sale peor, en S3 no sube nada) aunque la
+    hoja ya no la explique.
+69. **Escaleras desde la semana nueva.** Los días de cada escalera (prensa: lunes y viernes)
+    salen del plan de S3 en adelante. En S2 la pierna 2 iba el jueves (se hizo el viernes
+    30/10), pero los fallos de S2 no se atribuyen a ninguna escalera (manda su aviso), así
+    que no cambia ninguna decisión. En el seguimiento, el jueves 29/10 queda sin regla y el
+    viernes 30/10, con la de gimnasio.

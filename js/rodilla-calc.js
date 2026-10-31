@@ -523,8 +523,17 @@ const RodillaCalc = (() => {
 
   /* Prescripción del día (semana n) para un ejercicio con progresión (`prog` en js/plan.js,
      sale de la columna «App» del Excel), a partir de la semana calculada por `progresion`.
-     Devuelve { sets, reps, kind, label, mins } o null si no hay datos de esa semana. */
+     Devuelve { sets, reps, kind, label, mins } o null si no hay datos de esa semana.
+     Las líneas con fecha de la celda de esa semana («2/11: búlgara en casa…») se añaden al
+     final: son ajustes de ese día que el nivel calculado no dice. */
   function prescripcion(exercise, semana, plan, n) {
+    const p = prescripcionNivel(exercise, semana, plan, n);
+    const celda = p && exercise.pres[n - 1];
+    const fechadas = celda ? celda.label.split('\n').filter((l) => /^\d{1,2}\/\d{1,2}: /.test(l)) : [];
+    return fechadas.length ? { ...p, label: [p.label, ...fechadas].join('\n') } : p;
+  }
+
+  function prescripcionNivel(exercise, semana, plan, n) {
     if (!semana || !exercise) return null;
     const P = plan.PRENSA_NIVELES;
     const N = plan.CARRERA_NIVELES;

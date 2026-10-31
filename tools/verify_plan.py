@@ -100,6 +100,8 @@ def main():
             if not s:
                 errors.append(f"A{r}: la sesión {sesion} no está en la app")
                 continue
+            if sesion in vistos:   # otra cabecera del mismo día: sus filas siguen a las de la primera
+                continue
             check(f"A{r} (día)", m.group(2).strip(), s["name"])
             check(f"A{r} (título)", (m.group(3) or "").strip(), s["title"])
             vistos[sesion] = 0

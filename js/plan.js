@@ -43,8 +43,9 @@ function parsePres(text, target = '') {
   if (text === '-') p = none();
   else if (text === '—') p = { ...none(), skip: true };
   else if (target === 'Cardio') p = cardioTexto(text);
-  else if ((m = text.match(/^(\d+) @ RIR1\/0$/))) p = rir10(+m[1]);
-  else if ((m = text.match(/^(\d+) @ RIR(\d)$/))) p = rir(+m[1], +m[2]);
+  // "N @ RIR1/0" y "N @ RIRk", con líneas de aclaración opcionales (p. ej. "2/11: con goma").
+  else if ((m = text.match(/^(\d+) @ RIR1\/0(?:\n[\s\S]*)?$/))) p = rir10(+m[1]);
+  else if ((m = text.match(/^(\d+) @ RIR(\d)(?:\n[\s\S]*)?$/))) p = rir(+m[1], +m[2]);
   else if ((m = text.match(/^(\d+) x(\d+)$/))) p = fix(+m[1], +m[2]);
   else if ((m = text.match(/^(\d+) x(\d+–\d+)$/))) p = fix(+m[1], m[2]);
   // "N x R" o "N-M x R" (R entero o rango con - o –), "/pierna" opcional y líneas de
@@ -228,7 +229,10 @@ const RULES = [
      escalera=carrera:domingo repite el nivel de la carrera de esa semana
      bici                     la bici: se quita y vuelve según el semáforo
      sesion=X[;titulo=…]      (bloque de cardio) a qué sesión va la fila, como último ejercicio
+     S1=X;S2=X                día de esa semana, si no es el de la cabecera (en una cabecera,
+                              toda la sesión; en un ejercicio, solo esa fila)
      cardio · hitos · regla · nota · grupos · reglas-bloque · desglose=…   filas de texto/tablas
+   Dos cabeceras con la misma letra son un mismo día (sus filas, seguidas).
    El sábado de S1 y el domingo sin sesión: si un domingo no tiene sesión esa semana,
    repite la del sábado (así era S1). */
 const LIBRO = LectorXlsx.leer(originalXlsxBytes());
@@ -251,13 +255,24 @@ function etiquetasApp(valor) {
 
 const ultimaFila = (hoja) => Math.max(...Object.keys(hoja).map((ref) => +ref.replace(/^[A-Z]+/, '')));
 
+/* «S1=X;S2=X» -> { 1: 'X', 2: 'X' } (días que cambian según la semana). */
+function diasPorSemana(e, donde) {
+  const out = {};
+  for (const [k, letra] of Object.entries(e)) {
+    if (!/^S\d+$/.test(k)) continue;
+    if (!(letra in DOW)) throw new Error(`Volumen!${donde}: «${k}=${letra}» no es un día (L M X J V S D)`);
+    out[+k.slice(1)] = letra;
+  }
+  return out;
+}
+
 function construirVolumen(hoja) {
   const v = (ref) => (hoja[ref] === undefined ? '' : hoja[ref]);
   const t = (ref) => String(v(ref));
   const app = (r) => etiquetasApp(v(`L${r}`));
   const max = ultimaFila(hoja);
   const vol = {
-    sesiones: {}, rules: [], notes: [], hitos: [], hitosNote: '', blockRules: [], blockRulesTitle: '',
+    cabeceras: [], cardio: [], rules: [], notes: [], hitos: [], hitosNote: '', blockRules: [], blockRulesTitle: '',
     cardioTitle: '', grupos: [],
   };
 
@@ -280,23 +295,18 @@ function construirVolumen(hoja) {
     if (e.sesion === true) {
       const m = /^\(([LMXJVSD])\)\s*([^·]+?)\s*(?:·\s*([\s\S]*))?$/.exec(a);
       if (!m) throw new Error(`Volumen!A${r}: cabecera de sesión sin el formato «(L) Lunes · título»`);
-      sesion = { id: `VOL-${m[1]}`, dow: DOW[m[1]], name: m[2].trim(), title: (m[3] || '').trim(), exercises: [] };
-      if (e.nombreS1) sesion.byWeek = { 1: { name: e.nombreS1, title: '' } };
-      vol.sesiones[m[1]] = sesion;
+      sesion = { letra: m[1], title: (m[3] || '').trim(), dias: diasPorSemana(e, `L${r}`), nombreS1: e.nombreS1, filas: [] };
+      vol.cabeceras.push(sesion);
       continue;
     }
     if (!a) { sesion = null; continue; }
     // Dentro de una sesión: la cabecera de la tabla y los ejercicios (con objetivo en B). Una
     // fila sin objetivo (p. ej. un texto pegado a la tabla) cierra la sesión.
     if (sesion && a === 'Ejercicio') continue;
-    if (sesion && t(`B${r}`)) { sesion.exercises.push(ejercicio(r, a, t(`B${r}`), e)); continue; }
+    if (sesion && t(`B${r}`)) { sesion.filas.push({ x: ejercicio(r, a, t(`B${r}`), e), dias: diasPorSemana(e, `L${r}`) }); continue; }
     sesion = null;
     if (typeof e.sesion === 'string') {   // bloque de cardio y carrera
-      const letra = e.sesion;
-      if (!vol.sesiones[letra]) {
-        vol.sesiones[letra] = { id: `VOL-${letra}`, dow: DOW[letra], name: NOMBRE_DIA[letra], title: e.titulo || '', exercises: [] };
-      }
-      vol.sesiones[letra].exercises.push(ejercicio(r, t(`B${r}`).trim(), 'Cardio', e));
+      vol.cardio.push({ letra: e.sesion, titulo: e.titulo || '', x: ejercicio(r, t(`B${r}`).trim(), 'Cardio', e) });
     }
     if (e.regla) vol.rules.push(a);
     if (e.nota) vol.notes.push(a);
@@ -311,17 +321,67 @@ function construirVolumen(hoja) {
     }
   }
 
-  // Orden de la semana y sesiones que solo existen desde una semana (el domingo de carrera).
-  const ordenadas = {};
-  DIAS_PLAN.split('').filter((l) => vol.sesiones[l]).forEach((l) => { ordenadas[l] = vol.sesiones[l]; });
-  for (const s of Object.values(ordenadas)) {
+  // Sesiones sin cambios de día por semana (las de S3 en adelante) y sesiones que solo
+  // existen desde una semana (el domingo de carrera).
+  vol.sesiones = sesionesDeSemana(vol, null);
+  for (const s of Object.values(vol.sesiones)) {
     if (s.exercises.every((x) => x.target === 'Cardio')) {
       const desde = s.exercises.map((x) => x.pres.findIndex((p) => !p.skip)).filter((i) => i >= 0);
       if (desde.length && Math.min(...desde) > 0) s.fromWeek = Math.min(...desde) + 1;
     }
   }
-  vol.sesiones = ordenadas;
   return vol;
+}
+
+/* Sesiones de la semana n, por día: cada cabecera va al día de esa semana («S1=X») o al
+   de su letra, y una fila con su propio «Sn=…» va ese día detrás de las filas de la primera
+   cabecera de ese día. El cardio va al final de su día. Título: el de la primera cabecera
+   con ejercicios ese día (si no hay, el de la cabecera de ese día o el de la fila de cardio).
+   Con n = null no se aplica ningún cambio por semana ni se quita nada. Con n, se quita el
+   día que se queda sin ejercicios o solo con cardio que esa semana no se hace («—»). */
+function sesionesDeSemana(vol, n) {
+  const diaDe = (dias, letra) => (n && dias[n]) || letra;
+  const out = {};
+  const dia = (letra) => {
+    if (!out[letra]) out[letra] = { id: `VOL-${letra}`, dow: DOW[letra], name: NOMBRE_DIA[letra], title: '', exercises: [], conFilas: false };
+    return out[letra];
+  };
+  const movidas = {};   // filas que esa semana van a otro día que el de su cabecera
+  vol.cabeceras.forEach((c) => c.filas.forEach((f) => {
+    const letra = diaDe(f.dias, diaDe(c.dias, c.letra));
+    if (letra !== diaDe(c.dias, c.letra)) (movidas[letra] = movidas[letra] || []).push(f.x);
+  }));
+  for (const c of vol.cabeceras) {
+    const letra = diaDe(c.dias, c.letra);
+    const s = dia(letra);
+    const propias = c.filas.filter((f) => diaDe(f.dias, letra) === letra).map((f) => f.x);
+    if (!s.title && (propias.length || letra === c.letra)) s.title = c.title;
+    if (propias.length && !s.conFilas) {
+      s.title = c.title;
+      s.exercises.push(...propias, ...(movidas[letra] || []));
+      s.conFilas = true;
+    } else {
+      s.exercises.push(...propias);
+    }
+    if (c.nombreS1) s.byWeek = { 1: { name: c.nombreS1, title: '' } };
+  }
+  for (const [letra, xs] of Object.entries(movidas)) {
+    if (!dia(letra).conFilas) dia(letra).exercises.push(...xs);
+  }
+  for (const c of vol.cardio) {
+    const s = dia(c.letra);
+    if (!s.title) s.title = c.titulo;
+    s.exercises.push(c.x);
+  }
+  const ordenadas = {};
+  for (const letra of DIAS_PLAN) {
+    const s = out[letra];
+    if (!s) continue;
+    delete s.conFilas;
+    if (n && (!s.exercises.length || s.exercises.every((x) => x.target === 'Cardio' && x.pres[n - 1].skip))) continue;
+    ordenadas[letra] = s;
+  }
+  return ordenadas;
 }
 
 /* Escaleras de progresión, sacadas de las celdas del calendario:
@@ -449,6 +509,7 @@ const SEMANAS = construirSemanas(LIBRO['Seguimiento rodilla']);
 const VOL_WEEKS = SEMANAS.semanas;
 const SEMANA_SEGUIMIENTO = SEMANAS.seguimiento;   // primera semana con seguimiento (S2): la de referencia
 const { PRENSA_NIVELES, PRENSA_MAX, PRENSA_SEMANA, CARRERA_NIVELES, CARRERA_MAX, ESCALERAS } = construirEscaleras(BLOCK_VOL, SEMANA_SEGUIMIENTO);
+const SESIONES_SEMANA = VOL_WEEKS.map((w) => sesionesDeSemana(VOLUMEN, w.n));   // las sesiones de cada semana, por día
 const rangoCorto = (iso) => {
   const d = new Date(`${iso}T12:00:00Z`);
   return `${d.getUTCDate()} ${['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'][d.getUTCMonth()]}`;
@@ -491,7 +552,7 @@ function planFor(dateStr) {
 
 /* Sesiones de la semana, en el orden del plan. */
 function sessionsFor(week) {
-  if (week.plan === 'vol') return Object.values(BLOCK_VOL).filter((s) => !s.fromWeek || week.n >= s.fromWeek);
+  if (week.plan === 'vol') return Object.values(SESIONES_SEMANA[week.n - 1]);
   return Object.values(week.block === 'A' ? BLOCK_A : BLOCK_B);
 }
 
@@ -512,6 +573,25 @@ function sessionFor(dateStr) {
     return { week, options: [day] };
   }
   return { week, options: [BLOCK_B[1], BLOCK_B[2], BLOCK_B[3]] };
+}
+
+/* Plan de volumen: la sesión de un día con lo que ya se registró ese día. Es la prevista y,
+   al final, cada ejercicio registrado que no esté en ella (p. ej. una sesión hecha otro día),
+   para que ni la pantalla ni la exportación pierdan nada. Sin sesión prevista ni registros,
+   descanso. `entries` = Store.day(fecha).entries. */
+function sesionDelDia(dateStr, entries) {
+  const { week, options } = sessionFor(dateStr);
+  if (!week || week.plan !== 'vol') return null;
+  const prevista = options[0];
+  const ids = new Set(prevista ? prevista.exercises.map((x) => x.id) : []);
+  const todos = [...sessionsFor(week), ...Object.values(BLOCK_VOL)].flatMap((s) => s.exercises);
+  const extra = Object.keys(entries || {}).filter((id) => entries[id].length && !ids.has(id))
+    .map((id) => todos.find((x) => x.id === id)).filter(Boolean);
+  if (!extra.length && prevista) return prevista;
+  const letra = DIAS_PLAN.split('').find((l) => DOW[l] === dowOf(dateStr));
+  const base = prevista || { id: `VOL-${letra}`, dow: DOW[letra], name: NOMBRE_DIA[letra], title: '', exercises: [] };
+  if (!extra.length) return { ...base, title: 'Descanso', rest: true };
+  return { ...base, exercises: [...base.exercises, ...extra] };
 }
 
 /* Nombre y título de una sesión esa semana (el sábado de S1 conserva los de entonces). */
@@ -547,7 +627,7 @@ function seriesPorGrupo(n) {
 const PLAN = {
   WEEKS, BLOCK_A, BLOCK_B, RULES, VOL_WEEKS, BLOCK_VOL, VOL_RULES, VOL_NOTES, PLANS,
   VOL_HITOS, VOL_HITOS_NOTE, VOL_BLOCK_RULES, VOL_BLOCK_RULES_TITLE, VOL_CARDIO_TITLE, VOL_GRUPOS,
-  weekFor, planById, planFor, sessionsFor, sessionFor, presFor, isoDate,
+  weekFor, planById, planFor, sessionsFor, sessionFor, sesionDelDia, presFor, isoDate,
   parsePres, sidesFor, seriesPorGrupo, slug, sessionLabel,
   PRENSA_NIVELES, CARRERA_NIVELES, PRENSA_MAX, CARRERA_MAX, PRENSA_SEMANA, ESCALERAS,
   LIBRO, etiquetasApp, DIAS_PLAN, NOMBRE_DIA, SEMANA_SEGUIMIENTO,

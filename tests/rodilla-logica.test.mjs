@@ -50,12 +50,13 @@ for (const [nombre, o, esperado] of CASOS) {
 }
 
 test('semáforo en la tabla: 24/48 h de las mañanas siguientes; las dos últimas filas sin 48 h', () => {
+  // El viernes 25/12 (S10) es la vuelta de la pierna 2; sus 24 y 48 h, el sábado y el domingo.
   const t = C.tablaDias(D.dias, {
-    '2026-12-24': { decline: 2, during: 1 }, '2026-12-25': { decline: 2 },
+    '2026-12-25': { decline: 2, during: 1 },
     '2026-12-26': { decline: 2 }, '2026-12-27': { decline: 2, during: 1, back60: 'Sí' },
   });
   const f = (d) => t.find((x) => x.fecha === d);
-  eq([f('2026-12-24').h24, f('2026-12-24').h48, f('2026-12-24').semaforo], [2, 2, 'Avanzar']);
+  eq([f('2026-12-25').h24, f('2026-12-25').h48, f('2026-12-25').semaforo], [2, 2, 'Avanzar']);
   eq([f('2026-12-27').h24, f('2026-12-27').semaforo], ['', 'pendiente']);
 });
 

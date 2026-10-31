@@ -22,14 +22,21 @@ const test = (name, fn) => {
 };
 
 /* Esperado, desde el volcado: cada cabecera «sesion» con sus filas de ejercicio (las que
-   tienen «id=»), y las filas de cardio («sesion=X») al final de su sesión. */
+   tienen «id=»; dos cabeceras con la misma letra, seguidas), y las filas de cardio
+   («sesion=X») al final de su sesión. `cab` = fila de la cabecera de cada ejercicio. */
 const esperado = {};
 let actual = null;
+let cab = null;
 for (let r = 1; r <= MAX; r++) {
   const e = app(r);
-  if (e.sesion === true) { actual = /^\(([LMXJVSD])\)/.exec(cell('A', r))[1]; esperado[actual] = []; continue; }
+  if (e.sesion === true) {
+    actual = /^\(([LMXJVSD])\)/.exec(cell('A', r))[1];
+    esperado[actual] = esperado[actual] || [];
+    cab = r;
+    continue;
+  }
   if (e.id && typeof e.sesion !== 'string' && actual) {
-    esperado[actual].push({ r, name: cell('A', r).trim(), target: cell('B', r), id: e.id });
+    esperado[actual].push({ r, cab, name: cell('A', r).trim(), target: cell('B', r), id: e.id });
   } else if (typeof e.sesion === 'string') {
     (esperado[e.sesion] = esperado[e.sesion] || []).push({ r, name: cell('B', r).trim(), target: 'Cardio', id: e.id });
   }
@@ -50,12 +57,30 @@ test('sesiones y ejercicios: nombre, objetivo, id, celdas S1-S8 y notas, en el o
   }
 });
 
-test('cabeceras: nombre y título tras «(L) »; nombre de S1 desde «nombreS1»', () => {
+test('cabeceras: nombre y título tras «(L) » (de la primera de cada día); nombre de S1 desde «nombreS1»', () => {
+  const vistas = new Set();
   for (const r of filas((e) => e.sesion === true)) {
     const [, l, nombre, titulo] = /^\(([LMXJVSD])\)\s*([^·]+?)\s*(?:·\s*([\s\S]*))?$/.exec(cell('A', r));
     const s = PLAN.BLOCK_VOL[l];
-    assert.deepEqual([s.name, s.title], [nombre.trim(), (titulo || '').trim()], `A${r}`);
+    if (!vistas.has(l)) assert.deepEqual([s.name, s.title], [nombre.trim(), (titulo || '').trim()], `A${r}`);
+    vistas.add(l);
     if (app(r).nombreS1) assert.equal(PLAN.sessionLabel(s, PLAN.VOL_WEEKS[0]).name, app(r).nombreS1);
+  }
+});
+
+test('días por semana: cada ejercicio va, cada semana, al día de su «Sn=» (fila o cabecera) o al de su cabecera', () => {
+  const DOW = { L: 1, M: 2, X: 3, J: 4, V: 5, S: 6, D: 0 };
+  for (const w of PLAN.VOL_WEEKS) {
+    const sesiones = PLAN.sessionsFor(w);
+    const enApp = sesiones.flatMap((s) => s.exercises.map((x) => `${s.dow}:${x.id}`)).sort();
+    const previstos = Object.entries(esperado).flatMap(([l, fs]) => fs.map((f) => {
+      const dia = f.cab ? (app(f.r)[`S${w.n}`] || app(f.cab)[`S${w.n}`] || l) : l;
+      return { dia, f };
+    }))
+      // un día que esa semana solo tiene cardio que no se hace («—») no es sesión
+      .filter(({ dia }) => sesiones.some((s) => s.dow === DOW[dia]))
+      .map(({ dia, f }) => `${DOW[dia]}:${f.id}`).sort();
+    assert.deepEqual(enApp, previstos, `S${w.n}`);
   }
 });
 

@@ -65,9 +65,11 @@ await test('los ids nuevos existen en el plan y los antiguos ya no', async () =>
   const { Store, guardado } = cargarStore(clon(V3));
   await Store.init();
   const d = guardado();
-  const ids = (sid) => Object.values(PLAN.BLOCK_VOL).find((x) => x.id === sid).exercises.map((e) => e.id);
+  // La sesión de ese día de S1 (los días de las sesiones cambian desde S3).
   for (const [dia, sid] of [['2026-10-19', 'VOL-L'], ['2026-10-22', 'VOL-J'], ['2026-10-24', 'VOL-S'], ['2026-10-23', 'VOL-V']]) {
-    for (const k of Object.keys(d.days[dia].entries)) assert.ok(ids(sid).includes(k), `${sid}: ${k}`);
+    const sesion = PLAN.sessionFor(dia).options[0];
+    assert.equal(sesion.id, sid, dia);
+    for (const k of Object.keys(d.days[dia].entries)) assert.ok(sesion.exercises.some((e) => e.id === k), `${sid}: ${k}`);
   }
 });
 

@@ -106,8 +106,10 @@ check('Las fechas fuera de plan no se exportan', !rows.some((r) => r[0] === '202
 const lunes = rows.find((r) => r[0] === '2026-10-19' && r[4] === 'Elev laterales polea');
 check('Fila del plan nuevo: semana, bloque, sesión y prescripción',
   lunes && lunes[1] === 'Sem 1' && lunes[2] === 'Volumen'
-  && lunes[3] === 'Lunes · Rehab + Isquios + Hombro + Gemelo' && lunes[13] === '2 @ RIR1/0',
+  && lunes[3] === 'Lunes · Rehab + Isquios + Hombro + Gemelo + Espalda (desde S3)' && lunes[13] === '2 @ RIR1/0',
   JSON.stringify(lunes));
+// El jueves 10/12 ya no es día de pierna (desde S3 va el viernes): lo registrado ese día se
+// exporta igual, al final de la sesión del día.
 const squat = rows.find((r) => r[0] === '2026-12-10' && r[4].startsWith('Sentadilla al cajón'));
 check('Semana 8: sentadilla al cajón, prescripción con salto de línea intacta',
   squat && squat[1] === 'Sem 8' && squat[13] === '3 x8\nrepite S7',

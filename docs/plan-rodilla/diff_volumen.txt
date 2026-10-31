@@ -1,15 +1,21 @@
 A2
   antes: 'RIR1/0 = todas las series a RIR1 y la ÚLTIMA a RIR0 (si solo hay 1 serie, RIR0).  Rehab (Rebuilding Milo): ×12 sem 1 → ×10 sem 2-4 → ×8 sem 5-8 → ×6 tras el viaje; peso con el que la última serie quede cerca del fallo sin perder tempo 3-1-3 ni profundidad, dolor ≤3/10; sube peso solo si el test de 24 h está igual o mejor.'
-  ahora: 'RIR1/0 = todas las series a RIR1 y la ÚLTIMA a RIR0 (si solo hay 1 serie, RIR0).  REHAB RODILLA S2-S8 en 2 días: lunes (touchdown + prensa) y jueves (sentadilla + búlgara), pesado y lento, tempo 3-1-3; D a RIR 2 y en su escalón de profundidad, I a RIR 1-2 y rango completo. Reps: ×12 S1 → ×10 S2-4 → ×8 S5-8 → ×6 tras el viaje. Una novedad por día (lunes profundidad/reps · miércoles carrera), solo si esa mañana estás igual o mejor. El calendario marca el máximo de cada semana: se progresa según el semáforo (Avanzar / Mantener / Retroceder) y la app prescribe con el nivel real. Reglas al final de la hoja; registro diario en «Seguimiento rodilla».'
+  ahora: 'RIR1/0 = todas las series a RIR1 y la ÚLTIMA a RIR0 (si solo hay 1 serie, RIR0).  REHAB RODILLA S2-S8 en 2 días: lunes (touchdown + prensa) y viernes (sentadilla + búlgara), pesado y lento, tempo 3-1-3; D a RIR 2 y en su escalón de profundidad, I a RIR 1-2 y rango completo. Reps: ×12 S1 → ×10 S2-4 → ×8 S5-8 → ×6 tras el viaje. Una novedad por día (lunes profundidad/reps · miércoles carrera), solo si esa mañana estás igual o mejor. El calendario marca el máximo de cada semana: se progresa según el semáforo (Avanzar / Mantener / Retroceder) y la app prescribe con el nivel real. Reglas al final de la hoja; registro diario en «Seguimiento rodilla». Desde S3: L pierna 1 + hombro + espalda · M push · X solo carrera · J pull · V pierna 2 · S torso en casa (peso libre) · D carrera.'
 L2
   antes: None
   ahora: 'regla'
+A4
+  antes: '(L) Lunes  ·  Rehab + Isquios + Hombro + Gemelo'
+  ahora: '(L) Lunes  ·  Rehab + Isquios + Hombro + Gemelo + Espalda (desde S3)'
 L4
   antes: None
   ahora: 'sesion'
 L5
   antes: None
   ahora: 'App (no tocar)'
+E6
+  antes: '2 @ RIR1/0'
+  ahora: '2 @ RIR1/0\n2/11: con goma'
 K6
   antes: 'Prioridad 1 · Polea altura muñeca/muslo en plano escapular (~30° adelante). Intercalar en superserie alterna con Unilateral abduction para dar 3-4 min de descanso al deltoides antes de las mancuernas.'
   ahora: 'Prioridad 1 · Polea altura muñeca/muslo en plano escapular (~30° adelante). Intercalar en superserie alterna con la abducción (máquina) para dar 3-4 min de descanso al deltoides antes de las mancuernas.'
@@ -27,7 +33,7 @@ D7
   ahora: '3 x10-15/pierna\n@RIR1-2'
 E7
   antes: '2 x15–20'
-  ahora: '3 x10-15/pierna\n@RIR1-2'
+  ahora: '3 x10-15/pierna\n@RIR1-2\n2/11: con goma'
 F7
   antes: '2 x15–20'
   ahora: '3 x10-15/pierna\n@RIR1-2'
@@ -90,7 +96,7 @@ D10
   ahora: '2 x10/pierna\nnov: x10'
 E10
   antes: '2 x10'
-  ahora: '2 x10/pierna\nnov: +1 escalón'
+  ahora: '2 x10/pierna\n2/11: búlgara en casa, escalón 0, sin novedad'
 F10
   antes: '2 x10'
   ahora: '2 x10/pierna\nnov: +1 escalón'
@@ -105,70 +111,319 @@ I10
   ahora: '2 x8/pierna\nnov: +1 escalón'
 J10
   antes: '2 x8'
-  ahora: '2 x8/pierna\nrepite S7'
+  ahora: '2 x8/pierna\nnov: +1 escalón (4.º) solo si S6-S7 cumplieron; si no, repite S7'
 K10
   antes: 'fijo · Tempo 3-1-3 · dolor ≤3/10'
-  ahora: 'Pesado y lento para el tendón [EVIDENCIA: Kongsgaard 2009; 1-2 veces/semana para mantenerlo: LÓGICA]. Tempo 3-1-3. D primero: RIR 2 y profundidad de su escalón. I: RIR 1-2, rango completo y mismas reps. Lunes = día de novedad (escalón o reps): solo si esa mañana estás igual o mejor y la touchdown no pasa de 3/10; si no, repite la semana anterior. En la sesión con novedad no cambies nada más (con escalón nuevo, mismo peso).'
+  ahora: 'Pesado y lento para el tendón [EVIDENCIA: Kongsgaard 2009; 1-2 veces/semana para mantenerlo: LÓGICA]. Tempo 3-1-3. D primero: RIR 2 y profundidad de su escalón. I: RIR 1-2, rango completo y mismas reps. Lunes = día de novedad (escalón o reps): solo si esa mañana estás igual o mejor y la touchdown no pasa de 3/10; si no, repite la semana anterior. En la sesión con novedad no cambies nada más (con escalón nuevo, mismo peso). S3 (2/11, festivo): búlgara en casa en el escalón 0, sin novedad; mantiene el estímulo pesado y lento sin cambiar dos cosas a la vez [LÓGICA]. Escalones en S4, S6 y S7; el 4.º en S8 solo si S6-S7 cumplieron (si no, después del viaje) [INCERTIDUMBRE: menos días para asentarlo antes del viaje].'
 L10
   antes: None
   ahora: 'id=prensa-unil-pesado-y-lento-n-1;escalera=prensa'
+E11
+  antes: '4 @ RIR1/0'
+  ahora: '4 @ RIR1/0\n2/11: de pie, 1 pierna, mancuerna'
 L11
   antes: None
   ahora: 'id=gemelos-prensa'
+E12
+  antes: '2 @ RIR1/0'
+  ahora: '2 @ RIR1/0\n2/11: PM rumano con barra (RIR 2)'
 L12
   antes: None
   ahora: 'id=hiperextensiones'
+A13
+  antes: None
+  ahora: 'Dominada neutra dorsal'
+B13
+  antes: None
+  ahora: 'Espalda'
+C13
+  antes: None
+  ahora: '1 @ RIR0'
+D13
+  antes: None
+  ahora: '1 @ RIR0'
+E13
+  antes: None
+  ahora: '1 @ RIR0'
+F13
+  antes: None
+  ahora: '1 @ RIR0'
+G13
+  antes: None
+  ahora: '1 @ RIR0'
+H13
+  antes: None
+  ahora: '2 @ RIR1/0'
+I13
+  antes: None
+  ahora: '2 @ RIR1/0'
+J13
+  antes: None
+  ahora: '2 @ RIR1/0'
+K13
+  antes: None
+  ahora: 'Desde S3 va el lunes, después de la pierna y el hombro (S1: viernes en el gimnasio; S2: sábado 31/10 en casa con peso libre). Si llegas muy cansado al final del lunes, haz la espalda justo después de la prensa y deja gemelos e hiperextensiones para el final [LÓGICA]. Plano sagital (Dorsal Sup.) · Usar STRAPS obligatoriamente para anular fatiga previa de bíceps y proteger codos.'
+L13
+  antes: None
+  ahora: 'id=dominada-neutra-dorsal;S1=V;S2=S'
+A14
+  antes: '(M) Martes  ·  Push'
+  ahora: 'Remo máquina (pecho apoyado 30°)'
+B14
+  antes: None
+  ahora: 'Espalda'
+C14
+  antes: None
+  ahora: '2 @ RIR1/0'
+D14
+  antes: None
+  ahora: '2 @ RIR1/0'
+E14
+  antes: None
+  ahora: '2 @ RIR1/0\n2/11: mancuerna, pecho apoyado'
+F14
+  antes: None
+  ahora: '2 @ RIR1/0'
+G14
+  antes: None
+  ahora: '2 @ RIR1/0'
+H14
+  antes: None
+  ahora: '2 @ RIR1/0'
+I14
+  antes: None
+  ahora: '2 @ RIR1/0'
+J14
+  antes: None
+  ahora: '2 @ RIR1/0'
+K14
+  antes: None
+  ahora: 'Desde S3 va el lunes, después de la pierna y el hombro (S1: viernes en el gimnasio; S2: sábado 31/10 en casa con peso libre). Plano sagital/híbrido (Dorsal Sup.) · Usar STRAPS, codos a ~30° hasta línea del torso.'
 L14
   antes: None
-  ahora: 'sesion'
+  ahora: 'id=remo-maquina-pecho-apoyado-30;S1=V;S2=S'
+A15
+  antes: 'Ejercicio'
+  ahora: 'Aducción unil. polea alta (Pull-in)'
+B15
+  antes: 'Objetivo'
+  ahora: 'Espalda'
+C15
+  antes: 'Sem 1 (series@RIR)'
+  ahora: '2 @ RIR1/0'
+D15
+  antes: 'Sem 2 (series@RIR)'
+  ahora: '2 @ RIR1/0'
+E15
+  antes: 'Sem 3 (series@RIR)'
+  ahora: '2 @ RIR1/0\n2/11: con goma en la barra'
+F15
+  antes: 'Sem 4 (series@RIR)'
+  ahora: '2 @ RIR1/0'
+G15
+  antes: 'Sem 5 (series@RIR)'
+  ahora: '2 @ RIR1/0'
+H15
+  antes: 'Sem 6 (series@RIR)'
+  ahora: '2 @ RIR1/0'
+I15
+  antes: 'Sem 7 (series@RIR)'
+  ahora: '2 @ RIR1/0'
+J15
+  antes: 'Sem 8 (series@RIR)'
+  ahora: '2 @ RIR1/0'
+K15
+  antes: 'Notas'
+  ahora: 'Desde S3 va el lunes, después de la pierna y el hombro (S1: viernes en el gimnasio; S2: sábado 31/10 en casa con peso libre). Prioridad 3 (Dorsal Bajo) · De lado a la polea (con tobillera en muñeca o codo semirrígido) para aislar haz inferior sin usar bíceps ni codo · Sem 1-2 a RIR 1-2.'
 L15
   antes: None
-  ahora: 'App (no tocar)'
-L16
-  antes: None
-  ahora: 'id=press-inclinado-barra-30-40'
+  ahora: 'id=aduccion-unil-polea-alta-pull-in;S1=V;S2=S'
+A16
+  antes: 'Press inclinado barra (30–40°)'
+  ahora: None
+B16
+  antes: 'Pecho'
+  ahora: None
+C16
+  antes: '2 @ RIR1/0'
+  ahora: None
+D16
+  antes: '3 @ RIR1/0'
+  ahora: None
+E16
+  antes: '3 @ RIR1/0'
+  ahora: None
+F16
+  antes: '3 @ RIR1/0'
+  ahora: None
+G16
+  antes: '3 @ RIR1/0'
+  ahora: None
+H16
+  antes: '3 @ RIR1/0'
+  ahora: None
+I16
+  antes: '3 @ RIR1/0'
+  ahora: None
+J16
+  antes: '4 @ RIR1/0'
+  ahora: None
+K16
+  antes: 'Prioridad 4 (Haz clavicular) · Agarre ~1.3x ancho hombros y codos a 45–60° (plano escapular) para proteger hombro y codo.'
+  ahora: None
+A17
+  antes: 'Extensión tríceps unil polea'
+  ahora: '(M) Martes  ·  Push'
+B17
+  antes: 'Tríceps'
+  ahora: None
+C17
+  antes: '2 @ RIR1/0'
+  ahora: None
+D17
+  antes: '2 @ RIR1/0'
+  ahora: None
+E17
+  antes: '2 @ RIR1/0'
+  ahora: None
+F17
+  antes: '2 @ RIR1/0'
+  ahora: None
+G17
+  antes: '3 @ RIR1/0'
+  ahora: None
+H17
+  antes: '3 @ RIR1/0'
+  ahora: None
+I17
+  antes: '3 @ RIR1/0'
+  ahora: None
+J17
+  antes: '3 @ RIR1/0'
+  ahora: None
+K17
+  antes: 'Prioridad 2 (Tríceps) · Hombro a 0° pegado al costado (máxima palanca de cabeza larga sin estrés articular en codo).'
+  ahora: None
 L17
   antes: None
-  ahora: 'id=extension-triceps-unil-polea'
+  ahora: 'sesion'
+A18
+  antes: 'Contractora (Pec Deck)'
+  ahora: 'Ejercicio'
+B18
+  antes: 'Pecho'
+  ahora: 'Objetivo'
+C18
+  antes: '2 @ RIR1/0'
+  ahora: 'Sem 1 (series@RIR)'
+D18
+  antes: '2 @ RIR1/0'
+  ahora: 'Sem 2 (series@RIR)'
+E18
+  antes: '2 @ RIR1/0'
+  ahora: 'Sem 3 (series@RIR)'
+F18
+  antes: '3 @ RIR1/0'
+  ahora: 'Sem 4 (series@RIR)'
+G18
+  antes: '3 @ RIR1/0'
+  ahora: 'Sem 5 (series@RIR)'
+H18
+  antes: '3 @ RIR1/0'
+  ahora: 'Sem 6 (series@RIR)'
+I18
+  antes: '3 @ RIR1/0'
+  ahora: 'Sem 7 (series@RIR)'
+J18
+  antes: '3 @ RIR1/0'
+  ahora: 'Sem 8 (series@RIR)'
+K18
+  antes: 'Prioridad 4 (Haz clavicular/esternal) · Asiento medio-bajo (manos altura clavícula/esternón sup.) · NO hiperextender húmeros detrás del torso al abrir para no irritar cápsula anterior del hombro.'
+  ahora: 'Notas'
 L18
   antes: None
-  ahora: 'id=contractora-pec-deck'
+  ahora: 'App (no tocar)'
+A19
+  antes: 'Triceps tras nuca unil polea'
+  ahora: 'Press inclinado barra (30–40°)'
+B19
+  antes: 'Tríceps'
+  ahora: 'Pecho'
+C19
+  antes: '1 @ RIR0'
+  ahora: '2 @ RIR1/0'
+D19
+  antes: '1 @ RIR0'
+  ahora: '3 @ RIR1/0'
+E19
+  antes: '2 @ RIR1/0'
+  ahora: '3 @ RIR1/0'
+F19
+  antes: '2 @ RIR1/0'
+  ahora: '3 @ RIR1/0'
+G19
+  antes: '2 @ RIR1/0'
+  ahora: '3 @ RIR1/0'
+H19
+  antes: '2 @ RIR1/0'
+  ahora: '3 @ RIR1/0'
+I19
+  antes: '2 @ RIR1/0'
+  ahora: '3 @ RIR1/0'
+J19
+  antes: '3 @ RIR1/0'
+  ahora: '4 @ RIR1/0'
+K19
+  antes: 'Prioridad 2 (Tríceps en estiramiento) · Dejar que el codo apunte ligeramente hacia fuera (~20-30° plano escapular) para no forzar cápsula del hombro ni tendón olecraniano.'
+  ahora: 'Prioridad 4 (Haz clavicular) · Agarre ~1.3x ancho hombros y codos a 45–60° (plano escapular) para proteger hombro y codo.'
 L19
   antes: None
-  ahora: 'id=triceps-tras-nuca-unil-polea'
+  ahora: 'id=press-inclinado-barra-30-40'
+A20
+  antes: 'Abs colgado (retroversión)'
+  ahora: 'Extensión tríceps unil polea'
+B20
+  antes: 'Abs'
+  ahora: 'Tríceps'
+C20
+  antes: '3 @ RIR1/0'
+  ahora: '2 @ RIR1/0'
 D20
   antes: '3 @ RIR1/0'
-  ahora: '1 @ RIR0'
+  ahora: '2 @ RIR1/0'
 E20
   antes: '3 @ RIR1/0'
-  ahora: '1 @ RIR0'
+  ahora: '2 @ RIR1/0'
 F20
   antes: '3 @ RIR1/0'
-  ahora: '1 @ RIR0'
+  ahora: '2 @ RIR1/0'
 G20
   antes: '4 @ RIR1/0'
-  ahora: '1 @ RIR0'
+  ahora: '3 @ RIR1/0'
 H20
   antes: '4 @ RIR1/0'
-  ahora: '1 @ RIR0'
+  ahora: '3 @ RIR1/0'
 I20
   antes: '4 @ RIR1/0'
-  ahora: '1 @ RIR0'
+  ahora: '3 @ RIR1/0'
 J20
   antes: '5 @ RIR1/0'
-  ahora: '1 @ RIR0'
+  ahora: '3 @ RIR1/0'
+K20
+  antes: 'Colgado con depresión escapular (activa dorsal) · Enrollar pelvis hacia costillas (retroversión). Usar straps si el agarre molesta al codo.'
+  ahora: 'Prioridad 2 (Tríceps) · Hombro a 0° pegado al costado (máxima palanca de cabeza larga sin estrés articular en codo).'
 L20
   antes: None
-  ahora: 'id=abs-colgado-retroversion'
+  ahora: 'id=extension-triceps-unil-polea'
 A21
   antes: None
-  ahora: 'Abs en máquina (crunch)'
+  ahora: 'Contractora (Pec Deck)'
 B21
   antes: None
-  ahora: 'Abs'
+  ahora: 'Pecho'
 C21
   antes: None
-  ahora: '—'
+  ahora: '2 @ RIR1/0'
 D21
   antes: None
   ahora: '2 @ RIR1/0'
@@ -177,7 +432,7 @@ E21
   ahora: '2 @ RIR1/0'
 F21
   antes: None
-  ahora: '2 @ RIR1/0'
+  ahora: '3 @ RIR1/0'
 G21
   antes: None
   ahora: '3 @ RIR1/0'
@@ -189,241 +444,355 @@ I21
   ahora: '3 @ RIR1/0'
 J21
   antes: None
-  ahora: '4 @ RIR1/0'
+  ahora: '3 @ RIR1/0'
 K21
   antes: None
-  ahora: 'Desde S2 recoge las series del colgado (que se queda en 1) · Pies enganchados y cadera fija: enrollar el tronco llevando costillas hacia pelvis, sin tirar con los brazos ni flexionar la cadera. Bajar controlado, 2 s.'
+  ahora: 'Prioridad 4 (Haz clavicular/esternal) · Asiento medio-bajo (manos altura clavícula/esternón sup.) · NO hiperextender húmeros detrás del torso al abrir para no irritar cápsula anterior del hombro.'
 L21
   antes: None
-  ahora: 'id=abs-maquina-crunch'
+  ahora: 'id=contractora-pec-deck'
+A22
+  antes: None
+  ahora: 'Triceps tras nuca unil polea'
+B22
+  antes: None
+  ahora: 'Tríceps'
+C22
+  antes: None
+  ahora: '1 @ RIR0'
+D22
+  antes: None
+  ahora: '1 @ RIR0'
+E22
+  antes: None
+  ahora: '2 @ RIR1/0'
+F22
+  antes: None
+  ahora: '2 @ RIR1/0'
+G22
+  antes: None
+  ahora: '2 @ RIR1/0'
+H22
+  antes: None
+  ahora: '2 @ RIR1/0'
+I22
+  antes: None
+  ahora: '2 @ RIR1/0'
+J22
+  antes: None
+  ahora: '3 @ RIR1/0'
+K22
+  antes: None
+  ahora: 'Prioridad 2 (Tríceps en estiramiento) · Dejar que el codo apunte ligeramente hacia fuera (~20-30° plano escapular) para no forzar cápsula del hombro ni tendón olecraniano.'
+L22
+  antes: None
+  ahora: 'id=triceps-tras-nuca-unil-polea'
 A23
   antes: '(X) Miércoles  ·  Pull'
-  ahora: None
+  ahora: 'Abs colgado (retroversión)'
+B23
+  antes: None
+  ahora: 'Abs'
+C23
+  antes: None
+  ahora: '3 @ RIR1/0'
+D23
+  antes: None
+  ahora: '1 @ RIR0'
+E23
+  antes: None
+  ahora: '1 @ RIR0'
+F23
+  antes: None
+  ahora: '1 @ RIR0'
+G23
+  antes: None
+  ahora: '1 @ RIR0'
+H23
+  antes: None
+  ahora: '1 @ RIR0'
+I23
+  antes: None
+  ahora: '1 @ RIR0'
+J23
+  antes: None
+  ahora: '1 @ RIR0'
+K23
+  antes: None
+  ahora: 'Colgado con depresión escapular (activa dorsal) · Enrollar pelvis hacia costillas (retroversión). Usar straps si el agarre molesta al codo.'
+L23
+  antes: None
+  ahora: 'id=abs-colgado-retroversion'
 A24
   antes: 'Ejercicio'
-  ahora: '(X) Miércoles  ·  Pull  ·  + carrera (ver bloque de carrera)'
+  ahora: 'Abs en máquina (crunch)'
 B24
   antes: 'Objetivo'
-  ahora: None
+  ahora: 'Abs'
 C24
   antes: 'Sem 1 (series@RIR)'
-  ahora: None
+  ahora: '—'
 D24
   antes: 'Sem 2 (series@RIR)'
-  ahora: None
+  ahora: '2 @ RIR1/0'
 E24
   antes: 'Sem 3 (series@RIR)'
-  ahora: None
+  ahora: '2 @ RIR1/0'
 F24
   antes: 'Sem 4 (series@RIR)'
-  ahora: None
+  ahora: '2 @ RIR1/0'
 G24
   antes: 'Sem 5 (series@RIR)'
-  ahora: None
+  ahora: '3 @ RIR1/0'
 H24
   antes: 'Sem 6 (series@RIR)'
-  ahora: None
+  ahora: '3 @ RIR1/0'
 I24
   antes: 'Sem 7 (series@RIR)'
-  ahora: None
+  ahora: '3 @ RIR1/0'
 J24
   antes: 'Sem 8 (series@RIR)'
-  ahora: None
+  ahora: '4 @ RIR1/0'
 K24
   antes: 'Notas'
-  ahora: None
+  ahora: 'Desde S2 recoge las series del colgado (que se queda en 1) · Pies enganchados y cadera fija: enrollar el tronco llevando costillas hacia pelvis, sin tirar con los brazos ni flexionar la cadera. Bajar controlado, 2 s.'
 L24
   antes: None
-  ahora: 'sesion'
+  ahora: 'id=abs-maquina-crunch'
 A25
   antes: 'Jalón ancho plano frontal'
-  ahora: 'Ejercicio'
+  ahora: None
 B25
   antes: 'Espalda'
-  ahora: 'Objetivo'
+  ahora: None
 C25
   antes: '2 @ RIR1/0'
-  ahora: 'Sem 1 (series@RIR)'
+  ahora: None
 D25
   antes: '2 @ RIR1/0'
-  ahora: 'Sem 2 (series@RIR)'
+  ahora: None
 E25
   antes: '2 @ RIR1/0'
-  ahora: 'Sem 3 (series@RIR)'
+  ahora: None
 F25
   antes: '3 @ RIR1/0'
-  ahora: 'Sem 4 (series@RIR)'
+  ahora: None
 G25
   antes: '3 @ RIR1/0'
-  ahora: 'Sem 5 (series@RIR)'
+  ahora: None
 H25
   antes: '3 @ RIR1/0'
-  ahora: 'Sem 6 (series@RIR)'
+  ahora: None
 I25
   antes: '3 @ RIR1/0'
-  ahora: 'Sem 7 (series@RIR)'
+  ahora: None
 J25
   antes: '3 @ RIR1/0'
-  ahora: 'Sem 8 (series@RIR)'
+  ahora: None
 K25
   antes: 'Prioridad 3 (Dorsal Bajo) · 1º fresco · Torso vertical, codos abiertos en plano frontal hasta ~90° · No encoger hombros.'
-  ahora: 'Notas'
-L25
-  antes: None
-  ahora: 'App (no tocar)'
+  ahora: None
 A26
   antes: 'Remo gironda abierto'
-  ahora: 'Jalón ancho plano frontal'
+  ahora: None
+B26
+  antes: 'Espalda'
+  ahora: None
+C26
+  antes: '2 @ RIR1/0'
+  ahora: None
+D26
+  antes: '2 @ RIR1/0'
+  ahora: None
+E26
+  antes: '2 @ RIR1/0'
+  ahora: None
 F26
   antes: '2 @ RIR1/0'
-  ahora: '3 @ RIR1/0'
+  ahora: None
 G26
   antes: '2 @ RIR1/0'
-  ahora: '3 @ RIR1/0'
+  ahora: None
 H26
   antes: '2 @ RIR1/0'
-  ahora: '3 @ RIR1/0'
+  ahora: None
 I26
   antes: '2 @ RIR1/0'
-  ahora: '3 @ RIR1/0'
+  ahora: None
+J26
+  antes: '3 @ RIR1/0'
+  ahora: None
 K26
   antes: 'Plano transversal (Espalda Alta) · Codos abiertos y retracción escapular completa.'
-  ahora: 'Prioridad 3 (Dorsal Bajo) · 1º fresco · Torso vertical, codos abiertos en plano frontal hasta ~90° · No encoger hombros.'
-L26
-  antes: None
-  ahora: 'id=jalon-ancho-plano-frontal'
+  ahora: None
 A27
   antes: 'Laterales sentado'
-  ahora: 'Remo gironda abierto'
+  ahora: '(X) Miércoles  ·  sin gimnasio  ·  solo carrera (ver bloque de carrera)'
 B27
   antes: 'Hombro lat.'
-  ahora: 'Espalda'
+  ahora: None
 C27
   antes: '1 @ RIR0'
-  ahora: '2 @ RIR1/0'
+  ahora: None
 D27
   antes: '1 @ RIR0'
-  ahora: '2 @ RIR1/0'
+  ahora: None
+E27
+  antes: '2 @ RIR1/0'
+  ahora: None
+F27
+  antes: '2 @ RIR1/0'
+  ahora: None
+G27
+  antes: '2 @ RIR1/0'
+  ahora: None
+H27
+  antes: '2 @ RIR1/0'
+  ahora: None
 I27
   antes: '3 @ RIR1/0'
-  ahora: '2 @ RIR1/0'
+  ahora: None
+J27
+  antes: '3 @ RIR1/0'
+  ahora: None
 K27
   antes: 'Prioridad 1 (Hombro Lat.) · Sentado en banco a 75–80°, abducir en plano escapular (~30° adelante) sin rotar internamente el hombro.'
-  ahora: 'Plano transversal (Espalda Alta) · Codos abiertos y retracción escapular completa.'
+  ahora: None
 L27
   antes: None
-  ahora: 'id=remo-gironda-abierto'
+  ahora: 'sesion'
 A28
   antes: 'Jalón neutro'
-  ahora: 'Laterales sentado'
+  ahora: None
 B28
   antes: 'Espalda'
-  ahora: 'Hombro lat.'
+  ahora: None
+C28
+  antes: '1 @ RIR0'
+  ahora: None
 D28
   antes: '2 @ RIR1/0'
-  ahora: '1 @ RIR0'
+  ahora: None
+E28
+  antes: '2 @ RIR1/0'
+  ahora: None
+F28
+  antes: '2 @ RIR1/0'
+  ahora: None
+G28
+  antes: '2 @ RIR1/0'
+  ahora: None
+H28
+  antes: '2 @ RIR1/0'
+  ahora: None
 I28
   antes: '2 @ RIR1/0'
-  ahora: '3 @ RIR1/0'
+  ahora: None
 J28
   antes: '2 @ RIR1/0'
-  ahora: '3 @ RIR1/0'
+  ahora: None
 K28
   antes: 'Plano sagital (Dorsal Sup.) · Agarre neutro ancho hombros, llevar codos a los bolsillos cortando a 90° (protege codo/bíceps).'
-  ahora: 'Prioridad 1 (Hombro Lat.) · Sentado en banco a 75–80°, abducir en plano escapular (~30° adelante) sin rotar internamente el hombro.'
-L28
-  antes: None
-  ahora: 'id=laterales-sentado'
+  ahora: None
 A29
   antes: 'Curl martillo scott '
-  ahora: 'Jalón neutro'
+  ahora: '(J) Jueves  ·  Pull  (desde S3; S1-S2 se hizo el miércoles)'
 B29
   antes: 'Bíceps'
-  ahora: 'Espalda'
+  ahora: None
 C29
   antes: '2 @ RIR1/0'
-  ahora: '1 @ RIR0'
+  ahora: None
 D29
   antes: '3 @ RIR1/0'
-  ahora: '2 @ RIR1/0'
+  ahora: None
 E29
   antes: '3 @ RIR1/0'
-  ahora: '2 @ RIR1/0'
+  ahora: None
 F29
   antes: '3 @ RIR1/0'
-  ahora: '2 @ RIR1/0'
+  ahora: None
 G29
   antes: '3 @ RIR1/0'
-  ahora: '2 @ RIR1/0'
+  ahora: None
 H29
   antes: '3 @ RIR1/0'
-  ahora: '2 @ RIR1/0'
+  ahora: None
 I29
   antes: '3 @ RIR1/0'
-  ahora: '2 @ RIR1/0'
+  ahora: None
 J29
   antes: '3 @ RIR1/0'
-  ahora: '2 @ RIR1/0'
+  ahora: None
 K29
   antes: 'Prioridad 2 (Bíceps/Braquiorradial) · Agarre neutro (muy amigable para el codo). Bajar en 2-3 s y parar a ~15° de la extensión total para no sobrecargar tendón distal.'
-  ahora: 'Plano sagital (Dorsal Sup.) · Agarre neutro ancho hombros, llevar codos a los bolsillos cortando a 90° (protege codo/bíceps).'
+  ahora: None
 L29
   antes: None
-  ahora: 'id=jalon-neutro'
+  ahora: 'sesion;S1=X;S2=X'
 A30
   antes: 'Posterior polea'
-  ahora: 'Curl martillo scott '
+  ahora: 'Ejercicio'
 B30
   antes: 'Hombro post.'
-  ahora: 'Bíceps'
+  ahora: 'Objetivo'
 C30
   antes: '1 @ RIR0'
-  ahora: '2 @ RIR1/0'
+  ahora: 'Sem 1 (series@RIR)'
 D30
   antes: '1 @ RIR0'
-  ahora: '3 @ RIR1/0'
+  ahora: 'Sem 2 (series@RIR)'
 E30
   antes: '2 @ RIR1/0'
-  ahora: '3 @ RIR1/0'
+  ahora: 'Sem 3 (series@RIR)'
 F30
   antes: '2 @ RIR1/0'
-  ahora: '3 @ RIR1/0'
+  ahora: 'Sem 4 (series@RIR)'
 G30
   antes: '2 @ RIR1/0'
-  ahora: '3 @ RIR1/0'
+  ahora: 'Sem 5 (series@RIR)'
+H30
+  antes: '3 @ RIR1/0'
+  ahora: 'Sem 6 (series@RIR)'
+I30
+  antes: '3 @ RIR1/0'
+  ahora: 'Sem 7 (series@RIR)'
+J30
+  antes: '3 @ RIR1/0'
+  ahora: 'Sem 8 (series@RIR)'
 K30
   antes: 'Salud Hombro / Transversal · Clave para centrar cabeza humeral y compensar presses.'
-  ahora: 'Prioridad 2 (Bíceps/Braquiorradial) · Agarre neutro (muy amigable para el codo). Bajar en 2-3 s y parar a ~15° de la extensión total para no sobrecargar tendón distal.'
+  ahora: 'Notas'
 L30
   antes: None
-  ahora: 'id=curl-martillo-scott'
+  ahora: 'App (no tocar)'
 A31
   antes: 'Curl bayesian'
-  ahora: 'Posterior polea'
+  ahora: 'Jalón ancho plano frontal'
 B31
   antes: 'Bíceps'
-  ahora: 'Hombro post.'
-C31
+  ahora: 'Espalda'
+F31
   antes: '2 @ RIR1/0'
-  ahora: '1 @ RIR0'
-D31
+  ahora: '3 @ RIR1/0'
+G31
   antes: '2 @ RIR1/0'
-  ahora: '1 @ RIR0'
+  ahora: '3 @ RIR1/0'
 J31
   antes: '4 @ RIR1/0'
   ahora: '3 @ RIR1/0'
 K31
   antes: 'Prioridad 2 (Bíceps en estiramiento) · Hombro en extensión detrás del torso; no dejar que el hombro rote hacia delante al subir.'
-  ahora: 'Salud Hombro / Transversal · Clave para centrar cabeza humeral y compensar presses.'
+  ahora: 'Prioridad 3 (Dorsal Bajo) · 1º fresco · Torso vertical, codos abiertos en plano frontal hasta ~90° · No encoger hombros.'
 L31
   antes: None
-  ahora: 'id=posterior-polea'
+  ahora: 'id=jalon-ancho-plano-frontal'
 A32
   antes: None
-  ahora: 'Curl bayesian'
+  ahora: 'Remo gironda abierto'
 B32
   antes: None
-  ahora: 'Bíceps'
+  ahora: 'Espalda'
 C32
   antes: None
   ahora: '2 @ RIR1/0'
@@ -441,595 +810,679 @@ G32
   ahora: '2 @ RIR1/0'
 H32
   antes: None
-  ahora: '3 @ RIR1/0'
+  ahora: '2 @ RIR1/0'
 I32
   antes: None
-  ahora: '3 @ RIR1/0'
+  ahora: '2 @ RIR1/0'
 J32
   antes: None
-  ahora: '4 @ RIR1/0'
+  ahora: '3 @ RIR1/0'
 K32
   antes: None
-  ahora: 'Prioridad 2 (Bíceps en estiramiento) · Hombro en extensión detrás del torso; no dejar que el hombro rote hacia delante al subir.'
+  ahora: 'Plano transversal (Espalda Alta) · Codos abiertos y retracción escapular completa.'
 L32
   antes: None
-  ahora: 'id=curl-bayesian'
+  ahora: 'id=remo-gironda-abierto'
 A33
   antes: '(J) Jueves  ·  Rehab + Isquios + Aductores'
-  ahora: None
+  ahora: 'Laterales sentado'
+B33
+  antes: None
+  ahora: 'Hombro lat.'
+C33
+  antes: None
+  ahora: '1 @ RIR0'
+D33
+  antes: None
+  ahora: '1 @ RIR0'
+E33
+  antes: None
+  ahora: '2 @ RIR1/0'
+F33
+  antes: None
+  ahora: '2 @ RIR1/0'
+G33
+  antes: None
+  ahora: '2 @ RIR1/0'
+H33
+  antes: None
+  ahora: '2 @ RIR1/0'
+I33
+  antes: None
+  ahora: '3 @ RIR1/0'
+J33
+  antes: None
+  ahora: '3 @ RIR1/0'
+K33
+  antes: None
+  ahora: 'Prioridad 1 (Hombro Lat.) · Sentado en banco a 75–80°, abducir en plano escapular (~30° adelante) sin rotar internamente el hombro.'
+L33
+  antes: None
+  ahora: 'id=laterales-sentado'
 A34
   antes: 'Ejercicio'
-  ahora: '(J) Jueves  ·  Rehab + Isquios + Aductores  ·  test de fuerza S2 / S5 / S7'
+  ahora: 'Jalón neutro'
 B34
   antes: 'Objetivo'
-  ahora: None
+  ahora: 'Espalda'
 C34
   antes: 'Sem 1 (series@RIR)'
-  ahora: None
+  ahora: '1 @ RIR0'
 D34
   antes: 'Sem 2 (series@RIR)'
-  ahora: None
+  ahora: '2 @ RIR1/0'
 E34
   antes: 'Sem 3 (series@RIR)'
-  ahora: None
+  ahora: '2 @ RIR1/0'
 F34
   antes: 'Sem 4 (series@RIR)'
-  ahora: None
+  ahora: '2 @ RIR1/0'
 G34
   antes: 'Sem 5 (series@RIR)'
-  ahora: None
+  ahora: '2 @ RIR1/0'
 H34
   antes: 'Sem 6 (series@RIR)'
-  ahora: None
+  ahora: '2 @ RIR1/0'
 I34
   antes: 'Sem 7 (series@RIR)'
-  ahora: None
+  ahora: '2 @ RIR1/0'
 J34
   antes: 'Sem 8 (series@RIR)'
-  ahora: None
+  ahora: '2 @ RIR1/0'
 K34
   antes: 'Notas'
-  ahora: None
+  ahora: 'Plano sagital (Dorsal Sup.) · Agarre neutro ancho hombros, llevar codos a los bolsillos cortando a 90° (protege codo/bíceps).'
 L34
   antes: None
-  ahora: 'sesion'
+  ahora: 'id=jalon-neutro'
 A35
   antes: 'Unilateral Abduction'
-  ahora: 'Ejercicio'
+  ahora: 'Curl martillo scott '
 B35
   antes: 'Rehab'
-  ahora: 'Objetivo'
+  ahora: 'Bíceps'
 C35
   antes: '2 x15–20'
-  ahora: 'Sem 1 (series@RIR)'
+  ahora: '2 @ RIR1/0'
 D35
   antes: '2 x15–20'
-  ahora: 'Sem 2 (series@RIR)'
+  ahora: '3 @ RIR1/0'
 E35
   antes: '2 x15–20'
-  ahora: 'Sem 3 (series@RIR)'
+  ahora: '3 @ RIR1/0'
 F35
   antes: '2 x15–20'
-  ahora: 'Sem 4 (series@RIR)'
+  ahora: '3 @ RIR1/0'
 G35
   antes: '2 x15–20'
-  ahora: 'Sem 5 (series@RIR)'
+  ahora: '3 @ RIR1/0'
 H35
   antes: '2 x15–20'
-  ahora: 'Sem 6 (series@RIR)'
+  ahora: '3 @ RIR1/0'
 I35
   antes: '2 x15–20'
-  ahora: 'Sem 7 (series@RIR)'
+  ahora: '3 @ RIR1/0'
 J35
   antes: '2 x15–20'
-  ahora: 'Sem 8 (series@RIR)'
+  ahora: '3 @ RIR1/0'
 K35
   antes: 'Antes del rehab: sentadilla española 5×45 s'
-  ahora: 'Notas'
+  ahora: 'Prioridad 2 (Bíceps/Braquiorradial) · Agarre neutro (muy amigable para el codo). Bajar en 2-3 s y parar a ~15° de la extensión total para no sobrecargar tendón distal.'
 L35
   antes: None
-  ahora: 'App (no tocar)'
+  ahora: 'id=curl-martillo-scott'
 A36
   antes: 'Touchdown squat'
-  ahora: 'TEST fuerza · extensión unilateral en máquina 90→45°'
+  ahora: 'Posterior polea'
 B36
   antes: 'Rehab'
-  ahora: 'Test'
+  ahora: 'Hombro post.'
 C36
   antes: '2 x15–20'
-  ahora: '—'
+  ahora: '1 @ RIR0'
 D36
   antes: '2 x15–20'
-  ahora: '2 aprox. +\n1 al fallo\npor pierna'
+  ahora: '1 @ RIR0'
 E36
   antes: '2 x15–20'
-  ahora: '—'
+  ahora: '2 @ RIR1/0'
 F36
   antes: '2 x15–20'
-  ahora: '—'
+  ahora: '2 @ RIR1/0'
 G36
   antes: '2 x15–20'
-  ahora: '2 aprox. +\n1 al fallo\npor pierna'
+  ahora: '2 @ RIR1/0'
 H36
   antes: '2 x15–20'
-  ahora: '—'
+  ahora: '3 @ RIR1/0'
 I36
   antes: '2 x15–20'
-  ahora: '2 aprox. +\n1 al fallo\npor pierna'
+  ahora: '3 @ RIR1/0'
 J36
   antes: '2 x15–20'
-  ahora: 'Opcional:\nrango completo'
+  ahora: '3 @ RIR1/0'
 K36
   antes: None
-  ahora: 'Al empezar la sesión, tras la española 2-3×45 s y 2 series de aproximación. Mismo asiento y SIEMPRE rango fijo 90→45° (si el rango cambia, la comparación entre semanas no vale). Misma carga en las dos piernas (la que la I haga unas 10-15 reps), tempo 2-0-2, D primero, 3 min de descanso y luego la I; para si pasa de 3/10. Apunta carga y reps en «Seguimiento rodilla», que calcula la simetría. Objetivo ≥90% antes del balón [LÓGICA; el 90% viene de la vuelta al deporte tras LCA, no está validado en dolor femoropatelar: INCERTIDUMBRE]. Test en rango completo opcional en S8 y no en S7, para que sea la única novedad de su semana.'
+  ahora: 'Salud Hombro / Transversal · Clave para centrar cabeza humeral y compensar presses.'
 L36
   antes: None
-  ahora: 'id=test-fuerza-extension-unilateral-en-maquina-90-45'
+  ahora: 'id=posterior-polea'
 A37
   antes: 'Back squat'
-  ahora: 'Sentadilla al cajón o desde pines · pesado y lento n.º 2'
+  ahora: 'Curl bayesian'
+B37
+  antes: 'Rehab'
+  ahora: 'Bíceps'
+C37
+  antes: '3 x12'
+  ahora: '2 @ RIR1/0'
+D37
+  antes: '3 x10'
+  ahora: '2 @ RIR1/0'
 E37
   antes: '3 x10'
-  ahora: '3 x10\nprof. del lunes'
+  ahora: '2 @ RIR1/0'
 F37
   antes: '3 x10'
-  ahora: '3 x10\nprof. del lunes'
+  ahora: '2 @ RIR1/0'
+G37
+  antes: '3 x8'
+  ahora: '2 @ RIR1/0'
 H37
   antes: '3 x8'
-  ahora: '3 x8\nprof. del lunes'
+  ahora: '3 @ RIR1/0'
 I37
   antes: '3 x8'
-  ahora: '3 x8\nprof. del lunes'
+  ahora: '3 @ RIR1/0'
 J37
   antes: '3 x8'
-  ahora: '3 x8\nrepite S7'
+  ahora: '4 @ RIR1/0'
 K37
   antes: 'Al cajón: tope + pausa 1 s · tempo 3-1-3'
-  ahora: 'Tras el test (S2/S5/S7), carga por RIR. Tempo 3-1-3, RIR 2. Profundidad = la validada el lunes en la prensa. Postura habitual: un chasquido sin dolor no cambia nada; el apoyo ancho solo si te reduce el DOLOR [LÓGICA]. Antes del rehab (si no hay test): sentadilla española 2-3×45 s.'
+  ahora: 'Prioridad 2 (Bíceps en estiramiento) · Hombro en extensión detrás del torso; no dejar que el hombro rote hacia delante al subir.'
 L37
   antes: None
-  ahora: 'id=sentadilla-al-cajon-o-desde-pines-pesado-y-lento-n-2;escalera=prensa:sigue'
+  ahora: 'id=curl-bayesian'
+A38
+  antes: 'Bulgarian split squat'
+  ahora: None
+B38
+  antes: 'Rehab'
+  ahora: None
+C38
+  antes: '2 x12'
+  ahora: None
 D38
   antes: '2 x10'
-  ahora: '2 x10/pierna'
+  ahora: None
 E38
   antes: '2 x10'
-  ahora: '2 x10/pierna'
+  ahora: None
 F38
   antes: '2 x10'
-  ahora: '2 x10/pierna'
+  ahora: None
 G38
   antes: '2 x8'
-  ahora: '2 x8/pierna'
+  ahora: None
 H38
   antes: '2 x8'
-  ahora: '2 x8/pierna'
+  ahora: None
 I38
   antes: '2 x8'
-  ahora: '2 x8/pierna'
+  ahora: None
 J38
   antes: '2 x8'
-  ahora: '2 x8/pierna\nrepite S7'
+  ahora: None
 K38
   antes: 'Tempo 3-1-3 · empieza por la lesionada'
-  ahora: 'D primero: RIR 2 y profundidad validada el lunes. I: RIR 1-2 y rango completo. Tempo 3-1-3. Alterna piernas, 60-90 s entre una y otra.'
-L38
-  antes: None
-  ahora: 'id=bulgarian-split-squat;escalera=prensa:sigue'
+  ahora: None
 A39
   antes: 'Isquios sentado'
-  ahora: 'Abducción de pie unilateral (máquina)'
+  ahora: '(V) Viernes  ·  Rehab + Isquios + Aductores  ·  test de fuerza S3 / S5 / S7 (+ opcional S8)  (desde S3; S1-S2 se hizo el jueves)'
 B39
   antes: 'Isquios'
-  ahora: 'Rehab (cadera)'
+  ahora: None
 C39
   antes: '3 @ RIR1/0'
-  ahora: '2 x15–20'
+  ahora: None
 D39
   antes: '4 @ RIR1/0'
-  ahora: '3 x10-15/pierna\n@RIR1-2'
+  ahora: None
 E39
   antes: '4 @ RIR1/0'
-  ahora: '3 x10-15/pierna\n@RIR1-2'
+  ahora: None
 F39
   antes: '4 @ RIR1/0'
-  ahora: '3 x10-15/pierna\n@RIR1-2'
+  ahora: None
 G39
   antes: '4 @ RIR1/0'
-  ahora: '3 x10-15/pierna\n@RIR1-2'
+  ahora: None
 H39
   antes: '5 @ RIR1/0'
-  ahora: '3 x10-15/pierna\n@RIR1-2'
+  ahora: None
 I39
   antes: '5 @ RIR1/0'
-  ahora: '3 x10-15/pierna\n@RIR1-2'
+  ahora: None
 J39
   antes: '5 @ RIR1/0'
-  ahora: '3 x10-15/pierna\n@RIR1-2'
+  ahora: None
 K39
   antes: 'Isquios en estiramiento máximo (cadera a 90°) · Controlar fase excéntrica.'
-  ahora: 'Misma máquina que el lunes; empieza por la D. Va DESPUÉS de la búlgara, para no fatigar el glúteo medio antes del trabajo a una pierna [LÓGICA]. Lunes + jueves = 72-96 h entre sesiones de cadera.'
+  ahora: None
 L39
   antes: None
-  ahora: 'id=abduccion-de-pie-unilateral-maquina'
+  ahora: 'sesion;S1=J;S2=J'
 A40
   antes: 'Aductores'
-  ahora: 'Touchdown squat'
+  ahora: 'Ejercicio'
 B40
   antes: 'Aductores'
-  ahora: 'Rehab'
+  ahora: 'Objetivo'
 C40
   antes: '2 @ RIR1/0'
-  ahora: '2 x15–20'
+  ahora: 'Sem 1 (series@RIR)'
 D40
   antes: '2 @ RIR1/0'
-  ahora: '—'
+  ahora: 'Sem 2 (series@RIR)'
 E40
   antes: '2 @ RIR1/0'
-  ahora: '—'
+  ahora: 'Sem 3 (series@RIR)'
 F40
   antes: '2 @ RIR1/0'
-  ahora: '—'
+  ahora: 'Sem 4 (series@RIR)'
 G40
   antes: '3 @ RIR1/0'
-  ahora: '—'
+  ahora: 'Sem 5 (series@RIR)'
 H40
   antes: '3 @ RIR1/0'
-  ahora: '—'
+  ahora: 'Sem 6 (series@RIR)'
 I40
   antes: '3 @ RIR1/0'
-  ahora: '—'
+  ahora: 'Sem 7 (series@RIR)'
 J40
   antes: '3 @ RIR1/0'
-  ahora: '—'
+  ahora: 'Sem 8 (series@RIR)'
 K40
   antes: 'Plano transversal/frontal · Pausa de 1 s en apertura máxima sin dolor inguinal/rodilla.'
-  ahora: 'Sale del jueves desde S2: va el lunes, antes de la prensa [LÓGICA].'
+  ahora: 'Notas'
 L40
   antes: None
-  ahora: 'id=touchdown-squat'
+  ahora: 'App (no tocar)'
 A41
   antes: 'Gemelos prensa'
-  ahora: 'Isquios sentado'
+  ahora: 'TEST fuerza · extensión unilateral en máquina 90→45°'
 B41
   antes: 'Gemelos'
-  ahora: 'Isquios'
+  ahora: 'Test'
 C41
   antes: '2 @ RIR1/0'
-  ahora: '3 @ RIR1/0'
+  ahora: '—'
 D41
   antes: '3 @ RIR1/0'
-  ahora: '4 @ RIR1/0'
+  ahora: '—'
 E41
   antes: '3 @ RIR1/0'
-  ahora: '4 @ RIR1/0'
+  ahora: '2 aprox. +\n1 al fallo\npor pierna'
 F41
   antes: '3 @ RIR1/0'
-  ahora: '4 @ RIR1/0'
+  ahora: '—'
+G41
+  antes: '4 @ RIR1/0'
+  ahora: '2 aprox. +\n1 al fallo\npor pierna'
 H41
   antes: '4 @ RIR1/0'
-  ahora: '5 @ RIR1/0'
+  ahora: '—'
 I41
   antes: '4 @ RIR1/0'
-  ahora: '5 @ RIR1/0'
+  ahora: '2 aprox. +\n1 al fallo\npor pierna'
+J41
+  antes: '5 @ RIR1/0'
+  ahora: 'Opcional:\nrango completo'
 K41
   antes: 'Prensa con pies abajo · Pausa estricta de 2 s en máximo estiramiento abajo (sin rebote elástico).'
-  ahora: 'Isquios en estiramiento máximo (cadera a 90°) · Controlar fase excéntrica.'
+  ahora: 'Test 1 → vie 6/11 (S3): en S2 no se hizo (analítica). Al empezar la sesión, tras la española 2-3×45 s y 2 series de aproximación. Mismo asiento y SIEMPRE rango fijo 90→45° (si el rango cambia, la comparación entre semanas no vale). Misma carga en las dos piernas (la que la I haga unas 10-15 reps), tempo 2-0-2, D primero, 3 min de descanso y luego la I; para si pasa de 3/10. Apunta carga y reps en «Seguimiento rodilla», que calcula la simetría. Objetivo ≥90% antes del balón [LÓGICA; el 90% viene de la vuelta al deporte tras LCA, no está validado en dolor femoropatelar: INCERTIDUMBRE]. Test en rango completo opcional en S8 y no en S7, para que sea la única novedad de su semana.'
 L41
   antes: None
-  ahora: 'id=isquios-sentado'
+  ahora: 'id=test-fuerza-extension-unilateral-en-maquina-90-45'
 A42
   antes: None
-  ahora: 'Aductores'
+  ahora: 'Sentadilla al cajón o desde pines · pesado y lento n.º 2'
 B42
   antes: None
-  ahora: 'Aductores'
+  ahora: 'Rehab'
 C42
   antes: None
-  ahora: '2 @ RIR1/0'
+  ahora: '3 x12'
 D42
   antes: None
-  ahora: '2 @ RIR1/0'
+  ahora: '3 x10'
 E42
   antes: None
-  ahora: '2 @ RIR1/0'
+  ahora: '3 x10\nprof. del lunes'
 F42
   antes: None
-  ahora: '2 @ RIR1/0'
+  ahora: '3 x10\nprof. del lunes'
 G42
   antes: None
-  ahora: '3 @ RIR1/0'
+  ahora: '3 x8'
 H42
   antes: None
-  ahora: '3 @ RIR1/0'
+  ahora: '3 x8\nprof. del lunes'
 I42
   antes: None
-  ahora: '3 @ RIR1/0'
+  ahora: '3 x8\nprof. del lunes'
 J42
   antes: None
-  ahora: '3 @ RIR1/0'
+  ahora: '3 x8\nrepite S7'
 K42
   antes: None
-  ahora: 'Plano transversal/frontal · Pausa de 1 s en apertura máxima sin dolor inguinal/rodilla.'
+  ahora: 'Tras el test (S3/S5/S7), carga por RIR. Tempo 3-1-3, RIR 2. Profundidad = la validada el lunes en la prensa. Postura habitual: un chasquido sin dolor no cambia nada; el apoyo ancho solo si te reduce el DOLOR [LÓGICA]. Antes del rehab (si no hay test): sentadilla española 2-3×45 s.'
 L42
   antes: None
-  ahora: 'id=aductores'
+  ahora: 'id=sentadilla-al-cajon-o-desde-pines-pesado-y-lento-n-2;escalera=prensa:sigue'
 A43
   antes: '(V) Viernes  ·  Torso'
-  ahora: 'Gemelos prensa'
+  ahora: 'Bulgarian split squat'
 B43
   antes: None
-  ahora: 'Gemelos'
+  ahora: 'Rehab'
 C43
   antes: None
-  ahora: '2 @ RIR1/0'
+  ahora: '2 x12'
 D43
   antes: None
-  ahora: '3 @ RIR1/0'
+  ahora: '2 x10/pierna'
 E43
   antes: None
-  ahora: '3 @ RIR1/0'
+  ahora: '2 x10/pierna'
 F43
   antes: None
-  ahora: '3 @ RIR1/0'
+  ahora: '2 x10/pierna'
 G43
   antes: None
-  ahora: '4 @ RIR1/0'
+  ahora: '2 x8/pierna'
 H43
   antes: None
-  ahora: '4 @ RIR1/0'
+  ahora: '2 x8/pierna'
 I43
   antes: None
-  ahora: '4 @ RIR1/0'
+  ahora: '2 x8/pierna'
 J43
   antes: None
-  ahora: '5 @ RIR1/0'
+  ahora: '2 x8/pierna\nrepite S7'
 K43
   antes: None
-  ahora: 'Prensa con pies abajo · Pausa estricta de 2 s en máximo estiramiento abajo (sin rebote elástico).'
+  ahora: 'D primero: RIR 2 y profundidad validada el lunes. I: RIR 1-2 y rango completo. Tempo 3-1-3. Alterna piernas, 60-90 s entre una y otra.'
 L43
   antes: None
-  ahora: 'id=gemelos-prensa'
+  ahora: 'id=bulgarian-split-squat;escalera=prensa:sigue'
 A44
   antes: 'Ejercicio'
-  ahora: None
+  ahora: 'Abducción de pie unilateral (máquina)'
 B44
   antes: 'Objetivo'
-  ahora: None
+  ahora: 'Rehab (cadera)'
 C44
   antes: 'Sem 1 (series@RIR)'
-  ahora: None
+  ahora: '2 x15–20'
 D44
   antes: 'Sem 2 (series@RIR)'
-  ahora: None
+  ahora: '3 x10-15/pierna\n@RIR1-2'
 E44
   antes: 'Sem 3 (series@RIR)'
-  ahora: None
+  ahora: '3 x10-15/pierna\n@RIR1-2'
 F44
   antes: 'Sem 4 (series@RIR)'
-  ahora: None
+  ahora: '3 x10-15/pierna\n@RIR1-2'
 G44
   antes: 'Sem 5 (series@RIR)'
-  ahora: None
+  ahora: '3 x10-15/pierna\n@RIR1-2'
 H44
   antes: 'Sem 6 (series@RIR)'
-  ahora: None
+  ahora: '3 x10-15/pierna\n@RIR1-2'
 I44
   antes: 'Sem 7 (series@RIR)'
-  ahora: None
+  ahora: '3 x10-15/pierna\n@RIR1-2'
 J44
   antes: 'Sem 8 (series@RIR)'
-  ahora: None
+  ahora: '3 x10-15/pierna\n@RIR1-2'
 K44
   antes: 'Notas'
-  ahora: None
+  ahora: 'Misma máquina que el lunes; empieza por la D. Va DESPUÉS de la búlgara, para no fatigar el glúteo medio antes del trabajo a una pierna [LÓGICA]. Lunes + viernes = 72-96 h entre sesiones de cadera.'
+L44
+  antes: None
+  ahora: 'id=abduccion-de-pie-unilateral-maquina'
 A45
   antes: 'Triceps conc polea (-15°)'
-  ahora: '(V) Viernes  ·  Torso'
+  ahora: 'Touchdown squat'
 B45
   antes: 'Tríceps'
-  ahora: None
+  ahora: 'Rehab'
 C45
   antes: '1 @ RIR0'
-  ahora: None
+  ahora: '2 x15–20'
 D45
   antes: '1 @ RIR0'
-  ahora: None
+  ahora: '—'
 E45
   antes: '1 @ RIR0'
-  ahora: None
+  ahora: '—'
 F45
   antes: '1 @ RIR0'
-  ahora: None
+  ahora: '—'
 G45
   antes: '1 @ RIR0'
-  ahora: None
+  ahora: '—'
 H45
   antes: '1 @ RIR0'
-  ahora: None
+  ahora: '—'
 I45
   antes: '1 @ RIR0'
-  ahora: None
+  ahora: '—'
 J45
   antes: '1 @ RIR0'
-  ahora: None
+  ahora: '—'
 K45
   antes: 'Prioridad 2 + Potenciación de codo · Hombro a -15° (extensión): máximo acortamiento de cabeza larga con torque nulo en flexión máxima de codo (calienta tendón para el francés).'
-  ahora: None
+  ahora: 'Sale de este día desde S2: va el lunes, antes de la prensa [LÓGICA].'
 L45
   antes: None
-  ahora: 'sesion'
+  ahora: 'id=touchdown-squat'
 A46
   antes: 'Laterales polea'
-  ahora: 'Ejercicio'
+  ahora: 'Isquios sentado'
 B46
   antes: 'Hombro lat.'
-  ahora: 'Objetivo'
+  ahora: 'Isquios'
 C46
   antes: '2 @ RIR1/0'
-  ahora: 'Sem 1 (series@RIR)'
+  ahora: '3 @ RIR1/0'
 D46
   antes: '2 @ RIR1/0'
-  ahora: 'Sem 2 (series@RIR)'
+  ahora: '4 @ RIR1/0'
 E46
   antes: '2 @ RIR1/0'
-  ahora: 'Sem 3 (series@RIR)'
+  ahora: '4 @ RIR1/0'
 F46
   antes: '2 @ RIR1/0'
-  ahora: 'Sem 4 (series@RIR)'
+  ahora: '4 @ RIR1/0'
 G46
   antes: '2 @ RIR1/0'
-  ahora: 'Sem 5 (series@RIR)'
+  ahora: '4 @ RIR1/0'
 H46
   antes: '2 @ RIR1/0'
-  ahora: 'Sem 6 (series@RIR)'
+  ahora: '5 @ RIR1/0'
 I46
   antes: '2 @ RIR1/0'
-  ahora: 'Sem 7 (series@RIR)'
+  ahora: '5 @ RIR1/0'
 J46
   antes: '2 @ RIR1/0'
-  ahora: 'Sem 8 (series@RIR)'
+  ahora: '5 @ RIR1/0'
 K46
   antes: 'Prioridad 1 (Hombro Lat.) · Polea a altura de muñeca/muslo, abducción en plano escapular.'
-  ahora: 'Notas'
+  ahora: 'Isquios en estiramiento máximo (cadera a 90°) · Controlar fase excéntrica.'
 L46
   antes: None
-  ahora: 'App (no tocar)'
+  ahora: 'id=isquios-sentado'
 A47
   antes: 'Press francés manc (banco plano)'
-  ahora: 'Triceps conc polea (-15°)'
-C47
-  antes: '2 @ RIR1/0'
-  ahora: '1 @ RIR0'
-D47
-  antes: '2 @ RIR1/0'
-  ahora: '1 @ RIR0'
-E47
-  antes: '2 @ RIR1/0'
-  ahora: '1 @ RIR0'
-F47
-  antes: '2 @ RIR1/0'
-  ahora: '1 @ RIR0'
+  ahora: 'Aductores'
+B47
+  antes: 'Tríceps'
+  ahora: 'Aductores'
 G47
   antes: '2 @ RIR1/0'
-  ahora: '1 @ RIR0'
+  ahora: '3 @ RIR1/0'
 H47
   antes: '2 @ RIR1/0'
-  ahora: '1 @ RIR0'
-I47
-  antes: '3 @ RIR1/0'
-  ahora: '1 @ RIR0'
-J47
-  antes: '3 @ RIR1/0'
-  ahora: '1 @ RIR0'
+  ahora: '3 @ RIR1/0'
 K47
   antes: 'Prioridad 2 (Tríceps) · Agarre neutro (martillo) y brazos inclinados a ~100° hacia la cabeza: quita cizalla en epitróclea/olécranon y mantiene tensión constante.'
-  ahora: 'Prioridad 2 + Potenciación de codo · Hombro a -15° (extensión): máximo acortamiento de cabeza larga con torque nulo en flexión máxima de codo (calienta tendón para el francés).'
+  ahora: 'Plano transversal/frontal · Pausa de 1 s en apertura máxima sin dolor inguinal/rodilla.'
 L47
   antes: None
-  ahora: 'id=triceps-conc-polea-15'
+  ahora: 'id=aductores'
 A48
   antes: 'Curl biceps barra z'
-  ahora: 'Laterales polea'
+  ahora: 'Gemelos prensa'
 B48
   antes: 'Bíceps'
-  ahora: 'Hombro lat.'
-F48
-  antes: '3 @ RIR1/0'
-  ahora: '2 @ RIR1/0'
+  ahora: 'Gemelos'
+D48
+  antes: '2 @ RIR1/0'
+  ahora: '3 @ RIR1/0'
+E48
+  antes: '2 @ RIR1/0'
+  ahora: '3 @ RIR1/0'
 G48
   antes: '3 @ RIR1/0'
-  ahora: '2 @ RIR1/0'
+  ahora: '4 @ RIR1/0'
 H48
   antes: '3 @ RIR1/0'
-  ahora: '2 @ RIR1/0'
+  ahora: '4 @ RIR1/0'
 I48
   antes: '3 @ RIR1/0'
-  ahora: '2 @ RIR1/0'
+  ahora: '4 @ RIR1/0'
 J48
   antes: '3 @ RIR1/0'
-  ahora: '2 @ RIR1/0'
+  ahora: '5 @ RIR1/0'
 K48
   antes: 'Prioridad 2 (Bíceps rango medio) · Usar el agarre de la barra Z (ancho o estrecho) que resulte 100% libre de molestia en muñeca y codo.'
-  ahora: 'Prioridad 1 (Hombro Lat.) · Polea a altura de muñeca/muslo, abducción en plano escapular.'
+  ahora: 'Prensa con pies abajo · Pausa estricta de 2 s en máximo estiramiento abajo (sin rebote elástico).'
 L48
   antes: None
-  ahora: 'id=laterales-polea'
+  ahora: 'id=gemelos-prensa'
 A49
   antes: 'Press máquina neutro ascendente'
-  ahora: 'Press francés manc (banco plano)'
+  ahora: None
 B49
   antes: 'Pecho'
-  ahora: 'Tríceps'
+  ahora: None
+C49
+  antes: '2 @ RIR1/0'
+  ahora: None
+D49
+  antes: '2 @ RIR1/0'
+  ahora: None
+E49
+  antes: '2 @ RIR1/0'
+  ahora: None
+F49
+  antes: '2 @ RIR1/0'
+  ahora: None
+G49
+  antes: '2 @ RIR1/0'
+  ahora: None
 H49
   antes: '3 @ RIR1/0'
-  ahora: '2 @ RIR1/0'
+  ahora: None
+I49
+  antes: '3 @ RIR1/0'
+  ahora: None
+J49
+  antes: '3 @ RIR1/0'
+  ahora: None
 K49
   antes: 'Prioridad 4 (Haz clavicular) · 10/10 tras brazos: el agarre neutro y la trayectoria convergente ascendente aíslan el haz clavicular sin estrés en hombro ni codo.'
-  ahora: 'Prioridad 2 (Tríceps) · Agarre neutro (martillo) y brazos inclinados a ~100° hacia la cabeza: quita cizalla en epitróclea/olécranon y mantiene tensión constante.'
-L49
-  antes: None
-  ahora: 'id=press-frances-manc-banco-plano'
+  ahora: None
 A50
   antes: 'Dominada neutra dorsal'
-  ahora: 'Curl biceps barra z'
+  ahora: '(S) Sábado  ·  casa, peso libre  ·  Torso (desde S2 = 31/10; S1 se hizo el viernes en el gimnasio)'
 B50
   antes: 'Espalda'
-  ahora: 'Bíceps'
+  ahora: None
 C50
   antes: '1 @ RIR0'
-  ahora: '2 @ RIR1/0'
+  ahora: None
 D50
   antes: '1 @ RIR0'
-  ahora: '2 @ RIR1/0'
+  ahora: None
 E50
   antes: '1 @ RIR0'
-  ahora: '2 @ RIR1/0'
+  ahora: None
 F50
   antes: '1 @ RIR0'
-  ahora: '3 @ RIR1/0'
+  ahora: None
 G50
   antes: '1 @ RIR0'
-  ahora: '3 @ RIR1/0'
+  ahora: None
 H50
   antes: '2 @ RIR1/0'
-  ahora: '3 @ RIR1/0'
+  ahora: None
 I50
   antes: '2 @ RIR1/0'
-  ahora: '3 @ RIR1/0'
+  ahora: None
 J50
   antes: '2 @ RIR1/0'
-  ahora: '3 @ RIR1/0'
+  ahora: None
 K50
   antes: 'Plano sagital (Dorsal Sup.) · Usar STRAPS obligatoriamente para anular fatiga previa de bíceps y proteger codos.'
-  ahora: 'Prioridad 2 (Bíceps rango medio) · Usar el agarre de la barra Z (ancho o estrecho) que resulte 100% libre de molestia en muñeca y codo.'
+  ahora: None
 L50
   antes: None
-  ahora: 'id=curl-biceps-barra-z'
+  ahora: 'sesion;S1=V'
 A51
   antes: 'Remo máquina (pecho apoyado 30°)'
-  ahora: 'Press máquina neutro ascendente'
+  ahora: 'Ejercicio'
 B51
   antes: 'Espalda'
-  ahora: 'Pecho'
+  ahora: 'Objetivo'
+C51
+  antes: '2 @ RIR1/0'
+  ahora: 'Sem 1 (series@RIR)'
+D51
+  antes: '2 @ RIR1/0'
+  ahora: 'Sem 2 (series@RIR)'
+E51
+  antes: '2 @ RIR1/0'
+  ahora: 'Sem 3 (series@RIR)'
+F51
+  antes: '2 @ RIR1/0'
+  ahora: 'Sem 4 (series@RIR)'
+G51
+  antes: '2 @ RIR1/0'
+  ahora: 'Sem 5 (series@RIR)'
 H51
   antes: '2 @ RIR1/0'
-  ahora: '3 @ RIR1/0'
+  ahora: 'Sem 6 (series@RIR)'
 I51
   antes: '2 @ RIR1/0'
-  ahora: '3 @ RIR1/0'
+  ahora: 'Sem 7 (series@RIR)'
 J51
   antes: '2 @ RIR1/0'
-  ahora: '3 @ RIR1/0'
+  ahora: 'Sem 8 (series@RIR)'
 K51
   antes: 'Plano sagital/híbrido (Dorsal Sup.) · Usar STRAPS, codos a ~30° hasta línea del torso.'
-  ahora: 'Prioridad 4 (Haz clavicular) · 10/10 tras brazos: el agarre neutro y la trayectoria convergente ascendente aíslan el haz clavicular sin estrés en hombro ni codo.'
+  ahora: 'Notas'
 L51
   antes: None
-  ahora: 'id=press-maquina-neutro-ascendente'
+  ahora: 'App (no tocar)'
 A52
   antes: 'Aducción unil. polea alta (Pull-in)'
-  ahora: 'Dominada neutra dorsal'
+  ahora: 'Patada de tríceps (mancuerna o goma)'
+B52
+  antes: 'Espalda'
+  ahora: 'Tríceps'
 C52
   antes: '2 @ RIR1/0'
   ahora: '1 @ RIR0'
@@ -1045,18 +1498,27 @@ F52
 G52
   antes: '2 @ RIR1/0'
   ahora: '1 @ RIR0'
+H52
+  antes: '2 @ RIR1/0'
+  ahora: '1 @ RIR0'
+I52
+  antes: '2 @ RIR1/0'
+  ahora: '1 @ RIR0'
+J52
+  antes: '2 @ RIR1/0'
+  ahora: '1 @ RIR0'
 K52
   antes: 'Prioridad 3 (Dorsal Bajo) · De lado a la polea (con tobillera en muñeca o codo semirrígido) para aislar haz inferior sin usar bíceps ni codo · Sem 1-2 a RIR 1-2.'
-  ahora: 'Plano sagital (Dorsal Sup.) · Usar STRAPS obligatoriamente para anular fatiga previa de bíceps y proteger codos.'
+  ahora: 'Primer sábado (31/10): peso libre nuevo → recalibra el peso por RIR; no es comparable con las cargas de máquina [LÓGICA]. S1: tríceps concentrado en polea. Brazo ligeramente por detrás del cuerpo para mantener la cabeza larga estirada [LÓGICA]. Prioridad 2 + Potenciación de codo · Hombro a -15° (extensión): máximo acortamiento de cabeza larga con torque nulo en flexión máxima de codo (calienta tendón para el francés).'
 L52
   antes: None
-  ahora: 'id=dominada-neutra-dorsal'
+  ahora: 'id=triceps-conc-polea-15'
 A53
   antes: None
-  ahora: 'Remo máquina (pecho apoyado 30°)'
+  ahora: 'Laterales con goma'
 B53
   antes: None
-  ahora: 'Espalda'
+  ahora: 'Hombro lat.'
 C53
   antes: None
   ahora: '2 @ RIR1/0'
@@ -1083,16 +1545,16 @@ J53
   ahora: '2 @ RIR1/0'
 K53
   antes: None
-  ahora: 'Plano sagital/híbrido (Dorsal Sup.) · Usar STRAPS, codos a ~30° hasta línea del torso.'
+  ahora: 'S1: laterales en polea. La goma imita mejor la curva de resistencia de la polea que la mancuerna [LÓGICA]. Prioridad 1 (Hombro Lat.) · Polea a altura de muñeca/muslo, abducción en plano escapular.'
 L53
   antes: None
-  ahora: 'id=remo-maquina-pecho-apoyado-30'
+  ahora: 'id=laterales-polea'
 A54
   antes: '(S/D) Sábado/Domingo'
-  ahora: 'Aducción unil. polea alta (Pull-in)'
+  ahora: 'Press francés manc (banco plano)'
 B54
   antes: None
-  ahora: 'Espalda'
+  ahora: 'Tríceps'
 C54
   antes: None
   ahora: '2 @ RIR1/0'
@@ -1113,202 +1575,202 @@ H54
   ahora: '2 @ RIR1/0'
 I54
   antes: None
-  ahora: '2 @ RIR1/0'
+  ahora: '3 @ RIR1/0'
 J54
   antes: None
-  ahora: '2 @ RIR1/0'
+  ahora: '3 @ RIR1/0'
 K54
   antes: None
-  ahora: 'Prioridad 3 (Dorsal Bajo) · De lado a la polea (con tobillera en muñeca o codo semirrígido) para aislar haz inferior sin usar bíceps ni codo · Sem 1-2 a RIR 1-2.'
+  ahora: 'Prioridad 2 (Tríceps) · Agarre neutro (martillo) y brazos inclinados a ~100° hacia la cabeza: quita cizalla en epitróclea/olécranon y mantiene tensión constante.'
 L54
   antes: None
-  ahora: 'id=aduccion-unil-polea-alta-pull-in'
+  ahora: 'id=press-frances-manc-banco-plano'
 A55
   antes: 'Ejercicio'
-  ahora: None
+  ahora: 'Curl con mancuernas'
 B55
   antes: 'Objetivo'
-  ahora: None
+  ahora: 'Bíceps'
 C55
   antes: 'Sem 1 (series@RIR)'
-  ahora: None
+  ahora: '2 @ RIR1/0'
 D55
   antes: 'Sem 2 (series@RIR)'
-  ahora: None
+  ahora: '2 @ RIR1/0'
 E55
   antes: 'Sem 3 (series@RIR)'
-  ahora: None
+  ahora: '2 @ RIR1/0'
 F55
   antes: 'Sem 4 (series@RIR)'
-  ahora: None
+  ahora: '3 @ RIR1/0'
 G55
   antes: 'Sem 5 (series@RIR)'
-  ahora: None
+  ahora: '3 @ RIR1/0'
 H55
   antes: 'Sem 6 (series@RIR)'
-  ahora: None
+  ahora: '3 @ RIR1/0'
 I55
   antes: 'Sem 7 (series@RIR)'
-  ahora: None
+  ahora: '3 @ RIR1/0'
 J55
   antes: 'Sem 8 (series@RIR)'
-  ahora: None
+  ahora: '3 @ RIR1/0'
 K55
   antes: 'Notas'
-  ahora: None
+  ahora: 'S1: curl con barra Z. Barra recta solo si no molesta en muñeca ni codo. Prioridad 2 (Bíceps rango medio) · Usar el agarre de la barra Z (ancho o estrecho) que resulte 100% libre de molestia en muñeca y codo.'
+L55
+  antes: None
+  ahora: 'id=curl-biceps-barra-z'
 A56
   antes: 'Unilateral Abduction'
-  ahora: '(S) Sábado  ·  casa, sin máquinas ni poleas  ·  desde S2, sin pierna (el domingo: carrera)'
+  ahora: 'Press inclinado con mancuernas, agarre neutro'
 B56
   antes: 'Rehab'
-  ahora: None
+  ahora: 'Pecho'
 C56
   antes: '2 x15–20'
-  ahora: None
+  ahora: '2 @ RIR1/0'
 D56
   antes: '2 x15–20'
-  ahora: None
+  ahora: '2 @ RIR1/0'
 E56
   antes: '2 x15–20'
-  ahora: None
+  ahora: '2 @ RIR1/0'
 F56
   antes: '2 x15–20'
-  ahora: None
+  ahora: '2 @ RIR1/0'
 G56
   antes: '2 x15–20'
-  ahora: None
+  ahora: '2 @ RIR1/0'
 H56
   antes: '2 x15–20'
-  ahora: None
+  ahora: '3 @ RIR1/0'
 I56
   antes: '2 x15–20'
-  ahora: None
+  ahora: '3 @ RIR1/0'
 J56
   antes: '2 x15–20'
-  ahora: None
+  ahora: '3 @ RIR1/0'
 K56
   antes: 'fijo · Antes del rehab: sentadilla española 5×45 s'
-  ahora: None
+  ahora: 'S1: press en máquina. Prioridad 4 (Haz clavicular) · 10/10 tras brazos: el agarre neutro y la trayectoria convergente ascendente aíslan el haz clavicular sin estrés en hombro ni codo.'
 L56
   antes: None
-  ahora: 'sesion;nombreS1=Sábado/Domingo'
+  ahora: 'id=press-maquina-neutro-ascendente'
 A57
   antes: 'Touchdown squat'
-  ahora: 'Ejercicio'
+  ahora: None
 B57
   antes: 'Rehab'
-  ahora: 'Objetivo'
+  ahora: None
 C57
   antes: '2 x15–20'
-  ahora: 'Sem 1 (series@RIR)'
+  ahora: None
 D57
   antes: '2 x15–20'
-  ahora: 'Sem 2 (series@RIR)'
+  ahora: None
 E57
   antes: '2 x15–20'
-  ahora: 'Sem 3 (series@RIR)'
+  ahora: None
 F57
   antes: '2 x15–20'
-  ahora: 'Sem 4 (series@RIR)'
+  ahora: None
 G57
   antes: '2 x15–20'
-  ahora: 'Sem 5 (series@RIR)'
+  ahora: None
 H57
   antes: '2 x15–20'
-  ahora: 'Sem 6 (series@RIR)'
+  ahora: None
 I57
   antes: '2 x15–20'
-  ahora: 'Sem 7 (series@RIR)'
+  ahora: None
 J57
   antes: '2 x15–20'
-  ahora: 'Sem 8 (series@RIR)'
+  ahora: None
 K57
   antes: 'fijo'
-  ahora: 'Notas'
-L57
-  antes: None
-  ahora: 'App (no tocar)'
+  ahora: None
 A58
   antes: 'Bulgarian split squat'
-  ahora: 'Abducción unilateral'
+  ahora: '(S) Sábado (cont.)  ·  abdominales + correctivos  ·  sin pierna (el domingo: carrera)'
 B58
   antes: 'Rehab'
-  ahora: 'Rehab (cadera)'
+  ahora: None
 C58
   antes: '2 x12'
-  ahora: '2 x15–20'
+  ahora: None
 D58
   antes: '2 x10'
-  ahora: '—'
+  ahora: None
 E58
   antes: '2 x10'
-  ahora: '—'
+  ahora: None
 F58
   antes: '2 x10'
-  ahora: '—'
+  ahora: None
 G58
   antes: '2 x8'
-  ahora: '—'
+  ahora: None
 H58
   antes: '2 x8'
-  ahora: '—'
+  ahora: None
 I58
   antes: '2 x8'
-  ahora: '—'
+  ahora: None
 J58
   antes: '2 x8'
-  ahora: '—'
+  ahora: None
 K58
   antes: 'fijo · Tempo 3-1-3 · empieza por la lesionada'
-  ahora: 'Sale del sábado desde S2: la abducción va el lunes y el jueves en máquina; la pierna se concentra en 2 días [LÓGICA].'
+  ahora: None
 L58
   antes: None
-  ahora: 'id=abduccion-unilateral'
+  ahora: 'sesion;nombreS1=Sábado/Domingo'
 A59
   antes: 'Abs wesley banco'
-  ahora: 'Touchdown squat'
+  ahora: 'Ejercicio'
 B59
   antes: 'Abs'
-  ahora: 'Rehab'
+  ahora: 'Objetivo'
 C59
   antes: '2 @ RIR1/0'
-  ahora: '2 x15–20'
+  ahora: 'Sem 1 (series@RIR)'
 D59
   antes: '2 @ RIR1/0'
-  ahora: '—'
+  ahora: 'Sem 2 (series@RIR)'
 E59
   antes: '3 @ RIR1/0'
-  ahora: '—'
+  ahora: 'Sem 3 (series@RIR)'
 F59
   antes: '3 @ RIR1/0'
-  ahora: '—'
+  ahora: 'Sem 4 (series@RIR)'
 G59
   antes: '3 @ RIR1/0'
-  ahora: '—'
+  ahora: 'Sem 5 (series@RIR)'
 H59
   antes: '3 @ RIR1/0'
-  ahora: '—'
+  ahora: 'Sem 6 (series@RIR)'
 I59
   antes: '4 @ RIR1/0'
-  ahora: '—'
+  ahora: 'Sem 7 (series@RIR)'
 J59
   antes: '4 @ RIR1/0'
-  ahora: '—'
+  ahora: 'Sem 8 (series@RIR)'
 K59
   antes: None
-  ahora: 'Sale del sábado desde S2: va el lunes, antes de la prensa [LÓGICA].'
+  ahora: 'Notas'
 L59
   antes: None
-  ahora: 'id=touchdown-squat'
+  ahora: 'App (no tocar)'
 A60
   antes: 'Movilidad - trapecio inferior'
-  ahora: 'Bulgarian split squat'
+  ahora: 'Abducción unilateral'
 B60
   antes: '-'
-  ahora: 'Rehab'
+  ahora: 'Rehab (cadera)'
 C60
   antes: '-'
-  ahora: '2 x12'
+  ahora: '2 x15–20'
 D60
   antes: '-'
   ahora: '—'
@@ -1332,175 +1794,235 @@ J60
   ahora: '—'
 K60
   antes: None
-  ahora: 'Sale del sábado desde S2: la pierna se concentra en el lunes y el jueves [LÓGICA].'
+  ahora: 'Sale del sábado desde S2: la abducción va el lunes y el viernes en máquina; la pierna se concentra en 2 días [LÓGICA].'
 L60
   antes: None
-  ahora: 'id=bulgarian-split-squat'
+  ahora: 'id=abduccion-unilateral'
 A61
   antes: 'Autorregulación: si un músculo pierde reps 2 sesiones seguidas, esa semana NO le subas series. Si se estancan varios a la vez o la rodilla empeora en el test, repite la semana anterior.'
-  ahora: 'Abs wesley banco'
+  ahora: 'Touchdown squat'
 B61
   antes: None
-  ahora: 'Abs'
+  ahora: 'Rehab'
 C61
   antes: None
-  ahora: '2 @ RIR1/0'
+  ahora: '2 x15–20'
 D61
   antes: None
-  ahora: '2 @ RIR1/0'
+  ahora: '—'
 E61
   antes: None
-  ahora: '3 @ RIR1/0'
+  ahora: '—'
 F61
   antes: None
-  ahora: '3 @ RIR1/0'
+  ahora: '—'
 G61
   antes: None
-  ahora: '3 @ RIR1/0'
+  ahora: '—'
 H61
   antes: None
-  ahora: '3 @ RIR1/0'
+  ahora: '—'
 I61
   antes: None
-  ahora: '4 @ RIR1/0'
+  ahora: '—'
 J61
   antes: None
-  ahora: '4 @ RIR1/0'
+  ahora: '—'
+K61
+  antes: None
+  ahora: 'Sale del sábado desde S2: va el lunes, antes de la prensa [LÓGICA].'
 L61
   antes: None
-  ahora: 'id=abs-wesley-banco'
+  ahora: 'id=touchdown-squat'
 A62
   antes: None
-  ahora: 'Elevación lateral en prono «T» (mancuernas, banco)'
+  ahora: 'Bulgarian split squat'
 B62
   antes: None
-  ahora: 'Hombro (correctivo)'
+  ahora: 'Rehab'
 C62
   antes: None
-  ahora: '-'
+  ahora: '2 x12'
 D62
   antes: None
-  ahora: '2-3 x10-15\n5 s arriba'
+  ahora: '—'
 E62
   antes: None
-  ahora: '2-3 x10-15\n5 s arriba'
+  ahora: '—'
 F62
   antes: None
-  ahora: '2-3 x10-15\n5 s arriba'
+  ahora: '—'
 G62
   antes: None
-  ahora: '2-3 x10-15\n5 s arriba'
+  ahora: '—'
 H62
   antes: None
-  ahora: '2-3 x10-15\n5 s arriba'
+  ahora: '—'
 I62
   antes: None
-  ahora: '2-3 x10-15\n5 s arriba'
+  ahora: '—'
 J62
   antes: None
-  ahora: '2-3 x10-15\n5 s arriba'
+  ahora: '—'
 K62
   antes: None
-  ahora: 'Postura: trapecio medio e inferior y deltoides posterior. Boca abajo en el banco, pulgar arriba, muy poco peso. RIR 3-4; no cuenta como serie de hipertrofia. Libro, p. 290.'
+  ahora: 'Sale del sábado desde S2: la pierna se concentra en el lunes y el viernes [LÓGICA].'
 L62
   antes: None
-  ahora: 'id=elevacion-lateral-en-prono-t-mancuernas-banco'
+  ahora: 'id=bulgarian-split-squat'
 A63
   antes: 'Semana 9 (14-20/12) · Viaje = descarga  ·  Semana 10 · Vuelta progresiva'
-  ahora: 'Rotación externa con banda «W»'
+  ahora: 'Abs wesley banco'
 B63
   antes: None
-  ahora: 'Hombro (correctivo)'
+  ahora: 'Abs'
 C63
   antes: None
-  ahora: '—'
+  ahora: '2 @ RIR1/0'
 D63
   antes: None
-  ahora: '2-3 x15-20\n5-10 s fuera'
+  ahora: '2 @ RIR1/0'
 E63
   antes: None
-  ahora: '2-3 x15-20\n5-10 s fuera'
+  ahora: '3 @ RIR1/0'
 F63
   antes: None
-  ahora: '2-3 x15-20\n5-10 s fuera'
+  ahora: '3 @ RIR1/0'
 G63
   antes: None
-  ahora: '2-3 x15-20\n5-10 s fuera'
+  ahora: '3 @ RIR1/0'
 H63
   antes: None
-  ahora: '2-3 x15-20\n5-10 s fuera'
+  ahora: '3 @ RIR1/0'
 I63
   antes: None
-  ahora: '2-3 x15-20\n5-10 s fuera'
+  ahora: '4 @ RIR1/0'
 J63
   antes: None
-  ahora: '2-3 x15-20\n5-10 s fuera'
-K63
-  antes: None
-  ahora: 'Codos pegados al cuerpo a 90°. RIR 3-4. Libro, p. 288.'
+  ahora: '4 @ RIR1/0'
 L63
   antes: None
-  ahora: 'id=rotacion-externa-con-banda-w'
+  ahora: 'id=abs-wesley-banco'
 A64
   antes: 'Hipertrofia: la semana sin entrenar hace de descarga justo después del pico de volumen de la semana 8.'
-  ahora: 'Curl de muñeca en extensión (mancuerna)'
+  ahora: 'Elevación lateral en prono «T» (mancuernas, banco)'
 B64
   antes: None
-  ahora: 'Codo (correctivo)'
+  ahora: 'Hombro (correctivo)'
 C64
   antes: None
-  ahora: '—'
+  ahora: '-'
 D64
   antes: None
-  ahora: '3 x10-15\n3 s / 3 s'
+  ahora: '2-3 x10-15\n5 s arriba'
 E64
   antes: None
-  ahora: '3 x10-15\n3 s / 3 s'
+  ahora: '2-3 x10-15\n5 s arriba'
 F64
   antes: None
-  ahora: '3 x10-15\n3 s / 3 s'
+  ahora: '2-3 x10-15\n5 s arriba'
 G64
   antes: None
-  ahora: '3 x10-15\n3 s / 3 s'
+  ahora: '2-3 x10-15\n5 s arriba'
 H64
   antes: None
-  ahora: '3 x10-15\n3 s / 3 s'
+  ahora: '2-3 x10-15\n5 s arriba'
 I64
   antes: None
-  ahora: '3 x10-15\n3 s / 3 s'
+  ahora: '2-3 x10-15\n5 s arriba'
 J64
   antes: None
-  ahora: '3 x10-15\n3 s / 3 s'
+  ahora: '2-3 x10-15\n5 s arriba'
 K64
   antes: None
-  ahora: 'Codo (cara externa). Antebrazo apoyado, palma abajo. Si ahora agarrar te duele: isométrico 4-5×30-45 s las 1-2 primeras semanas. Antes, test del nervio radial (libro, p. 323): si es positivo, se cambia por deslizamientos del nervio (p. 338). Dolor ≤3/10 y no peor al día siguiente. Libro, pp. 332-333.'
+  ahora: 'Postura: trapecio medio e inferior y deltoides posterior. Boca abajo en el banco, pulgar arriba, muy poco peso. RIR 3-4; no cuenta como serie de hipertrofia. Libro, p. 290.'
 L64
   antes: None
-  ahora: 'id=curl-de-muneca-en-extension-mancuerna'
+  ahora: 'id=elevacion-lateral-en-prono-t-mancuernas-banco'
 A65
   antes: 'Rodilla (libro): nunca dejes el tendón en reposo total. Llévate la goma: sentadilla española 5×45 s cada día (sin anclaje → wall sit a 1 pierna). Sigue haciendo el test en declive por la mañana.'
-  ahora: 'Autorregulación: si un músculo pierde reps 2 sesiones seguidas, esa semana NO le subas series. Si se estancan varios a la vez o la rodilla empeora en el test, repite la semana anterior.'
+  ahora: 'Rotación externa con banda «W»'
+B65
+  antes: None
+  ahora: 'Hombro (correctivo)'
+C65
+  antes: None
+  ahora: '—'
+D65
+  antes: None
+  ahora: '2-3 x15-20\n5-10 s fuera'
+E65
+  antes: None
+  ahora: '2-3 x15-20\n5-10 s fuera'
+F65
+  antes: None
+  ahora: '2-3 x15-20\n5-10 s fuera'
+G65
+  antes: None
+  ahora: '2-3 x15-20\n5-10 s fuera'
+H65
+  antes: None
+  ahora: '2-3 x15-20\n5-10 s fuera'
+I65
+  antes: None
+  ahora: '2-3 x15-20\n5-10 s fuera'
+J65
+  antes: None
+  ahora: '2-3 x15-20\n5-10 s fuera'
+K65
+  antes: None
+  ahora: 'Codos pegados al cuerpo a 90°. RIR 3-4. Libro, p. 288.'
 L65
   antes: None
-  ahora: 'regla'
+  ahora: 'id=rotacion-externa-con-banda-w'
 A66
   antes: 'Semana 10 (vuelta): hipertrofia con las series de la sem 3-4 y a RIR2. Rehab ×8 al ~80% del peso de la sem 8. Si el test de 24 h aguanta, semana 11 a peso completo y siguiente escalón del libro (×6).'
-  ahora: None
+  ahora: 'Curl de muñeca en extensión (mancuerna)'
+B66
+  antes: None
+  ahora: 'Codo (correctivo)'
+C66
+  antes: None
+  ahora: '—'
+D66
+  antes: None
+  ahora: '3 x10-15\n3 s / 3 s'
+E66
+  antes: None
+  ahora: '3 x10-15\n3 s / 3 s'
+F66
+  antes: None
+  ahora: '3 x10-15\n3 s / 3 s'
+G66
+  antes: None
+  ahora: '3 x10-15\n3 s / 3 s'
+H66
+  antes: None
+  ahora: '3 x10-15\n3 s / 3 s'
+I66
+  antes: None
+  ahora: '3 x10-15\n3 s / 3 s'
+J66
+  antes: None
+  ahora: '3 x10-15\n3 s / 3 s'
+K66
+  antes: None
+  ahora: 'Codo (cara externa). Antebrazo apoyado, palma abajo. Si ahora agarrar te duele: isométrico 4-5×30-45 s las 1-2 primeras semanas. Antes, test del nervio radial (libro, p. 323): si es positivo, se cambia por deslizamientos del nervio (p. 338). Dolor ≤3/10 y no peor al día siguiente. Libro, pp. 332-333.'
+L66
+  antes: None
+  ahora: 'id=curl-de-muneca-en-extension-mancuerna'
 A67
   antes: None
-  ahora: 'Semana 9 (14-20/12) · Viaje = descarga  ·  Semana 10 · Vuelta progresiva'
+  ahora: 'Autorregulación: si un músculo pierde reps 2 sesiones seguidas, esa semana NO le subas series. Si se estancan varios a la vez o la rodilla empeora en el test, repite la semana anterior.'
 L67
   antes: None
-  ahora: 'nota'
+  ahora: 'regla'
 A68
   antes: 'Series semanales por grupo muscular (se recalculan solas al cambiar la tabla)'
-  ahora: 'Hipertrofia: la semana sin entrenar hace de descarga justo después del pico de volumen de la semana 8.'
-L68
-  antes: None
-  ahora: 'nota'
+  ahora: None
 A69
   antes: 'Grupo muscular'
-  ahora: 'Rodilla en el viaje: nunca reposo total del tendón. Sentadilla española 5×45 s cada día (sin anclaje → wall sit a 1 pierna) y las dos pruebas de la mañana (declive + 10 subidas). Carrera: si puedes, 2 rodajes suaves sin pasar del nivel de S8 y nunca dos días seguidos, con la regla de carrera (≤2/10, nivel previo en ≤60 min, mañana siguiente no peor).'
+  ahora: 'Semana 9 (14-20/12) · Viaje = descarga  ·  Semana 10 · Vuelta progresiva'
 B69
   antes: 'Sem 1 → Sem 8'
   ahora: None
@@ -1533,7 +2055,7 @@ L69
   ahora: 'nota'
 A70
   antes: 'Espalda'
-  ahora: 'Semana 10 (vuelta): hipertrofia con las series de la sem 3-4 y a RIR2. Rehab ×8 al ~80% del peso de la sem 8; si se cumple la regla de 24-48 h, semana 11 a peso completo y siguiente escalón del libro (×6). Carrera: retomas el nivel de S8, o uno por debajo si no pudiste correr en el viaje.'
+  ahora: 'Hipertrofia: la semana sin entrenar hace de descarga justo después del pico de volumen de la semana 8.'
 B70
   antes: '=C70&" → "&J70'
   ahora: None
@@ -1566,7 +2088,7 @@ L70
   ahora: 'nota'
 A71
   antes: 'Pecho'
-  ahora: None
+  ahora: 'Rodilla en el viaje: nunca reposo total del tendón. Sentadilla española 5×45 s cada día (sin anclaje → wall sit a 1 pierna) y las dos pruebas de la mañana (declive + 10 subidas). Carrera: si puedes, 2 rodajes suaves sin pasar del nivel de S8 y nunca dos días seguidos, con la regla de carrera (≤2/10, nivel previo en ≤60 min, mañana siguiente no peor).'
 B71
   antes: '=C71&" → "&J71'
   ahora: None
@@ -1594,9 +2116,12 @@ I71
 J71
   antes: '=SUMPRODUCT(($B$3:$B$65="Pecho")*IFERROR(VALUE(LEFT(J$3:J$65,FIND(" ",J$3:J$65&" ")-1)),0))'
   ahora: None
+L71
+  antes: None
+  ahora: 'nota'
 A72
   antes: 'Hombro lat.'
-  ahora: 'Series semanales por grupo muscular (se recalculan solas al cambiar la tabla)'
+  ahora: 'Semana 10 (vuelta): hipertrofia con las series de la sem 3-4 y a RIR2. Rehab ×8 al ~80% del peso de la sem 8; si se cumple la regla de 24-48 h, semana 11 a peso completo y siguiente escalón del libro (×6). Carrera: retomas el nivel de S8, o uno por debajo si no pudiste correr en el viaje.'
 B72
   antes: '=C72&" → "&J72'
   ahora: None
@@ -1624,921 +2149,894 @@ I72
 J72
   antes: '=SUMPRODUCT(($B$3:$B$65="Hombro lat.")*IFERROR(VALUE(LEFT(J$3:J$65,FIND(" ",J$3:J$65&" ")-1)),0))'
   ahora: None
+L72
+  antes: None
+  ahora: 'nota'
 A73
   antes: 'Hombro post.'
-  ahora: 'Grupo muscular'
+  ahora: None
 B73
   antes: '=C73&" → "&J73'
-  ahora: 'Sem 1 → Sem 8'
+  ahora: None
 C73
   antes: '=SUMPRODUCT(($B$3:$B$65="Hombro post.")*IFERROR(VALUE(LEFT(C$3:C$65,FIND(" ",C$3:C$65&" ")-1)),0))'
-  ahora: 'Sem 1'
+  ahora: None
 D73
   antes: '=SUMPRODUCT(($B$3:$B$65="Hombro post.")*IFERROR(VALUE(LEFT(D$3:D$65,FIND(" ",D$3:D$65&" ")-1)),0))'
-  ahora: 'Sem 2'
+  ahora: None
 E73
   antes: '=SUMPRODUCT(($B$3:$B$65="Hombro post.")*IFERROR(VALUE(LEFT(E$3:E$65,FIND(" ",E$3:E$65&" ")-1)),0))'
-  ahora: 'Sem 3'
+  ahora: None
 F73
   antes: '=SUMPRODUCT(($B$3:$B$65="Hombro post.")*IFERROR(VALUE(LEFT(F$3:F$65,FIND(" ",F$3:F$65&" ")-1)),0))'
-  ahora: 'Sem 4'
+  ahora: None
 G73
   antes: '=SUMPRODUCT(($B$3:$B$65="Hombro post.")*IFERROR(VALUE(LEFT(G$3:G$65,FIND(" ",G$3:G$65&" ")-1)),0))'
-  ahora: 'Sem 5'
+  ahora: None
 H73
   antes: '=SUMPRODUCT(($B$3:$B$65="Hombro post.")*IFERROR(VALUE(LEFT(H$3:H$65,FIND(" ",H$3:H$65&" ")-1)),0))'
-  ahora: 'Sem 6'
+  ahora: None
 I73
   antes: '=SUMPRODUCT(($B$3:$B$65="Hombro post.")*IFERROR(VALUE(LEFT(I$3:I$65,FIND(" ",I$3:I$65&" ")-1)),0))'
-  ahora: 'Sem 7'
+  ahora: None
 J73
   antes: '=SUMPRODUCT(($B$3:$B$65="Hombro post.")*IFERROR(VALUE(LEFT(J$3:J$65,FIND(" ",J$3:J$65&" ")-1)),0))'
-  ahora: 'Sem 8'
-L73
-  antes: None
-  ahora: 'grupos'
+  ahora: None
 A74
   antes: 'Bíceps'
-  ahora: 'Espalda'
+  ahora: 'Series semanales por grupo muscular (se recalculan solas al cambiar la tabla)'
+B74
+  antes: '=C74&" → "&J74'
+  ahora: None
 C74
   antes: '=SUMPRODUCT(($B$3:$B$65="Bíceps")*IFERROR(VALUE(LEFT(C$3:C$65,FIND(" ",C$3:C$65&" ")-1)),0))'
-  ahora: '=IFERROR(VALUE(LEFT(C26,FIND(" ",C26&" ")-1)),0)+IFERROR(VALUE(LEFT(C27,FIND(" ",C27&" ")-1)),0)+IFERROR(VALUE(LEFT(C29,FIND(" ",C29&" ")-1)),0)+IFERROR(VALUE(LEFT(C52,FIND(" ",C52&" ")-1)),0)+IFERROR(VALUE(LEFT(C53,FIND(" ",C53&" ")-1)),0)+IFERROR(VALUE(LEFT(C54,FIND(" ",C54&" ")-1)),0)'
+  ahora: None
 D74
   antes: '=SUMPRODUCT(($B$3:$B$65="Bíceps")*IFERROR(VALUE(LEFT(D$3:D$65,FIND(" ",D$3:D$65&" ")-1)),0))'
-  ahora: '=IFERROR(VALUE(LEFT(D26,FIND(" ",D26&" ")-1)),0)+IFERROR(VALUE(LEFT(D27,FIND(" ",D27&" ")-1)),0)+IFERROR(VALUE(LEFT(D29,FIND(" ",D29&" ")-1)),0)+IFERROR(VALUE(LEFT(D52,FIND(" ",D52&" ")-1)),0)+IFERROR(VALUE(LEFT(D53,FIND(" ",D53&" ")-1)),0)+IFERROR(VALUE(LEFT(D54,FIND(" ",D54&" ")-1)),0)'
+  ahora: None
 E74
   antes: '=SUMPRODUCT(($B$3:$B$65="Bíceps")*IFERROR(VALUE(LEFT(E$3:E$65,FIND(" ",E$3:E$65&" ")-1)),0))'
-  ahora: '=IFERROR(VALUE(LEFT(E26,FIND(" ",E26&" ")-1)),0)+IFERROR(VALUE(LEFT(E27,FIND(" ",E27&" ")-1)),0)+IFERROR(VALUE(LEFT(E29,FIND(" ",E29&" ")-1)),0)+IFERROR(VALUE(LEFT(E52,FIND(" ",E52&" ")-1)),0)+IFERROR(VALUE(LEFT(E53,FIND(" ",E53&" ")-1)),0)+IFERROR(VALUE(LEFT(E54,FIND(" ",E54&" ")-1)),0)'
+  ahora: None
 F74
   antes: '=SUMPRODUCT(($B$3:$B$65="Bíceps")*IFERROR(VALUE(LEFT(F$3:F$65,FIND(" ",F$3:F$65&" ")-1)),0))'
-  ahora: '=IFERROR(VALUE(LEFT(F26,FIND(" ",F26&" ")-1)),0)+IFERROR(VALUE(LEFT(F27,FIND(" ",F27&" ")-1)),0)+IFERROR(VALUE(LEFT(F29,FIND(" ",F29&" ")-1)),0)+IFERROR(VALUE(LEFT(F52,FIND(" ",F52&" ")-1)),0)+IFERROR(VALUE(LEFT(F53,FIND(" ",F53&" ")-1)),0)+IFERROR(VALUE(LEFT(F54,FIND(" ",F54&" ")-1)),0)'
+  ahora: None
 G74
   antes: '=SUMPRODUCT(($B$3:$B$65="Bíceps")*IFERROR(VALUE(LEFT(G$3:G$65,FIND(" ",G$3:G$65&" ")-1)),0))'
-  ahora: '=IFERROR(VALUE(LEFT(G26,FIND(" ",G26&" ")-1)),0)+IFERROR(VALUE(LEFT(G27,FIND(" ",G27&" ")-1)),0)+IFERROR(VALUE(LEFT(G29,FIND(" ",G29&" ")-1)),0)+IFERROR(VALUE(LEFT(G52,FIND(" ",G52&" ")-1)),0)+IFERROR(VALUE(LEFT(G53,FIND(" ",G53&" ")-1)),0)+IFERROR(VALUE(LEFT(G54,FIND(" ",G54&" ")-1)),0)'
+  ahora: None
 H74
   antes: '=SUMPRODUCT(($B$3:$B$65="Bíceps")*IFERROR(VALUE(LEFT(H$3:H$65,FIND(" ",H$3:H$65&" ")-1)),0))'
-  ahora: '=IFERROR(VALUE(LEFT(H26,FIND(" ",H26&" ")-1)),0)+IFERROR(VALUE(LEFT(H27,FIND(" ",H27&" ")-1)),0)+IFERROR(VALUE(LEFT(H29,FIND(" ",H29&" ")-1)),0)+IFERROR(VALUE(LEFT(H52,FIND(" ",H52&" ")-1)),0)+IFERROR(VALUE(LEFT(H53,FIND(" ",H53&" ")-1)),0)+IFERROR(VALUE(LEFT(H54,FIND(" ",H54&" ")-1)),0)'
+  ahora: None
 I74
   antes: '=SUMPRODUCT(($B$3:$B$65="Bíceps")*IFERROR(VALUE(LEFT(I$3:I$65,FIND(" ",I$3:I$65&" ")-1)),0))'
-  ahora: '=IFERROR(VALUE(LEFT(I26,FIND(" ",I26&" ")-1)),0)+IFERROR(VALUE(LEFT(I27,FIND(" ",I27&" ")-1)),0)+IFERROR(VALUE(LEFT(I29,FIND(" ",I29&" ")-1)),0)+IFERROR(VALUE(LEFT(I52,FIND(" ",I52&" ")-1)),0)+IFERROR(VALUE(LEFT(I53,FIND(" ",I53&" ")-1)),0)+IFERROR(VALUE(LEFT(I54,FIND(" ",I54&" ")-1)),0)'
+  ahora: None
 J74
   antes: '=SUMPRODUCT(($B$3:$B$65="Bíceps")*IFERROR(VALUE(LEFT(J$3:J$65,FIND(" ",J$3:J$65&" ")-1)),0))'
-  ahora: '=IFERROR(VALUE(LEFT(J26,FIND(" ",J26&" ")-1)),0)+IFERROR(VALUE(LEFT(J27,FIND(" ",J27&" ")-1)),0)+IFERROR(VALUE(LEFT(J29,FIND(" ",J29&" ")-1)),0)+IFERROR(VALUE(LEFT(J52,FIND(" ",J52&" ")-1)),0)+IFERROR(VALUE(LEFT(J53,FIND(" ",J53&" ")-1)),0)+IFERROR(VALUE(LEFT(J54,FIND(" ",J54&" ")-1)),0)'
+  ahora: None
 A75
   antes: 'Tríceps'
-  ahora: 'Pecho'
+  ahora: 'Grupo muscular'
+B75
+  antes: '=C75&" → "&J75'
+  ahora: 'Sem 1 → Sem 8'
 C75
   antes: '=SUMPRODUCT(($B$3:$B$65="Tríceps")*IFERROR(VALUE(LEFT(C$3:C$65,FIND(" ",C$3:C$65&" ")-1)),0))'
-  ahora: '=IFERROR(VALUE(LEFT(C16,FIND(" ",C16&" ")-1)),0)+IFERROR(VALUE(LEFT(C18,FIND(" ",C18&" ")-1)),0)+IFERROR(VALUE(LEFT(C51,FIND(" ",C51&" ")-1)),0)'
+  ahora: 'Sem 1'
 D75
   antes: '=SUMPRODUCT(($B$3:$B$65="Tríceps")*IFERROR(VALUE(LEFT(D$3:D$65,FIND(" ",D$3:D$65&" ")-1)),0))'
-  ahora: '=IFERROR(VALUE(LEFT(D16,FIND(" ",D16&" ")-1)),0)+IFERROR(VALUE(LEFT(D18,FIND(" ",D18&" ")-1)),0)+IFERROR(VALUE(LEFT(D51,FIND(" ",D51&" ")-1)),0)'
+  ahora: 'Sem 2'
 E75
   antes: '=SUMPRODUCT(($B$3:$B$65="Tríceps")*IFERROR(VALUE(LEFT(E$3:E$65,FIND(" ",E$3:E$65&" ")-1)),0))'
-  ahora: '=IFERROR(VALUE(LEFT(E16,FIND(" ",E16&" ")-1)),0)+IFERROR(VALUE(LEFT(E18,FIND(" ",E18&" ")-1)),0)+IFERROR(VALUE(LEFT(E51,FIND(" ",E51&" ")-1)),0)'
+  ahora: 'Sem 3'
 F75
   antes: '=SUMPRODUCT(($B$3:$B$65="Tríceps")*IFERROR(VALUE(LEFT(F$3:F$65,FIND(" ",F$3:F$65&" ")-1)),0))'
-  ahora: '=IFERROR(VALUE(LEFT(F16,FIND(" ",F16&" ")-1)),0)+IFERROR(VALUE(LEFT(F18,FIND(" ",F18&" ")-1)),0)+IFERROR(VALUE(LEFT(F51,FIND(" ",F51&" ")-1)),0)'
+  ahora: 'Sem 4'
 G75
   antes: '=SUMPRODUCT(($B$3:$B$65="Tríceps")*IFERROR(VALUE(LEFT(G$3:G$65,FIND(" ",G$3:G$65&" ")-1)),0))'
-  ahora: '=IFERROR(VALUE(LEFT(G16,FIND(" ",G16&" ")-1)),0)+IFERROR(VALUE(LEFT(G18,FIND(" ",G18&" ")-1)),0)+IFERROR(VALUE(LEFT(G51,FIND(" ",G51&" ")-1)),0)'
+  ahora: 'Sem 5'
 H75
   antes: '=SUMPRODUCT(($B$3:$B$65="Tríceps")*IFERROR(VALUE(LEFT(H$3:H$65,FIND(" ",H$3:H$65&" ")-1)),0))'
-  ahora: '=IFERROR(VALUE(LEFT(H16,FIND(" ",H16&" ")-1)),0)+IFERROR(VALUE(LEFT(H18,FIND(" ",H18&" ")-1)),0)+IFERROR(VALUE(LEFT(H51,FIND(" ",H51&" ")-1)),0)'
+  ahora: 'Sem 6'
 I75
   antes: '=SUMPRODUCT(($B$3:$B$65="Tríceps")*IFERROR(VALUE(LEFT(I$3:I$65,FIND(" ",I$3:I$65&" ")-1)),0))'
-  ahora: '=IFERROR(VALUE(LEFT(I16,FIND(" ",I16&" ")-1)),0)+IFERROR(VALUE(LEFT(I18,FIND(" ",I18&" ")-1)),0)+IFERROR(VALUE(LEFT(I51,FIND(" ",I51&" ")-1)),0)'
+  ahora: 'Sem 7'
 J75
   antes: '=SUMPRODUCT(($B$3:$B$65="Tríceps")*IFERROR(VALUE(LEFT(J$3:J$65,FIND(" ",J$3:J$65&" ")-1)),0))'
-  ahora: '=IFERROR(VALUE(LEFT(J16,FIND(" ",J16&" ")-1)),0)+IFERROR(VALUE(LEFT(J18,FIND(" ",J18&" ")-1)),0)+IFERROR(VALUE(LEFT(J51,FIND(" ",J51&" ")-1)),0)'
+  ahora: 'Sem 8'
+L75
+  antes: None
+  ahora: 'grupos'
 A76
   antes: 'Isquios'
-  ahora: 'Hombro lat.'
+  ahora: 'Espalda'
 C76
   antes: '=SUMPRODUCT(($B$3:$B$65="Isquios")*IFERROR(VALUE(LEFT(C$3:C$65,FIND(" ",C$3:C$65&" ")-1)),0))'
-  ahora: '=IFERROR(VALUE(LEFT(C6,FIND(" ",C6&" ")-1)),0)+IFERROR(VALUE(LEFT(C8,FIND(" ",C8&" ")-1)),0)+IFERROR(VALUE(LEFT(C28,FIND(" ",C28&" ")-1)),0)+IFERROR(VALUE(LEFT(C48,FIND(" ",C48&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(C13,FIND(" ",C13&" ")-1)),0)+IFERROR(VALUE(LEFT(C14,FIND(" ",C14&" ")-1)),0)+IFERROR(VALUE(LEFT(C15,FIND(" ",C15&" ")-1)),0)+IFERROR(VALUE(LEFT(C31,FIND(" ",C31&" ")-1)),0)+IFERROR(VALUE(LEFT(C32,FIND(" ",C32&" ")-1)),0)+IFERROR(VALUE(LEFT(C34,FIND(" ",C34&" ")-1)),0)'
 D76
   antes: '=SUMPRODUCT(($B$3:$B$65="Isquios")*IFERROR(VALUE(LEFT(D$3:D$65,FIND(" ",D$3:D$65&" ")-1)),0))'
-  ahora: '=IFERROR(VALUE(LEFT(D6,FIND(" ",D6&" ")-1)),0)+IFERROR(VALUE(LEFT(D8,FIND(" ",D8&" ")-1)),0)+IFERROR(VALUE(LEFT(D28,FIND(" ",D28&" ")-1)),0)+IFERROR(VALUE(LEFT(D48,FIND(" ",D48&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(D13,FIND(" ",D13&" ")-1)),0)+IFERROR(VALUE(LEFT(D14,FIND(" ",D14&" ")-1)),0)+IFERROR(VALUE(LEFT(D15,FIND(" ",D15&" ")-1)),0)+IFERROR(VALUE(LEFT(D31,FIND(" ",D31&" ")-1)),0)+IFERROR(VALUE(LEFT(D32,FIND(" ",D32&" ")-1)),0)+IFERROR(VALUE(LEFT(D34,FIND(" ",D34&" ")-1)),0)'
 E76
   antes: '=SUMPRODUCT(($B$3:$B$65="Isquios")*IFERROR(VALUE(LEFT(E$3:E$65,FIND(" ",E$3:E$65&" ")-1)),0))'
-  ahora: '=IFERROR(VALUE(LEFT(E6,FIND(" ",E6&" ")-1)),0)+IFERROR(VALUE(LEFT(E8,FIND(" ",E8&" ")-1)),0)+IFERROR(VALUE(LEFT(E28,FIND(" ",E28&" ")-1)),0)+IFERROR(VALUE(LEFT(E48,FIND(" ",E48&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(E13,FIND(" ",E13&" ")-1)),0)+IFERROR(VALUE(LEFT(E14,FIND(" ",E14&" ")-1)),0)+IFERROR(VALUE(LEFT(E15,FIND(" ",E15&" ")-1)),0)+IFERROR(VALUE(LEFT(E31,FIND(" ",E31&" ")-1)),0)+IFERROR(VALUE(LEFT(E32,FIND(" ",E32&" ")-1)),0)+IFERROR(VALUE(LEFT(E34,FIND(" ",E34&" ")-1)),0)'
 F76
   antes: '=SUMPRODUCT(($B$3:$B$65="Isquios")*IFERROR(VALUE(LEFT(F$3:F$65,FIND(" ",F$3:F$65&" ")-1)),0))'
-  ahora: '=IFERROR(VALUE(LEFT(F6,FIND(" ",F6&" ")-1)),0)+IFERROR(VALUE(LEFT(F8,FIND(" ",F8&" ")-1)),0)+IFERROR(VALUE(LEFT(F28,FIND(" ",F28&" ")-1)),0)+IFERROR(VALUE(LEFT(F48,FIND(" ",F48&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(F13,FIND(" ",F13&" ")-1)),0)+IFERROR(VALUE(LEFT(F14,FIND(" ",F14&" ")-1)),0)+IFERROR(VALUE(LEFT(F15,FIND(" ",F15&" ")-1)),0)+IFERROR(VALUE(LEFT(F31,FIND(" ",F31&" ")-1)),0)+IFERROR(VALUE(LEFT(F32,FIND(" ",F32&" ")-1)),0)+IFERROR(VALUE(LEFT(F34,FIND(" ",F34&" ")-1)),0)'
 G76
   antes: '=SUMPRODUCT(($B$3:$B$65="Isquios")*IFERROR(VALUE(LEFT(G$3:G$65,FIND(" ",G$3:G$65&" ")-1)),0))'
-  ahora: '=IFERROR(VALUE(LEFT(G6,FIND(" ",G6&" ")-1)),0)+IFERROR(VALUE(LEFT(G8,FIND(" ",G8&" ")-1)),0)+IFERROR(VALUE(LEFT(G28,FIND(" ",G28&" ")-1)),0)+IFERROR(VALUE(LEFT(G48,FIND(" ",G48&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(G13,FIND(" ",G13&" ")-1)),0)+IFERROR(VALUE(LEFT(G14,FIND(" ",G14&" ")-1)),0)+IFERROR(VALUE(LEFT(G15,FIND(" ",G15&" ")-1)),0)+IFERROR(VALUE(LEFT(G31,FIND(" ",G31&" ")-1)),0)+IFERROR(VALUE(LEFT(G32,FIND(" ",G32&" ")-1)),0)+IFERROR(VALUE(LEFT(G34,FIND(" ",G34&" ")-1)),0)'
 H76
   antes: '=SUMPRODUCT(($B$3:$B$65="Isquios")*IFERROR(VALUE(LEFT(H$3:H$65,FIND(" ",H$3:H$65&" ")-1)),0))'
-  ahora: '=IFERROR(VALUE(LEFT(H6,FIND(" ",H6&" ")-1)),0)+IFERROR(VALUE(LEFT(H8,FIND(" ",H8&" ")-1)),0)+IFERROR(VALUE(LEFT(H28,FIND(" ",H28&" ")-1)),0)+IFERROR(VALUE(LEFT(H48,FIND(" ",H48&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(H13,FIND(" ",H13&" ")-1)),0)+IFERROR(VALUE(LEFT(H14,FIND(" ",H14&" ")-1)),0)+IFERROR(VALUE(LEFT(H15,FIND(" ",H15&" ")-1)),0)+IFERROR(VALUE(LEFT(H31,FIND(" ",H31&" ")-1)),0)+IFERROR(VALUE(LEFT(H32,FIND(" ",H32&" ")-1)),0)+IFERROR(VALUE(LEFT(H34,FIND(" ",H34&" ")-1)),0)'
 I76
   antes: '=SUMPRODUCT(($B$3:$B$65="Isquios")*IFERROR(VALUE(LEFT(I$3:I$65,FIND(" ",I$3:I$65&" ")-1)),0))'
-  ahora: '=IFERROR(VALUE(LEFT(I6,FIND(" ",I6&" ")-1)),0)+IFERROR(VALUE(LEFT(I8,FIND(" ",I8&" ")-1)),0)+IFERROR(VALUE(LEFT(I28,FIND(" ",I28&" ")-1)),0)+IFERROR(VALUE(LEFT(I48,FIND(" ",I48&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(I13,FIND(" ",I13&" ")-1)),0)+IFERROR(VALUE(LEFT(I14,FIND(" ",I14&" ")-1)),0)+IFERROR(VALUE(LEFT(I15,FIND(" ",I15&" ")-1)),0)+IFERROR(VALUE(LEFT(I31,FIND(" ",I31&" ")-1)),0)+IFERROR(VALUE(LEFT(I32,FIND(" ",I32&" ")-1)),0)+IFERROR(VALUE(LEFT(I34,FIND(" ",I34&" ")-1)),0)'
 J76
   antes: '=SUMPRODUCT(($B$3:$B$65="Isquios")*IFERROR(VALUE(LEFT(J$3:J$65,FIND(" ",J$3:J$65&" ")-1)),0))'
-  ahora: '=IFERROR(VALUE(LEFT(J6,FIND(" ",J6&" ")-1)),0)+IFERROR(VALUE(LEFT(J8,FIND(" ",J8&" ")-1)),0)+IFERROR(VALUE(LEFT(J28,FIND(" ",J28&" ")-1)),0)+IFERROR(VALUE(LEFT(J48,FIND(" ",J48&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(J13,FIND(" ",J13&" ")-1)),0)+IFERROR(VALUE(LEFT(J14,FIND(" ",J14&" ")-1)),0)+IFERROR(VALUE(LEFT(J15,FIND(" ",J15&" ")-1)),0)+IFERROR(VALUE(LEFT(J31,FIND(" ",J31&" ")-1)),0)+IFERROR(VALUE(LEFT(J32,FIND(" ",J32&" ")-1)),0)+IFERROR(VALUE(LEFT(J34,FIND(" ",J34&" ")-1)),0)'
 A77
   antes: 'Abs'
-  ahora: 'Hombro post.'
+  ahora: 'Pecho'
 C77
   antes: '=SUMPRODUCT(($B$3:$B$65="Abs")*IFERROR(VALUE(LEFT(C$3:C$65,FIND(" ",C$3:C$65&" ")-1)),0))'
-  ahora: '=IFERROR(VALUE(LEFT(C31,FIND(" ",C31&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(C19,FIND(" ",C19&" ")-1)),0)+IFERROR(VALUE(LEFT(C21,FIND(" ",C21&" ")-1)),0)+IFERROR(VALUE(LEFT(C56,FIND(" ",C56&" ")-1)),0)'
 D77
   antes: '=SUMPRODUCT(($B$3:$B$65="Abs")*IFERROR(VALUE(LEFT(D$3:D$65,FIND(" ",D$3:D$65&" ")-1)),0))'
-  ahora: '=IFERROR(VALUE(LEFT(D31,FIND(" ",D31&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(D19,FIND(" ",D19&" ")-1)),0)+IFERROR(VALUE(LEFT(D21,FIND(" ",D21&" ")-1)),0)+IFERROR(VALUE(LEFT(D56,FIND(" ",D56&" ")-1)),0)'
 E77
   antes: '=SUMPRODUCT(($B$3:$B$65="Abs")*IFERROR(VALUE(LEFT(E$3:E$65,FIND(" ",E$3:E$65&" ")-1)),0))'
-  ahora: '=IFERROR(VALUE(LEFT(E31,FIND(" ",E31&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(E19,FIND(" ",E19&" ")-1)),0)+IFERROR(VALUE(LEFT(E21,FIND(" ",E21&" ")-1)),0)+IFERROR(VALUE(LEFT(E56,FIND(" ",E56&" ")-1)),0)'
 F77
   antes: '=SUMPRODUCT(($B$3:$B$65="Abs")*IFERROR(VALUE(LEFT(F$3:F$65,FIND(" ",F$3:F$65&" ")-1)),0))'
-  ahora: '=IFERROR(VALUE(LEFT(F31,FIND(" ",F31&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(F19,FIND(" ",F19&" ")-1)),0)+IFERROR(VALUE(LEFT(F21,FIND(" ",F21&" ")-1)),0)+IFERROR(VALUE(LEFT(F56,FIND(" ",F56&" ")-1)),0)'
 G77
   antes: '=SUMPRODUCT(($B$3:$B$65="Abs")*IFERROR(VALUE(LEFT(G$3:G$65,FIND(" ",G$3:G$65&" ")-1)),0))'
-  ahora: '=IFERROR(VALUE(LEFT(G31,FIND(" ",G31&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(G19,FIND(" ",G19&" ")-1)),0)+IFERROR(VALUE(LEFT(G21,FIND(" ",G21&" ")-1)),0)+IFERROR(VALUE(LEFT(G56,FIND(" ",G56&" ")-1)),0)'
 H77
   antes: '=SUMPRODUCT(($B$3:$B$65="Abs")*IFERROR(VALUE(LEFT(H$3:H$65,FIND(" ",H$3:H$65&" ")-1)),0))'
-  ahora: '=IFERROR(VALUE(LEFT(H31,FIND(" ",H31&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(H19,FIND(" ",H19&" ")-1)),0)+IFERROR(VALUE(LEFT(H21,FIND(" ",H21&" ")-1)),0)+IFERROR(VALUE(LEFT(H56,FIND(" ",H56&" ")-1)),0)'
 I77
   antes: '=SUMPRODUCT(($B$3:$B$65="Abs")*IFERROR(VALUE(LEFT(I$3:I$65,FIND(" ",I$3:I$65&" ")-1)),0))'
-  ahora: '=IFERROR(VALUE(LEFT(I31,FIND(" ",I31&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(I19,FIND(" ",I19&" ")-1)),0)+IFERROR(VALUE(LEFT(I21,FIND(" ",I21&" ")-1)),0)+IFERROR(VALUE(LEFT(I56,FIND(" ",I56&" ")-1)),0)'
 J77
   antes: '=SUMPRODUCT(($B$3:$B$65="Abs")*IFERROR(VALUE(LEFT(J$3:J$65,FIND(" ",J$3:J$65&" ")-1)),0))'
-  ahora: '=IFERROR(VALUE(LEFT(J31,FIND(" ",J31&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(J19,FIND(" ",J19&" ")-1)),0)+IFERROR(VALUE(LEFT(J21,FIND(" ",J21&" ")-1)),0)+IFERROR(VALUE(LEFT(J56,FIND(" ",J56&" ")-1)),0)'
 A78
   antes: 'Gemelos'
-  ahora: 'Bíceps'
+  ahora: 'Hombro lat.'
 C78
   antes: '=SUMPRODUCT(($B$3:$B$65="Gemelos")*IFERROR(VALUE(LEFT(C$3:C$65,FIND(" ",C$3:C$65&" ")-1)),0))'
-  ahora: '=IFERROR(VALUE(LEFT(C30,FIND(" ",C30&" ")-1)),0)+IFERROR(VALUE(LEFT(C32,FIND(" ",C32&" ")-1)),0)+IFERROR(VALUE(LEFT(C50,FIND(" ",C50&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(C6,FIND(" ",C6&" ")-1)),0)+IFERROR(VALUE(LEFT(C8,FIND(" ",C8&" ")-1)),0)+IFERROR(VALUE(LEFT(C33,FIND(" ",C33&" ")-1)),0)+IFERROR(VALUE(LEFT(C53,FIND(" ",C53&" ")-1)),0)'
 D78
   antes: '=SUMPRODUCT(($B$3:$B$65="Gemelos")*IFERROR(VALUE(LEFT(D$3:D$65,FIND(" ",D$3:D$65&" ")-1)),0))'
-  ahora: '=IFERROR(VALUE(LEFT(D30,FIND(" ",D30&" ")-1)),0)+IFERROR(VALUE(LEFT(D32,FIND(" ",D32&" ")-1)),0)+IFERROR(VALUE(LEFT(D50,FIND(" ",D50&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(D6,FIND(" ",D6&" ")-1)),0)+IFERROR(VALUE(LEFT(D8,FIND(" ",D8&" ")-1)),0)+IFERROR(VALUE(LEFT(D33,FIND(" ",D33&" ")-1)),0)+IFERROR(VALUE(LEFT(D53,FIND(" ",D53&" ")-1)),0)'
 E78
   antes: '=SUMPRODUCT(($B$3:$B$65="Gemelos")*IFERROR(VALUE(LEFT(E$3:E$65,FIND(" ",E$3:E$65&" ")-1)),0))'
-  ahora: '=IFERROR(VALUE(LEFT(E30,FIND(" ",E30&" ")-1)),0)+IFERROR(VALUE(LEFT(E32,FIND(" ",E32&" ")-1)),0)+IFERROR(VALUE(LEFT(E50,FIND(" ",E50&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(E6,FIND(" ",E6&" ")-1)),0)+IFERROR(VALUE(LEFT(E8,FIND(" ",E8&" ")-1)),0)+IFERROR(VALUE(LEFT(E33,FIND(" ",E33&" ")-1)),0)+IFERROR(VALUE(LEFT(E53,FIND(" ",E53&" ")-1)),0)'
 F78
   antes: '=SUMPRODUCT(($B$3:$B$65="Gemelos")*IFERROR(VALUE(LEFT(F$3:F$65,FIND(" ",F$3:F$65&" ")-1)),0))'
-  ahora: '=IFERROR(VALUE(LEFT(F30,FIND(" ",F30&" ")-1)),0)+IFERROR(VALUE(LEFT(F32,FIND(" ",F32&" ")-1)),0)+IFERROR(VALUE(LEFT(F50,FIND(" ",F50&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(F6,FIND(" ",F6&" ")-1)),0)+IFERROR(VALUE(LEFT(F8,FIND(" ",F8&" ")-1)),0)+IFERROR(VALUE(LEFT(F33,FIND(" ",F33&" ")-1)),0)+IFERROR(VALUE(LEFT(F53,FIND(" ",F53&" ")-1)),0)'
 G78
   antes: '=SUMPRODUCT(($B$3:$B$65="Gemelos")*IFERROR(VALUE(LEFT(G$3:G$65,FIND(" ",G$3:G$65&" ")-1)),0))'
-  ahora: '=IFERROR(VALUE(LEFT(G30,FIND(" ",G30&" ")-1)),0)+IFERROR(VALUE(LEFT(G32,FIND(" ",G32&" ")-1)),0)+IFERROR(VALUE(LEFT(G50,FIND(" ",G50&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(G6,FIND(" ",G6&" ")-1)),0)+IFERROR(VALUE(LEFT(G8,FIND(" ",G8&" ")-1)),0)+IFERROR(VALUE(LEFT(G33,FIND(" ",G33&" ")-1)),0)+IFERROR(VALUE(LEFT(G53,FIND(" ",G53&" ")-1)),0)'
 H78
   antes: '=SUMPRODUCT(($B$3:$B$65="Gemelos")*IFERROR(VALUE(LEFT(H$3:H$65,FIND(" ",H$3:H$65&" ")-1)),0))'
-  ahora: '=IFERROR(VALUE(LEFT(H30,FIND(" ",H30&" ")-1)),0)+IFERROR(VALUE(LEFT(H32,FIND(" ",H32&" ")-1)),0)+IFERROR(VALUE(LEFT(H50,FIND(" ",H50&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(H6,FIND(" ",H6&" ")-1)),0)+IFERROR(VALUE(LEFT(H8,FIND(" ",H8&" ")-1)),0)+IFERROR(VALUE(LEFT(H33,FIND(" ",H33&" ")-1)),0)+IFERROR(VALUE(LEFT(H53,FIND(" ",H53&" ")-1)),0)'
 I78
   antes: '=SUMPRODUCT(($B$3:$B$65="Gemelos")*IFERROR(VALUE(LEFT(I$3:I$65,FIND(" ",I$3:I$65&" ")-1)),0))'
-  ahora: '=IFERROR(VALUE(LEFT(I30,FIND(" ",I30&" ")-1)),0)+IFERROR(VALUE(LEFT(I32,FIND(" ",I32&" ")-1)),0)+IFERROR(VALUE(LEFT(I50,FIND(" ",I50&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(I6,FIND(" ",I6&" ")-1)),0)+IFERROR(VALUE(LEFT(I8,FIND(" ",I8&" ")-1)),0)+IFERROR(VALUE(LEFT(I33,FIND(" ",I33&" ")-1)),0)+IFERROR(VALUE(LEFT(I53,FIND(" ",I53&" ")-1)),0)'
 J78
   antes: '=SUMPRODUCT(($B$3:$B$65="Gemelos")*IFERROR(VALUE(LEFT(J$3:J$65,FIND(" ",J$3:J$65&" ")-1)),0))'
-  ahora: '=IFERROR(VALUE(LEFT(J30,FIND(" ",J30&" ")-1)),0)+IFERROR(VALUE(LEFT(J32,FIND(" ",J32&" ")-1)),0)+IFERROR(VALUE(LEFT(J50,FIND(" ",J50&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(J6,FIND(" ",J6&" ")-1)),0)+IFERROR(VALUE(LEFT(J8,FIND(" ",J8&" ")-1)),0)+IFERROR(VALUE(LEFT(J33,FIND(" ",J33&" ")-1)),0)+IFERROR(VALUE(LEFT(J53,FIND(" ",J53&" ")-1)),0)'
 A79
   antes: 'Aductores'
-  ahora: 'Tríceps'
+  ahora: 'Hombro post.'
 C79
   antes: '=SUMPRODUCT(($B$3:$B$65="Aductores")*IFERROR(VALUE(LEFT(C$3:C$65,FIND(" ",C$3:C$65&" ")-1)),0))'
-  ahora: '=IFERROR(VALUE(LEFT(C17,FIND(" ",C17&" ")-1)),0)+IFERROR(VALUE(LEFT(C19,FIND(" ",C19&" ")-1)),0)+IFERROR(VALUE(LEFT(C47,FIND(" ",C47&" ")-1)),0)+IFERROR(VALUE(LEFT(C49,FIND(" ",C49&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(C36,FIND(" ",C36&" ")-1)),0)'
 D79
   antes: '=SUMPRODUCT(($B$3:$B$65="Aductores")*IFERROR(VALUE(LEFT(D$3:D$65,FIND(" ",D$3:D$65&" ")-1)),0))'
-  ahora: '=IFERROR(VALUE(LEFT(D17,FIND(" ",D17&" ")-1)),0)+IFERROR(VALUE(LEFT(D19,FIND(" ",D19&" ")-1)),0)+IFERROR(VALUE(LEFT(D47,FIND(" ",D47&" ")-1)),0)+IFERROR(VALUE(LEFT(D49,FIND(" ",D49&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(D36,FIND(" ",D36&" ")-1)),0)'
 E79
   antes: '=SUMPRODUCT(($B$3:$B$65="Aductores")*IFERROR(VALUE(LEFT(E$3:E$65,FIND(" ",E$3:E$65&" ")-1)),0))'
-  ahora: '=IFERROR(VALUE(LEFT(E17,FIND(" ",E17&" ")-1)),0)+IFERROR(VALUE(LEFT(E19,FIND(" ",E19&" ")-1)),0)+IFERROR(VALUE(LEFT(E47,FIND(" ",E47&" ")-1)),0)+IFERROR(VALUE(LEFT(E49,FIND(" ",E49&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(E36,FIND(" ",E36&" ")-1)),0)'
 F79
   antes: '=SUMPRODUCT(($B$3:$B$65="Aductores")*IFERROR(VALUE(LEFT(F$3:F$65,FIND(" ",F$3:F$65&" ")-1)),0))'
-  ahora: '=IFERROR(VALUE(LEFT(F17,FIND(" ",F17&" ")-1)),0)+IFERROR(VALUE(LEFT(F19,FIND(" ",F19&" ")-1)),0)+IFERROR(VALUE(LEFT(F47,FIND(" ",F47&" ")-1)),0)+IFERROR(VALUE(LEFT(F49,FIND(" ",F49&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(F36,FIND(" ",F36&" ")-1)),0)'
 G79
   antes: '=SUMPRODUCT(($B$3:$B$65="Aductores")*IFERROR(VALUE(LEFT(G$3:G$65,FIND(" ",G$3:G$65&" ")-1)),0))'
-  ahora: '=IFERROR(VALUE(LEFT(G17,FIND(" ",G17&" ")-1)),0)+IFERROR(VALUE(LEFT(G19,FIND(" ",G19&" ")-1)),0)+IFERROR(VALUE(LEFT(G47,FIND(" ",G47&" ")-1)),0)+IFERROR(VALUE(LEFT(G49,FIND(" ",G49&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(G36,FIND(" ",G36&" ")-1)),0)'
 H79
   antes: '=SUMPRODUCT(($B$3:$B$65="Aductores")*IFERROR(VALUE(LEFT(H$3:H$65,FIND(" ",H$3:H$65&" ")-1)),0))'
-  ahora: '=IFERROR(VALUE(LEFT(H17,FIND(" ",H17&" ")-1)),0)+IFERROR(VALUE(LEFT(H19,FIND(" ",H19&" ")-1)),0)+IFERROR(VALUE(LEFT(H47,FIND(" ",H47&" ")-1)),0)+IFERROR(VALUE(LEFT(H49,FIND(" ",H49&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(H36,FIND(" ",H36&" ")-1)),0)'
 I79
   antes: '=SUMPRODUCT(($B$3:$B$65="Aductores")*IFERROR(VALUE(LEFT(I$3:I$65,FIND(" ",I$3:I$65&" ")-1)),0))'
-  ahora: '=IFERROR(VALUE(LEFT(I17,FIND(" ",I17&" ")-1)),0)+IFERROR(VALUE(LEFT(I19,FIND(" ",I19&" ")-1)),0)+IFERROR(VALUE(LEFT(I47,FIND(" ",I47&" ")-1)),0)+IFERROR(VALUE(LEFT(I49,FIND(" ",I49&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(I36,FIND(" ",I36&" ")-1)),0)'
 J79
   antes: '=SUMPRODUCT(($B$3:$B$65="Aductores")*IFERROR(VALUE(LEFT(J$3:J$65,FIND(" ",J$3:J$65&" ")-1)),0))'
-  ahora: '=IFERROR(VALUE(LEFT(J17,FIND(" ",J17&" ")-1)),0)+IFERROR(VALUE(LEFT(J19,FIND(" ",J19&" ")-1)),0)+IFERROR(VALUE(LEFT(J47,FIND(" ",J47&" ")-1)),0)+IFERROR(VALUE(LEFT(J49,FIND(" ",J49&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(J36,FIND(" ",J36&" ")-1)),0)'
 A80
   antes: 'TOTAL hipertrofia'
-  ahora: 'Isquios'
+  ahora: 'Bíceps'
 C80
   antes: '=SUM(C70:C79)'
-  ahora: '=IFERROR(VALUE(LEFT(C12,FIND(" ",C12&" ")-1)),0)+IFERROR(VALUE(LEFT(C41,FIND(" ",C41&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(C35,FIND(" ",C35&" ")-1)),0)+IFERROR(VALUE(LEFT(C37,FIND(" ",C37&" ")-1)),0)+IFERROR(VALUE(LEFT(C55,FIND(" ",C55&" ")-1)),0)'
 D80
   antes: '=SUM(D70:D79)'
-  ahora: '=IFERROR(VALUE(LEFT(D12,FIND(" ",D12&" ")-1)),0)+IFERROR(VALUE(LEFT(D41,FIND(" ",D41&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(D35,FIND(" ",D35&" ")-1)),0)+IFERROR(VALUE(LEFT(D37,FIND(" ",D37&" ")-1)),0)+IFERROR(VALUE(LEFT(D55,FIND(" ",D55&" ")-1)),0)'
 E80
   antes: '=SUM(E70:E79)'
-  ahora: '=IFERROR(VALUE(LEFT(E12,FIND(" ",E12&" ")-1)),0)+IFERROR(VALUE(LEFT(E41,FIND(" ",E41&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(E35,FIND(" ",E35&" ")-1)),0)+IFERROR(VALUE(LEFT(E37,FIND(" ",E37&" ")-1)),0)+IFERROR(VALUE(LEFT(E55,FIND(" ",E55&" ")-1)),0)'
 F80
   antes: '=SUM(F70:F79)'
-  ahora: '=IFERROR(VALUE(LEFT(F12,FIND(" ",F12&" ")-1)),0)+IFERROR(VALUE(LEFT(F41,FIND(" ",F41&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(F35,FIND(" ",F35&" ")-1)),0)+IFERROR(VALUE(LEFT(F37,FIND(" ",F37&" ")-1)),0)+IFERROR(VALUE(LEFT(F55,FIND(" ",F55&" ")-1)),0)'
 G80
   antes: '=SUM(G70:G79)'
-  ahora: '=IFERROR(VALUE(LEFT(G12,FIND(" ",G12&" ")-1)),0)+IFERROR(VALUE(LEFT(G41,FIND(" ",G41&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(G35,FIND(" ",G35&" ")-1)),0)+IFERROR(VALUE(LEFT(G37,FIND(" ",G37&" ")-1)),0)+IFERROR(VALUE(LEFT(G55,FIND(" ",G55&" ")-1)),0)'
 H80
   antes: '=SUM(H70:H79)'
-  ahora: '=IFERROR(VALUE(LEFT(H12,FIND(" ",H12&" ")-1)),0)+IFERROR(VALUE(LEFT(H41,FIND(" ",H41&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(H35,FIND(" ",H35&" ")-1)),0)+IFERROR(VALUE(LEFT(H37,FIND(" ",H37&" ")-1)),0)+IFERROR(VALUE(LEFT(H55,FIND(" ",H55&" ")-1)),0)'
 I80
   antes: '=SUM(I70:I79)'
-  ahora: '=IFERROR(VALUE(LEFT(I12,FIND(" ",I12&" ")-1)),0)+IFERROR(VALUE(LEFT(I41,FIND(" ",I41&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(I35,FIND(" ",I35&" ")-1)),0)+IFERROR(VALUE(LEFT(I37,FIND(" ",I37&" ")-1)),0)+IFERROR(VALUE(LEFT(I55,FIND(" ",I55&" ")-1)),0)'
 J80
   antes: '=SUM(J70:J79)'
-  ahora: '=IFERROR(VALUE(LEFT(J12,FIND(" ",J12&" ")-1)),0)+IFERROR(VALUE(LEFT(J41,FIND(" ",J41&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(J35,FIND(" ",J35&" ")-1)),0)+IFERROR(VALUE(LEFT(J37,FIND(" ",J37&" ")-1)),0)+IFERROR(VALUE(LEFT(J55,FIND(" ",J55&" ")-1)),0)'
 A81
   antes: None
-  ahora: 'Abs'
+  ahora: 'Tríceps'
 B81
   antes: None
   ahora: '=C81&" → "&J81'
 C81
   antes: None
-  ahora: '=IFERROR(VALUE(LEFT(C20,FIND(" ",C20&" ")-1)),0)+IFERROR(VALUE(LEFT(C21,FIND(" ",C21&" ")-1)),0)+IFERROR(VALUE(LEFT(C61,FIND(" ",C61&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(C20,FIND(" ",C20&" ")-1)),0)+IFERROR(VALUE(LEFT(C22,FIND(" ",C22&" ")-1)),0)+IFERROR(VALUE(LEFT(C52,FIND(" ",C52&" ")-1)),0)+IFERROR(VALUE(LEFT(C54,FIND(" ",C54&" ")-1)),0)'
 D81
   antes: None
-  ahora: '=IFERROR(VALUE(LEFT(D20,FIND(" ",D20&" ")-1)),0)+IFERROR(VALUE(LEFT(D21,FIND(" ",D21&" ")-1)),0)+IFERROR(VALUE(LEFT(D61,FIND(" ",D61&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(D20,FIND(" ",D20&" ")-1)),0)+IFERROR(VALUE(LEFT(D22,FIND(" ",D22&" ")-1)),0)+IFERROR(VALUE(LEFT(D52,FIND(" ",D52&" ")-1)),0)+IFERROR(VALUE(LEFT(D54,FIND(" ",D54&" ")-1)),0)'
 E81
   antes: None
-  ahora: '=IFERROR(VALUE(LEFT(E20,FIND(" ",E20&" ")-1)),0)+IFERROR(VALUE(LEFT(E21,FIND(" ",E21&" ")-1)),0)+IFERROR(VALUE(LEFT(E61,FIND(" ",E61&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(E20,FIND(" ",E20&" ")-1)),0)+IFERROR(VALUE(LEFT(E22,FIND(" ",E22&" ")-1)),0)+IFERROR(VALUE(LEFT(E52,FIND(" ",E52&" ")-1)),0)+IFERROR(VALUE(LEFT(E54,FIND(" ",E54&" ")-1)),0)'
 F81
   antes: None
-  ahora: '=IFERROR(VALUE(LEFT(F20,FIND(" ",F20&" ")-1)),0)+IFERROR(VALUE(LEFT(F21,FIND(" ",F21&" ")-1)),0)+IFERROR(VALUE(LEFT(F61,FIND(" ",F61&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(F20,FIND(" ",F20&" ")-1)),0)+IFERROR(VALUE(LEFT(F22,FIND(" ",F22&" ")-1)),0)+IFERROR(VALUE(LEFT(F52,FIND(" ",F52&" ")-1)),0)+IFERROR(VALUE(LEFT(F54,FIND(" ",F54&" ")-1)),0)'
 G81
   antes: None
-  ahora: '=IFERROR(VALUE(LEFT(G20,FIND(" ",G20&" ")-1)),0)+IFERROR(VALUE(LEFT(G21,FIND(" ",G21&" ")-1)),0)+IFERROR(VALUE(LEFT(G61,FIND(" ",G61&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(G20,FIND(" ",G20&" ")-1)),0)+IFERROR(VALUE(LEFT(G22,FIND(" ",G22&" ")-1)),0)+IFERROR(VALUE(LEFT(G52,FIND(" ",G52&" ")-1)),0)+IFERROR(VALUE(LEFT(G54,FIND(" ",G54&" ")-1)),0)'
 H81
   antes: None
-  ahora: '=IFERROR(VALUE(LEFT(H20,FIND(" ",H20&" ")-1)),0)+IFERROR(VALUE(LEFT(H21,FIND(" ",H21&" ")-1)),0)+IFERROR(VALUE(LEFT(H61,FIND(" ",H61&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(H20,FIND(" ",H20&" ")-1)),0)+IFERROR(VALUE(LEFT(H22,FIND(" ",H22&" ")-1)),0)+IFERROR(VALUE(LEFT(H52,FIND(" ",H52&" ")-1)),0)+IFERROR(VALUE(LEFT(H54,FIND(" ",H54&" ")-1)),0)'
 I81
   antes: None
-  ahora: '=IFERROR(VALUE(LEFT(I20,FIND(" ",I20&" ")-1)),0)+IFERROR(VALUE(LEFT(I21,FIND(" ",I21&" ")-1)),0)+IFERROR(VALUE(LEFT(I61,FIND(" ",I61&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(I20,FIND(" ",I20&" ")-1)),0)+IFERROR(VALUE(LEFT(I22,FIND(" ",I22&" ")-1)),0)+IFERROR(VALUE(LEFT(I52,FIND(" ",I52&" ")-1)),0)+IFERROR(VALUE(LEFT(I54,FIND(" ",I54&" ")-1)),0)'
 J81
   antes: None
-  ahora: '=IFERROR(VALUE(LEFT(J20,FIND(" ",J20&" ")-1)),0)+IFERROR(VALUE(LEFT(J21,FIND(" ",J21&" ")-1)),0)+IFERROR(VALUE(LEFT(J61,FIND(" ",J61&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(J20,FIND(" ",J20&" ")-1)),0)+IFERROR(VALUE(LEFT(J22,FIND(" ",J22&" ")-1)),0)+IFERROR(VALUE(LEFT(J52,FIND(" ",J52&" ")-1)),0)+IFERROR(VALUE(LEFT(J54,FIND(" ",J54&" ")-1)),0)'
 A82
   antes: 'Desglose biomecánico de Espalda por planos (se recalcula solo al cambiar la tabla)'
-  ahora: 'Gemelos'
+  ahora: 'Isquios'
 B82
   antes: None
   ahora: '=C82&" → "&J82'
 C82
   antes: None
-  ahora: '=IFERROR(VALUE(LEFT(C11,FIND(" ",C11&" ")-1)),0)+IFERROR(VALUE(LEFT(C43,FIND(" ",C43&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(C12,FIND(" ",C12&" ")-1)),0)+IFERROR(VALUE(LEFT(C46,FIND(" ",C46&" ")-1)),0)'
 D82
   antes: None
-  ahora: '=IFERROR(VALUE(LEFT(D11,FIND(" ",D11&" ")-1)),0)+IFERROR(VALUE(LEFT(D43,FIND(" ",D43&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(D12,FIND(" ",D12&" ")-1)),0)+IFERROR(VALUE(LEFT(D46,FIND(" ",D46&" ")-1)),0)'
 E82
   antes: None
-  ahora: '=IFERROR(VALUE(LEFT(E11,FIND(" ",E11&" ")-1)),0)+IFERROR(VALUE(LEFT(E43,FIND(" ",E43&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(E12,FIND(" ",E12&" ")-1)),0)+IFERROR(VALUE(LEFT(E46,FIND(" ",E46&" ")-1)),0)'
 F82
   antes: None
-  ahora: '=IFERROR(VALUE(LEFT(F11,FIND(" ",F11&" ")-1)),0)+IFERROR(VALUE(LEFT(F43,FIND(" ",F43&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(F12,FIND(" ",F12&" ")-1)),0)+IFERROR(VALUE(LEFT(F46,FIND(" ",F46&" ")-1)),0)'
 G82
   antes: None
-  ahora: '=IFERROR(VALUE(LEFT(G11,FIND(" ",G11&" ")-1)),0)+IFERROR(VALUE(LEFT(G43,FIND(" ",G43&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(G12,FIND(" ",G12&" ")-1)),0)+IFERROR(VALUE(LEFT(G46,FIND(" ",G46&" ")-1)),0)'
 H82
   antes: None
-  ahora: '=IFERROR(VALUE(LEFT(H11,FIND(" ",H11&" ")-1)),0)+IFERROR(VALUE(LEFT(H43,FIND(" ",H43&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(H12,FIND(" ",H12&" ")-1)),0)+IFERROR(VALUE(LEFT(H46,FIND(" ",H46&" ")-1)),0)'
 I82
   antes: None
-  ahora: '=IFERROR(VALUE(LEFT(I11,FIND(" ",I11&" ")-1)),0)+IFERROR(VALUE(LEFT(I43,FIND(" ",I43&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(I12,FIND(" ",I12&" ")-1)),0)+IFERROR(VALUE(LEFT(I46,FIND(" ",I46&" ")-1)),0)'
 J82
   antes: None
-  ahora: '=IFERROR(VALUE(LEFT(J11,FIND(" ",J11&" ")-1)),0)+IFERROR(VALUE(LEFT(J43,FIND(" ",J43&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(J12,FIND(" ",J12&" ")-1)),0)+IFERROR(VALUE(LEFT(J46,FIND(" ",J46&" ")-1)),0)'
 A83
   antes: 'Plano / Región de Espalda'
-  ahora: 'Aductores'
+  ahora: 'Abs'
 B83
   antes: 'Sem 1 → Sem 8'
   ahora: '=C83&" → "&J83'
 C83
   antes: 'Sem 1'
-  ahora: '=IFERROR(VALUE(LEFT(C42,FIND(" ",C42&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(C23,FIND(" ",C23&" ")-1)),0)+IFERROR(VALUE(LEFT(C24,FIND(" ",C24&" ")-1)),0)+IFERROR(VALUE(LEFT(C63,FIND(" ",C63&" ")-1)),0)'
 D83
   antes: 'Sem 2'
-  ahora: '=IFERROR(VALUE(LEFT(D42,FIND(" ",D42&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(D23,FIND(" ",D23&" ")-1)),0)+IFERROR(VALUE(LEFT(D24,FIND(" ",D24&" ")-1)),0)+IFERROR(VALUE(LEFT(D63,FIND(" ",D63&" ")-1)),0)'
 E83
   antes: 'Sem 3'
-  ahora: '=IFERROR(VALUE(LEFT(E42,FIND(" ",E42&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(E23,FIND(" ",E23&" ")-1)),0)+IFERROR(VALUE(LEFT(E24,FIND(" ",E24&" ")-1)),0)+IFERROR(VALUE(LEFT(E63,FIND(" ",E63&" ")-1)),0)'
 F83
   antes: 'Sem 4'
-  ahora: '=IFERROR(VALUE(LEFT(F42,FIND(" ",F42&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(F23,FIND(" ",F23&" ")-1)),0)+IFERROR(VALUE(LEFT(F24,FIND(" ",F24&" ")-1)),0)+IFERROR(VALUE(LEFT(F63,FIND(" ",F63&" ")-1)),0)'
 G83
   antes: 'Sem 5'
-  ahora: '=IFERROR(VALUE(LEFT(G42,FIND(" ",G42&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(G23,FIND(" ",G23&" ")-1)),0)+IFERROR(VALUE(LEFT(G24,FIND(" ",G24&" ")-1)),0)+IFERROR(VALUE(LEFT(G63,FIND(" ",G63&" ")-1)),0)'
 H83
   antes: 'Sem 6'
-  ahora: '=IFERROR(VALUE(LEFT(H42,FIND(" ",H42&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(H23,FIND(" ",H23&" ")-1)),0)+IFERROR(VALUE(LEFT(H24,FIND(" ",H24&" ")-1)),0)+IFERROR(VALUE(LEFT(H63,FIND(" ",H63&" ")-1)),0)'
 I83
   antes: 'Sem 7'
-  ahora: '=IFERROR(VALUE(LEFT(I42,FIND(" ",I42&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(I23,FIND(" ",I23&" ")-1)),0)+IFERROR(VALUE(LEFT(I24,FIND(" ",I24&" ")-1)),0)+IFERROR(VALUE(LEFT(I63,FIND(" ",I63&" ")-1)),0)'
 J83
   antes: 'Sem 8'
-  ahora: '=IFERROR(VALUE(LEFT(J42,FIND(" ",J42&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(J23,FIND(" ",J23&" ")-1)),0)+IFERROR(VALUE(LEFT(J24,FIND(" ",J24&" ")-1)),0)+IFERROR(VALUE(LEFT(J63,FIND(" ",J63&" ")-1)),0)'
 K83
   antes: 'Ejercicios incluidos'
   ahora: None
 A84
   antes: 'Dorsal Bajo (Plano Frontal)'
-  ahora: 'TOTAL hipertrofia'
+  ahora: 'Gemelos'
 C84
   antes: '=IFERROR(VALUE(LEFT(C25,FIND(" ",C25&" ")-1)),0)+IFERROR(VALUE(LEFT(C52,FIND(" ",C52&" ")-1)),0)'
-  ahora: '=SUM(C74:C83)'
+  ahora: '=IFERROR(VALUE(LEFT(C11,FIND(" ",C11&" ")-1)),0)+IFERROR(VALUE(LEFT(C48,FIND(" ",C48&" ")-1)),0)'
 D84
   antes: '=IFERROR(VALUE(LEFT(D25,FIND(" ",D25&" ")-1)),0)+IFERROR(VALUE(LEFT(D52,FIND(" ",D52&" ")-1)),0)'
-  ahora: '=SUM(D74:D83)'
+  ahora: '=IFERROR(VALUE(LEFT(D11,FIND(" ",D11&" ")-1)),0)+IFERROR(VALUE(LEFT(D48,FIND(" ",D48&" ")-1)),0)'
 E84
   antes: '=IFERROR(VALUE(LEFT(E25,FIND(" ",E25&" ")-1)),0)+IFERROR(VALUE(LEFT(E52,FIND(" ",E52&" ")-1)),0)'
-  ahora: '=SUM(E74:E83)'
+  ahora: '=IFERROR(VALUE(LEFT(E11,FIND(" ",E11&" ")-1)),0)+IFERROR(VALUE(LEFT(E48,FIND(" ",E48&" ")-1)),0)'
 F84
   antes: '=IFERROR(VALUE(LEFT(F25,FIND(" ",F25&" ")-1)),0)+IFERROR(VALUE(LEFT(F52,FIND(" ",F52&" ")-1)),0)'
-  ahora: '=SUM(F74:F83)'
+  ahora: '=IFERROR(VALUE(LEFT(F11,FIND(" ",F11&" ")-1)),0)+IFERROR(VALUE(LEFT(F48,FIND(" ",F48&" ")-1)),0)'
 G84
   antes: '=IFERROR(VALUE(LEFT(G25,FIND(" ",G25&" ")-1)),0)+IFERROR(VALUE(LEFT(G52,FIND(" ",G52&" ")-1)),0)'
-  ahora: '=SUM(G74:G83)'
+  ahora: '=IFERROR(VALUE(LEFT(G11,FIND(" ",G11&" ")-1)),0)+IFERROR(VALUE(LEFT(G48,FIND(" ",G48&" ")-1)),0)'
 H84
   antes: '=IFERROR(VALUE(LEFT(H25,FIND(" ",H25&" ")-1)),0)+IFERROR(VALUE(LEFT(H52,FIND(" ",H52&" ")-1)),0)'
-  ahora: '=SUM(H74:H83)'
+  ahora: '=IFERROR(VALUE(LEFT(H11,FIND(" ",H11&" ")-1)),0)+IFERROR(VALUE(LEFT(H48,FIND(" ",H48&" ")-1)),0)'
 I84
   antes: '=IFERROR(VALUE(LEFT(I25,FIND(" ",I25&" ")-1)),0)+IFERROR(VALUE(LEFT(I52,FIND(" ",I52&" ")-1)),0)'
-  ahora: '=SUM(I74:I83)'
+  ahora: '=IFERROR(VALUE(LEFT(I11,FIND(" ",I11&" ")-1)),0)+IFERROR(VALUE(LEFT(I48,FIND(" ",I48&" ")-1)),0)'
 J84
   antes: '=IFERROR(VALUE(LEFT(J25,FIND(" ",J25&" ")-1)),0)+IFERROR(VALUE(LEFT(J52,FIND(" ",J52&" ")-1)),0)'
-  ahora: '=SUM(J74:J83)'
+  ahora: '=IFERROR(VALUE(LEFT(J11,FIND(" ",J11&" ")-1)),0)+IFERROR(VALUE(LEFT(J48,FIND(" ",J48&" ")-1)),0)'
 K84
   antes: 'Jalón ancho plano frontal (X) + Aducción unil. polea alta (V)'
   ahora: None
 A85
   antes: 'Dorsal Superior (Plano Sagital)'
-  ahora: None
-B85
-  antes: '=C85&" → "&J85'
-  ahora: None
+  ahora: 'Aductores'
 C85
   antes: '=IFERROR(VALUE(LEFT(C28,FIND(" ",C28&" ")-1)),0)+IFERROR(VALUE(LEFT(C50,FIND(" ",C50&" ")-1)),0)+IFERROR(VALUE(LEFT(C51,FIND(" ",C51&" ")-1)),0)'
-  ahora: None
+  ahora: '=IFERROR(VALUE(LEFT(C47,FIND(" ",C47&" ")-1)),0)'
 D85
   antes: '=IFERROR(VALUE(LEFT(D28,FIND(" ",D28&" ")-1)),0)+IFERROR(VALUE(LEFT(D50,FIND(" ",D50&" ")-1)),0)+IFERROR(VALUE(LEFT(D51,FIND(" ",D51&" ")-1)),0)'
-  ahora: None
+  ahora: '=IFERROR(VALUE(LEFT(D47,FIND(" ",D47&" ")-1)),0)'
 E85
   antes: '=IFERROR(VALUE(LEFT(E28,FIND(" ",E28&" ")-1)),0)+IFERROR(VALUE(LEFT(E50,FIND(" ",E50&" ")-1)),0)+IFERROR(VALUE(LEFT(E51,FIND(" ",E51&" ")-1)),0)'
-  ahora: None
+  ahora: '=IFERROR(VALUE(LEFT(E47,FIND(" ",E47&" ")-1)),0)'
 F85
   antes: '=IFERROR(VALUE(LEFT(F28,FIND(" ",F28&" ")-1)),0)+IFERROR(VALUE(LEFT(F50,FIND(" ",F50&" ")-1)),0)+IFERROR(VALUE(LEFT(F51,FIND(" ",F51&" ")-1)),0)'
-  ahora: None
+  ahora: '=IFERROR(VALUE(LEFT(F47,FIND(" ",F47&" ")-1)),0)'
 G85
   antes: '=IFERROR(VALUE(LEFT(G28,FIND(" ",G28&" ")-1)),0)+IFERROR(VALUE(LEFT(G50,FIND(" ",G50&" ")-1)),0)+IFERROR(VALUE(LEFT(G51,FIND(" ",G51&" ")-1)),0)'
-  ahora: None
+  ahora: '=IFERROR(VALUE(LEFT(G47,FIND(" ",G47&" ")-1)),0)'
 H85
   antes: '=IFERROR(VALUE(LEFT(H28,FIND(" ",H28&" ")-1)),0)+IFERROR(VALUE(LEFT(H50,FIND(" ",H50&" ")-1)),0)+IFERROR(VALUE(LEFT(H51,FIND(" ",H51&" ")-1)),0)'
-  ahora: None
+  ahora: '=IFERROR(VALUE(LEFT(H47,FIND(" ",H47&" ")-1)),0)'
 I85
   antes: '=IFERROR(VALUE(LEFT(I28,FIND(" ",I28&" ")-1)),0)+IFERROR(VALUE(LEFT(I50,FIND(" ",I50&" ")-1)),0)+IFERROR(VALUE(LEFT(I51,FIND(" ",I51&" ")-1)),0)'
-  ahora: None
+  ahora: '=IFERROR(VALUE(LEFT(I47,FIND(" ",I47&" ")-1)),0)'
 J85
   antes: '=IFERROR(VALUE(LEFT(J28,FIND(" ",J28&" ")-1)),0)+IFERROR(VALUE(LEFT(J50,FIND(" ",J50&" ")-1)),0)+IFERROR(VALUE(LEFT(J51,FIND(" ",J51&" ")-1)),0)'
-  ahora: None
+  ahora: '=IFERROR(VALUE(LEFT(J47,FIND(" ",J47&" ")-1)),0)'
 K85
   antes: 'Jalón neutro bolsillos (X) + Dominada neutra (V) + Remo máq. 30° (V)'
   ahora: None
 A86
   antes: 'Espalda Alta (Plano Transversal)'
-  ahora: 'Desglose biomecánico de Espalda por planos (se recalcula solo al cambiar la tabla)'
-B86
-  antes: '=C86&" → "&J86'
-  ahora: None
+  ahora: 'TOTAL hipertrofia'
 C86
   antes: '=IFERROR(VALUE(LEFT(C26,FIND(" ",C26&" ")-1)),0)'
-  ahora: None
+  ahora: '=SUM(C76:C85)'
 D86
   antes: '=IFERROR(VALUE(LEFT(D26,FIND(" ",D26&" ")-1)),0)'
-  ahora: None
+  ahora: '=SUM(D76:D85)'
 E86
   antes: '=IFERROR(VALUE(LEFT(E26,FIND(" ",E26&" ")-1)),0)'
-  ahora: None
+  ahora: '=SUM(E76:E85)'
 F86
   antes: '=IFERROR(VALUE(LEFT(F26,FIND(" ",F26&" ")-1)),0)'
-  ahora: None
+  ahora: '=SUM(F76:F85)'
 G86
   antes: '=IFERROR(VALUE(LEFT(G26,FIND(" ",G26&" ")-1)),0)'
-  ahora: None
+  ahora: '=SUM(G76:G85)'
 H86
   antes: '=IFERROR(VALUE(LEFT(H26,FIND(" ",H26&" ")-1)),0)'
-  ahora: None
+  ahora: '=SUM(H76:H85)'
 I86
   antes: '=IFERROR(VALUE(LEFT(I26,FIND(" ",I26&" ")-1)),0)'
-  ahora: None
+  ahora: '=SUM(I76:I85)'
 J86
   antes: '=IFERROR(VALUE(LEFT(J26,FIND(" ",J26&" ")-1)),0)'
-  ahora: None
+  ahora: '=SUM(J76:J85)'
 K86
   antes: 'Remo gironda abierto (X)'
   ahora: None
 A87
   antes: 'Total Transversal (Espalda Alta + Post.)'
-  ahora: 'Plano / Región de Espalda'
+  ahora: None
 B87
   antes: '=C87&" → "&J87'
-  ahora: 'Sem 1 → Sem 8'
+  ahora: None
 C87
   antes: '=IFERROR(VALUE(LEFT(C26,FIND(" ",C26&" ")-1)),0)+IFERROR(VALUE(LEFT(C30,FIND(" ",C30&" ")-1)),0)'
-  ahora: 'Sem 1'
+  ahora: None
 D87
   antes: '=IFERROR(VALUE(LEFT(D26,FIND(" ",D26&" ")-1)),0)+IFERROR(VALUE(LEFT(D30,FIND(" ",D30&" ")-1)),0)'
-  ahora: 'Sem 2'
+  ahora: None
 E87
   antes: '=IFERROR(VALUE(LEFT(E26,FIND(" ",E26&" ")-1)),0)+IFERROR(VALUE(LEFT(E30,FIND(" ",E30&" ")-1)),0)'
-  ahora: 'Sem 3'
+  ahora: None
 F87
   antes: '=IFERROR(VALUE(LEFT(F26,FIND(" ",F26&" ")-1)),0)+IFERROR(VALUE(LEFT(F30,FIND(" ",F30&" ")-1)),0)'
-  ahora: 'Sem 4'
+  ahora: None
 G87
   antes: '=IFERROR(VALUE(LEFT(G26,FIND(" ",G26&" ")-1)),0)+IFERROR(VALUE(LEFT(G30,FIND(" ",G30&" ")-1)),0)'
-  ahora: 'Sem 5'
+  ahora: None
 H87
   antes: '=IFERROR(VALUE(LEFT(H26,FIND(" ",H26&" ")-1)),0)+IFERROR(VALUE(LEFT(H30,FIND(" ",H30&" ")-1)),0)'
-  ahora: 'Sem 6'
+  ahora: None
 I87
   antes: '=IFERROR(VALUE(LEFT(I26,FIND(" ",I26&" ")-1)),0)+IFERROR(VALUE(LEFT(I30,FIND(" ",I30&" ")-1)),0)'
-  ahora: 'Sem 7'
+  ahora: None
 J87
   antes: '=IFERROR(VALUE(LEFT(J26,FIND(" ",J26&" ")-1)),0)+IFERROR(VALUE(LEFT(J30,FIND(" ",J30&" ")-1)),0)'
-  ahora: 'Sem 8'
+  ahora: None
 K87
   antes: 'Remo gironda abierto (X) + Posterior polea (X)'
-  ahora: 'Ejercicios incluidos'
+  ahora: None
 A88
   antes: None
-  ahora: 'Dorsal Bajo (Plano Frontal)'
-B88
-  antes: None
-  ahora: '=C88&" → "&J88'
-C88
-  antes: None
-  ahora: '=IFERROR(VALUE(LEFT(C26,FIND(" ",C26&" ")-1)),0)+IFERROR(VALUE(LEFT(C54,FIND(" ",C54&" ")-1)),0)'
-D88
-  antes: None
-  ahora: '=IFERROR(VALUE(LEFT(D26,FIND(" ",D26&" ")-1)),0)+IFERROR(VALUE(LEFT(D54,FIND(" ",D54&" ")-1)),0)'
-E88
-  antes: None
-  ahora: '=IFERROR(VALUE(LEFT(E26,FIND(" ",E26&" ")-1)),0)+IFERROR(VALUE(LEFT(E54,FIND(" ",E54&" ")-1)),0)'
-F88
-  antes: None
-  ahora: '=IFERROR(VALUE(LEFT(F26,FIND(" ",F26&" ")-1)),0)+IFERROR(VALUE(LEFT(F54,FIND(" ",F54&" ")-1)),0)'
-G88
-  antes: None
-  ahora: '=IFERROR(VALUE(LEFT(G26,FIND(" ",G26&" ")-1)),0)+IFERROR(VALUE(LEFT(G54,FIND(" ",G54&" ")-1)),0)'
-H88
-  antes: None
-  ahora: '=IFERROR(VALUE(LEFT(H26,FIND(" ",H26&" ")-1)),0)+IFERROR(VALUE(LEFT(H54,FIND(" ",H54&" ")-1)),0)'
-I88
-  antes: None
-  ahora: '=IFERROR(VALUE(LEFT(I26,FIND(" ",I26&" ")-1)),0)+IFERROR(VALUE(LEFT(I54,FIND(" ",I54&" ")-1)),0)'
-J88
-  antes: None
-  ahora: '=IFERROR(VALUE(LEFT(J26,FIND(" ",J26&" ")-1)),0)+IFERROR(VALUE(LEFT(J54,FIND(" ",J54&" ")-1)),0)'
-K88
-  antes: None
-  ahora: 'Jalón ancho plano frontal (X) + Aducción unil. polea alta (V)'
-L88
-  antes: None
-  ahora: 'desglose=jalon-ancho-plano-frontal,aduccion-unil-polea-alta-pull-in'
+  ahora: 'Desglose biomecánico de Espalda por planos (se recalcula solo al cambiar la tabla)'
 A89
   antes: None
-  ahora: 'Dorsal Superior (Plano Sagital)'
+  ahora: 'Plano / Región de Espalda'
 B89
   antes: None
-  ahora: '=C89&" → "&J89'
+  ahora: 'Sem 1 → Sem 8'
 C89
   antes: None
-  ahora: '=IFERROR(VALUE(LEFT(C29,FIND(" ",C29&" ")-1)),0)+IFERROR(VALUE(LEFT(C52,FIND(" ",C52&" ")-1)),0)+IFERROR(VALUE(LEFT(C53,FIND(" ",C53&" ")-1)),0)'
+  ahora: 'Sem 1'
 D89
   antes: None
-  ahora: '=IFERROR(VALUE(LEFT(D29,FIND(" ",D29&" ")-1)),0)+IFERROR(VALUE(LEFT(D52,FIND(" ",D52&" ")-1)),0)+IFERROR(VALUE(LEFT(D53,FIND(" ",D53&" ")-1)),0)'
+  ahora: 'Sem 2'
 E89
   antes: None
-  ahora: '=IFERROR(VALUE(LEFT(E29,FIND(" ",E29&" ")-1)),0)+IFERROR(VALUE(LEFT(E52,FIND(" ",E52&" ")-1)),0)+IFERROR(VALUE(LEFT(E53,FIND(" ",E53&" ")-1)),0)'
+  ahora: 'Sem 3'
 F89
   antes: None
-  ahora: '=IFERROR(VALUE(LEFT(F29,FIND(" ",F29&" ")-1)),0)+IFERROR(VALUE(LEFT(F52,FIND(" ",F52&" ")-1)),0)+IFERROR(VALUE(LEFT(F53,FIND(" ",F53&" ")-1)),0)'
+  ahora: 'Sem 4'
 G89
   antes: None
-  ahora: '=IFERROR(VALUE(LEFT(G29,FIND(" ",G29&" ")-1)),0)+IFERROR(VALUE(LEFT(G52,FIND(" ",G52&" ")-1)),0)+IFERROR(VALUE(LEFT(G53,FIND(" ",G53&" ")-1)),0)'
+  ahora: 'Sem 5'
 H89
   antes: None
-  ahora: '=IFERROR(VALUE(LEFT(H29,FIND(" ",H29&" ")-1)),0)+IFERROR(VALUE(LEFT(H52,FIND(" ",H52&" ")-1)),0)+IFERROR(VALUE(LEFT(H53,FIND(" ",H53&" ")-1)),0)'
+  ahora: 'Sem 6'
 I89
   antes: None
-  ahora: '=IFERROR(VALUE(LEFT(I29,FIND(" ",I29&" ")-1)),0)+IFERROR(VALUE(LEFT(I52,FIND(" ",I52&" ")-1)),0)+IFERROR(VALUE(LEFT(I53,FIND(" ",I53&" ")-1)),0)'
+  ahora: 'Sem 7'
 J89
   antes: None
-  ahora: '=IFERROR(VALUE(LEFT(J29,FIND(" ",J29&" ")-1)),0)+IFERROR(VALUE(LEFT(J52,FIND(" ",J52&" ")-1)),0)+IFERROR(VALUE(LEFT(J53,FIND(" ",J53&" ")-1)),0)'
+  ahora: 'Sem 8'
 K89
   antes: None
-  ahora: 'Jalón neutro bolsillos (X) + Dominada neutra (V) + Remo máq. 30° (V)'
-L89
-  antes: None
-  ahora: 'desglose=jalon-neutro,dominada-neutra-dorsal,remo-maquina-pecho-apoyado-30'
+  ahora: 'Ejercicios incluidos'
 A90
   antes: 'BLOQUE DE CARDIO (Recuperación Tendinosa & Base Aeróbica Z2 / Z3)'
-  ahora: 'Espalda Alta (Plano Transversal)'
+  ahora: 'Dorsal Bajo (Plano Frontal)'
 B90
   antes: None
   ahora: '=C90&" → "&J90'
 C90
   antes: None
-  ahora: '=IFERROR(VALUE(LEFT(C27,FIND(" ",C27&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(C31,FIND(" ",C31&" ")-1)),0)+IFERROR(VALUE(LEFT(C15,FIND(" ",C15&" ")-1)),0)'
 D90
   antes: None
-  ahora: '=IFERROR(VALUE(LEFT(D27,FIND(" ",D27&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(D31,FIND(" ",D31&" ")-1)),0)+IFERROR(VALUE(LEFT(D15,FIND(" ",D15&" ")-1)),0)'
 E90
   antes: None
-  ahora: '=IFERROR(VALUE(LEFT(E27,FIND(" ",E27&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(E31,FIND(" ",E31&" ")-1)),0)+IFERROR(VALUE(LEFT(E15,FIND(" ",E15&" ")-1)),0)'
 F90
   antes: None
-  ahora: '=IFERROR(VALUE(LEFT(F27,FIND(" ",F27&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(F31,FIND(" ",F31&" ")-1)),0)+IFERROR(VALUE(LEFT(F15,FIND(" ",F15&" ")-1)),0)'
 G90
   antes: None
-  ahora: '=IFERROR(VALUE(LEFT(G27,FIND(" ",G27&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(G31,FIND(" ",G31&" ")-1)),0)+IFERROR(VALUE(LEFT(G15,FIND(" ",G15&" ")-1)),0)'
 H90
   antes: None
-  ahora: '=IFERROR(VALUE(LEFT(H27,FIND(" ",H27&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(H31,FIND(" ",H31&" ")-1)),0)+IFERROR(VALUE(LEFT(H15,FIND(" ",H15&" ")-1)),0)'
 I90
   antes: None
-  ahora: '=IFERROR(VALUE(LEFT(I27,FIND(" ",I27&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(I31,FIND(" ",I31&" ")-1)),0)+IFERROR(VALUE(LEFT(I15,FIND(" ",I15&" ")-1)),0)'
 J90
   antes: None
-  ahora: '=IFERROR(VALUE(LEFT(J27,FIND(" ",J27&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(J31,FIND(" ",J31&" ")-1)),0)+IFERROR(VALUE(LEFT(J15,FIND(" ",J15&" ")-1)),0)'
 K90
   antes: None
-  ahora: 'Remo gironda abierto (X)'
+  ahora: 'Jalón ancho plano frontal (J) + Aducción unil. polea alta (L)'
 L90
   antes: None
-  ahora: 'desglose=remo-gironda-abierto'
+  ahora: 'desglose=jalon-ancho-plano-frontal,aduccion-unil-polea-alta-pull-in'
 A91
   antes: 'Día / Sesión'
-  ahora: 'Total Transversal (Espalda Alta + Post.)'
+  ahora: 'Dorsal Superior (Plano Sagital)'
 B91
   antes: 'Tipo / Zona'
   ahora: '=C91&" → "&J91'
 C91
   antes: 'Sem 1'
-  ahora: '=IFERROR(VALUE(LEFT(C27,FIND(" ",C27&" ")-1)),0)+IFERROR(VALUE(LEFT(C31,FIND(" ",C31&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(C34,FIND(" ",C34&" ")-1)),0)+IFERROR(VALUE(LEFT(C13,FIND(" ",C13&" ")-1)),0)+IFERROR(VALUE(LEFT(C14,FIND(" ",C14&" ")-1)),0)'
 D91
   antes: 'Sem 2'
-  ahora: '=IFERROR(VALUE(LEFT(D27,FIND(" ",D27&" ")-1)),0)+IFERROR(VALUE(LEFT(D31,FIND(" ",D31&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(D34,FIND(" ",D34&" ")-1)),0)+IFERROR(VALUE(LEFT(D13,FIND(" ",D13&" ")-1)),0)+IFERROR(VALUE(LEFT(D14,FIND(" ",D14&" ")-1)),0)'
 E91
   antes: 'Sem 3'
-  ahora: '=IFERROR(VALUE(LEFT(E27,FIND(" ",E27&" ")-1)),0)+IFERROR(VALUE(LEFT(E31,FIND(" ",E31&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(E34,FIND(" ",E34&" ")-1)),0)+IFERROR(VALUE(LEFT(E13,FIND(" ",E13&" ")-1)),0)+IFERROR(VALUE(LEFT(E14,FIND(" ",E14&" ")-1)),0)'
 F91
   antes: 'Sem 4'
-  ahora: '=IFERROR(VALUE(LEFT(F27,FIND(" ",F27&" ")-1)),0)+IFERROR(VALUE(LEFT(F31,FIND(" ",F31&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(F34,FIND(" ",F34&" ")-1)),0)+IFERROR(VALUE(LEFT(F13,FIND(" ",F13&" ")-1)),0)+IFERROR(VALUE(LEFT(F14,FIND(" ",F14&" ")-1)),0)'
 G91
   antes: 'Sem 5'
-  ahora: '=IFERROR(VALUE(LEFT(G27,FIND(" ",G27&" ")-1)),0)+IFERROR(VALUE(LEFT(G31,FIND(" ",G31&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(G34,FIND(" ",G34&" ")-1)),0)+IFERROR(VALUE(LEFT(G13,FIND(" ",G13&" ")-1)),0)+IFERROR(VALUE(LEFT(G14,FIND(" ",G14&" ")-1)),0)'
 H91
   antes: 'Sem 6'
-  ahora: '=IFERROR(VALUE(LEFT(H27,FIND(" ",H27&" ")-1)),0)+IFERROR(VALUE(LEFT(H31,FIND(" ",H31&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(H34,FIND(" ",H34&" ")-1)),0)+IFERROR(VALUE(LEFT(H13,FIND(" ",H13&" ")-1)),0)+IFERROR(VALUE(LEFT(H14,FIND(" ",H14&" ")-1)),0)'
 I91
   antes: 'Sem 7'
-  ahora: '=IFERROR(VALUE(LEFT(I27,FIND(" ",I27&" ")-1)),0)+IFERROR(VALUE(LEFT(I31,FIND(" ",I31&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(I34,FIND(" ",I34&" ")-1)),0)+IFERROR(VALUE(LEFT(I13,FIND(" ",I13&" ")-1)),0)+IFERROR(VALUE(LEFT(I14,FIND(" ",I14&" ")-1)),0)'
 J91
   antes: 'Sem 8'
-  ahora: '=IFERROR(VALUE(LEFT(J27,FIND(" ",J27&" ")-1)),0)+IFERROR(VALUE(LEFT(J31,FIND(" ",J31&" ")-1)),0)'
+  ahora: '=IFERROR(VALUE(LEFT(J34,FIND(" ",J34&" ")-1)),0)+IFERROR(VALUE(LEFT(J13,FIND(" ",J13&" ")-1)),0)+IFERROR(VALUE(LEFT(J14,FIND(" ",J14&" ")-1)),0)'
 K91
   antes: 'Pautas Biomecánicas Rodilla & Intensidad'
-  ahora: 'Remo gironda abierto (X) + Posterior polea (X)'
+  ahora: 'Jalón neutro bolsillos (J) + Dominada neutra (L) + Remo máq. 30° (L)'
 L91
   antes: None
-  ahora: 'desglose=remo-gironda-abierto,posterior-polea'
+  ahora: 'desglose=jalon-neutro,dominada-neutra-dorsal,remo-maquina-pecho-apoyado-30'
 A92
   antes: 'Martes (Post-Push)'
-  ahora: None
+  ahora: 'Espalda Alta (Plano Transversal)'
 B92
   antes: 'Bici Z2 (65–75% FC)'
-  ahora: None
+  ahora: '=C92&" → "&J92'
 C92
   antes: '15 min'
-  ahora: None
+  ahora: '=IFERROR(VALUE(LEFT(C32,FIND(" ",C32&" ")-1)),0)'
 D92
   antes: '15 min'
-  ahora: None
+  ahora: '=IFERROR(VALUE(LEFT(D32,FIND(" ",D32&" ")-1)),0)'
 E92
   antes: '18 min'
-  ahora: None
+  ahora: '=IFERROR(VALUE(LEFT(E32,FIND(" ",E32&" ")-1)),0)'
 F92
   antes: '20 min'
-  ahora: None
+  ahora: '=IFERROR(VALUE(LEFT(F32,FIND(" ",F32&" ")-1)),0)'
 G92
   antes: '20 min'
-  ahora: None
+  ahora: '=IFERROR(VALUE(LEFT(G32,FIND(" ",G32&" ")-1)),0)'
 H92
   antes: '22 min'
-  ahora: None
+  ahora: '=IFERROR(VALUE(LEFT(H32,FIND(" ",H32&" ")-1)),0)'
 I92
   antes: '25 min'
-  ahora: None
+  ahora: '=IFERROR(VALUE(LEFT(I32,FIND(" ",I32&" ")-1)),0)'
 J92
   antes: '20 min'
-  ahora: None
+  ahora: '=IFERROR(VALUE(LEFT(J32,FIND(" ",J32&" ")-1)),0)'
 K92
   antes: 'Cadencia alta 85–90 rpm, sillín alto (rodilla a 20-25° abajo), 100% sentado. Cero impacto.'
-  ahora: None
+  ahora: 'Remo gironda abierto (J)'
+L92
+  antes: None
+  ahora: 'desglose=remo-gironda-abierto'
 A93
   antes: 'Viernes (Post-Torso)'
-  ahora: None
+  ahora: 'Total Transversal (Espalda Alta + Post.)'
 B93
   antes: 'Bici Z2 / Z3 (Prog.)'
-  ahora: None
+  ahora: '=C93&" → "&J93'
 C93
   antes: '12 min'
-  ahora: None
+  ahora: '=IFERROR(VALUE(LEFT(C32,FIND(" ",C32&" ")-1)),0)+IFERROR(VALUE(LEFT(C36,FIND(" ",C36&" ")-1)),0)'
 D93
   antes: '15 min'
-  ahora: None
+  ahora: '=IFERROR(VALUE(LEFT(D32,FIND(" ",D32&" ")-1)),0)+IFERROR(VALUE(LEFT(D36,FIND(" ",D36&" ")-1)),0)'
 E93
   antes: '15 min'
-  ahora: None
+  ahora: '=IFERROR(VALUE(LEFT(E32,FIND(" ",E32&" ")-1)),0)+IFERROR(VALUE(LEFT(E36,FIND(" ",E36&" ")-1)),0)'
 F93
   antes: '18 min'
-  ahora: None
+  ahora: '=IFERROR(VALUE(LEFT(F32,FIND(" ",F32&" ")-1)),0)+IFERROR(VALUE(LEFT(F36,FIND(" ",F36&" ")-1)),0)'
 G93
   antes: '20 min (4x30s Z3)'
-  ahora: None
+  ahora: '=IFERROR(VALUE(LEFT(G32,FIND(" ",G32&" ")-1)),0)+IFERROR(VALUE(LEFT(G36,FIND(" ",G36&" ")-1)),0)'
 H93
   antes: '20 min (5x30s Z3)'
-  ahora: None
+  ahora: '=IFERROR(VALUE(LEFT(H32,FIND(" ",H32&" ")-1)),0)+IFERROR(VALUE(LEFT(H36,FIND(" ",H36&" ")-1)),0)'
 I93
   antes: '20 min (4x45s Z3)'
-  ahora: None
+  ahora: '=IFERROR(VALUE(LEFT(I32,FIND(" ",I32&" ")-1)),0)+IFERROR(VALUE(LEFT(I36,FIND(" ",I36&" ")-1)),0)'
 J93
   antes: '18 min (4x30s Z3)'
-  ahora: None
+  ahora: '=IFERROR(VALUE(LEFT(J32,FIND(" ",J32&" ")-1)),0)+IFERROR(VALUE(LEFT(J36,FIND(" ",J36&" ")-1)),0)'
 K93
   antes: 'Sem 1-4: Z2 continua. Sem 5-8: Intervalos cortos a 95-100 rpm (Z3 / Umbral) controlando acidosis local.'
-  ahora: None
-A94
+  ahora: 'Remo gironda abierto (J) + Posterior polea (J)'
+L93
   antes: None
-  ahora: 'BLOQUE DE CARDIO Y CARRERA (S2-S8)'
-L94
-  antes: None
-  ahora: 'cardio'
-A95
-  antes: None
-  ahora: 'Día / Sesión'
-B95
-  antes: None
-  ahora: 'Tipo / Zona'
-C95
-  antes: None
-  ahora: 'Sem 1'
-D95
-  antes: None
-  ahora: 'Sem 2'
-E95
-  antes: None
-  ahora: 'Sem 3'
-F95
-  antes: None
-  ahora: 'Sem 4'
-G95
-  antes: None
-  ahora: 'Sem 5'
-H95
-  antes: None
-  ahora: 'Sem 6'
-I95
-  antes: None
-  ahora: 'Sem 7'
-J95
-  antes: None
-  ahora: 'Sem 8'
-K95
-  antes: None
-  ahora: 'Pautas Biomecánicas Rodilla & Intensidad'
-L95
-  antes: None
-  ahora: 'App (no tocar)'
+  ahora: 'desglose=remo-gironda-abierto,posterior-polea'
 A96
   antes: None
-  ahora: 'Martes (Post-Push)'
-B96
-  antes: None
-  ahora: 'Bici Z2 (65–75% FC)'
-C96
-  antes: None
-  ahora: '15 min'
-D96
-  antes: None
-  ahora: '—'
-E96
-  antes: None
-  ahora: '—'
-F96
-  antes: None
-  ahora: '—'
-G96
-  antes: None
-  ahora: "10' Z2"
-H96
-  antes: None
-  ahora: "10' Z2"
-I96
-  antes: None
-  ahora: "10' Z2"
-J96
-  antes: None
-  ahora: "10' Z2"
-K96
-  antes: None
-  ahora: 'No se hizo en S1: estímulo NUEVO [LÓGICA]. Entra en S4 (el viernes) solo si S2 y S3 cumplieron la regla; desde S5, martes y viernes. Sin Z3 en este bloque. Lo primero que se quita si hay brote. Sillín alto (rodilla a 20-25° abajo), 85-90 rpm, sentado. 10 min fijos en el bloque; subir a 15 después del viaje, como novedad única.'
+  ahora: 'BLOQUE DE CARDIO Y CARRERA (S2-S8)'
 L96
   antes: None
-  ahora: 'id=bici-z2-65-75-fc;sesion=M;bici'
+  ahora: 'cardio'
 A97
   antes: None
-  ahora: 'Viernes (Post-Torso)'
+  ahora: 'Día / Sesión'
 B97
   antes: None
-  ahora: 'Bici Z2 (sin Z3 en este bloque)'
+  ahora: 'Tipo / Zona'
 C97
   antes: None
-  ahora: '12 min'
+  ahora: 'Sem 1'
 D97
   antes: None
-  ahora: '—'
+  ahora: 'Sem 2'
 E97
   antes: None
-  ahora: '—'
+  ahora: 'Sem 3'
 F97
   antes: None
-  ahora: "10' Z2\nnov: 1.ª vez"
+  ahora: 'Sem 4'
 G97
   antes: None
-  ahora: "10' Z2"
+  ahora: 'Sem 5'
 H97
   antes: None
-  ahora: "10' Z2"
+  ahora: 'Sem 6'
 I97
   antes: None
-  ahora: "10' Z2"
+  ahora: 'Sem 7'
 J97
   antes: None
-  ahora: "10' Z2"
+  ahora: 'Sem 8'
 K97
   antes: None
-  ahora: 'S4: primera vez, solo si esa mañana estás igual o mejor; se valida con las mediciones del sábado y del domingo (el sábado no hay pierna). Ver la nota del martes.'
+  ahora: 'Pautas Biomecánicas Rodilla & Intensidad'
 L97
   antes: None
-  ahora: 'id=bici-z2-sin-z3-en-este-bloque;sesion=V;bici'
+  ahora: 'App (no tocar)'
 A98
   antes: None
-  ahora: 'Miércoles · Carrera (nivel nuevo)'
+  ahora: 'Martes (Post-Push)'
 B98
   antes: None
-  ahora: 'Andar-correr en llano'
+  ahora: 'Bici Z2 (65–75% FC)'
 C98
   antes: None
-  ahora: '—'
+  ahora: '15 min'
 D98
   antes: None
-  ahora: "N1 · 8×(1'/2')"
+  ahora: '—'
 E98
   antes: None
-  ahora: "N2 · 6×(2'/1')"
+  ahora: '—'
 F98
   antes: None
-  ahora: "N3 · 4×(4'/1')"
+  ahora: '—'
 G98
   antes: None
-  ahora: "N4 · 4×(5'/1')"
+  ahora: "10' Z2"
 H98
   antes: None
-  ahora: "N5 · 3×(8'/1')"
+  ahora: "10' Z2"
 I98
   antes: None
-  ahora: "N6 · 2×(12'/1')"
+  ahora: "10' Z2"
 J98
   antes: None
-  ahora: 'repite N6'
+  ahora: "10' Z2"
 K98
   antes: None
-  ahora: "Formato: minutos trotando / minutos andando. Niveles: N1 8×(1'/2') · N2 6×(2'/1') · N3 4×(4'/1') · N4 4×(5'/1') · N5 3×(8'/1') · N6 2×(12'/1'); después del viaje, N7 18' · N8 25' · N9 30' seguidos. Desde N4 el tramo continuo más largo crece como mucho un 50 % por nivel (5 → 8 → 12 → 18 → 25 → 30 min); de N1 a N3 se dobla porque los tramos son muy cortos [LÓGICA]. El calendario marca el máximo de cada semana; el nivel real sale del semáforo: Avanzar = +1, Mantener = el mismo, Retroceder = −1. Nivel nuevo solo si esa mañana estás igual o mejor. 5 min andando antes; llano y firme. Regla de carrera: Retroceder si pasas de 2/10 durante, no vuelves al nivel previo en ≤60 min o la mañana siguiente estás peor; Mantener si cumple pero el peor valor 24-48 h supera la referencia; Avanzar si cumple y el peor 24-48 h ≤ referencia [EVIDENCIA de uso: TREK Education, basada en Esculier; no comparada con otros umbrales]. Cadencia +5-10% opcional [EVIDENCIA mixta: Bramah 2019, serie de 12 corredores con mejora de dolor y función mantenida a 3 meses; Esculier 2018, sin beneficio extra sobre la educación]."
+  ahora: 'No se hizo en S1: estímulo NUEVO [LÓGICA]. Entra en S4 (el viernes) solo si S2 y S3 cumplieron la regla; desde S5, martes y viernes. Sin Z3 en este bloque. Lo primero que se quita si hay brote. Sillín alto (rodilla a 20-25° abajo), 85-90 rpm, sentado. 10 min fijos en el bloque; subir a 15 después del viaje, como novedad única.'
 L98
   antes: None
-  ahora: 'id=andar-correr-en-llano;sesion=X;escalera=carrera'
+  ahora: 'id=bici-z2-65-75-fc;sesion=M;bici'
 A99
   antes: None
-  ahora: 'Domingo · Carrera (repite)'
+  ahora: 'Viernes (tras pierna 2)'
 B99
   antes: None
-  ahora: 'Andar-correr en llano'
+  ahora: 'Bici Z2 (sin Z3 en este bloque)'
 C99
   antes: None
-  ahora: '—'
+  ahora: '12 min'
 D99
   antes: None
-  ahora: 'repite el\nmiércoles'
+  ahora: '—'
 E99
   antes: None
-  ahora: 'repite el\nmiércoles'
+  ahora: '—'
 F99
   antes: None
-  ahora: 'repite el\nmiércoles'
+  ahora: "10' Z2\nnov: 1.ª vez"
 G99
   antes: None
-  ahora: 'repite el\nmiércoles'
+  ahora: "10' Z2"
 H99
   antes: None
-  ahora: 'repite el\nmiércoles'
+  ahora: "10' Z2"
 I99
   antes: None
-  ahora: 'repite el\nmiércoles'
+  ahora: "10' Z2"
 J99
   antes: None
-  ahora: 'repite el\nmiércoles'
+  ahora: "10' Z2"
 K99
   antes: None
-  ahora: 'Repite el nivel validado el miércoles. Si el miércoles no se cumplieron los criterios de entrada, esa semana no hay carrera: el domingo no se corre (como mucho, un paseo). Nunca dos días seguidos corriendo [LÓGICA]. El sábado no hay pierna: llegas descansado.'
+  ahora: 'S4: primera vez, solo si esa mañana estás igual o mejor. Va después de la pierna 2, que repite la profundidad ya validada, así que la bici es la única novedad del día. Se valida con las mediciones del sábado y del domingo (el sábado no hay pierna) [LÓGICA]. Ver la nota del martes.'
 L99
   antes: None
-  ahora: 'id=andar-correr-en-llano;sesion=D;titulo=Carrera;escalera=carrera:domingo'
+  ahora: 'id=bici-z2-sin-z3-en-este-bloque;sesion=V;bici'
 A100
   antes: None
-  ahora: 'Hitos y avisos'
+  ahora: 'Miércoles · Carrera, sin gimnasio (nivel nuevo)'
 B100
   antes: None
-  ahora: 'Calendario'
+  ahora: 'Andar-correr en llano'
 C100
   antes: None
   ahora: '—'
 D100
   antes: None
-  ahora: "Mar: paseo 30'\nMié: TD + saltitos\n→ 1.ª carrera\nJue: test 1"
+  ahora: "N1 · 8×(1'/2')"
 E100
   antes: None
-  ahora: '—'
+  ahora: "N2 · 6×(2'/1')"
 F100
   antes: None
-  ahora: 'AVISO fisio\n(ver Seguimiento)\nVie: bici'
+  ahora: "N3 · 4×(4'/1')"
 G100
   antes: None
-  ahora: 'Lun: x8\nJue: test 2'
+  ahora: "N4 · 4×(5'/1')"
 H100
   antes: None
-  ahora: '—'
+  ahora: "N5 · 3×(8'/1')"
 I100
   antes: None
-  ahora: 'Jue: test 3'
+  ahora: "N6 · 2×(12'/1')"
 J100
   antes: None
-  ahora: 'Repite S7\nJue: test opc.\nrango completo'
+  ahora: 'repite N6'
 K100
   antes: None
-  ahora: 'Entrada a la carrera (S2), con la regla de carrera: martes, paseo de 30 min a paso rápido (≤2/10, nivel previo en ≤60 min y el miércoles por la mañana no peor: el criterio 1 se evalúa solo con esa mañana, sin esperar a las 48 h); miércoles antes de correr, 10 touchdown con cada pierna y 20 saltitos a dos piernas (≤2/10). Si se cumplen los tres, 1.ª carrera ese miércoles (N1). Si no, esa semana no hay carrera (el domingo, como mucho, un paseo) y los criterios se repiten el miércoles siguiente [LÓGICA].'
+  ahora: "Formato: minutos trotando / minutos andando. Niveles: N1 8×(1'/2') · N2 6×(2'/1') · N3 4×(4'/1') · N4 4×(5'/1') · N5 3×(8'/1') · N6 2×(12'/1'); después del viaje, N7 18' · N8 25' · N9 30' seguidos. Desde N4 el tramo continuo más largo crece como mucho un 50 % por nivel (5 → 8 → 12 → 18 → 25 → 30 min); de N1 a N3 se dobla porque los tramos son muy cortos [LÓGICA]. El calendario marca el máximo de cada semana; el nivel real sale del semáforo: Avanzar = +1, Mantener = el mismo, Retroceder = −1. Nivel nuevo solo si esa mañana estás igual o mejor. 5 min andando antes; llano y firme. Regla de carrera: Retroceder si pasas de 2/10 durante, no vuelves al nivel previo en ≤60 min o la mañana siguiente estás peor; Mantener si cumple pero el peor valor 24-48 h supera la referencia; Avanzar si cumple y el peor 24-48 h ≤ referencia [EVIDENCIA de uso: TREK Education, basada en Esculier; no comparada con otros umbrales]. Cadencia +5-10% opcional [EVIDENCIA mixta: Bramah 2019, serie de 12 corredores con mejora de dolor y función mantenida a 3 meses; Esculier 2018, sin beneficio extra sobre la educación]."
 L100
   antes: None
-  ahora: 'hitos'
+  ahora: 'id=andar-correr-en-llano;sesion=X;escalera=carrera'
+A101
+  antes: None
+  ahora: 'Domingo · Carrera (repite)'
+B101
+  antes: None
+  ahora: 'Andar-correr en llano'
+C101
+  antes: None
+  ahora: '—'
+D101
+  antes: None
+  ahora: 'repite el\nmiércoles'
+E101
+  antes: None
+  ahora: 'repite el\nmiércoles'
+F101
+  antes: None
+  ahora: 'repite el\nmiércoles'
+G101
+  antes: None
+  ahora: 'repite el\nmiércoles'
+H101
+  antes: None
+  ahora: 'repite el\nmiércoles'
+I101
+  antes: None
+  ahora: 'repite el\nmiércoles'
+J101
+  antes: None
+  ahora: 'repite el\nmiércoles'
+K101
+  antes: None
+  ahora: 'Repite el nivel validado el miércoles. Si el miércoles no se cumplieron los criterios de entrada, esa semana no hay carrera: el domingo no se corre (como mucho, un paseo). Nunca dos días seguidos corriendo [LÓGICA]. El sábado no hay pierna: llegas descansado.'
+L101
+  antes: None
+  ahora: 'id=andar-correr-en-llano;sesion=D;titulo=Carrera;escalera=carrera:domingo'
 A102
   antes: None
-  ahora: 'REGLAS DEL BLOQUE RODILLA (S2-S8)'
+  ahora: 'Hitos y avisos'
+B102
+  antes: None
+  ahora: 'Calendario'
+C102
+  antes: None
+  ahora: '—'
+D102
+  antes: None
+  ahora: "Mar: paseo 30'\nMié: TD + saltitos\n→ 1.ª carrera"
+E102
+  antes: None
+  ahora: 'Lun 2/11 festivo: en casa, sin escalón\nVie 6/11: test 1'
+F102
+  antes: None
+  ahora: 'AVISO fisio\n(ver Seguimiento)\nVie: bici'
+G102
+  antes: None
+  ahora: 'Lun: x8\nVie: test 2'
+H102
+  antes: None
+  ahora: '—'
+I102
+  antes: None
+  ahora: 'Vie: test 3'
+J102
+  antes: None
+  ahora: 'Lun: 4.º escalón solo si S6-S7 OK\nVie: test opc.\nrango completo'
+K102
+  antes: None
+  ahora: 'Entrada a la carrera (S2), con la regla de carrera: martes, paseo de 30 min a paso rápido (≤2/10, nivel previo en ≤60 min y el miércoles por la mañana no peor: el criterio 1 se evalúa solo con esa mañana, sin esperar a las 48 h); miércoles antes de correr, 10 touchdown con cada pierna y 20 saltitos a dos piernas (≤2/10). Si se cumplen los tres, 1.ª carrera ese miércoles (N1). Si no, esa semana no hay carrera (el domingo, como mucho, un paseo) y los criterios se repiten el miércoles siguiente [LÓGICA].'
 L102
   antes: None
-  ahora: 'reglas-bloque'
-A103
-  antes: None
-  ahora: 'Base [EVIDENCIA]: ejercicio combinado de cadera y rodilla (consensos de 2016 y 2018). Rodilla en 2 días, lunes y jueves (72-96 h entre sesiones, dentro de la ventana de 2-3 días de recuperación del tendón que describe el libro), pesado y lento en ambos; sábado sin pierna para llegar descansado a la carrera del domingo [LÓGICA].'
+  ahora: 'hitos'
 A104
   antes: None
-  ahora: 'Mediciones: cada mañana, en casa, con las mismas pruebas: test en declive y 10 subidas con la D al mismo escalón o banco. Vale la peor de las dos (el declive solo no basta: te sale 0 aunque haya molestia). Si falta la medición de la mañana, ese día no se evalúa y la primera medición disponible hace de referencia (en S2, la del martes). Se apuntan en «Seguimiento rodilla».'
+  ahora: 'REGLAS DEL BLOQUE RODILLA (S2-S8)'
+L104
+  antes: None
+  ahora: 'reglas-bloque'
 A105
   antes: None
-  ahora: 'Regla de gimnasio [LÓGICA], en semáforo (solo días con carga de rodilla: lunes y jueves): Retroceder si pasas de 3/10 durante o la mañana siguiente estás peor que la de la sesión; Mantener si cumple, pero el peor valor entre 24 y 48 h supera la referencia (no avanzas, pero no has fallado); Avanzar si cumple y el peor valor 24-48 h es igual o mejor que la referencia. Los días sin carga de rodilla no se evalúan («—»).'
+  ahora: 'Base [EVIDENCIA]: ejercicio combinado de cadera y rodilla (consensos de 2016 y 2018). Rodilla en 2 días, lunes y viernes (72-96 h entre sesiones, dentro de la ventana de 2-3 días de recuperación del tendón que describe el libro), pesado y lento en ambos; sábado sin pierna para llegar descansado a la carrera del domingo [LÓGICA].'
 A106
   antes: None
-  ahora: 'Regla de carrera [EVIDENCIA de uso], en semáforo (miércoles y domingo): Retroceder si pasas de 2/10 durante, no vuelves al nivel previo en ≤60 min o la mañana siguiente estás peor; Mantener si cumple, pero el peor valor 24-48 h supera la referencia; Avanzar si cumple y el peor valor 24-48 h ≤ referencia. El paseo de entrada se valida solo con la mañana siguiente. Se aplica también a las fases hacia el fútbol [LÓGICA].'
+  ahora: 'Mediciones: cada mañana, en casa, con las mismas pruebas: test en declive y 10 subidas con la D al mismo escalón o banco. Vale la peor de las dos (el declive solo no basta: te sale 0 aunque haya molestia). Si falta la medición de la mañana, ese día no se evalúa y la primera medición disponible hace de referencia (en S2, la del martes). Se apuntan en «Seguimiento rodilla».'
 A107
   antes: None
-  ahora: 'Novedades [LÓGICA]: una por día y validada a las 24 y 48 h antes de repetirla. Lunes: escalón o reps (prensa) · miércoles: nivel de carrera · viernes de S4: bici. Solo si esa mañana estás igual o mejor que la referencia (la mañana del mismo día de la semana anterior; en S3, la primera medición de S2), no que el día anterior: así un empeoramiento lento también salta. El calendario marca el máximo de cada semana; el nivel real sale del semáforo: Avanzar = nivel +1 (sin pasar del calendario), Mantener = el mismo, Retroceder = nivel −1. Lo validado se repite: el jueves usa la profundidad del lunes y el domingo repite el nivel del miércoles.'
+  ahora: 'Regla de gimnasio [LÓGICA], en semáforo (solo días con carga de rodilla: lunes y viernes): Retroceder si pasas de 3/10 durante o la mañana siguiente estás peor que la de la sesión; Mantener si cumple, pero el peor valor entre 24 y 48 h supera la referencia (no avanzas, pero no has fallado); Avanzar si cumple y el peor valor 24-48 h es igual o mejor que la referencia. Los días sin carga de rodilla no se evalúan («—»).'
 A108
   antes: None
-  ahora: 'S2 = semana de referencia [LÓGICA]: el paseo del martes no cuenta como novedad (caminas a diario). Si alguna mañana de S2 sale peor que la referencia (la primera medición de S2), en S3 no sube nada y se repite S2 entera, en lugar de intentar atribuir el empeoramiento.'
+  ahora: 'Regla de carrera [EVIDENCIA de uso], en semáforo (miércoles y domingo): Retroceder si pasas de 2/10 durante, no vuelves al nivel previo en ≤60 min o la mañana siguiente estás peor; Mantener si cumple, pero el peor valor 24-48 h supera la referencia; Avanzar si cumple y el peor valor 24-48 h ≤ referencia. El paseo de entrada se valida solo con la mañana siguiente. Se aplica también a las fases hacia el fútbol [LÓGICA].'
 A109
   antes: None
-  ahora: 'Escalones de profundidad de la D [LÓGICA; no hay pautas de rango validadas para la rótula: INCERTIDUMBRE]: escalón 0 = la profundidad que ya usas con la D; escalón 4 = la de la I. Reparte la diferencia en 4 partes iguales (como mucho ~15° cada una; si sale más, se termina después del bloque). Se sube, como mucho, los lunes de S3, S4, S6 y S7 en la prensa (según el semáforo); la touchdown del lunes va a la profundidad ya validada y hace de filtro. Apunta las marcas en «Seguimiento rodilla».'
+  ahora: 'Novedades [LÓGICA]: una por día y validada a las 24 y 48 h antes de repetirla. Lunes: escalón o reps (prensa) · miércoles: nivel de carrera · viernes de S4: bici. Solo si esa mañana estás igual o mejor que la referencia (la mañana del mismo día de la semana anterior; en S3, la primera medición de S2), no que el día anterior: así un empeoramiento lento también salta. El calendario marca el máximo de cada semana; el nivel real sale del semáforo: Avanzar = nivel +1 (sin pasar del calendario), Mantener = el mismo, Retroceder = nivel −1. Lo validado se repite: el viernes usa la profundidad del lunes y el domingo repite el nivel del miércoles.'
 A110
   antes: None
-  ahora: 'Chasquido: si no duele, no se quita ni se cambia nada. Si duele, cuenta como dolor.'
+  ahora: 'S2: la pierna 2 y la prueba del test pasaron al viernes 30/10 (el jueves 29 fue libre), dentro de las 48 h de la 1.ª carrera. Si la mañana del sábado 31/10 sale peor, cuenta para las dos: el domingo repites N1 y el miércoles de S3 no subes de nivel [LÓGICA].'
 A111
   antes: None
-  ahora: 'Retroceso y brote [LÓGICA]: un dolor durante la sesión retrocede la escalera de esa sesión. Si una mañana sale peor, se retrocede la última novedad aún no validada (la que todavía no tiene en verde sus dos mañanas, 24 y 48 h; p. ej., jueves bien y viernes peor → se retrocede la carrera del miércoles y el escalón se mantiene); una novedad ya validada no se culpa. Si tras el retroceso vuelve a fallar, se retrocede la novedad anterior sin validar. Brote = un fallo sin ninguna novedad sin validar, o dos sesiones seguidas en Retroceder: lo primero que se quita es la bici; 48-72 h solo isométricos (sentadilla española 5×45 s diaria) y caminar, sin bici; luego se retoma un escalón por debajo en todo. La bici vuelve al nivel del calendario cuando lleves una semana entera en verde.'
+  ahora: 'Escalones de profundidad de la D [LÓGICA; no hay pautas de rango validadas para la rótula: INCERTIDUMBRE]: escalón 0 = la profundidad que ya usas con la D; escalón 4 = la de la I. Reparte la diferencia en 4 partes iguales (como mucho ~15° cada una; si sale más, se termina después del bloque). Se sube, como mucho, los lunes de S4, S6 y S7 en la prensa (según el semáforo), y el 4.º escalón el lunes de S8 solo si S6 y S7 cumplieron la regla (si no, después del viaje); el lunes de S3 fue festivo y no hubo escalón; la touchdown del lunes va a la profundidad ya validada y hace de filtro. Apunta las marcas en «Seguimiento rodilla».'
 A112
   antes: None
-  ahora: 'Alarma: bloqueo real, fallos repetidos de la rodilla o hinchazón visible → se para la progresión y toca valoración clínica.'
+  ahora: 'Chasquido: si no duele, no se quita ni se cambia nada. Si duele, cuenta como dolor.'
 A113
   antes: None
-  ahora: 'AVISO S4 (fisio deportivo pendiente): se calcula al cerrar S4 (domingo 15/11) si hay al menos 5 mañanas registradas en S2 y en S4. Compara la media de las mañanas: PEOR si la de S4 supera en 0,5 o más a la de S2; MEJOR si queda 0,5 o más por debajo; si no, IGUAL. IGUAL o PEOR, o un chasquido que empieza a doler: la valoración del fisio pasa a ser prioritaria; PEOR además para la progresión [LÓGICA]. «Seguimiento rodilla» lo calcula.'
+  ahora: 'Retroceso y brote [LÓGICA]: un dolor durante la sesión retrocede la escalera de esa sesión. Si una mañana sale peor, se retrocede la última novedad aún no validada (la que todavía no tiene en verde sus dos mañanas, 24 y 48 h; p. ej., en S4, sábado peor tras el viernes → se quita la bici, la novedad de ese viernes, y el escalón del lunes, ya validado, se mantiene); una novedad ya validada no se culpa. Si tras el retroceso vuelve a fallar, se retrocede la novedad anterior sin validar. Brote = un fallo sin ninguna novedad sin validar, o dos sesiones seguidas en Retroceder: lo primero que se quita es la bici; 48-72 h solo isométricos (sentadilla española 5×45 s diaria) y caminar, sin bici; luego se retoma un escalón por debajo en todo. La bici vuelve al nivel del calendario cuando lleves una semana entera en verde.'
 A114
+  antes: None
+  ahora: 'Alarma: bloqueo real, fallos repetidos de la rodilla o hinchazón visible → se para la progresión y toca valoración clínica.'
+A115
+  antes: None
+  ahora: 'AVISO S4 (fisio deportivo pendiente): se calcula al cerrar S4 (domingo 15/11) si hay al menos 5 mañanas registradas en S2 y en S4. Compara la media de las mañanas: PEOR si la de S4 supera en 0,5 o más a la de S2; MEJOR si queda 0,5 o más por debajo; si no, IGUAL. IGUAL o PEOR, o un chasquido que empieza a doler: la valoración del fisio pasa a ser prioritaria; PEOR además para la progresión [LÓGICA]. «Seguimiento rodilla» lo calcula.'
+A116
   antes: None
   ahora: 'Fases hacia el fútbol, después del viaje [LÓGICA], siempre con la regla de carrera: cambios de dirección ← 30 min seguidos dos veces sin reacción y rango D = I · pliometría ← 2 semanas de cambios de dirección y 10 saltos a una pierna sin dolor · balón ← cuádriceps D ≥90% de la I en el test y pliometría media sin reacción · equipo ← 2 semanas de balón sin reacción.'

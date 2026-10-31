@@ -20,8 +20,10 @@ function buildRows() {
     const week = PLAN.weekFor(date);
     if (!week) continue;
 
-    // La columna Bloque identifica el plan: A / B (4 semanas) o Volumen.
-    const session = PLAN.sessionsFor(week).find((d) => d.id === rec.sessionId);
+    // La columna Bloque identifica el plan: A / B (4 semanas) o Volumen. En el de volumen, la
+    // sesión de esa semana con todo lo registrado ese día (aunque la sesión cambiara de día).
+    const session = week.plan === 'vol' ? PLAN.sesionDelDia(date, rec.entries)
+      : PLAN.sessionsFor(week).find((d) => d.id === rec.sessionId);
     if (!session) continue;
 
     const label = PLAN.sessionLabel(session, week);   // el sábado de S1 conserva su nombre

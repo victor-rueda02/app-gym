@@ -64,6 +64,14 @@ function sessionById(id) {
     || null;
 }
 
+/* La sesión de un día. En el plan de volumen, la de esa semana (los días de las sesiones
+   cambian de una semana a otra) con lo que se haya registrado ese día; en el de julio, por id. */
+function sesionDe(date, id) {
+  const week = PLAN.weekFor(date);
+  if (week && week.plan === 'vol') return PLAN.sesionDelDia(date, (Store.all().days[date] || {}).entries);
+  return sessionById(id);
+}
+
 /* Resumen de una serie ya guardada, p. ej. "40kg × 10 @2" */
 function setSummary(s, kind) {
   if (kind === 'cardio') return s.mins ? `${s.mins} min` : '—';
@@ -194,9 +202,10 @@ function renderToday() {
     return;
   }
 
-  const session = week.block === 'B' ? sessionById(rec.sessionId) : options[0];
+  const session = week.block === 'B' ? sessionById(rec.sessionId)
+    : week.plan === 'vol' ? PLAN.sesionDelDia(date, rec.entries) : options[0];
   if (!session) { view.appendChild(picker); return; }
-  if (!rec.sessionId) Store.setSession(date, session.id);
+  if (!rec.sessionId && !session.rest) Store.setSession(date, session.id);
 
   const label = PLAN.sessionLabel(session, week);
   document.getElementById('hero-name').textContent = session.rest
@@ -212,7 +221,8 @@ function renderToday() {
 
   view.appendChild(el('<div class="section-label">Ejercicios</div>'));
   session.exercises.forEach((exercise) => {
-    if (PLAN.presFor(exercise, week).skip) return;   // «—»: esa semana no se hace
+    // «—»: esa semana no se hace (salvo que se haya registrado igualmente).
+    if (PLAN.presFor(exercise, week).skip && !Store.sets(date, exercise.id).length) return;
     view.appendChild(exercise.link === 'test' ? testCard(exercise, week) : exerciseRow(exercise, week, date, session));
   });
 
@@ -260,7 +270,7 @@ function exerciseRow(exercise, week, date, session) {
 /* --- Detalle de ejercicio -------------------------------------------------- */
 function renderExercise() {
   const { sessionId, exId, date } = state.exercise;
-  const session = sessionById(sessionId);
+  const session = sesionDe(date, sessionId);
   const week = PLAN.weekFor(date);
   const exercise = session.exercises.find((e) => e.id === exId);
   const pres = presHoy(exercise, week, date);
@@ -595,7 +605,7 @@ function renderData() {
     view.appendChild(el('<div class="section-label">Historial</div>'));
     days.sort().reverse().forEach((d) => {
       const rec = data.days[d];
-      const session = sessionById(rec.sessionId);
+      const session = sesionDe(d, rec.sessionId);
       const n = Object.values(rec.entries).reduce((a, l) => a + l.length, 0);
       const row = el(`
         <button class="ex">

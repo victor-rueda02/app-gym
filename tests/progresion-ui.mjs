@@ -74,25 +74,26 @@ await page.click('[data-tab="today"]');
 await page.waitForSelector('main .ex');
 check('Hoy (mié 28/10): con la entrada superada, N1', (await presDe('Andar-correr')).startsWith("N1 · 8×(1'/2')"), await presDe('Andar-correr'));
 
-// Jueves de S2: el test es un enlace a Rodilla › Test.
-await page.fill('#datepick', '2026-10-29');
+// Viernes de S3 (6/11): el test 1 (pasó de S2 a S3) es un enlace a Rodilla › Test.
+await page.fill('#datepick', '2026-11-06');
 await page.dispatchEvent('#datepick', 'change');
 await page.waitForSelector('main .ex');
-check('Hoy (jue 29/10): el test de fuerza es un enlace', (await presDe('TEST fuerza')) === 'Test ›');
+check('Hoy (vie 6/11): el test de fuerza es un enlace', (await presDe('TEST fuerza')) === 'Test ›');
 await page.locator('main .ex', { hasText: 'TEST fuerza' }).click();
 await page.waitForSelector('[data-test="t1"]');
 check('El enlace abre Rodilla › Test', (await page.textContent('#subtitle')) === 'Test de fuerza');
 
-// Lunes de S3: S2 estable -> escalón 1 en la prensa; la touchdown, a la profundidad ya validada.
+// Lunes de S3 (2/11, festivo, en casa): S2 estable, pero el calendario no sube escalón; la
+// celda añade el sustituto del día. La touchdown, a la profundidad ya validada.
 await page.click('[data-tab="today"]');
 await page.fill('#datepick', '2026-11-02');
 await page.dispatchEvent('#datepick', 'change');
 await page.waitForSelector('main .ex');
-check('Hoy (lun 2/11): prensa a escalón 1 con novedad', (await presDe('Prensa unil')) === '2 x10/pierna\nescalón 1 · nov: +1 escalón', await presDe('Prensa unil'));
+check('Hoy (lun 2/11): prensa sin escalón y con el sustituto del festivo', (await presDe('Prensa unil')) === '2 x10/pierna\nescalón 0 · mantiene\n2/11: búlgara en casa, escalón 0, sin novedad', await presDe('Prensa unil'));
 check('Hoy (lun 2/11): touchdown al escalón validado (0)', (await presDe('Touchdown')) === '2 x10-15/pierna\nescalón 0', await presDe('Touchdown'));
 await page.locator('main .ex', { hasText: 'Prensa unil' }).click();
 await page.waitForSelector('.set-row');
-check('Detalle de la prensa: motivo y máximo del calendario', (await page.textContent('main')).includes('Avanzar: S2 estable')
+check('Detalle de la prensa: motivo y máximo del calendario', (await page.textContent('main')).includes('ya está en el máximo del calendario')
   && (await page.textContent('main')).includes('Máximo del calendario: 2 x10/pierna'));
 check('Detalle de la prensa: 4 filas, D e I alternas', (await page.locator('.set-row:not(.head) .side').allTextContents()).join('') === 'DIDI');
 
@@ -102,14 +103,14 @@ await page.click('[data-tab="knee"]');
 await page.click('[data-sec-btn="progresion"]');
 await page.waitForSelector('.rod-prog');
 const s3 = page.locator('.rod-prog', { hasText: 'S3' });
-check('Progresión S3: propuesta de la prensa x10 · escalón 1', (await s3.textContent()).includes('x10 · escalón 1'));
-await s3.locator('select[data-f="pressLevel"]').selectOption('1');
+check('Progresión S3: propuesta de la prensa x10 · escalón 0', (await s3.textContent()).includes('x10 · escalón 0'));
+await s3.locator('select[data-f="pressLevel"]').selectOption('0');
 await page.waitForSelector('.rod-prog');
 const real = await page.evaluate(() => Store.knee().weeks.S3);
-check('Progresión: el nivel real se guarda', real && real.pressLevel === 1, JSON.stringify(real));
+check('Progresión: el nivel real se guarda', real && real.pressLevel === 0, JSON.stringify(real));
 await page.click('[data-tab="today"]');
 await page.waitForSelector('main .ex');
-check('Hoy usa el nivel real apuntado (escalón 0, mantiene)', (await presDe('Prensa unil')) === '2 x10/pierna\nescalón 0 · mantiene', await presDe('Prensa unil'));
+check('Hoy usa el nivel real apuntado (x12, retrocede)', (await presDe('Prensa unil')) === '2 x12\nescalón 0 · retrocede un nivel\n2/11: búlgara en casa, escalón 0, sin novedad', await presDe('Prensa unil'));
 check('Sin scroll horizontal', await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth));
 
 // Bici quitada: S3 y S4 en verde, la bici entra el viernes 13/11 y el domingo 15/11 la mañana

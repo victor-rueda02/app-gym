@@ -13,16 +13,6 @@ const c = (ref) => (H[ref] ? H[ref].v : undefined);
 const COLS = [...'CDEFGHIJ'];
 
 /* --- Esperado, del volcado --- */
-const SES = [];   // { clave, label, ejercicios: [{ nombre, semanas[8] }] } en el orden de la hoja
-for (let r = 1; r <= 70; r++) {
-  const m = /^\(([LMXJVS])\) (\S+)\s+·\s*(.*)$/s.exec(c(`A${r}`) || '');
-  if (!m) continue;
-  const ej = [];
-  for (let f = r + 2; c(`A${f}`) && c(`B${f}`); f++) ej.push({ nombre: c(`A${f}`).trim(), semanas: COLS.map((k) => c(`${k}${f}`)) });
-  SES.push({ clave: m[1], label: `${m[2]} · ${m[3].trim()}`, titulo: m[3].trim(), ejercicios: ej });
-}
-// Bloque de cardio y carrera: las filas con «sesion=X» en la columna App (L) van al final de
-// su sesión; el domingo de carrera es una sesión solo desde la primera semana que tiene celda.
 const app = (r) => Object.fromEntries(String(c(`L${r}`) || '').split(';').filter(Boolean).map((p) => p.split('=')));
 // Filas por su etiqueta en la columna App, no por número (se mueven al insertar o quitar
 // filas): hitos, reglas y notas sueltas, y las reglas del bloque (de la etiqueta a la fila vacía).
@@ -32,31 +22,68 @@ const REGLAS = FILAS.filter((r) => 'regla' in app(r));
 const NOTAS = FILAS.filter((r) => 'nota' in app(r));
 const REGLAS_BLOQUE = [];
 for (let r = FILAS.find((f) => 'reglas-bloque' in app(f)) + 1; c(`A${r}`); r++) REGLAS_BLOQUE.push(r);
-for (let r = 1; r <= 200; r++) {
-  const letra = app(r).sesion;
-  if (!letra) continue;
-  const ej = { nombre: c(`B${r}`), semanas: COLS.map((k) => c(`${k}${r}`)) };
-  let s = SES.find((x) => x.clave === letra);
-  if (!s) {
-    const titulo = app(r).titulo || '';
-    s = { clave: letra, label: `Domingo · ${titulo}`, titulo, desdeSemana: ej.semanas.findIndex((t) => t !== '—') + 1, ejercicios: [] };
-    SES.push(s);
+// Cabeceras «(L) Lunes · título» con sus filas, y las filas de cardio («sesion=X»).
+const CABS = [];
+const CARDIO = [];
+for (const r of FILAS) {
+  const e = app(r);
+  const m = /^\(([LMXJVSD])\)\s*([^·]+?)\s*(?:·\s*([\s\S]*))?$/.exec(c(`A${r}`) || '');
+  if ('sesion' in e && e.sesion === undefined && m) {
+    const cab = { clave: m[1], titulo: (m[3] || '').trim(), dias: e, filas: [] };
+    for (let f = r + 2; c(`A${f}`) && c(`B${f}`); f++) cab.filas.push({ nombre: c(`A${f}`).trim(), semanas: COLS.map((k) => c(`${k}${f}`)), dias: app(f) });
+    CABS.push(cab);
+  } else if (e.sesion) {
+    CARDIO.push({ clave: e.sesion, titulo: e.titulo || '', ej: { nombre: c(`B${r}`), semanas: COLS.map((k) => c(`${k}${r}`)) } });
   }
-  s.ejercicios.push(ej);
 }
-// En S1 el sábado (y el domingo) se llama como entonces: «Sábado/Domingo», sin título.
-const S1_SABADO = 'Sábado/Domingo';
-const sesionesDe = (n) => SES.filter((s) => !s.desdeSemana || n >= s.desdeSemana)
-  .map((s) => (n === 1 && s.clave === 'S' ? { ...s, label: S1_SABADO, titulo: S1_SABADO } : s));
+// Sesiones de la semana n. Cada cabecera va al día de su «Sn=» (columna App) o al de su letra;
+// una fila con su propio «Sn=» va ese día tras las filas de la primera cabecera de ese día, y el
+// cardio, al final de su día. Título: el de la primera cabecera con filas ese día. Un día sin
+// ejercicios, o solo con cardio que esa semana no se hace, no tiene sesión. En S1 el sábado (y
+// el domingo) se llama como entonces: «Sábado/Domingo», sin título.
+const NOMBRE = { L: 'Lunes', M: 'Martes', X: 'Miércoles', J: 'Jueves', V: 'Viernes', S: 'Sábado', D: 'Domingo' };
 const DOW = { L: 1, M: 2, X: 3, J: 4, V: 5, S: 6, D: 0 };
+const S1_SABADO = 'Sábado/Domingo';
+const sesionesDe = (n) => {
+  const dia = (d, l) => d[`S${n}`] || l;
+  const out = {};
+  const de = (l) => (out[l] = out[l] || { clave: l, titulo: '', ejercicios: [], conFilas: false });
+  const movidas = {};
+  for (const cab of CABS) {
+    for (const f of cab.filas) {
+      const d = dia(f.dias, dia(cab.dias, cab.clave));
+      if (d !== dia(cab.dias, cab.clave)) (movidas[d] = movidas[d] || []).push(f);
+    }
+  }
+  for (const cab of CABS) {
+    const l = dia(cab.dias, cab.clave);
+    const x = de(l);
+    const propias = cab.filas.filter((f) => dia(f.dias, l) === l);
+    if (!x.titulo && (propias.length || l === cab.clave)) x.titulo = cab.titulo;
+    if (propias.length && !x.conFilas) {
+      x.titulo = cab.titulo;
+      x.ejercicios.push(...propias, ...(movidas[l] || []));
+      x.conFilas = true;
+    } else x.ejercicios.push(...propias);
+    if (n === 1 && cab.dias.nombreS1) x.nombreS1 = cab.dias.nombreS1;
+  }
+  for (const [l, fs] of Object.entries(movidas)) if (!de(l).conFilas) de(l).ejercicios.push(...fs);
+  for (const k of CARDIO) {
+    const x = de(k.clave);
+    if (!x.titulo) x.titulo = k.titulo;
+    x.ejercicios.push({ ...k.ej, cardio: true });
+  }
+  return 'LMXJVSD'.split('').map((l) => out[l]).filter((x) => x && x.ejercicios.length
+    && !x.ejercicios.every((e) => e.cardio && e.semanas[n - 1] === '—'))
+    .map((x) => (x.nombreS1 ? { ...x, label: x.nombreS1, titulo: x.nombreS1 }
+      : { ...x, label: x.titulo ? `${NOMBRE[x.clave]} · ${x.titulo}` : NOMBRE[x.clave] }));
+};
 const inicioSemana = (n) => new Date(Date.UTC(2026, 9, 19 + 7 * (n - 1), 12));
 const iso = (d) => d.toISOString().slice(0, 10);
 const fechaDe = (n, dow) => iso(new Date(inicioSemana(n).getTime() + ((dow + 6) % 7) * 86400000));
-// Sesión de una fecha: S1 el domingo repite el sábado; desde S2 el domingo es la carrera.
-const sesionDe = (n, dow) => {
-  if (n === 1 && dow === 0) return sesionesDe(1).find((s) => s.clave === 'S');
-  return sesionesDe(n).find((s) => DOW[s.clave] === dow);
-};
+// Sesión de una fecha: un domingo sin sesión repite el sábado (S1); un día sin sesión, descanso.
+const sesionDe = (n, dow) => sesionesDe(n).find((x) => DOW[x.clave] === dow)
+  || (dow === 0 ? sesionesDe(n).find((x) => x.clave === 'S') : null);
 
 /* --- Servidor --- */
 const MIME = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.png': 'image/png' };
@@ -173,6 +200,10 @@ for (let n = 1; n <= 8; n++) {
     await irA(fecha);
     const hoy = await leerHoy();
     const s = sesionDe(n, dow);
+    if (!s) {
+      igual(`Hoy ${fecha} (S${n}): sin sesión -> descanso`, [hoy.nombre, hoy.ex.length], ['Descanso', 0]);
+      continue;
+    }
     const visibles = s.ejercicios.filter((e) => e.semanas[n - 1] !== '—');
     const tag = `Hoy ${fecha} (S${n}, ${s.label.split(' ')[0]})`;
     igual(`${tag}: semana`, hoy.semana, `Semana ${n} · Volumen`);

@@ -47,7 +47,7 @@ const L = PLAN.ESCALERAS.simples[0];
 const dias = {};
 for (const d of RODILLA_DATA.dias.filter((x) => x.fecha < '2026-11-12')) {
   dias[d.fecha] = { decline: 2 };
-  if ('LJ'.includes(d.dia)) dias[d.fecha].during = 2;
+  if ('LJV'.includes(d.dia)) dias[d.fecha].during = 2;   // días de gimnasio (pierna 2: jueves en S2, viernes desde S3)
   if ('XD'.includes(d.dia)) Object.assign(dias[d.fecha], { during: 1, back60: 'Sí' });
 }
 delete dias['2026-10-26'].decline;   // el lunes de S2 sin medir, como en la realidad
@@ -55,8 +55,8 @@ const entrada = { S2: { walkPain: 'Sí', walkBack60: 'Sí', tdPain: 'Sí', hopsP
 const prog = (d) => C.progresion(C.tablaDias(RODILLA_DATA.dias, d), PLAN, {}, entrada, '2026-11-12');
 const p = prog(dias);
 const ej = Object.values(PLAN.BLOCK_VOL).flatMap((s) => s.exercises).find((x) => x.prog === 'extension');
-// Con el jueves de S3 en Mantener (la mañana del sábado peor) no sube en S4.
-const p2 = prog({ ...dias, '2026-11-07': { decline: 3 } });
+// Con el viernes de S3 en Mantener (la mañana del domingo, a 48 h, peor) no sube en S4.
+const p2 = prog({ ...dias, '2026-11-08': { decline: 3 } });
 process.stdout.write(JSON.stringify({
   escalera: { max: L.max, niveles: L.niveles },
   niveles: ['S2', 'S3', 'S4'].map((s) => p.semanas[s].simples.extension.nivel),
@@ -153,19 +153,19 @@ def main():
     else:
         print("  --   sin el paquete «formulas» en tools/out/py: no se evalúa la tabla del Excel")
 
-    # Una escalera nueva solo desde el Excel: extensión con rango que se amplía el jueves.
+    # Una escalera nueva solo desde el Excel: extensión con rango que se amplía el viernes (pierna 2).
     esc = ROOT / "tools" / "out" / "prueba_escalera.xlsx"
     shutil.copyfile(XLSX, esc)
     wb = openpyxl.load_workbook(esc, rich_text=True)
     ws = wb[VOL]
     abd = next(r for r in range(1, ws.max_row + 1) if str(ws[f"A{r}"].value or "").startswith("Abducción de pie")
-               and r > fila(ws, "(J)"))
+               and r > fila(ws, "(V)"))
     insertar_filas(ws, abd + 1, 1, estilo_de=abd)
     rangos = ["—", "2 x10-15/pierna\n90→45°", "2 x10-15/pierna\nnov: 90→35°", "2 x10-15/pierna\nnov: 90→25°",
               "2 x10-15/pierna\n90→25°", "2 x10-15/pierna\nnov: 90→15°", "2 x10-15/pierna\nnov: 90→5°",
               "2 x10-15/pierna\nnov: completo"]
     for col, v in zip("ABCDEFGHIJKL", ["Extensión unilateral (rango)", "Rehab"] + rangos
-                      + ["Rango nuevo el jueves.", "id=extension-rango;escalera=extension"]):
+                      + ["Rango nuevo el viernes.", "id=extension-rango;escalera=extension"]):
         ws[f"{col}{abd + 1}"] = v
     wb.save(esc)
     regenerar(esc)
@@ -177,7 +177,7 @@ def main():
     check(m["escalera"]["niveles"] == ["90→45°", "90→35°", "90→25°", "90→15°", "90→5°", "completo"], f"niveles: {m['escalera']['niveles']}")
     check(m["niveles"] == [0, 1, 2], f"niveles S2-S4 con todo en verde: {m['niveles']}")
     check(m["S4"] == "2 x10-15/pierna\n90→25° · nov", f"prescripción S4: {m['S4']!r}")
-    check(m["S4retro"] == "2 x10-15/pierna\n90→35° · mantiene", f"con el jueves de S3 en Mantener: {m['S4retro']!r}")
+    check(m["S4retro"] == "2 x10-15/pierna\n90→35° · mantiene", f"con el viernes de S3 en Mantener: {m['S4retro']!r}")
 
     # Insertar y quitar la misma fila deja el plan y las celdas combinadas como estaban.
     ida = ROOT / "tools" / "out" / "prueba_ida_vuelta.xlsx"

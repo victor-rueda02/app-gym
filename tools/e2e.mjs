@@ -231,7 +231,7 @@ const presOf = (name) => page.locator('main .ex', { has: page.locator('.nm', { h
 
 await goToDate('2026-10-19');
 check('19/10: sesión L de la semana 1',
-  (await page.textContent('#hero-name')) === 'Rehab + Isquios + Hombro + Gemelo'
+  (await page.textContent('#hero-name')) === 'Rehab + Isquios + Hombro + Gemelo + Espalda (desde S3)'
   && (await page.textContent('.hero .week')) === 'Semana 1 · Volumen',
   `${await page.textContent('#hero-name')} / ${await page.textContent('.hero .week')}`);
 check('19/10: 7 ejercicios', (await page.locator('main .ex').count()) === 7,
@@ -314,14 +314,16 @@ check('25/10 (domingo, S1): comparte la sesión del sábado',
   && (await page.textContent('.hero .week')) === 'Semana 1 · Volumen'
   && (await page.locator('main .ex').count()) === 5, await page.textContent('#hero-name'));
 
-await goToDate('2026-12-10');
-check('10/12: semana 8, jueves',
+// Desde S3 la pierna 2 va el viernes (el jueves es el pull).
+await goToDate('2026-12-11');
+check('11/12: semana 8, viernes (pierna 2)',
   (await page.textContent('.hero .week')) === 'Semana 8 · Volumen'
-  && (await page.textContent('#hero-name')) === 'Rehab + Isquios + Aductores  ·  test de fuerza S2 / S5 / S7');
+  && (await page.textContent('#hero-name')) === 'Rehab + Isquios + Aductores  ·  test de fuerza S3 / S5 / S7 (+ opcional S8)  (desde S3; S1-S2 se hizo el jueves)',
+  await page.textContent('#hero-name'));
 const SQ8 = ['3 x8', 'repite S7'].join(String.fromCharCode(10));
 const SENT = 'Sentadilla al cajón o desde pines · pesado y lento n.º 2';
-check('10/12: sentadilla 3 x8 (repite S7)', (await presOf(SENT)) === SQ8);
-check('10/12: Isquios sentado 5 @ RIR1/0', (await presOf('Isquios sentado')) === '5 @ RIR1/0');
+check('11/12: sentadilla 3 x8 (repite S7)', (await presOf(SENT)) === SQ8);
+check('11/12: Isquios sentado 5 @ RIR1/0', (await presOf('Isquios sentado')) === '5 @ RIR1/0');
 
 await goToDate('2026-07-21');
 check('21/07 sigue en el plan viejo (martes, semana 1)',
@@ -346,10 +348,11 @@ await page.click('[data-week="8"]');
 check('Semana 8: título y fechas',
   (await page.textContent('main .card h2')) === 'Semana 8 · Volumen'
   && (await page.textContent('main')).includes('7–13 dic'));
-check('Semana 8: sentadilla 3 x8 en el jueves', (await presOf(SENT)) === SQ8);
+check('Semana 8: sentadilla 3 x8 en el viernes', (await presOf(SENT)) === SQ8);
 const etiquetas = await page.locator('main .section-label').allTextContents();
 check('El plan nombra el sábado y el domingo de carrera (S8) como en el Excel',
-  etiquetas.includes('Sábado · casa, sin máquinas ni poleas  ·  desde S2, sin pierna (el domingo: carrera)')
+  // Desde S2 el sábado es el torso en casa, con las filas de abdominales y correctivos detrás.
+  etiquetas.includes('Sábado · casa, peso libre  ·  Torso (desde S2 = 31/10; S1 se hizo el viernes en el gimnasio)')
   && etiquetas.includes('Domingo · Carrera'), etiquetas.join(' | '));
 check('El plan marca el cardio en azul (bici martes y viernes, carrera miércoles y domingo)',
   (await page.locator('main .ex.cardio').count()) === 4);

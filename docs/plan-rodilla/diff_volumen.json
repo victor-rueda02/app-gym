@@ -2,12 +2,17 @@
  {
   "celda": "A2",
   "antes": "RIR1/0 = todas las series a RIR1 y la ÚLTIMA a RIR0 (si solo hay 1 serie, RIR0).  Rehab (Rebuilding Milo): ×12 sem 1 → ×10 sem 2-4 → ×8 sem 5-8 → ×6 tras el viaje; peso con el que la última serie quede cerca del fallo sin perder tempo 3-1-3 ni profundidad, dolor ≤3/10; sube peso solo si el test de 24 h está igual o mejor.",
-  "ahora": "RIR1/0 = todas las series a RIR1 y la ÚLTIMA a RIR0 (si solo hay 1 serie, RIR0).  REHAB RODILLA S2-S8 en 2 días: lunes (touchdown + prensa) y jueves (sentadilla + búlgara), pesado y lento, tempo 3-1-3; D a RIR 2 y en su escalón de profundidad, I a RIR 1-2 y rango completo. Reps: ×12 S1 → ×10 S2-4 → ×8 S5-8 → ×6 tras el viaje. Una novedad por día (lunes profundidad/reps · miércoles carrera), solo si esa mañana estás igual o mejor. El calendario marca el máximo de cada semana: se progresa según el semáforo (Avanzar / Mantener / Retroceder) y la app prescribe con el nivel real. Reglas al final de la hoja; registro diario en «Seguimiento rodilla»."
+  "ahora": "RIR1/0 = todas las series a RIR1 y la ÚLTIMA a RIR0 (si solo hay 1 serie, RIR0).  REHAB RODILLA S2-S8 en 2 días: lunes (touchdown + prensa) y viernes (sentadilla + búlgara), pesado y lento, tempo 3-1-3; D a RIR 2 y en su escalón de profundidad, I a RIR 1-2 y rango completo. Reps: ×12 S1 → ×10 S2-4 → ×8 S5-8 → ×6 tras el viaje. Una novedad por día (lunes profundidad/reps · miércoles carrera), solo si esa mañana estás igual o mejor. El calendario marca el máximo de cada semana: se progresa según el semáforo (Avanzar / Mantener / Retroceder) y la app prescribe con el nivel real. Reglas al final de la hoja; registro diario en «Seguimiento rodilla». Desde S3: L pierna 1 + hombro + espalda · M push · X solo carrera · J pull · V pierna 2 · S torso en casa (peso libre) · D carrera."
  },
  {
   "celda": "L2",
   "antes": null,
   "ahora": "regla"
+ },
+ {
+  "celda": "A4",
+  "antes": "(L) Lunes  ·  Rehab + Isquios + Hombro + Gemelo",
+  "ahora": "(L) Lunes  ·  Rehab + Isquios + Hombro + Gemelo + Espalda (desde S3)"
  },
  {
   "celda": "L4",
@@ -18,6 +23,11 @@
   "celda": "L5",
   "antes": null,
   "ahora": "App (no tocar)"
+ },
+ {
+  "celda": "E6",
+  "antes": "2 @ RIR1/0",
+  "ahora": "2 @ RIR1/0\n2/11: con goma"
  },
  {
   "celda": "K6",
@@ -47,7 +57,7 @@
  {
   "celda": "E7",
   "antes": "2 x15–20",
-  "ahora": "3 x10-15/pierna\n@RIR1-2"
+  "ahora": "3 x10-15/pierna\n@RIR1-2\n2/11: con goma"
  },
  {
   "celda": "F7",
@@ -152,7 +162,7 @@
  {
   "celda": "E10",
   "antes": "2 x10",
-  "ahora": "2 x10/pierna\nnov: +1 escalón"
+  "ahora": "2 x10/pierna\n2/11: búlgara en casa, escalón 0, sin novedad"
  },
  {
   "celda": "F10",
@@ -177,12 +187,12 @@
  {
   "celda": "J10",
   "antes": "2 x8",
-  "ahora": "2 x8/pierna\nrepite S7"
+  "ahora": "2 x8/pierna\nnov: +1 escalón (4.º) solo si S6-S7 cumplieron; si no, repite S7"
  },
  {
   "celda": "K10",
   "antes": "fijo · Tempo 3-1-3 · dolor ≤3/10",
-  "ahora": "Pesado y lento para el tendón [EVIDENCIA: Kongsgaard 2009; 1-2 veces/semana para mantenerlo: LÓGICA]. Tempo 3-1-3. D primero: RIR 2 y profundidad de su escalón. I: RIR 1-2, rango completo y mismas reps. Lunes = día de novedad (escalón o reps): solo si esa mañana estás igual o mejor y la touchdown no pasa de 3/10; si no, repite la semana anterior. En la sesión con novedad no cambies nada más (con escalón nuevo, mismo peso)."
+  "ahora": "Pesado y lento para el tendón [EVIDENCIA: Kongsgaard 2009; 1-2 veces/semana para mantenerlo: LÓGICA]. Tempo 3-1-3. D primero: RIR 2 y profundidad de su escalón. I: RIR 1-2, rango completo y mismas reps. Lunes = día de novedad (escalón o reps): solo si esa mañana estás igual o mejor y la touchdown no pasa de 3/10; si no, repite la semana anterior. En la sesión con novedad no cambies nada más (con escalón nuevo, mismo peso). S3 (2/11, festivo): búlgara en casa en el escalón 0, sin novedad; mantiene el estímulo pesado y lento sin cambiar dos cosas a la vez [LÓGICA]. Escalones en S4, S6 y S7; el 4.º en S8 solo si S6-S7 cumplieron (si no, después del viaje) [INCERTIDUMBRE: menos días para asentarlo antes del viaje]."
  },
  {
   "celda": "L10",
@@ -190,9 +200,19 @@
   "ahora": "id=prensa-unil-pesado-y-lento-n-1;escalera=prensa"
  },
  {
+  "celda": "E11",
+  "antes": "4 @ RIR1/0",
+  "ahora": "4 @ RIR1/0\n2/11: de pie, 1 pierna, mancuerna"
+ },
+ {
   "celda": "L11",
   "antes": null,
   "ahora": "id=gemelos-prensa"
+ },
+ {
+  "celda": "E12",
+  "antes": "2 @ RIR1/0",
+  "ahora": "2 @ RIR1/0\n2/11: PM rumano con barra (RIR 2)"
  },
  {
   "celda": "L12",
@@ -200,89 +220,494 @@
   "ahora": "id=hiperextensiones"
  },
  {
+  "celda": "A13",
+  "antes": null,
+  "ahora": "Dominada neutra dorsal"
+ },
+ {
+  "celda": "B13",
+  "antes": null,
+  "ahora": "Espalda"
+ },
+ {
+  "celda": "C13",
+  "antes": null,
+  "ahora": "1 @ RIR0"
+ },
+ {
+  "celda": "D13",
+  "antes": null,
+  "ahora": "1 @ RIR0"
+ },
+ {
+  "celda": "E13",
+  "antes": null,
+  "ahora": "1 @ RIR0"
+ },
+ {
+  "celda": "F13",
+  "antes": null,
+  "ahora": "1 @ RIR0"
+ },
+ {
+  "celda": "G13",
+  "antes": null,
+  "ahora": "1 @ RIR0"
+ },
+ {
+  "celda": "H13",
+  "antes": null,
+  "ahora": "2 @ RIR1/0"
+ },
+ {
+  "celda": "I13",
+  "antes": null,
+  "ahora": "2 @ RIR1/0"
+ },
+ {
+  "celda": "J13",
+  "antes": null,
+  "ahora": "2 @ RIR1/0"
+ },
+ {
+  "celda": "K13",
+  "antes": null,
+  "ahora": "Desde S3 va el lunes, después de la pierna y el hombro (S1: viernes en el gimnasio; S2: sábado 31/10 en casa con peso libre). Si llegas muy cansado al final del lunes, haz la espalda justo después de la prensa y deja gemelos e hiperextensiones para el final [LÓGICA]. Plano sagital (Dorsal Sup.) · Usar STRAPS obligatoriamente para anular fatiga previa de bíceps y proteger codos."
+ },
+ {
+  "celda": "L13",
+  "antes": null,
+  "ahora": "id=dominada-neutra-dorsal;S1=V;S2=S"
+ },
+ {
+  "celda": "A14",
+  "antes": "(M) Martes  ·  Push",
+  "ahora": "Remo máquina (pecho apoyado 30°)"
+ },
+ {
+  "celda": "B14",
+  "antes": null,
+  "ahora": "Espalda"
+ },
+ {
+  "celda": "C14",
+  "antes": null,
+  "ahora": "2 @ RIR1/0"
+ },
+ {
+  "celda": "D14",
+  "antes": null,
+  "ahora": "2 @ RIR1/0"
+ },
+ {
+  "celda": "E14",
+  "antes": null,
+  "ahora": "2 @ RIR1/0\n2/11: mancuerna, pecho apoyado"
+ },
+ {
+  "celda": "F14",
+  "antes": null,
+  "ahora": "2 @ RIR1/0"
+ },
+ {
+  "celda": "G14",
+  "antes": null,
+  "ahora": "2 @ RIR1/0"
+ },
+ {
+  "celda": "H14",
+  "antes": null,
+  "ahora": "2 @ RIR1/0"
+ },
+ {
+  "celda": "I14",
+  "antes": null,
+  "ahora": "2 @ RIR1/0"
+ },
+ {
+  "celda": "J14",
+  "antes": null,
+  "ahora": "2 @ RIR1/0"
+ },
+ {
+  "celda": "K14",
+  "antes": null,
+  "ahora": "Desde S3 va el lunes, después de la pierna y el hombro (S1: viernes en el gimnasio; S2: sábado 31/10 en casa con peso libre). Plano sagital/híbrido (Dorsal Sup.) · Usar STRAPS, codos a ~30° hasta línea del torso."
+ },
+ {
   "celda": "L14",
   "antes": null,
-  "ahora": "sesion"
+  "ahora": "id=remo-maquina-pecho-apoyado-30;S1=V;S2=S"
+ },
+ {
+  "celda": "A15",
+  "antes": "Ejercicio",
+  "ahora": "Aducción unil. polea alta (Pull-in)"
+ },
+ {
+  "celda": "B15",
+  "antes": "Objetivo",
+  "ahora": "Espalda"
+ },
+ {
+  "celda": "C15",
+  "antes": "Sem 1 (series@RIR)",
+  "ahora": "2 @ RIR1/0"
+ },
+ {
+  "celda": "D15",
+  "antes": "Sem 2 (series@RIR)",
+  "ahora": "2 @ RIR1/0"
+ },
+ {
+  "celda": "E15",
+  "antes": "Sem 3 (series@RIR)",
+  "ahora": "2 @ RIR1/0\n2/11: con goma en la barra"
+ },
+ {
+  "celda": "F15",
+  "antes": "Sem 4 (series@RIR)",
+  "ahora": "2 @ RIR1/0"
+ },
+ {
+  "celda": "G15",
+  "antes": "Sem 5 (series@RIR)",
+  "ahora": "2 @ RIR1/0"
+ },
+ {
+  "celda": "H15",
+  "antes": "Sem 6 (series@RIR)",
+  "ahora": "2 @ RIR1/0"
+ },
+ {
+  "celda": "I15",
+  "antes": "Sem 7 (series@RIR)",
+  "ahora": "2 @ RIR1/0"
+ },
+ {
+  "celda": "J15",
+  "antes": "Sem 8 (series@RIR)",
+  "ahora": "2 @ RIR1/0"
+ },
+ {
+  "celda": "K15",
+  "antes": "Notas",
+  "ahora": "Desde S3 va el lunes, después de la pierna y el hombro (S1: viernes en el gimnasio; S2: sábado 31/10 en casa con peso libre). Prioridad 3 (Dorsal Bajo) · De lado a la polea (con tobillera en muñeca o codo semirrígido) para aislar haz inferior sin usar bíceps ni codo · Sem 1-2 a RIR 1-2."
  },
  {
   "celda": "L15",
   "antes": null,
-  "ahora": "App (no tocar)"
+  "ahora": "id=aduccion-unil-polea-alta-pull-in;S1=V;S2=S"
  },
  {
-  "celda": "L16",
-  "antes": null,
-  "ahora": "id=press-inclinado-barra-30-40"
+  "celda": "A16",
+  "antes": "Press inclinado barra (30–40°)",
+  "ahora": null
+ },
+ {
+  "celda": "B16",
+  "antes": "Pecho",
+  "ahora": null
+ },
+ {
+  "celda": "C16",
+  "antes": "2 @ RIR1/0",
+  "ahora": null
+ },
+ {
+  "celda": "D16",
+  "antes": "3 @ RIR1/0",
+  "ahora": null
+ },
+ {
+  "celda": "E16",
+  "antes": "3 @ RIR1/0",
+  "ahora": null
+ },
+ {
+  "celda": "F16",
+  "antes": "3 @ RIR1/0",
+  "ahora": null
+ },
+ {
+  "celda": "G16",
+  "antes": "3 @ RIR1/0",
+  "ahora": null
+ },
+ {
+  "celda": "H16",
+  "antes": "3 @ RIR1/0",
+  "ahora": null
+ },
+ {
+  "celda": "I16",
+  "antes": "3 @ RIR1/0",
+  "ahora": null
+ },
+ {
+  "celda": "J16",
+  "antes": "4 @ RIR1/0",
+  "ahora": null
+ },
+ {
+  "celda": "K16",
+  "antes": "Prioridad 4 (Haz clavicular) · Agarre ~1.3x ancho hombros y codos a 45–60° (plano escapular) para proteger hombro y codo.",
+  "ahora": null
+ },
+ {
+  "celda": "A17",
+  "antes": "Extensión tríceps unil polea",
+  "ahora": "(M) Martes  ·  Push"
+ },
+ {
+  "celda": "B17",
+  "antes": "Tríceps",
+  "ahora": null
+ },
+ {
+  "celda": "C17",
+  "antes": "2 @ RIR1/0",
+  "ahora": null
+ },
+ {
+  "celda": "D17",
+  "antes": "2 @ RIR1/0",
+  "ahora": null
+ },
+ {
+  "celda": "E17",
+  "antes": "2 @ RIR1/0",
+  "ahora": null
+ },
+ {
+  "celda": "F17",
+  "antes": "2 @ RIR1/0",
+  "ahora": null
+ },
+ {
+  "celda": "G17",
+  "antes": "3 @ RIR1/0",
+  "ahora": null
+ },
+ {
+  "celda": "H17",
+  "antes": "3 @ RIR1/0",
+  "ahora": null
+ },
+ {
+  "celda": "I17",
+  "antes": "3 @ RIR1/0",
+  "ahora": null
+ },
+ {
+  "celda": "J17",
+  "antes": "3 @ RIR1/0",
+  "ahora": null
+ },
+ {
+  "celda": "K17",
+  "antes": "Prioridad 2 (Tríceps) · Hombro a 0° pegado al costado (máxima palanca de cabeza larga sin estrés articular en codo).",
+  "ahora": null
  },
  {
   "celda": "L17",
   "antes": null,
-  "ahora": "id=extension-triceps-unil-polea"
+  "ahora": "sesion"
+ },
+ {
+  "celda": "A18",
+  "antes": "Contractora (Pec Deck)",
+  "ahora": "Ejercicio"
+ },
+ {
+  "celda": "B18",
+  "antes": "Pecho",
+  "ahora": "Objetivo"
+ },
+ {
+  "celda": "C18",
+  "antes": "2 @ RIR1/0",
+  "ahora": "Sem 1 (series@RIR)"
+ },
+ {
+  "celda": "D18",
+  "antes": "2 @ RIR1/0",
+  "ahora": "Sem 2 (series@RIR)"
+ },
+ {
+  "celda": "E18",
+  "antes": "2 @ RIR1/0",
+  "ahora": "Sem 3 (series@RIR)"
+ },
+ {
+  "celda": "F18",
+  "antes": "3 @ RIR1/0",
+  "ahora": "Sem 4 (series@RIR)"
+ },
+ {
+  "celda": "G18",
+  "antes": "3 @ RIR1/0",
+  "ahora": "Sem 5 (series@RIR)"
+ },
+ {
+  "celda": "H18",
+  "antes": "3 @ RIR1/0",
+  "ahora": "Sem 6 (series@RIR)"
+ },
+ {
+  "celda": "I18",
+  "antes": "3 @ RIR1/0",
+  "ahora": "Sem 7 (series@RIR)"
+ },
+ {
+  "celda": "J18",
+  "antes": "3 @ RIR1/0",
+  "ahora": "Sem 8 (series@RIR)"
+ },
+ {
+  "celda": "K18",
+  "antes": "Prioridad 4 (Haz clavicular/esternal) · Asiento medio-bajo (manos altura clavícula/esternón sup.) · NO hiperextender húmeros detrás del torso al abrir para no irritar cápsula anterior del hombro.",
+  "ahora": "Notas"
  },
  {
   "celda": "L18",
   "antes": null,
-  "ahora": "id=contractora-pec-deck"
+  "ahora": "App (no tocar)"
+ },
+ {
+  "celda": "A19",
+  "antes": "Triceps tras nuca unil polea",
+  "ahora": "Press inclinado barra (30–40°)"
+ },
+ {
+  "celda": "B19",
+  "antes": "Tríceps",
+  "ahora": "Pecho"
+ },
+ {
+  "celda": "C19",
+  "antes": "1 @ RIR0",
+  "ahora": "2 @ RIR1/0"
+ },
+ {
+  "celda": "D19",
+  "antes": "1 @ RIR0",
+  "ahora": "3 @ RIR1/0"
+ },
+ {
+  "celda": "E19",
+  "antes": "2 @ RIR1/0",
+  "ahora": "3 @ RIR1/0"
+ },
+ {
+  "celda": "F19",
+  "antes": "2 @ RIR1/0",
+  "ahora": "3 @ RIR1/0"
+ },
+ {
+  "celda": "G19",
+  "antes": "2 @ RIR1/0",
+  "ahora": "3 @ RIR1/0"
+ },
+ {
+  "celda": "H19",
+  "antes": "2 @ RIR1/0",
+  "ahora": "3 @ RIR1/0"
+ },
+ {
+  "celda": "I19",
+  "antes": "2 @ RIR1/0",
+  "ahora": "3 @ RIR1/0"
+ },
+ {
+  "celda": "J19",
+  "antes": "3 @ RIR1/0",
+  "ahora": "4 @ RIR1/0"
+ },
+ {
+  "celda": "K19",
+  "antes": "Prioridad 2 (Tríceps en estiramiento) · Dejar que el codo apunte ligeramente hacia fuera (~20-30° plano escapular) para no forzar cápsula del hombro ni tendón olecraniano.",
+  "ahora": "Prioridad 4 (Haz clavicular) · Agarre ~1.3x ancho hombros y codos a 45–60° (plano escapular) para proteger hombro y codo."
  },
  {
   "celda": "L19",
   "antes": null,
-  "ahora": "id=triceps-tras-nuca-unil-polea"
+  "ahora": "id=press-inclinado-barra-30-40"
+ },
+ {
+  "celda": "A20",
+  "antes": "Abs colgado (retroversión)",
+  "ahora": "Extensión tríceps unil polea"
+ },
+ {
+  "celda": "B20",
+  "antes": "Abs",
+  "ahora": "Tríceps"
+ },
+ {
+  "celda": "C20",
+  "antes": "3 @ RIR1/0",
+  "ahora": "2 @ RIR1/0"
  },
  {
   "celda": "D20",
   "antes": "3 @ RIR1/0",
-  "ahora": "1 @ RIR0"
+  "ahora": "2 @ RIR1/0"
  },
  {
   "celda": "E20",
   "antes": "3 @ RIR1/0",
-  "ahora": "1 @ RIR0"
+  "ahora": "2 @ RIR1/0"
  },
  {
   "celda": "F20",
   "antes": "3 @ RIR1/0",
-  "ahora": "1 @ RIR0"
+  "ahora": "2 @ RIR1/0"
  },
  {
   "celda": "G20",
   "antes": "4 @ RIR1/0",
-  "ahora": "1 @ RIR0"
+  "ahora": "3 @ RIR1/0"
  },
  {
   "celda": "H20",
   "antes": "4 @ RIR1/0",
-  "ahora": "1 @ RIR0"
+  "ahora": "3 @ RIR1/0"
  },
  {
   "celda": "I20",
   "antes": "4 @ RIR1/0",
-  "ahora": "1 @ RIR0"
+  "ahora": "3 @ RIR1/0"
  },
  {
   "celda": "J20",
   "antes": "5 @ RIR1/0",
-  "ahora": "1 @ RIR0"
+  "ahora": "3 @ RIR1/0"
+ },
+ {
+  "celda": "K20",
+  "antes": "Colgado con depresión escapular (activa dorsal) · Enrollar pelvis hacia costillas (retroversión). Usar straps si el agarre molesta al codo.",
+  "ahora": "Prioridad 2 (Tríceps) · Hombro a 0° pegado al costado (máxima palanca de cabeza larga sin estrés articular en codo)."
  },
  {
   "celda": "L20",
   "antes": null,
-  "ahora": "id=abs-colgado-retroversion"
+  "ahora": "id=extension-triceps-unil-polea"
  },
  {
   "celda": "A21",
   "antes": null,
-  "ahora": "Abs en máquina (crunch)"
+  "ahora": "Contractora (Pec Deck)"
  },
  {
   "celda": "B21",
   "antes": null,
-  "ahora": "Abs"
+  "ahora": "Pecho"
  },
  {
   "celda": "C21",
   "antes": null,
-  "ahora": "—"
+  "ahora": "2 @ RIR1/0"
  },
  {
   "celda": "D21",
@@ -297,7 +722,7 @@
  {
   "celda": "F21",
   "antes": null,
-  "ahora": "2 @ RIR1/0"
+  "ahora": "3 @ RIR1/0"
  },
  {
   "celda": "G21",
@@ -317,372 +742,562 @@
  {
   "celda": "J21",
   "antes": null,
-  "ahora": "4 @ RIR1/0"
+  "ahora": "3 @ RIR1/0"
  },
  {
   "celda": "K21",
   "antes": null,
-  "ahora": "Desde S2 recoge las series del colgado (que se queda en 1) · Pies enganchados y cadera fija: enrollar el tronco llevando costillas hacia pelvis, sin tirar con los brazos ni flexionar la cadera. Bajar controlado, 2 s."
+  "ahora": "Prioridad 4 (Haz clavicular/esternal) · Asiento medio-bajo (manos altura clavícula/esternón sup.) · NO hiperextender húmeros detrás del torso al abrir para no irritar cápsula anterior del hombro."
  },
  {
   "celda": "L21",
   "antes": null,
-  "ahora": "id=abs-maquina-crunch"
+  "ahora": "id=contractora-pec-deck"
+ },
+ {
+  "celda": "A22",
+  "antes": null,
+  "ahora": "Triceps tras nuca unil polea"
+ },
+ {
+  "celda": "B22",
+  "antes": null,
+  "ahora": "Tríceps"
+ },
+ {
+  "celda": "C22",
+  "antes": null,
+  "ahora": "1 @ RIR0"
+ },
+ {
+  "celda": "D22",
+  "antes": null,
+  "ahora": "1 @ RIR0"
+ },
+ {
+  "celda": "E22",
+  "antes": null,
+  "ahora": "2 @ RIR1/0"
+ },
+ {
+  "celda": "F22",
+  "antes": null,
+  "ahora": "2 @ RIR1/0"
+ },
+ {
+  "celda": "G22",
+  "antes": null,
+  "ahora": "2 @ RIR1/0"
+ },
+ {
+  "celda": "H22",
+  "antes": null,
+  "ahora": "2 @ RIR1/0"
+ },
+ {
+  "celda": "I22",
+  "antes": null,
+  "ahora": "2 @ RIR1/0"
+ },
+ {
+  "celda": "J22",
+  "antes": null,
+  "ahora": "3 @ RIR1/0"
+ },
+ {
+  "celda": "K22",
+  "antes": null,
+  "ahora": "Prioridad 2 (Tríceps en estiramiento) · Dejar que el codo apunte ligeramente hacia fuera (~20-30° plano escapular) para no forzar cápsula del hombro ni tendón olecraniano."
+ },
+ {
+  "celda": "L22",
+  "antes": null,
+  "ahora": "id=triceps-tras-nuca-unil-polea"
  },
  {
   "celda": "A23",
   "antes": "(X) Miércoles  ·  Pull",
-  "ahora": null
+  "ahora": "Abs colgado (retroversión)"
+ },
+ {
+  "celda": "B23",
+  "antes": null,
+  "ahora": "Abs"
+ },
+ {
+  "celda": "C23",
+  "antes": null,
+  "ahora": "3 @ RIR1/0"
+ },
+ {
+  "celda": "D23",
+  "antes": null,
+  "ahora": "1 @ RIR0"
+ },
+ {
+  "celda": "E23",
+  "antes": null,
+  "ahora": "1 @ RIR0"
+ },
+ {
+  "celda": "F23",
+  "antes": null,
+  "ahora": "1 @ RIR0"
+ },
+ {
+  "celda": "G23",
+  "antes": null,
+  "ahora": "1 @ RIR0"
+ },
+ {
+  "celda": "H23",
+  "antes": null,
+  "ahora": "1 @ RIR0"
+ },
+ {
+  "celda": "I23",
+  "antes": null,
+  "ahora": "1 @ RIR0"
+ },
+ {
+  "celda": "J23",
+  "antes": null,
+  "ahora": "1 @ RIR0"
+ },
+ {
+  "celda": "K23",
+  "antes": null,
+  "ahora": "Colgado con depresión escapular (activa dorsal) · Enrollar pelvis hacia costillas (retroversión). Usar straps si el agarre molesta al codo."
+ },
+ {
+  "celda": "L23",
+  "antes": null,
+  "ahora": "id=abs-colgado-retroversion"
  },
  {
   "celda": "A24",
   "antes": "Ejercicio",
-  "ahora": "(X) Miércoles  ·  Pull  ·  + carrera (ver bloque de carrera)"
+  "ahora": "Abs en máquina (crunch)"
  },
  {
   "celda": "B24",
   "antes": "Objetivo",
-  "ahora": null
+  "ahora": "Abs"
  },
  {
   "celda": "C24",
   "antes": "Sem 1 (series@RIR)",
-  "ahora": null
+  "ahora": "—"
  },
  {
   "celda": "D24",
   "antes": "Sem 2 (series@RIR)",
-  "ahora": null
+  "ahora": "2 @ RIR1/0"
  },
  {
   "celda": "E24",
   "antes": "Sem 3 (series@RIR)",
-  "ahora": null
+  "ahora": "2 @ RIR1/0"
  },
  {
   "celda": "F24",
   "antes": "Sem 4 (series@RIR)",
-  "ahora": null
+  "ahora": "2 @ RIR1/0"
  },
  {
   "celda": "G24",
   "antes": "Sem 5 (series@RIR)",
-  "ahora": null
+  "ahora": "3 @ RIR1/0"
  },
  {
   "celda": "H24",
   "antes": "Sem 6 (series@RIR)",
-  "ahora": null
+  "ahora": "3 @ RIR1/0"
  },
  {
   "celda": "I24",
   "antes": "Sem 7 (series@RIR)",
-  "ahora": null
+  "ahora": "3 @ RIR1/0"
  },
  {
   "celda": "J24",
   "antes": "Sem 8 (series@RIR)",
-  "ahora": null
+  "ahora": "4 @ RIR1/0"
  },
  {
   "celda": "K24",
   "antes": "Notas",
-  "ahora": null
+  "ahora": "Desde S2 recoge las series del colgado (que se queda en 1) · Pies enganchados y cadera fija: enrollar el tronco llevando costillas hacia pelvis, sin tirar con los brazos ni flexionar la cadera. Bajar controlado, 2 s."
  },
  {
   "celda": "L24",
   "antes": null,
-  "ahora": "sesion"
+  "ahora": "id=abs-maquina-crunch"
  },
  {
   "celda": "A25",
   "antes": "Jalón ancho plano frontal",
-  "ahora": "Ejercicio"
+  "ahora": null
  },
  {
   "celda": "B25",
   "antes": "Espalda",
-  "ahora": "Objetivo"
+  "ahora": null
  },
  {
   "celda": "C25",
   "antes": "2 @ RIR1/0",
-  "ahora": "Sem 1 (series@RIR)"
+  "ahora": null
  },
  {
   "celda": "D25",
   "antes": "2 @ RIR1/0",
-  "ahora": "Sem 2 (series@RIR)"
+  "ahora": null
  },
  {
   "celda": "E25",
   "antes": "2 @ RIR1/0",
-  "ahora": "Sem 3 (series@RIR)"
+  "ahora": null
  },
  {
   "celda": "F25",
   "antes": "3 @ RIR1/0",
-  "ahora": "Sem 4 (series@RIR)"
+  "ahora": null
  },
  {
   "celda": "G25",
   "antes": "3 @ RIR1/0",
-  "ahora": "Sem 5 (series@RIR)"
+  "ahora": null
  },
  {
   "celda": "H25",
   "antes": "3 @ RIR1/0",
-  "ahora": "Sem 6 (series@RIR)"
+  "ahora": null
  },
  {
   "celda": "I25",
   "antes": "3 @ RIR1/0",
-  "ahora": "Sem 7 (series@RIR)"
+  "ahora": null
  },
  {
   "celda": "J25",
   "antes": "3 @ RIR1/0",
-  "ahora": "Sem 8 (series@RIR)"
+  "ahora": null
  },
  {
   "celda": "K25",
   "antes": "Prioridad 3 (Dorsal Bajo) · 1º fresco · Torso vertical, codos abiertos en plano frontal hasta ~90° · No encoger hombros.",
-  "ahora": "Notas"
- },
- {
-  "celda": "L25",
-  "antes": null,
-  "ahora": "App (no tocar)"
+  "ahora": null
  },
  {
   "celda": "A26",
   "antes": "Remo gironda abierto",
-  "ahora": "Jalón ancho plano frontal"
+  "ahora": null
+ },
+ {
+  "celda": "B26",
+  "antes": "Espalda",
+  "ahora": null
+ },
+ {
+  "celda": "C26",
+  "antes": "2 @ RIR1/0",
+  "ahora": null
+ },
+ {
+  "celda": "D26",
+  "antes": "2 @ RIR1/0",
+  "ahora": null
+ },
+ {
+  "celda": "E26",
+  "antes": "2 @ RIR1/0",
+  "ahora": null
  },
  {
   "celda": "F26",
   "antes": "2 @ RIR1/0",
-  "ahora": "3 @ RIR1/0"
+  "ahora": null
  },
  {
   "celda": "G26",
   "antes": "2 @ RIR1/0",
-  "ahora": "3 @ RIR1/0"
+  "ahora": null
  },
  {
   "celda": "H26",
   "antes": "2 @ RIR1/0",
-  "ahora": "3 @ RIR1/0"
+  "ahora": null
  },
  {
   "celda": "I26",
   "antes": "2 @ RIR1/0",
-  "ahora": "3 @ RIR1/0"
+  "ahora": null
+ },
+ {
+  "celda": "J26",
+  "antes": "3 @ RIR1/0",
+  "ahora": null
  },
  {
   "celda": "K26",
   "antes": "Plano transversal (Espalda Alta) · Codos abiertos y retracción escapular completa.",
-  "ahora": "Prioridad 3 (Dorsal Bajo) · 1º fresco · Torso vertical, codos abiertos en plano frontal hasta ~90° · No encoger hombros."
- },
- {
-  "celda": "L26",
-  "antes": null,
-  "ahora": "id=jalon-ancho-plano-frontal"
+  "ahora": null
  },
  {
   "celda": "A27",
   "antes": "Laterales sentado",
-  "ahora": "Remo gironda abierto"
+  "ahora": "(X) Miércoles  ·  sin gimnasio  ·  solo carrera (ver bloque de carrera)"
  },
  {
   "celda": "B27",
   "antes": "Hombro lat.",
-  "ahora": "Espalda"
+  "ahora": null
  },
  {
   "celda": "C27",
   "antes": "1 @ RIR0",
-  "ahora": "2 @ RIR1/0"
+  "ahora": null
  },
  {
   "celda": "D27",
   "antes": "1 @ RIR0",
-  "ahora": "2 @ RIR1/0"
+  "ahora": null
+ },
+ {
+  "celda": "E27",
+  "antes": "2 @ RIR1/0",
+  "ahora": null
+ },
+ {
+  "celda": "F27",
+  "antes": "2 @ RIR1/0",
+  "ahora": null
+ },
+ {
+  "celda": "G27",
+  "antes": "2 @ RIR1/0",
+  "ahora": null
+ },
+ {
+  "celda": "H27",
+  "antes": "2 @ RIR1/0",
+  "ahora": null
  },
  {
   "celda": "I27",
   "antes": "3 @ RIR1/0",
-  "ahora": "2 @ RIR1/0"
+  "ahora": null
+ },
+ {
+  "celda": "J27",
+  "antes": "3 @ RIR1/0",
+  "ahora": null
  },
  {
   "celda": "K27",
   "antes": "Prioridad 1 (Hombro Lat.) · Sentado en banco a 75–80°, abducir en plano escapular (~30° adelante) sin rotar internamente el hombro.",
-  "ahora": "Plano transversal (Espalda Alta) · Codos abiertos y retracción escapular completa."
+  "ahora": null
  },
  {
   "celda": "L27",
   "antes": null,
-  "ahora": "id=remo-gironda-abierto"
+  "ahora": "sesion"
  },
  {
   "celda": "A28",
   "antes": "Jalón neutro",
-  "ahora": "Laterales sentado"
+  "ahora": null
  },
  {
   "celda": "B28",
   "antes": "Espalda",
-  "ahora": "Hombro lat."
+  "ahora": null
+ },
+ {
+  "celda": "C28",
+  "antes": "1 @ RIR0",
+  "ahora": null
  },
  {
   "celda": "D28",
   "antes": "2 @ RIR1/0",
-  "ahora": "1 @ RIR0"
+  "ahora": null
+ },
+ {
+  "celda": "E28",
+  "antes": "2 @ RIR1/0",
+  "ahora": null
+ },
+ {
+  "celda": "F28",
+  "antes": "2 @ RIR1/0",
+  "ahora": null
+ },
+ {
+  "celda": "G28",
+  "antes": "2 @ RIR1/0",
+  "ahora": null
+ },
+ {
+  "celda": "H28",
+  "antes": "2 @ RIR1/0",
+  "ahora": null
  },
  {
   "celda": "I28",
   "antes": "2 @ RIR1/0",
-  "ahora": "3 @ RIR1/0"
+  "ahora": null
  },
  {
   "celda": "J28",
   "antes": "2 @ RIR1/0",
-  "ahora": "3 @ RIR1/0"
+  "ahora": null
  },
  {
   "celda": "K28",
   "antes": "Plano sagital (Dorsal Sup.) · Agarre neutro ancho hombros, llevar codos a los bolsillos cortando a 90° (protege codo/bíceps).",
-  "ahora": "Prioridad 1 (Hombro Lat.) · Sentado en banco a 75–80°, abducir en plano escapular (~30° adelante) sin rotar internamente el hombro."
- },
- {
-  "celda": "L28",
-  "antes": null,
-  "ahora": "id=laterales-sentado"
+  "ahora": null
  },
  {
   "celda": "A29",
   "antes": "Curl martillo scott ",
-  "ahora": "Jalón neutro"
+  "ahora": "(J) Jueves  ·  Pull  (desde S3; S1-S2 se hizo el miércoles)"
  },
  {
   "celda": "B29",
   "antes": "Bíceps",
-  "ahora": "Espalda"
+  "ahora": null
  },
  {
   "celda": "C29",
   "antes": "2 @ RIR1/0",
-  "ahora": "1 @ RIR0"
+  "ahora": null
  },
  {
   "celda": "D29",
   "antes": "3 @ RIR1/0",
-  "ahora": "2 @ RIR1/0"
+  "ahora": null
  },
  {
   "celda": "E29",
   "antes": "3 @ RIR1/0",
-  "ahora": "2 @ RIR1/0"
+  "ahora": null
  },
  {
   "celda": "F29",
   "antes": "3 @ RIR1/0",
-  "ahora": "2 @ RIR1/0"
+  "ahora": null
  },
  {
   "celda": "G29",
   "antes": "3 @ RIR1/0",
-  "ahora": "2 @ RIR1/0"
+  "ahora": null
  },
  {
   "celda": "H29",
   "antes": "3 @ RIR1/0",
-  "ahora": "2 @ RIR1/0"
+  "ahora": null
  },
  {
   "celda": "I29",
   "antes": "3 @ RIR1/0",
-  "ahora": "2 @ RIR1/0"
+  "ahora": null
  },
  {
   "celda": "J29",
   "antes": "3 @ RIR1/0",
-  "ahora": "2 @ RIR1/0"
+  "ahora": null
  },
  {
   "celda": "K29",
   "antes": "Prioridad 2 (Bíceps/Braquiorradial) · Agarre neutro (muy amigable para el codo). Bajar en 2-3 s y parar a ~15° de la extensión total para no sobrecargar tendón distal.",
-  "ahora": "Plano sagital (Dorsal Sup.) · Agarre neutro ancho hombros, llevar codos a los bolsillos cortando a 90° (protege codo/bíceps)."
+  "ahora": null
  },
  {
   "celda": "L29",
   "antes": null,
-  "ahora": "id=jalon-neutro"
+  "ahora": "sesion;S1=X;S2=X"
  },
  {
   "celda": "A30",
   "antes": "Posterior polea",
-  "ahora": "Curl martillo scott "
+  "ahora": "Ejercicio"
  },
  {
   "celda": "B30",
   "antes": "Hombro post.",
-  "ahora": "Bíceps"
+  "ahora": "Objetivo"
  },
  {
   "celda": "C30",
   "antes": "1 @ RIR0",
-  "ahora": "2 @ RIR1/0"
+  "ahora": "Sem 1 (series@RIR)"
  },
  {
   "celda": "D30",
   "antes": "1 @ RIR0",
-  "ahora": "3 @ RIR1/0"
+  "ahora": "Sem 2 (series@RIR)"
  },
  {
   "celda": "E30",
   "antes": "2 @ RIR1/0",
-  "ahora": "3 @ RIR1/0"
+  "ahora": "Sem 3 (series@RIR)"
  },
  {
   "celda": "F30",
   "antes": "2 @ RIR1/0",
-  "ahora": "3 @ RIR1/0"
+  "ahora": "Sem 4 (series@RIR)"
  },
  {
   "celda": "G30",
   "antes": "2 @ RIR1/0",
-  "ahora": "3 @ RIR1/0"
+  "ahora": "Sem 5 (series@RIR)"
+ },
+ {
+  "celda": "H30",
+  "antes": "3 @ RIR1/0",
+  "ahora": "Sem 6 (series@RIR)"
+ },
+ {
+  "celda": "I30",
+  "antes": "3 @ RIR1/0",
+  "ahora": "Sem 7 (series@RIR)"
+ },
+ {
+  "celda": "J30",
+  "antes": "3 @ RIR1/0",
+  "ahora": "Sem 8 (series@RIR)"
  },
  {
   "celda": "K30",
   "antes": "Salud Hombro / Transversal · Clave para centrar cabeza humeral y compensar presses.",
-  "ahora": "Prioridad 2 (Bíceps/Braquiorradial) · Agarre neutro (muy amigable para el codo). Bajar en 2-3 s y parar a ~15° de la extensión total para no sobrecargar tendón distal."
+  "ahora": "Notas"
  },
  {
   "celda": "L30",
   "antes": null,
-  "ahora": "id=curl-martillo-scott"
+  "ahora": "App (no tocar)"
  },
  {
   "celda": "A31",
   "antes": "Curl bayesian",
-  "ahora": "Posterior polea"
+  "ahora": "Jalón ancho plano frontal"
  },
  {
   "celda": "B31",
   "antes": "Bíceps",
-  "ahora": "Hombro post."
+  "ahora": "Espalda"
  },
  {
-  "celda": "C31",
+  "celda": "F31",
   "antes": "2 @ RIR1/0",
-  "ahora": "1 @ RIR0"
+  "ahora": "3 @ RIR1/0"
  },
  {
-  "celda": "D31",
+  "celda": "G31",
   "antes": "2 @ RIR1/0",
-  "ahora": "1 @ RIR0"
+  "ahora": "3 @ RIR1/0"
  },
  {
   "celda": "J31",
@@ -692,22 +1307,22 @@
  {
   "celda": "K31",
   "antes": "Prioridad 2 (Bíceps en estiramiento) · Hombro en extensión detrás del torso; no dejar que el hombro rote hacia delante al subir.",
-  "ahora": "Salud Hombro / Transversal · Clave para centrar cabeza humeral y compensar presses."
+  "ahora": "Prioridad 3 (Dorsal Bajo) · 1º fresco · Torso vertical, codos abiertos en plano frontal hasta ~90° · No encoger hombros."
  },
  {
   "celda": "L31",
   "antes": null,
-  "ahora": "id=posterior-polea"
+  "ahora": "id=jalon-ancho-plano-frontal"
  },
  {
   "celda": "A32",
   "antes": null,
-  "ahora": "Curl bayesian"
+  "ahora": "Remo gironda abierto"
  },
  {
   "celda": "B32",
   "antes": null,
-  "ahora": "Bíceps"
+  "ahora": "Espalda"
  },
  {
   "celda": "C32",
@@ -737,987 +1352,1127 @@
  {
   "celda": "H32",
   "antes": null,
-  "ahora": "3 @ RIR1/0"
+  "ahora": "2 @ RIR1/0"
  },
  {
   "celda": "I32",
   "antes": null,
-  "ahora": "3 @ RIR1/0"
+  "ahora": "2 @ RIR1/0"
  },
  {
   "celda": "J32",
   "antes": null,
-  "ahora": "4 @ RIR1/0"
+  "ahora": "3 @ RIR1/0"
  },
  {
   "celda": "K32",
   "antes": null,
-  "ahora": "Prioridad 2 (Bíceps en estiramiento) · Hombro en extensión detrás del torso; no dejar que el hombro rote hacia delante al subir."
+  "ahora": "Plano transversal (Espalda Alta) · Codos abiertos y retracción escapular completa."
  },
  {
   "celda": "L32",
   "antes": null,
-  "ahora": "id=curl-bayesian"
+  "ahora": "id=remo-gironda-abierto"
  },
  {
   "celda": "A33",
   "antes": "(J) Jueves  ·  Rehab + Isquios + Aductores",
-  "ahora": null
+  "ahora": "Laterales sentado"
+ },
+ {
+  "celda": "B33",
+  "antes": null,
+  "ahora": "Hombro lat."
+ },
+ {
+  "celda": "C33",
+  "antes": null,
+  "ahora": "1 @ RIR0"
+ },
+ {
+  "celda": "D33",
+  "antes": null,
+  "ahora": "1 @ RIR0"
+ },
+ {
+  "celda": "E33",
+  "antes": null,
+  "ahora": "2 @ RIR1/0"
+ },
+ {
+  "celda": "F33",
+  "antes": null,
+  "ahora": "2 @ RIR1/0"
+ },
+ {
+  "celda": "G33",
+  "antes": null,
+  "ahora": "2 @ RIR1/0"
+ },
+ {
+  "celda": "H33",
+  "antes": null,
+  "ahora": "2 @ RIR1/0"
+ },
+ {
+  "celda": "I33",
+  "antes": null,
+  "ahora": "3 @ RIR1/0"
+ },
+ {
+  "celda": "J33",
+  "antes": null,
+  "ahora": "3 @ RIR1/0"
+ },
+ {
+  "celda": "K33",
+  "antes": null,
+  "ahora": "Prioridad 1 (Hombro Lat.) · Sentado en banco a 75–80°, abducir en plano escapular (~30° adelante) sin rotar internamente el hombro."
+ },
+ {
+  "celda": "L33",
+  "antes": null,
+  "ahora": "id=laterales-sentado"
  },
  {
   "celda": "A34",
   "antes": "Ejercicio",
-  "ahora": "(J) Jueves  ·  Rehab + Isquios + Aductores  ·  test de fuerza S2 / S5 / S7"
+  "ahora": "Jalón neutro"
  },
  {
   "celda": "B34",
   "antes": "Objetivo",
-  "ahora": null
+  "ahora": "Espalda"
  },
  {
   "celda": "C34",
   "antes": "Sem 1 (series@RIR)",
-  "ahora": null
+  "ahora": "1 @ RIR0"
  },
  {
   "celda": "D34",
   "antes": "Sem 2 (series@RIR)",
-  "ahora": null
+  "ahora": "2 @ RIR1/0"
  },
  {
   "celda": "E34",
   "antes": "Sem 3 (series@RIR)",
-  "ahora": null
+  "ahora": "2 @ RIR1/0"
  },
  {
   "celda": "F34",
   "antes": "Sem 4 (series@RIR)",
-  "ahora": null
+  "ahora": "2 @ RIR1/0"
  },
  {
   "celda": "G34",
   "antes": "Sem 5 (series@RIR)",
-  "ahora": null
+  "ahora": "2 @ RIR1/0"
  },
  {
   "celda": "H34",
   "antes": "Sem 6 (series@RIR)",
-  "ahora": null
+  "ahora": "2 @ RIR1/0"
  },
  {
   "celda": "I34",
   "antes": "Sem 7 (series@RIR)",
-  "ahora": null
+  "ahora": "2 @ RIR1/0"
  },
  {
   "celda": "J34",
   "antes": "Sem 8 (series@RIR)",
-  "ahora": null
+  "ahora": "2 @ RIR1/0"
  },
  {
   "celda": "K34",
   "antes": "Notas",
-  "ahora": null
+  "ahora": "Plano sagital (Dorsal Sup.) · Agarre neutro ancho hombros, llevar codos a los bolsillos cortando a 90° (protege codo/bíceps)."
  },
  {
   "celda": "L34",
   "antes": null,
-  "ahora": "sesion"
+  "ahora": "id=jalon-neutro"
  },
  {
   "celda": "A35",
   "antes": "Unilateral Abduction",
-  "ahora": "Ejercicio"
+  "ahora": "Curl martillo scott "
  },
  {
   "celda": "B35",
   "antes": "Rehab",
-  "ahora": "Objetivo"
+  "ahora": "Bíceps"
  },
  {
   "celda": "C35",
   "antes": "2 x15–20",
-  "ahora": "Sem 1 (series@RIR)"
+  "ahora": "2 @ RIR1/0"
  },
  {
   "celda": "D35",
   "antes": "2 x15–20",
-  "ahora": "Sem 2 (series@RIR)"
+  "ahora": "3 @ RIR1/0"
  },
  {
   "celda": "E35",
   "antes": "2 x15–20",
-  "ahora": "Sem 3 (series@RIR)"
+  "ahora": "3 @ RIR1/0"
  },
  {
   "celda": "F35",
   "antes": "2 x15–20",
-  "ahora": "Sem 4 (series@RIR)"
+  "ahora": "3 @ RIR1/0"
  },
  {
   "celda": "G35",
   "antes": "2 x15–20",
-  "ahora": "Sem 5 (series@RIR)"
+  "ahora": "3 @ RIR1/0"
  },
  {
   "celda": "H35",
   "antes": "2 x15–20",
-  "ahora": "Sem 6 (series@RIR)"
+  "ahora": "3 @ RIR1/0"
  },
  {
   "celda": "I35",
   "antes": "2 x15–20",
-  "ahora": "Sem 7 (series@RIR)"
+  "ahora": "3 @ RIR1/0"
  },
  {
   "celda": "J35",
   "antes": "2 x15–20",
-  "ahora": "Sem 8 (series@RIR)"
+  "ahora": "3 @ RIR1/0"
  },
  {
   "celda": "K35",
   "antes": "Antes del rehab: sentadilla española 5×45 s",
-  "ahora": "Notas"
+  "ahora": "Prioridad 2 (Bíceps/Braquiorradial) · Agarre neutro (muy amigable para el codo). Bajar en 2-3 s y parar a ~15° de la extensión total para no sobrecargar tendón distal."
  },
  {
   "celda": "L35",
   "antes": null,
-  "ahora": "App (no tocar)"
+  "ahora": "id=curl-martillo-scott"
  },
  {
   "celda": "A36",
   "antes": "Touchdown squat",
-  "ahora": "TEST fuerza · extensión unilateral en máquina 90→45°"
+  "ahora": "Posterior polea"
  },
  {
   "celda": "B36",
   "antes": "Rehab",
-  "ahora": "Test"
+  "ahora": "Hombro post."
  },
  {
   "celda": "C36",
   "antes": "2 x15–20",
-  "ahora": "—"
+  "ahora": "1 @ RIR0"
  },
  {
   "celda": "D36",
   "antes": "2 x15–20",
-  "ahora": "2 aprox. +\n1 al fallo\npor pierna"
+  "ahora": "1 @ RIR0"
  },
  {
   "celda": "E36",
   "antes": "2 x15–20",
-  "ahora": "—"
+  "ahora": "2 @ RIR1/0"
  },
  {
   "celda": "F36",
   "antes": "2 x15–20",
-  "ahora": "—"
+  "ahora": "2 @ RIR1/0"
  },
  {
   "celda": "G36",
   "antes": "2 x15–20",
-  "ahora": "2 aprox. +\n1 al fallo\npor pierna"
+  "ahora": "2 @ RIR1/0"
  },
  {
   "celda": "H36",
   "antes": "2 x15–20",
-  "ahora": "—"
+  "ahora": "3 @ RIR1/0"
  },
  {
   "celda": "I36",
   "antes": "2 x15–20",
-  "ahora": "2 aprox. +\n1 al fallo\npor pierna"
+  "ahora": "3 @ RIR1/0"
  },
  {
   "celda": "J36",
   "antes": "2 x15–20",
-  "ahora": "Opcional:\nrango completo"
+  "ahora": "3 @ RIR1/0"
  },
  {
   "celda": "K36",
   "antes": null,
-  "ahora": "Al empezar la sesión, tras la española 2-3×45 s y 2 series de aproximación. Mismo asiento y SIEMPRE rango fijo 90→45° (si el rango cambia, la comparación entre semanas no vale). Misma carga en las dos piernas (la que la I haga unas 10-15 reps), tempo 2-0-2, D primero, 3 min de descanso y luego la I; para si pasa de 3/10. Apunta carga y reps en «Seguimiento rodilla», que calcula la simetría. Objetivo ≥90% antes del balón [LÓGICA; el 90% viene de la vuelta al deporte tras LCA, no está validado en dolor femoropatelar: INCERTIDUMBRE]. Test en rango completo opcional en S8 y no en S7, para que sea la única novedad de su semana."
+  "ahora": "Salud Hombro / Transversal · Clave para centrar cabeza humeral y compensar presses."
  },
  {
   "celda": "L36",
   "antes": null,
-  "ahora": "id=test-fuerza-extension-unilateral-en-maquina-90-45"
+  "ahora": "id=posterior-polea"
  },
  {
   "celda": "A37",
   "antes": "Back squat",
-  "ahora": "Sentadilla al cajón o desde pines · pesado y lento n.º 2"
+  "ahora": "Curl bayesian"
+ },
+ {
+  "celda": "B37",
+  "antes": "Rehab",
+  "ahora": "Bíceps"
+ },
+ {
+  "celda": "C37",
+  "antes": "3 x12",
+  "ahora": "2 @ RIR1/0"
+ },
+ {
+  "celda": "D37",
+  "antes": "3 x10",
+  "ahora": "2 @ RIR1/0"
  },
  {
   "celda": "E37",
   "antes": "3 x10",
-  "ahora": "3 x10\nprof. del lunes"
+  "ahora": "2 @ RIR1/0"
  },
  {
   "celda": "F37",
   "antes": "3 x10",
-  "ahora": "3 x10\nprof. del lunes"
+  "ahora": "2 @ RIR1/0"
+ },
+ {
+  "celda": "G37",
+  "antes": "3 x8",
+  "ahora": "2 @ RIR1/0"
  },
  {
   "celda": "H37",
   "antes": "3 x8",
-  "ahora": "3 x8\nprof. del lunes"
+  "ahora": "3 @ RIR1/0"
  },
  {
   "celda": "I37",
   "antes": "3 x8",
-  "ahora": "3 x8\nprof. del lunes"
+  "ahora": "3 @ RIR1/0"
  },
  {
   "celda": "J37",
   "antes": "3 x8",
-  "ahora": "3 x8\nrepite S7"
+  "ahora": "4 @ RIR1/0"
  },
  {
   "celda": "K37",
   "antes": "Al cajón: tope + pausa 1 s · tempo 3-1-3",
-  "ahora": "Tras el test (S2/S5/S7), carga por RIR. Tempo 3-1-3, RIR 2. Profundidad = la validada el lunes en la prensa. Postura habitual: un chasquido sin dolor no cambia nada; el apoyo ancho solo si te reduce el DOLOR [LÓGICA]. Antes del rehab (si no hay test): sentadilla española 2-3×45 s."
+  "ahora": "Prioridad 2 (Bíceps en estiramiento) · Hombro en extensión detrás del torso; no dejar que el hombro rote hacia delante al subir."
  },
  {
   "celda": "L37",
   "antes": null,
-  "ahora": "id=sentadilla-al-cajon-o-desde-pines-pesado-y-lento-n-2;escalera=prensa:sigue"
+  "ahora": "id=curl-bayesian"
+ },
+ {
+  "celda": "A38",
+  "antes": "Bulgarian split squat",
+  "ahora": null
+ },
+ {
+  "celda": "B38",
+  "antes": "Rehab",
+  "ahora": null
+ },
+ {
+  "celda": "C38",
+  "antes": "2 x12",
+  "ahora": null
  },
  {
   "celda": "D38",
   "antes": "2 x10",
-  "ahora": "2 x10/pierna"
+  "ahora": null
  },
  {
   "celda": "E38",
   "antes": "2 x10",
-  "ahora": "2 x10/pierna"
+  "ahora": null
  },
  {
   "celda": "F38",
   "antes": "2 x10",
-  "ahora": "2 x10/pierna"
+  "ahora": null
  },
  {
   "celda": "G38",
   "antes": "2 x8",
-  "ahora": "2 x8/pierna"
+  "ahora": null
  },
  {
   "celda": "H38",
   "antes": "2 x8",
-  "ahora": "2 x8/pierna"
+  "ahora": null
  },
  {
   "celda": "I38",
   "antes": "2 x8",
-  "ahora": "2 x8/pierna"
+  "ahora": null
  },
  {
   "celda": "J38",
   "antes": "2 x8",
-  "ahora": "2 x8/pierna\nrepite S7"
+  "ahora": null
  },
  {
   "celda": "K38",
   "antes": "Tempo 3-1-3 · empieza por la lesionada",
-  "ahora": "D primero: RIR 2 y profundidad validada el lunes. I: RIR 1-2 y rango completo. Tempo 3-1-3. Alterna piernas, 60-90 s entre una y otra."
- },
- {
-  "celda": "L38",
-  "antes": null,
-  "ahora": "id=bulgarian-split-squat;escalera=prensa:sigue"
+  "ahora": null
  },
  {
   "celda": "A39",
   "antes": "Isquios sentado",
-  "ahora": "Abducción de pie unilateral (máquina)"
+  "ahora": "(V) Viernes  ·  Rehab + Isquios + Aductores  ·  test de fuerza S3 / S5 / S7 (+ opcional S8)  (desde S3; S1-S2 se hizo el jueves)"
  },
  {
   "celda": "B39",
   "antes": "Isquios",
-  "ahora": "Rehab (cadera)"
+  "ahora": null
  },
  {
   "celda": "C39",
   "antes": "3 @ RIR1/0",
-  "ahora": "2 x15–20"
+  "ahora": null
  },
  {
   "celda": "D39",
   "antes": "4 @ RIR1/0",
-  "ahora": "3 x10-15/pierna\n@RIR1-2"
+  "ahora": null
  },
  {
   "celda": "E39",
   "antes": "4 @ RIR1/0",
-  "ahora": "3 x10-15/pierna\n@RIR1-2"
+  "ahora": null
  },
  {
   "celda": "F39",
   "antes": "4 @ RIR1/0",
-  "ahora": "3 x10-15/pierna\n@RIR1-2"
+  "ahora": null
  },
  {
   "celda": "G39",
   "antes": "4 @ RIR1/0",
-  "ahora": "3 x10-15/pierna\n@RIR1-2"
+  "ahora": null
  },
  {
   "celda": "H39",
   "antes": "5 @ RIR1/0",
-  "ahora": "3 x10-15/pierna\n@RIR1-2"
+  "ahora": null
  },
  {
   "celda": "I39",
   "antes": "5 @ RIR1/0",
-  "ahora": "3 x10-15/pierna\n@RIR1-2"
+  "ahora": null
  },
  {
   "celda": "J39",
   "antes": "5 @ RIR1/0",
-  "ahora": "3 x10-15/pierna\n@RIR1-2"
+  "ahora": null
  },
  {
   "celda": "K39",
   "antes": "Isquios en estiramiento máximo (cadera a 90°) · Controlar fase excéntrica.",
-  "ahora": "Misma máquina que el lunes; empieza por la D. Va DESPUÉS de la búlgara, para no fatigar el glúteo medio antes del trabajo a una pierna [LÓGICA]. Lunes + jueves = 72-96 h entre sesiones de cadera."
+  "ahora": null
  },
  {
   "celda": "L39",
   "antes": null,
-  "ahora": "id=abduccion-de-pie-unilateral-maquina"
+  "ahora": "sesion;S1=J;S2=J"
  },
  {
   "celda": "A40",
   "antes": "Aductores",
-  "ahora": "Touchdown squat"
+  "ahora": "Ejercicio"
  },
  {
   "celda": "B40",
   "antes": "Aductores",
-  "ahora": "Rehab"
+  "ahora": "Objetivo"
  },
  {
   "celda": "C40",
   "antes": "2 @ RIR1/0",
-  "ahora": "2 x15–20"
+  "ahora": "Sem 1 (series@RIR)"
  },
  {
   "celda": "D40",
   "antes": "2 @ RIR1/0",
-  "ahora": "—"
+  "ahora": "Sem 2 (series@RIR)"
  },
  {
   "celda": "E40",
   "antes": "2 @ RIR1/0",
-  "ahora": "—"
+  "ahora": "Sem 3 (series@RIR)"
  },
  {
   "celda": "F40",
   "antes": "2 @ RIR1/0",
-  "ahora": "—"
+  "ahora": "Sem 4 (series@RIR)"
  },
  {
   "celda": "G40",
   "antes": "3 @ RIR1/0",
-  "ahora": "—"
+  "ahora": "Sem 5 (series@RIR)"
  },
  {
   "celda": "H40",
   "antes": "3 @ RIR1/0",
-  "ahora": "—"
+  "ahora": "Sem 6 (series@RIR)"
  },
  {
   "celda": "I40",
   "antes": "3 @ RIR1/0",
-  "ahora": "—"
+  "ahora": "Sem 7 (series@RIR)"
  },
  {
   "celda": "J40",
   "antes": "3 @ RIR1/0",
-  "ahora": "—"
+  "ahora": "Sem 8 (series@RIR)"
  },
  {
   "celda": "K40",
   "antes": "Plano transversal/frontal · Pausa de 1 s en apertura máxima sin dolor inguinal/rodilla.",
-  "ahora": "Sale del jueves desde S2: va el lunes, antes de la prensa [LÓGICA]."
+  "ahora": "Notas"
  },
  {
   "celda": "L40",
   "antes": null,
-  "ahora": "id=touchdown-squat"
+  "ahora": "App (no tocar)"
  },
  {
   "celda": "A41",
   "antes": "Gemelos prensa",
-  "ahora": "Isquios sentado"
+  "ahora": "TEST fuerza · extensión unilateral en máquina 90→45°"
  },
  {
   "celda": "B41",
   "antes": "Gemelos",
-  "ahora": "Isquios"
+  "ahora": "Test"
  },
  {
   "celda": "C41",
   "antes": "2 @ RIR1/0",
-  "ahora": "3 @ RIR1/0"
+  "ahora": "—"
  },
  {
   "celda": "D41",
   "antes": "3 @ RIR1/0",
-  "ahora": "4 @ RIR1/0"
+  "ahora": "—"
  },
  {
   "celda": "E41",
   "antes": "3 @ RIR1/0",
-  "ahora": "4 @ RIR1/0"
+  "ahora": "2 aprox. +\n1 al fallo\npor pierna"
  },
  {
   "celda": "F41",
   "antes": "3 @ RIR1/0",
-  "ahora": "4 @ RIR1/0"
+  "ahora": "—"
+ },
+ {
+  "celda": "G41",
+  "antes": "4 @ RIR1/0",
+  "ahora": "2 aprox. +\n1 al fallo\npor pierna"
  },
  {
   "celda": "H41",
   "antes": "4 @ RIR1/0",
-  "ahora": "5 @ RIR1/0"
+  "ahora": "—"
  },
  {
   "celda": "I41",
   "antes": "4 @ RIR1/0",
-  "ahora": "5 @ RIR1/0"
+  "ahora": "2 aprox. +\n1 al fallo\npor pierna"
+ },
+ {
+  "celda": "J41",
+  "antes": "5 @ RIR1/0",
+  "ahora": "Opcional:\nrango completo"
  },
  {
   "celda": "K41",
   "antes": "Prensa con pies abajo · Pausa estricta de 2 s en máximo estiramiento abajo (sin rebote elástico).",
-  "ahora": "Isquios en estiramiento máximo (cadera a 90°) · Controlar fase excéntrica."
+  "ahora": "Test 1 → vie 6/11 (S3): en S2 no se hizo (analítica). Al empezar la sesión, tras la española 2-3×45 s y 2 series de aproximación. Mismo asiento y SIEMPRE rango fijo 90→45° (si el rango cambia, la comparación entre semanas no vale). Misma carga en las dos piernas (la que la I haga unas 10-15 reps), tempo 2-0-2, D primero, 3 min de descanso y luego la I; para si pasa de 3/10. Apunta carga y reps en «Seguimiento rodilla», que calcula la simetría. Objetivo ≥90% antes del balón [LÓGICA; el 90% viene de la vuelta al deporte tras LCA, no está validado en dolor femoropatelar: INCERTIDUMBRE]. Test en rango completo opcional en S8 y no en S7, para que sea la única novedad de su semana."
  },
  {
   "celda": "L41",
   "antes": null,
-  "ahora": "id=isquios-sentado"
+  "ahora": "id=test-fuerza-extension-unilateral-en-maquina-90-45"
  },
  {
   "celda": "A42",
   "antes": null,
-  "ahora": "Aductores"
+  "ahora": "Sentadilla al cajón o desde pines · pesado y lento n.º 2"
  },
  {
   "celda": "B42",
   "antes": null,
-  "ahora": "Aductores"
+  "ahora": "Rehab"
  },
  {
   "celda": "C42",
   "antes": null,
-  "ahora": "2 @ RIR1/0"
+  "ahora": "3 x12"
  },
  {
   "celda": "D42",
   "antes": null,
-  "ahora": "2 @ RIR1/0"
+  "ahora": "3 x10"
  },
  {
   "celda": "E42",
   "antes": null,
-  "ahora": "2 @ RIR1/0"
+  "ahora": "3 x10\nprof. del lunes"
  },
  {
   "celda": "F42",
   "antes": null,
-  "ahora": "2 @ RIR1/0"
+  "ahora": "3 x10\nprof. del lunes"
  },
  {
   "celda": "G42",
   "antes": null,
-  "ahora": "3 @ RIR1/0"
+  "ahora": "3 x8"
  },
  {
   "celda": "H42",
   "antes": null,
-  "ahora": "3 @ RIR1/0"
+  "ahora": "3 x8\nprof. del lunes"
  },
  {
   "celda": "I42",
   "antes": null,
-  "ahora": "3 @ RIR1/0"
+  "ahora": "3 x8\nprof. del lunes"
  },
  {
   "celda": "J42",
   "antes": null,
-  "ahora": "3 @ RIR1/0"
+  "ahora": "3 x8\nrepite S7"
  },
  {
   "celda": "K42",
   "antes": null,
-  "ahora": "Plano transversal/frontal · Pausa de 1 s en apertura máxima sin dolor inguinal/rodilla."
+  "ahora": "Tras el test (S3/S5/S7), carga por RIR. Tempo 3-1-3, RIR 2. Profundidad = la validada el lunes en la prensa. Postura habitual: un chasquido sin dolor no cambia nada; el apoyo ancho solo si te reduce el DOLOR [LÓGICA]. Antes del rehab (si no hay test): sentadilla española 2-3×45 s."
  },
  {
   "celda": "L42",
   "antes": null,
-  "ahora": "id=aductores"
+  "ahora": "id=sentadilla-al-cajon-o-desde-pines-pesado-y-lento-n-2;escalera=prensa:sigue"
  },
  {
   "celda": "A43",
   "antes": "(V) Viernes  ·  Torso",
-  "ahora": "Gemelos prensa"
+  "ahora": "Bulgarian split squat"
  },
  {
   "celda": "B43",
   "antes": null,
-  "ahora": "Gemelos"
+  "ahora": "Rehab"
  },
  {
   "celda": "C43",
   "antes": null,
-  "ahora": "2 @ RIR1/0"
+  "ahora": "2 x12"
  },
  {
   "celda": "D43",
   "antes": null,
-  "ahora": "3 @ RIR1/0"
+  "ahora": "2 x10/pierna"
  },
  {
   "celda": "E43",
   "antes": null,
-  "ahora": "3 @ RIR1/0"
+  "ahora": "2 x10/pierna"
  },
  {
   "celda": "F43",
   "antes": null,
-  "ahora": "3 @ RIR1/0"
+  "ahora": "2 x10/pierna"
  },
  {
   "celda": "G43",
   "antes": null,
-  "ahora": "4 @ RIR1/0"
+  "ahora": "2 x8/pierna"
  },
  {
   "celda": "H43",
   "antes": null,
-  "ahora": "4 @ RIR1/0"
+  "ahora": "2 x8/pierna"
  },
  {
   "celda": "I43",
   "antes": null,
-  "ahora": "4 @ RIR1/0"
+  "ahora": "2 x8/pierna"
  },
  {
   "celda": "J43",
   "antes": null,
-  "ahora": "5 @ RIR1/0"
+  "ahora": "2 x8/pierna\nrepite S7"
  },
  {
   "celda": "K43",
   "antes": null,
-  "ahora": "Prensa con pies abajo · Pausa estricta de 2 s en máximo estiramiento abajo (sin rebote elástico)."
+  "ahora": "D primero: RIR 2 y profundidad validada el lunes. I: RIR 1-2 y rango completo. Tempo 3-1-3. Alterna piernas, 60-90 s entre una y otra."
  },
  {
   "celda": "L43",
   "antes": null,
-  "ahora": "id=gemelos-prensa"
+  "ahora": "id=bulgarian-split-squat;escalera=prensa:sigue"
  },
  {
   "celda": "A44",
   "antes": "Ejercicio",
-  "ahora": null
+  "ahora": "Abducción de pie unilateral (máquina)"
  },
  {
   "celda": "B44",
   "antes": "Objetivo",
-  "ahora": null
+  "ahora": "Rehab (cadera)"
  },
  {
   "celda": "C44",
   "antes": "Sem 1 (series@RIR)",
-  "ahora": null
+  "ahora": "2 x15–20"
  },
  {
   "celda": "D44",
   "antes": "Sem 2 (series@RIR)",
-  "ahora": null
+  "ahora": "3 x10-15/pierna\n@RIR1-2"
  },
  {
   "celda": "E44",
   "antes": "Sem 3 (series@RIR)",
-  "ahora": null
+  "ahora": "3 x10-15/pierna\n@RIR1-2"
  },
  {
   "celda": "F44",
   "antes": "Sem 4 (series@RIR)",
-  "ahora": null
+  "ahora": "3 x10-15/pierna\n@RIR1-2"
  },
  {
   "celda": "G44",
   "antes": "Sem 5 (series@RIR)",
-  "ahora": null
+  "ahora": "3 x10-15/pierna\n@RIR1-2"
  },
  {
   "celda": "H44",
   "antes": "Sem 6 (series@RIR)",
-  "ahora": null
+  "ahora": "3 x10-15/pierna\n@RIR1-2"
  },
  {
   "celda": "I44",
   "antes": "Sem 7 (series@RIR)",
-  "ahora": null
+  "ahora": "3 x10-15/pierna\n@RIR1-2"
  },
  {
   "celda": "J44",
   "antes": "Sem 8 (series@RIR)",
-  "ahora": null
+  "ahora": "3 x10-15/pierna\n@RIR1-2"
  },
  {
   "celda": "K44",
   "antes": "Notas",
-  "ahora": null
+  "ahora": "Misma máquina que el lunes; empieza por la D. Va DESPUÉS de la búlgara, para no fatigar el glúteo medio antes del trabajo a una pierna [LÓGICA]. Lunes + viernes = 72-96 h entre sesiones de cadera."
+ },
+ {
+  "celda": "L44",
+  "antes": null,
+  "ahora": "id=abduccion-de-pie-unilateral-maquina"
  },
  {
   "celda": "A45",
   "antes": "Triceps conc polea (-15°)",
-  "ahora": "(V) Viernes  ·  Torso"
+  "ahora": "Touchdown squat"
  },
  {
   "celda": "B45",
   "antes": "Tríceps",
-  "ahora": null
+  "ahora": "Rehab"
  },
  {
   "celda": "C45",
   "antes": "1 @ RIR0",
-  "ahora": null
+  "ahora": "2 x15–20"
  },
  {
   "celda": "D45",
   "antes": "1 @ RIR0",
-  "ahora": null
+  "ahora": "—"
  },
  {
   "celda": "E45",
   "antes": "1 @ RIR0",
-  "ahora": null
+  "ahora": "—"
  },
  {
   "celda": "F45",
   "antes": "1 @ RIR0",
-  "ahora": null
+  "ahora": "—"
  },
  {
   "celda": "G45",
   "antes": "1 @ RIR0",
-  "ahora": null
+  "ahora": "—"
  },
  {
   "celda": "H45",
   "antes": "1 @ RIR0",
-  "ahora": null
+  "ahora": "—"
  },
  {
   "celda": "I45",
   "antes": "1 @ RIR0",
-  "ahora": null
+  "ahora": "—"
  },
  {
   "celda": "J45",
   "antes": "1 @ RIR0",
-  "ahora": null
+  "ahora": "—"
  },
  {
   "celda": "K45",
   "antes": "Prioridad 2 + Potenciación de codo · Hombro a -15° (extensión): máximo acortamiento de cabeza larga con torque nulo en flexión máxima de codo (calienta tendón para el francés).",
-  "ahora": null
+  "ahora": "Sale de este día desde S2: va el lunes, antes de la prensa [LÓGICA]."
  },
  {
   "celda": "L45",
   "antes": null,
-  "ahora": "sesion"
+  "ahora": "id=touchdown-squat"
  },
  {
   "celda": "A46",
   "antes": "Laterales polea",
-  "ahora": "Ejercicio"
+  "ahora": "Isquios sentado"
  },
  {
   "celda": "B46",
   "antes": "Hombro lat.",
-  "ahora": "Objetivo"
+  "ahora": "Isquios"
  },
  {
   "celda": "C46",
   "antes": "2 @ RIR1/0",
-  "ahora": "Sem 1 (series@RIR)"
+  "ahora": "3 @ RIR1/0"
  },
  {
   "celda": "D46",
   "antes": "2 @ RIR1/0",
-  "ahora": "Sem 2 (series@RIR)"
+  "ahora": "4 @ RIR1/0"
  },
  {
   "celda": "E46",
   "antes": "2 @ RIR1/0",
-  "ahora": "Sem 3 (series@RIR)"
+  "ahora": "4 @ RIR1/0"
  },
  {
   "celda": "F46",
   "antes": "2 @ RIR1/0",
-  "ahora": "Sem 4 (series@RIR)"
+  "ahora": "4 @ RIR1/0"
  },
  {
   "celda": "G46",
   "antes": "2 @ RIR1/0",
-  "ahora": "Sem 5 (series@RIR)"
+  "ahora": "4 @ RIR1/0"
  },
  {
   "celda": "H46",
   "antes": "2 @ RIR1/0",
-  "ahora": "Sem 6 (series@RIR)"
+  "ahora": "5 @ RIR1/0"
  },
  {
   "celda": "I46",
   "antes": "2 @ RIR1/0",
-  "ahora": "Sem 7 (series@RIR)"
+  "ahora": "5 @ RIR1/0"
  },
  {
   "celda": "J46",
   "antes": "2 @ RIR1/0",
-  "ahora": "Sem 8 (series@RIR)"
+  "ahora": "5 @ RIR1/0"
  },
  {
   "celda": "K46",
   "antes": "Prioridad 1 (Hombro Lat.) · Polea a altura de muñeca/muslo, abducción en plano escapular.",
-  "ahora": "Notas"
+  "ahora": "Isquios en estiramiento máximo (cadera a 90°) · Controlar fase excéntrica."
  },
  {
   "celda": "L46",
   "antes": null,
-  "ahora": "App (no tocar)"
+  "ahora": "id=isquios-sentado"
  },
  {
   "celda": "A47",
   "antes": "Press francés manc (banco plano)",
-  "ahora": "Triceps conc polea (-15°)"
+  "ahora": "Aductores"
  },
  {
-  "celda": "C47",
-  "antes": "2 @ RIR1/0",
-  "ahora": "1 @ RIR0"
- },
- {
-  "celda": "D47",
-  "antes": "2 @ RIR1/0",
-  "ahora": "1 @ RIR0"
- },
- {
-  "celda": "E47",
-  "antes": "2 @ RIR1/0",
-  "ahora": "1 @ RIR0"
- },
- {
-  "celda": "F47",
-  "antes": "2 @ RIR1/0",
-  "ahora": "1 @ RIR0"
+  "celda": "B47",
+  "antes": "Tríceps",
+  "ahora": "Aductores"
  },
  {
   "celda": "G47",
   "antes": "2 @ RIR1/0",
-  "ahora": "1 @ RIR0"
+  "ahora": "3 @ RIR1/0"
  },
  {
   "celda": "H47",
   "antes": "2 @ RIR1/0",
-  "ahora": "1 @ RIR0"
- },
- {
-  "celda": "I47",
-  "antes": "3 @ RIR1/0",
-  "ahora": "1 @ RIR0"
- },
- {
-  "celda": "J47",
-  "antes": "3 @ RIR1/0",
-  "ahora": "1 @ RIR0"
+  "ahora": "3 @ RIR1/0"
  },
  {
   "celda": "K47",
   "antes": "Prioridad 2 (Tríceps) · Agarre neutro (martillo) y brazos inclinados a ~100° hacia la cabeza: quita cizalla en epitróclea/olécranon y mantiene tensión constante.",
-  "ahora": "Prioridad 2 + Potenciación de codo · Hombro a -15° (extensión): máximo acortamiento de cabeza larga con torque nulo en flexión máxima de codo (calienta tendón para el francés)."
+  "ahora": "Plano transversal/frontal · Pausa de 1 s en apertura máxima sin dolor inguinal/rodilla."
  },
  {
   "celda": "L47",
   "antes": null,
-  "ahora": "id=triceps-conc-polea-15"
+  "ahora": "id=aductores"
  },
  {
   "celda": "A48",
   "antes": "Curl biceps barra z",
-  "ahora": "Laterales polea"
+  "ahora": "Gemelos prensa"
  },
  {
   "celda": "B48",
   "antes": "Bíceps",
-  "ahora": "Hombro lat."
+  "ahora": "Gemelos"
  },
  {
-  "celda": "F48",
-  "antes": "3 @ RIR1/0",
-  "ahora": "2 @ RIR1/0"
+  "celda": "D48",
+  "antes": "2 @ RIR1/0",
+  "ahora": "3 @ RIR1/0"
+ },
+ {
+  "celda": "E48",
+  "antes": "2 @ RIR1/0",
+  "ahora": "3 @ RIR1/0"
  },
  {
   "celda": "G48",
   "antes": "3 @ RIR1/0",
-  "ahora": "2 @ RIR1/0"
+  "ahora": "4 @ RIR1/0"
  },
  {
   "celda": "H48",
   "antes": "3 @ RIR1/0",
-  "ahora": "2 @ RIR1/0"
+  "ahora": "4 @ RIR1/0"
  },
  {
   "celda": "I48",
   "antes": "3 @ RIR1/0",
-  "ahora": "2 @ RIR1/0"
+  "ahora": "4 @ RIR1/0"
  },
  {
   "celda": "J48",
   "antes": "3 @ RIR1/0",
-  "ahora": "2 @ RIR1/0"
+  "ahora": "5 @ RIR1/0"
  },
  {
   "celda": "K48",
   "antes": "Prioridad 2 (Bíceps rango medio) · Usar el agarre de la barra Z (ancho o estrecho) que resulte 100% libre de molestia en muñeca y codo.",
-  "ahora": "Prioridad 1 (Hombro Lat.) · Polea a altura de muñeca/muslo, abducción en plano escapular."
+  "ahora": "Prensa con pies abajo · Pausa estricta de 2 s en máximo estiramiento abajo (sin rebote elástico)."
  },
  {
   "celda": "L48",
   "antes": null,
-  "ahora": "id=laterales-polea"
+  "ahora": "id=gemelos-prensa"
  },
  {
   "celda": "A49",
   "antes": "Press máquina neutro ascendente",
-  "ahora": "Press francés manc (banco plano)"
+  "ahora": null
  },
  {
   "celda": "B49",
   "antes": "Pecho",
-  "ahora": "Tríceps"
+  "ahora": null
+ },
+ {
+  "celda": "C49",
+  "antes": "2 @ RIR1/0",
+  "ahora": null
+ },
+ {
+  "celda": "D49",
+  "antes": "2 @ RIR1/0",
+  "ahora": null
+ },
+ {
+  "celda": "E49",
+  "antes": "2 @ RIR1/0",
+  "ahora": null
+ },
+ {
+  "celda": "F49",
+  "antes": "2 @ RIR1/0",
+  "ahora": null
+ },
+ {
+  "celda": "G49",
+  "antes": "2 @ RIR1/0",
+  "ahora": null
  },
  {
   "celda": "H49",
   "antes": "3 @ RIR1/0",
-  "ahora": "2 @ RIR1/0"
+  "ahora": null
+ },
+ {
+  "celda": "I49",
+  "antes": "3 @ RIR1/0",
+  "ahora": null
+ },
+ {
+  "celda": "J49",
+  "antes": "3 @ RIR1/0",
+  "ahora": null
  },
  {
   "celda": "K49",
   "antes": "Prioridad 4 (Haz clavicular) · 10/10 tras brazos: el agarre neutro y la trayectoria convergente ascendente aíslan el haz clavicular sin estrés en hombro ni codo.",
-  "ahora": "Prioridad 2 (Tríceps) · Agarre neutro (martillo) y brazos inclinados a ~100° hacia la cabeza: quita cizalla en epitróclea/olécranon y mantiene tensión constante."
- },
- {
-  "celda": "L49",
-  "antes": null,
-  "ahora": "id=press-frances-manc-banco-plano"
+  "ahora": null
  },
  {
   "celda": "A50",
   "antes": "Dominada neutra dorsal",
-  "ahora": "Curl biceps barra z"
+  "ahora": "(S) Sábado  ·  casa, peso libre  ·  Torso (desde S2 = 31/10; S1 se hizo el viernes en el gimnasio)"
  },
  {
   "celda": "B50",
   "antes": "Espalda",
-  "ahora": "Bíceps"
+  "ahora": null
  },
  {
   "celda": "C50",
   "antes": "1 @ RIR0",
-  "ahora": "2 @ RIR1/0"
+  "ahora": null
  },
  {
   "celda": "D50",
   "antes": "1 @ RIR0",
-  "ahora": "2 @ RIR1/0"
+  "ahora": null
  },
  {
   "celda": "E50",
   "antes": "1 @ RIR0",
-  "ahora": "2 @ RIR1/0"
+  "ahora": null
  },
  {
   "celda": "F50",
   "antes": "1 @ RIR0",
-  "ahora": "3 @ RIR1/0"
+  "ahora": null
  },
  {
   "celda": "G50",
   "antes": "1 @ RIR0",
-  "ahora": "3 @ RIR1/0"
+  "ahora": null
  },
  {
   "celda": "H50",
   "antes": "2 @ RIR1/0",
-  "ahora": "3 @ RIR1/0"
+  "ahora": null
  },
  {
   "celda": "I50",
   "antes": "2 @ RIR1/0",
-  "ahora": "3 @ RIR1/0"
+  "ahora": null
  },
  {
   "celda": "J50",
   "antes": "2 @ RIR1/0",
-  "ahora": "3 @ RIR1/0"
+  "ahora": null
  },
  {
   "celda": "K50",
   "antes": "Plano sagital (Dorsal Sup.) · Usar STRAPS obligatoriamente para anular fatiga previa de bíceps y proteger codos.",
-  "ahora": "Prioridad 2 (Bíceps rango medio) · Usar el agarre de la barra Z (ancho o estrecho) que resulte 100% libre de molestia en muñeca y codo."
+  "ahora": null
  },
  {
   "celda": "L50",
   "antes": null,
-  "ahora": "id=curl-biceps-barra-z"
+  "ahora": "sesion;S1=V"
  },
  {
   "celda": "A51",
   "antes": "Remo máquina (pecho apoyado 30°)",
-  "ahora": "Press máquina neutro ascendente"
+  "ahora": "Ejercicio"
  },
  {
   "celda": "B51",
   "antes": "Espalda",
-  "ahora": "Pecho"
+  "ahora": "Objetivo"
+ },
+ {
+  "celda": "C51",
+  "antes": "2 @ RIR1/0",
+  "ahora": "Sem 1 (series@RIR)"
+ },
+ {
+  "celda": "D51",
+  "antes": "2 @ RIR1/0",
+  "ahora": "Sem 2 (series@RIR)"
+ },
+ {
+  "celda": "E51",
+  "antes": "2 @ RIR1/0",
+  "ahora": "Sem 3 (series@RIR)"
+ },
+ {
+  "celda": "F51",
+  "antes": "2 @ RIR1/0",
+  "ahora": "Sem 4 (series@RIR)"
+ },
+ {
+  "celda": "G51",
+  "antes": "2 @ RIR1/0",
+  "ahora": "Sem 5 (series@RIR)"
  },
  {
   "celda": "H51",
   "antes": "2 @ RIR1/0",
-  "ahora": "3 @ RIR1/0"
+  "ahora": "Sem 6 (series@RIR)"
  },
  {
   "celda": "I51",
   "antes": "2 @ RIR1/0",
-  "ahora": "3 @ RIR1/0"
+  "ahora": "Sem 7 (series@RIR)"
  },
  {
   "celda": "J51",
   "antes": "2 @ RIR1/0",
-  "ahora": "3 @ RIR1/0"
+  "ahora": "Sem 8 (series@RIR)"
  },
  {
   "celda": "K51",
   "antes": "Plano sagital/híbrido (Dorsal Sup.) · Usar STRAPS, codos a ~30° hasta línea del torso.",
-  "ahora": "Prioridad 4 (Haz clavicular) · 10/10 tras brazos: el agarre neutro y la trayectoria convergente ascendente aíslan el haz clavicular sin estrés en hombro ni codo."
+  "ahora": "Notas"
  },
  {
   "celda": "L51",
   "antes": null,
-  "ahora": "id=press-maquina-neutro-ascendente"
+  "ahora": "App (no tocar)"
  },
  {
   "celda": "A52",
   "antes": "Aducción unil. polea alta (Pull-in)",
-  "ahora": "Dominada neutra dorsal"
+  "ahora": "Patada de tríceps (mancuerna o goma)"
+ },
+ {
+  "celda": "B52",
+  "antes": "Espalda",
+  "ahora": "Tríceps"
  },
  {
   "celda": "C52",
@@ -1745,24 +2500,39 @@
   "ahora": "1 @ RIR0"
  },
  {
+  "celda": "H52",
+  "antes": "2 @ RIR1/0",
+  "ahora": "1 @ RIR0"
+ },
+ {
+  "celda": "I52",
+  "antes": "2 @ RIR1/0",
+  "ahora": "1 @ RIR0"
+ },
+ {
+  "celda": "J52",
+  "antes": "2 @ RIR1/0",
+  "ahora": "1 @ RIR0"
+ },
+ {
   "celda": "K52",
   "antes": "Prioridad 3 (Dorsal Bajo) · De lado a la polea (con tobillera en muñeca o codo semirrígido) para aislar haz inferior sin usar bíceps ni codo · Sem 1-2 a RIR 1-2.",
-  "ahora": "Plano sagital (Dorsal Sup.) · Usar STRAPS obligatoriamente para anular fatiga previa de bíceps y proteger codos."
+  "ahora": "Primer sábado (31/10): peso libre nuevo → recalibra el peso por RIR; no es comparable con las cargas de máquina [LÓGICA]. S1: tríceps concentrado en polea. Brazo ligeramente por detrás del cuerpo para mantener la cabeza larga estirada [LÓGICA]. Prioridad 2 + Potenciación de codo · Hombro a -15° (extensión): máximo acortamiento de cabeza larga con torque nulo en flexión máxima de codo (calienta tendón para el francés)."
  },
  {
   "celda": "L52",
   "antes": null,
-  "ahora": "id=dominada-neutra-dorsal"
+  "ahora": "id=triceps-conc-polea-15"
  },
  {
   "celda": "A53",
   "antes": null,
-  "ahora": "Remo máquina (pecho apoyado 30°)"
+  "ahora": "Laterales con goma"
  },
  {
   "celda": "B53",
   "antes": null,
-  "ahora": "Espalda"
+  "ahora": "Hombro lat."
  },
  {
   "celda": "C53",
@@ -1807,22 +2577,22 @@
  {
   "celda": "K53",
   "antes": null,
-  "ahora": "Plano sagital/híbrido (Dorsal Sup.) · Usar STRAPS, codos a ~30° hasta línea del torso."
+  "ahora": "S1: laterales en polea. La goma imita mejor la curva de resistencia de la polea que la mancuerna [LÓGICA]. Prioridad 1 (Hombro Lat.) · Polea a altura de muñeca/muslo, abducción en plano escapular."
  },
  {
   "celda": "L53",
   "antes": null,
-  "ahora": "id=remo-maquina-pecho-apoyado-30"
+  "ahora": "id=laterales-polea"
  },
  {
   "celda": "A54",
   "antes": "(S/D) Sábado/Domingo",
-  "ahora": "Aducción unil. polea alta (Pull-in)"
+  "ahora": "Press francés manc (banco plano)"
  },
  {
   "celda": "B54",
   "antes": null,
-  "ahora": "Espalda"
+  "ahora": "Tríceps"
  },
  {
   "celda": "C54",
@@ -1857,332 +2627,332 @@
  {
   "celda": "I54",
   "antes": null,
-  "ahora": "2 @ RIR1/0"
+  "ahora": "3 @ RIR1/0"
  },
  {
   "celda": "J54",
   "antes": null,
-  "ahora": "2 @ RIR1/0"
+  "ahora": "3 @ RIR1/0"
  },
  {
   "celda": "K54",
   "antes": null,
-  "ahora": "Prioridad 3 (Dorsal Bajo) · De lado a la polea (con tobillera en muñeca o codo semirrígido) para aislar haz inferior sin usar bíceps ni codo · Sem 1-2 a RIR 1-2."
+  "ahora": "Prioridad 2 (Tríceps) · Agarre neutro (martillo) y brazos inclinados a ~100° hacia la cabeza: quita cizalla en epitróclea/olécranon y mantiene tensión constante."
  },
  {
   "celda": "L54",
   "antes": null,
-  "ahora": "id=aduccion-unil-polea-alta-pull-in"
+  "ahora": "id=press-frances-manc-banco-plano"
  },
  {
   "celda": "A55",
   "antes": "Ejercicio",
-  "ahora": null
+  "ahora": "Curl con mancuernas"
  },
  {
   "celda": "B55",
   "antes": "Objetivo",
-  "ahora": null
+  "ahora": "Bíceps"
  },
  {
   "celda": "C55",
   "antes": "Sem 1 (series@RIR)",
-  "ahora": null
+  "ahora": "2 @ RIR1/0"
  },
  {
   "celda": "D55",
   "antes": "Sem 2 (series@RIR)",
-  "ahora": null
+  "ahora": "2 @ RIR1/0"
  },
  {
   "celda": "E55",
   "antes": "Sem 3 (series@RIR)",
-  "ahora": null
+  "ahora": "2 @ RIR1/0"
  },
  {
   "celda": "F55",
   "antes": "Sem 4 (series@RIR)",
-  "ahora": null
+  "ahora": "3 @ RIR1/0"
  },
  {
   "celda": "G55",
   "antes": "Sem 5 (series@RIR)",
-  "ahora": null
+  "ahora": "3 @ RIR1/0"
  },
  {
   "celda": "H55",
   "antes": "Sem 6 (series@RIR)",
-  "ahora": null
+  "ahora": "3 @ RIR1/0"
  },
  {
   "celda": "I55",
   "antes": "Sem 7 (series@RIR)",
-  "ahora": null
+  "ahora": "3 @ RIR1/0"
  },
  {
   "celda": "J55",
   "antes": "Sem 8 (series@RIR)",
-  "ahora": null
+  "ahora": "3 @ RIR1/0"
  },
  {
   "celda": "K55",
   "antes": "Notas",
-  "ahora": null
+  "ahora": "S1: curl con barra Z. Barra recta solo si no molesta en muñeca ni codo. Prioridad 2 (Bíceps rango medio) · Usar el agarre de la barra Z (ancho o estrecho) que resulte 100% libre de molestia en muñeca y codo."
+ },
+ {
+  "celda": "L55",
+  "antes": null,
+  "ahora": "id=curl-biceps-barra-z"
  },
  {
   "celda": "A56",
   "antes": "Unilateral Abduction",
-  "ahora": "(S) Sábado  ·  casa, sin máquinas ni poleas  ·  desde S2, sin pierna (el domingo: carrera)"
+  "ahora": "Press inclinado con mancuernas, agarre neutro"
  },
  {
   "celda": "B56",
   "antes": "Rehab",
-  "ahora": null
+  "ahora": "Pecho"
  },
  {
   "celda": "C56",
   "antes": "2 x15–20",
-  "ahora": null
+  "ahora": "2 @ RIR1/0"
  },
  {
   "celda": "D56",
   "antes": "2 x15–20",
-  "ahora": null
+  "ahora": "2 @ RIR1/0"
  },
  {
   "celda": "E56",
   "antes": "2 x15–20",
-  "ahora": null
+  "ahora": "2 @ RIR1/0"
  },
  {
   "celda": "F56",
   "antes": "2 x15–20",
-  "ahora": null
+  "ahora": "2 @ RIR1/0"
  },
  {
   "celda": "G56",
   "antes": "2 x15–20",
-  "ahora": null
+  "ahora": "2 @ RIR1/0"
  },
  {
   "celda": "H56",
   "antes": "2 x15–20",
-  "ahora": null
+  "ahora": "3 @ RIR1/0"
  },
  {
   "celda": "I56",
   "antes": "2 x15–20",
-  "ahora": null
+  "ahora": "3 @ RIR1/0"
  },
  {
   "celda": "J56",
   "antes": "2 x15–20",
-  "ahora": null
+  "ahora": "3 @ RIR1/0"
  },
  {
   "celda": "K56",
   "antes": "fijo · Antes del rehab: sentadilla española 5×45 s",
-  "ahora": null
+  "ahora": "S1: press en máquina. Prioridad 4 (Haz clavicular) · 10/10 tras brazos: el agarre neutro y la trayectoria convergente ascendente aíslan el haz clavicular sin estrés en hombro ni codo."
  },
  {
   "celda": "L56",
   "antes": null,
-  "ahora": "sesion;nombreS1=Sábado/Domingo"
+  "ahora": "id=press-maquina-neutro-ascendente"
  },
  {
   "celda": "A57",
   "antes": "Touchdown squat",
-  "ahora": "Ejercicio"
+  "ahora": null
  },
  {
   "celda": "B57",
   "antes": "Rehab",
-  "ahora": "Objetivo"
+  "ahora": null
  },
  {
   "celda": "C57",
   "antes": "2 x15–20",
-  "ahora": "Sem 1 (series@RIR)"
+  "ahora": null
  },
  {
   "celda": "D57",
   "antes": "2 x15–20",
-  "ahora": "Sem 2 (series@RIR)"
+  "ahora": null
  },
  {
   "celda": "E57",
   "antes": "2 x15–20",
-  "ahora": "Sem 3 (series@RIR)"
+  "ahora": null
  },
  {
   "celda": "F57",
   "antes": "2 x15–20",
-  "ahora": "Sem 4 (series@RIR)"
+  "ahora": null
  },
  {
   "celda": "G57",
   "antes": "2 x15–20",
-  "ahora": "Sem 5 (series@RIR)"
+  "ahora": null
  },
  {
   "celda": "H57",
   "antes": "2 x15–20",
-  "ahora": "Sem 6 (series@RIR)"
+  "ahora": null
  },
  {
   "celda": "I57",
   "antes": "2 x15–20",
-  "ahora": "Sem 7 (series@RIR)"
+  "ahora": null
  },
  {
   "celda": "J57",
   "antes": "2 x15–20",
-  "ahora": "Sem 8 (series@RIR)"
+  "ahora": null
  },
  {
   "celda": "K57",
   "antes": "fijo",
-  "ahora": "Notas"
- },
- {
-  "celda": "L57",
-  "antes": null,
-  "ahora": "App (no tocar)"
+  "ahora": null
  },
  {
   "celda": "A58",
   "antes": "Bulgarian split squat",
-  "ahora": "Abducción unilateral"
+  "ahora": "(S) Sábado (cont.)  ·  abdominales + correctivos  ·  sin pierna (el domingo: carrera)"
  },
  {
   "celda": "B58",
   "antes": "Rehab",
-  "ahora": "Rehab (cadera)"
+  "ahora": null
  },
  {
   "celda": "C58",
   "antes": "2 x12",
-  "ahora": "2 x15–20"
+  "ahora": null
  },
  {
   "celda": "D58",
   "antes": "2 x10",
-  "ahora": "—"
+  "ahora": null
  },
  {
   "celda": "E58",
   "antes": "2 x10",
-  "ahora": "—"
+  "ahora": null
  },
  {
   "celda": "F58",
   "antes": "2 x10",
-  "ahora": "—"
+  "ahora": null
  },
  {
   "celda": "G58",
   "antes": "2 x8",
-  "ahora": "—"
+  "ahora": null
  },
  {
   "celda": "H58",
   "antes": "2 x8",
-  "ahora": "—"
+  "ahora": null
  },
  {
   "celda": "I58",
   "antes": "2 x8",
-  "ahora": "—"
+  "ahora": null
  },
  {
   "celda": "J58",
   "antes": "2 x8",
-  "ahora": "—"
+  "ahora": null
  },
  {
   "celda": "K58",
   "antes": "fijo · Tempo 3-1-3 · empieza por la lesionada",
-  "ahora": "Sale del sábado desde S2: la abducción va el lunes y el jueves en máquina; la pierna se concentra en 2 días [LÓGICA]."
+  "ahora": null
  },
  {
   "celda": "L58",
   "antes": null,
-  "ahora": "id=abduccion-unilateral"
+  "ahora": "sesion;nombreS1=Sábado/Domingo"
  },
  {
   "celda": "A59",
   "antes": "Abs wesley banco",
-  "ahora": "Touchdown squat"
+  "ahora": "Ejercicio"
  },
  {
   "celda": "B59",
   "antes": "Abs",
-  "ahora": "Rehab"
+  "ahora": "Objetivo"
  },
  {
   "celda": "C59",
   "antes": "2 @ RIR1/0",
-  "ahora": "2 x15–20"
+  "ahora": "Sem 1 (series@RIR)"
  },
  {
   "celda": "D59",
   "antes": "2 @ RIR1/0",
-  "ahora": "—"
+  "ahora": "Sem 2 (series@RIR)"
  },
  {
   "celda": "E59",
   "antes": "3 @ RIR1/0",
-  "ahora": "—"
+  "ahora": "Sem 3 (series@RIR)"
  },
  {
   "celda": "F59",
   "antes": "3 @ RIR1/0",
-  "ahora": "—"
+  "ahora": "Sem 4 (series@RIR)"
  },
  {
   "celda": "G59",
   "antes": "3 @ RIR1/0",
-  "ahora": "—"
+  "ahora": "Sem 5 (series@RIR)"
  },
  {
   "celda": "H59",
   "antes": "3 @ RIR1/0",
-  "ahora": "—"
+  "ahora": "Sem 6 (series@RIR)"
  },
  {
   "celda": "I59",
   "antes": "4 @ RIR1/0",
-  "ahora": "—"
+  "ahora": "Sem 7 (series@RIR)"
  },
  {
   "celda": "J59",
   "antes": "4 @ RIR1/0",
-  "ahora": "—"
+  "ahora": "Sem 8 (series@RIR)"
  },
  {
   "celda": "K59",
   "antes": null,
-  "ahora": "Sale del sábado desde S2: va el lunes, antes de la prensa [LÓGICA]."
+  "ahora": "Notas"
  },
  {
   "celda": "L59",
   "antes": null,
-  "ahora": "id=touchdown-squat"
+  "ahora": "App (no tocar)"
  },
  {
   "celda": "A60",
   "antes": "Movilidad - trapecio inferior",
-  "ahora": "Bulgarian split squat"
+  "ahora": "Abducción unilateral"
  },
  {
   "celda": "B60",
   "antes": "-",
-  "ahora": "Rehab"
+  "ahora": "Rehab (cadera)"
  },
  {
   "celda": "C60",
   "antes": "-",
-  "ahora": "2 x12"
+  "ahora": "2 x15–20"
  },
  {
   "celda": "D60",
@@ -2222,287 +2992,387 @@
  {
   "celda": "K60",
   "antes": null,
-  "ahora": "Sale del sábado desde S2: la pierna se concentra en el lunes y el jueves [LÓGICA]."
+  "ahora": "Sale del sábado desde S2: la abducción va el lunes y el viernes en máquina; la pierna se concentra en 2 días [LÓGICA]."
  },
  {
   "celda": "L60",
   "antes": null,
-  "ahora": "id=bulgarian-split-squat"
+  "ahora": "id=abduccion-unilateral"
  },
  {
   "celda": "A61",
   "antes": "Autorregulación: si un músculo pierde reps 2 sesiones seguidas, esa semana NO le subas series. Si se estancan varios a la vez o la rodilla empeora en el test, repite la semana anterior.",
-  "ahora": "Abs wesley banco"
+  "ahora": "Touchdown squat"
  },
  {
   "celda": "B61",
   "antes": null,
-  "ahora": "Abs"
+  "ahora": "Rehab"
  },
  {
   "celda": "C61",
   "antes": null,
-  "ahora": "2 @ RIR1/0"
+  "ahora": "2 x15–20"
  },
  {
   "celda": "D61",
   "antes": null,
-  "ahora": "2 @ RIR1/0"
+  "ahora": "—"
  },
  {
   "celda": "E61",
   "antes": null,
-  "ahora": "3 @ RIR1/0"
+  "ahora": "—"
  },
  {
   "celda": "F61",
   "antes": null,
-  "ahora": "3 @ RIR1/0"
+  "ahora": "—"
  },
  {
   "celda": "G61",
   "antes": null,
-  "ahora": "3 @ RIR1/0"
+  "ahora": "—"
  },
  {
   "celda": "H61",
   "antes": null,
-  "ahora": "3 @ RIR1/0"
+  "ahora": "—"
  },
  {
   "celda": "I61",
   "antes": null,
-  "ahora": "4 @ RIR1/0"
+  "ahora": "—"
  },
  {
   "celda": "J61",
   "antes": null,
-  "ahora": "4 @ RIR1/0"
+  "ahora": "—"
+ },
+ {
+  "celda": "K61",
+  "antes": null,
+  "ahora": "Sale del sábado desde S2: va el lunes, antes de la prensa [LÓGICA]."
  },
  {
   "celda": "L61",
   "antes": null,
-  "ahora": "id=abs-wesley-banco"
+  "ahora": "id=touchdown-squat"
  },
  {
   "celda": "A62",
   "antes": null,
-  "ahora": "Elevación lateral en prono «T» (mancuernas, banco)"
+  "ahora": "Bulgarian split squat"
  },
  {
   "celda": "B62",
   "antes": null,
-  "ahora": "Hombro (correctivo)"
+  "ahora": "Rehab"
  },
  {
   "celda": "C62",
   "antes": null,
-  "ahora": "-"
+  "ahora": "2 x12"
  },
  {
   "celda": "D62",
   "antes": null,
-  "ahora": "2-3 x10-15\n5 s arriba"
+  "ahora": "—"
  },
  {
   "celda": "E62",
   "antes": null,
-  "ahora": "2-3 x10-15\n5 s arriba"
+  "ahora": "—"
  },
  {
   "celda": "F62",
   "antes": null,
-  "ahora": "2-3 x10-15\n5 s arriba"
+  "ahora": "—"
  },
  {
   "celda": "G62",
   "antes": null,
-  "ahora": "2-3 x10-15\n5 s arriba"
+  "ahora": "—"
  },
  {
   "celda": "H62",
   "antes": null,
-  "ahora": "2-3 x10-15\n5 s arriba"
+  "ahora": "—"
  },
  {
   "celda": "I62",
   "antes": null,
-  "ahora": "2-3 x10-15\n5 s arriba"
+  "ahora": "—"
  },
  {
   "celda": "J62",
   "antes": null,
-  "ahora": "2-3 x10-15\n5 s arriba"
+  "ahora": "—"
  },
  {
   "celda": "K62",
   "antes": null,
-  "ahora": "Postura: trapecio medio e inferior y deltoides posterior. Boca abajo en el banco, pulgar arriba, muy poco peso. RIR 3-4; no cuenta como serie de hipertrofia. Libro, p. 290."
+  "ahora": "Sale del sábado desde S2: la pierna se concentra en el lunes y el viernes [LÓGICA]."
  },
  {
   "celda": "L62",
   "antes": null,
-  "ahora": "id=elevacion-lateral-en-prono-t-mancuernas-banco"
+  "ahora": "id=bulgarian-split-squat"
  },
  {
   "celda": "A63",
   "antes": "Semana 9 (14-20/12) · Viaje = descarga  ·  Semana 10 · Vuelta progresiva",
-  "ahora": "Rotación externa con banda «W»"
+  "ahora": "Abs wesley banco"
  },
  {
   "celda": "B63",
   "antes": null,
-  "ahora": "Hombro (correctivo)"
+  "ahora": "Abs"
  },
  {
   "celda": "C63",
   "antes": null,
-  "ahora": "—"
+  "ahora": "2 @ RIR1/0"
  },
  {
   "celda": "D63",
   "antes": null,
-  "ahora": "2-3 x15-20\n5-10 s fuera"
+  "ahora": "2 @ RIR1/0"
  },
  {
   "celda": "E63",
   "antes": null,
-  "ahora": "2-3 x15-20\n5-10 s fuera"
+  "ahora": "3 @ RIR1/0"
  },
  {
   "celda": "F63",
   "antes": null,
-  "ahora": "2-3 x15-20\n5-10 s fuera"
+  "ahora": "3 @ RIR1/0"
  },
  {
   "celda": "G63",
   "antes": null,
-  "ahora": "2-3 x15-20\n5-10 s fuera"
+  "ahora": "3 @ RIR1/0"
  },
  {
   "celda": "H63",
   "antes": null,
-  "ahora": "2-3 x15-20\n5-10 s fuera"
+  "ahora": "3 @ RIR1/0"
  },
  {
   "celda": "I63",
   "antes": null,
-  "ahora": "2-3 x15-20\n5-10 s fuera"
+  "ahora": "4 @ RIR1/0"
  },
  {
   "celda": "J63",
   "antes": null,
-  "ahora": "2-3 x15-20\n5-10 s fuera"
- },
- {
-  "celda": "K63",
-  "antes": null,
-  "ahora": "Codos pegados al cuerpo a 90°. RIR 3-4. Libro, p. 288."
+  "ahora": "4 @ RIR1/0"
  },
  {
   "celda": "L63",
   "antes": null,
-  "ahora": "id=rotacion-externa-con-banda-w"
+  "ahora": "id=abs-wesley-banco"
  },
  {
   "celda": "A64",
   "antes": "Hipertrofia: la semana sin entrenar hace de descarga justo después del pico de volumen de la semana 8.",
-  "ahora": "Curl de muñeca en extensión (mancuerna)"
+  "ahora": "Elevación lateral en prono «T» (mancuernas, banco)"
  },
  {
   "celda": "B64",
   "antes": null,
-  "ahora": "Codo (correctivo)"
+  "ahora": "Hombro (correctivo)"
  },
  {
   "celda": "C64",
   "antes": null,
-  "ahora": "—"
+  "ahora": "-"
  },
  {
   "celda": "D64",
   "antes": null,
-  "ahora": "3 x10-15\n3 s / 3 s"
+  "ahora": "2-3 x10-15\n5 s arriba"
  },
  {
   "celda": "E64",
   "antes": null,
-  "ahora": "3 x10-15\n3 s / 3 s"
+  "ahora": "2-3 x10-15\n5 s arriba"
  },
  {
   "celda": "F64",
   "antes": null,
-  "ahora": "3 x10-15\n3 s / 3 s"
+  "ahora": "2-3 x10-15\n5 s arriba"
  },
  {
   "celda": "G64",
   "antes": null,
-  "ahora": "3 x10-15\n3 s / 3 s"
+  "ahora": "2-3 x10-15\n5 s arriba"
  },
  {
   "celda": "H64",
   "antes": null,
-  "ahora": "3 x10-15\n3 s / 3 s"
+  "ahora": "2-3 x10-15\n5 s arriba"
  },
  {
   "celda": "I64",
   "antes": null,
-  "ahora": "3 x10-15\n3 s / 3 s"
+  "ahora": "2-3 x10-15\n5 s arriba"
  },
  {
   "celda": "J64",
   "antes": null,
-  "ahora": "3 x10-15\n3 s / 3 s"
+  "ahora": "2-3 x10-15\n5 s arriba"
  },
  {
   "celda": "K64",
   "antes": null,
-  "ahora": "Codo (cara externa). Antebrazo apoyado, palma abajo. Si ahora agarrar te duele: isométrico 4-5×30-45 s las 1-2 primeras semanas. Antes, test del nervio radial (libro, p. 323): si es positivo, se cambia por deslizamientos del nervio (p. 338). Dolor ≤3/10 y no peor al día siguiente. Libro, pp. 332-333."
+  "ahora": "Postura: trapecio medio e inferior y deltoides posterior. Boca abajo en el banco, pulgar arriba, muy poco peso. RIR 3-4; no cuenta como serie de hipertrofia. Libro, p. 290."
  },
  {
   "celda": "L64",
   "antes": null,
-  "ahora": "id=curl-de-muneca-en-extension-mancuerna"
+  "ahora": "id=elevacion-lateral-en-prono-t-mancuernas-banco"
  },
  {
   "celda": "A65",
   "antes": "Rodilla (libro): nunca dejes el tendón en reposo total. Llévate la goma: sentadilla española 5×45 s cada día (sin anclaje → wall sit a 1 pierna). Sigue haciendo el test en declive por la mañana.",
-  "ahora": "Autorregulación: si un músculo pierde reps 2 sesiones seguidas, esa semana NO le subas series. Si se estancan varios a la vez o la rodilla empeora en el test, repite la semana anterior."
+  "ahora": "Rotación externa con banda «W»"
+ },
+ {
+  "celda": "B65",
+  "antes": null,
+  "ahora": "Hombro (correctivo)"
+ },
+ {
+  "celda": "C65",
+  "antes": null,
+  "ahora": "—"
+ },
+ {
+  "celda": "D65",
+  "antes": null,
+  "ahora": "2-3 x15-20\n5-10 s fuera"
+ },
+ {
+  "celda": "E65",
+  "antes": null,
+  "ahora": "2-3 x15-20\n5-10 s fuera"
+ },
+ {
+  "celda": "F65",
+  "antes": null,
+  "ahora": "2-3 x15-20\n5-10 s fuera"
+ },
+ {
+  "celda": "G65",
+  "antes": null,
+  "ahora": "2-3 x15-20\n5-10 s fuera"
+ },
+ {
+  "celda": "H65",
+  "antes": null,
+  "ahora": "2-3 x15-20\n5-10 s fuera"
+ },
+ {
+  "celda": "I65",
+  "antes": null,
+  "ahora": "2-3 x15-20\n5-10 s fuera"
+ },
+ {
+  "celda": "J65",
+  "antes": null,
+  "ahora": "2-3 x15-20\n5-10 s fuera"
+ },
+ {
+  "celda": "K65",
+  "antes": null,
+  "ahora": "Codos pegados al cuerpo a 90°. RIR 3-4. Libro, p. 288."
  },
  {
   "celda": "L65",
   "antes": null,
-  "ahora": "regla"
+  "ahora": "id=rotacion-externa-con-banda-w"
  },
  {
   "celda": "A66",
   "antes": "Semana 10 (vuelta): hipertrofia con las series de la sem 3-4 y a RIR2. Rehab ×8 al ~80% del peso de la sem 8. Si el test de 24 h aguanta, semana 11 a peso completo y siguiente escalón del libro (×6).",
-  "ahora": null
+  "ahora": "Curl de muñeca en extensión (mancuerna)"
+ },
+ {
+  "celda": "B66",
+  "antes": null,
+  "ahora": "Codo (correctivo)"
+ },
+ {
+  "celda": "C66",
+  "antes": null,
+  "ahora": "—"
+ },
+ {
+  "celda": "D66",
+  "antes": null,
+  "ahora": "3 x10-15\n3 s / 3 s"
+ },
+ {
+  "celda": "E66",
+  "antes": null,
+  "ahora": "3 x10-15\n3 s / 3 s"
+ },
+ {
+  "celda": "F66",
+  "antes": null,
+  "ahora": "3 x10-15\n3 s / 3 s"
+ },
+ {
+  "celda": "G66",
+  "antes": null,
+  "ahora": "3 x10-15\n3 s / 3 s"
+ },
+ {
+  "celda": "H66",
+  "antes": null,
+  "ahora": "3 x10-15\n3 s / 3 s"
+ },
+ {
+  "celda": "I66",
+  "antes": null,
+  "ahora": "3 x10-15\n3 s / 3 s"
+ },
+ {
+  "celda": "J66",
+  "antes": null,
+  "ahora": "3 x10-15\n3 s / 3 s"
+ },
+ {
+  "celda": "K66",
+  "antes": null,
+  "ahora": "Codo (cara externa). Antebrazo apoyado, palma abajo. Si ahora agarrar te duele: isométrico 4-5×30-45 s las 1-2 primeras semanas. Antes, test del nervio radial (libro, p. 323): si es positivo, se cambia por deslizamientos del nervio (p. 338). Dolor ≤3/10 y no peor al día siguiente. Libro, pp. 332-333."
+ },
+ {
+  "celda": "L66",
+  "antes": null,
+  "ahora": "id=curl-de-muneca-en-extension-mancuerna"
  },
  {
   "celda": "A67",
   "antes": null,
-  "ahora": "Semana 9 (14-20/12) · Viaje = descarga  ·  Semana 10 · Vuelta progresiva"
+  "ahora": "Autorregulación: si un músculo pierde reps 2 sesiones seguidas, esa semana NO le subas series. Si se estancan varios a la vez o la rodilla empeora en el test, repite la semana anterior."
  },
  {
   "celda": "L67",
   "antes": null,
-  "ahora": "nota"
+  "ahora": "regla"
  },
  {
   "celda": "A68",
   "antes": "Series semanales por grupo muscular (se recalculan solas al cambiar la tabla)",
-  "ahora": "Hipertrofia: la semana sin entrenar hace de descarga justo después del pico de volumen de la semana 8."
- },
- {
-  "celda": "L68",
-  "antes": null,
-  "ahora": "nota"
+  "ahora": null
  },
  {
   "celda": "A69",
   "antes": "Grupo muscular",
-  "ahora": "Rodilla en el viaje: nunca reposo total del tendón. Sentadilla española 5×45 s cada día (sin anclaje → wall sit a 1 pierna) y las dos pruebas de la mañana (declive + 10 subidas). Carrera: si puedes, 2 rodajes suaves sin pasar del nivel de S8 y nunca dos días seguidos, con la regla de carrera (≤2/10, nivel previo en ≤60 min, mañana siguiente no peor)."
+  "ahora": "Semana 9 (14-20/12) · Viaje = descarga  ·  Semana 10 · Vuelta progresiva"
  },
  {
   "celda": "B69",
@@ -2557,7 +3427,7 @@
  {
   "celda": "A70",
   "antes": "Espalda",
-  "ahora": "Semana 10 (vuelta): hipertrofia con las series de la sem 3-4 y a RIR2. Rehab ×8 al ~80% del peso de la sem 8; si se cumple la regla de 24-48 h, semana 11 a peso completo y siguiente escalón del libro (×6). Carrera: retomas el nivel de S8, o uno por debajo si no pudiste correr en el viaje."
+  "ahora": "Hipertrofia: la semana sin entrenar hace de descarga justo después del pico de volumen de la semana 8."
  },
  {
   "celda": "B70",
@@ -2612,7 +3482,7 @@
  {
   "celda": "A71",
   "antes": "Pecho",
-  "ahora": null
+  "ahora": "Rodilla en el viaje: nunca reposo total del tendón. Sentadilla española 5×45 s cada día (sin anclaje → wall sit a 1 pierna) y las dos pruebas de la mañana (declive + 10 subidas). Carrera: si puedes, 2 rodajes suaves sin pasar del nivel de S8 y nunca dos días seguidos, con la regla de carrera (≤2/10, nivel previo en ≤60 min, mañana siguiente no peor)."
  },
  {
   "celda": "B71",
@@ -2660,9 +3530,14 @@
   "ahora": null
  },
  {
+  "celda": "L71",
+  "antes": null,
+  "ahora": "nota"
+ },
+ {
   "celda": "A72",
   "antes": "Hombro lat.",
-  "ahora": "Series semanales por grupo muscular (se recalculan solas al cambiar la tabla)"
+  "ahora": "Semana 10 (vuelta): hipertrofia con las series de la sem 3-4 y a RIR2. Rehab ×8 al ~80% del peso de la sem 8; si se cumple la regla de 24-48 h, semana 11 a peso completo y siguiente escalón del libro (×6). Carrera: retomas el nivel de S8, o uno por debajo si no pudiste correr en el viaje."
  },
  {
   "celda": "B72",
@@ -2710,379 +3585,394 @@
   "ahora": null
  },
  {
+  "celda": "L72",
+  "antes": null,
+  "ahora": "nota"
+ },
+ {
   "celda": "A73",
   "antes": "Hombro post.",
-  "ahora": "Grupo muscular"
+  "ahora": null
  },
  {
   "celda": "B73",
   "antes": "=C73&\" → \"&J73",
-  "ahora": "Sem 1 → Sem 8"
+  "ahora": null
  },
  {
   "celda": "C73",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Hombro post.\")*IFERROR(VALUE(LEFT(C$3:C$65,FIND(\" \",C$3:C$65&\" \")-1)),0))",
-  "ahora": "Sem 1"
+  "ahora": null
  },
  {
   "celda": "D73",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Hombro post.\")*IFERROR(VALUE(LEFT(D$3:D$65,FIND(\" \",D$3:D$65&\" \")-1)),0))",
-  "ahora": "Sem 2"
+  "ahora": null
  },
  {
   "celda": "E73",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Hombro post.\")*IFERROR(VALUE(LEFT(E$3:E$65,FIND(\" \",E$3:E$65&\" \")-1)),0))",
-  "ahora": "Sem 3"
+  "ahora": null
  },
  {
   "celda": "F73",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Hombro post.\")*IFERROR(VALUE(LEFT(F$3:F$65,FIND(\" \",F$3:F$65&\" \")-1)),0))",
-  "ahora": "Sem 4"
+  "ahora": null
  },
  {
   "celda": "G73",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Hombro post.\")*IFERROR(VALUE(LEFT(G$3:G$65,FIND(\" \",G$3:G$65&\" \")-1)),0))",
-  "ahora": "Sem 5"
+  "ahora": null
  },
  {
   "celda": "H73",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Hombro post.\")*IFERROR(VALUE(LEFT(H$3:H$65,FIND(\" \",H$3:H$65&\" \")-1)),0))",
-  "ahora": "Sem 6"
+  "ahora": null
  },
  {
   "celda": "I73",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Hombro post.\")*IFERROR(VALUE(LEFT(I$3:I$65,FIND(\" \",I$3:I$65&\" \")-1)),0))",
-  "ahora": "Sem 7"
+  "ahora": null
  },
  {
   "celda": "J73",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Hombro post.\")*IFERROR(VALUE(LEFT(J$3:J$65,FIND(\" \",J$3:J$65&\" \")-1)),0))",
-  "ahora": "Sem 8"
- },
- {
-  "celda": "L73",
-  "antes": null,
-  "ahora": "grupos"
+  "ahora": null
  },
  {
   "celda": "A74",
   "antes": "Bíceps",
-  "ahora": "Espalda"
+  "ahora": "Series semanales por grupo muscular (se recalculan solas al cambiar la tabla)"
+ },
+ {
+  "celda": "B74",
+  "antes": "=C74&\" → \"&J74",
+  "ahora": null
  },
  {
   "celda": "C74",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Bíceps\")*IFERROR(VALUE(LEFT(C$3:C$65,FIND(\" \",C$3:C$65&\" \")-1)),0))",
-  "ahora": "=IFERROR(VALUE(LEFT(C26,FIND(\" \",C26&\" \")-1)),0)+IFERROR(VALUE(LEFT(C27,FIND(\" \",C27&\" \")-1)),0)+IFERROR(VALUE(LEFT(C29,FIND(\" \",C29&\" \")-1)),0)+IFERROR(VALUE(LEFT(C52,FIND(\" \",C52&\" \")-1)),0)+IFERROR(VALUE(LEFT(C53,FIND(\" \",C53&\" \")-1)),0)+IFERROR(VALUE(LEFT(C54,FIND(\" \",C54&\" \")-1)),0)"
+  "ahora": null
  },
  {
   "celda": "D74",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Bíceps\")*IFERROR(VALUE(LEFT(D$3:D$65,FIND(\" \",D$3:D$65&\" \")-1)),0))",
-  "ahora": "=IFERROR(VALUE(LEFT(D26,FIND(\" \",D26&\" \")-1)),0)+IFERROR(VALUE(LEFT(D27,FIND(\" \",D27&\" \")-1)),0)+IFERROR(VALUE(LEFT(D29,FIND(\" \",D29&\" \")-1)),0)+IFERROR(VALUE(LEFT(D52,FIND(\" \",D52&\" \")-1)),0)+IFERROR(VALUE(LEFT(D53,FIND(\" \",D53&\" \")-1)),0)+IFERROR(VALUE(LEFT(D54,FIND(\" \",D54&\" \")-1)),0)"
+  "ahora": null
  },
  {
   "celda": "E74",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Bíceps\")*IFERROR(VALUE(LEFT(E$3:E$65,FIND(\" \",E$3:E$65&\" \")-1)),0))",
-  "ahora": "=IFERROR(VALUE(LEFT(E26,FIND(\" \",E26&\" \")-1)),0)+IFERROR(VALUE(LEFT(E27,FIND(\" \",E27&\" \")-1)),0)+IFERROR(VALUE(LEFT(E29,FIND(\" \",E29&\" \")-1)),0)+IFERROR(VALUE(LEFT(E52,FIND(\" \",E52&\" \")-1)),0)+IFERROR(VALUE(LEFT(E53,FIND(\" \",E53&\" \")-1)),0)+IFERROR(VALUE(LEFT(E54,FIND(\" \",E54&\" \")-1)),0)"
+  "ahora": null
  },
  {
   "celda": "F74",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Bíceps\")*IFERROR(VALUE(LEFT(F$3:F$65,FIND(\" \",F$3:F$65&\" \")-1)),0))",
-  "ahora": "=IFERROR(VALUE(LEFT(F26,FIND(\" \",F26&\" \")-1)),0)+IFERROR(VALUE(LEFT(F27,FIND(\" \",F27&\" \")-1)),0)+IFERROR(VALUE(LEFT(F29,FIND(\" \",F29&\" \")-1)),0)+IFERROR(VALUE(LEFT(F52,FIND(\" \",F52&\" \")-1)),0)+IFERROR(VALUE(LEFT(F53,FIND(\" \",F53&\" \")-1)),0)+IFERROR(VALUE(LEFT(F54,FIND(\" \",F54&\" \")-1)),0)"
+  "ahora": null
  },
  {
   "celda": "G74",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Bíceps\")*IFERROR(VALUE(LEFT(G$3:G$65,FIND(\" \",G$3:G$65&\" \")-1)),0))",
-  "ahora": "=IFERROR(VALUE(LEFT(G26,FIND(\" \",G26&\" \")-1)),0)+IFERROR(VALUE(LEFT(G27,FIND(\" \",G27&\" \")-1)),0)+IFERROR(VALUE(LEFT(G29,FIND(\" \",G29&\" \")-1)),0)+IFERROR(VALUE(LEFT(G52,FIND(\" \",G52&\" \")-1)),0)+IFERROR(VALUE(LEFT(G53,FIND(\" \",G53&\" \")-1)),0)+IFERROR(VALUE(LEFT(G54,FIND(\" \",G54&\" \")-1)),0)"
+  "ahora": null
  },
  {
   "celda": "H74",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Bíceps\")*IFERROR(VALUE(LEFT(H$3:H$65,FIND(\" \",H$3:H$65&\" \")-1)),0))",
-  "ahora": "=IFERROR(VALUE(LEFT(H26,FIND(\" \",H26&\" \")-1)),0)+IFERROR(VALUE(LEFT(H27,FIND(\" \",H27&\" \")-1)),0)+IFERROR(VALUE(LEFT(H29,FIND(\" \",H29&\" \")-1)),0)+IFERROR(VALUE(LEFT(H52,FIND(\" \",H52&\" \")-1)),0)+IFERROR(VALUE(LEFT(H53,FIND(\" \",H53&\" \")-1)),0)+IFERROR(VALUE(LEFT(H54,FIND(\" \",H54&\" \")-1)),0)"
+  "ahora": null
  },
  {
   "celda": "I74",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Bíceps\")*IFERROR(VALUE(LEFT(I$3:I$65,FIND(\" \",I$3:I$65&\" \")-1)),0))",
-  "ahora": "=IFERROR(VALUE(LEFT(I26,FIND(\" \",I26&\" \")-1)),0)+IFERROR(VALUE(LEFT(I27,FIND(\" \",I27&\" \")-1)),0)+IFERROR(VALUE(LEFT(I29,FIND(\" \",I29&\" \")-1)),0)+IFERROR(VALUE(LEFT(I52,FIND(\" \",I52&\" \")-1)),0)+IFERROR(VALUE(LEFT(I53,FIND(\" \",I53&\" \")-1)),0)+IFERROR(VALUE(LEFT(I54,FIND(\" \",I54&\" \")-1)),0)"
+  "ahora": null
  },
  {
   "celda": "J74",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Bíceps\")*IFERROR(VALUE(LEFT(J$3:J$65,FIND(\" \",J$3:J$65&\" \")-1)),0))",
-  "ahora": "=IFERROR(VALUE(LEFT(J26,FIND(\" \",J26&\" \")-1)),0)+IFERROR(VALUE(LEFT(J27,FIND(\" \",J27&\" \")-1)),0)+IFERROR(VALUE(LEFT(J29,FIND(\" \",J29&\" \")-1)),0)+IFERROR(VALUE(LEFT(J52,FIND(\" \",J52&\" \")-1)),0)+IFERROR(VALUE(LEFT(J53,FIND(\" \",J53&\" \")-1)),0)+IFERROR(VALUE(LEFT(J54,FIND(\" \",J54&\" \")-1)),0)"
+  "ahora": null
  },
  {
   "celda": "A75",
   "antes": "Tríceps",
-  "ahora": "Pecho"
+  "ahora": "Grupo muscular"
+ },
+ {
+  "celda": "B75",
+  "antes": "=C75&\" → \"&J75",
+  "ahora": "Sem 1 → Sem 8"
  },
  {
   "celda": "C75",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Tríceps\")*IFERROR(VALUE(LEFT(C$3:C$65,FIND(\" \",C$3:C$65&\" \")-1)),0))",
-  "ahora": "=IFERROR(VALUE(LEFT(C16,FIND(\" \",C16&\" \")-1)),0)+IFERROR(VALUE(LEFT(C18,FIND(\" \",C18&\" \")-1)),0)+IFERROR(VALUE(LEFT(C51,FIND(\" \",C51&\" \")-1)),0)"
+  "ahora": "Sem 1"
  },
  {
   "celda": "D75",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Tríceps\")*IFERROR(VALUE(LEFT(D$3:D$65,FIND(\" \",D$3:D$65&\" \")-1)),0))",
-  "ahora": "=IFERROR(VALUE(LEFT(D16,FIND(\" \",D16&\" \")-1)),0)+IFERROR(VALUE(LEFT(D18,FIND(\" \",D18&\" \")-1)),0)+IFERROR(VALUE(LEFT(D51,FIND(\" \",D51&\" \")-1)),0)"
+  "ahora": "Sem 2"
  },
  {
   "celda": "E75",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Tríceps\")*IFERROR(VALUE(LEFT(E$3:E$65,FIND(\" \",E$3:E$65&\" \")-1)),0))",
-  "ahora": "=IFERROR(VALUE(LEFT(E16,FIND(\" \",E16&\" \")-1)),0)+IFERROR(VALUE(LEFT(E18,FIND(\" \",E18&\" \")-1)),0)+IFERROR(VALUE(LEFT(E51,FIND(\" \",E51&\" \")-1)),0)"
+  "ahora": "Sem 3"
  },
  {
   "celda": "F75",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Tríceps\")*IFERROR(VALUE(LEFT(F$3:F$65,FIND(\" \",F$3:F$65&\" \")-1)),0))",
-  "ahora": "=IFERROR(VALUE(LEFT(F16,FIND(\" \",F16&\" \")-1)),0)+IFERROR(VALUE(LEFT(F18,FIND(\" \",F18&\" \")-1)),0)+IFERROR(VALUE(LEFT(F51,FIND(\" \",F51&\" \")-1)),0)"
+  "ahora": "Sem 4"
  },
  {
   "celda": "G75",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Tríceps\")*IFERROR(VALUE(LEFT(G$3:G$65,FIND(\" \",G$3:G$65&\" \")-1)),0))",
-  "ahora": "=IFERROR(VALUE(LEFT(G16,FIND(\" \",G16&\" \")-1)),0)+IFERROR(VALUE(LEFT(G18,FIND(\" \",G18&\" \")-1)),0)+IFERROR(VALUE(LEFT(G51,FIND(\" \",G51&\" \")-1)),0)"
+  "ahora": "Sem 5"
  },
  {
   "celda": "H75",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Tríceps\")*IFERROR(VALUE(LEFT(H$3:H$65,FIND(\" \",H$3:H$65&\" \")-1)),0))",
-  "ahora": "=IFERROR(VALUE(LEFT(H16,FIND(\" \",H16&\" \")-1)),0)+IFERROR(VALUE(LEFT(H18,FIND(\" \",H18&\" \")-1)),0)+IFERROR(VALUE(LEFT(H51,FIND(\" \",H51&\" \")-1)),0)"
+  "ahora": "Sem 6"
  },
  {
   "celda": "I75",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Tríceps\")*IFERROR(VALUE(LEFT(I$3:I$65,FIND(\" \",I$3:I$65&\" \")-1)),0))",
-  "ahora": "=IFERROR(VALUE(LEFT(I16,FIND(\" \",I16&\" \")-1)),0)+IFERROR(VALUE(LEFT(I18,FIND(\" \",I18&\" \")-1)),0)+IFERROR(VALUE(LEFT(I51,FIND(\" \",I51&\" \")-1)),0)"
+  "ahora": "Sem 7"
  },
  {
   "celda": "J75",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Tríceps\")*IFERROR(VALUE(LEFT(J$3:J$65,FIND(\" \",J$3:J$65&\" \")-1)),0))",
-  "ahora": "=IFERROR(VALUE(LEFT(J16,FIND(\" \",J16&\" \")-1)),0)+IFERROR(VALUE(LEFT(J18,FIND(\" \",J18&\" \")-1)),0)+IFERROR(VALUE(LEFT(J51,FIND(\" \",J51&\" \")-1)),0)"
+  "ahora": "Sem 8"
+ },
+ {
+  "celda": "L75",
+  "antes": null,
+  "ahora": "grupos"
  },
  {
   "celda": "A76",
   "antes": "Isquios",
-  "ahora": "Hombro lat."
+  "ahora": "Espalda"
  },
  {
   "celda": "C76",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Isquios\")*IFERROR(VALUE(LEFT(C$3:C$65,FIND(\" \",C$3:C$65&\" \")-1)),0))",
-  "ahora": "=IFERROR(VALUE(LEFT(C6,FIND(\" \",C6&\" \")-1)),0)+IFERROR(VALUE(LEFT(C8,FIND(\" \",C8&\" \")-1)),0)+IFERROR(VALUE(LEFT(C28,FIND(\" \",C28&\" \")-1)),0)+IFERROR(VALUE(LEFT(C48,FIND(\" \",C48&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(C13,FIND(\" \",C13&\" \")-1)),0)+IFERROR(VALUE(LEFT(C14,FIND(\" \",C14&\" \")-1)),0)+IFERROR(VALUE(LEFT(C15,FIND(\" \",C15&\" \")-1)),0)+IFERROR(VALUE(LEFT(C31,FIND(\" \",C31&\" \")-1)),0)+IFERROR(VALUE(LEFT(C32,FIND(\" \",C32&\" \")-1)),0)+IFERROR(VALUE(LEFT(C34,FIND(\" \",C34&\" \")-1)),0)"
  },
  {
   "celda": "D76",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Isquios\")*IFERROR(VALUE(LEFT(D$3:D$65,FIND(\" \",D$3:D$65&\" \")-1)),0))",
-  "ahora": "=IFERROR(VALUE(LEFT(D6,FIND(\" \",D6&\" \")-1)),0)+IFERROR(VALUE(LEFT(D8,FIND(\" \",D8&\" \")-1)),0)+IFERROR(VALUE(LEFT(D28,FIND(\" \",D28&\" \")-1)),0)+IFERROR(VALUE(LEFT(D48,FIND(\" \",D48&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(D13,FIND(\" \",D13&\" \")-1)),0)+IFERROR(VALUE(LEFT(D14,FIND(\" \",D14&\" \")-1)),0)+IFERROR(VALUE(LEFT(D15,FIND(\" \",D15&\" \")-1)),0)+IFERROR(VALUE(LEFT(D31,FIND(\" \",D31&\" \")-1)),0)+IFERROR(VALUE(LEFT(D32,FIND(\" \",D32&\" \")-1)),0)+IFERROR(VALUE(LEFT(D34,FIND(\" \",D34&\" \")-1)),0)"
  },
  {
   "celda": "E76",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Isquios\")*IFERROR(VALUE(LEFT(E$3:E$65,FIND(\" \",E$3:E$65&\" \")-1)),0))",
-  "ahora": "=IFERROR(VALUE(LEFT(E6,FIND(\" \",E6&\" \")-1)),0)+IFERROR(VALUE(LEFT(E8,FIND(\" \",E8&\" \")-1)),0)+IFERROR(VALUE(LEFT(E28,FIND(\" \",E28&\" \")-1)),0)+IFERROR(VALUE(LEFT(E48,FIND(\" \",E48&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(E13,FIND(\" \",E13&\" \")-1)),0)+IFERROR(VALUE(LEFT(E14,FIND(\" \",E14&\" \")-1)),0)+IFERROR(VALUE(LEFT(E15,FIND(\" \",E15&\" \")-1)),0)+IFERROR(VALUE(LEFT(E31,FIND(\" \",E31&\" \")-1)),0)+IFERROR(VALUE(LEFT(E32,FIND(\" \",E32&\" \")-1)),0)+IFERROR(VALUE(LEFT(E34,FIND(\" \",E34&\" \")-1)),0)"
  },
  {
   "celda": "F76",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Isquios\")*IFERROR(VALUE(LEFT(F$3:F$65,FIND(\" \",F$3:F$65&\" \")-1)),0))",
-  "ahora": "=IFERROR(VALUE(LEFT(F6,FIND(\" \",F6&\" \")-1)),0)+IFERROR(VALUE(LEFT(F8,FIND(\" \",F8&\" \")-1)),0)+IFERROR(VALUE(LEFT(F28,FIND(\" \",F28&\" \")-1)),0)+IFERROR(VALUE(LEFT(F48,FIND(\" \",F48&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(F13,FIND(\" \",F13&\" \")-1)),0)+IFERROR(VALUE(LEFT(F14,FIND(\" \",F14&\" \")-1)),0)+IFERROR(VALUE(LEFT(F15,FIND(\" \",F15&\" \")-1)),0)+IFERROR(VALUE(LEFT(F31,FIND(\" \",F31&\" \")-1)),0)+IFERROR(VALUE(LEFT(F32,FIND(\" \",F32&\" \")-1)),0)+IFERROR(VALUE(LEFT(F34,FIND(\" \",F34&\" \")-1)),0)"
  },
  {
   "celda": "G76",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Isquios\")*IFERROR(VALUE(LEFT(G$3:G$65,FIND(\" \",G$3:G$65&\" \")-1)),0))",
-  "ahora": "=IFERROR(VALUE(LEFT(G6,FIND(\" \",G6&\" \")-1)),0)+IFERROR(VALUE(LEFT(G8,FIND(\" \",G8&\" \")-1)),0)+IFERROR(VALUE(LEFT(G28,FIND(\" \",G28&\" \")-1)),0)+IFERROR(VALUE(LEFT(G48,FIND(\" \",G48&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(G13,FIND(\" \",G13&\" \")-1)),0)+IFERROR(VALUE(LEFT(G14,FIND(\" \",G14&\" \")-1)),0)+IFERROR(VALUE(LEFT(G15,FIND(\" \",G15&\" \")-1)),0)+IFERROR(VALUE(LEFT(G31,FIND(\" \",G31&\" \")-1)),0)+IFERROR(VALUE(LEFT(G32,FIND(\" \",G32&\" \")-1)),0)+IFERROR(VALUE(LEFT(G34,FIND(\" \",G34&\" \")-1)),0)"
  },
  {
   "celda": "H76",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Isquios\")*IFERROR(VALUE(LEFT(H$3:H$65,FIND(\" \",H$3:H$65&\" \")-1)),0))",
-  "ahora": "=IFERROR(VALUE(LEFT(H6,FIND(\" \",H6&\" \")-1)),0)+IFERROR(VALUE(LEFT(H8,FIND(\" \",H8&\" \")-1)),0)+IFERROR(VALUE(LEFT(H28,FIND(\" \",H28&\" \")-1)),0)+IFERROR(VALUE(LEFT(H48,FIND(\" \",H48&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(H13,FIND(\" \",H13&\" \")-1)),0)+IFERROR(VALUE(LEFT(H14,FIND(\" \",H14&\" \")-1)),0)+IFERROR(VALUE(LEFT(H15,FIND(\" \",H15&\" \")-1)),0)+IFERROR(VALUE(LEFT(H31,FIND(\" \",H31&\" \")-1)),0)+IFERROR(VALUE(LEFT(H32,FIND(\" \",H32&\" \")-1)),0)+IFERROR(VALUE(LEFT(H34,FIND(\" \",H34&\" \")-1)),0)"
  },
  {
   "celda": "I76",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Isquios\")*IFERROR(VALUE(LEFT(I$3:I$65,FIND(\" \",I$3:I$65&\" \")-1)),0))",
-  "ahora": "=IFERROR(VALUE(LEFT(I6,FIND(\" \",I6&\" \")-1)),0)+IFERROR(VALUE(LEFT(I8,FIND(\" \",I8&\" \")-1)),0)+IFERROR(VALUE(LEFT(I28,FIND(\" \",I28&\" \")-1)),0)+IFERROR(VALUE(LEFT(I48,FIND(\" \",I48&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(I13,FIND(\" \",I13&\" \")-1)),0)+IFERROR(VALUE(LEFT(I14,FIND(\" \",I14&\" \")-1)),0)+IFERROR(VALUE(LEFT(I15,FIND(\" \",I15&\" \")-1)),0)+IFERROR(VALUE(LEFT(I31,FIND(\" \",I31&\" \")-1)),0)+IFERROR(VALUE(LEFT(I32,FIND(\" \",I32&\" \")-1)),0)+IFERROR(VALUE(LEFT(I34,FIND(\" \",I34&\" \")-1)),0)"
  },
  {
   "celda": "J76",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Isquios\")*IFERROR(VALUE(LEFT(J$3:J$65,FIND(\" \",J$3:J$65&\" \")-1)),0))",
-  "ahora": "=IFERROR(VALUE(LEFT(J6,FIND(\" \",J6&\" \")-1)),0)+IFERROR(VALUE(LEFT(J8,FIND(\" \",J8&\" \")-1)),0)+IFERROR(VALUE(LEFT(J28,FIND(\" \",J28&\" \")-1)),0)+IFERROR(VALUE(LEFT(J48,FIND(\" \",J48&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(J13,FIND(\" \",J13&\" \")-1)),0)+IFERROR(VALUE(LEFT(J14,FIND(\" \",J14&\" \")-1)),0)+IFERROR(VALUE(LEFT(J15,FIND(\" \",J15&\" \")-1)),0)+IFERROR(VALUE(LEFT(J31,FIND(\" \",J31&\" \")-1)),0)+IFERROR(VALUE(LEFT(J32,FIND(\" \",J32&\" \")-1)),0)+IFERROR(VALUE(LEFT(J34,FIND(\" \",J34&\" \")-1)),0)"
  },
  {
   "celda": "A77",
   "antes": "Abs",
-  "ahora": "Hombro post."
+  "ahora": "Pecho"
  },
  {
   "celda": "C77",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Abs\")*IFERROR(VALUE(LEFT(C$3:C$65,FIND(\" \",C$3:C$65&\" \")-1)),0))",
-  "ahora": "=IFERROR(VALUE(LEFT(C31,FIND(\" \",C31&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(C19,FIND(\" \",C19&\" \")-1)),0)+IFERROR(VALUE(LEFT(C21,FIND(\" \",C21&\" \")-1)),0)+IFERROR(VALUE(LEFT(C56,FIND(\" \",C56&\" \")-1)),0)"
  },
  {
   "celda": "D77",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Abs\")*IFERROR(VALUE(LEFT(D$3:D$65,FIND(\" \",D$3:D$65&\" \")-1)),0))",
-  "ahora": "=IFERROR(VALUE(LEFT(D31,FIND(\" \",D31&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(D19,FIND(\" \",D19&\" \")-1)),0)+IFERROR(VALUE(LEFT(D21,FIND(\" \",D21&\" \")-1)),0)+IFERROR(VALUE(LEFT(D56,FIND(\" \",D56&\" \")-1)),0)"
  },
  {
   "celda": "E77",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Abs\")*IFERROR(VALUE(LEFT(E$3:E$65,FIND(\" \",E$3:E$65&\" \")-1)),0))",
-  "ahora": "=IFERROR(VALUE(LEFT(E31,FIND(\" \",E31&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(E19,FIND(\" \",E19&\" \")-1)),0)+IFERROR(VALUE(LEFT(E21,FIND(\" \",E21&\" \")-1)),0)+IFERROR(VALUE(LEFT(E56,FIND(\" \",E56&\" \")-1)),0)"
  },
  {
   "celda": "F77",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Abs\")*IFERROR(VALUE(LEFT(F$3:F$65,FIND(\" \",F$3:F$65&\" \")-1)),0))",
-  "ahora": "=IFERROR(VALUE(LEFT(F31,FIND(\" \",F31&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(F19,FIND(\" \",F19&\" \")-1)),0)+IFERROR(VALUE(LEFT(F21,FIND(\" \",F21&\" \")-1)),0)+IFERROR(VALUE(LEFT(F56,FIND(\" \",F56&\" \")-1)),0)"
  },
  {
   "celda": "G77",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Abs\")*IFERROR(VALUE(LEFT(G$3:G$65,FIND(\" \",G$3:G$65&\" \")-1)),0))",
-  "ahora": "=IFERROR(VALUE(LEFT(G31,FIND(\" \",G31&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(G19,FIND(\" \",G19&\" \")-1)),0)+IFERROR(VALUE(LEFT(G21,FIND(\" \",G21&\" \")-1)),0)+IFERROR(VALUE(LEFT(G56,FIND(\" \",G56&\" \")-1)),0)"
  },
  {
   "celda": "H77",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Abs\")*IFERROR(VALUE(LEFT(H$3:H$65,FIND(\" \",H$3:H$65&\" \")-1)),0))",
-  "ahora": "=IFERROR(VALUE(LEFT(H31,FIND(\" \",H31&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(H19,FIND(\" \",H19&\" \")-1)),0)+IFERROR(VALUE(LEFT(H21,FIND(\" \",H21&\" \")-1)),0)+IFERROR(VALUE(LEFT(H56,FIND(\" \",H56&\" \")-1)),0)"
  },
  {
   "celda": "I77",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Abs\")*IFERROR(VALUE(LEFT(I$3:I$65,FIND(\" \",I$3:I$65&\" \")-1)),0))",
-  "ahora": "=IFERROR(VALUE(LEFT(I31,FIND(\" \",I31&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(I19,FIND(\" \",I19&\" \")-1)),0)+IFERROR(VALUE(LEFT(I21,FIND(\" \",I21&\" \")-1)),0)+IFERROR(VALUE(LEFT(I56,FIND(\" \",I56&\" \")-1)),0)"
  },
  {
   "celda": "J77",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Abs\")*IFERROR(VALUE(LEFT(J$3:J$65,FIND(\" \",J$3:J$65&\" \")-1)),0))",
-  "ahora": "=IFERROR(VALUE(LEFT(J31,FIND(\" \",J31&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(J19,FIND(\" \",J19&\" \")-1)),0)+IFERROR(VALUE(LEFT(J21,FIND(\" \",J21&\" \")-1)),0)+IFERROR(VALUE(LEFT(J56,FIND(\" \",J56&\" \")-1)),0)"
  },
  {
   "celda": "A78",
   "antes": "Gemelos",
-  "ahora": "Bíceps"
+  "ahora": "Hombro lat."
  },
  {
   "celda": "C78",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Gemelos\")*IFERROR(VALUE(LEFT(C$3:C$65,FIND(\" \",C$3:C$65&\" \")-1)),0))",
-  "ahora": "=IFERROR(VALUE(LEFT(C30,FIND(\" \",C30&\" \")-1)),0)+IFERROR(VALUE(LEFT(C32,FIND(\" \",C32&\" \")-1)),0)+IFERROR(VALUE(LEFT(C50,FIND(\" \",C50&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(C6,FIND(\" \",C6&\" \")-1)),0)+IFERROR(VALUE(LEFT(C8,FIND(\" \",C8&\" \")-1)),0)+IFERROR(VALUE(LEFT(C33,FIND(\" \",C33&\" \")-1)),0)+IFERROR(VALUE(LEFT(C53,FIND(\" \",C53&\" \")-1)),0)"
  },
  {
   "celda": "D78",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Gemelos\")*IFERROR(VALUE(LEFT(D$3:D$65,FIND(\" \",D$3:D$65&\" \")-1)),0))",
-  "ahora": "=IFERROR(VALUE(LEFT(D30,FIND(\" \",D30&\" \")-1)),0)+IFERROR(VALUE(LEFT(D32,FIND(\" \",D32&\" \")-1)),0)+IFERROR(VALUE(LEFT(D50,FIND(\" \",D50&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(D6,FIND(\" \",D6&\" \")-1)),0)+IFERROR(VALUE(LEFT(D8,FIND(\" \",D8&\" \")-1)),0)+IFERROR(VALUE(LEFT(D33,FIND(\" \",D33&\" \")-1)),0)+IFERROR(VALUE(LEFT(D53,FIND(\" \",D53&\" \")-1)),0)"
  },
  {
   "celda": "E78",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Gemelos\")*IFERROR(VALUE(LEFT(E$3:E$65,FIND(\" \",E$3:E$65&\" \")-1)),0))",
-  "ahora": "=IFERROR(VALUE(LEFT(E30,FIND(\" \",E30&\" \")-1)),0)+IFERROR(VALUE(LEFT(E32,FIND(\" \",E32&\" \")-1)),0)+IFERROR(VALUE(LEFT(E50,FIND(\" \",E50&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(E6,FIND(\" \",E6&\" \")-1)),0)+IFERROR(VALUE(LEFT(E8,FIND(\" \",E8&\" \")-1)),0)+IFERROR(VALUE(LEFT(E33,FIND(\" \",E33&\" \")-1)),0)+IFERROR(VALUE(LEFT(E53,FIND(\" \",E53&\" \")-1)),0)"
  },
  {
   "celda": "F78",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Gemelos\")*IFERROR(VALUE(LEFT(F$3:F$65,FIND(\" \",F$3:F$65&\" \")-1)),0))",
-  "ahora": "=IFERROR(VALUE(LEFT(F30,FIND(\" \",F30&\" \")-1)),0)+IFERROR(VALUE(LEFT(F32,FIND(\" \",F32&\" \")-1)),0)+IFERROR(VALUE(LEFT(F50,FIND(\" \",F50&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(F6,FIND(\" \",F6&\" \")-1)),0)+IFERROR(VALUE(LEFT(F8,FIND(\" \",F8&\" \")-1)),0)+IFERROR(VALUE(LEFT(F33,FIND(\" \",F33&\" \")-1)),0)+IFERROR(VALUE(LEFT(F53,FIND(\" \",F53&\" \")-1)),0)"
  },
  {
   "celda": "G78",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Gemelos\")*IFERROR(VALUE(LEFT(G$3:G$65,FIND(\" \",G$3:G$65&\" \")-1)),0))",
-  "ahora": "=IFERROR(VALUE(LEFT(G30,FIND(\" \",G30&\" \")-1)),0)+IFERROR(VALUE(LEFT(G32,FIND(\" \",G32&\" \")-1)),0)+IFERROR(VALUE(LEFT(G50,FIND(\" \",G50&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(G6,FIND(\" \",G6&\" \")-1)),0)+IFERROR(VALUE(LEFT(G8,FIND(\" \",G8&\" \")-1)),0)+IFERROR(VALUE(LEFT(G33,FIND(\" \",G33&\" \")-1)),0)+IFERROR(VALUE(LEFT(G53,FIND(\" \",G53&\" \")-1)),0)"
  },
  {
   "celda": "H78",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Gemelos\")*IFERROR(VALUE(LEFT(H$3:H$65,FIND(\" \",H$3:H$65&\" \")-1)),0))",
-  "ahora": "=IFERROR(VALUE(LEFT(H30,FIND(\" \",H30&\" \")-1)),0)+IFERROR(VALUE(LEFT(H32,FIND(\" \",H32&\" \")-1)),0)+IFERROR(VALUE(LEFT(H50,FIND(\" \",H50&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(H6,FIND(\" \",H6&\" \")-1)),0)+IFERROR(VALUE(LEFT(H8,FIND(\" \",H8&\" \")-1)),0)+IFERROR(VALUE(LEFT(H33,FIND(\" \",H33&\" \")-1)),0)+IFERROR(VALUE(LEFT(H53,FIND(\" \",H53&\" \")-1)),0)"
  },
  {
   "celda": "I78",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Gemelos\")*IFERROR(VALUE(LEFT(I$3:I$65,FIND(\" \",I$3:I$65&\" \")-1)),0))",
-  "ahora": "=IFERROR(VALUE(LEFT(I30,FIND(\" \",I30&\" \")-1)),0)+IFERROR(VALUE(LEFT(I32,FIND(\" \",I32&\" \")-1)),0)+IFERROR(VALUE(LEFT(I50,FIND(\" \",I50&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(I6,FIND(\" \",I6&\" \")-1)),0)+IFERROR(VALUE(LEFT(I8,FIND(\" \",I8&\" \")-1)),0)+IFERROR(VALUE(LEFT(I33,FIND(\" \",I33&\" \")-1)),0)+IFERROR(VALUE(LEFT(I53,FIND(\" \",I53&\" \")-1)),0)"
  },
  {
   "celda": "J78",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Gemelos\")*IFERROR(VALUE(LEFT(J$3:J$65,FIND(\" \",J$3:J$65&\" \")-1)),0))",
-  "ahora": "=IFERROR(VALUE(LEFT(J30,FIND(\" \",J30&\" \")-1)),0)+IFERROR(VALUE(LEFT(J32,FIND(\" \",J32&\" \")-1)),0)+IFERROR(VALUE(LEFT(J50,FIND(\" \",J50&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(J6,FIND(\" \",J6&\" \")-1)),0)+IFERROR(VALUE(LEFT(J8,FIND(\" \",J8&\" \")-1)),0)+IFERROR(VALUE(LEFT(J33,FIND(\" \",J33&\" \")-1)),0)+IFERROR(VALUE(LEFT(J53,FIND(\" \",J53&\" \")-1)),0)"
  },
  {
   "celda": "A79",
   "antes": "Aductores",
-  "ahora": "Tríceps"
+  "ahora": "Hombro post."
  },
  {
   "celda": "C79",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Aductores\")*IFERROR(VALUE(LEFT(C$3:C$65,FIND(\" \",C$3:C$65&\" \")-1)),0))",
-  "ahora": "=IFERROR(VALUE(LEFT(C17,FIND(\" \",C17&\" \")-1)),0)+IFERROR(VALUE(LEFT(C19,FIND(\" \",C19&\" \")-1)),0)+IFERROR(VALUE(LEFT(C47,FIND(\" \",C47&\" \")-1)),0)+IFERROR(VALUE(LEFT(C49,FIND(\" \",C49&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(C36,FIND(\" \",C36&\" \")-1)),0)"
  },
  {
   "celda": "D79",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Aductores\")*IFERROR(VALUE(LEFT(D$3:D$65,FIND(\" \",D$3:D$65&\" \")-1)),0))",
-  "ahora": "=IFERROR(VALUE(LEFT(D17,FIND(\" \",D17&\" \")-1)),0)+IFERROR(VALUE(LEFT(D19,FIND(\" \",D19&\" \")-1)),0)+IFERROR(VALUE(LEFT(D47,FIND(\" \",D47&\" \")-1)),0)+IFERROR(VALUE(LEFT(D49,FIND(\" \",D49&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(D36,FIND(\" \",D36&\" \")-1)),0)"
  },
  {
   "celda": "E79",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Aductores\")*IFERROR(VALUE(LEFT(E$3:E$65,FIND(\" \",E$3:E$65&\" \")-1)),0))",
-  "ahora": "=IFERROR(VALUE(LEFT(E17,FIND(\" \",E17&\" \")-1)),0)+IFERROR(VALUE(LEFT(E19,FIND(\" \",E19&\" \")-1)),0)+IFERROR(VALUE(LEFT(E47,FIND(\" \",E47&\" \")-1)),0)+IFERROR(VALUE(LEFT(E49,FIND(\" \",E49&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(E36,FIND(\" \",E36&\" \")-1)),0)"
  },
  {
   "celda": "F79",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Aductores\")*IFERROR(VALUE(LEFT(F$3:F$65,FIND(\" \",F$3:F$65&\" \")-1)),0))",
-  "ahora": "=IFERROR(VALUE(LEFT(F17,FIND(\" \",F17&\" \")-1)),0)+IFERROR(VALUE(LEFT(F19,FIND(\" \",F19&\" \")-1)),0)+IFERROR(VALUE(LEFT(F47,FIND(\" \",F47&\" \")-1)),0)+IFERROR(VALUE(LEFT(F49,FIND(\" \",F49&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(F36,FIND(\" \",F36&\" \")-1)),0)"
  },
  {
   "celda": "G79",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Aductores\")*IFERROR(VALUE(LEFT(G$3:G$65,FIND(\" \",G$3:G$65&\" \")-1)),0))",
-  "ahora": "=IFERROR(VALUE(LEFT(G17,FIND(\" \",G17&\" \")-1)),0)+IFERROR(VALUE(LEFT(G19,FIND(\" \",G19&\" \")-1)),0)+IFERROR(VALUE(LEFT(G47,FIND(\" \",G47&\" \")-1)),0)+IFERROR(VALUE(LEFT(G49,FIND(\" \",G49&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(G36,FIND(\" \",G36&\" \")-1)),0)"
  },
  {
   "celda": "H79",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Aductores\")*IFERROR(VALUE(LEFT(H$3:H$65,FIND(\" \",H$3:H$65&\" \")-1)),0))",
-  "ahora": "=IFERROR(VALUE(LEFT(H17,FIND(\" \",H17&\" \")-1)),0)+IFERROR(VALUE(LEFT(H19,FIND(\" \",H19&\" \")-1)),0)+IFERROR(VALUE(LEFT(H47,FIND(\" \",H47&\" \")-1)),0)+IFERROR(VALUE(LEFT(H49,FIND(\" \",H49&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(H36,FIND(\" \",H36&\" \")-1)),0)"
  },
  {
   "celda": "I79",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Aductores\")*IFERROR(VALUE(LEFT(I$3:I$65,FIND(\" \",I$3:I$65&\" \")-1)),0))",
-  "ahora": "=IFERROR(VALUE(LEFT(I17,FIND(\" \",I17&\" \")-1)),0)+IFERROR(VALUE(LEFT(I19,FIND(\" \",I19&\" \")-1)),0)+IFERROR(VALUE(LEFT(I47,FIND(\" \",I47&\" \")-1)),0)+IFERROR(VALUE(LEFT(I49,FIND(\" \",I49&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(I36,FIND(\" \",I36&\" \")-1)),0)"
  },
  {
   "celda": "J79",
   "antes": "=SUMPRODUCT(($B$3:$B$65=\"Aductores\")*IFERROR(VALUE(LEFT(J$3:J$65,FIND(\" \",J$3:J$65&\" \")-1)),0))",
-  "ahora": "=IFERROR(VALUE(LEFT(J17,FIND(\" \",J17&\" \")-1)),0)+IFERROR(VALUE(LEFT(J19,FIND(\" \",J19&\" \")-1)),0)+IFERROR(VALUE(LEFT(J47,FIND(\" \",J47&\" \")-1)),0)+IFERROR(VALUE(LEFT(J49,FIND(\" \",J49&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(J36,FIND(\" \",J36&\" \")-1)),0)"
  },
  {
   "celda": "A80",
   "antes": "TOTAL hipertrofia",
-  "ahora": "Isquios"
+  "ahora": "Bíceps"
  },
  {
   "celda": "C80",
   "antes": "=SUM(C70:C79)",
-  "ahora": "=IFERROR(VALUE(LEFT(C12,FIND(\" \",C12&\" \")-1)),0)+IFERROR(VALUE(LEFT(C41,FIND(\" \",C41&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(C35,FIND(\" \",C35&\" \")-1)),0)+IFERROR(VALUE(LEFT(C37,FIND(\" \",C37&\" \")-1)),0)+IFERROR(VALUE(LEFT(C55,FIND(\" \",C55&\" \")-1)),0)"
  },
  {
   "celda": "D80",
   "antes": "=SUM(D70:D79)",
-  "ahora": "=IFERROR(VALUE(LEFT(D12,FIND(\" \",D12&\" \")-1)),0)+IFERROR(VALUE(LEFT(D41,FIND(\" \",D41&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(D35,FIND(\" \",D35&\" \")-1)),0)+IFERROR(VALUE(LEFT(D37,FIND(\" \",D37&\" \")-1)),0)+IFERROR(VALUE(LEFT(D55,FIND(\" \",D55&\" \")-1)),0)"
  },
  {
   "celda": "E80",
   "antes": "=SUM(E70:E79)",
-  "ahora": "=IFERROR(VALUE(LEFT(E12,FIND(\" \",E12&\" \")-1)),0)+IFERROR(VALUE(LEFT(E41,FIND(\" \",E41&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(E35,FIND(\" \",E35&\" \")-1)),0)+IFERROR(VALUE(LEFT(E37,FIND(\" \",E37&\" \")-1)),0)+IFERROR(VALUE(LEFT(E55,FIND(\" \",E55&\" \")-1)),0)"
  },
  {
   "celda": "F80",
   "antes": "=SUM(F70:F79)",
-  "ahora": "=IFERROR(VALUE(LEFT(F12,FIND(\" \",F12&\" \")-1)),0)+IFERROR(VALUE(LEFT(F41,FIND(\" \",F41&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(F35,FIND(\" \",F35&\" \")-1)),0)+IFERROR(VALUE(LEFT(F37,FIND(\" \",F37&\" \")-1)),0)+IFERROR(VALUE(LEFT(F55,FIND(\" \",F55&\" \")-1)),0)"
  },
  {
   "celda": "G80",
   "antes": "=SUM(G70:G79)",
-  "ahora": "=IFERROR(VALUE(LEFT(G12,FIND(\" \",G12&\" \")-1)),0)+IFERROR(VALUE(LEFT(G41,FIND(\" \",G41&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(G35,FIND(\" \",G35&\" \")-1)),0)+IFERROR(VALUE(LEFT(G37,FIND(\" \",G37&\" \")-1)),0)+IFERROR(VALUE(LEFT(G55,FIND(\" \",G55&\" \")-1)),0)"
  },
  {
   "celda": "H80",
   "antes": "=SUM(H70:H79)",
-  "ahora": "=IFERROR(VALUE(LEFT(H12,FIND(\" \",H12&\" \")-1)),0)+IFERROR(VALUE(LEFT(H41,FIND(\" \",H41&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(H35,FIND(\" \",H35&\" \")-1)),0)+IFERROR(VALUE(LEFT(H37,FIND(\" \",H37&\" \")-1)),0)+IFERROR(VALUE(LEFT(H55,FIND(\" \",H55&\" \")-1)),0)"
  },
  {
   "celda": "I80",
   "antes": "=SUM(I70:I79)",
-  "ahora": "=IFERROR(VALUE(LEFT(I12,FIND(\" \",I12&\" \")-1)),0)+IFERROR(VALUE(LEFT(I41,FIND(\" \",I41&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(I35,FIND(\" \",I35&\" \")-1)),0)+IFERROR(VALUE(LEFT(I37,FIND(\" \",I37&\" \")-1)),0)+IFERROR(VALUE(LEFT(I55,FIND(\" \",I55&\" \")-1)),0)"
  },
  {
   "celda": "J80",
   "antes": "=SUM(J70:J79)",
-  "ahora": "=IFERROR(VALUE(LEFT(J12,FIND(\" \",J12&\" \")-1)),0)+IFERROR(VALUE(LEFT(J41,FIND(\" \",J41&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(J35,FIND(\" \",J35&\" \")-1)),0)+IFERROR(VALUE(LEFT(J37,FIND(\" \",J37&\" \")-1)),0)+IFERROR(VALUE(LEFT(J55,FIND(\" \",J55&\" \")-1)),0)"
  },
  {
   "celda": "A81",
   "antes": null,
-  "ahora": "Abs"
+  "ahora": "Tríceps"
  },
  {
   "celda": "B81",
@@ -3092,47 +3982,47 @@
  {
   "celda": "C81",
   "antes": null,
-  "ahora": "=IFERROR(VALUE(LEFT(C20,FIND(\" \",C20&\" \")-1)),0)+IFERROR(VALUE(LEFT(C21,FIND(\" \",C21&\" \")-1)),0)+IFERROR(VALUE(LEFT(C61,FIND(\" \",C61&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(C20,FIND(\" \",C20&\" \")-1)),0)+IFERROR(VALUE(LEFT(C22,FIND(\" \",C22&\" \")-1)),0)+IFERROR(VALUE(LEFT(C52,FIND(\" \",C52&\" \")-1)),0)+IFERROR(VALUE(LEFT(C54,FIND(\" \",C54&\" \")-1)),0)"
  },
  {
   "celda": "D81",
   "antes": null,
-  "ahora": "=IFERROR(VALUE(LEFT(D20,FIND(\" \",D20&\" \")-1)),0)+IFERROR(VALUE(LEFT(D21,FIND(\" \",D21&\" \")-1)),0)+IFERROR(VALUE(LEFT(D61,FIND(\" \",D61&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(D20,FIND(\" \",D20&\" \")-1)),0)+IFERROR(VALUE(LEFT(D22,FIND(\" \",D22&\" \")-1)),0)+IFERROR(VALUE(LEFT(D52,FIND(\" \",D52&\" \")-1)),0)+IFERROR(VALUE(LEFT(D54,FIND(\" \",D54&\" \")-1)),0)"
  },
  {
   "celda": "E81",
   "antes": null,
-  "ahora": "=IFERROR(VALUE(LEFT(E20,FIND(\" \",E20&\" \")-1)),0)+IFERROR(VALUE(LEFT(E21,FIND(\" \",E21&\" \")-1)),0)+IFERROR(VALUE(LEFT(E61,FIND(\" \",E61&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(E20,FIND(\" \",E20&\" \")-1)),0)+IFERROR(VALUE(LEFT(E22,FIND(\" \",E22&\" \")-1)),0)+IFERROR(VALUE(LEFT(E52,FIND(\" \",E52&\" \")-1)),0)+IFERROR(VALUE(LEFT(E54,FIND(\" \",E54&\" \")-1)),0)"
  },
  {
   "celda": "F81",
   "antes": null,
-  "ahora": "=IFERROR(VALUE(LEFT(F20,FIND(\" \",F20&\" \")-1)),0)+IFERROR(VALUE(LEFT(F21,FIND(\" \",F21&\" \")-1)),0)+IFERROR(VALUE(LEFT(F61,FIND(\" \",F61&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(F20,FIND(\" \",F20&\" \")-1)),0)+IFERROR(VALUE(LEFT(F22,FIND(\" \",F22&\" \")-1)),0)+IFERROR(VALUE(LEFT(F52,FIND(\" \",F52&\" \")-1)),0)+IFERROR(VALUE(LEFT(F54,FIND(\" \",F54&\" \")-1)),0)"
  },
  {
   "celda": "G81",
   "antes": null,
-  "ahora": "=IFERROR(VALUE(LEFT(G20,FIND(\" \",G20&\" \")-1)),0)+IFERROR(VALUE(LEFT(G21,FIND(\" \",G21&\" \")-1)),0)+IFERROR(VALUE(LEFT(G61,FIND(\" \",G61&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(G20,FIND(\" \",G20&\" \")-1)),0)+IFERROR(VALUE(LEFT(G22,FIND(\" \",G22&\" \")-1)),0)+IFERROR(VALUE(LEFT(G52,FIND(\" \",G52&\" \")-1)),0)+IFERROR(VALUE(LEFT(G54,FIND(\" \",G54&\" \")-1)),0)"
  },
  {
   "celda": "H81",
   "antes": null,
-  "ahora": "=IFERROR(VALUE(LEFT(H20,FIND(\" \",H20&\" \")-1)),0)+IFERROR(VALUE(LEFT(H21,FIND(\" \",H21&\" \")-1)),0)+IFERROR(VALUE(LEFT(H61,FIND(\" \",H61&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(H20,FIND(\" \",H20&\" \")-1)),0)+IFERROR(VALUE(LEFT(H22,FIND(\" \",H22&\" \")-1)),0)+IFERROR(VALUE(LEFT(H52,FIND(\" \",H52&\" \")-1)),0)+IFERROR(VALUE(LEFT(H54,FIND(\" \",H54&\" \")-1)),0)"
  },
  {
   "celda": "I81",
   "antes": null,
-  "ahora": "=IFERROR(VALUE(LEFT(I20,FIND(\" \",I20&\" \")-1)),0)+IFERROR(VALUE(LEFT(I21,FIND(\" \",I21&\" \")-1)),0)+IFERROR(VALUE(LEFT(I61,FIND(\" \",I61&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(I20,FIND(\" \",I20&\" \")-1)),0)+IFERROR(VALUE(LEFT(I22,FIND(\" \",I22&\" \")-1)),0)+IFERROR(VALUE(LEFT(I52,FIND(\" \",I52&\" \")-1)),0)+IFERROR(VALUE(LEFT(I54,FIND(\" \",I54&\" \")-1)),0)"
  },
  {
   "celda": "J81",
   "antes": null,
-  "ahora": "=IFERROR(VALUE(LEFT(J20,FIND(\" \",J20&\" \")-1)),0)+IFERROR(VALUE(LEFT(J21,FIND(\" \",J21&\" \")-1)),0)+IFERROR(VALUE(LEFT(J61,FIND(\" \",J61&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(J20,FIND(\" \",J20&\" \")-1)),0)+IFERROR(VALUE(LEFT(J22,FIND(\" \",J22&\" \")-1)),0)+IFERROR(VALUE(LEFT(J52,FIND(\" \",J52&\" \")-1)),0)+IFERROR(VALUE(LEFT(J54,FIND(\" \",J54&\" \")-1)),0)"
  },
  {
   "celda": "A82",
   "antes": "Desglose biomecánico de Espalda por planos (se recalcula solo al cambiar la tabla)",
-  "ahora": "Gemelos"
+  "ahora": "Isquios"
  },
  {
   "celda": "B82",
@@ -3142,47 +4032,47 @@
  {
   "celda": "C82",
   "antes": null,
-  "ahora": "=IFERROR(VALUE(LEFT(C11,FIND(\" \",C11&\" \")-1)),0)+IFERROR(VALUE(LEFT(C43,FIND(\" \",C43&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(C12,FIND(\" \",C12&\" \")-1)),0)+IFERROR(VALUE(LEFT(C46,FIND(\" \",C46&\" \")-1)),0)"
  },
  {
   "celda": "D82",
   "antes": null,
-  "ahora": "=IFERROR(VALUE(LEFT(D11,FIND(\" \",D11&\" \")-1)),0)+IFERROR(VALUE(LEFT(D43,FIND(\" \",D43&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(D12,FIND(\" \",D12&\" \")-1)),0)+IFERROR(VALUE(LEFT(D46,FIND(\" \",D46&\" \")-1)),0)"
  },
  {
   "celda": "E82",
   "antes": null,
-  "ahora": "=IFERROR(VALUE(LEFT(E11,FIND(\" \",E11&\" \")-1)),0)+IFERROR(VALUE(LEFT(E43,FIND(\" \",E43&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(E12,FIND(\" \",E12&\" \")-1)),0)+IFERROR(VALUE(LEFT(E46,FIND(\" \",E46&\" \")-1)),0)"
  },
  {
   "celda": "F82",
   "antes": null,
-  "ahora": "=IFERROR(VALUE(LEFT(F11,FIND(\" \",F11&\" \")-1)),0)+IFERROR(VALUE(LEFT(F43,FIND(\" \",F43&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(F12,FIND(\" \",F12&\" \")-1)),0)+IFERROR(VALUE(LEFT(F46,FIND(\" \",F46&\" \")-1)),0)"
  },
  {
   "celda": "G82",
   "antes": null,
-  "ahora": "=IFERROR(VALUE(LEFT(G11,FIND(\" \",G11&\" \")-1)),0)+IFERROR(VALUE(LEFT(G43,FIND(\" \",G43&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(G12,FIND(\" \",G12&\" \")-1)),0)+IFERROR(VALUE(LEFT(G46,FIND(\" \",G46&\" \")-1)),0)"
  },
  {
   "celda": "H82",
   "antes": null,
-  "ahora": "=IFERROR(VALUE(LEFT(H11,FIND(\" \",H11&\" \")-1)),0)+IFERROR(VALUE(LEFT(H43,FIND(\" \",H43&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(H12,FIND(\" \",H12&\" \")-1)),0)+IFERROR(VALUE(LEFT(H46,FIND(\" \",H46&\" \")-1)),0)"
  },
  {
   "celda": "I82",
   "antes": null,
-  "ahora": "=IFERROR(VALUE(LEFT(I11,FIND(\" \",I11&\" \")-1)),0)+IFERROR(VALUE(LEFT(I43,FIND(\" \",I43&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(I12,FIND(\" \",I12&\" \")-1)),0)+IFERROR(VALUE(LEFT(I46,FIND(\" \",I46&\" \")-1)),0)"
  },
  {
   "celda": "J82",
   "antes": null,
-  "ahora": "=IFERROR(VALUE(LEFT(J11,FIND(\" \",J11&\" \")-1)),0)+IFERROR(VALUE(LEFT(J43,FIND(\" \",J43&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(J12,FIND(\" \",J12&\" \")-1)),0)+IFERROR(VALUE(LEFT(J46,FIND(\" \",J46&\" \")-1)),0)"
  },
  {
   "celda": "A83",
   "antes": "Plano / Región de Espalda",
-  "ahora": "Aductores"
+  "ahora": "Abs"
  },
  {
   "celda": "B83",
@@ -3192,42 +4082,42 @@
  {
   "celda": "C83",
   "antes": "Sem 1",
-  "ahora": "=IFERROR(VALUE(LEFT(C42,FIND(\" \",C42&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(C23,FIND(\" \",C23&\" \")-1)),0)+IFERROR(VALUE(LEFT(C24,FIND(\" \",C24&\" \")-1)),0)+IFERROR(VALUE(LEFT(C63,FIND(\" \",C63&\" \")-1)),0)"
  },
  {
   "celda": "D83",
   "antes": "Sem 2",
-  "ahora": "=IFERROR(VALUE(LEFT(D42,FIND(\" \",D42&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(D23,FIND(\" \",D23&\" \")-1)),0)+IFERROR(VALUE(LEFT(D24,FIND(\" \",D24&\" \")-1)),0)+IFERROR(VALUE(LEFT(D63,FIND(\" \",D63&\" \")-1)),0)"
  },
  {
   "celda": "E83",
   "antes": "Sem 3",
-  "ahora": "=IFERROR(VALUE(LEFT(E42,FIND(\" \",E42&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(E23,FIND(\" \",E23&\" \")-1)),0)+IFERROR(VALUE(LEFT(E24,FIND(\" \",E24&\" \")-1)),0)+IFERROR(VALUE(LEFT(E63,FIND(\" \",E63&\" \")-1)),0)"
  },
  {
   "celda": "F83",
   "antes": "Sem 4",
-  "ahora": "=IFERROR(VALUE(LEFT(F42,FIND(\" \",F42&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(F23,FIND(\" \",F23&\" \")-1)),0)+IFERROR(VALUE(LEFT(F24,FIND(\" \",F24&\" \")-1)),0)+IFERROR(VALUE(LEFT(F63,FIND(\" \",F63&\" \")-1)),0)"
  },
  {
   "celda": "G83",
   "antes": "Sem 5",
-  "ahora": "=IFERROR(VALUE(LEFT(G42,FIND(\" \",G42&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(G23,FIND(\" \",G23&\" \")-1)),0)+IFERROR(VALUE(LEFT(G24,FIND(\" \",G24&\" \")-1)),0)+IFERROR(VALUE(LEFT(G63,FIND(\" \",G63&\" \")-1)),0)"
  },
  {
   "celda": "H83",
   "antes": "Sem 6",
-  "ahora": "=IFERROR(VALUE(LEFT(H42,FIND(\" \",H42&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(H23,FIND(\" \",H23&\" \")-1)),0)+IFERROR(VALUE(LEFT(H24,FIND(\" \",H24&\" \")-1)),0)+IFERROR(VALUE(LEFT(H63,FIND(\" \",H63&\" \")-1)),0)"
  },
  {
   "celda": "I83",
   "antes": "Sem 7",
-  "ahora": "=IFERROR(VALUE(LEFT(I42,FIND(\" \",I42&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(I23,FIND(\" \",I23&\" \")-1)),0)+IFERROR(VALUE(LEFT(I24,FIND(\" \",I24&\" \")-1)),0)+IFERROR(VALUE(LEFT(I63,FIND(\" \",I63&\" \")-1)),0)"
  },
  {
   "celda": "J83",
   "antes": "Sem 8",
-  "ahora": "=IFERROR(VALUE(LEFT(J42,FIND(\" \",J42&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(J23,FIND(\" \",J23&\" \")-1)),0)+IFERROR(VALUE(LEFT(J24,FIND(\" \",J24&\" \")-1)),0)+IFERROR(VALUE(LEFT(J63,FIND(\" \",J63&\" \")-1)),0)"
  },
  {
   "celda": "K83",
@@ -3237,47 +4127,47 @@
  {
   "celda": "A84",
   "antes": "Dorsal Bajo (Plano Frontal)",
-  "ahora": "TOTAL hipertrofia"
+  "ahora": "Gemelos"
  },
  {
   "celda": "C84",
   "antes": "=IFERROR(VALUE(LEFT(C25,FIND(\" \",C25&\" \")-1)),0)+IFERROR(VALUE(LEFT(C52,FIND(\" \",C52&\" \")-1)),0)",
-  "ahora": "=SUM(C74:C83)"
+  "ahora": "=IFERROR(VALUE(LEFT(C11,FIND(\" \",C11&\" \")-1)),0)+IFERROR(VALUE(LEFT(C48,FIND(\" \",C48&\" \")-1)),0)"
  },
  {
   "celda": "D84",
   "antes": "=IFERROR(VALUE(LEFT(D25,FIND(\" \",D25&\" \")-1)),0)+IFERROR(VALUE(LEFT(D52,FIND(\" \",D52&\" \")-1)),0)",
-  "ahora": "=SUM(D74:D83)"
+  "ahora": "=IFERROR(VALUE(LEFT(D11,FIND(\" \",D11&\" \")-1)),0)+IFERROR(VALUE(LEFT(D48,FIND(\" \",D48&\" \")-1)),0)"
  },
  {
   "celda": "E84",
   "antes": "=IFERROR(VALUE(LEFT(E25,FIND(\" \",E25&\" \")-1)),0)+IFERROR(VALUE(LEFT(E52,FIND(\" \",E52&\" \")-1)),0)",
-  "ahora": "=SUM(E74:E83)"
+  "ahora": "=IFERROR(VALUE(LEFT(E11,FIND(\" \",E11&\" \")-1)),0)+IFERROR(VALUE(LEFT(E48,FIND(\" \",E48&\" \")-1)),0)"
  },
  {
   "celda": "F84",
   "antes": "=IFERROR(VALUE(LEFT(F25,FIND(\" \",F25&\" \")-1)),0)+IFERROR(VALUE(LEFT(F52,FIND(\" \",F52&\" \")-1)),0)",
-  "ahora": "=SUM(F74:F83)"
+  "ahora": "=IFERROR(VALUE(LEFT(F11,FIND(\" \",F11&\" \")-1)),0)+IFERROR(VALUE(LEFT(F48,FIND(\" \",F48&\" \")-1)),0)"
  },
  {
   "celda": "G84",
   "antes": "=IFERROR(VALUE(LEFT(G25,FIND(\" \",G25&\" \")-1)),0)+IFERROR(VALUE(LEFT(G52,FIND(\" \",G52&\" \")-1)),0)",
-  "ahora": "=SUM(G74:G83)"
+  "ahora": "=IFERROR(VALUE(LEFT(G11,FIND(\" \",G11&\" \")-1)),0)+IFERROR(VALUE(LEFT(G48,FIND(\" \",G48&\" \")-1)),0)"
  },
  {
   "celda": "H84",
   "antes": "=IFERROR(VALUE(LEFT(H25,FIND(\" \",H25&\" \")-1)),0)+IFERROR(VALUE(LEFT(H52,FIND(\" \",H52&\" \")-1)),0)",
-  "ahora": "=SUM(H74:H83)"
+  "ahora": "=IFERROR(VALUE(LEFT(H11,FIND(\" \",H11&\" \")-1)),0)+IFERROR(VALUE(LEFT(H48,FIND(\" \",H48&\" \")-1)),0)"
  },
  {
   "celda": "I84",
   "antes": "=IFERROR(VALUE(LEFT(I25,FIND(\" \",I25&\" \")-1)),0)+IFERROR(VALUE(LEFT(I52,FIND(\" \",I52&\" \")-1)),0)",
-  "ahora": "=SUM(I74:I83)"
+  "ahora": "=IFERROR(VALUE(LEFT(I11,FIND(\" \",I11&\" \")-1)),0)+IFERROR(VALUE(LEFT(I48,FIND(\" \",I48&\" \")-1)),0)"
  },
  {
   "celda": "J84",
   "antes": "=IFERROR(VALUE(LEFT(J25,FIND(\" \",J25&\" \")-1)),0)+IFERROR(VALUE(LEFT(J52,FIND(\" \",J52&\" \")-1)),0)",
-  "ahora": "=SUM(J74:J83)"
+  "ahora": "=IFERROR(VALUE(LEFT(J11,FIND(\" \",J11&\" \")-1)),0)+IFERROR(VALUE(LEFT(J48,FIND(\" \",J48&\" \")-1)),0)"
  },
  {
   "celda": "K84",
@@ -3287,52 +4177,47 @@
  {
   "celda": "A85",
   "antes": "Dorsal Superior (Plano Sagital)",
-  "ahora": null
- },
- {
-  "celda": "B85",
-  "antes": "=C85&\" → \"&J85",
-  "ahora": null
+  "ahora": "Aductores"
  },
  {
   "celda": "C85",
   "antes": "=IFERROR(VALUE(LEFT(C28,FIND(\" \",C28&\" \")-1)),0)+IFERROR(VALUE(LEFT(C50,FIND(\" \",C50&\" \")-1)),0)+IFERROR(VALUE(LEFT(C51,FIND(\" \",C51&\" \")-1)),0)",
-  "ahora": null
+  "ahora": "=IFERROR(VALUE(LEFT(C47,FIND(\" \",C47&\" \")-1)),0)"
  },
  {
   "celda": "D85",
   "antes": "=IFERROR(VALUE(LEFT(D28,FIND(\" \",D28&\" \")-1)),0)+IFERROR(VALUE(LEFT(D50,FIND(\" \",D50&\" \")-1)),0)+IFERROR(VALUE(LEFT(D51,FIND(\" \",D51&\" \")-1)),0)",
-  "ahora": null
+  "ahora": "=IFERROR(VALUE(LEFT(D47,FIND(\" \",D47&\" \")-1)),0)"
  },
  {
   "celda": "E85",
   "antes": "=IFERROR(VALUE(LEFT(E28,FIND(\" \",E28&\" \")-1)),0)+IFERROR(VALUE(LEFT(E50,FIND(\" \",E50&\" \")-1)),0)+IFERROR(VALUE(LEFT(E51,FIND(\" \",E51&\" \")-1)),0)",
-  "ahora": null
+  "ahora": "=IFERROR(VALUE(LEFT(E47,FIND(\" \",E47&\" \")-1)),0)"
  },
  {
   "celda": "F85",
   "antes": "=IFERROR(VALUE(LEFT(F28,FIND(\" \",F28&\" \")-1)),0)+IFERROR(VALUE(LEFT(F50,FIND(\" \",F50&\" \")-1)),0)+IFERROR(VALUE(LEFT(F51,FIND(\" \",F51&\" \")-1)),0)",
-  "ahora": null
+  "ahora": "=IFERROR(VALUE(LEFT(F47,FIND(\" \",F47&\" \")-1)),0)"
  },
  {
   "celda": "G85",
   "antes": "=IFERROR(VALUE(LEFT(G28,FIND(\" \",G28&\" \")-1)),0)+IFERROR(VALUE(LEFT(G50,FIND(\" \",G50&\" \")-1)),0)+IFERROR(VALUE(LEFT(G51,FIND(\" \",G51&\" \")-1)),0)",
-  "ahora": null
+  "ahora": "=IFERROR(VALUE(LEFT(G47,FIND(\" \",G47&\" \")-1)),0)"
  },
  {
   "celda": "H85",
   "antes": "=IFERROR(VALUE(LEFT(H28,FIND(\" \",H28&\" \")-1)),0)+IFERROR(VALUE(LEFT(H50,FIND(\" \",H50&\" \")-1)),0)+IFERROR(VALUE(LEFT(H51,FIND(\" \",H51&\" \")-1)),0)",
-  "ahora": null
+  "ahora": "=IFERROR(VALUE(LEFT(H47,FIND(\" \",H47&\" \")-1)),0)"
  },
  {
   "celda": "I85",
   "antes": "=IFERROR(VALUE(LEFT(I28,FIND(\" \",I28&\" \")-1)),0)+IFERROR(VALUE(LEFT(I50,FIND(\" \",I50&\" \")-1)),0)+IFERROR(VALUE(LEFT(I51,FIND(\" \",I51&\" \")-1)),0)",
-  "ahora": null
+  "ahora": "=IFERROR(VALUE(LEFT(I47,FIND(\" \",I47&\" \")-1)),0)"
  },
  {
   "celda": "J85",
   "antes": "=IFERROR(VALUE(LEFT(J28,FIND(\" \",J28&\" \")-1)),0)+IFERROR(VALUE(LEFT(J50,FIND(\" \",J50&\" \")-1)),0)+IFERROR(VALUE(LEFT(J51,FIND(\" \",J51&\" \")-1)),0)",
-  "ahora": null
+  "ahora": "=IFERROR(VALUE(LEFT(J47,FIND(\" \",J47&\" \")-1)),0)"
  },
  {
   "celda": "K85",
@@ -3342,52 +4227,47 @@
  {
   "celda": "A86",
   "antes": "Espalda Alta (Plano Transversal)",
-  "ahora": "Desglose biomecánico de Espalda por planos (se recalcula solo al cambiar la tabla)"
- },
- {
-  "celda": "B86",
-  "antes": "=C86&\" → \"&J86",
-  "ahora": null
+  "ahora": "TOTAL hipertrofia"
  },
  {
   "celda": "C86",
   "antes": "=IFERROR(VALUE(LEFT(C26,FIND(\" \",C26&\" \")-1)),0)",
-  "ahora": null
+  "ahora": "=SUM(C76:C85)"
  },
  {
   "celda": "D86",
   "antes": "=IFERROR(VALUE(LEFT(D26,FIND(\" \",D26&\" \")-1)),0)",
-  "ahora": null
+  "ahora": "=SUM(D76:D85)"
  },
  {
   "celda": "E86",
   "antes": "=IFERROR(VALUE(LEFT(E26,FIND(\" \",E26&\" \")-1)),0)",
-  "ahora": null
+  "ahora": "=SUM(E76:E85)"
  },
  {
   "celda": "F86",
   "antes": "=IFERROR(VALUE(LEFT(F26,FIND(\" \",F26&\" \")-1)),0)",
-  "ahora": null
+  "ahora": "=SUM(F76:F85)"
  },
  {
   "celda": "G86",
   "antes": "=IFERROR(VALUE(LEFT(G26,FIND(\" \",G26&\" \")-1)),0)",
-  "ahora": null
+  "ahora": "=SUM(G76:G85)"
  },
  {
   "celda": "H86",
   "antes": "=IFERROR(VALUE(LEFT(H26,FIND(\" \",H26&\" \")-1)),0)",
-  "ahora": null
+  "ahora": "=SUM(H76:H85)"
  },
  {
   "celda": "I86",
   "antes": "=IFERROR(VALUE(LEFT(I26,FIND(\" \",I26&\" \")-1)),0)",
-  "ahora": null
+  "ahora": "=SUM(I76:I85)"
  },
  {
   "celda": "J86",
   "antes": "=IFERROR(VALUE(LEFT(J26,FIND(\" \",J26&\" \")-1)),0)",
-  "ahora": null
+  "ahora": "=SUM(J76:J85)"
  },
  {
   "celda": "K86",
@@ -3397,182 +4277,122 @@
  {
   "celda": "A87",
   "antes": "Total Transversal (Espalda Alta + Post.)",
-  "ahora": "Plano / Región de Espalda"
+  "ahora": null
  },
  {
   "celda": "B87",
   "antes": "=C87&\" → \"&J87",
-  "ahora": "Sem 1 → Sem 8"
+  "ahora": null
  },
  {
   "celda": "C87",
   "antes": "=IFERROR(VALUE(LEFT(C26,FIND(\" \",C26&\" \")-1)),0)+IFERROR(VALUE(LEFT(C30,FIND(\" \",C30&\" \")-1)),0)",
-  "ahora": "Sem 1"
+  "ahora": null
  },
  {
   "celda": "D87",
   "antes": "=IFERROR(VALUE(LEFT(D26,FIND(\" \",D26&\" \")-1)),0)+IFERROR(VALUE(LEFT(D30,FIND(\" \",D30&\" \")-1)),0)",
-  "ahora": "Sem 2"
+  "ahora": null
  },
  {
   "celda": "E87",
   "antes": "=IFERROR(VALUE(LEFT(E26,FIND(\" \",E26&\" \")-1)),0)+IFERROR(VALUE(LEFT(E30,FIND(\" \",E30&\" \")-1)),0)",
-  "ahora": "Sem 3"
+  "ahora": null
  },
  {
   "celda": "F87",
   "antes": "=IFERROR(VALUE(LEFT(F26,FIND(\" \",F26&\" \")-1)),0)+IFERROR(VALUE(LEFT(F30,FIND(\" \",F30&\" \")-1)),0)",
-  "ahora": "Sem 4"
+  "ahora": null
  },
  {
   "celda": "G87",
   "antes": "=IFERROR(VALUE(LEFT(G26,FIND(\" \",G26&\" \")-1)),0)+IFERROR(VALUE(LEFT(G30,FIND(\" \",G30&\" \")-1)),0)",
-  "ahora": "Sem 5"
+  "ahora": null
  },
  {
   "celda": "H87",
   "antes": "=IFERROR(VALUE(LEFT(H26,FIND(\" \",H26&\" \")-1)),0)+IFERROR(VALUE(LEFT(H30,FIND(\" \",H30&\" \")-1)),0)",
-  "ahora": "Sem 6"
+  "ahora": null
  },
  {
   "celda": "I87",
   "antes": "=IFERROR(VALUE(LEFT(I26,FIND(\" \",I26&\" \")-1)),0)+IFERROR(VALUE(LEFT(I30,FIND(\" \",I30&\" \")-1)),0)",
-  "ahora": "Sem 7"
+  "ahora": null
  },
  {
   "celda": "J87",
   "antes": "=IFERROR(VALUE(LEFT(J26,FIND(\" \",J26&\" \")-1)),0)+IFERROR(VALUE(LEFT(J30,FIND(\" \",J30&\" \")-1)),0)",
-  "ahora": "Sem 8"
+  "ahora": null
  },
  {
   "celda": "K87",
   "antes": "Remo gironda abierto (X) + Posterior polea (X)",
-  "ahora": "Ejercicios incluidos"
+  "ahora": null
  },
  {
   "celda": "A88",
   "antes": null,
-  "ahora": "Dorsal Bajo (Plano Frontal)"
- },
- {
-  "celda": "B88",
-  "antes": null,
-  "ahora": "=C88&\" → \"&J88"
- },
- {
-  "celda": "C88",
-  "antes": null,
-  "ahora": "=IFERROR(VALUE(LEFT(C26,FIND(\" \",C26&\" \")-1)),0)+IFERROR(VALUE(LEFT(C54,FIND(\" \",C54&\" \")-1)),0)"
- },
- {
-  "celda": "D88",
-  "antes": null,
-  "ahora": "=IFERROR(VALUE(LEFT(D26,FIND(\" \",D26&\" \")-1)),0)+IFERROR(VALUE(LEFT(D54,FIND(\" \",D54&\" \")-1)),0)"
- },
- {
-  "celda": "E88",
-  "antes": null,
-  "ahora": "=IFERROR(VALUE(LEFT(E26,FIND(\" \",E26&\" \")-1)),0)+IFERROR(VALUE(LEFT(E54,FIND(\" \",E54&\" \")-1)),0)"
- },
- {
-  "celda": "F88",
-  "antes": null,
-  "ahora": "=IFERROR(VALUE(LEFT(F26,FIND(\" \",F26&\" \")-1)),0)+IFERROR(VALUE(LEFT(F54,FIND(\" \",F54&\" \")-1)),0)"
- },
- {
-  "celda": "G88",
-  "antes": null,
-  "ahora": "=IFERROR(VALUE(LEFT(G26,FIND(\" \",G26&\" \")-1)),0)+IFERROR(VALUE(LEFT(G54,FIND(\" \",G54&\" \")-1)),0)"
- },
- {
-  "celda": "H88",
-  "antes": null,
-  "ahora": "=IFERROR(VALUE(LEFT(H26,FIND(\" \",H26&\" \")-1)),0)+IFERROR(VALUE(LEFT(H54,FIND(\" \",H54&\" \")-1)),0)"
- },
- {
-  "celda": "I88",
-  "antes": null,
-  "ahora": "=IFERROR(VALUE(LEFT(I26,FIND(\" \",I26&\" \")-1)),0)+IFERROR(VALUE(LEFT(I54,FIND(\" \",I54&\" \")-1)),0)"
- },
- {
-  "celda": "J88",
-  "antes": null,
-  "ahora": "=IFERROR(VALUE(LEFT(J26,FIND(\" \",J26&\" \")-1)),0)+IFERROR(VALUE(LEFT(J54,FIND(\" \",J54&\" \")-1)),0)"
- },
- {
-  "celda": "K88",
-  "antes": null,
-  "ahora": "Jalón ancho plano frontal (X) + Aducción unil. polea alta (V)"
- },
- {
-  "celda": "L88",
-  "antes": null,
-  "ahora": "desglose=jalon-ancho-plano-frontal,aduccion-unil-polea-alta-pull-in"
+  "ahora": "Desglose biomecánico de Espalda por planos (se recalcula solo al cambiar la tabla)"
  },
  {
   "celda": "A89",
   "antes": null,
-  "ahora": "Dorsal Superior (Plano Sagital)"
+  "ahora": "Plano / Región de Espalda"
  },
  {
   "celda": "B89",
   "antes": null,
-  "ahora": "=C89&\" → \"&J89"
+  "ahora": "Sem 1 → Sem 8"
  },
  {
   "celda": "C89",
   "antes": null,
-  "ahora": "=IFERROR(VALUE(LEFT(C29,FIND(\" \",C29&\" \")-1)),0)+IFERROR(VALUE(LEFT(C52,FIND(\" \",C52&\" \")-1)),0)+IFERROR(VALUE(LEFT(C53,FIND(\" \",C53&\" \")-1)),0)"
+  "ahora": "Sem 1"
  },
  {
   "celda": "D89",
   "antes": null,
-  "ahora": "=IFERROR(VALUE(LEFT(D29,FIND(\" \",D29&\" \")-1)),0)+IFERROR(VALUE(LEFT(D52,FIND(\" \",D52&\" \")-1)),0)+IFERROR(VALUE(LEFT(D53,FIND(\" \",D53&\" \")-1)),0)"
+  "ahora": "Sem 2"
  },
  {
   "celda": "E89",
   "antes": null,
-  "ahora": "=IFERROR(VALUE(LEFT(E29,FIND(\" \",E29&\" \")-1)),0)+IFERROR(VALUE(LEFT(E52,FIND(\" \",E52&\" \")-1)),0)+IFERROR(VALUE(LEFT(E53,FIND(\" \",E53&\" \")-1)),0)"
+  "ahora": "Sem 3"
  },
  {
   "celda": "F89",
   "antes": null,
-  "ahora": "=IFERROR(VALUE(LEFT(F29,FIND(\" \",F29&\" \")-1)),0)+IFERROR(VALUE(LEFT(F52,FIND(\" \",F52&\" \")-1)),0)+IFERROR(VALUE(LEFT(F53,FIND(\" \",F53&\" \")-1)),0)"
+  "ahora": "Sem 4"
  },
  {
   "celda": "G89",
   "antes": null,
-  "ahora": "=IFERROR(VALUE(LEFT(G29,FIND(\" \",G29&\" \")-1)),0)+IFERROR(VALUE(LEFT(G52,FIND(\" \",G52&\" \")-1)),0)+IFERROR(VALUE(LEFT(G53,FIND(\" \",G53&\" \")-1)),0)"
+  "ahora": "Sem 5"
  },
  {
   "celda": "H89",
   "antes": null,
-  "ahora": "=IFERROR(VALUE(LEFT(H29,FIND(\" \",H29&\" \")-1)),0)+IFERROR(VALUE(LEFT(H52,FIND(\" \",H52&\" \")-1)),0)+IFERROR(VALUE(LEFT(H53,FIND(\" \",H53&\" \")-1)),0)"
+  "ahora": "Sem 6"
  },
  {
   "celda": "I89",
   "antes": null,
-  "ahora": "=IFERROR(VALUE(LEFT(I29,FIND(\" \",I29&\" \")-1)),0)+IFERROR(VALUE(LEFT(I52,FIND(\" \",I52&\" \")-1)),0)+IFERROR(VALUE(LEFT(I53,FIND(\" \",I53&\" \")-1)),0)"
+  "ahora": "Sem 7"
  },
  {
   "celda": "J89",
   "antes": null,
-  "ahora": "=IFERROR(VALUE(LEFT(J29,FIND(\" \",J29&\" \")-1)),0)+IFERROR(VALUE(LEFT(J52,FIND(\" \",J52&\" \")-1)),0)+IFERROR(VALUE(LEFT(J53,FIND(\" \",J53&\" \")-1)),0)"
+  "ahora": "Sem 8"
  },
  {
   "celda": "K89",
   "antes": null,
-  "ahora": "Jalón neutro bolsillos (X) + Dominada neutra (V) + Remo máq. 30° (V)"
- },
- {
-  "celda": "L89",
-  "antes": null,
-  "ahora": "desglose=jalon-neutro,dominada-neutra-dorsal,remo-maquina-pecho-apoyado-30"
+  "ahora": "Ejercicios incluidos"
  },
  {
   "celda": "A90",
   "antes": "BLOQUE DE CARDIO (Recuperación Tendinosa & Base Aeróbica Z2 / Z3)",
-  "ahora": "Espalda Alta (Plano Transversal)"
+  "ahora": "Dorsal Bajo (Plano Frontal)"
  },
  {
   "celda": "B90",
@@ -3582,57 +4402,57 @@
  {
   "celda": "C90",
   "antes": null,
-  "ahora": "=IFERROR(VALUE(LEFT(C27,FIND(\" \",C27&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(C31,FIND(\" \",C31&\" \")-1)),0)+IFERROR(VALUE(LEFT(C15,FIND(\" \",C15&\" \")-1)),0)"
  },
  {
   "celda": "D90",
   "antes": null,
-  "ahora": "=IFERROR(VALUE(LEFT(D27,FIND(\" \",D27&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(D31,FIND(\" \",D31&\" \")-1)),0)+IFERROR(VALUE(LEFT(D15,FIND(\" \",D15&\" \")-1)),0)"
  },
  {
   "celda": "E90",
   "antes": null,
-  "ahora": "=IFERROR(VALUE(LEFT(E27,FIND(\" \",E27&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(E31,FIND(\" \",E31&\" \")-1)),0)+IFERROR(VALUE(LEFT(E15,FIND(\" \",E15&\" \")-1)),0)"
  },
  {
   "celda": "F90",
   "antes": null,
-  "ahora": "=IFERROR(VALUE(LEFT(F27,FIND(\" \",F27&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(F31,FIND(\" \",F31&\" \")-1)),0)+IFERROR(VALUE(LEFT(F15,FIND(\" \",F15&\" \")-1)),0)"
  },
  {
   "celda": "G90",
   "antes": null,
-  "ahora": "=IFERROR(VALUE(LEFT(G27,FIND(\" \",G27&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(G31,FIND(\" \",G31&\" \")-1)),0)+IFERROR(VALUE(LEFT(G15,FIND(\" \",G15&\" \")-1)),0)"
  },
  {
   "celda": "H90",
   "antes": null,
-  "ahora": "=IFERROR(VALUE(LEFT(H27,FIND(\" \",H27&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(H31,FIND(\" \",H31&\" \")-1)),0)+IFERROR(VALUE(LEFT(H15,FIND(\" \",H15&\" \")-1)),0)"
  },
  {
   "celda": "I90",
   "antes": null,
-  "ahora": "=IFERROR(VALUE(LEFT(I27,FIND(\" \",I27&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(I31,FIND(\" \",I31&\" \")-1)),0)+IFERROR(VALUE(LEFT(I15,FIND(\" \",I15&\" \")-1)),0)"
  },
  {
   "celda": "J90",
   "antes": null,
-  "ahora": "=IFERROR(VALUE(LEFT(J27,FIND(\" \",J27&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(J31,FIND(\" \",J31&\" \")-1)),0)+IFERROR(VALUE(LEFT(J15,FIND(\" \",J15&\" \")-1)),0)"
  },
  {
   "celda": "K90",
   "antes": null,
-  "ahora": "Remo gironda abierto (X)"
+  "ahora": "Jalón ancho plano frontal (J) + Aducción unil. polea alta (L)"
  },
  {
   "celda": "L90",
   "antes": null,
-  "ahora": "desglose=remo-gironda-abierto"
+  "ahora": "desglose=jalon-ancho-plano-frontal,aduccion-unil-polea-alta-pull-in"
  },
  {
   "celda": "A91",
   "antes": "Día / Sesión",
-  "ahora": "Total Transversal (Espalda Alta + Post.)"
+  "ahora": "Dorsal Superior (Plano Sagital)"
  },
  {
   "celda": "B91",
@@ -3642,482 +4462,372 @@
  {
   "celda": "C91",
   "antes": "Sem 1",
-  "ahora": "=IFERROR(VALUE(LEFT(C27,FIND(\" \",C27&\" \")-1)),0)+IFERROR(VALUE(LEFT(C31,FIND(\" \",C31&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(C34,FIND(\" \",C34&\" \")-1)),0)+IFERROR(VALUE(LEFT(C13,FIND(\" \",C13&\" \")-1)),0)+IFERROR(VALUE(LEFT(C14,FIND(\" \",C14&\" \")-1)),0)"
  },
  {
   "celda": "D91",
   "antes": "Sem 2",
-  "ahora": "=IFERROR(VALUE(LEFT(D27,FIND(\" \",D27&\" \")-1)),0)+IFERROR(VALUE(LEFT(D31,FIND(\" \",D31&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(D34,FIND(\" \",D34&\" \")-1)),0)+IFERROR(VALUE(LEFT(D13,FIND(\" \",D13&\" \")-1)),0)+IFERROR(VALUE(LEFT(D14,FIND(\" \",D14&\" \")-1)),0)"
  },
  {
   "celda": "E91",
   "antes": "Sem 3",
-  "ahora": "=IFERROR(VALUE(LEFT(E27,FIND(\" \",E27&\" \")-1)),0)+IFERROR(VALUE(LEFT(E31,FIND(\" \",E31&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(E34,FIND(\" \",E34&\" \")-1)),0)+IFERROR(VALUE(LEFT(E13,FIND(\" \",E13&\" \")-1)),0)+IFERROR(VALUE(LEFT(E14,FIND(\" \",E14&\" \")-1)),0)"
  },
  {
   "celda": "F91",
   "antes": "Sem 4",
-  "ahora": "=IFERROR(VALUE(LEFT(F27,FIND(\" \",F27&\" \")-1)),0)+IFERROR(VALUE(LEFT(F31,FIND(\" \",F31&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(F34,FIND(\" \",F34&\" \")-1)),0)+IFERROR(VALUE(LEFT(F13,FIND(\" \",F13&\" \")-1)),0)+IFERROR(VALUE(LEFT(F14,FIND(\" \",F14&\" \")-1)),0)"
  },
  {
   "celda": "G91",
   "antes": "Sem 5",
-  "ahora": "=IFERROR(VALUE(LEFT(G27,FIND(\" \",G27&\" \")-1)),0)+IFERROR(VALUE(LEFT(G31,FIND(\" \",G31&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(G34,FIND(\" \",G34&\" \")-1)),0)+IFERROR(VALUE(LEFT(G13,FIND(\" \",G13&\" \")-1)),0)+IFERROR(VALUE(LEFT(G14,FIND(\" \",G14&\" \")-1)),0)"
  },
  {
   "celda": "H91",
   "antes": "Sem 6",
-  "ahora": "=IFERROR(VALUE(LEFT(H27,FIND(\" \",H27&\" \")-1)),0)+IFERROR(VALUE(LEFT(H31,FIND(\" \",H31&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(H34,FIND(\" \",H34&\" \")-1)),0)+IFERROR(VALUE(LEFT(H13,FIND(\" \",H13&\" \")-1)),0)+IFERROR(VALUE(LEFT(H14,FIND(\" \",H14&\" \")-1)),0)"
  },
  {
   "celda": "I91",
   "antes": "Sem 7",
-  "ahora": "=IFERROR(VALUE(LEFT(I27,FIND(\" \",I27&\" \")-1)),0)+IFERROR(VALUE(LEFT(I31,FIND(\" \",I31&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(I34,FIND(\" \",I34&\" \")-1)),0)+IFERROR(VALUE(LEFT(I13,FIND(\" \",I13&\" \")-1)),0)+IFERROR(VALUE(LEFT(I14,FIND(\" \",I14&\" \")-1)),0)"
  },
  {
   "celda": "J91",
   "antes": "Sem 8",
-  "ahora": "=IFERROR(VALUE(LEFT(J27,FIND(\" \",J27&\" \")-1)),0)+IFERROR(VALUE(LEFT(J31,FIND(\" \",J31&\" \")-1)),0)"
+  "ahora": "=IFERROR(VALUE(LEFT(J34,FIND(\" \",J34&\" \")-1)),0)+IFERROR(VALUE(LEFT(J13,FIND(\" \",J13&\" \")-1)),0)+IFERROR(VALUE(LEFT(J14,FIND(\" \",J14&\" \")-1)),0)"
  },
  {
   "celda": "K91",
   "antes": "Pautas Biomecánicas Rodilla & Intensidad",
-  "ahora": "Remo gironda abierto (X) + Posterior polea (X)"
+  "ahora": "Jalón neutro bolsillos (J) + Dominada neutra (L) + Remo máq. 30° (L)"
  },
  {
   "celda": "L91",
   "antes": null,
-  "ahora": "desglose=remo-gironda-abierto,posterior-polea"
+  "ahora": "desglose=jalon-neutro,dominada-neutra-dorsal,remo-maquina-pecho-apoyado-30"
  },
  {
   "celda": "A92",
   "antes": "Martes (Post-Push)",
-  "ahora": null
+  "ahora": "Espalda Alta (Plano Transversal)"
  },
  {
   "celda": "B92",
   "antes": "Bici Z2 (65–75% FC)",
-  "ahora": null
+  "ahora": "=C92&\" → \"&J92"
  },
  {
   "celda": "C92",
   "antes": "15 min",
-  "ahora": null
+  "ahora": "=IFERROR(VALUE(LEFT(C32,FIND(\" \",C32&\" \")-1)),0)"
  },
  {
   "celda": "D92",
   "antes": "15 min",
-  "ahora": null
+  "ahora": "=IFERROR(VALUE(LEFT(D32,FIND(\" \",D32&\" \")-1)),0)"
  },
  {
   "celda": "E92",
   "antes": "18 min",
-  "ahora": null
+  "ahora": "=IFERROR(VALUE(LEFT(E32,FIND(\" \",E32&\" \")-1)),0)"
  },
  {
   "celda": "F92",
   "antes": "20 min",
-  "ahora": null
+  "ahora": "=IFERROR(VALUE(LEFT(F32,FIND(\" \",F32&\" \")-1)),0)"
  },
  {
   "celda": "G92",
   "antes": "20 min",
-  "ahora": null
+  "ahora": "=IFERROR(VALUE(LEFT(G32,FIND(\" \",G32&\" \")-1)),0)"
  },
  {
   "celda": "H92",
   "antes": "22 min",
-  "ahora": null
+  "ahora": "=IFERROR(VALUE(LEFT(H32,FIND(\" \",H32&\" \")-1)),0)"
  },
  {
   "celda": "I92",
   "antes": "25 min",
-  "ahora": null
+  "ahora": "=IFERROR(VALUE(LEFT(I32,FIND(\" \",I32&\" \")-1)),0)"
  },
  {
   "celda": "J92",
   "antes": "20 min",
-  "ahora": null
+  "ahora": "=IFERROR(VALUE(LEFT(J32,FIND(\" \",J32&\" \")-1)),0)"
  },
  {
   "celda": "K92",
   "antes": "Cadencia alta 85–90 rpm, sillín alto (rodilla a 20-25° abajo), 100% sentado. Cero impacto.",
-  "ahora": null
+  "ahora": "Remo gironda abierto (J)"
+ },
+ {
+  "celda": "L92",
+  "antes": null,
+  "ahora": "desglose=remo-gironda-abierto"
  },
  {
   "celda": "A93",
   "antes": "Viernes (Post-Torso)",
-  "ahora": null
+  "ahora": "Total Transversal (Espalda Alta + Post.)"
  },
  {
   "celda": "B93",
   "antes": "Bici Z2 / Z3 (Prog.)",
-  "ahora": null
+  "ahora": "=C93&\" → \"&J93"
  },
  {
   "celda": "C93",
   "antes": "12 min",
-  "ahora": null
+  "ahora": "=IFERROR(VALUE(LEFT(C32,FIND(\" \",C32&\" \")-1)),0)+IFERROR(VALUE(LEFT(C36,FIND(\" \",C36&\" \")-1)),0)"
  },
  {
   "celda": "D93",
   "antes": "15 min",
-  "ahora": null
+  "ahora": "=IFERROR(VALUE(LEFT(D32,FIND(\" \",D32&\" \")-1)),0)+IFERROR(VALUE(LEFT(D36,FIND(\" \",D36&\" \")-1)),0)"
  },
  {
   "celda": "E93",
   "antes": "15 min",
-  "ahora": null
+  "ahora": "=IFERROR(VALUE(LEFT(E32,FIND(\" \",E32&\" \")-1)),0)+IFERROR(VALUE(LEFT(E36,FIND(\" \",E36&\" \")-1)),0)"
  },
  {
   "celda": "F93",
   "antes": "18 min",
-  "ahora": null
+  "ahora": "=IFERROR(VALUE(LEFT(F32,FIND(\" \",F32&\" \")-1)),0)+IFERROR(VALUE(LEFT(F36,FIND(\" \",F36&\" \")-1)),0)"
  },
  {
   "celda": "G93",
   "antes": "20 min (4x30s Z3)",
-  "ahora": null
+  "ahora": "=IFERROR(VALUE(LEFT(G32,FIND(\" \",G32&\" \")-1)),0)+IFERROR(VALUE(LEFT(G36,FIND(\" \",G36&\" \")-1)),0)"
  },
  {
   "celda": "H93",
   "antes": "20 min (5x30s Z3)",
-  "ahora": null
+  "ahora": "=IFERROR(VALUE(LEFT(H32,FIND(\" \",H32&\" \")-1)),0)+IFERROR(VALUE(LEFT(H36,FIND(\" \",H36&\" \")-1)),0)"
  },
  {
   "celda": "I93",
   "antes": "20 min (4x45s Z3)",
-  "ahora": null
+  "ahora": "=IFERROR(VALUE(LEFT(I32,FIND(\" \",I32&\" \")-1)),0)+IFERROR(VALUE(LEFT(I36,FIND(\" \",I36&\" \")-1)),0)"
  },
  {
   "celda": "J93",
   "antes": "18 min (4x30s Z3)",
-  "ahora": null
+  "ahora": "=IFERROR(VALUE(LEFT(J32,FIND(\" \",J32&\" \")-1)),0)+IFERROR(VALUE(LEFT(J36,FIND(\" \",J36&\" \")-1)),0)"
  },
  {
   "celda": "K93",
   "antes": "Sem 1-4: Z2 continua. Sem 5-8: Intervalos cortos a 95-100 rpm (Z3 / Umbral) controlando acidosis local.",
-  "ahora": null
+  "ahora": "Remo gironda abierto (J) + Posterior polea (J)"
  },
  {
-  "celda": "A94",
+  "celda": "L93",
   "antes": null,
-  "ahora": "BLOQUE DE CARDIO Y CARRERA (S2-S8)"
- },
- {
-  "celda": "L94",
-  "antes": null,
-  "ahora": "cardio"
- },
- {
-  "celda": "A95",
-  "antes": null,
-  "ahora": "Día / Sesión"
- },
- {
-  "celda": "B95",
-  "antes": null,
-  "ahora": "Tipo / Zona"
- },
- {
-  "celda": "C95",
-  "antes": null,
-  "ahora": "Sem 1"
- },
- {
-  "celda": "D95",
-  "antes": null,
-  "ahora": "Sem 2"
- },
- {
-  "celda": "E95",
-  "antes": null,
-  "ahora": "Sem 3"
- },
- {
-  "celda": "F95",
-  "antes": null,
-  "ahora": "Sem 4"
- },
- {
-  "celda": "G95",
-  "antes": null,
-  "ahora": "Sem 5"
- },
- {
-  "celda": "H95",
-  "antes": null,
-  "ahora": "Sem 6"
- },
- {
-  "celda": "I95",
-  "antes": null,
-  "ahora": "Sem 7"
- },
- {
-  "celda": "J95",
-  "antes": null,
-  "ahora": "Sem 8"
- },
- {
-  "celda": "K95",
-  "antes": null,
-  "ahora": "Pautas Biomecánicas Rodilla & Intensidad"
- },
- {
-  "celda": "L95",
-  "antes": null,
-  "ahora": "App (no tocar)"
+  "ahora": "desglose=remo-gironda-abierto,posterior-polea"
  },
  {
   "celda": "A96",
   "antes": null,
-  "ahora": "Martes (Post-Push)"
- },
- {
-  "celda": "B96",
-  "antes": null,
-  "ahora": "Bici Z2 (65–75% FC)"
- },
- {
-  "celda": "C96",
-  "antes": null,
-  "ahora": "15 min"
- },
- {
-  "celda": "D96",
-  "antes": null,
-  "ahora": "—"
- },
- {
-  "celda": "E96",
-  "antes": null,
-  "ahora": "—"
- },
- {
-  "celda": "F96",
-  "antes": null,
-  "ahora": "—"
- },
- {
-  "celda": "G96",
-  "antes": null,
-  "ahora": "10' Z2"
- },
- {
-  "celda": "H96",
-  "antes": null,
-  "ahora": "10' Z2"
- },
- {
-  "celda": "I96",
-  "antes": null,
-  "ahora": "10' Z2"
- },
- {
-  "celda": "J96",
-  "antes": null,
-  "ahora": "10' Z2"
- },
- {
-  "celda": "K96",
-  "antes": null,
-  "ahora": "No se hizo en S1: estímulo NUEVO [LÓGICA]. Entra en S4 (el viernes) solo si S2 y S3 cumplieron la regla; desde S5, martes y viernes. Sin Z3 en este bloque. Lo primero que se quita si hay brote. Sillín alto (rodilla a 20-25° abajo), 85-90 rpm, sentado. 10 min fijos en el bloque; subir a 15 después del viaje, como novedad única."
+  "ahora": "BLOQUE DE CARDIO Y CARRERA (S2-S8)"
  },
  {
   "celda": "L96",
   "antes": null,
-  "ahora": "id=bici-z2-65-75-fc;sesion=M;bici"
+  "ahora": "cardio"
  },
  {
   "celda": "A97",
   "antes": null,
-  "ahora": "Viernes (Post-Torso)"
+  "ahora": "Día / Sesión"
  },
  {
   "celda": "B97",
   "antes": null,
-  "ahora": "Bici Z2 (sin Z3 en este bloque)"
+  "ahora": "Tipo / Zona"
  },
  {
   "celda": "C97",
   "antes": null,
-  "ahora": "12 min"
+  "ahora": "Sem 1"
  },
  {
   "celda": "D97",
   "antes": null,
-  "ahora": "—"
+  "ahora": "Sem 2"
  },
  {
   "celda": "E97",
   "antes": null,
-  "ahora": "—"
+  "ahora": "Sem 3"
  },
  {
   "celda": "F97",
   "antes": null,
-  "ahora": "10' Z2\nnov: 1.ª vez"
+  "ahora": "Sem 4"
  },
  {
   "celda": "G97",
   "antes": null,
-  "ahora": "10' Z2"
+  "ahora": "Sem 5"
  },
  {
   "celda": "H97",
   "antes": null,
-  "ahora": "10' Z2"
+  "ahora": "Sem 6"
  },
  {
   "celda": "I97",
   "antes": null,
-  "ahora": "10' Z2"
+  "ahora": "Sem 7"
  },
  {
   "celda": "J97",
   "antes": null,
-  "ahora": "10' Z2"
+  "ahora": "Sem 8"
  },
  {
   "celda": "K97",
   "antes": null,
-  "ahora": "S4: primera vez, solo si esa mañana estás igual o mejor; se valida con las mediciones del sábado y del domingo (el sábado no hay pierna). Ver la nota del martes."
+  "ahora": "Pautas Biomecánicas Rodilla & Intensidad"
  },
  {
   "celda": "L97",
   "antes": null,
-  "ahora": "id=bici-z2-sin-z3-en-este-bloque;sesion=V;bici"
+  "ahora": "App (no tocar)"
  },
  {
   "celda": "A98",
   "antes": null,
-  "ahora": "Miércoles · Carrera (nivel nuevo)"
+  "ahora": "Martes (Post-Push)"
  },
  {
   "celda": "B98",
   "antes": null,
-  "ahora": "Andar-correr en llano"
+  "ahora": "Bici Z2 (65–75% FC)"
  },
  {
   "celda": "C98",
   "antes": null,
-  "ahora": "—"
+  "ahora": "15 min"
  },
  {
   "celda": "D98",
   "antes": null,
-  "ahora": "N1 · 8×(1'/2')"
+  "ahora": "—"
  },
  {
   "celda": "E98",
   "antes": null,
-  "ahora": "N2 · 6×(2'/1')"
+  "ahora": "—"
  },
  {
   "celda": "F98",
   "antes": null,
-  "ahora": "N3 · 4×(4'/1')"
+  "ahora": "—"
  },
  {
   "celda": "G98",
   "antes": null,
-  "ahora": "N4 · 4×(5'/1')"
+  "ahora": "10' Z2"
  },
  {
   "celda": "H98",
   "antes": null,
-  "ahora": "N5 · 3×(8'/1')"
+  "ahora": "10' Z2"
  },
  {
   "celda": "I98",
   "antes": null,
-  "ahora": "N6 · 2×(12'/1')"
+  "ahora": "10' Z2"
  },
  {
   "celda": "J98",
   "antes": null,
-  "ahora": "repite N6"
+  "ahora": "10' Z2"
  },
  {
   "celda": "K98",
   "antes": null,
-  "ahora": "Formato: minutos trotando / minutos andando. Niveles: N1 8×(1'/2') · N2 6×(2'/1') · N3 4×(4'/1') · N4 4×(5'/1') · N5 3×(8'/1') · N6 2×(12'/1'); después del viaje, N7 18' · N8 25' · N9 30' seguidos. Desde N4 el tramo continuo más largo crece como mucho un 50 % por nivel (5 → 8 → 12 → 18 → 25 → 30 min); de N1 a N3 se dobla porque los tramos son muy cortos [LÓGICA]. El calendario marca el máximo de cada semana; el nivel real sale del semáforo: Avanzar = +1, Mantener = el mismo, Retroceder = −1. Nivel nuevo solo si esa mañana estás igual o mejor. 5 min andando antes; llano y firme. Regla de carrera: Retroceder si pasas de 2/10 durante, no vuelves al nivel previo en ≤60 min o la mañana siguiente estás peor; Mantener si cumple pero el peor valor 24-48 h supera la referencia; Avanzar si cumple y el peor 24-48 h ≤ referencia [EVIDENCIA de uso: TREK Education, basada en Esculier; no comparada con otros umbrales]. Cadencia +5-10% opcional [EVIDENCIA mixta: Bramah 2019, serie de 12 corredores con mejora de dolor y función mantenida a 3 meses; Esculier 2018, sin beneficio extra sobre la educación]."
+  "ahora": "No se hizo en S1: estímulo NUEVO [LÓGICA]. Entra en S4 (el viernes) solo si S2 y S3 cumplieron la regla; desde S5, martes y viernes. Sin Z3 en este bloque. Lo primero que se quita si hay brote. Sillín alto (rodilla a 20-25° abajo), 85-90 rpm, sentado. 10 min fijos en el bloque; subir a 15 después del viaje, como novedad única."
  },
  {
   "celda": "L98",
   "antes": null,
-  "ahora": "id=andar-correr-en-llano;sesion=X;escalera=carrera"
+  "ahora": "id=bici-z2-65-75-fc;sesion=M;bici"
  },
  {
   "celda": "A99",
   "antes": null,
-  "ahora": "Domingo · Carrera (repite)"
+  "ahora": "Viernes (tras pierna 2)"
  },
  {
   "celda": "B99",
   "antes": null,
-  "ahora": "Andar-correr en llano"
+  "ahora": "Bici Z2 (sin Z3 en este bloque)"
  },
  {
   "celda": "C99",
   "antes": null,
-  "ahora": "—"
+  "ahora": "12 min"
  },
  {
   "celda": "D99",
   "antes": null,
-  "ahora": "repite el\nmiércoles"
+  "ahora": "—"
  },
  {
   "celda": "E99",
   "antes": null,
-  "ahora": "repite el\nmiércoles"
+  "ahora": "—"
  },
  {
   "celda": "F99",
   "antes": null,
-  "ahora": "repite el\nmiércoles"
+  "ahora": "10' Z2\nnov: 1.ª vez"
  },
  {
   "celda": "G99",
   "antes": null,
-  "ahora": "repite el\nmiércoles"
+  "ahora": "10' Z2"
  },
  {
   "celda": "H99",
   "antes": null,
-  "ahora": "repite el\nmiércoles"
+  "ahora": "10' Z2"
  },
  {
   "celda": "I99",
   "antes": null,
-  "ahora": "repite el\nmiércoles"
+  "ahora": "10' Z2"
  },
  {
   "celda": "J99",
   "antes": null,
-  "ahora": "repite el\nmiércoles"
+  "ahora": "10' Z2"
  },
  {
   "celda": "K99",
   "antes": null,
-  "ahora": "Repite el nivel validado el miércoles. Si el miércoles no se cumplieron los criterios de entrada, esa semana no hay carrera: el domingo no se corre (como mucho, un paseo). Nunca dos días seguidos corriendo [LÓGICA]. El sábado no hay pierna: llegas descansado."
+  "ahora": "S4: primera vez, solo si esa mañana estás igual o mejor. Va después de la pierna 2, que repite la profundidad ya validada, así que la bici es la única novedad del día. Se valida con las mediciones del sábado y del domingo (el sábado no hay pierna) [LÓGICA]. Ver la nota del martes."
  },
  {
   "celda": "L99",
   "antes": null,
-  "ahora": "id=andar-correr-en-llano;sesion=D;titulo=Carrera;escalera=carrera:domingo"
+  "ahora": "id=bici-z2-sin-z3-en-este-bloque;sesion=V;bici"
  },
  {
   "celda": "A100",
   "antes": null,
-  "ahora": "Hitos y avisos"
+  "ahora": "Miércoles · Carrera, sin gimnasio (nivel nuevo)"
  },
  {
   "celda": "B100",
   "antes": null,
-  "ahora": "Calendario"
+  "ahora": "Andar-correr en llano"
  },
  {
   "celda": "C100",
@@ -4127,115 +4837,235 @@
  {
   "celda": "D100",
   "antes": null,
-  "ahora": "Mar: paseo 30'\nMié: TD + saltitos\n→ 1.ª carrera\nJue: test 1"
+  "ahora": "N1 · 8×(1'/2')"
  },
  {
   "celda": "E100",
   "antes": null,
-  "ahora": "—"
+  "ahora": "N2 · 6×(2'/1')"
  },
  {
   "celda": "F100",
   "antes": null,
-  "ahora": "AVISO fisio\n(ver Seguimiento)\nVie: bici"
+  "ahora": "N3 · 4×(4'/1')"
  },
  {
   "celda": "G100",
   "antes": null,
-  "ahora": "Lun: x8\nJue: test 2"
+  "ahora": "N4 · 4×(5'/1')"
  },
  {
   "celda": "H100",
   "antes": null,
-  "ahora": "—"
+  "ahora": "N5 · 3×(8'/1')"
  },
  {
   "celda": "I100",
   "antes": null,
-  "ahora": "Jue: test 3"
+  "ahora": "N6 · 2×(12'/1')"
  },
  {
   "celda": "J100",
   "antes": null,
-  "ahora": "Repite S7\nJue: test opc.\nrango completo"
+  "ahora": "repite N6"
  },
  {
   "celda": "K100",
   "antes": null,
-  "ahora": "Entrada a la carrera (S2), con la regla de carrera: martes, paseo de 30 min a paso rápido (≤2/10, nivel previo en ≤60 min y el miércoles por la mañana no peor: el criterio 1 se evalúa solo con esa mañana, sin esperar a las 48 h); miércoles antes de correr, 10 touchdown con cada pierna y 20 saltitos a dos piernas (≤2/10). Si se cumplen los tres, 1.ª carrera ese miércoles (N1). Si no, esa semana no hay carrera (el domingo, como mucho, un paseo) y los criterios se repiten el miércoles siguiente [LÓGICA]."
+  "ahora": "Formato: minutos trotando / minutos andando. Niveles: N1 8×(1'/2') · N2 6×(2'/1') · N3 4×(4'/1') · N4 4×(5'/1') · N5 3×(8'/1') · N6 2×(12'/1'); después del viaje, N7 18' · N8 25' · N9 30' seguidos. Desde N4 el tramo continuo más largo crece como mucho un 50 % por nivel (5 → 8 → 12 → 18 → 25 → 30 min); de N1 a N3 se dobla porque los tramos son muy cortos [LÓGICA]. El calendario marca el máximo de cada semana; el nivel real sale del semáforo: Avanzar = +1, Mantener = el mismo, Retroceder = −1. Nivel nuevo solo si esa mañana estás igual o mejor. 5 min andando antes; llano y firme. Regla de carrera: Retroceder si pasas de 2/10 durante, no vuelves al nivel previo en ≤60 min o la mañana siguiente estás peor; Mantener si cumple pero el peor valor 24-48 h supera la referencia; Avanzar si cumple y el peor 24-48 h ≤ referencia [EVIDENCIA de uso: TREK Education, basada en Esculier; no comparada con otros umbrales]. Cadencia +5-10% opcional [EVIDENCIA mixta: Bramah 2019, serie de 12 corredores con mejora de dolor y función mantenida a 3 meses; Esculier 2018, sin beneficio extra sobre la educación]."
  },
  {
   "celda": "L100",
   "antes": null,
-  "ahora": "hitos"
+  "ahora": "id=andar-correr-en-llano;sesion=X;escalera=carrera"
+ },
+ {
+  "celda": "A101",
+  "antes": null,
+  "ahora": "Domingo · Carrera (repite)"
+ },
+ {
+  "celda": "B101",
+  "antes": null,
+  "ahora": "Andar-correr en llano"
+ },
+ {
+  "celda": "C101",
+  "antes": null,
+  "ahora": "—"
+ },
+ {
+  "celda": "D101",
+  "antes": null,
+  "ahora": "repite el\nmiércoles"
+ },
+ {
+  "celda": "E101",
+  "antes": null,
+  "ahora": "repite el\nmiércoles"
+ },
+ {
+  "celda": "F101",
+  "antes": null,
+  "ahora": "repite el\nmiércoles"
+ },
+ {
+  "celda": "G101",
+  "antes": null,
+  "ahora": "repite el\nmiércoles"
+ },
+ {
+  "celda": "H101",
+  "antes": null,
+  "ahora": "repite el\nmiércoles"
+ },
+ {
+  "celda": "I101",
+  "antes": null,
+  "ahora": "repite el\nmiércoles"
+ },
+ {
+  "celda": "J101",
+  "antes": null,
+  "ahora": "repite el\nmiércoles"
+ },
+ {
+  "celda": "K101",
+  "antes": null,
+  "ahora": "Repite el nivel validado el miércoles. Si el miércoles no se cumplieron los criterios de entrada, esa semana no hay carrera: el domingo no se corre (como mucho, un paseo). Nunca dos días seguidos corriendo [LÓGICA]. El sábado no hay pierna: llegas descansado."
+ },
+ {
+  "celda": "L101",
+  "antes": null,
+  "ahora": "id=andar-correr-en-llano;sesion=D;titulo=Carrera;escalera=carrera:domingo"
  },
  {
   "celda": "A102",
   "antes": null,
-  "ahora": "REGLAS DEL BLOQUE RODILLA (S2-S8)"
+  "ahora": "Hitos y avisos"
+ },
+ {
+  "celda": "B102",
+  "antes": null,
+  "ahora": "Calendario"
+ },
+ {
+  "celda": "C102",
+  "antes": null,
+  "ahora": "—"
+ },
+ {
+  "celda": "D102",
+  "antes": null,
+  "ahora": "Mar: paseo 30'\nMié: TD + saltitos\n→ 1.ª carrera"
+ },
+ {
+  "celda": "E102",
+  "antes": null,
+  "ahora": "Lun 2/11 festivo: en casa, sin escalón\nVie 6/11: test 1"
+ },
+ {
+  "celda": "F102",
+  "antes": null,
+  "ahora": "AVISO fisio\n(ver Seguimiento)\nVie: bici"
+ },
+ {
+  "celda": "G102",
+  "antes": null,
+  "ahora": "Lun: x8\nVie: test 2"
+ },
+ {
+  "celda": "H102",
+  "antes": null,
+  "ahora": "—"
+ },
+ {
+  "celda": "I102",
+  "antes": null,
+  "ahora": "Vie: test 3"
+ },
+ {
+  "celda": "J102",
+  "antes": null,
+  "ahora": "Lun: 4.º escalón solo si S6-S7 OK\nVie: test opc.\nrango completo"
+ },
+ {
+  "celda": "K102",
+  "antes": null,
+  "ahora": "Entrada a la carrera (S2), con la regla de carrera: martes, paseo de 30 min a paso rápido (≤2/10, nivel previo en ≤60 min y el miércoles por la mañana no peor: el criterio 1 se evalúa solo con esa mañana, sin esperar a las 48 h); miércoles antes de correr, 10 touchdown con cada pierna y 20 saltitos a dos piernas (≤2/10). Si se cumplen los tres, 1.ª carrera ese miércoles (N1). Si no, esa semana no hay carrera (el domingo, como mucho, un paseo) y los criterios se repiten el miércoles siguiente [LÓGICA]."
  },
  {
   "celda": "L102",
   "antes": null,
-  "ahora": "reglas-bloque"
- },
- {
-  "celda": "A103",
-  "antes": null,
-  "ahora": "Base [EVIDENCIA]: ejercicio combinado de cadera y rodilla (consensos de 2016 y 2018). Rodilla en 2 días, lunes y jueves (72-96 h entre sesiones, dentro de la ventana de 2-3 días de recuperación del tendón que describe el libro), pesado y lento en ambos; sábado sin pierna para llegar descansado a la carrera del domingo [LÓGICA]."
+  "ahora": "hitos"
  },
  {
   "celda": "A104",
   "antes": null,
-  "ahora": "Mediciones: cada mañana, en casa, con las mismas pruebas: test en declive y 10 subidas con la D al mismo escalón o banco. Vale la peor de las dos (el declive solo no basta: te sale 0 aunque haya molestia). Si falta la medición de la mañana, ese día no se evalúa y la primera medición disponible hace de referencia (en S2, la del martes). Se apuntan en «Seguimiento rodilla»."
+  "ahora": "REGLAS DEL BLOQUE RODILLA (S2-S8)"
+ },
+ {
+  "celda": "L104",
+  "antes": null,
+  "ahora": "reglas-bloque"
  },
  {
   "celda": "A105",
   "antes": null,
-  "ahora": "Regla de gimnasio [LÓGICA], en semáforo (solo días con carga de rodilla: lunes y jueves): Retroceder si pasas de 3/10 durante o la mañana siguiente estás peor que la de la sesión; Mantener si cumple, pero el peor valor entre 24 y 48 h supera la referencia (no avanzas, pero no has fallado); Avanzar si cumple y el peor valor 24-48 h es igual o mejor que la referencia. Los días sin carga de rodilla no se evalúan («—»)."
+  "ahora": "Base [EVIDENCIA]: ejercicio combinado de cadera y rodilla (consensos de 2016 y 2018). Rodilla en 2 días, lunes y viernes (72-96 h entre sesiones, dentro de la ventana de 2-3 días de recuperación del tendón que describe el libro), pesado y lento en ambos; sábado sin pierna para llegar descansado a la carrera del domingo [LÓGICA]."
  },
  {
   "celda": "A106",
   "antes": null,
-  "ahora": "Regla de carrera [EVIDENCIA de uso], en semáforo (miércoles y domingo): Retroceder si pasas de 2/10 durante, no vuelves al nivel previo en ≤60 min o la mañana siguiente estás peor; Mantener si cumple, pero el peor valor 24-48 h supera la referencia; Avanzar si cumple y el peor valor 24-48 h ≤ referencia. El paseo de entrada se valida solo con la mañana siguiente. Se aplica también a las fases hacia el fútbol [LÓGICA]."
+  "ahora": "Mediciones: cada mañana, en casa, con las mismas pruebas: test en declive y 10 subidas con la D al mismo escalón o banco. Vale la peor de las dos (el declive solo no basta: te sale 0 aunque haya molestia). Si falta la medición de la mañana, ese día no se evalúa y la primera medición disponible hace de referencia (en S2, la del martes). Se apuntan en «Seguimiento rodilla»."
  },
  {
   "celda": "A107",
   "antes": null,
-  "ahora": "Novedades [LÓGICA]: una por día y validada a las 24 y 48 h antes de repetirla. Lunes: escalón o reps (prensa) · miércoles: nivel de carrera · viernes de S4: bici. Solo si esa mañana estás igual o mejor que la referencia (la mañana del mismo día de la semana anterior; en S3, la primera medición de S2), no que el día anterior: así un empeoramiento lento también salta. El calendario marca el máximo de cada semana; el nivel real sale del semáforo: Avanzar = nivel +1 (sin pasar del calendario), Mantener = el mismo, Retroceder = nivel −1. Lo validado se repite: el jueves usa la profundidad del lunes y el domingo repite el nivel del miércoles."
+  "ahora": "Regla de gimnasio [LÓGICA], en semáforo (solo días con carga de rodilla: lunes y viernes): Retroceder si pasas de 3/10 durante o la mañana siguiente estás peor que la de la sesión; Mantener si cumple, pero el peor valor entre 24 y 48 h supera la referencia (no avanzas, pero no has fallado); Avanzar si cumple y el peor valor 24-48 h es igual o mejor que la referencia. Los días sin carga de rodilla no se evalúan («—»)."
  },
  {
   "celda": "A108",
   "antes": null,
-  "ahora": "S2 = semana de referencia [LÓGICA]: el paseo del martes no cuenta como novedad (caminas a diario). Si alguna mañana de S2 sale peor que la referencia (la primera medición de S2), en S3 no sube nada y se repite S2 entera, en lugar de intentar atribuir el empeoramiento."
+  "ahora": "Regla de carrera [EVIDENCIA de uso], en semáforo (miércoles y domingo): Retroceder si pasas de 2/10 durante, no vuelves al nivel previo en ≤60 min o la mañana siguiente estás peor; Mantener si cumple, pero el peor valor 24-48 h supera la referencia; Avanzar si cumple y el peor valor 24-48 h ≤ referencia. El paseo de entrada se valida solo con la mañana siguiente. Se aplica también a las fases hacia el fútbol [LÓGICA]."
  },
  {
   "celda": "A109",
   "antes": null,
-  "ahora": "Escalones de profundidad de la D [LÓGICA; no hay pautas de rango validadas para la rótula: INCERTIDUMBRE]: escalón 0 = la profundidad que ya usas con la D; escalón 4 = la de la I. Reparte la diferencia en 4 partes iguales (como mucho ~15° cada una; si sale más, se termina después del bloque). Se sube, como mucho, los lunes de S3, S4, S6 y S7 en la prensa (según el semáforo); la touchdown del lunes va a la profundidad ya validada y hace de filtro. Apunta las marcas en «Seguimiento rodilla»."
+  "ahora": "Novedades [LÓGICA]: una por día y validada a las 24 y 48 h antes de repetirla. Lunes: escalón o reps (prensa) · miércoles: nivel de carrera · viernes de S4: bici. Solo si esa mañana estás igual o mejor que la referencia (la mañana del mismo día de la semana anterior; en S3, la primera medición de S2), no que el día anterior: así un empeoramiento lento también salta. El calendario marca el máximo de cada semana; el nivel real sale del semáforo: Avanzar = nivel +1 (sin pasar del calendario), Mantener = el mismo, Retroceder = nivel −1. Lo validado se repite: el viernes usa la profundidad del lunes y el domingo repite el nivel del miércoles."
  },
  {
   "celda": "A110",
   "antes": null,
-  "ahora": "Chasquido: si no duele, no se quita ni se cambia nada. Si duele, cuenta como dolor."
+  "ahora": "S2: la pierna 2 y la prueba del test pasaron al viernes 30/10 (el jueves 29 fue libre), dentro de las 48 h de la 1.ª carrera. Si la mañana del sábado 31/10 sale peor, cuenta para las dos: el domingo repites N1 y el miércoles de S3 no subes de nivel [LÓGICA]."
  },
  {
   "celda": "A111",
   "antes": null,
-  "ahora": "Retroceso y brote [LÓGICA]: un dolor durante la sesión retrocede la escalera de esa sesión. Si una mañana sale peor, se retrocede la última novedad aún no validada (la que todavía no tiene en verde sus dos mañanas, 24 y 48 h; p. ej., jueves bien y viernes peor → se retrocede la carrera del miércoles y el escalón se mantiene); una novedad ya validada no se culpa. Si tras el retroceso vuelve a fallar, se retrocede la novedad anterior sin validar. Brote = un fallo sin ninguna novedad sin validar, o dos sesiones seguidas en Retroceder: lo primero que se quita es la bici; 48-72 h solo isométricos (sentadilla española 5×45 s diaria) y caminar, sin bici; luego se retoma un escalón por debajo en todo. La bici vuelve al nivel del calendario cuando lleves una semana entera en verde."
+  "ahora": "Escalones de profundidad de la D [LÓGICA; no hay pautas de rango validadas para la rótula: INCERTIDUMBRE]: escalón 0 = la profundidad que ya usas con la D; escalón 4 = la de la I. Reparte la diferencia en 4 partes iguales (como mucho ~15° cada una; si sale más, se termina después del bloque). Se sube, como mucho, los lunes de S4, S6 y S7 en la prensa (según el semáforo), y el 4.º escalón el lunes de S8 solo si S6 y S7 cumplieron la regla (si no, después del viaje); el lunes de S3 fue festivo y no hubo escalón; la touchdown del lunes va a la profundidad ya validada y hace de filtro. Apunta las marcas en «Seguimiento rodilla»."
  },
  {
   "celda": "A112",
   "antes": null,
-  "ahora": "Alarma: bloqueo real, fallos repetidos de la rodilla o hinchazón visible → se para la progresión y toca valoración clínica."
+  "ahora": "Chasquido: si no duele, no se quita ni se cambia nada. Si duele, cuenta como dolor."
  },
  {
   "celda": "A113",
   "antes": null,
-  "ahora": "AVISO S4 (fisio deportivo pendiente): se calcula al cerrar S4 (domingo 15/11) si hay al menos 5 mañanas registradas en S2 y en S4. Compara la media de las mañanas: PEOR si la de S4 supera en 0,5 o más a la de S2; MEJOR si queda 0,5 o más por debajo; si no, IGUAL. IGUAL o PEOR, o un chasquido que empieza a doler: la valoración del fisio pasa a ser prioritaria; PEOR además para la progresión [LÓGICA]. «Seguimiento rodilla» lo calcula."
+  "ahora": "Retroceso y brote [LÓGICA]: un dolor durante la sesión retrocede la escalera de esa sesión. Si una mañana sale peor, se retrocede la última novedad aún no validada (la que todavía no tiene en verde sus dos mañanas, 24 y 48 h; p. ej., en S4, sábado peor tras el viernes → se quita la bici, la novedad de ese viernes, y el escalón del lunes, ya validado, se mantiene); una novedad ya validada no se culpa. Si tras el retroceso vuelve a fallar, se retrocede la novedad anterior sin validar. Brote = un fallo sin ninguna novedad sin validar, o dos sesiones seguidas en Retroceder: lo primero que se quita es la bici; 48-72 h solo isométricos (sentadilla española 5×45 s diaria) y caminar, sin bici; luego se retoma un escalón por debajo en todo. La bici vuelve al nivel del calendario cuando lleves una semana entera en verde."
  },
  {
   "celda": "A114",
+  "antes": null,
+  "ahora": "Alarma: bloqueo real, fallos repetidos de la rodilla o hinchazón visible → se para la progresión y toca valoración clínica."
+ },
+ {
+  "celda": "A115",
+  "antes": null,
+  "ahora": "AVISO S4 (fisio deportivo pendiente): se calcula al cerrar S4 (domingo 15/11) si hay al menos 5 mañanas registradas en S2 y en S4. Compara la media de las mañanas: PEOR si la de S4 supera en 0,5 o más a la de S2; MEJOR si queda 0,5 o más por debajo; si no, IGUAL. IGUAL o PEOR, o un chasquido que empieza a doler: la valoración del fisio pasa a ser prioritaria; PEOR además para la progresión [LÓGICA]. «Seguimiento rodilla» lo calcula."
+ },
+ {
+  "celda": "A116",
   "antes": null,
   "ahora": "Fases hacia el fútbol, después del viaje [LÓGICA], siempre con la regla de carrera: cambios de dirección ← 30 min seguidos dos veces sin reacción y rango D = I · pliometría ← 2 semanas de cambios de dirección y 10 saltos a una pierna sin dolor · balón ← cuádriceps D ≥90% de la I en el test y pliometría media sin reacción · equipo ← 2 semanas de balón sin reacción."
  }

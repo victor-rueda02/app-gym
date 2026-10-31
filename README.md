@@ -165,7 +165,8 @@ Volumen, R en Seguimiento), con etiquetas `clave` o `clave=valor` separadas por 
 
 | Etiqueta (Volumen, columna L) | Qué hace |
 |---|---|
-| `sesion` | cabecera de sesión `(L) Lunes · título` (`nombreS1=…`: nombre en S1) |
+| `sesion` | cabecera de sesión `(L) Lunes · título` (`nombreS1=…`: nombre en S1); dos cabeceras con la misma letra son el mismo día, con sus filas seguidas |
+| `S1=X;S2=X` | día de esas semanas, si no es el de la cabecera: en una cabecera mueve toda la sesión; en un ejercicio, solo esa fila (p. ej. el pull, el miércoles en S1-S2 y el jueves desde S3) |
 | `id=…` | id estable del ejercicio: el historial cuelga de él, así que **renombrar es solo cambiar el nombre** |
 | `escalera=prensa` / `prensa:sigue` / `prensa:anterior` | la prensa marca reps y escalón (`nov: xN`, `nov: +1 escalón`); la sentadilla y la búlgara siguen su nivel; la touchdown va al de la semana anterior |
 | `escalera=carrera` / `carrera:domingo` | los niveles salen de las celdas `N1 · 8×(1'/2')`; el domingo repite |
@@ -180,8 +181,12 @@ En Seguimiento (columna R): `dias`, `semanas`, `aviso=s2|s4|chasquido`,
 `entrada-resultado`, `test=t1…`, `escalon=0…`.
 
 Las celdas siguen la gramática de `parsePres` (`2 @ RIR1/0`, `1 @ RIR0`, `3 x10`,
-`2 x15–20`, `'3 x10-15/pierna\n@RIR1-2'`, `2-3 x…`, `—`, `-`…): un formato nuevo
+`2 x15–20`, `'3 x10-15/pierna\n@RIR1-2'`, `2-3 x…`, `—`, `-`…), con líneas de
+aclaración opcionales debajo (`'2 @ RIR1/0\n2/11: con goma'`; en las filas con escalera,
+la app muestra también las que empiezan por una fecha): un formato nuevo
 hace fallar la carga a propósito, y lo detectan `verify_plan.py` y las pruebas.
+Lo ya registrado no se pierde si una sesión cambia de día: la app muestra y exporta, al
+final de la sesión de ese día, cualquier ejercicio registrado que no esté en ella.
 Lo que sí necesita código: reglas o cálculos nuevos (el semáforo, la progresión,
 los avisos) y formatos de celda nuevos. Las decisiones del plan rodilla están en
 `DECISIONES.md`.
