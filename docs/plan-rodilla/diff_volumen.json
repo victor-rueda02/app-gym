@@ -1732,7 +1732,7 @@
  {
   "celda": "A39",
   "antes": "Isquios sentado",
-  "ahora": "(V) Viernes  ·  Rehab + Isquios + Aductores  ·  test de fuerza S3 / S5 / S7 (+ opcional S8)  (desde S3; S1-S2 se hizo el jueves)"
+  "ahora": "(V) Viernes  ·  Rehab + Isquios + Aductores  ·  test de fuerza S3 / S5 / S7 (+ opcional S8)  (desde S2; S1 se hizo el jueves; en S2, el viernes 30/10)"
  },
  {
   "celda": "B39",
@@ -1787,7 +1787,7 @@
  {
   "celda": "L39",
   "antes": null,
-  "ahora": "sesion;S1=J;S2=J"
+  "ahora": "sesion;S1=J"
  },
  {
   "celda": "A40",

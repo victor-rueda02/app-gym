@@ -318,7 +318,7 @@ check('25/10 (domingo, S1): comparte la sesión del sábado',
 await goToDate('2026-12-11');
 check('11/12: semana 8, viernes (pierna 2)',
   (await page.textContent('.hero .week')) === 'Semana 8 · Volumen'
-  && (await page.textContent('#hero-name')) === 'Rehab + Isquios + Aductores  ·  test de fuerza S3 / S5 / S7 (+ opcional S8)  (desde S3; S1-S2 se hizo el jueves)',
+  && (await page.textContent('#hero-name')) === 'Rehab + Isquios + Aductores  ·  test de fuerza S3 / S5 / S7 (+ opcional S8)  (desde S2; S1 se hizo el jueves; en S2, el viernes 30/10)',
   await page.textContent('#hero-name'));
 const SQ8 = ['3 x8', 'repite S7'].join(String.fromCharCode(10));
 const SENT = 'Sentadilla al cajón o desde pines · pesado y lento n.º 2';

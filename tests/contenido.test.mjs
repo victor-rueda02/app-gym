@@ -65,14 +65,16 @@ test('S1 idéntica: cada ejercicio que ya existía conserva su prescripción de 
 
 test('S1 y S2 como se hicieron: cada día, los mismos ejercicios y prescripciones que en el plan de antes', () => {
   // Excepciones pedidas (31/10): en S2 el torso del viernes 30/10 se hizo el sábado 31/10 en
-  // casa (con sus tres filas de espalda) y el test 1 pasó de S2 a S3 (viernes 6/11).
+  // casa (con sus tres filas de espalda), la pierna 2 del jueves 29/10 se hizo el viernes 30/10
+  // (el jueves, libre) y el test 1 pasó de S2 a S3 (viernes 6/11).
   const porDia = (P, w) => Object.fromEntries(P.sessionsFor(w).map((x) => [x.dow, x.exercises.map((e) => `${e.id} · ${e.pres[w.n - 1].label}`)]));
   for (const n of [1, 2]) {
     const antes = porDia(ANTES, ANTES.VOL_WEEKS[n - 1]);
     if (n === 2) {
+      const bici = antes[5].filter((e) => e.startsWith('bici-'));
       antes[6] = [...antes[5].filter((e) => !e.startsWith('bici-')), ...antes[6]];
-      delete antes[5];   // el viernes 30/10 solo queda la bici, que en S2 no se hace
-      antes[4] = antes[4].map((e) => (e.startsWith('test-fuerza') ? e.replace(/ · [\s\S]*$/, ' · —') : e));
+      antes[5] = [...antes[4].map((e) => (e.startsWith('test-fuerza') ? e.replace(/ · [\s\S]*$/, ' · —') : e)), ...bici];
+      delete antes[4];
     }
     assert.deepEqual(porDia(PLAN, PLAN.VOL_WEEKS[n - 1]), antes, `S${n}`);
   }
@@ -134,16 +136,16 @@ test('correctivos (T en prono, W con banda, curl de muñeca): objetivo correctiv
   assert.ok(!PLAN.VOL_GRUPOS.some((g) => /correctivo/.test(g)));
 });
 
-test('pierna en dos días: rodilla lunes y viernes (S1-S2: jueves), abducción en máquina esos dos días y sábado sin pierna', () => {
+test('pierna en dos días: rodilla lunes y viernes (S1: jueves), abducción en máquina esos dos días y sábado sin pierna', () => {
   // Cambio pedido (31/10): desde S3 la pierna 2 va el viernes, el jueves es el pull y el
-  // miércoles solo hay carrera; en S1-S2 la pierna 2 fue el jueves.
+  // miércoles solo hay carrera; en S1 la pierna 2 fue el jueves y en S2, el viernes 30/10.
   const j = PLAN.BLOCK_VOL.V.exercises;
   assert.equal(PLAN.BLOCK_VOL.J.exercises[0].name, 'Jalón ancho plano frontal');
   assert.ok(PLAN.BLOCK_VOL.X.exercises.every((e) => e.target === 'Cardio'));
-  for (const n of [1, 2]) {
-    const jueves = PLAN.sessionsFor(PLAN.VOL_WEEKS[n - 1]).find((x) => x.dow === 4);
-    assert.match(jueves.exercises[1].name, /^Sentadilla al cajón/, `S${n}`);
-  }
+  const pierna2 = (n, dow) => PLAN.sessionsFor(PLAN.VOL_WEEKS[n - 1]).find((x) => x.dow === dow);
+  assert.match(pierna2(1, 4).exercises[1].name, /^Sentadilla al cajón/, 'S1: jueves');
+  assert.match(pierna2(2, 5).exercises[1].name, /^Sentadilla al cajón/, 'S2: viernes 30/10');
+  assert.equal(pierna2(2, 4), undefined, 'S2: el jueves 29/10, libre');
   assert.match(j[0].name, /^TEST fuerza/);
   assert.match(j[1].name, /^Sentadilla al cajón/);
   assert.equal(j[2].name, 'Bulgarian split squat');

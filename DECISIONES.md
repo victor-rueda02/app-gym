@@ -380,3 +380,7 @@ Sustituyen a los puntos anteriores donde se contradicen (30, 35, 41 y 42).
     30/10), pero los fallos de S2 no se atribuyen a ninguna escalera (manda su aviso), así
     que no cambia ninguna decisión. En el seguimiento, el jueves 29/10 queda sin regla y el
     viernes 30/10, con la de gimnasio.
+70. **Pierna 2 de S2 el viernes 30/10 en la app.** La cabecera de la pierna 2 lleva solo
+    `S1=J`: en S2 va ya el viernes, el día en que se hizo, y el jueves 29/10 queda libre,
+    como en la hoja de seguimiento. Lo que se hubiera apuntado el jueves sigue saliendo ese
+    día (punto 63).

@@ -120,6 +120,7 @@ ALTA J · 'Posterior polea' (fila 36)
     I: '3 @ RIR1/0'
     J: '3 @ RIR1/0'
     K: 'Salud Hombro / Transversal · Clave para centrar cabeza humeral y compensar presses.'
+BAJA/RENOMBRE J · 'Back squat' (fila antigua 37)
 ALTA J · 'Curl bayesian' (fila 37)
     B: 'Bíceps'
     C: '2 @ RIR1/0'
@@ -131,7 +132,6 @@ ALTA J · 'Curl bayesian' (fila 37)
     I: '3 @ RIR1/0'
     J: '4 @ RIR1/0'
     K: 'Prioridad 2 (Bíceps en estiramiento) · Hombro en extensión detrás del torso; no dejar que el hombro rote hacia delante al subir.'
-BAJA/RENOMBRE J · 'Back squat' (fila antigua 37)
 BAJA/RENOMBRE J · 'Bulgarian split squat' (fila antigua 38)
 BAJA/RENOMBRE J · 'Isquios sentado' (fila antigua 39)
 BAJA/RENOMBRE J · 'Aductores' (fila antigua 40)
@@ -417,7 +417,6 @@ ALTA V · 'Abducción de pie unilateral (máquina)' (fila 44)
     I: '3 x10-15/pierna\n@RIR1-2'
     J: '3 x10-15/pierna\n@RIR1-2'
     K: 'Misma máquina que el lunes; empieza por la D. Va DESPUÉS de la búlgara, para no fatigar el glúteo medio antes del trabajo a una pierna [LÓGICA]. Lunes + viernes = 72-96 h entre sesiones de cadera.'
-BAJA/RENOMBRE V · 'Triceps conc polea (-15°)' (fila antigua 45)
 ALTA V · 'Touchdown squat' (fila 45)
     B: 'Rehab'
     C: '2 x15–20'
@@ -429,6 +428,7 @@ ALTA V · 'Touchdown squat' (fila 45)
     I: '—'
     J: '—'
     K: 'Sale de este día desde S2: va el lunes, antes de la prensa [LÓGICA].'
+BAJA/RENOMBRE V · 'Triceps conc polea (-15°)' (fila antigua 45)
 ALTA V · 'Isquios sentado' (fila 46)
     B: 'Isquios'
     C: '3 @ RIR1/0'
@@ -441,6 +441,7 @@ ALTA V · 'Isquios sentado' (fila 46)
     J: '5 @ RIR1/0'
     K: 'Isquios en estiramiento máximo (cadera a 90°) · Controlar fase excéntrica.'
 BAJA/RENOMBRE V · 'Laterales polea' (fila antigua 46)
+BAJA/RENOMBRE V · 'Press francés manc (banco plano)' (fila antigua 47)
 ALTA V · 'Aductores' (fila 47)
     B: 'Aductores'
     C: '2 @ RIR1/0'
@@ -452,7 +453,6 @@ ALTA V · 'Aductores' (fila 47)
     I: '3 @ RIR1/0'
     J: '3 @ RIR1/0'
     K: 'Plano transversal/frontal · Pausa de 1 s en apertura máxima sin dolor inguinal/rodilla.'
-BAJA/RENOMBRE V · 'Press francés manc (banco plano)' (fila antigua 47)
 ALTA V · 'Gemelos prensa' (fila 48)
     B: 'Gemelos'
     C: '2 @ RIR1/0'
