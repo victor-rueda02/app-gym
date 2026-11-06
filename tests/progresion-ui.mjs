@@ -82,6 +82,24 @@ check('Hoy (vie 6/11): el test de fuerza es un enlace', (await presDe('TEST fuer
 await page.locator('main .ex', { hasText: 'TEST fuerza' }).click();
 await page.waitForSelector('[data-test="t1"]');
 check('El enlace abre Rodilla › Test', (await page.textContent('#subtitle')) === 'Test de fuerza');
+// Una carga por pierna, simetría y aviso con más de 15 reps; la prueba del 30/10 va aparte.
+const t1 = page.locator('[data-test="t1"]');
+const fuerza = async (f, v) => t1.locator(`[data-f="${f}"]`).fill(v);
+await fuerza('loadD', '30'); await fuerza('repsD', '11'); await fuerza('loadI', '40'); await fuerza('repsI', '12');
+check('Test 1: e1RM de cada pierna con su carga', (await t1.locator('[data-o="estD"]').textContent()) === '41'
+  && (await t1.locator('[data-o="estI"]').textContent()) === '56', await t1.locator('[data-o="estD"]').textContent());
+check('Test 1: simetría y ≥90 %', (await t1.locator('[data-o="pct"]').textContent()) === '73,2 %'
+  && (await t1.locator('[data-o="ok"]').textContent()) === 'No', await t1.locator('[data-o="pct"]').textContent());
+check('Test 1: sin aviso con 15 reps o menos', await t1.locator('[data-o="aviso"]').isHidden());
+await fuerza('repsI', '16');
+check('Test 1: aviso con más de 15 reps', (await t1.locator('[data-o="aviso"]').textContent()).includes('sube el peso'));
+await fuerza('painD', '2'); await fuerza('seat', 'asiento 4, rodillo 2');
+const guardadoT1 = await page.evaluate(() => Store.knee().tests.t1);
+check('Test 1: se guardan todos los campos', guardadoT1.loadD === 30 && guardadoT1.loadI === 40 && guardadoT1.painD === 2
+  && guardadoT1.seat === 'asiento 4, rodillo 2', JSON.stringify(guardadoT1));
+const prueba = await page.textContent('[data-prueba]');
+check('Prueba del 30/10: orientativa, con sus datos y sin campos', prueba.includes('42') && prueba.includes('56,3') && prueba.includes('74,6 %')
+  && prueba.includes('poco precisa') && (await page.locator('[data-prueba] input').count()) === 0, prueba);
 
 // Lunes de S3 (2/11, festivo, en casa): S2 estable, pero el calendario no sube escalón; la
 // celda añade el sustituto del día. La touchdown, a la profundidad ya validada.

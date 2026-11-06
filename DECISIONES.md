@@ -384,3 +384,20 @@ Sustituyen a los puntos anteriores donde se contradicen (30, 35, 41 y 42).
     `S1=J`: en S2 va ya el viernes, el día en que se hizo, y el jueves 29/10 queda libre,
     como en la hoja de seguimiento. Lo que se hubiera apuntado el jueves sigue saliendo ese
     día (punto 63).
+
+## Test de fuerza: una carga por pierna (6/11)
+
+71. **Cada pierna con su carga.** Es el protocolo acordado: cada pierna busca 10-12 reps al
+    fallo técnico (orientativo: D ~30 kg, I ~40 kg), y la prueba del 30/10 ya se hizo así.
+    La tabla pasa a Carga D, Reps D, Carga I, Reps I, e1RM D, e1RM I, Simetría D/I y ¿≥90%?,
+    más «Dolor máx. D (0-10)» y «Asiento / rodillo», opcionales, y las notas. Las fórmulas y
+    el cálculo de la app usan la carga de cada pierna; se mantiene el redondeo a un decimal
+    del e1RM antes de la simetría. Las notas del plan que decían «misma carga» están
+    corregidas. En `knee.tests`, `load` pasa a `loadD` y `loadI` (versión 5 del registro: la
+    carga que hubiera se copia a las dos piernas).
+72. **Prueba del 30/10 aparte.** Fila con la etiqueta `prueba` en la tabla del test, encima
+    del Test 1, con sus datos escritos en el Excel: en la app se ve sin campos para editar y
+    no cuenta como test. Da 42,0 / 56,3 → 74,6 %. Su rango queda «—»: no consta.
+73. **Aviso con más de 15 reps.** La app avisa en cada test, y en la prueba, si una pierna
+    pasa de 15 («estimación poco precisa; sube el peso en el siguiente test»). En el Excel
+    solo va en la nota de debajo de la tabla: un aviso por fila necesitaría otra columna.

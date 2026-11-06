@@ -369,21 +369,43 @@ const Rodilla = (() => {
   function seccionTest(root) {
     subtitleEl.textContent = 'Test de fuerza';
     root.appendChild(el(`<div class="rod-titulo">${esc(D.titulos.fuerza)}</div>`));
+    // Pruebas orientativas: datos fijos del Excel, no se editan ni cuentan como test.
+    D.pruebas.forEach((t) => {
+      const r = C.calcularTest(t);
+      root.appendChild(el(`
+        <div class="card" data-prueba><h2>${esc(t.nombre)}</h2>
+          <p>${esc(fmtDate(t.fecha))} · ${esc(t.notas)}</p>
+          <p>D ${fmt(t.loadD)} kg × ${fmt(t.repsD)} · I ${fmt(t.loadI)} kg × ${fmt(t.repsI)}</p>
+          <div class="rod-grid4">
+            <div><small>e1RM D</small><b>${fmt(r.estD)}</b></div>
+            <div><small>e1RM I</small><b>${fmt(r.estI)}</b></div>
+            <div><small>Simetría D/I</small><b>${r.pct === '' ? '—' : `${fmt(r.pct)} %`}</b></div>
+            <div><small>¿≥90%?</small><b class="rod-${claseSiNo(r.ok)}">${fmt(r.ok)}</b></div>
+          </div>
+          ${r.aviso ? `<p class="rod-warn">${esc(r.aviso)}</p>` : ''}
+        </div>`));
+    });
     D.tests.forEach((t) => {
       const r = knee().tests[t.clave] || {};
       root.appendChild(el(`
         <div class="card" data-test="${t.clave}"><h2>${esc(t.nombre)}</h2>
           <p>${esc(fmtDate(t.fecha))} · ${esc(t.rango)}</p>
-          <div class="rod-grid3">
-            ${campoTxt('Carga (kg)', 'tests', t.clave, 'load', r.load, { num: 'decimal', kind: 'carga' })}
+          <div class="rod-grid2">
+            ${campoTxt('Carga D (kg)', 'tests', t.clave, 'loadD', r.loadD, { num: 'decimal', kind: 'carga' })}
             ${campoTxt('Reps D', 'tests', t.clave, 'repsD', r.repsD, { num: 'numeric', kind: 'reps' })}
+            ${campoTxt('Carga I (kg)', 'tests', t.clave, 'loadI', r.loadI, { num: 'decimal', kind: 'carga' })}
             ${campoTxt('Reps I', 'tests', t.clave, 'repsI', r.repsI, { num: 'numeric', kind: 'reps' })}
           </div>
           <div class="rod-grid4">
-            <div><small>Fuerza est. D</small><b data-o="estD"></b></div>
-            <div><small>Fuerza est. I</small><b data-o="estI"></b></div>
+            <div><small>e1RM D</small><b data-o="estD"></b></div>
+            <div><small>e1RM I</small><b data-o="estI"></b></div>
             <div><small>Simetría D/I</small><b data-o="pct"></b></div>
             <div><small>¿≥90%?</small><b data-o="ok"></b></div>
+          </div>
+          <p class="rod-warn" data-o="aviso" hidden></p>
+          <div class="rod-grid2">
+            ${campoTxt('Dolor máx. D (0-10)', 'tests', t.clave, 'painD', r.painD, { num: 'numeric', kind: 'e010' })}
+            ${campoTxt('Asiento / rodillo', 'tests', t.clave, 'seat', r.seat)}
           </div>
           ${notas('tests', t.clave, r.notes)}
         </div>`));
@@ -394,6 +416,7 @@ const Rodilla = (() => {
         const r = C.calcularTest(knee().tests[card.dataset.test]);
         card.querySelectorAll('[data-o]').forEach((n) => {
           const k = n.dataset.o;
+          if (k === 'aviso') { n.textContent = r.aviso; n.hidden = !r.aviso; return; }
           n.textContent = k === 'pct' ? (r.pct === '' ? '—' : `${fmt(r.pct)} %`) : fmt(r[k]);
           if (k === 'ok') n.className = `rod-${claseSiNo(r.ok)}`;
         });

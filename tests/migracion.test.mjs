@@ -48,7 +48,7 @@ await test('v3 -> v4: recoloca por sesión, conserva series y crea knee', async 
   const { Store, guardado } = cargarStore(clon(V3));
   await Store.init();
   const d = guardado();
-  assert.equal(d.v, 4);
+  assert.equal(d.v, 5);
   assert.equal(nSeries(d), nSeries(V3));
   assert.deepEqual(claves(d, '2026-07-20'), ['touchdown-squat', 'unilateral-abduction']);   // julio no se toca
   assert.deepEqual(claves(d, '2026-10-19'),
@@ -78,11 +78,21 @@ await test('un registro v4 no cambia al migrar (idempotente) y conserva knee', a
   V4.v = 4;
   V4.days['2026-10-19'].entries = { 'unilateral-abduction': [{ ...s('25', '15'), side: 'D' }] };   // id viejo en v4: ya no se mueve
   V4.knee = { days: { '2026-10-26': { decline: 2, steps: 1 } }, weeks: { S2: { runLevel: 'N1' } }, entry: {}, tests: {}, depth: {} };
-  const antes = clon(V4);
+  const antes = { ...clon(V4), v: 5 };
   const { Store, guardado } = cargarStore(clon(V4));
   await Store.init();
   assert.deepEqual(guardado(), antes);
   assert.deepEqual(Store.all(), antes);
+});
+
+await test('v4 -> v5: la carga única del test pasa a las dos piernas; los demás campos no cambian', async () => {
+  const V4 = clon(V3);
+  V4.v = 4;
+  V4.knee = { days: {}, weeks: {}, entry: {}, depth: {},
+    tests: { t1: { load: 40, repsD: 10, repsI: 12, notes: 'n' }, t2: { notes: 'solo notas' } } };
+  const { Store } = cargarStore(V4);
+  await Store.init();
+  assert.deepEqual(Store.knee().tests, { t1: { loadD: 40, loadI: 40, repsD: 10, repsI: 12, notes: 'n' }, t2: { notes: 'solo notas' } });
 });
 
 await test('un registro v4 sin knee lo recibe, e importAll migra copias antiguas', async () => {
@@ -90,7 +100,7 @@ await test('un registro v4 sin knee lo recibe, e importAll migra copias antiguas
   await Store.init();
   assert.deepEqual(Store.knee(), { days: {}, weeks: {}, entry: {}, tests: {}, depth: {} });
   Store.importAll(clon(V3));
-  assert.equal(Store.all().v, 4);
+  assert.equal(Store.all().v, 5);
   assert.ok(Store.all().days['2026-10-19'].entries['prensa-unil-pesado-y-lento-n-1']);
   assert.deepEqual(Store.knee().days, {});
   Store.importAll({ v: 4, days: {} });

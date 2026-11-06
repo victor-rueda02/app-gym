@@ -201,12 +201,12 @@ def formulas_seguimiento(ws):
     ws[f"H{res}"] = (f'=IF(COUNTIF({rango},"Sí")=3,"SÍ: 1.ª carrera hoy (N1)",IF(COUNTIF({rango},"No")>0,'
                      f'"NO: esta semana no hay carrera (el domingo, como mucho, un paseo); repite los criterios el miércoles siguiente","Pendiente"))')
 
-    # Test de fuerza: estimada (Epley), simetría D/I y ≥90 %.
-    for r in filas_con(ws, "test"):
-        ws[f"I{r}"] = f'=IF(OR(F{r}="",G{r}=""),"",ROUND(F{r}*(1+G{r}/30),1))'
-        ws[f"J{r}"] = f'=IF(OR(F{r}="",H{r}=""),"",ROUND(F{r}*(1+H{r}/30),1))'
-        ws[f"K{r}"] = f'=IF(OR(I{r}="",J{r}=""),"",I{r}/J{r})'
-        ws[f"L{r}"] = f'=IF(K{r}="","",IF(K{r}>=0.9,"Sí","No"))'
+    # Test de fuerza: e1RM (Epley) de cada pierna con su carga, simetría D/I y ≥90 %.
+    for r in filas_con(ws, "test") + filas_con(ws, "prueba"):
+        ws[f"J{r}"] = f'=IF(OR(F{r}="",G{r}=""),"",ROUND(F{r}*(1+G{r}/30),1))'
+        ws[f"K{r}"] = f'=IF(OR(H{r}="",I{r}=""),"",ROUND(H{r}*(1+I{r}/30),1))'
+        ws[f"L{r}"] = f'=IF(OR(J{r}="",K{r}=""),"",J{r}/K{r})'
+        ws[f"M{r}"] = f'=IF(L{r}="","",IF(L{r}>=0.9,"Sí","No"))'
 
     # Rangos de validación y formato condicional ligados a la tabla de días.
     rango = lambda col: f"{col}{d0}:{col}{d1}"

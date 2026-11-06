@@ -44,7 +44,7 @@ async function idbGet() {
      knee: { days, weeks, entry, tests, depth } }
    `side` ('D' | 'I' | '') solo se usa en los unilaterales desde la semana 2 del plan de volumen.
    `knee` es el registro de la pestaña Rodilla (ver KNEE_SECCIONES y setKnee). */
-const VERSION = 4;
+const VERSION = 5;
 
 // Secciones de `knee`, cada una un mapa clave -> { campo: valor }:
 //   days  { 'YYYY-MM-DD': { decline, steps, during, back60:'Sí'|'No', click:'Sí'|'No', notes,
@@ -55,7 +55,7 @@ const VERSION = 4;
 //                           ausentes = la propuesta del semáforo)
 //   entry { 'S2'…'S8': { walkPain, walkBack60, tdPain, hopsPain: 'Sí'|'No', notes } }
 //                           (un intento de entrada a la carrera por semana)
-//   tests { t1…t4: { load, repsD, repsI, notes } }
+//   tests { t1…t4: { loadD, repsD, loadI, repsI, painD, seat, notes } }
 //   depth { '0'…'4': { angle, press, box, split, touchdown, validated, notes } }
 const KNEE_SECCIONES = ['days', 'weeks', 'entry', 'tests', 'depth'];
 
@@ -153,6 +153,17 @@ const MIGRATIONS = {
       }
     }
     ensureKnee(data);
+  },
+
+  // v4 -> v5: el test de fuerza lleva una carga por pierna. La carga única de antes valía
+  // para las dos.
+  5(data) {
+    for (const t of Object.values((data.knee && data.knee.tests) || {})) {
+      if (t.load === undefined) continue;
+      t.loadD = t.load;
+      t.loadI = t.load;
+      delete t.load;
+    }
   },
 };
 

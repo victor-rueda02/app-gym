@@ -178,7 +178,7 @@ Volumen, R en Seguimiento), con etiquetas `clave` o `clave=valor` separadas por 
 
 En Seguimiento (columna R): `dias`, `semanas`, `aviso=s2|s4|chasquido`,
 `texto=…`, `titulo=…`, `entrada=walk|touchdown|hops` (+ `dia=…`),
-`entrada-resultado`, `test=t1…`, `escalon=0…`.
+`entrada-resultado`, `test=t1…`, `prueba` (fila orientativa, fija: no cuenta como test), `escalon=0…`.
 
 Las celdas siguen la gramática de `parsePres` (`2 @ RIR1/0`, `1 @ RIR0`, `3 x10`,
 `2 x15–20`, `'3 x10-15/pierna\n@RIR1-2'`, `2-3 x…`, `—`, `-`…), con líneas de

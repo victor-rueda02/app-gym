@@ -233,13 +233,16 @@ const RodillaCalc = (() => {
     return sim >= 0.9 ? 'Sí' : 'No';
   }
 
-  /* Todo el test: { estD, estI, sim, pct, ok }. */
+  /* Todo el test, cada pierna con su carga: { estD, estI, sim, pct, ok, aviso }. Con más de
+     15 reps en una pierna, Epley ya no es fiable: `aviso` lo dice. */
   function calcularTest(t) {
     t = t || {};
-    const estD = fuerzaEstimada(t.load, t.repsD);
-    const estI = fuerzaEstimada(t.load, t.repsI);
+    const estD = fuerzaEstimada(t.loadD, t.repsD);
+    const estI = fuerzaEstimada(t.loadI, t.repsI);
     const sim = simetria(estD, estI);
-    return { estD, estI, sim, pct: simetriaPct(sim), ok: llega90(sim) };
+    const aviso = [t.repsD, t.repsI].some((r) => esNum(r) && r > 15)
+      ? 'Estimación poco precisa; sube el peso en el siguiente test.' : '';
+    return { estD, estI, sim, pct: simetriaPct(sim), ok: llega90(sim), aviso };
   }
 
   /* Progresión real ---------------------------------------------------------

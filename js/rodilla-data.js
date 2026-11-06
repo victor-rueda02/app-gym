@@ -59,6 +59,11 @@ const RODILLA_DATA = (() => {
     tests: con('test').map(({ r, app }) => ({
       clave: app.test, nombre: t(`A${r}`), fecha: LectorXlsx.fecha(v(`D${r}`)), rango: t(`E${r}`), fila: r,
     })),
+    // Pruebas orientativas (etiqueta «prueba»): datos fijos de la hoja, no cuentan como test.
+    pruebas: con('prueba').map(({ r }) => ({
+      nombre: t(`A${r}`), fecha: LectorXlsx.fecha(v(`D${r}`)), loadD: v(`F${r}`), repsD: v(`G${r}`),
+      loadI: v(`H${r}`), repsI: v(`I${r}`), notas: t(`Q${r}`), fila: r,
+    })),
     // Escalones de profundidad: clave en Store.knee().depth.
     escalones: con('escalon').map(({ r, app }) => ({ clave: app.escalon, nombre: t(`A${r}`), fila: r })),
   };

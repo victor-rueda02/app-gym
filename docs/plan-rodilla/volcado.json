@@ -1042,7 +1042,7 @@
    "v": "Opcional:\nrango completo"
   },
   "K41": {
-   "v": "Test 1 → vie 6/11 (S3): en S2 no se hizo (analítica). Al empezar la sesión, tras la española 2-3×45 s y 2 series de aproximación. Mismo asiento y SIEMPRE rango fijo 90→45° (si el rango cambia, la comparación entre semanas no vale). Misma carga en las dos piernas (la que la I haga unas 10-15 reps), tempo 2-0-2, D primero, 3 min de descanso y luego la I; para si pasa de 3/10. Apunta carga y reps en «Seguimiento rodilla», que calcula la simetría. Objetivo ≥90% antes del balón [LÓGICA; el 90% viene de la vuelta al deporte tras LCA, no está validado en dolor femoropatelar: INCERTIDUMBRE]. Test en rango completo opcional en S8 y no en S7, para que sea la única novedad de su semana."
+   "v": "Test 1 → vie 6/11 (S3): en S2 solo hubo una prueba orientativa (30/10). Al empezar la sesión, tras la española 2-3×45 s y 2 series de aproximación. Mismo asiento y SIEMPRE rango fijo 90→45° (si el rango cambia, la comparación entre semanas no vale). Cada pierna lleva su propio peso, buscando 10-12 reps al fallo técnico (orientativo: D ~30 kg, I ~40 kg); tempo 2-0-2, D primero, 3 min de descanso y luego la I; para si la D pasa de 3/10. Apunta carga y reps de cada pierna en «Seguimiento rodilla», que calcula la simetría. Objetivo ≥90% antes del balón [LÓGICA; el 90% viene de la vuelta al deporte tras LCA, no está validado en dolor femoropatelar: INCERTIDUMBRE]. Test en rango completo opcional en S8 y no en S7, para que sea la única novedad de su semana."
   },
   "L41": {
    "v": "id=test-fuerza-extension-unilateral-en-maquina-90-45"
@@ -5657,218 +5657,271 @@
    "v": "Rango"
   },
   "F96": {
-   "v": "Carga (kg)"
+   "v": "Carga D (kg)"
   },
   "G96": {
    "v": "Reps D"
   },
   "H96": {
-   "v": "Reps I"
+   "v": "Carga I (kg)"
   },
   "I96": {
-   "v": "Fuerza est. D"
+   "v": "Reps I"
   },
   "J96": {
-   "v": "Fuerza est. I"
+   "v": "e1RM D"
   },
   "K96": {
-   "v": "Simetría D/I"
+   "v": "e1RM I"
   },
   "L96": {
-   "v": "¿≥90%?"
+   "v": "Simetría D/I"
   },
   "M96": {
+   "v": "¿≥90%?"
+  },
+  "N96": {
+   "v": "Dolor máx. D (0-10)"
+  },
+  "O96": {
+   "v": "Asiento / rodillo"
+  },
+  "Q96": {
    "v": "Notas"
   },
   "A97": {
-   "v": "Test 1 (S3)"
+   "v": "Prueba (S2) · orientativa"
   },
   "D97": {
-   "v": "2026-11-06T00:00:00",
-   "f": "2026-11-06 00:00:00"
+   "v": "2026-10-30T00:00:00",
+   "f": "2026-10-30 00:00:00"
   },
   "E97": {
-   "v": "90→45°"
+   "v": "—"
+  },
+  "F97": {
+   "v": 22.5
+  },
+  "G97": {
+   "v": 26
+  },
+  "H97": {
+   "v": 32.5
   },
   "I97": {
-   "v": null,
-   "f": "=IF(OR(F97=\"\",G97=\"\"),\"\",ROUND(F97*(1+G97/30),1))"
+   "v": 22
   },
   "J97": {
    "v": null,
-   "f": "=IF(OR(F97=\"\",H97=\"\"),\"\",ROUND(F97*(1+H97/30),1))"
+   "f": "=IF(OR(F97=\"\",G97=\"\"),\"\",ROUND(F97*(1+G97/30),1))"
   },
   "K97": {
    "v": null,
-   "f": "=IF(OR(I97=\"\",J97=\"\"),\"\",I97/J97)"
+   "f": "=IF(OR(H97=\"\",I97=\"\"),\"\",ROUND(H97*(1+I97/30),1))"
   },
   "L97": {
    "v": null,
-   "f": "=IF(K97=\"\",\"\",IF(K97>=0.9,\"Sí\",\"No\"))"
+   "f": "=IF(OR(J97=\"\",K97=\"\"),\"\",J97/K97)"
   },
   "M97": {
-   "v": "Test 1 real: vie 6/11 (en S2 no se hizo: analítica)"
+   "v": null,
+   "f": "=IF(L97=\"\",\"\",IF(L97>=0.9,\"Sí\",\"No\"))"
+  },
+  "Q97": {
+   "v": "No cuenta como Test 1."
   },
   "R97": {
-   "v": "test=t1"
+   "v": "prueba"
   },
   "A98": {
-   "v": "Test 2 (S5)"
+   "v": "Test 1 (S3)"
   },
   "D98": {
-   "v": "2026-11-20T00:00:00",
-   "f": "2026-11-20 00:00:00"
+   "v": "2026-11-06T00:00:00",
+   "f": "2026-11-06 00:00:00"
   },
   "E98": {
    "v": "90→45°"
   },
-  "I98": {
+  "J98": {
    "v": null,
    "f": "=IF(OR(F98=\"\",G98=\"\"),\"\",ROUND(F98*(1+G98/30),1))"
   },
-  "J98": {
-   "v": null,
-   "f": "=IF(OR(F98=\"\",H98=\"\"),\"\",ROUND(F98*(1+H98/30),1))"
-  },
   "K98": {
    "v": null,
-   "f": "=IF(OR(I98=\"\",J98=\"\"),\"\",I98/J98)"
+   "f": "=IF(OR(H98=\"\",I98=\"\"),\"\",ROUND(H98*(1+I98/30),1))"
   },
   "L98": {
    "v": null,
-   "f": "=IF(K98=\"\",\"\",IF(K98>=0.9,\"Sí\",\"No\"))"
+   "f": "=IF(OR(J98=\"\",K98=\"\"),\"\",J98/K98)"
+  },
+  "M98": {
+   "v": null,
+   "f": "=IF(L98=\"\",\"\",IF(L98>=0.9,\"Sí\",\"No\"))"
+  },
+  "Q98": {
+   "v": "Test 1 real: vie 6/11 (en S2 solo hubo una prueba orientativa)"
   },
   "R98": {
-   "v": "test=t2"
+   "v": "test=t1"
   },
   "A99": {
-   "v": "Test 3 (S7)"
+   "v": "Test 2 (S5)"
   },
   "D99": {
-   "v": "2026-12-04T00:00:00",
-   "f": "2026-12-04 00:00:00"
+   "v": "2026-11-20T00:00:00",
+   "f": "2026-11-20 00:00:00"
   },
   "E99": {
    "v": "90→45°"
   },
-  "I99": {
+  "J99": {
    "v": null,
    "f": "=IF(OR(F99=\"\",G99=\"\"),\"\",ROUND(F99*(1+G99/30),1))"
   },
-  "J99": {
-   "v": null,
-   "f": "=IF(OR(F99=\"\",H99=\"\"),\"\",ROUND(F99*(1+H99/30),1))"
-  },
   "K99": {
    "v": null,
-   "f": "=IF(OR(I99=\"\",J99=\"\"),\"\",I99/J99)"
+   "f": "=IF(OR(H99=\"\",I99=\"\"),\"\",ROUND(H99*(1+I99/30),1))"
   },
   "L99": {
    "v": null,
-   "f": "=IF(K99=\"\",\"\",IF(K99>=0.9,\"Sí\",\"No\"))"
+   "f": "=IF(OR(J99=\"\",K99=\"\"),\"\",J99/K99)"
+  },
+  "M99": {
+   "v": null,
+   "f": "=IF(L99=\"\",\"\",IF(L99>=0.9,\"Sí\",\"No\"))"
   },
   "R99": {
-   "v": "test=t3"
+   "v": "test=t2"
   },
   "A100": {
-   "v": "Opcional (S8)"
+   "v": "Test 3 (S7)"
   },
   "D100": {
-   "v": "2026-12-11T00:00:00",
-   "f": "2026-12-11 00:00:00"
+   "v": "2026-12-04T00:00:00",
+   "f": "2026-12-04 00:00:00"
   },
   "E100": {
-   "v": "completo"
-  },
-  "I100": {
-   "v": null,
-   "f": "=IF(OR(F100=\"\",G100=\"\"),\"\",ROUND(F100*(1+G100/30),1))"
+   "v": "90→45°"
   },
   "J100": {
    "v": null,
-   "f": "=IF(OR(F100=\"\",H100=\"\"),\"\",ROUND(F100*(1+H100/30),1))"
+   "f": "=IF(OR(F100=\"\",G100=\"\"),\"\",ROUND(F100*(1+G100/30),1))"
   },
   "K100": {
    "v": null,
-   "f": "=IF(OR(I100=\"\",J100=\"\"),\"\",I100/J100)"
+   "f": "=IF(OR(H100=\"\",I100=\"\"),\"\",ROUND(H100*(1+I100/30),1))"
   },
   "L100": {
    "v": null,
-   "f": "=IF(K100=\"\",\"\",IF(K100>=0.9,\"Sí\",\"No\"))"
+   "f": "=IF(OR(J100=\"\",K100=\"\"),\"\",J100/K100)"
+  },
+  "M100": {
+   "v": null,
+   "f": "=IF(L100=\"\",\"\",IF(L100>=0.9,\"Sí\",\"No\"))"
   },
   "R100": {
-   "v": "test=t4"
+   "v": "test=t3"
   },
   "A101": {
-   "v": "Fuerza estimada = carga × (1 + reps/30) (fórmula de Epley; pierde precisión por encima de ~10 reps) [LÓGICA]. Misma carga en las dos piernas, D primero, tempo 2-0-2, al fallo técnico o hasta 3/10. Criterio antes del balón: simetría ≥90% [LÓGICA; viene de la vuelta al deporte tras LCA, no validado en dolor femoropatelar: INCERTIDUMBRE]. El test 1 marca la referencia: la comparación entre semanas solo vale con el mismo rango."
+   "v": "Opcional (S8)"
+  },
+  "D101": {
+   "v": "2026-12-11T00:00:00",
+   "f": "2026-12-11 00:00:00"
+  },
+  "E101": {
+   "v": "completo"
+  },
+  "J101": {
+   "v": null,
+   "f": "=IF(OR(F101=\"\",G101=\"\"),\"\",ROUND(F101*(1+G101/30),1))"
+  },
+  "K101": {
+   "v": null,
+   "f": "=IF(OR(H101=\"\",I101=\"\"),\"\",ROUND(H101*(1+I101/30),1))"
+  },
+  "L101": {
+   "v": null,
+   "f": "=IF(OR(J101=\"\",K101=\"\"),\"\",J101/K101)"
+  },
+  "M101": {
+   "v": null,
+   "f": "=IF(L101=\"\",\"\",IF(L101>=0.9,\"Sí\",\"No\"))"
   },
   "R101": {
+   "v": "test=t4"
+  },
+  "A102": {
+   "v": "e1RM (fuerza estimada) = carga × (1 + reps/30), cada pierna con su carga (fórmula de Epley; pierde precisión por encima de ~10 reps y con más de 15 hay que subir el peso en el siguiente test) [LÓGICA]. Simetría = e1RM D / e1RM I. Cada pierna lleva su propio peso, buscando 10-12 reps al fallo técnico (orientativo: D ~30 kg, I ~40 kg); tempo 2-0-2, rango fijo 90→45°, D primero, 3 min y luego la I; se para si la D pasa de 3/10. Criterio antes del balón: simetría ≥90% [LÓGICA; viene de la vuelta al deporte tras LCA, no validado en dolor femoropatelar: INCERTIDUMBRE]. El test 1 marca la referencia: la comparación entre semanas solo vale con el mismo rango."
+  },
+  "R102": {
    "v": "texto=fuerza"
   },
-  "A103": {
+  "A104": {
    "v": "Escalones de profundidad de la D (0 = la que usas ahora · 4 = la de la I)"
   },
-  "R103": {
+  "R104": {
    "v": "titulo=escalones"
   },
-  "A104": {
+  "A105": {
    "v": "Escalón"
   },
-  "D104": {
+  "D105": {
    "v": "Ángulo aprox. de rodilla (opcional)"
   },
-  "E104": {
+  "E105": {
    "v": "Prensa (marca)"
   },
-  "F104": {
+  "F105": {
    "v": "Cajón / pines"
   },
-  "G104": {
+  "G105": {
    "v": "Búlgara (apoyo)"
   },
-  "I104": {
+  "I105": {
    "v": "Touchdown (plataforma)"
   },
-  "K104": {
+  "K105": {
    "v": "Validado en"
   },
-  "M104": {
+  "M105": {
    "v": "Notas"
   },
-  "A105": {
+  "A106": {
    "v": "0 (actual)"
   },
-  "R105": {
+  "R106": {
    "v": "escalon=0"
   },
-  "A106": {
+  "A107": {
    "v": "1"
   },
-  "R106": {
+  "R107": {
    "v": "escalon=1"
   },
-  "A107": {
+  "A108": {
    "v": "2"
   },
-  "R107": {
+  "R108": {
    "v": "escalon=2"
   },
-  "A108": {
+  "A109": {
    "v": "3"
   },
-  "R108": {
+  "R109": {
    "v": "escalon=3"
   },
-  "A109": {
+  "A110": {
    "v": "4 (= I)"
   },
-  "R109": {
+  "R110": {
    "v": "escalon=4"
   },
-  "A110": {
+  "A111": {
    "v": "Reparte la diferencia entre la D y la I en 4 partes iguales (como mucho ~15° cada una; si sale más, se termina después del bloque). El ángulo se puede medir con una app de goniómetro. Se sube solo los lunes de S4, S6 y S7 (el 4.º escalón, el lunes de S8 si S6-S7 cumplieron; si no, después del viaje), en la prensa y si esa mañana estás igual o mejor [LÓGICA]. La touchdown del lunes va a la profundidad ya validada (la de la semana anterior) y hace de filtro; el viernes usa la profundidad nueva validada el lunes."
   },
-  "R110": {
+  "R111": {
    "v": "texto=escalones"
   }
  }

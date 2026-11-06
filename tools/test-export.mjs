@@ -157,7 +157,7 @@ const KNEE = {
     S2: { walkPain: 'No', walkBack60: 'Sí', tdPain: 'Sí', hopsPain: 'Sí', notes: 'primero' },
     S3: { walkPain: 'Sí', walkBack60: 'Sí', tdPain: 'No', notes: 'ok' },
   },
-  tests: { t1: { load: 80, repsD: 8, repsI: 9, notes: 't1' }, t4: { load: 100.5, repsD: 5, repsI: 5 } },
+  tests: { t1: { loadD: 60, repsD: 8, loadI: 80, repsI: 9, painD: 2, seat: 'asiento 4', notes: 't1' }, t4: { loadD: 100.5, repsD: 5, loadI: 110, repsI: 5 } },
   depth: { 0: { angle: 30, press: 40, box: 10, split: 12, touchdown: 'Sí', validated: 'Sí', notes: 'e0' }, 4: { angle: 90, notes: 'e4' } },
 };
 
@@ -170,8 +170,8 @@ const SC = {
   I72: 'N1', K72: 0, M72: 'sem 2', I80: 'Sin entrar', K80: 4, M80: 'fin',
   D89: 'Sí', E89: 'Sí', D90: 'No', I89: 'ok', G89: 46329,   // martes 3/11
 
-  F97: 80, G97: 8, H97: 9, M97: 't1', F100: 100.5, G100: 5, H100: 5,
-  D105: 30, E105: 40, F105: 10, G105: 12, I105: 'Sí', K105: 'Sí', M105: 'e0', D109: 90, M109: 'e4',
+  F98: 60, G98: 8, H98: 80, I98: 9, N98: 2, O98: 'asiento 4', Q98: 't1', F101: 100.5, G101: 5, H101: 110, I101: 5,
+  D106: 30, E106: 40, F106: 10, G106: 12, I106: 'Sí', K106: 'Sí', M106: 'e0', D110: 90, M110: 'e4',
 };
 
 const mapa = kneeCells(KNEE);

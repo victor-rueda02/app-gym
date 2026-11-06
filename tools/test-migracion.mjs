@@ -84,7 +84,7 @@ await page.waitForFunction(() => document.querySelectorAll('.ex').length > 0);
 
 const tras = await page.evaluate(() => JSON.parse(localStorage.getItem('gym.log.v1')));
 
-check('El registro se marca con la versión nueva', tras.v === 4, `v=${tras.v}`);
+check('El registro se marca con la versión nueva', tras.v === 5, `v=${tras.v}`);
 check('Lunes: laterales -> laterales-de-pie',
   !!tras.days['2026-07-20'].entries['laterales-de-pie']
   && !tras.days['2026-07-20'].entries.laterales,
@@ -180,7 +180,7 @@ await page3.goto('http://localhost:8125/index.html');
 await page3.waitForFunction(() => document.querySelectorAll('.ex').length > 0 || document.querySelector('.empty'));
 const t3 = await page3.evaluate(() => JSON.parse(localStorage.getItem('gym.log.v1')));
 const k3 = (d) => Object.keys(t3.days[d].entries).sort().join(', ');
-check('v4 · versión 4 y registro de rodilla creado', t3.v === 4 && !!t3.knee);
+check('v4 · versión nueva y registro de rodilla creado', t3.v === 5 && !!t3.knee);
 check('v4 · lunes: abducción y prensa renombradas',
   k3('2026-10-19') === 'abduccion-de-pie-unilateral-maquina, prensa-unil-pesado-y-lento-n-1', k3('2026-10-19'));
 check('v4 · jueves: abducción y sentadilla renombradas',

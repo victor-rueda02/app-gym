@@ -76,7 +76,7 @@ const KNEE_WEEK_COLS = { runLevelText: 'I', depthStep: 'K', notes: 'M' };
 const KNEE_ENTRY_CELLS = {   // [criterio, columna]
   walkPain: ['walk', 'D'], walkBack60: ['walk', 'E'], tdPain: ['touchdown', 'D'], hopsPain: ['hops', 'D'], notes: ['walk', 'I'],
 };
-const KNEE_TEST_COLS = { load: 'F', repsD: 'G', repsI: 'H', notes: 'M' };
+const KNEE_TEST_COLS = { loadD: 'F', repsD: 'G', loadI: 'H', repsI: 'I', painD: 'N', seat: 'O', notes: 'Q' };
 const KNEE_DEPTH_COLS = {
   angle: 'D', press: 'E', box: 'F', split: 'G', touchdown: 'I', validated: 'K', notes: 'M',
 };

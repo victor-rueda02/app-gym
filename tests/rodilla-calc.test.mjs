@@ -178,9 +178,17 @@ test('test de fuerza: Epley, simetría y borde del 90 %', () => {
   assert.equal(C.llega90(C.simetria(63, 70)), 'Sí');
   assert.equal(C.llega90(C.simetria(62.9, 70)), 'No');
   assert.equal(C.simetriaPct(C.simetria(63, 70)), 90);
-  const t2 = C.calcularTest({ load: 50, repsD: 6, repsI: 12 });
-  assert.deepEqual([t2.estD, t2.pct, t2.ok], [60, 85.7, 'No']);
+  const t2 = C.calcularTest({ loadD: 50, loadI: 50, repsD: 6, repsI: 12 });
+  assert.deepEqual([t2.estD, t2.pct, t2.ok, t2.aviso], [60, 85.7, 'No', '']);
   assert.equal(C.calcularTest({}).ok, '');
+  // Una carga por pierna: la prueba del 30/10.
+  const p = C.calcularTest({ loadD: 22.5, repsD: 26, loadI: 32.5, repsI: 22 });
+  assert.deepEqual([p.estD, p.estI, p.pct, p.ok], [42, 56.3, 74.6, 'No']);
+  assert.equal(C.calcularTest({ loadD: 30, repsD: 10 }).estI, '');
+  // Aviso con más de 15 reps en una pierna; 15 justas, no.
+  assert.match(p.aviso, /poco precisa/);
+  assert.match(C.calcularTest({ repsD: 10, repsI: 16 }).aviso, /sube el peso/);
+  assert.equal(C.calcularTest({ repsD: 15, repsI: 15 }).aviso, '');
 });
 
 /* Progresión real (puntos 5, 6, 7 y 8 de la revisión). */
@@ -374,6 +382,9 @@ test('RODILLA_DATA: 63 días del 26/10 al 27/12 con D/E/F del volcado', () => {
   assert.deepEqual(DATA.reglas, { gimnasio: G, carrera: R, ninguna: N });
   assert.deepEqual(DATA.entrada.map((e) => e.dia), ['martes', 'miércoles', 'miércoles']);
   assert.equal(DATA.tests.length, 4);
+  // La prueba del 30/10 va aparte: no es ningún test.
+  assert.deepEqual(DATA.pruebas.map((x) => [x.fecha, x.loadD, x.repsD, x.loadI, x.repsI]), [['2026-10-30', 22.5, 26, 32.5, 22]]);
+  assert.deepEqual(DATA.tests.map((x) => x.fecha), ['2026-11-06', '2026-11-20', '2026-12-04', '2026-12-11']);
   assert.equal(DATA.escalones.length, 5);
   assert.ok(!/columna|celda/i.test(DATA.textos.ayuda), 'la ayuda de la app no habla del Excel');
 
@@ -386,9 +397,9 @@ test('RODILLA_DATA: 63 días del 26/10 al 27/12 con D/E/F del volcado', () => {
     assert.equal(h['F' + r].v, d.novedad, 'novedad ' + d.fecha);
   });
   assert.equal(h.A84.v, DATA.textos.resumen);
-  assert.equal(h.A101.v, DATA.textos.fuerza); assert.equal(h.A110.v, DATA.textos.escalones);
+  assert.equal(h.A102.v, DATA.textos.fuerza); assert.equal(h.A111.v, DATA.textos.escalones);
   DATA.entrada.forEach((e, i) => assert.equal(h['A' + (89 + i)].v, e.texto));
-  DATA.tests.forEach((t, i) => { assert.equal(h['A' + (97 + i)].v, t.nombre); assert.equal(String(h['D' + (97 + i)].v).slice(0, 10), t.fecha); });
+  DATA.tests.forEach((t) => { assert.equal(h['A' + t.fila].v, t.nombre); assert.equal(String(h['D' + t.fila].v).slice(0, 10), t.fecha); });
 });
 
 console.log(fallos ? `\n${fallos} fallo(s)` : '\nTodo bien');

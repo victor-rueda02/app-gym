@@ -77,9 +77,9 @@ test('aviso S4: umbral de ±0,5 sobre las medias redondeadas, desde el 15/11 y c
 });
 
 test('test de fuerza: estimadas redondeadas a un decimal, simetría y ≥90 %', () => {
-  const t = C.calcularTest({ load: 30, repsD: 33, repsI: 40 });
+  const t = C.calcularTest({ loadD: 30, loadI: 30, repsD: 33, repsI: 40 });
   eq([t.estD, t.estI, t.ok], [63, 70, 'Sí']);
-  eq(C.calcularTest({ load: 30, repsD: 32, repsI: 40 }).ok, 'No');
+  eq(C.calcularTest({ loadD: 30, loadI: 30, repsD: 32, repsI: 40 }).ok, 'No');
 });
 
 /* ---------- 2. Contraste con las fórmulas reales del Excel ---------- */
@@ -116,8 +116,8 @@ const KNEE = {
   },
   entry: { S2: { walkPain: 'Sí', walkBack60: 'Sí', tdPain: 'No', hopsPain: 'Sí' } },
   tests: {
-    t1: { load: 80, repsD: 8, repsI: 9 }, t2: { load: 30, repsD: 33, repsI: 40 },
-    t3: { load: 50, repsD: 6 }, t4: { load: 30, repsD: 32, repsI: 40 },
+    t1: { loadD: 60, repsD: 8, loadI: 80, repsI: 9 }, t2: { loadD: 30, repsD: 33, loadI: 30, repsI: 40 },
+    t3: { loadD: 50, repsD: 6 }, t4: { loadD: 30, repsD: 32, loadI: 30, repsI: 40 },
   },
 };
 
@@ -178,7 +178,7 @@ test('contraste con las fórmulas del Excel (evaluadas con «formulas»)', () =>
   exp[`H${fe('hops')}`] = e.c3; exp[`H${D.filaEntradaResultado}`] = e.texto;
   D.tests.forEach(({ fila: r }, i) => {
     const t = C.calcularTest(KNEE.tests['t' + (i + 1)]);
-    exp['I' + r] = t.estD; exp['J' + r] = t.estI; exp['K' + r] = t.sim; exp['L' + r] = t.ok;
+    exp['J' + r] = t.estD; exp['K' + r] = t.estI; exp['L' + r] = t.sim; exp['M' + r] = t.ok;
   });
 
   // Tabla de series por grupo (hoja Volumen), sin fórmulas matriciales: 52 -> 88.

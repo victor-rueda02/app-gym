@@ -4,7 +4,7 @@
    (o `python tools/excel_app.py --solo-cache` tras tocar código), y al cambiar, el móvil
    descarga la versión nueva. */
 
-const CACHE = 'gym-dea6b73d';
+const CACHE = 'gym-f963b35c';
 const ASSETS = [
   './',
   './index.html',
