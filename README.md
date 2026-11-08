@@ -99,6 +99,13 @@ de inicio**. Se abre a pantalla completa, sin barra del navegador.
   fecha elegida. Arriba se cambia al otro plan. En el de volumen, los hitos de
   la semana y el botón **Reglas del bloque** (las 12 reglas del plan rodilla,
   con sus etiquetas [EVIDENCIA], [LÓGICA] e [INCERTIDUMBRE]).
+  - *Semana sin viernes* (desde S3): interruptor por semana para cuando el
+    viernes no se puede entrenar. Esa semana la pierna 2 pasa al jueves, el pull
+    al miércoles (detrás de la carrera), el pull-in del lunes al miércoles
+    (detrás del jalón ancho) y el viernes queda libre; las series no cambian.
+    Rodilla evalúa y progresa con el jueves, y la exportación lo escribe así en
+    `Seguimiento rodilla`. Si era el estreno de la bici (S4), pasa a la primera
+    bici de la semana siguiente. Se guarda en el registro (`sinViernes`).
 - **Rodilla** — el seguimiento diario del 26/10 al 27/12: pruebas de la mañana,
   dolor durante, nivel previo en ≤60 min (carrera) y chasquido; calcula 24 h,
   48 h, peor 24-48 h y el semáforo (Avanzar / Mantener / Retroceder; solo en los

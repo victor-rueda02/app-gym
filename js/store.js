@@ -41,7 +41,7 @@ async function idbGet() {
 
 /* Estructura:
    { v, days: { "2026-07-20": { sessionId, notes, entries: { exId: [ {kg,reps,secs,rir,mins,side} ] } } },
-     knee: { days, weeks, entry, tests, depth } }
+     knee: { days, weeks, entry, tests, depth }, sinViernes?: [4, …] }
    `side` ('D' | 'I' | '') solo se usa en los unilaterales desde la semana 2 del plan de volumen.
    `knee` es el registro de la pestaña Rodilla (ver KNEE_SECCIONES y setKnee). */
 const VERSION = 5;
@@ -265,6 +265,17 @@ function setKnee(section, key, field, value) {
   persist();
 }
 
+/* Semanas sin viernes: `sinViernes` = números de las semanas del plan de volumen en las que no
+   se entrena el viernes (interruptor de Plan › semana; ver «Semana sin viernes» en js/plan.js).
+   No existe hasta que se activa una semana. */
+const semanasSinViernes = () => ((cache && Array.isArray(cache.sinViernes)) ? cache.sinViernes : []);
+
+function setSinViernes(n, on) {
+  const resto = semanasSinViernes().filter((x) => x !== n);
+  cache.sinViernes = on ? [...resto, n].sort((a, b) => a - b) : resto;
+  persist();
+}
+
 function importAll(data) {
   if (!data || typeof data !== 'object' || !data.days) throw new Error('Formato no válido');
   cache = migrate(data);   // una copia antigua puede venir de antes de un renombrado
@@ -273,5 +284,8 @@ function importAll(data) {
 
 const Store = {
   init, all, day, setSession, sets, saveSets, setNotes, lastPerformance, importAll,
-  knee, setKnee,
+  knee, setKnee, semanasSinViernes, setSinViernes,
 };
+
+// El plan lee de aquí qué semanas van sin viernes.
+if (typeof PLAN !== 'undefined') PLAN.setFuenteSinViernes(semanasSinViernes);

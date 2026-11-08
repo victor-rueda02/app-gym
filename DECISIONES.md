@@ -401,3 +401,26 @@ Sustituyen a los puntos anteriores donde se contradicen (30, 35, 41 y 42).
 73. **Aviso con más de 15 reps.** La app avisa en cada test, y en la prueba, si una pierna
     pasa de 15 («estimación poco precisa; sube el peso en el siguiente test»). En el Excel
     solo va en la nota de debajo de la tabla: un aviso por fila necesitaría otra columna.
+
+## Semana sin viernes (8/11)
+
+74. **Interruptor por semana, no un cambio del plan.** Plan › semana (desde S3) lleva un
+    interruptor «Semana sin viernes». No toca el Excel: la app recoloca esa semana al
+    construirla (`js/plan.js`, «Semana sin viernes») y guarda las semanas activadas en el
+    registro (`sinViernes: [4, …]`, que solo existe si se activa alguna; no cambia la versión).
+75. **Qué se mueve.** La pierna 2 (con su bici) pasa al jueves: 72 h tras la pierna 1 y 72 h
+    antes de la carrera del domingo. El pull pasa al miércoles detrás de la carrera (no carga
+    la rodilla). El pull-in del lunes (2 series) pasa al miércoles detrás del jalón ancho, en
+    el mismo plano frontal: el lunes se queda con 3-4 series de espalda y aguanta las 48 h
+    hasta el miércoles. Las series y el reparto por planos de la semana no cambian. El
+    viernes queda «Libre». Lo ya registrado en un día sigue saliendo ese día.
+76. **Rodilla.** Esa semana el jueves lleva la sesión, la regla de gimnasio y la novedad del
+    viernes, y el viernes pasa a «—». La progresión busca la pierna 2 en el jueves (sesiones
+    decisivas, dolor durante, validación de novedades) y el test de ese viernes se ve en
+    jueves. La exportación escribe esas celdas (D/E/F) en `Seguimiento rodilla`, salvo lo
+    editado a mano. La mañana del viernes (48 h de la carrera) llega tras la pierna: un fallo
+    ahí se atribuye a la última novedad sin validar, que suele ser la carrera.
+77. **Bici de S4.** No se estrena el jueves (24 h tras la carrera habría dos novedades sin
+    validar): entra en la primera bici de la semana siguiente (el martes de S5), que lleva
+    «nov: 1.ª vez». Para elegir la novedad culpable se ordenan ahora por fecha, no por orden
+    de cálculo (con la bici en martes, se calcula después de la carrera del miércoles).

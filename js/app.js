@@ -463,6 +463,31 @@ function stopwatch(pres, date, exId) {
 }
 
 /* --- Plan ------------------------------------------------------------------ */
+
+/* Interruptor «Semana sin viernes» de una semana del plan de volumen (ver js/plan.js). */
+function sinViernesCard(week) {
+  const on = PLAN.sinViernes(week.n);
+  const card = el(`
+    <div class="card sinv">
+      <div style="display:flex;align-items:center;gap:12px">
+        <div class="grow" style="flex:1">
+          <h2 style="margin:0">Semana sin viernes</h2>
+          <p style="margin-top:4px">${on
+    ? 'Activada: pierna 2 el jueves, pull el miércoles tras la carrera y el pull-in del lunes al miércoles. El viernes, libre.'
+    : 'Si el viernes no puedes entrenar: pierna 2 al jueves, pull al miércoles (tras la carrera) y el pull-in del lunes al miércoles.'}</p>
+        </div>
+        <button type="button" role="switch" aria-checked="${on}" aria-label="Semana sin viernes"
+                class="btn ${on ? '' : 'line'}" style="width:auto;flex-shrink:0;height:40px;margin:0;padding:0 16px;font-size:14px">${on ? 'Activada' : 'Activar'}</button>
+      </div>
+    </div>`);
+  card.querySelector('button').addEventListener('click', () => {
+    Store.setSinViernes(week.n, !on);
+    toast(on ? `S${week.n}: vuelve el viernes` : `S${week.n}: semana sin viernes`);
+    render();
+  });
+  return card;
+}
+
 function renderPlan() {
   const plan = PLAN.planById(state.planId) || PLAN.planFor(state.date);
   const current = PLAN.weekFor(state.date);
@@ -501,6 +526,8 @@ function renderPlan() {
       ${week.plan === 'vol' && week.n >= 2 ? `<p style="margin-top:6px">Rehab y carrera: el plan marca el
         máximo de la semana; lo que toca según tu progreso está en Hoy y en Rodilla › Progresión.</p>` : ''}
     </div>`));
+
+  if (week.plan === 'vol' && PLAN.admiteSinViernes(week.n)) view.appendChild(sinViernesCard(week));
 
   if (week.plan === 'vol') {
     const hitos = hitosCard(week);

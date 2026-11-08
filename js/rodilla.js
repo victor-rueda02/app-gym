@@ -36,10 +36,15 @@ const Rodilla = (() => {
   const val = (v) => (v === undefined || v === null ? '' : esc(String(v).replace('.', ',')));
   const knee = () => Store.knee();
   const hoy = () => PLAN.isoDate(new Date());
-  const tabla = () => C.tablaDias(D.dias, knee().days);
+  const tabla = () => C.tablaDias(D.dias, knee().days, PLAN);   // con las semanas sin viernes recolocadas
   const fila = (fecha) => tabla().find((f) => f.fecha === fecha);
   const prog = () => C.progresion(tabla(), PLAN, knee().weeks, knee().entry, hoy());
   const enRango = (f) => f >= D.desde && f <= D.hasta;
+  // Fecha en que se hace un test del viernes: el jueves si esa semana va sin viernes.
+  const fechaTest = (f) => {
+    const w = PLAN.weekFor(f);
+    return w && w.plan === 'vol' && PLAN.letraDe(f) === 'V' && PLAN.sinViernes(w.n) ? C.sumarDias(f, -1) : f;
+  };
   const clamp = (f) => (f < D.desde ? D.desde : f > D.hasta ? D.hasta : f);
   const texto = (t) => (typeof Reglas !== 'undefined' && Reglas.marcarEtiquetas ? Reglas.marcarEtiquetas(t) : esc(t));
 
@@ -389,7 +394,7 @@ const Rodilla = (() => {
       const r = knee().tests[t.clave] || {};
       root.appendChild(el(`
         <div class="card" data-test="${t.clave}"><h2>${esc(t.nombre)}</h2>
-          <p>${esc(fmtDate(t.fecha))} · ${esc(t.rango)}</p>
+          <p>${esc(fmtDate(fechaTest(t.fecha)))} · ${esc(t.rango)}${fechaTest(t.fecha) !== t.fecha ? ' · semana sin viernes' : ''}</p>
           <div class="rod-grid2">
             ${campoTxt('Carga D (kg)', 'tests', t.clave, 'loadD', r.loadD, { num: 'decimal', kind: 'carga' })}
             ${campoTxt('Reps D', 'tests', t.clave, 'repsD', r.repsD, { num: 'numeric', kind: 'reps' })}
@@ -484,7 +489,8 @@ const Rodilla = (() => {
     p.brotes.filter((b) => b.fecha >= C.sumarDias(date, -3) && b.fecha <= date)
       .forEach((b) => avisos.push(`Brote (${b.motivo}): ${BROTE}`));
     const q = C.biciQuitada(p.bici, date);
-    if (q && PLAN.ESCALERAS.bici.dias.includes(plan.dia)) avisos.push(`Sin bici: ${q.motivo}.`);
+    const nSem = +plan.sem.slice(1);
+    if (q && PLAN.ESCALERAS.bici.dias.map((d) => PLAN.diaSinViernes(nSem, d)).includes(plan.dia)) avisos.push(`Sin bici: ${q.motivo}.`);
     const semana = p.semanas[plan.sem];
     // La entrada a la carrera se registra el día del paseo (el anterior a la carrera) y el de la carrera.
     const diaCarrera = PLAN.ESCALERAS.carrera.dia;
@@ -520,7 +526,14 @@ const Rodilla = (() => {
     const semana = p.semanas[`S${week.n}`];
     if (exercise.prog === 'bici') {
       const q = semana && date && C.biciQuitada(p.bici, date);
-      if (!q || PLAN.presFor(exercise, week).skip) return null;
+      const delPlan = PLAN.presFor(exercise, week);
+      // Entrada de la bici movida por una semana sin viernes: hoy es su 1.ª vez.
+      const e = PLAN.entradaBici();
+      if (!q && e && e.movida && date && !delPlan.skip && e.semana === week.n
+        && PLAN.letraDe(date) === e.dia) {
+        return { ...delPlan, label: `${delPlan.label}\nnov: 1.ª vez (pasa de S${e.de}, que fue sin viernes)` };
+      }
+      if (!q || delPlan.skip) return null;
       return { sets: 0, kind: 'none', label: 'Sin bici\n(quitada)', motivo: `Bici quitada: ${q.motivo}. ${BROTE}` };
     }
     const pres = C.prescripcion(exercise, semana, PLAN, week.n);

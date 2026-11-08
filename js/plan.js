@@ -510,6 +510,91 @@ const VOL_WEEKS = SEMANAS.semanas;
 const SEMANA_SEGUIMIENTO = SEMANAS.seguimiento;   // primera semana con seguimiento (S2): la de referencia
 const { PRENSA_NIVELES, PRENSA_MAX, PRENSA_SEMANA, CARRERA_NIVELES, CARRERA_MAX, ESCALERAS } = construirEscaleras(BLOCK_VOL, SEMANA_SEGUIMIENTO);
 const SESIONES_SEMANA = VOL_WEEKS.map((w) => sesionesDeSemana(VOLUMEN, w.n));   // las sesiones de cada semana, por día
+
+/* Semana sin viernes ---------------------------------------------------------------
+   Interruptor por semana (Plan › semana) para cuando un viernes no se puede entrenar:
+   - la pierna 2 del viernes (con su bici) pasa al jueves: 72 h tras la pierna 1 y 72 h
+     antes de la carrera del domingo;
+   - el pull del jueves pasa al miércoles, detrás de la carrera (el pull no carga la rodilla);
+   - el pull-in del lunes pasa al miércoles, detrás del jalón ancho (mismo plano frontal):
+     el lunes se queda con 3-4 series de espalda y la espalda aguanta bien las 48 h hasta el
+     miércoles. Las series de la semana no cambian.
+   - la bici que se estrena ese viernes (S4) no se estrena el jueves, 24 h después de la
+     carrera (serían dos novedades sin validar a la vez): pasa a la primera bici de la
+     semana siguiente (ver entradaBici).
+   Las semanas activadas viven en el registro (Store); la app las da con
+   PLAN.setFuenteSinViernes, y aquí solo se leen. */
+const SIN_VIERNES = {
+  desde: 3,                                  // S1 y S2 tenían otra distribución
+  mover: { V: 'J', J: 'X' },                 // día de la sesión -> día en que se hace
+  pullIn: { id: 'aduccion-unil-polea-alta-pull-in', de: 'L', a: 'X', tras: 'jalon-ancho-plano-frontal' },
+};
+let fuenteSinViernes = () => [];
+const setFuenteSinViernes = (fn) => { fuenteSinViernes = fn; };
+
+const tituloCorto = (t) => t.split(/\s+·\s+/)[0].replace(/\s*\(.*\)\s*$/, '').trim();
+
+/* Las sesiones de la semana n con el viernes recolocado, o null si esa semana no tiene la
+   forma de la semana nueva (miércoles de carrera, jueves de pull y viernes de pierna 2). */
+function construirSinViernes(n) {
+  if (n < SIN_VIERNES.desde) return null;
+  const s = SESIONES_SEMANA[n - 1];
+  const { L, X, J, V } = s;
+  if (!L || !X || !J || !V || !J.exercises.length || !V.exercises.length) return null;
+  const { id, tras } = SIN_VIERNES.pullIn;
+  const pullIn = L.exercises.find((x) => x.id === id);
+  const pull = [...J.exercises];
+  if (pullIn) pull.splice(pull.findIndex((x) => x.id === tras) + 1, 0, pullIn);   // sin «tras»: al principio
+  // La bici que se estrena ese viernes no se estrena el jueves.
+  const entrada = ESCALERAS.bici.entrada;
+  const sinBici = (x) => (x.prog === 'bici' && entrada && entrada.semana === n && entrada.dia === 'V'
+    ? { ...x, pres: x.pres.map((p, i) => (i === n - 1 ? { ...none(), skip: true, label: '—' } : p)) } : x);
+  const dia = (letra, base) => ({ ...base, id: `VOL-${letra}`, dow: DOW[letra], name: NOMBRE_DIA[letra] });
+  const nuevas = {
+    L: pullIn ? { ...L, exercises: L.exercises.filter((x) => x !== pullIn),
+      note: 'Semana sin viernes: el pull-in pasa al miércoles, detrás del jalón ancho.' } : L,
+    X: dia('X', { ...X, title: `Carrera + ${tituloCorto(J.title)}`,
+      exercises: [...X.exercises, ...pull],
+      note: 'Semana sin viernes: primero la carrera; después el pull del jueves, con el pull-in del lunes detrás del jalón ancho.' }),
+    J: dia('J', { ...V, title: tituloCorto(V.title), exercises: V.exercises.map(sinBici),
+      note: `Semana sin viernes: la pierna 2 del viernes, a 24 h de la carrera. Si la mañana del viernes sale peor, se retrocede la última novedad sin validar (normalmente, la carrera del miércoles).${entrada && entrada.semana === n ? ' La bici no se estrena hoy: se estrena la semana que viene.' : ''}` }),
+    V: dia('V', { title: 'Libre', exercises: [],
+      note: 'Semana sin viernes: la pierna 2 pasó al jueves y el pull al miércoles.' }),
+  };
+  const out = {};
+  for (const letra of DIAS_PLAN) {
+    if (nuevas[letra]) out[letra] = nuevas[letra];
+    else if (s[letra]) out[letra] = s[letra];
+  }
+  return out;
+}
+const SESIONES_SIN_VIERNES = VOL_WEEKS.map((w) => construirSinViernes(w.n));
+
+/* ¿Se puede activar en la semana n? ¿Está activada? */
+const admiteSinViernes = (n) => !!SESIONES_SIN_VIERNES[n - 1];
+const sinViernes = (n) => admiteSinViernes(n) && (fuenteSinViernes() || []).map(Number).includes(n);
+
+/* Las sesiones de la semana n del plan de volumen, por día (con el viernes recolocado si
+   esa semana está activada). */
+const sesionesDe = (n) => (sinViernes(n) ? SESIONES_SIN_VIERNES[n - 1] : SESIONES_SEMANA[n - 1]);
+
+/* Día en que se hace, la semana n, lo que el plan pone en `letra` (V -> J y J -> X en una
+   semana sin viernes). */
+const diaSinViernes = (n, letra) => (sinViernes(n) && SIN_VIERNES.mover[letra]) || letra;
+
+/* Entrada de la bici: la del calendario o, si su semana va sin viernes, la primera bici de
+   las semanas siguientes ({ semana, dia, movida: true }). */
+function entradaBici() {
+  const e = ESCALERAS.bici.entrada;
+  if (!e || e.dia !== 'V' || !sinViernes(e.semana)) return e;
+  for (let n = e.semana + 1; n <= VOL_WEEKS.length; n++) {
+    const s = sesionesDe(n);
+    const dia = DIAS_PLAN.split('').find((l) => s[l] && s[l].exercises.some((x) => x.prog === 'bici' && !x.pres[n - 1].skip));
+    if (dia) return { semana: n, dia, movida: true, de: e.semana };
+  }
+  return null;
+}
+
 const rangoCorto = (iso) => {
   const d = new Date(`${iso}T12:00:00Z`);
   return `${d.getUTCDate()} ${['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'][d.getUTCMonth()]}`;
@@ -532,6 +617,7 @@ function isoDate(d) {
 }
 
 const dowOf = (dateStr) => new Date(dateStr + 'T12:00:00').getDay();
+const letraDe = (dateStr) => DIAS_PLAN.split('').find((l) => DOW[l] === dowOf(dateStr));   // 'L'…'D'
 
 function weekFor(dateStr) {
   for (const plan of PLANS) {
@@ -552,7 +638,7 @@ function planFor(dateStr) {
 
 /* Sesiones de la semana, en el orden del plan. */
 function sessionsFor(week) {
-  if (week.plan === 'vol') return Object.values(SESIONES_SEMANA[week.n - 1]);
+  if (week.plan === 'vol') return Object.values(sesionesDe(week.n));
   return Object.values(week.block === 'A' ? BLOCK_A : BLOCK_B);
 }
 
@@ -631,4 +717,5 @@ const PLAN = {
   parsePres, sidesFor, seriesPorGrupo, slug, sessionLabel,
   PRENSA_NIVELES, CARRERA_NIVELES, PRENSA_MAX, CARRERA_MAX, PRENSA_SEMANA, ESCALERAS,
   LIBRO, etiquetasApp, DIAS_PLAN, NOMBRE_DIA, SEMANA_SEGUIMIENTO,
+  SIN_VIERNES, setFuenteSinViernes, admiteSinViernes, sinViernes, diaSinViernes, entradaBici, letraDe,
 };

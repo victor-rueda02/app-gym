@@ -89,7 +89,20 @@ function kneeParaExportar() {
   for (const [sem, n] of Object.entries(Rodilla.nivelesReales())) {
     weeks[sem] = { ...weeks[sem], runLevelText: n.runLevel, depthStep: n.depthStep };
   }
-  return { ...knee, weeks };
+  // Semanas sin viernes: sesión, regla y novedad recolocadas (miércoles, jueves, viernes y la
+  // entrada de la bici), para que las fórmulas de la hoja evalúen el jueves y no el viernes.
+  // Lo editado a mano en Rodilla manda.
+  const days = { ...(knee.days || {}) };
+  const efectivos = RodillaCalc.diasEfectivos(RODILLA_DATA.dias, PLAN);
+  RODILLA_DATA.dias.forEach((d, i) => {
+    const e = efectivos[i];
+    const cambios = {};
+    if (e.sesion !== d.sesion) cambios.session = e.sesion;
+    if (e.regla !== d.regla) cambios.rule = e.regla;
+    if (e.novedad !== d.novedad) cambios.novelty = e.novedad;
+    if (Object.keys(cambios).length) days[d.fecha] = { ...cambios, ...(days[d.fecha] || {}) };
+  });
+  return { ...knee, weeks, days };
 }
 
 /* Devuelve un mensaje describiendo qué ha pasado, para mostrarlo en la UI. */

@@ -120,9 +120,40 @@ const RodillaCalc = (() => {
     });
   }
 
-  /* Combina el calendario con el registro (Store.knee().days) y calcula. */
-  function tablaDias(dias, registro) {
-    return calcularDias(dias.map((d) => filaDia(d, (registro || {})[d.fecha])));
+  /* Combina el calendario con el registro (Store.knee().days) y calcula. Con `plan`, el
+     calendario de las semanas sin viernes va recolocado (ver diasEfectivos). */
+  function tablaDias(dias, registro, plan) {
+    return calcularDias(diasEfectivos(dias, plan).map((d) => filaDia(d, (registro || {})[d.fecha])));
+  }
+
+  /* Calendario de la hoja con las semanas sin viernes recolocadas (PLAN.sinViernes): el
+     jueves lleva la pierna 2 (sesión, regla de gimnasio y novedad del viernes), el viernes
+     queda libre y el miércoles suma el pull. Si la bici se estrenaba ese viernes, la
+     novedad pasa al día de su nueva entrada (PLAN.entradaBici). Sin `plan`, tal cual. */
+  function diasEfectivos(dias, plan) {
+    if (!plan || !plan.sinViernes) return dias;
+    const entrada = plan.entradaBici ? plan.entradaBici() : null;
+    return dias.map((d) => {
+      const n = +String(d.sem).slice(1);
+      const de = (dia) => dias.find((x) => x.sem === d.sem && x.dia === dia);
+      let out = d;
+      if (plan.sinViernes(n)) {
+        const v = de('V');
+        if (d.dia === 'J' && v) {
+          const moved = entrada && entrada.movida && entrada.de === n;
+          out = { ...d, sesion: `${v.sesion}${moved ? ' (sin bici: se estrena la semana que viene)' : ''} · semana sin viernes`,
+            regla: v.regla, novedad: moved ? '—' : v.novedad };
+        } else if (d.dia === 'V') {
+          out = { ...d, sesion: 'Libre (semana sin viernes: la pierna 2 pasa al jueves)', regla: SIN_REGLA, novedad: '—' };
+        } else if (d.dia === 'X') {
+          out = { ...d, sesion: `${d.sesion} + pull del jueves y pull-in del lunes (semana sin viernes)` };
+        }
+      }
+      if (entrada && entrada.movida && d.sem === `S${entrada.semana}` && d.dia === entrada.dia) {
+        out = { ...out, novedad: `Bici (1.ª vez; pasa de S${entrada.de}, que fue sin viernes)` };
+      }
+      return out;
+    });
   }
 
   /* Resumen de una semana a partir de las filas ya calculadas. Solo «Retroceder»
@@ -299,7 +330,11 @@ const RodillaCalc = (() => {
     const resumen = resumenes(filasCalculadas, [REF, 'S4']);
     const s2 = avisoS2(filasCalculadas, REF);
     const s4 = avisoS4(resumen[0], resumen[1], hoy);
-    const fila = (sem, dia) => filasCalculadas.find((x) => x.sem === sem && x.dia === dia);
+    // Semana sin viernes: lo del viernes se hace el jueves (PLAN.diaSinViernes).
+    const diaDe = (sem, d) => (plan.diaSinViernes ? plan.diaSinViernes(+sem.slice(1), d) : d);
+    const diasEn = (sem, L) => DIAS[L].map((d) => diaDe(sem, d));
+    const ENTRADA_BICI = plan.entradaBici ? plan.entradaBici() : E.bici.entrada;
+    const fila = (sem, dia) => filasCalculadas.find((x) => x.sem === sem && x.dia === diaDe(sem, dia));
     const manana = (fecha) => { const x = filasCalculadas.find((f) => f.fecha === fecha); return x ? x.morning : ''; };
     const baseS2 = filasCalculadas.filter((x) => x.sem === REF).map((x) => x.morning).find(esNum);
     const tope = (max, v) => Math.max(0, Math.min(max, v));
@@ -312,7 +347,7 @@ const RodillaCalc = (() => {
       if (x.semaforo !== 'Retroceder') return;
       const t = x.fallo === 'durante' ? `${x.fecha}T18` : `${sumarDias(x.fecha, 1)}T06`;
       const seguidas = i > 0 && evaluadas[i - 1].semaforo === 'Retroceder';
-      const escaleras = x.fallo !== 'durante' ? [] : ESCALERAS_NIVEL.filter((L) => DIAS[L].includes(x.dia));
+      const escaleras = x.fallo !== 'durante' ? [] : ESCALERAS_NIVEL.filter((L) => diasEn(x.sem, L).includes(x.dia));
       fallos.push({ t, fila: x, seguidas, escaleras });
     });
 
@@ -331,7 +366,7 @@ const RodillaCalc = (() => {
     /* Validada antes del instante t: su día, o una sesión posterior de su escalera, con
        las dos mañanas siguientes (24 y 48 h) igual o mejor que la de ese día. */
     function validadaAntesDe(nov, t) {
-      return filasCalculadas.some((x) => x.fecha >= nov.fecha && DIAS[nov.escalera].includes(x.dia)
+      return filasCalculadas.some((x) => x.fecha >= nov.fecha && diasEn(x.sem, nov.escalera).includes(x.dia)
         && `${sumarDias(x.fecha, 2)}T06` < t
         && esNum(x.morning) && esNum(x.h24) && esNum(x.h48) && x.h24 <= x.morning && x.h48 <= x.morning);
     }
@@ -355,7 +390,8 @@ const RodillaCalc = (() => {
           pendiente[conNovedad || f.escaleras[0]] = `dolor durante la sesión del ${cuando}`;
           continue;
         }
-        const nov = novedades.filter((n) => !n.retrocedida && n.t < f.t && !validadaAntesDe(n, f.t)).pop();
+        const nov = novedades.filter((n) => !n.retrocedida && n.t < f.t && !validadaAntesDe(n, f.t))
+          .sort((a, b) => (a.t < b.t ? -1 : a.t > b.t ? 1 : 0)).pop();   // la última en el tiempo
         if (!nov) { brote('fallo sin ninguna novedad sin validar'); continue; }
         nov.retrocedida = true;
         if (nov.escalera === 'bici') quitarBici(desde, `fallo atribuido a la bici (${cuando})`);
@@ -441,7 +477,7 @@ const RodillaCalc = (() => {
       // Bici quitada: vuelve el lunes siguiente a una semana entera en verde.
       procesarFallos(`${inicio}T09`);
       const quita = bici.quitas[bici.quitas.length - 1];
-      if (E.bici.entrada && n > E.bici.entrada.semana && !bici.activa && quita && !quita.hasta
+      if (ENTRADA_BICI && n > ENTRADA_BICI.semana && !bici.activa && quita && !quita.hasta
         && quita.desde <= sumarDias(inicio, -7) && semanaEnVerde(`S${n - 1}`)) {
         quita.hasta = sumarDias(inicio, -1);
         bici.activa = true;
@@ -480,8 +516,8 @@ const RodillaCalc = (() => {
 
       // Bici: entra el día del calendario (el viernes de S4) si las semanas anteriores con
       // seguimiento (S2 y S3) no tuvieron sesiones en Retroceder.
-      if (E.bici.entrada && n === E.bici.entrada.semana) {
-        const viernes = fila(sem, E.bici.entrada.dia);
+      if (ENTRADA_BICI && n === ENTRADA_BICI.semana) {
+        const viernes = fila(sem, ENTRADA_BICI.dia);   // el día en que entra (el viernes de S4)
         procesarFallos(`${viernes.fecha}T09`);
         const antes = semanas.filter((k) => k < n).map((k) => `S${k}`);
         const fallidas = evaluadas.filter((x) => antes.includes(x.sem) && x.semaforo === 'Retroceder');
@@ -594,7 +630,7 @@ const RodillaCalc = (() => {
 
   return {
     REGLA_CARRERA, SIN_REGLA, redondear1, enteroRango, entero010, enteroPositivo, decimalPositivo,
-    molestiaManana, evaluarSesion, semaforo, filaDia, calcularDias, tablaDias,
+    molestiaManana, evaluarSesion, semaforo, filaDia, calcularDias, tablaDias, diasEfectivos,
     resumenSemana, resumenes, avisoS4, avisoS2, avisoChasquido, entradaResultado, entradaSemana,
     fuerzaEstimada, simetria, simetriaPct, llega90, calcularTest,
     sumarDias, progresion, prescripcion, biciQuitada, campoReal,
