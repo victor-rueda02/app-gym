@@ -318,10 +318,12 @@ function renderExercise() {
 
   // Unilaterales desde S2: una columna con el botón de pierna (D = derecha, la afectada; I = izquierda).
   const sides = PLAN.sidesFor(exercise, week);
-  const grid = (extra) => `grid-template-columns: 30px ${sides ? '44px ' : ''}${'1fr '.repeat(cols.length)}40px;${extra || ''}`;
+  // Con RIR hay además una columna «1RM» (estimado en vivo) antes del botón de borrar.
+  const con1RM = pres.kind === 'rir';
+  const grid = (extra) => `grid-template-columns: 30px ${sides ? '44px ' : ''}${'1fr '.repeat(cols.length)}${con1RM ? '52px ' : ''}40px;${extra || ''}`;
   card.appendChild(el(
-    `<div class="set-row head" style="${grid()}">
-       <span></span>${sides ? '<span>Lado</span>' : ''}${cols.map((c) => `<span>${c}</span>`).join('')}<span></span>
+    `<div class="set-row head${con1RM ? ' con-1rm' : ''}" style="${grid()}">
+       <span></span>${sides ? '<span>Lado</span>' : ''}${cols.map((c) => `<span>${c}</span>`).join('')}${con1RM ? '<span>1RM</span>' : ''}<span></span>
      </div>`));
 
   const list = Store.sets(date, exId).slice();
@@ -341,7 +343,7 @@ function renderExercise() {
     const field = { Kg: 'kg', Reps: 'reps', Seg: 'secs', RIR: 'rir', Min: 'mins' };
 
     const row = el(`
-      <div class="set-row" style="${grid()}">
+      <div class="set-row${con1RM ? ' con-1rm' : ''}" style="${grid()}">
         <span class="n">${index + 1}</span>
         ${sides ? `<button class="side ${s.side === 'I' ? 'i' : s.side === 'D' ? 'd' : ''}"
                            aria-label="Pierna de la serie ${index + 1}">${s.side || '–'}</button>` : ''}
@@ -350,13 +352,26 @@ function renderExercise() {
                  data-f="${field[c]}" value="${s[field[c]] ?? ''}"
                  placeholder="${escapeHtml(String(placeholder[c] ?? ''))}"
                  aria-label="${c} serie ${index + 1}">`).join('')}
+        ${con1RM ? `<span class="e1rm" aria-live="off" aria-label="1RM estimado serie ${index + 1}"
+                          title="1RM estimado serie ${index + 1}"></span>` : ''}
         <button class="del" aria-label="Borrar serie ${index + 1}">×</button>
       </div>`);
+
+    // Repinta solo esta celda: volver a renderizar la vista quitaría el foco al teclear.
+    const e1rm = row.querySelector('.e1rm');
+    const pintar1RM = () => {
+      if (!e1rm) return;
+      const r = ProgresoCalc.estimar1RM(s.kg, s.reps, s.rir);
+      e1rm.innerHTML = `${escapeHtml(ProgresoCalc.fmt1RM(r))}${r.valor != null && r.sinRir ? '<small>sin RIR</small>' : ''}`;
+      e1rm.classList.toggle('vacio', r.valor == null);
+    };
+    pintar1RM();
 
     row.querySelectorAll('input').forEach((input) => {
       input.addEventListener('input', (e) => {
         s[e.target.dataset.f] = e.target.value.replace(',', '.').trim();
         save();
+        pintar1RM();
       });
     });
     const sideBtn = row.querySelector('.side');

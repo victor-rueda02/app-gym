@@ -151,6 +151,18 @@ main { padding: 12px; max-width: 640px; margin: 0 auto; }
 }
 .set-row input:focus { outline: 2px solid var(--accent); border-color: transparent; }
 .set-row input::placeholder { color: #55607a; font-weight: 400; }
+/* Columna 1RM (solo ejercicios con RIR): gap menor y min-width:0 para que los
+   inputs sigan cómodos a 390 px y no desborden la tarjeta. */
+.set-row.con-1rm { gap: 6px; }
+.set-row.con-1rm input { min-width: 0; }
+.set-row .e1rm {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  min-width: 0; line-height: 1.1; white-space: nowrap;
+  font-size: 14px; font-weight: 600; color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+.set-row .e1rm.vacio { color: var(--muted); font-weight: 400; }
+.set-row .e1rm small { font-size: 10px; font-weight: 400; color: var(--muted); }
 /* Botón de pierna (D = derecha, la afectada; I = izquierda) */
 .set-row .side {
   height: 48px; border-radius: 11px; border: 1px solid var(--line);
