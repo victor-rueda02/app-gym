@@ -163,6 +163,8 @@ main { padding: 12px; max-width: 640px; margin: 0 auto; }
 }
 .set-row .e1rm.vacio { color: var(--muted); font-weight: 400; }
 .set-row .e1rm small { font-size: 10px; font-weight: 400; color: var(--muted); }
+/* La cabecera «1RM» centrada, como el valor de debajo. */
+.set-row.head.con-1rm span:nth-last-child(2) { text-align: center; }
 /* Botón de pierna (D = derecha, la afectada; I = izquierda) */
 .set-row .side {
   height: 48px; border-radius: 11px; border: 1px solid var(--line);
