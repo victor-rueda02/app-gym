@@ -424,3 +424,46 @@ Sustituyen a los puntos anteriores donde se contradicen (30, 35, 41 y 42).
     validar): entra en la primera bici de la semana siguiente (el martes de S5), que lleva
     «nov: 1.ª vez». Para elegir la novedad culpable se ordenan ahora por fecha, no por orden
     de cálculo (con la bici en martes, se calcula después de la carrera del miércoles).
+
+## Progreso y 1RM estimado (10/11)
+
+Rama `progreso-1rm`. Plan y reparto en `docs/progreso/PLAN.md`.
+
+78. **Sin migración.** El registro no cambia de forma: el 1RM, los récords y las agregaciones
+    se calculan al vuelo a partir de las series ya guardadas. `Store` sigue en la versión 5 y
+    no se escribe nada nuevo.
+79. **Fórmula.** Reps efectivas = reps + RIR. Hasta 10: Brzycki (`kg × 36 / (37 − ef)`); de
+    más de 10 a 15: Epley (`kg × (1 + ef/30)`); más de 15, o sin kg (o kg 0) o sin reps: «—».
+    Se redondea a 0,5 kg y se muestra con «~» y coma decimal («~106,5»). RIR vacío: se
+    calcula con RIR 0 y se marca «sin RIR». Un RIR o unas reps que no son número (p. ej.
+    «10-12») no calculan. La lógica está en `js/progreso-calc.js` (`ProgresoCalc`), pura y
+    con tests en `tests/progreso-calc.test.mjs`. El test de fuerza de Rodilla sigue con su
+    Epley propio (es la fórmula de la hoja del Excel): no se toca.
+80. **Dónde sale el 1RM en las series.** Solo en los ejercicios con columna RIR (prescripción
+    `@ RIRk`), que son los de peso, reps y RIR. Los de prescripción fija (rehab, correctivos)
+    no muestran la columna.
+81. **Qué entra en las gráficas de 1RM.** Ejercicios con carga (prescripción `@ RIR` o fija
+    `N x R`) salvo Cardio, Test y correctivos de hombro y codo; solo series con kg > 0 y reps.
+    Así entran también los de rehab con carga (prensa unilateral, búlgara…), que al no tener
+    RIR se estiman con RIR 0 y salen marcados «sin RIR»: subestiman el 1RM pero la tendencia
+    vale. Los de peso corporal (dominada, abs colgado) solo entran si se apunta kg (lastre),
+    y entonces el valor es el del lastre: se avisa en la pantalla.
+82. **Calentamiento.** La app no distingue series de calentamiento, así que no hay nada que
+    excluir; si algún día se distinguen, se filtran en `ProgresoCalc.seriesConCarga`.
+83. **D/I.** Las series con lado se agrupan por lado: dos líneas (D e I) en la misma gráfica.
+84. **Volumen semanal.** Semanas de lunes a domingo (como el plan). Cuenta una serie por
+    serie registrada de un ejercicio cuyo objetivo es exactamente uno de los 10 grupos de la
+    hoja (`PLAN.VOL_GRUPOS`); rehab, test, cardio y correctivos no cuentan, igual que la
+    fórmula del Excel. En un ejercicio por pierna, cada serie D o I cuenta media. Tonelaje =
+    Σ kg × reps de esas series (sin kg o sin reps, 0). Objetivo = `PLAN.seriesPorGrupo(n)` en
+    las semanas del plan de volumen; fuera de él no hay línea de objetivo.
+85. **Extras que entran:** récords personales (marcados en la gráfica y lista de los últimos),
+    progresión por ejercicio (última sesión frente a la anterior, con flecha; «igual» si la
+    diferencia es menor de 0,5 kg), RIR medio por semana frente al prescrito, cumplimiento
+    (series hechas / planificadas de hipertrofia por semana) y, como el módulo Rodilla está
+    en esta rama, molestia media de la mañana por semana y simetría D/I de los tests (reusando
+    `RodillaCalc`, sin tocarlo). Récord = mejor 1RM del día que supera todos los anteriores de
+    ese ejercicio y lado; el primer día no cuenta como récord.
+86. **Gráficas en SVG propio**, sin librerías: no hay build ni dependencias y así no hay nada
+    más que cachear. Tema oscuro fijo como el resto de la app, con sus variables CSS.
+87. **Pestaña nueva «Progreso»** en la barra inferior, entre Rodilla y Datos.

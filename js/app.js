@@ -1,5 +1,6 @@
-/* Interfaz. Cuatro pestañas (Hoy / Plan / Rodilla / Datos) y una vista de detalle por
-   ejercicio. La pestaña Rodilla la pinta js/rodilla.js (Rodilla.render). Todo se guarda al teclear: no hay botón de "guardar" que olvidar. */
+/* Interfaz. Cinco pestañas (Hoy / Plan / Rodilla / Progreso / Datos) y una vista de detalle por
+   ejercicio. La pestaña Rodilla la pinta js/rodilla.js (Rodilla.render) y Progreso, js/progreso.js
+   (Progreso.render). Todo se guarda al teclear: no hay botón de "guardar" que olvidar. */
 
 const view = document.getElementById('view');
 const titleEl = document.getElementById('title');
@@ -137,6 +138,7 @@ function render() {
   else if (state.tab === 'today') renderToday();
   else if (state.tab === 'plan') renderPlan();
   else if (state.tab === 'knee') Rodilla.render();
+  else if (state.tab === 'progress') Progreso.render();
   else renderData();
 
   paintTimer();   // el DOM es nuevo: hay que devolverle el estado del cronómetro
