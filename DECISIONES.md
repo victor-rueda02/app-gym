@@ -467,3 +467,25 @@ Rama `progreso-1rm`. Plan y reparto en `docs/progreso/PLAN.md`.
 86. **Gráficas en SVG propio**, sin librerías: no hay build ni dependencias y así no hay nada
     más que cachear. Tema oscuro fijo como el resto de la app, con sus variables CSS.
 87. **Pestaña nueva «Progreso»** en la barra inferior, entre Rodilla y Datos.
+88. **Verificación.** 1RM contrastado a mano (90×6@2 → 111,5 Brzycki; 62,5×9@3 → 87,5 Epley;
+    40×12 sin RIR → 56) y agregaciones recontadas sobre datos de ejemplo. En iPhone emulado a
+    390 px: el registro inyectado (julio y volumen, con rodilla) sale idéntico tras recorrer
+    todas las pestañas, sin errores de consola, sin desbordar y con la app arrancando offline
+    tras recargar (los tres ficheros nuevos salen de la caché del service worker).
+89. **Caché.** `sw.js` lleva la huella nueva (`python tools/excel_app.py --solo-cache`), así que
+    el móvil descarga la versión nueva al abrir la app con conexión.
+
+### Pendiente o a revisar por el usuario (Progreso)
+
+- `Plan_8sem_vol_definitivo_con_cardio.xlsx` está modificado en el árbol de trabajo y sin
+  commitear (no es de esta rama y no se ha tocado). Mientras siga así, la comprobación «Las 4
+  hojas originales salen intactas» de `tools/e2e.mjs` falla: compara el fichero del disco con el
+  empotrado. Si ese Excel es el nuevo plan, toca `python tools/excel_app.py` (regenera y empotra);
+  si no, `git restore` del fichero.
+- Si hay registros de julio y del plan de volumen, el eje X del volumen mezcla fechas (semanas
+  fuera del plan) con «S1…S8» y deja a 0 las semanas sin entrenar entre medias. Es intencionado
+  (se ven los huecos), pero se podría limitar a las semanas del plan de volumen.
+- El aviso de peso corporal en 1RM se decide por el nombre (dominada, colgado, fondos, flexión):
+  el plan no marca esos ejercicios.
+- Una fila con botón de lado y columna 1RM a la vez no existe hoy (ningún ejercicio por pierna
+  lleva RIR); si llega a existir, los inputs quedarían en unos 50 px a 390 px.
