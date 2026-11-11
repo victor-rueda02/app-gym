@@ -1,5 +1,6 @@
-/* Interfaz. Cuatro pestañas (Hoy / Plan / Rodilla / Datos) y una vista de detalle por
-   ejercicio. La pestaña Rodilla la pinta js/rodilla.js (Rodilla.render). Todo se guarda al teclear: no hay botón de "guardar" que olvidar. */
+/* Interfaz. Cinco pestañas (Hoy / Plan / Rodilla / Progreso / Datos) y una vista de detalle por
+   ejercicio. La pestaña Rodilla la pinta js/rodilla.js (Rodilla.render) y Progreso, js/progreso.js
+   (Progreso.render). Todo se guarda al teclear: no hay botón de "guardar" que olvidar. */
 
 const view = document.getElementById('view');
 const titleEl = document.getElementById('title');
@@ -137,6 +138,7 @@ function render() {
   else if (state.tab === 'today') renderToday();
   else if (state.tab === 'plan') renderPlan();
   else if (state.tab === 'knee') Rodilla.render();
+  else if (state.tab === 'progress') Progreso.render();
   else renderData();
 
   paintTimer();   // el DOM es nuevo: hay que devolverle el estado del cronómetro
@@ -316,10 +318,20 @@ function renderExercise() {
 
   // Unilaterales desde S2: una columna con el botón de pierna (D = derecha, la afectada; I = izquierda).
   const sides = PLAN.sidesFor(exercise, week);
-  const grid = (extra) => `grid-template-columns: 30px ${sides ? '44px ' : ''}${'1fr '.repeat(cols.length)}40px;${extra || ''}`;
+  // Con RIR hay además una columna «1RM» (estimado en vivo) antes del botón de borrar.
+  const con1RM = pres.kind === 'rir';
+  // Dominadas y similares: el 1RM suma tu peso de la báscula al lastre (columna Kg).
+  const pesoCorp = con1RM && ProgresoCalc.esPesoCorporal(exercise.name);
+  if (pesoCorp) {
+    const pc = ProgresoCalc.pesoDelDia(Store.pesos(), date);
+    view.appendChild(el(pc
+      ? `<div class="prev">Kg = lastre. El 1RM suma tu peso de la báscula: <b>${escapeHtml(fmtKg(pc.kg))} kg</b>${pc.fecha === date ? '' : ` (del ${escapeHtml(shortDate(pc.fecha))})`}.</div>`
+      : '<div class="prev">Kg = lastre. Sin peso de la báscula de estos días: el 1RM usa solo el lastre. Impórtalo en Datos › Peso corporal.</div>'));
+  }
+  const grid = (extra) => `grid-template-columns: 30px ${sides ? '44px ' : ''}${'1fr '.repeat(cols.length)}${con1RM ? '52px ' : ''}40px;${extra || ''}`;
   card.appendChild(el(
-    `<div class="set-row head" style="${grid()}">
-       <span></span>${sides ? '<span>Lado</span>' : ''}${cols.map((c) => `<span>${c}</span>`).join('')}<span></span>
+    `<div class="set-row head${con1RM ? ' con-1rm' : ''}" style="${grid()}">
+       <span></span>${sides ? '<span>Lado</span>' : ''}${cols.map((c) => `<span>${c}</span>`).join('')}${con1RM ? '<span>1RM</span>' : ''}<span></span>
      </div>`));
 
   const list = Store.sets(date, exId).slice();
@@ -339,7 +351,7 @@ function renderExercise() {
     const field = { Kg: 'kg', Reps: 'reps', Seg: 'secs', RIR: 'rir', Min: 'mins' };
 
     const row = el(`
-      <div class="set-row" style="${grid()}">
+      <div class="set-row${con1RM ? ' con-1rm' : ''}" style="${grid()}">
         <span class="n">${index + 1}</span>
         ${sides ? `<button class="side ${s.side === 'I' ? 'i' : s.side === 'D' ? 'd' : ''}"
                            aria-label="Pierna de la serie ${index + 1}">${s.side || '–'}</button>` : ''}
@@ -348,13 +360,27 @@ function renderExercise() {
                  data-f="${field[c]}" value="${s[field[c]] ?? ''}"
                  placeholder="${escapeHtml(String(placeholder[c] ?? ''))}"
                  aria-label="${c} serie ${index + 1}">`).join('')}
+        ${con1RM ? `<span class="e1rm" aria-live="off" aria-label="1RM estimado serie ${index + 1}"
+                          title="1RM estimado serie ${index + 1}"></span>` : ''}
         <button class="del" aria-label="Borrar serie ${index + 1}">×</button>
       </div>`);
+
+    // Repinta solo esta celda: volver a renderizar la vista quitaría el foco al teclear.
+    const e1rm = row.querySelector('.e1rm');
+    const pintar1RM = () => {
+      if (!e1rm) return;
+      const carga = ProgresoCalc.cargaSerie(s, pesoCorp, Store.pesos(), date).kg;
+      const r = ProgresoCalc.estimar1RM(carga, s.reps, s.rir);
+      e1rm.innerHTML = `${escapeHtml(ProgresoCalc.fmt1RM(r))}${r.valor != null && r.sinRir ? '<small>sin RIR</small>' : ''}`;
+      e1rm.classList.toggle('vacio', r.valor == null);
+    };
+    pintar1RM();
 
     row.querySelectorAll('input').forEach((input) => {
       input.addEventListener('input', (e) => {
         s[e.target.dataset.f] = e.target.value.replace(',', '.').trim();
         save();
+        pintar1RM();
       });
     });
     const sideBtn = row.querySelector('.side');
@@ -628,6 +654,8 @@ function renderData() {
   view.appendChild(importBtn);
   view.appendChild(picker);
 
+  renderPesoCorporal();
+
   if (days.length) {
     view.appendChild(el('<div class="section-label">Historial</div>'));
     days.sort().reverse().forEach((d) => {
@@ -648,6 +676,50 @@ function renderData() {
       view.appendChild(row);
     });
   }
+}
+
+/* Peso corporal (Datos): copia de los pesajes de la app Báscula, para el 1RM de las dominadas. */
+const fmtKg = (kg) => kg.toLocaleString('es-ES', { maximumFractionDigits: 2 });
+
+function renderPesoCorporal() {
+  Store.sincronizarBascula();
+  const pesos = Store.pesos();
+  const dias = Object.keys(pesos).sort();
+  const ultimo = dias[dias.length - 1];
+  view.appendChild(el('<div class="section-label">Peso corporal</div>'));
+  view.appendChild(el(`
+    <div class="card"><p>${dias.length
+      ? `${dias.length} ${dias.length === 1 ? 'día' : 'días'} con peso · último <b>${escapeHtml(fmtKg(pesos[ultimo]))} kg</b> (${escapeHtml(shortDate(ultimo))}).`
+      : 'Aún no hay pesos.'}
+      Se usan en el 1RM de las dominadas (peso + lastre). Si la báscula está en este mismo
+      navegador se leen solos; si no, en la báscula pulsa <b>Copia de seguridad</b> y aquí
+      carga el archivo o pega el texto.</p></div>`));
+
+  const fileBtn = el('<button class="btn line">Cargar copia de la báscula</button>');
+  const picker = el('<input type="file" accept="application/json,.json,text/plain,.txt" hidden>');
+  const importar = (texto) => {
+    try {
+      const r = Store.importarBascula(texto);
+      toast(`${r.dias} ${r.dias === 1 ? 'día' : 'días'} con peso (${r.cambiados} ${r.cambiados === 1 ? 'nuevo' : 'nuevos'})`);
+      render();
+    } catch (e) {
+      toast('No es una copia de la báscula');
+    }
+  };
+  fileBtn.addEventListener('click', () => picker.click());
+  picker.addEventListener('change', async () => {
+    const file = picker.files[0];
+    if (file) importar(await file.text());
+    picker.value = '';
+  });
+  const pegar = el(`
+    <details class="card pegar-bascula"><summary>Pegar el texto de la copia</summary>
+      <textarea rows="4" placeholder='{"formato":"bascula-ilteco", …}' aria-label="Texto de la copia de la báscula"></textarea>
+      <button class="btn line">Importar texto</button></details>`);
+  pegar.querySelector('button').addEventListener('click', () => importar(pegar.querySelector('textarea').value));
+  view.appendChild(fileBtn);
+  view.appendChild(picker);
+  view.appendChild(pegar);
 }
 
 /* Navegación ---------------------------------------------------------------- */
@@ -679,6 +751,11 @@ document.getElementById('menu').addEventListener('click', () => {
 /* Arranque ------------------------------------------------------------------ */
 Store.init().then(() => {
   render();
+  // Al volver a la app, recoge los pesajes nuevos de la báscula (si comparte navegador).
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible' && Store.sincronizarBascula() && !state.exercise
+      && (state.tab === 'progress' || state.tab === 'data')) render();
+  });
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('sw.js').catch(() => { /* sin offline, pero funciona */ });
   }

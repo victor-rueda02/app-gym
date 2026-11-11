@@ -424,3 +424,92 @@ Sustituyen a los puntos anteriores donde se contradicen (30, 35, 41 y 42).
     validar): entra en la primera bici de la semana siguiente (el martes de S5), que lleva
     «nov: 1.ª vez». Para elegir la novedad culpable se ordenan ahora por fecha, no por orden
     de cálculo (con la bici en martes, se calcula después de la carrera del miércoles).
+
+## Progreso y 1RM estimado (10/11)
+
+Rama `progreso-1rm`. Plan y reparto en `docs/progreso/PLAN.md`.
+
+78. **Sin migración.** El registro no cambia de forma: el 1RM, los récords y las agregaciones
+    se calculan al vuelo a partir de las series ya guardadas. `Store` sigue en la versión 5 y
+    no se escribe nada nuevo.
+79. **Fórmula.** Reps efectivas = reps + RIR. Hasta 10: Brzycki (`kg × 36 / (37 − ef)`); de
+    más de 10 a 15: Epley (`kg × (1 + ef/30)`); más de 15, o sin kg (o kg 0) o sin reps: «—».
+    Se redondea a 0,5 kg y se muestra con «~» y coma decimal («~106,5»). RIR vacío: se
+    calcula con RIR 0 y se marca «sin RIR». Un RIR o unas reps que no son número (p. ej.
+    «10-12») no calculan. La lógica está en `js/progreso-calc.js` (`ProgresoCalc`), pura y
+    con tests en `tests/progreso-calc.test.mjs`. El test de fuerza de Rodilla sigue con su
+    Epley propio (es la fórmula de la hoja del Excel): no se toca.
+80. **Dónde sale el 1RM en las series.** Solo en los ejercicios con columna RIR (prescripción
+    `@ RIRk`), que son los de peso, reps y RIR. Los de prescripción fija (rehab, correctivos)
+    no muestran la columna.
+81. **Qué entra en las gráficas de 1RM.** Ejercicios con carga (prescripción `@ RIR` o fija
+    `N x R`) salvo Cardio, Test y correctivos de hombro y codo; solo series con kg > 0 y reps.
+    Así entran también los de rehab con carga (prensa unilateral, búlgara…), que al no tener
+    RIR se estiman con RIR 0 y salen marcados «sin RIR»: subestiman el 1RM pero la tendencia
+    vale. Los de peso corporal (dominada, abs colgado) solo entran si se apunta kg (lastre),
+    y entonces el valor es el del lastre: se avisa en la pantalla.
+82. **Calentamiento.** La app no distingue series de calentamiento, así que no hay nada que
+    excluir; si algún día se distinguen, se filtran en `ProgresoCalc.seriesConCarga`.
+83. **D/I.** Las series con lado se agrupan por lado: dos líneas (D e I) en la misma gráfica.
+84. **Volumen semanal.** Semanas de lunes a domingo (como el plan). Cuenta una serie por
+    serie registrada de un ejercicio cuyo objetivo es exactamente uno de los 10 grupos de la
+    hoja (`PLAN.VOL_GRUPOS`); rehab, test, cardio y correctivos no cuentan, igual que la
+    fórmula del Excel. En un ejercicio por pierna, cada serie D o I cuenta media. Tonelaje =
+    Σ kg × reps de esas series (sin kg o sin reps, 0). Objetivo = `PLAN.seriesPorGrupo(n)` en
+    las semanas del plan de volumen; fuera de él no hay línea de objetivo.
+85. **Extras que entran:** récords personales (marcados en la gráfica y lista de los últimos),
+    progresión por ejercicio (última sesión frente a la anterior, con flecha; «igual» si la
+    diferencia es menor de 0,5 kg), RIR medio por semana frente al prescrito, cumplimiento
+    (series hechas / planificadas de hipertrofia por semana) y, como el módulo Rodilla está
+    en esta rama, molestia media de la mañana por semana y simetría D/I de los tests (reusando
+    `RodillaCalc`, sin tocarlo). Récord = mejor 1RM del día que supera todos los anteriores de
+    ese ejercicio y lado; el primer día no cuenta como récord.
+86. **Gráficas en SVG propio**, sin librerías: no hay build ni dependencias y así no hay nada
+    más que cachear. Tema oscuro fijo como el resto de la app, con sus variables CSS.
+87. **Pestaña nueva «Progreso»** en la barra inferior, entre Rodilla y Datos.
+88. **Verificación.** 1RM contrastado a mano (90×6@2 → 111,5 Brzycki; 62,5×9@3 → 87,5 Epley;
+    40×12 sin RIR → 56) y agregaciones recontadas sobre datos de ejemplo. En iPhone emulado a
+    390 px: el registro inyectado (julio y volumen, con rodilla) sale idéntico tras recorrer
+    todas las pestañas, sin errores de consola, sin desbordar y con la app arrancando offline
+    tras recargar (los tres ficheros nuevos salen de la caché del service worker).
+89. **Caché.** `sw.js` lleva la huella nueva (`python tools/excel_app.py --solo-cache`), así que
+    el móvil descarga la versión nueva al abrir la app con conexión.
+
+### Pendiente o a revisar por el usuario (Progreso)
+
+- `Plan_8sem_vol_definitivo_con_cardio.xlsx`: ver decisión 94.
+- Eje X del volumen: resuelto en la decisión 90.
+- Peso corporal: resuelto en las decisiones 91–93.
+- Una fila con botón de lado y columna 1RM a la vez no existe hoy (ningún ejercicio por pierna
+  lleva RIR); si llega a existir, los inputs quedarían en unos 50 px a 390 px.
+
+## Peso corporal de la báscula y eje con fechas (11/11)
+
+Petición del usuario tras el informe de Progreso.
+
+90. **Eje X con la fecha real.** En Volumen y Esfuerzo cada semana se rotula con su lunes
+    («19 oct», …), también las del plan de volumen (S1 = semana del 19 oct). El número de semana
+    del plan sigue en el detalle al tocar la barra y en la lista de Cumplimiento, junto a la fecha.
+    Las semanas sin entrenar entre medias siguen saliendo (a 0): con fechas, el hueco se entiende.
+91. **Peso corporal en el 1RM.** En dominadas, fondos y flexiones (por nombre: el plan no los
+    marca) la columna Kg es el lastre (vacío = 0) y la carga es peso corporal + lastre, tanto en
+    el 1RM en vivo de cada serie como en Progreso (gráfica, récords, progresión) y en el tonelaje.
+    El abs colgado no suma el cuerpo (mueve las piernas): sigue con solo el lastre y su aviso.
+    Peso del día: el del propio día o, si no te pesaste, el más cercano a ≤ 7 días (antes gana a
+    después). Sin peso cerca: como antes (solo lastre) y lo dice la pantalla.
+92. **De dónde sale el peso.** La app Báscula (repo `bascula`, misma cuenta de GitHub) guarda sus
+    pesajes en `localStorage['bascula.history.v1']` = `[{ t: ISO, kg }]`, y las dos apps están en
+    el mismo origen (`victor-rueda02.github.io`). Por eso, si se abren en el mismo navegador, la
+    app de gym los lee sola al arrancar y al volver a primer plano. En iPhone eso no ocurre: la
+    báscula va en Bluefy (Safari no tiene Bluetooth web) y cada app de la pantalla de inicio tiene
+    su propio almacenamiento. Para ese caso, Datos › Peso corporal importa la «Copia de
+    seguridad» de la báscula, como archivo o pegando su texto. No se ha tocado la app Báscula.
+93. **Se guarda una copia, sin migración.** `Store` guarda `peso: { 'YYYY-MM-DD': kg }` con el
+    primer pesaje de cada día (el de la mañana), redondeado a centésimas. Es un campo opcional
+    (ausente = sin pesos), así que la versión sigue en 5 y no hace falta migrar. Lo nuevo de la
+    báscula manda sobre lo guardado; restaurar una copia de gym antigua conserva los pesos.
+94. **El Excel del disco.** Comparado celda a celda con el guardado en git: las cinco hojas tienen
+    el mismo contenido. Solo cambia `Seguimiento rodilla!F89` («Mañana siguiente no peor» del
+    paseo de entrada a la carrera), que Excel guardó el 8/11 como fórmula matricial; el fichero pesa
+    el doble porque Excel añade valores calculados y formato. La app no cambia. No se ha tocado.
+

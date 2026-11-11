@@ -97,8 +97,8 @@ await page.locator('main .ex', { hasText: 'Laterales de pie' }).first().click();
 await page.waitForSelector('.set-row input');
 check('Se pintan las 2 series prescritas',
   (await page.locator('.set-row:not(.head)').count()) === 2);
-check('Columnas Kg/Reps/RIR para prescripción por RIR',
-  (await page.locator('.set-row.head span').allTextContents()).join(',') === ',Kg,Reps,RIR,');
+check('Columnas Kg/Reps/RIR y 1RM estimado para prescripción por RIR',
+  (await page.locator('.set-row.head span').allTextContents()).join(',') === ',Kg,Reps,RIR,1RM,');
 
 const inputs = page.locator('.set-row:not(.head) input');
 await inputs.nth(0).fill('12');
