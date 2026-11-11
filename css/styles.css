@@ -242,6 +242,11 @@ textarea {
   font: inherit; font-size: 15px; padding: 10px;
 }
 
+/* Datos › Peso corporal: pegar la copia de la báscula. */
+.pegar-bascula { margin-top: 10px; }
+.pegar-bascula summary { font-weight: 650; font-size: 14px; min-height: 28px; cursor: pointer; }
+.pegar-bascula textarea { margin-top: 10px; font-size: 13px; }
+
 .rules { padding-left: 18px; margin: 0; font-size: 13.5px; color: var(--muted); }
 .rules li { margin-bottom: 6px; white-space: pre-line; }
 

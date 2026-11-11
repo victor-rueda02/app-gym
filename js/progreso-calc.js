@@ -4,7 +4,9 @@
    el global PLAN: el catálogo de ejercicios y los grupos entran por parámetro), así se
    prueban desde Node. `data` es `Store.all()`: { days: { 'YYYY-MM-DD': { entries: { exId:
    [ { kg, reps, secs, rir, mins, side? } ] } } } }. Los valores de las series son texto
-   tal como se tecleó (coma ya convertida a punto, '' = vacío); también se aceptan números. */
+   tal como se tecleó (coma ya convertida a punto, '' = vacío); también se aceptan números.
+   `data.peso` (opcional) = { 'YYYY-MM-DD': kg } con el peso corporal de la báscula: en los
+   ejercicios de peso corporal (dominadas, fondos, flexiones) la carga es peso + lastre. */
 
 const ProgresoCalc = (() => {
   const vacio = (v) => v === '' || v === null || v === undefined || (typeof v === 'string' && v.trim() === '');
@@ -50,6 +52,51 @@ const ProgresoCalc = (() => {
     return '~' + t;
   }
 
+  /* Ejercicios en los que mueves tu cuerpo: la columna Kg es el lastre (vacío = 0). El abs
+     colgado no entra: ahí se mueven las piernas, no el peso entero. */
+  const esPesoCorporal = (name) => /dominada|fondos|flexi[oó]n/i.test(String(name || ''));
+
+  /* Registros de la app Báscula ([{ t: ISO, kg }]) -> { 'YYYY-MM-DD': kg } con el primer
+     pesaje de cada día (el de la mañana), en la fecha local del pesaje. */
+  function pesosDiarios(registros) {
+    const out = {};
+    const orden = (Array.isArray(registros) ? registros : [])
+      .filter((r) => r && typeof r.t === 'string' && typeof r.kg === 'number' && r.kg > 0 && !Number.isNaN(Date.parse(r.t)))
+      .sort((a, b) => Date.parse(a.t) - Date.parse(b.t));
+    for (const r of orden) {
+      const d = new Date(r.t);
+      const f = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+      if (!(f in out)) out[f] = Math.round(r.kg * 100) / 100;
+    }
+    return out;
+  }
+
+  /* Peso del día o, si no te pesaste, el más cercano a menos de `maxDias` (antes gana a
+     después). { kg, fecha } o null. */
+  function pesoDelDia(pesos, fecha, maxDias = 7) {
+    const p = pesos || {};
+    const ok = (f) => typeof p[f] === 'number' && p[f] > 0;
+    if (ok(fecha)) return { kg: p[fecha], fecha };
+    for (let i = 1; i <= maxDias; i++) {
+      const antes = sumarDias(fecha, -i);
+      if (ok(antes)) return { kg: p[antes], fecha: antes };
+      const despues = sumarDias(fecha, i);
+      if (ok(despues)) return { kg: p[despues], fecha: despues };
+    }
+    return null;
+  }
+
+  /* Carga de una serie: { kg, lastre, corporal }. En peso corporal con peso conocido,
+     kg = peso + lastre; si no, kg = lo tecleado (como antes). */
+  function cargaSerie(s, pesoCorp, pesos, fecha) {
+    const k = num(s && s.kg);
+    if (!pesoCorp) return { kg: k, lastre: null, corporal: null };
+    const pc = pesoDelDia(pesos, fecha);
+    if (!pc) return { kg: k, lastre: k, corporal: null };
+    const lastre = k === null ? 0 : k;
+    return { kg: Math.round((pc.kg + lastre) * 100) / 100, lastre, corporal: pc.kg };
+  }
+
   /* Catálogo de ejercicios a partir de las sesiones del plan (el volumen primero: si un id
      se repite gana la primera aparición). */
   function catalogo(sesiones, grupos = []) {
@@ -62,7 +109,10 @@ const ProgresoCalc = (() => {
         const t = ex.target || '';
         const conCarga = pres.some((p) => p.kind === 'rir' || p.kind === 'fixed')
           && t !== 'Cardio' && t !== 'Test' && !t.endsWith('(correctivo)') && !ex.link;
-        cat[ex.id] = { id: ex.id, name: ex.name, target: t, conCarga, conRir, hipertrofia: grupos.includes(t), sides: !!ex.sides };
+        cat[ex.id] = {
+          id: ex.id, name: ex.name, target: t, conCarga, conRir, hipertrofia: grupos.includes(t), sides: !!ex.sides,
+          pesoCorporal: esPesoCorporal(ex.name),
+        };
       }
     }
     return cat;
@@ -92,10 +142,11 @@ const ProgresoCalc = (() => {
         for (const s of entries[exId] || []) {
           if (!s) continue;
           // (aquí se descartarían las series de calentamiento, si la app llegara a marcarlas)
-          const e = estimar1RM(s.kg, s.reps, s.rir);
+          const c = cargaSerie(s, cat[exId].pesoCorporal, data.peso, fecha);
+          const e = estimar1RM(c.kg, s.reps, s.rir);
           if (e.valor === null) continue;
           out.push({
-            fecha, exId, side: ladoDe(s), kg: num(s.kg), reps: num(s.reps), rir: num(s.rir),
+            fecha, exId, side: ladoDe(s), kg: c.kg, lastre: c.lastre, corporal: c.corporal, reps: num(s.reps), rir: num(s.rir),
             sinRir: e.sinRir, valor: e.valor, repsEf: e.repsEf, formula: e.formula,
           });
         }
@@ -120,7 +171,7 @@ const ProgresoCalc = (() => {
         const s = lineas[side][fecha];
         const record = max !== -Infinity && s.valor > max;
         if (s.valor > max) max = s.valor;
-        return { fecha, valor: s.valor, kg: s.kg, reps: s.reps, rir: s.rir, sinRir: s.sinRir, record };
+        return { fecha, valor: s.valor, kg: s.kg, lastre: s.lastre, corporal: s.corporal, reps: s.reps, rir: s.rir, sinRir: s.sinRir, record };
       });
       return { side, puntos };
     });
@@ -185,7 +236,7 @@ const ProgresoCalc = (() => {
         if (!cat[exId] || !cat[exId].hipertrofia) continue;
         for (const s of entries[exId] || []) {
           if (!s || ![s.kg, s.reps, s.secs, s.mins].some((v) => !vacio(v))) continue;
-          out.push({ semana: semanaDe(fecha), exId, s });
+          out.push({ semana: semanaDe(fecha), fecha, exId, s });
         }
       }
     }
@@ -200,17 +251,18 @@ const ProgresoCalc = (() => {
     return out;
   }
 
-  /* Series (D/I = 0,5) y tonelaje (kg x reps) por semana y grupo; semanas contiguas. */
+  /* Series (D/I = 0,5) y tonelaje (kg x reps; en peso corporal, (peso + lastre) x reps) por
+     semana y grupo; semanas contiguas. */
   function volumenSemanal(data, cat, grupos) {
     const series = seriesHipertrofia(data, cat);
     const semanas = listaSemanas(series);
     const vacioArr = () => ({ series: semanas.map(() => 0), tonelaje: semanas.map(() => 0) });
     const porGrupo = Object.fromEntries(grupos.map((g) => [g, vacioArr()]));
     const total = vacioArr();
-    for (const { semana, exId, s } of series) {
+    for (const { semana, fecha, exId, s } of series) {
       const i = semanas.indexOf(semana);
       const peso = ladoDe(s) ? 0.5 : 1;
-      const k = num(s.kg);
+      const k = cargaSerie(s, cat[exId].pesoCorporal, data.peso, fecha).kg;
       const r = num(s.reps);
       const ton = k !== null && r !== null ? k * r : 0;
       const g = porGrupo[cat[exId].target];
@@ -249,7 +301,7 @@ const ProgresoCalc = (() => {
   }
 
   return {
-    num, redondear05, estimar1RM, fmt1RM, catalogo, semanaDe, sumarDias, seriesConCarga,
+    num, redondear05, estimar1RM, fmt1RM, esPesoCorporal, pesosDiarios, pesoDelDia, cargaSerie, catalogo, semanaDe, sumarDias, seriesConCarga,
     mejor1RMPorDia, ejerciciosConDatos, records, progresion, volumenSemanal, rirMedioSemanal,
     rirPrescrito, cumplimiento,
   };

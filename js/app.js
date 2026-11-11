@@ -320,6 +320,14 @@ function renderExercise() {
   const sides = PLAN.sidesFor(exercise, week);
   // Con RIR hay además una columna «1RM» (estimado en vivo) antes del botón de borrar.
   const con1RM = pres.kind === 'rir';
+  // Dominadas y similares: el 1RM suma tu peso de la báscula al lastre (columna Kg).
+  const pesoCorp = con1RM && ProgresoCalc.esPesoCorporal(exercise.name);
+  if (pesoCorp) {
+    const pc = ProgresoCalc.pesoDelDia(Store.pesos(), date);
+    view.appendChild(el(pc
+      ? `<div class="prev">Kg = lastre. El 1RM suma tu peso de la báscula: <b>${escapeHtml(fmtKg(pc.kg))} kg</b>${pc.fecha === date ? '' : ` (del ${escapeHtml(shortDate(pc.fecha))})`}.</div>`
+      : '<div class="prev">Kg = lastre. Sin peso de la báscula de estos días: el 1RM usa solo el lastre. Impórtalo en Datos › Peso corporal.</div>'));
+  }
   const grid = (extra) => `grid-template-columns: 30px ${sides ? '44px ' : ''}${'1fr '.repeat(cols.length)}${con1RM ? '52px ' : ''}40px;${extra || ''}`;
   card.appendChild(el(
     `<div class="set-row head${con1RM ? ' con-1rm' : ''}" style="${grid()}">
@@ -361,7 +369,8 @@ function renderExercise() {
     const e1rm = row.querySelector('.e1rm');
     const pintar1RM = () => {
       if (!e1rm) return;
-      const r = ProgresoCalc.estimar1RM(s.kg, s.reps, s.rir);
+      const carga = ProgresoCalc.cargaSerie(s, pesoCorp, Store.pesos(), date).kg;
+      const r = ProgresoCalc.estimar1RM(carga, s.reps, s.rir);
       e1rm.innerHTML = `${escapeHtml(ProgresoCalc.fmt1RM(r))}${r.valor != null && r.sinRir ? '<small>sin RIR</small>' : ''}`;
       e1rm.classList.toggle('vacio', r.valor == null);
     };
@@ -645,6 +654,8 @@ function renderData() {
   view.appendChild(importBtn);
   view.appendChild(picker);
 
+  renderPesoCorporal();
+
   if (days.length) {
     view.appendChild(el('<div class="section-label">Historial</div>'));
     days.sort().reverse().forEach((d) => {
@@ -665,6 +676,50 @@ function renderData() {
       view.appendChild(row);
     });
   }
+}
+
+/* Peso corporal (Datos): copia de los pesajes de la app Báscula, para el 1RM de las dominadas. */
+const fmtKg = (kg) => kg.toLocaleString('es-ES', { maximumFractionDigits: 2 });
+
+function renderPesoCorporal() {
+  Store.sincronizarBascula();
+  const pesos = Store.pesos();
+  const dias = Object.keys(pesos).sort();
+  const ultimo = dias[dias.length - 1];
+  view.appendChild(el('<div class="section-label">Peso corporal</div>'));
+  view.appendChild(el(`
+    <div class="card"><p>${dias.length
+      ? `${dias.length} ${dias.length === 1 ? 'día' : 'días'} con peso · último <b>${escapeHtml(fmtKg(pesos[ultimo]))} kg</b> (${escapeHtml(shortDate(ultimo))}).`
+      : 'Aún no hay pesos.'}
+      Se usan en el 1RM de las dominadas (peso + lastre). Si la báscula está en este mismo
+      navegador se leen solos; si no, en la báscula pulsa <b>Copia de seguridad</b> y aquí
+      carga el archivo o pega el texto.</p></div>`));
+
+  const fileBtn = el('<button class="btn line">Cargar copia de la báscula</button>');
+  const picker = el('<input type="file" accept="application/json,.json,text/plain,.txt" hidden>');
+  const importar = (texto) => {
+    try {
+      const r = Store.importarBascula(texto);
+      toast(`${r.dias} ${r.dias === 1 ? 'día' : 'días'} con peso (${r.cambiados} ${r.cambiados === 1 ? 'nuevo' : 'nuevos'})`);
+      render();
+    } catch (e) {
+      toast('No es una copia de la báscula');
+    }
+  };
+  fileBtn.addEventListener('click', () => picker.click());
+  picker.addEventListener('change', async () => {
+    const file = picker.files[0];
+    if (file) importar(await file.text());
+    picker.value = '';
+  });
+  const pegar = el(`
+    <details class="card pegar-bascula"><summary>Pegar el texto de la copia</summary>
+      <textarea rows="4" placeholder='{"formato":"bascula-ilteco", …}' aria-label="Texto de la copia de la báscula"></textarea>
+      <button class="btn line">Importar texto</button></details>`);
+  pegar.querySelector('button').addEventListener('click', () => importar(pegar.querySelector('textarea').value));
+  view.appendChild(fileBtn);
+  view.appendChild(picker);
+  view.appendChild(pegar);
 }
 
 /* Navegación ---------------------------------------------------------------- */
@@ -696,6 +751,11 @@ document.getElementById('menu').addEventListener('click', () => {
 /* Arranque ------------------------------------------------------------------ */
 Store.init().then(() => {
   render();
+  // Al volver a la app, recoge los pesajes nuevos de la báscula (si comparte navegador).
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible' && Store.sincronizarBascula() && !state.exercise
+      && (state.tab === 'progress' || state.tab === 'data')) render();
+  });
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('sw.js').catch(() => { /* sin offline, pero funciona */ });
   }

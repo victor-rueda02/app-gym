@@ -26,10 +26,8 @@ const Progreso = (() => {
   const fmtTonEje = (kg) => (kg >= 1000 ? `${fmtN(Math.round(kg / 100) / 10)} t` : fmtN(kg));
   const lado = (s) => (s === 'D' ? 'pierna D' : s === 'I' ? 'pierna I' : '');
   const diasDesde = (f) => { const [y, m, d] = f.split('-').map(Number); return Math.round(Date.UTC(y, m - 1, d) / 86400000); };
-  const etiquetaSemana = (lunes) => {
-    const w = PLAN.weekFor(lunes);
-    return w && w.plan === 'vol' ? `S${w.n}` : shortDate(lunes);
-  };
+  // Eje X por semanas: siempre la fecha real del lunes (S1 del plan de volumen = 19 oct).
+  const etiquetaSemana = (lunes) => shortDate(lunes);
 
   /* Gráficas ----------------------------------------------------------------
      grafica({ tipo: 'lineas'|'barras', columnas, series | barras, categorico, yMin, yMax,
@@ -190,7 +188,8 @@ const Progreso = (() => {
   }
 
   /* 1RM -------------------------------------------------------------------- */
-  const esPesoCorporal = (name) => /dominada|colgado|fondos|flexion/i.test(name);
+  // Con lastre pero sin sumar el cuerpo (el abs colgado mueve las piernas, no el peso entero).
+  const soloLastre = (name) => /colgado/i.test(name);
 
   function seccion1RM(raiz, data) {
     const cat = catalogo();
@@ -218,7 +217,8 @@ const Progreso = (() => {
       det: lineas.map((l) => {
         const p = l.puntos.find((q) => q.fecha === f);
         if (!p) return '';
-        const serie = `${fmtN(p.kg)} × ${fmtN(p.reps)}${p.sinRir ? ' (sin RIR)' : ` @${fmtN(p.rir)}`}`;
+        const carga = p.corporal != null ? `(${fmtN(p.corporal)} + ${fmtN(p.lastre)})` : fmtN(p.kg);
+        const serie = `${carga} × ${fmtN(p.reps)}${p.sinRir ? ' (sin RIR)' : ` @${fmtN(p.rir)}`}`;
         return `<div>${l.side ? `<b>${esc(l.side)}</b> · ` : ''}${esc(shortDate(f))} · <b>${esc(C.fmt1RM(p.valor))} kg</b> · ${esc(serie)}${p.record ? ' · ★ récord' : ''}</div>`;
       }).join(''),
     }));
@@ -238,7 +238,12 @@ const Progreso = (() => {
     });
     const avisos = [];
     if (lineas.some((l) => l.puntos.some((p) => p.sinRir))) avisos.push('Algunos puntos son «sin RIR»: se estiman con RIR 0 y se quedan cortos.');
-    if (esPesoCorporal(ex.name)) avisos.push('Ejercicio de peso corporal: el valor es el del lastre añadido, no incluye tu peso.');
+    if (ex.pesoCorporal) {
+      const pts = lineas.flatMap((l) => l.puntos);
+      const sin = pts.filter((p) => p.corporal == null).length;
+      avisos.push(sin === 0 ? 'Peso corporal: el 1RM es tu peso de la báscula + el lastre.'
+        : `Peso corporal: ${sin} de ${pts.length} ${pts.length === 1 ? 'día' : 'días'} sin peso de la báscula a menos de 7 días; esos usan solo el lastre. Importa tus pesos en Datos › Peso corporal.`);
+    } else if (soloLastre(ex.name)) avisos.push('El valor es el del lastre añadido, no incluye tu peso.');
     raiz.appendChild(el(`<div class="card pg-mejor"><p class="pg-mejor-t">Mejor: ${mejores.join(' · ')}</p>${avisos.map((a) => `<p class="pg-aviso">${esc(a)}</p>`).join('')}</div>`));
 
     // Progresión.
@@ -333,7 +338,7 @@ const Progreso = (() => {
         const plan = PLAN.seriesPorGrupo(w.n).TOTAL;
         const pct = C.cumplimiento(v.total.series[i], plan);
         cc.appendChild(el(`<div class="pg-cump">
-          <div class="pg-cump-c"><b>S${w.n}</b>${lunes === hoyLunes ? ' <small>en curso</small>' : ''}<span>${esc(fmtN(v.total.series[i]))} / ${esc(fmtN(plan))} series</span><b class="pg-cump-p">${pct === null ? '—' : `${pct} %`}</b></div>
+          <div class="pg-cump-c"><b>${esc(shortDate(lunes))}</b> <small>S${w.n}${lunes === hoyLunes ? ' · en curso' : ''}</small><span>${esc(fmtN(v.total.series[i]))} / ${esc(fmtN(plan))} series</span><b class="pg-cump-p">${pct === null ? '—' : `${pct} %`}</b></div>
           <div class="pg-barra"><i style="width:${Math.min(pct || 0, 100)}%"></i></div></div>`));
       });
       if (!hay) cc.appendChild(el('<p class="pg-vacio">Aún no hay semanas del plan de volumen con datos.</p>'));

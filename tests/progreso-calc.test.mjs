@@ -236,5 +236,59 @@ test('cumplimiento', () => {
   assert.equal(C.cumplimiento(0, 10), 0);
 });
 
+test('peso corporal: qué ejercicios', () => {
+  assert.equal(C.esPesoCorporal('Dominada neutra dorsal'), true);
+  assert.equal(C.esPesoCorporal('Dominadas abducción hombro'), true);
+  assert.equal(C.esPesoCorporal('Fondos en paralelas'), true);
+  assert.equal(C.esPesoCorporal('Abs colgado (retroversión)'), false);
+  assert.equal(C.esPesoCorporal('Jalón neutro'), false);
+  assert.equal(cat['dominada-neutra-dorsal'].pesoCorporal, true);
+  assert.equal(cat['jalon-neutro'].pesoCorporal, false);
+});
+
+test('pesosDiarios: primer pesaje de cada día, ignora basura', () => {
+  // Horas a mediodía UTC: la fecha local es la misma en Europa y América.
+  const reg = [
+    { t: '2026-10-20T13:00:00.000Z', kg: 73.1 },
+    { t: '2026-10-20T11:00:00.000Z', kg: 72.456 },   // el primero del día, aunque venga después
+    { t: '2026-10-22T12:00:00.000Z', kg: 72.9 },
+    { t: 'mal', kg: 70 }, { t: '2026-10-23T12:00:00.000Z', kg: '71' }, null, { t: '2026-10-24T12:00:00.000Z', kg: 0 },
+  ];
+  assert.deepEqual(C.pesosDiarios(reg), { '2026-10-20': 72.46, '2026-10-22': 72.9 });
+  assert.deepEqual(C.pesosDiarios(null), {});
+});
+
+test('pesoDelDia: el del día, el más cercano antes, después, o nada a más de 7 días', () => {
+  const p = { '2026-10-20': 72.5, '2026-10-30': 74 };
+  assert.deepEqual(C.pesoDelDia(p, '2026-10-20'), { kg: 72.5, fecha: '2026-10-20' });
+  assert.deepEqual(C.pesoDelDia(p, '2026-10-23'), { kg: 72.5, fecha: '2026-10-20' });
+  assert.deepEqual(C.pesoDelDia(p, '2026-10-25'), { kg: 72.5, fecha: '2026-10-20' });   // 5 antes gana a 5 después
+  assert.deepEqual(C.pesoDelDia(p, '2026-10-26'), { kg: 74, fecha: '2026-10-30' });
+  assert.equal(C.pesoDelDia(p, '2026-11-10'), null);
+  assert.equal(C.pesoDelDia(undefined, '2026-10-20'), null);
+});
+
+test('peso corporal en el 1RM y el tonelaje: peso + lastre', () => {
+  const data = {
+    peso: { '2026-10-19': 72 },
+    days: {
+      '2026-10-21': { entries: { 'dominada-neutra-dorsal': [
+        { kg: '10', reps: '6', rir: '2', secs: '', mins: '' },   // (72 + 10) x 6 @2 -> Brzycki 82*36/29 = 101,79 -> 102
+        { kg: '', reps: '8', rir: '1', secs: '', mins: '' },     // sin lastre: 72 x 8 @1 -> 72*36/28 = 92,57 -> 92,5
+      ] } },
+    },
+  };
+  const ss = C.seriesConCarga(data, cat);
+  assert.deepEqual(ss.map((x) => [x.kg, x.lastre, x.corporal, x.valor]), [[82, 10, 72, 102], [72, 0, 72, 92.5]]);
+  assert.equal(C.mejor1RMPorDia(data, cat, 'dominada-neutra-dorsal')[0].puntos[0].corporal, 72);
+  const vol = C.volumenSemanal(data, cat, G);
+  assert.equal(vol.porGrupo.Espalda.tonelaje[0], 82 * 6 + 72 * 8);
+  // Sin peso cerca: como antes, solo el lastre (y la serie sin lastre no da 1RM).
+  const sinPeso = { ...data, peso: {} };
+  assert.deepEqual(C.seriesConCarga(sinPeso, cat).map((x) => [x.kg, x.corporal, x.valor]), [[10, null, 12.5]]);
+  // En un ejercicio normal el peso corporal no cambia nada.
+  assert.deepEqual(C.cargaSerie({ kg: '50' }, false, { '2026-10-21': 72 }, '2026-10-21'), { kg: 50, lastre: null, corporal: null });
+});
+
 console.log(fallos ? `\n${fallos} fallo(s)` : '\nTodo bien');
 process.exit(fallos ? 1 : 0);

@@ -112,7 +112,8 @@ const cuenta = (page, sel) => page.$$eval(sel, (l) => l.length);
   await sub(page, 'volumen');
   check('volumen: SVG con barras', (await cuenta(page, '.gr-bar')) >= 3);
   check('volumen: objetivo marcado', (await cuenta(page, '.gr-obj')) >= 1 && /Objetivo/.test(await texto(page, '.gr-leyenda')));
-  check('volumen: etiqueta S1 en el eje', (await page.$$eval('.gr-svg text', (l) => l.map((t) => t.textContent))).includes('S1'));
+  const ejeVol = await page.$$eval('.gr-svg text', (l) => l.map((t) => t.textContent));
+  check('volumen: el eje lleva la fecha real del lunes (S1 = 19 oct)', ejeVol.includes('19 oct') && !ejeVol.includes('S1'), ejeVol.join('|'));
   const ejeSeries = await page.$$eval('.gr-svg text', (l) => l.map((t) => t.textContent).join('|'));
   await page.locator('.gr-hit').nth(1).click({ force: true });
   check('volumen: tocar barra muestra series y objetivo', /series/.test(await texto(page, '.gr-det')) && /objetivo/.test(await texto(page, '.gr-det')), await texto(page, '.gr-det'));
@@ -156,6 +157,76 @@ const cuenta = (page, sel) => page.$$eval(sel, (l) => l.length);
 
   check('sin errores de consola', errores.length === 0, errores.join(' || '));
   check('ninguna sección falló', !/No se pudo pintar/.test(await page.content()));
+  await ctx.close();
+}
+
+/* ---------- Peso corporal (báscula en el mismo navegador y copia pegada) ---------- */
+{
+  const DOM = 'dominada-neutra-dorsal';
+  const conDom = { ...vacioReg, days: {
+    '2026-10-21': dia({ [DOM]: [s(10, 6, 2), s('', 8, 1)] }),
+    '2026-10-28': dia({ [DOM]: [s(12.5, 6, 2)] }),
+  } };
+  const bascula = [{ t: '2026-10-20T06:30:00.000Z', kg: 72 }, { t: '2026-10-20T19:00:00.000Z', kg: 73.4 }, { t: '2026-10-27T06:30:00.000Z', kg: 72.6 }];
+  const ctx = await browser.newContext({ ...devices['iPhone 13'], locale: 'es-ES', serviceWorkers: 'block' });
+  const page = await ctx.newPage();
+  const errores = [];
+  page.on('pageerror', (e) => errores.push(`pageerror: ${e}`));
+  page.on('console', (m) => { if (m.type() === 'error') errores.push(`console.${m.type()}: ${m.text()}`); });
+  await page.addInitScript(([r, b]) => {
+    if (!localStorage.getItem('gym.log.v1')) localStorage.setItem('gym.log.v1', JSON.stringify(r));
+    if (!localStorage.getItem('bascula.history.v1')) localStorage.setItem('bascula.history.v1', JSON.stringify(b));
+  }, [conDom, bascula]);
+  await page.goto(`http://localhost:${PORT}/index.html`);
+  await page.waitForSelector('[data-tab="progress"]');
+  check('báscula: lee los pesajes del mismo navegador (primero del día)', JSON.stringify(await page.evaluate(() => Store.pesos())) === JSON.stringify({ '2026-10-20': 72, '2026-10-27': 72.6 }), JSON.stringify(await page.evaluate(() => Store.pesos())));
+  await page.click('[data-tab="progress"]');
+  await page.waitForSelector('.pg');
+  await page.selectOption('.pg-select', DOM);
+  await page.waitForTimeout(60);
+  check('báscula: aviso de peso + lastre', /peso de la báscula \+ el lastre/.test(await texto(page, '.pg-mejor')), await texto(page, '.pg-mejor'));
+  await page.locator('.gr-hit').first().click({ force: true });
+  const det = await texto(page, '.gr-det');
+  check('báscula: el punto suma peso y lastre', /~102 kg/.test(det) && /\(72 \+ 10\) × 6/.test(det), det);
+  // Pantalla del ejercicio: nota con el peso y 1RM en vivo con peso + lastre.
+  await page.evaluate((id) => {
+    const ses = Object.values(PLAN.BLOCK_VOL).find((x) => x.exercises.some((e) => e.id === id));
+    state.exercise = { sessionId: ses.id, exId: id, date: '2026-10-21' };
+    render();
+  }, DOM);
+  await page.waitForSelector('.e1rm');
+  check('ejercicio: nota con el peso de la báscula', /72 kg/.test(await texto(page, '.prev')) && /lastre/.test(await texto(page, '.prev')), await texto(page, '.prev'));
+  const vivos = await page.$$eval('.e1rm', (l) => l.map((e) => e.textContent.trim()));
+  check('ejercicio: 1RM en vivo con peso + lastre', vivos[0].startsWith('~102') && vivos[1].startsWith('~92,5'), vivos.join(' | '));
+  await page.screenshot({ path: path.join(out, 'progreso-peso-ejercicio.png'), fullPage: true });
+  // Datos › Peso corporal
+  await page.evaluate(() => { state.exercise = null; });
+  await page.click('[data-tab="data"]');
+  await page.waitForTimeout(60);
+  check('datos: resumen de pesos', /2 días con peso/.test(await page.content()));
+  check('datos: sin scroll horizontal', (await ancho(page)) <= 390);
+  await page.screenshot({ path: path.join(out, 'progreso-peso-datos.png'), fullPage: true });
+  check('báscula: sin errores de consola', errores.length === 0, errores.join(' || '));
+  await ctx.close();
+}
+{
+  // Otro navegador (sin la báscula): se pega el texto de su copia de seguridad.
+  const { ctx, page, errores } = await abrir(vacioReg);
+  await page.click('[data-tab="data"]');
+  await page.click('.pegar-bascula summary');
+  const copia = { formato: 'bascula-ilteco', version: 1, exportado: '2026-11-10T08:00:00.000Z', alturaCm: '178',
+    registros: [{ t: '2026-11-09T07:00:00.000Z', kg: 71.85 }, { t: '2026-11-10T07:00:00.000Z', kg: 71.6 }] };
+  await page.fill('.pegar-bascula textarea', JSON.stringify(copia, null, 2));
+  await page.click('.pegar-bascula button');
+  await page.waitForTimeout(60);
+  check('pegar copia: importa los pesos', JSON.stringify(await page.evaluate(() => Store.pesos())) === JSON.stringify({ '2026-11-09': 71.85, '2026-11-10': 71.6 }));
+  check('pegar copia: se ve en Datos', /2 días con peso/.test(await page.content()) && /71,6 kg/.test(await page.content()));
+  await page.click('.pegar-bascula summary').catch(() => {});
+  await page.fill('.pegar-bascula textarea', 'esto no es una copia').catch(() => {});
+  await page.click('.pegar-bascula button').catch(() => {});
+  await page.waitForTimeout(60);
+  check('pegar basura: no rompe ni borra', Object.keys(await page.evaluate(() => Store.pesos())).length === 2);
+  check('pegar copia: sin errores de consola', errores.length === 0, errores.join(' || '));
   await ctx.close();
 }
 

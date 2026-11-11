@@ -477,15 +477,39 @@ Rama `progreso-1rm`. Plan y reparto en `docs/progreso/PLAN.md`.
 
 ### Pendiente o a revisar por el usuario (Progreso)
 
-- `Plan_8sem_vol_definitivo_con_cardio.xlsx` está modificado en el árbol de trabajo y sin
-  commitear (no es de esta rama y no se ha tocado). Mientras siga así, la comprobación «Las 4
-  hojas originales salen intactas» de `tools/e2e.mjs` falla: compara el fichero del disco con el
-  empotrado. Si ese Excel es el nuevo plan, toca `python tools/excel_app.py` (regenera y empotra);
-  si no, `git restore` del fichero.
-- Si hay registros de julio y del plan de volumen, el eje X del volumen mezcla fechas (semanas
-  fuera del plan) con «S1…S8» y deja a 0 las semanas sin entrenar entre medias. Es intencionado
-  (se ven los huecos), pero se podría limitar a las semanas del plan de volumen.
-- El aviso de peso corporal en 1RM se decide por el nombre (dominada, colgado, fondos, flexión):
-  el plan no marca esos ejercicios.
+- `Plan_8sem_vol_definitivo_con_cardio.xlsx`: ver decisión 94.
+- Eje X del volumen: resuelto en la decisión 90.
+- Peso corporal: resuelto en las decisiones 91–93.
 - Una fila con botón de lado y columna 1RM a la vez no existe hoy (ningún ejercicio por pierna
   lleva RIR); si llega a existir, los inputs quedarían en unos 50 px a 390 px.
+
+## Peso corporal de la báscula y eje con fechas (11/11)
+
+Petición del usuario tras el informe de Progreso.
+
+90. **Eje X con la fecha real.** En Volumen y Esfuerzo cada semana se rotula con su lunes
+    («19 oct», …), también las del plan de volumen (S1 = semana del 19 oct). El número de semana
+    del plan sigue en el detalle al tocar la barra y en la lista de Cumplimiento, junto a la fecha.
+    Las semanas sin entrenar entre medias siguen saliendo (a 0): con fechas, el hueco se entiende.
+91. **Peso corporal en el 1RM.** En dominadas, fondos y flexiones (por nombre: el plan no los
+    marca) la columna Kg es el lastre (vacío = 0) y la carga es peso corporal + lastre, tanto en
+    el 1RM en vivo de cada serie como en Progreso (gráfica, récords, progresión) y en el tonelaje.
+    El abs colgado no suma el cuerpo (mueve las piernas): sigue con solo el lastre y su aviso.
+    Peso del día: el del propio día o, si no te pesaste, el más cercano a ≤ 7 días (antes gana a
+    después). Sin peso cerca: como antes (solo lastre) y lo dice la pantalla.
+92. **De dónde sale el peso.** La app Báscula (repo `bascula`, misma cuenta de GitHub) guarda sus
+    pesajes en `localStorage['bascula.history.v1']` = `[{ t: ISO, kg }]`, y las dos apps están en
+    el mismo origen (`victor-rueda02.github.io`). Por eso, si se abren en el mismo navegador, la
+    app de gym los lee sola al arrancar y al volver a primer plano. En iPhone eso no ocurre: la
+    báscula va en Bluefy (Safari no tiene Bluetooth web) y cada app de la pantalla de inicio tiene
+    su propio almacenamiento. Para ese caso, Datos › Peso corporal importa la «Copia de
+    seguridad» de la báscula, como archivo o pegando su texto. No se ha tocado la app Báscula.
+93. **Se guarda una copia, sin migración.** `Store` guarda `peso: { 'YYYY-MM-DD': kg }` con el
+    primer pesaje de cada día (el de la mañana), redondeado a centésimas. Es un campo opcional
+    (ausente = sin pesos), así que la versión sigue en 5 y no hace falta migrar. Lo nuevo de la
+    báscula manda sobre lo guardado; restaurar una copia de gym antigua conserva los pesos.
+94. **El Excel del disco.** Comparado celda a celda con el guardado en git: las cinco hojas tienen
+    el mismo contenido. Solo cambia `Seguimiento rodilla!F89` («Mañana siguiente no peor» del
+    paseo de entrada a la carrera), que Excel guardó el 8/11 como fórmula matricial; el fichero pesa
+    el doble porque Excel añade valores calculados y formato. La app no cambia. No se ha tocado.
+

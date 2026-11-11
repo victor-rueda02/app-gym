@@ -41,9 +41,11 @@ async function idbGet() {
 
 /* Estructura:
    { v, days: { "2026-07-20": { sessionId, notes, entries: { exId: [ {kg,reps,secs,rir,mins,side} ] } } },
-     knee: { days, weeks, entry, tests, depth }, sinViernes?: [4, …] }
+     knee: { days, weeks, entry, tests, depth }, sinViernes?: [4, …], peso?: { 'YYYY-MM-DD': kg } }
    `side` ('D' | 'I' | '') solo se usa en los unilaterales desde la semana 2 del plan de volumen.
-   `knee` es el registro de la pestaña Rodilla (ver KNEE_SECCIONES y setKnee). */
+   `knee` es el registro de la pestaña Rodilla (ver KNEE_SECCIONES y setKnee).
+   `peso` es el peso corporal de cada día, copiado de la app Báscula (ver «Peso corporal»):
+   opcional, ausente = sin pesos, así que no hace falta migración. */
 const VERSION = 5;
 
 // Secciones de `knee`, cada una un mapa clave -> { campo: valor }:
@@ -194,6 +196,7 @@ async function init() {
   const before = cache.v || 1;
   cache = migrate(cache);
   if (cache.v !== before) persist();
+  sincronizarBascula();
   return cache;
 }
 
@@ -276,15 +279,64 @@ function setSinViernes(n, on) {
   persist();
 }
 
+/* Peso corporal ------------------------------------------------------------------------
+   La app Báscula (victor-rueda02.github.io/bascula/) guarda sus pesajes en el localStorage
+   del mismo origen, clave BASCULA_KEY = [{ t: ISO, kg }]. Si esta app se abre en el mismo
+   navegador, se leen solos; si no (en iPhone cada app de la pantalla de inicio y Bluefy
+   tienen su propio almacenamiento), se importa la copia de seguridad de la báscula.
+   Aquí se guarda una copia por día (el primer pesaje) para que no dependa de la otra app. */
+const BASCULA_KEY = 'bascula.history.v1';
+
+const pesos = () => ((cache && cache.peso && typeof cache.peso === 'object') ? cache.peso : {});
+
+/* Mezcla { fecha: kg } en el registro (lo nuevo manda). Devuelve cuántos días cambian. */
+function mezclarPesos(nuevos) {
+  const actual = { ...pesos() };
+  let n = 0;
+  for (const [f, kg] of Object.entries(nuevos || {})) {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(f) || typeof kg !== 'number' || !(kg > 0)) continue;
+    if (actual[f] !== kg) { actual[f] = kg; n++; }
+  }
+  if (n) { cache.peso = actual; persist(); }
+  return n;
+}
+
+/* Lee la báscula del mismo navegador, si la hay. Devuelve los días nuevos o cambiados. */
+function sincronizarBascula() {
+  if (typeof ProgresoCalc === 'undefined') return 0;
+  let reg = null;
+  try { reg = JSON.parse(localStorage.getItem(BASCULA_KEY)); } catch { reg = null; }
+  return Array.isArray(reg) ? mezclarPesos(ProgresoCalc.pesosDiarios(reg)) : 0;
+}
+
+/* Importa la copia de seguridad de la báscula: el JSON de «Copia de seguridad»
+   ({ formato: 'bascula-ilteco', registros: [{ t, kg }] }) o directamente la lista.
+   Lanza si el texto no lo es. Devuelve { dias, cambiados }. */
+function importarBascula(texto) {
+  const d = typeof texto === 'string' ? JSON.parse(texto) : texto;
+  const reg = Array.isArray(d) ? d : (d && (d.registros || d.entries));
+  if (!Array.isArray(reg)) throw new Error('No es una copia de la báscula');
+  const diarios = ProgresoCalc.pesosDiarios(reg);
+  const dias = Object.keys(diarios).length;
+  if (!dias) throw new Error('La copia no tiene pesajes');
+  return { dias, cambiados: mezclarPesos(diarios) };
+}
+
 function importAll(data) {
   if (!data || typeof data !== 'object' || !data.days) throw new Error('Formato no válido');
+  const previos = pesos();
   cache = migrate(data);   // una copia antigua puede venir de antes de un renombrado
+  // Una copia antigua puede no traer los pesos de la báscula: se conservan los de aquí.
+  cache.peso = { ...previos, ...((cache.peso && typeof cache.peso === 'object') ? cache.peso : {}) };
+  if (!Object.keys(cache.peso).length) delete cache.peso;
   persist();
+  sincronizarBascula();
 }
 
 const Store = {
   init, all, day, setSession, sets, saveSets, setNotes, lastPerformance, importAll,
   knee, setKnee, semanasSinViernes, setSinViernes,
+  pesos, sincronizarBascula, importarBascula,
 };
 
 // El plan lee de aquí qué semanas van sin viernes.
