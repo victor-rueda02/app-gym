@@ -290,5 +290,22 @@ test('peso corporal en el 1RM y el tonelaje: peso + lastre', () => {
   assert.deepEqual(C.cargaSerie({ kg: '50' }, false, { '2026-10-21': 72 }, '2026-10-21'), { kg: 50, lastre: null, corporal: null });
 });
 
+test('periodo: inicio por meses naturales y semanas que se solapan', () => {
+  assert.equal(C.desdePeriodo('2026-11-12', 1), '2026-10-12');
+  assert.equal(C.desdePeriodo('2026-11-12', 3), '2026-08-12');
+  assert.equal(C.desdePeriodo('2026-11-12', 6), '2026-05-12');
+  assert.equal(C.desdePeriodo('2026-03-31', 1), '2026-02-28');
+  assert.equal(C.desdePeriodo('2028-03-31', 1), '2028-02-29');
+  assert.equal(C.desdePeriodo('2026-02-15', 3), '2025-11-15');
+  assert.equal(C.desdePeriodo('2026-11-12', null), null);
+  assert.equal(C.enPeriodo('2026-10-12', '2026-10-12'), true);
+  assert.equal(C.enPeriodo('2026-10-11', '2026-10-12'), false);
+  assert.equal(C.enPeriodo('2020-01-01', null), true);
+  assert.equal(C.semanaEnPeriodo('2026-10-05', '2026-10-12'), false);   // domingo 11
+  assert.equal(C.semanaEnPeriodo('2026-10-06', '2026-10-12'), true);    // domingo 12
+  assert.equal(C.semanaEnPeriodo('2026-10-12', '2026-10-12'), true);
+  assert.equal(C.semanaEnPeriodo('2026-01-05', null), true);
+});
+
 console.log(fallos ? `\n${fallos} fallo(s)` : '\nTodo bien');
 process.exit(fallos ? 1 : 0);
