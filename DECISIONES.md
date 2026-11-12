@@ -513,3 +513,31 @@ Petición del usuario tras el informe de Progreso.
     paseo de entrada a la carrera), que Excel guardó el 8/11 como fórmula matricial; el fichero pesa
     el doble porque Excel añade valores calculados y formato. La app no cambia. No se ha tocado.
 
+## Paseo de entrada como ejercicio y entrada el domingo (12/11)
+
+95. **El paseo del martes es un ejercicio de cardio.** Fila nueva en el Excel (`paseo`, `sesion=M`,
+    «30 min» de S2 a S8) detrás de la bici: sale en Hoy y en Plan como el resto del cardio. En Hoy
+    solo aparece mientras no se haya entrado a correr y el día que toca; si no, se oculta
+    (`Rodilla.prescripcion`, prog `paseo:X`). Más allá de la semana que viene, que solo tiene plan,
+    sale el del día habitual.
+96. **Día de la 1.ª carrera elegible por semana.** En Rodilla › Entrada, cada semana lleva
+    «Día de la 1.ª carrera: Miércoles / Domingo» (`knee.entry[Sn].runDay`; sin elegir = el del plan,
+    sin cambiar la versión del registro). Con el domingo: el paseo pasa al sábado (fila `paseo=D`),
+    los criterios 2-3 y la mañana «no peor» se evalúan el domingo, la 1.ª carrera (N1) es la del
+    domingo, el miércoles dice «Hoy no se corre» y, para avanzar de nivel, esa semana solo cuenta el
+    domingo. La exportación escribe la fecha del paseo en el día anterior al elegido.
+97. **Lo que no cambia.** Sin elegir nada, todo sale como antes (el domingo, «No se corre» hasta
+    entrar). El escalado N1-N6, los criterios y el semáforo son los mismos.
+
+## Periodo de las gráficas (12/11)
+
+95. **Botones 1 mes · 3 meses · 6 meses · Total** debajo de las subpestañas de Progreso, comunes
+    a las cuatro. Cuentan meses naturales hacia atrás desde hoy (12 nov, 1 mes → desde 12 oct;
+    si el día no existe, el último del mes). Una semana entra si alguno de sus días entra. Por
+    defecto, Total; la elección se recuerda en el móvil (`localStorage`, clave
+    `gym.progreso.periodo`), no en el registro.
+96. **Qué se recorta.** Solo las gráficas: 1RM (y su «Mejor», que pasa a «Mejor del periodo»),
+    Volumen con su Cumplimiento, Esfuerzo y la molestia semanal de Rodilla. Los récords se siguen
+    marcando contra todo el historial, y las listas de Progresión y Récords recientes, el
+    selector de ejercicios y la simetría de los tests (sin fecha) no cambian. Sin datos en el
+    periodo, la tarjeta lo dice y propone uno más largo.

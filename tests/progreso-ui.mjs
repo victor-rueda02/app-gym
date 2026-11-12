@@ -230,6 +230,74 @@ const cuenta = (page, sel) => page.$$eval(sel, (l) => l.length);
   await ctx.close();
 }
 
+/* ---------- Periodo de las gráficas (hoy fijado al 12 nov 2026) ---------- */
+{
+  const largo = { ...vacioReg, days: {
+    '2026-07-21': dia({ 'jalon-neutro': [s(45, 10, 2)], 'curl-bayesian': [s(10, 10, 2)] }),
+    '2026-08-04': dia({ 'jalon-neutro': [s(47.5, 10, 2)] }),
+    '2026-09-15': dia({ 'jalon-neutro': [s(48, 10, 2)] }),
+    '2026-10-26': dia({ 'jalon-neutro': [s(52.5, 10, 2)] }),
+    '2026-11-09': dia({ 'jalon-neutro': [s(55, 10, 2)] }),
+  } };
+  const ctx = await browser.newContext({ ...devices['iPhone 13'], locale: 'es-ES', serviceWorkers: 'block' });
+  const page = await ctx.newPage();
+  const errores = [];
+  page.on('pageerror', (e) => errores.push(`pageerror: ${e}`));
+  page.on('console', (m) => { if (m.type() === 'error') errores.push(`console.${m.type()}: ${m.text()}`); });
+  await page.clock.setFixedTime(new Date('2026-11-12T10:00:00'));
+  await page.addInitScript((r) => { if (!localStorage.getItem('gym.log.v1')) localStorage.setItem('gym.log.v1', JSON.stringify(r)); }, largo);
+  await page.goto(`http://localhost:${PORT}/index.html`);
+  await page.waitForSelector('[data-tab="progress"]');
+  await page.click('[data-tab="progress"]');
+  await page.waitForSelector('.pg');
+  const activo = () => page.$eval('.pg-periodo .btn:not(.ghost)', (b) => b.dataset.periodo);
+  const nombres = await page.$$eval('.pg-periodo .btn', (l) => l.map((b) => b.textContent.trim()));
+  check('periodo: cuatro botones', nombres.join('|') === '1 mes|3 meses|6 meses|Total', nombres.join('|'));
+  check('periodo: Total por defecto', (await activo()) === 'total');
+  await page.selectOption('.pg-select', 'jalon-neutro');
+  await page.waitForTimeout(60);
+  const pts = () => cuenta(page, '.gr-pt');
+  check('periodo Total: 5 puntos de jalón', (await pts()) === 5, String(await pts()));
+  const porPeriodo = {};
+  for (const id of ['6m', '3m', '1m']) {
+    await page.click(`[data-periodo="${id}"]`);
+    await page.waitForTimeout(60);
+    porPeriodo[id] = await pts();
+  }
+  // 6 m desde 12 may: todo; 3 m desde 12 ago: sin julio ni 4 ago; 1 m desde 12 oct: 26 oct y 9 nov.
+  check('periodo: recorta los puntos de 1RM', porPeriodo['6m'] === 5 && porPeriodo['3m'] === 3 && porPeriodo['1m'] === 2, JSON.stringify(porPeriodo));
+  check('periodo: «Mejor del periodo»', /Mejor del periodo: <b>~/.test(await page.$eval('.pg-mejor', (e) => e.innerHTML)) && /~77 kg \(9 nov\)/.test(await texto(page, '.pg-mejor')), await texto(page, '.pg-mejor'));
+  check('periodo: subpestaña marcada', (await activo()) === '1m');
+  await page.screenshot({ path: path.join(out, 'progreso-periodo-1m.png'), fullPage: true });
+  // Ejercicio sin datos en el periodo
+  await page.selectOption('.pg-select', 'curl-bayesian');
+  await page.waitForTimeout(60);
+  check('periodo: ejercicio sin datos avisa', /Sin datos en el último mes/.test(await texto(page, '.pg-card')) && (await cuenta(page, '.gr-svg')) === 0, await texto(page, '.pg-card'));
+  check('periodo: progresión sigue completa', (await cuenta(page, '.pg-fila')) >= 1);
+  // Volumen y Esfuerzo
+  await sub(page, 'volumen');
+  const barras1m = await cuenta(page, '.gr-bar');
+  const eje1m = await page.$$eval('.gr-svg text', (l) => l.map((t) => t.textContent));
+  await page.click('[data-periodo="total"]');
+  await page.waitForTimeout(60);
+  const barrasTot = await cuenta(page, '.gr-bar');
+  check('periodo volumen: 1 mes enseña menos semanas que Total', barras1m >= 1 && barras1m < barrasTot && !eje1m.includes('20 jul'), `${barras1m} / ${barrasTot}`);
+  await page.click('[data-periodo="1m"]');
+  await sub(page, 'esfuerzo');
+  check('periodo esfuerzo: gráfica recortada', (await cuenta(page, '.gr-pt')) >= 1 && (await cuenta(page, '.gr-pt')) <= 5);
+  await sub(page, 'rodilla');
+  check('periodo rodilla: sin datos y sin romper', /Apunta la molestia/.test(await texto(page, '.pg .empty')));
+  check('periodo: sin scroll horizontal', (await ancho(page)) <= 390);
+  // Se recuerda al recargar
+  await page.reload();
+  await page.waitForSelector('[data-tab="progress"]');
+  await page.click('[data-tab="progress"]');
+  await page.waitForSelector('.pg');
+  check('periodo: se recuerda al recargar', (await activo()) === '1m');
+  check('periodo: sin errores de consola', errores.length === 0, errores.join(' || '));
+  await ctx.close();
+}
+
 /* ---------- Un solo punto ---------- */
 {
   const uno = { ...vacioReg, days: { '2026-10-19': dia({ 'jalon-neutro': [s(50, 10, 2)] }) } };

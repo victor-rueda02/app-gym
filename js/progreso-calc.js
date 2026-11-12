@@ -127,6 +127,20 @@ const ProgresoCalc = (() => {
     return sumarDias(fecha, -((dow + 6) % 7));
   }
 
+  /* Periodo de las gráficas: primer día que entra al mirar los últimos `meses` meses
+     naturales hasta `hoy` (12 nov y 1 mes -> 12 oct; 31 mar y 1 mes -> 28/29 feb).
+     `meses` null/0 = todo (devuelve null). */
+  function desdePeriodo(hoy, meses) {
+    if (!meses) return null;
+    const [y, m, d] = hoy.split('-').map(Number);
+    const mesObj = m - 1 - meses;                       // 0-based, puede ser negativo
+    const finMes = new Date(Date.UTC(y, mesObj + 1, 0)).getUTCDate();
+    return deUTC(Date.UTC(y, mesObj, Math.min(d, finMes)));
+  }
+  const enPeriodo = (fecha, desde) => !desde || fecha >= desde;
+  // Una semana entra si alguno de sus días entra (su domingo no queda antes del inicio).
+  const semanaEnPeriodo = (lunes, desde) => !desde || sumarDias(lunes, 6) >= desde;
+
   const fechas = (data) => Object.keys((data && data.days) || {}).sort();
   const ladoDe = (s) => (s && (s.side === 'D' || s.side === 'I') ? s.side : '');
   const cmpFechaDescNombre = (a, b, fa, fb) => (fa < fb ? 1 : fa > fb ? -1 : a.name.localeCompare(b.name, 'es'));
@@ -301,7 +315,7 @@ const ProgresoCalc = (() => {
   }
 
   return {
-    num, redondear05, estimar1RM, fmt1RM, esPesoCorporal, pesosDiarios, pesoDelDia, cargaSerie, catalogo, semanaDe, sumarDias, seriesConCarga,
+    num, redondear05, estimar1RM, fmt1RM, esPesoCorporal, pesosDiarios, pesoDelDia, cargaSerie, desdePeriodo, enPeriodo, semanaEnPeriodo, catalogo, semanaDe, sumarDias, seriesConCarga,
     mejor1RMPorDia, ejerciciosConDatos, records, progresion, volumenSemanal, rirMedioSemanal,
     rirPrescrito, cumplimiento,
   };

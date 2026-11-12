@@ -12,6 +12,15 @@ const Progreso = (() => {
   const st = { sec: '1rm', ex: null, grupo: 'Total', modo: 'series' };
   const SECCIONES = [['1rm', '1RM'], ['volumen', 'Volumen'], ['esfuerzo', 'Esfuerzo'], ['rodilla', 'Rodilla']];
 
+  // Periodo de las gráficas (común a las cuatro subpestañas). Se recuerda en este móvil.
+  const PERIODOS = [['1m', '1 mes', 1, 'el último mes'], ['3m', '3 meses', 3, 'los últimos 3 meses'],
+    ['6m', '6 meses', 6, 'los últimos 6 meses'], ['total', 'Total', null, 'todo el registro']];
+  const CLAVE_PERIODO = 'gym.progreso.periodo';
+  try { const p = localStorage.getItem(CLAVE_PERIODO); if (PERIODOS.some(([id]) => id === p)) st.periodo = p; } catch { /* sin almacenamiento */ }
+  if (!st.periodo) st.periodo = 'total';
+  const periodo = () => PERIODOS.find(([id]) => id === st.periodo) || PERIODOS[3];
+  const desde = () => C.desdePeriodo(PLAN.isoDate(new Date()), periodo()[2]);
+
   let cacheCat = null;
   const catalogo = () => cacheCat || (cacheCat = C.catalogo(
     [...Object.values(PLAN.BLOCK_VOL), ...Object.values(PLAN.BLOCK_A), ...Object.values(PLAN.BLOCK_B)],
@@ -179,6 +188,21 @@ const Progreso = (() => {
     return barra;
   }
 
+  function barraPeriodo() {
+    const barra = el('<div class="card pg-tabs pg-periodo" role="group" aria-label="Periodo de las gráficas"></div>');
+    PERIODOS.forEach(([id, nombre]) => {
+      const b = el(`<button class="btn ${st.periodo === id ? '' : 'ghost'}" data-periodo="${id}" aria-pressed="${st.periodo === id}">${esc(nombre)}</button>`);
+      b.addEventListener('click', () => {
+        st.periodo = id;
+        try { localStorage.setItem(CLAVE_PERIODO, id); } catch { /* sin almacenamiento */ }
+        render();
+      });
+      barra.appendChild(b);
+    });
+    return barra;
+  }
+  const vacioPeriodo = () => el(`<p class="pg-vacio">Sin datos en ${esc(periodo()[3])}. Prueba con un periodo más largo.</p>`);
+
   function selector(opciones, actual, onCambio, aria) {
     const sel = el(`<select class="pg-select" aria-label="${esc(aria)}">${opciones.map((o) => (o.grupo
       ? `<optgroup label="${esc(o.grupo)}">${o.items.map((i) => `<option value="${esc(i.v)}"${i.v === actual ? ' selected' : ''}>${esc(i.t)}</option>`).join('')}</optgroup>`
@@ -208,8 +232,16 @@ const Progreso = (() => {
     raiz.appendChild(selector(grupos, st.ex, (v) => { st.ex = v; render(); }, 'Ejercicio'));
 
     const ex = cat[st.ex];
-    const lineas = C.mejor1RMPorDia(data, cat, st.ex);
+    const d0 = desde();
+    // Los récords se marcan con todo el historial; el periodo solo recorta lo que se ve.
+    const lineas = C.mejor1RMPorDia(data, cat, st.ex)
+      .map((l) => ({ ...l, puntos: l.puntos.filter((p) => C.enPeriodo(p.fecha, d0)) }))
+      .filter((l) => l.puntos.length);
     const card = tarjeta(ex.name, '1RM estimado: mejor serie de cada día');
+    if (!lineas.length) {
+      card.appendChild(vacioPeriodo());
+      raiz.appendChild(card);
+    } else {
     const fechasUnicas = [...new Set(lineas.flatMap((l) => l.puntos.map((p) => p.fecha)))].sort();
     const base = diasDesde(fechasUnicas[0]);
     const columnas = fechasUnicas.map((f) => ({
@@ -244,7 +276,8 @@ const Progreso = (() => {
       avisos.push(sin === 0 ? 'Peso corporal: el 1RM es tu peso de la báscula + el lastre.'
         : `Peso corporal: ${sin} de ${pts.length} ${pts.length === 1 ? 'día' : 'días'} sin peso de la báscula a menos de 7 días; esos usan solo el lastre. Importa tus pesos en Datos › Peso corporal.`);
     } else if (soloLastre(ex.name)) avisos.push('El valor es el del lastre añadido, no incluye tu peso.');
-    raiz.appendChild(el(`<div class="card pg-mejor"><p class="pg-mejor-t">Mejor: ${mejores.join(' · ')}</p>${avisos.map((a) => `<p class="pg-aviso">${esc(a)}</p>`).join('')}</div>`));
+    raiz.appendChild(el(`<div class="card pg-mejor"><p class="pg-mejor-t">${d0 ? 'Mejor del periodo' : 'Mejor'}: ${mejores.join(' · ')}</p>${avisos.map((a) => `<p class="pg-aviso">${esc(a)}</p>`).join('')}</div>`));
+    }
 
     // Progresión.
     const prog = C.progresion(data, cat);
@@ -303,7 +336,10 @@ const Progreso = (() => {
     const vals = esSeries ? d.series : d.tonelaje;
     let hayObj = false;
     const columnas = [];
-    const barras = v.semanas.map((lunes, i) => {
+    const d0 = desde();
+    const idx = v.semanas.map((_, i) => i).filter((i) => C.semanaEnPeriodo(v.semanas[i], d0));
+    const barras = idx.map((i, j) => {
+      const lunes = v.semanas[i];
       const w = PLAN.weekFor(lunes);
       let obj = null;
       if (esSeries && w && w.plan === 'vol') {
@@ -312,13 +348,14 @@ const Progreso = (() => {
       }
       const txt = esSeries ? `${fmtN(vals[i])} series` : fmtTon(vals[i]);
       columnas.push({
-        pos: i, label: etiquetaSemana(lunes),
+        pos: j, label: etiquetaSemana(lunes),
         det: `<div>Semana del ${esc(shortDate(lunes))}${w && w.plan === 'vol' ? ` (S${w.n})` : ''} · <b>${esc(txt)}</b>${obj !== null ? ` · objetivo ${esc(fmtN(obj))}` : ''}</div>`,
       });
-      return { pos: i, y: vals[i], obj };
+      return { pos: j, y: vals[i], obj };
     });
     const card = tarjeta(`${total ? 'Total' : st.grupo} · ${esSeries ? 'series por semana' : 'tonelaje por semana'}`, esSeries ? 'Series de hipertrofia (D o I cuentan 0,5)' : 'Tonelaje = kg × reps');
-    card.appendChild(grafica({
+    if (!barras.length) card.appendChild(vacioPeriodo());
+    else card.appendChild(grafica({
       tipo: 'barras', columnas, barras, yMin: 0,
       fmtY: esSeries ? (x) => fmtN(x) : fmtTonEje,
       leyenda: [{ cls: 'c-acc', texto: esSeries ? 'Series' : 'Tonelaje', tipo: 'barra' }, ...(hayObj ? [{ texto: 'Objetivo', tipo: 'obj' }] : [])],
@@ -333,7 +370,7 @@ const Progreso = (() => {
       let hay = false;
       v.semanas.forEach((lunes, i) => {
         const w = PLAN.weekFor(lunes);
-        if (!w || w.plan !== 'vol') return;
+        if (!w || w.plan !== 'vol' || !C.semanaEnPeriodo(lunes, d0)) return;
         hay = true;
         const plan = PLAN.seriesPorGrupo(w.n).TOTAL;
         const pct = C.cumplimiento(v.total.series[i], plan);
@@ -350,11 +387,13 @@ const Progreso = (() => {
   /* Esfuerzo --------------------------------------------------------------- */
   function seccionEsfuerzo(raiz, data) {
     const cat = catalogo();
-    const filas = C.rirMedioSemanal(data, cat, PLAN.VOL_GRUPOS);
-    if (!filas.length) {
+    const todas = C.rirMedioSemanal(data, cat, PLAN.VOL_GRUPOS);
+    if (!todas.length) {
       raiz.appendChild(vacio('Anota el RIR en tus series de hipertrofia para ver tu esfuerzo medio.'));
       return;
     }
+    const d0 = desde();
+    const filas = todas.filter((f) => C.semanaEnPeriodo(f.semana, d0));
     const sesiones = Object.values(PLAN.BLOCK_VOL);
     const columnas = [];
     const real = [];
@@ -373,7 +412,8 @@ const Progreso = (() => {
     const series = [{ cls: 'c-acc', puntos: real }];
     if (hayPres) series.push({ cls: 'c-muted', dash: true, puntos: pres });
     const card = tarjeta('RIR medio por semana', 'Repeticiones que te dejas en recámara');
-    card.appendChild(grafica({
+    if (!filas.length) card.appendChild(vacioPeriodo());
+    else card.appendChild(grafica({
       tipo: 'lineas', categorico: true, columnas, series, yMin: 0,
       leyenda: [{ cls: 'c-acc', texto: 'RIR real', tipo: 'linea' }, ...(hayPres ? [{ cls: 'c-muted', texto: 'Prescrito', tipo: 'dash' }] : [])],
       aria: 'RIR medio real y prescrito por semana',
@@ -387,7 +427,10 @@ const Progreso = (() => {
 
   function seccionRodilla(raiz) {
     const filas = RodillaCalc.tablaDias(RODILLA_DATA.dias, Store.knee().days, PLAN);
-    const res = RodillaCalc.resumenes(filas, RODILLA_DATA.semanas);
+    const d0 = desde();
+    // Con periodo, solo las semanas del plan cuyo último día entra en él.
+    const res = RodillaCalc.resumenes(filas, RODILLA_DATA.semanas)
+      .filter((r) => !d0 || (r.ultimo && C.enPeriodo(r.ultimo, d0)));
     const conDatos = res.filter((r) => numero(r.media) !== null);
     let algo = false;
     if (conDatos.length) {
@@ -438,6 +481,12 @@ const Progreso = (() => {
       }));
       raiz.appendChild(card);
     }
+    if (!algo && d0 && RodillaCalc.resumenes(filas, RODILLA_DATA.semanas).some((r) => numero(r.media) !== null)) {
+      const card = tarjeta('Molestia de la mañana', 'Media semanal (0 = nada, 10 = máxima)');
+      card.appendChild(vacioPeriodo());
+      raiz.appendChild(card);
+      algo = true;
+    }
     if (!algo) raiz.appendChild(vacio('Apunta la molestia de la mañana en Rodilla o completa un test de fuerza para ver aquí su evolución.'));
   }
 
@@ -452,6 +501,7 @@ const Progreso = (() => {
     view.innerHTML = '';
     const raiz = el('<div class="pg"></div>');
     raiz.appendChild(pestanas());
+    raiz.appendChild(barraPeriodo());
     try {
       ({ '1rm': seccion1RM, volumen: seccionVolumen, esfuerzo: seccionEsfuerzo, rodilla: seccionRodilla }[st.sec])(raiz, data);
     } catch (e) {
