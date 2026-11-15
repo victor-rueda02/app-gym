@@ -48,6 +48,8 @@ function parsePres(text, target = '') {
   else if ((m = text.match(/^(\d+) @ RIR(\d)(?:\n[\s\S]*)?$/))) p = rir(+m[1], +m[2]);
   else if ((m = text.match(/^(\d+) x(\d+)$/))) p = fix(+m[1], +m[2]);
   else if ((m = text.match(/^(\d+) x(\d+–\d+)$/))) p = fix(+m[1], m[2]);
+  // "N xS s": isométrico, N series de S segundos (p. ej. la sentadilla española).
+  else if ((m = text.match(/^(\d+) x(\d+) s$/))) p = iso(+m[1], +m[2]);
   // "N x R" o "N-M x R" (R entero o rango con - o –), "/pierna" opcional y líneas de
   // aclaración. En "N-M" se precargan N series (la M se añade a mano si se hace).
   else if ((m = text.match(/^(\d+)(?:-(\d+))? x(\d+(?:[-–]\d+)?)(\/pierna)?(?:\n[\s\S]*)?$/))) {
