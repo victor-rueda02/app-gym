@@ -76,7 +76,10 @@ test('S1 y S2 como se hicieron: cada día, los mismos ejercicios y prescripcione
       antes[5] = [...antes[4].map((e) => (e.startsWith('test-fuerza') ? e.replace(/ · [\s\S]*$/, ' · —') : e)), ...bici];
       delete antes[4];
     }
-    assert.deepEqual(porDia(PLAN, PLAN.VOL_WEEKS[n - 1]), antes, `S${n}`);
+    // La sentadilla española (fila nueva, 13/11) entra en S4: en S1-S2 está con «—».
+    const ahora = porDia(PLAN, PLAN.VOL_WEEKS[n - 1]);
+    for (const d of Object.keys(ahora)) ahora[d] = ahora[d].filter((e) => e !== 'sentadilla-espanola · —');
+    assert.deepEqual(ahora, antes, `S${n}`);
   }
 });
 
@@ -143,13 +146,15 @@ test('pierna en dos días: rodilla lunes y viernes (S1: jueves), abducción en m
   assert.equal(PLAN.BLOCK_VOL.J.exercises[0].name, 'Jalón ancho plano frontal');
   assert.ok(PLAN.BLOCK_VOL.X.exercises.every((e) => e.target === 'Cardio'));
   const pierna2 = (n, dow) => PLAN.sessionsFor(PLAN.VOL_WEEKS[n - 1]).find((x) => x.dow === dow);
-  assert.match(pierna2(1, 4).exercises[1].name, /^Sentadilla al cajón/, 'S1: jueves');
-  assert.match(pierna2(2, 5).exercises[1].name, /^Sentadilla al cajón/, 'S2: viernes 30/10');
+  assert.match(pierna2(1, 4).exercises[2].name, /^Sentadilla al cajón/, 'S1: jueves');
+  assert.match(pierna2(2, 5).exercises[2].name, /^Sentadilla al cajón/, 'S2: viernes 30/10');
   assert.equal(pierna2(2, 4), undefined, 'S2: el jueves 29/10, libre');
-  assert.match(j[0].name, /^TEST fuerza/);
-  assert.match(j[1].name, /^Sentadilla al cajón/);
-  assert.equal(j[2].name, 'Bulgarian split squat');
-  assert.match(j[3].name, /^Abducción de pie unilateral \(máquina\)/);
+  assert.equal(j[0].name, 'Sentadilla española');
+  assert.match(j[1].name, /^TEST fuerza/);
+  assert.match(j[2].name, /^Sentadilla al cajón/);
+  assert.equal(j[3].name, 'Bulgarian split squat');
+  assert.match(j[4].name, /^Abducción de pie unilateral \(máquina\)/);
+  assert.equal(PLAN.BLOCK_VOL.L.exercises[0].name, 'Sentadilla española');
   assert.ok(PLAN.BLOCK_VOL.L.exercises.some((e) => /^Abducción de pie unilateral \(máquina\)/.test(e.name)));
   for (let n = 2; n <= 8; n++) {
     const sabado = PLAN.BLOCK_VOL.S.exercises.filter((e) => !e.pres[n - 1].skip);

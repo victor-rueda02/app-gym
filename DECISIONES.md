@@ -541,3 +541,15 @@ Petición del usuario tras el informe de Progreso.
     marcando contra todo el historial, y las listas de Progresión y Récords recientes, el
     selector de ejercicios y la simetría de los tests (sin fecha) no cambian. Sin datos en el
     periodo, la tarjeta lo dice y propone uno más largo.
+
+## Sentadilla española como ejercicio (13/11)
+
+97. **Fila nueva en el Excel, lunes y viernes.** «Sentadilla española» (`id=sentadilla-espanola`,
+    objetivo Rehab) es lo primero de las dos sesiones de rodilla: el lunes delante de las
+    laterales en polea y la abducción; el viernes delante del test (o de la sentadilla en las
+    semanas sin test). En una semana sin viernes va con la pierna 2 al jueves. **3 x45 s** de S4 a
+    S8 (antes, 2-3×45 s en las notas); «—» en S1-S3, que ya se hicieron. Las notas que la pedían
+    (abducción del lunes, test y sentadilla del viernes) ya no la repiten.
+98. **Formato de celda nuevo `N xS s`** (isométrico: N series de S segundos) en `parsePres`: se
+    registra con columnas Kg/Seg y el botón de volcar el cronómetro. No cuenta en las series de
+    hipertrofia (es Rehab). El brote sigue siendo 5×45 s diaria (regla, sin cambios).

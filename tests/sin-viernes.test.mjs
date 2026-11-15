@@ -74,7 +74,7 @@ test('S4 sin viernes: la bici no se estrena el jueves; entra en la primera bici 
 test('sesionDelDia: el viernes, libre; el jueves, la pierna 2; lo ya registrado no se pierde', () => {
   con([4], () => {
     assert.deepEqual(PLAN.sesionDelDia('2026-11-13', {}).exercises, []);
-    assert.equal(PLAN.sesionDelDia('2026-11-12', {}).exercises[1].id, 'sentadilla-al-cajon-o-desde-pines-pesado-y-lento-n-2');
+    assert.equal(PLAN.sesionDelDia('2026-11-12', {}).exercises[2].id, 'sentadilla-al-cajon-o-desde-pines-pesado-y-lento-n-2');
     const v = PLAN.sesionDelDia('2026-11-13', { 'isquios-sentado': [{ kg: '40', reps: '10' }] });
     assert.deepEqual(ids(v), ['isquios-sentado']);
   });
