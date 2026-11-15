@@ -199,6 +199,11 @@ const cuenta = (page, sel) => page.$$eval(sel, (l) => l.length);
   const vivos = await page.$$eval('.e1rm', (l) => l.map((e) => e.textContent.trim()));
   check('ejercicio: 1RM en vivo con peso + lastre', vivos[0].startsWith('~102') && vivos[1].startsWith('~92,5'), vivos.join(' | '));
   await page.screenshot({ path: path.join(out, 'progreso-peso-ejercicio.png'), fullPage: true });
+  // Reps con decimales y coma, como en el teclado del iPhone: 6,5 cuenta como 6.
+  await page.fill('.set-row:not(.head) input[data-f="reps"] >> nth=0', '6,5');
+  await page.waitForTimeout(60);
+  check('ejercicio: reps «6,5» calculan como 6', (await page.$$eval('.e1rm', (l) => l[0].textContent.trim())).startsWith('~102'),
+    await page.$$eval('.e1rm', (l) => l[0].textContent.trim()));
   // Datos › Peso corporal
   await page.evaluate(() => { state.exercise = null; });
   await page.click('[data-tab="data"]');

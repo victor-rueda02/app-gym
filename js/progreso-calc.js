@@ -25,12 +25,13 @@ const ProgresoCalc = (() => {
   const redondear05 = (x) => Math.round(x * 2) / 2;
 
   /* 1RM estimado. Brzycki si reps+RIR <= 10, Epley si <= 15, más de 15 no se calcula.
-     RIR vacío = 0 con `sinRir: true`. */
+     RIR vacío = 0 con `sinRir: true`. Reps con decimales (10,5) cuentan hacia abajo (10). */
   function estimar1RM(kg, reps, rir) {
     const nulo = { valor: null, repsEf: null, formula: null, sinRir: false };
     const k = num(kg);
-    const r = num(reps);
-    if (k === null || k <= 0 || r === null || r <= 0 || !Number.isInteger(r)) return nulo;
+    const rd = num(reps);
+    const r = rd === null ? null : Math.floor(rd);
+    if (k === null || k <= 0 || r === null || r <= 0) return nulo;
     let ri = 0;
     let sinRir = false;
     if (vacio(rir)) sinRir = true;

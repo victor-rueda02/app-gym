@@ -66,7 +66,7 @@ test('RIR vacío, con coma y no válido', () => {
 });
 
 test('entradas no válidas -> null', () => {
-  for (const [k, r] of [['', 5], ['0', 5], [100, ''], [100, '10-12'], [100, 0], [100, 5.5], [-5, 5], ['abc', 5]]) {
+  for (const [k, r] of [['', 5], ['0', 5], [100, ''], [100, '10-12'], [100, 0], [100, 0.5], [100, '0,9'], [-5, 5], ['abc', 5]]) {
     assert.deepEqual(C.estimar1RM(k, r, 2), { valor: null, repsEf: null, formula: null, sinRir: false });
   }
 });
@@ -305,6 +305,15 @@ test('periodo: inicio por meses naturales y semanas que se solapan', () => {
   assert.equal(C.semanaEnPeriodo('2026-10-06', '2026-10-12'), true);    // domingo 12
   assert.equal(C.semanaEnPeriodo('2026-10-12', '2026-10-12'), true);
   assert.equal(C.semanaEnPeriodo('2026-01-05', null), true);
+});
+
+test('reps con decimales: cuentan hacia abajo (10,5 = 10), con coma o punto', () => {
+  assert.deepEqual(C.estimar1RM(100, '10,5', 0), C.estimar1RM(100, 10, 0));
+  assert.deepEqual(C.estimar1RM(100, '10.5', 0), C.estimar1RM(100, 10, 0));
+  assert.deepEqual(C.estimar1RM(80, 8.9, 2), C.estimar1RM(80, 8, 2));
+  assert.equal(v('62,5', '9,5', '3'), 87.5);                 // 62,5 × 9 @3 -> Epley 87,5
+  assert.equal(C.estimar1RM(100, '10,5', 0).repsEf, 10);      // Brzycki, no Epley
+  assert.equal(C.estimar1RM(100, '10,5', 0).formula, 'brzycki');
 });
 
 console.log(fallos ? `\n${fallos} fallo(s)` : '\nTodo bien');

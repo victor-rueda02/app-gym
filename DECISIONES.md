@@ -553,3 +553,10 @@ Petición del usuario tras el informe de Progreso.
 98. **Formato de celda nuevo `N xS s`** (isométrico: N series de S segundos) en `parsePres`: se
     registra con columnas Kg/Seg y el botón de volcar el cronómetro. No cuenta en las series de
     hipertrofia (es Rehab). El brote sigue siendo 5×45 s diaria (regla, sin cambios).
+
+## Reps con decimales (15/11)
+
+97. **Las reps con decimales cuentan hacia abajo** en el 1RM estimado: «10,5» (o «10.5») se
+    calcula como 10 reps, también para elegir fórmula (10,5 + RIR 0 = 10 → Brzycki). Menos de una
+    rep entera (0,5) no calcula. Lo guardado no cambia (se sigue viendo 10,5) y el tonelaje usa
+    las reps tal cual (kg × 10,5).
