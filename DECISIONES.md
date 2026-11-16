@@ -584,6 +584,41 @@ Se repasaron todos los chats del proyecto para que un chat nuevo tenga el mismo 
     `insertar_filas`, con los mismos textos, y se ha regenerado todo con `excel_app.py`. Pasan
     todas las pruebas.
 
+## Mover el entreno y añadir ejercicios desde Hoy (16/11)
+
+Petición del usuario: poder cambiar el plan desde la propia app (p. ej. el sábado 14/11 no
+entrenó y lo hizo el domingo, sumando ejercicios del lunes y del martes) y que se vea bien al
+exportar y en Progreso.
+
+105. **Mover el entreno de un día a otro de la misma semana.** Hoy › «Cambios de este día» ›
+    «Mover este entreno a otro día». El destino suma esa sesión a la suya («Carrera + lo del
+    sábado») y el origen queda «Libre (movido al domingo)»; se deshace desde cualquiera de los
+    dos días. Se guarda por semana en el registro (`movidos: { S4: { S: 'D' } }`) y la app recoloca
+    la semana al construirla (`js/plan.js`, `sesionesDe`), encima de la semana sin viernes si está
+    activada. Solo dentro de la misma semana (lunes-domingo), para que la prescripción sea la de
+    esa semana; un día que recibe no puede moverse a su vez, ni un día movido recibir. No toca el
+    Excel del plan: lo que cambia es lo que se hizo, que va al Registro.
+106. **La rodilla sigue al día movido**, como en la semana sin viernes: `PLAN.diaEfectivo` y
+    `RodillaCalc.diasEfectivos`. El destino lleva la sesión, la regla y la novedad del origen (en
+    la exportación, en las columnas D/E/F de «Seguimiento rodilla», salvo lo editado a mano) y el
+    origen pasa a «—». Si el destino ya tenía regla, manda la más estricta (la de carrera, ≤2/10);
+    las novedades se suman. La progresión busca la sesión de cada escalera en su día efectivo, y
+    el test del viernes se ve en la fecha a la que se movió.
+107. **Añadir ejercicios a un día.** «+ Añadir ejercicio»: uno del plan (sale con las series,
+    reps y RIR de esa semana, o de su primera semana con algo si esa semana lleva «—», y se pueden
+    cambiar) o uno nuevo, con nombre y grupo muscular (los 10 grupos de la hoja, Rehab u Otro). RIR
+    vacío = reps fijas; «1/0» = como en el plan. Los de cardio o isométricos del plan se añaden con
+    su prescripción del plan. Lo añadido va detrás de los ejercicios del día, marcado «Añadido», sin
+    progresión real (vale lo elegido) y se quita desde el propio ejercicio («Quitar de este día»,
+    que borra también sus series). Se guarda en el día (`added: [{ id, sets, reps, rir, plan? }]`) y
+    los ejercicios nuevos en `extras: { 'extra-<slug>': { name, target } }`. Campos opcionales: la
+    versión del registro sigue en 5, sin migración.
+108. **Excel y Progreso.** La hoja Registro saca lo añadido con su prescripción («3 x8-10 @ RIR1») y
+    «Añadido en la app» en Notas, y la sesión con su nombre nuevo. En Progreso, lo añadido cuenta
+    como cualquier serie: el 1RM (con RIR, columna 1RM en vivo), el volumen de su grupo y el
+    cumplimiento (series hechas; las planificadas siguen siendo las del plan). Los ejercicios nuevos
+    entran en el selector de 1RM. Pruebas: `tests/cambios.test.mjs` y `tests/cambios-ui.mjs`.
+
 ## Pendientes abiertos (16/11)
 
 Lista viva: quitar lo que se resuelva y añadir lo nuevo.

@@ -21,10 +21,22 @@ const Progreso = (() => {
   const periodo = () => PERIODOS.find(([id]) => id === st.periodo) || PERIODOS[3];
   const desde = () => C.desdePeriodo(PLAN.isoDate(new Date()), periodo()[2]);
 
+  // Catálogo de ejercicios: los de los planes y los creados desde Hoy (Store.extras), que llevan
+  // RIR si alguna vez se añadieron con RIR. Se rehace cuando cambian los creados.
   let cacheCat = null;
-  const catalogo = () => cacheCat || (cacheCat = C.catalogo(
-    [...Object.values(PLAN.BLOCK_VOL), ...Object.values(PLAN.BLOCK_A), ...Object.values(PLAN.BLOCK_B)],
-    PLAN.VOL_GRUPOS));
+  let claveCat = '';
+  const catalogo = () => {
+    const extras = Store.extras();
+    const conRir = new Set(Object.values(Store.all().days).flatMap((d) => d.added || []).filter((a) => a.rir).map((a) => a.id));
+    const clave = JSON.stringify([extras, [...conRir].sort()]);
+    if (cacheCat && clave === claveCat) return cacheCat;
+    const propios = { exercises: Object.entries(extras).map(([id, e]) => ({ id, name: e.name, target: e.target, notes: '',
+      pres: [conRir.has(id) ? { kind: 'rir', sets: 1 } : { kind: 'fixed', sets: 1 }] })) };
+    claveCat = clave;
+    return (cacheCat = C.catalogo(
+      [...Object.values(PLAN.BLOCK_VOL), ...Object.values(PLAN.BLOCK_A), ...Object.values(PLAN.BLOCK_B), propios],
+      PLAN.VOL_GRUPOS));
+  };
 
   /* Formato ---------------------------------------------------------------- */
   const fmtN = (v, dec = 1) => {

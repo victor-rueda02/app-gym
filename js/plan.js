@@ -579,13 +579,95 @@ const SESIONES_SIN_VIERNES = VOL_WEEKS.map((w) => construirSinViernes(w.n));
 const admiteSinViernes = (n) => !!SESIONES_SIN_VIERNES[n - 1];
 const sinViernes = (n) => admiteSinViernes(n) && (fuenteSinViernes() || []).map(Number).includes(n);
 
-/* Las sesiones de la semana n del plan de volumen, por día (con el viernes recolocado si
-   esa semana está activada). */
-const sesionesDe = (n) => (sinViernes(n) ? SESIONES_SIN_VIERNES[n - 1] : SESIONES_SEMANA[n - 1]);
+/* Cambios hechos desde la app (Hoy): días movidos y ejercicios añadidos. La fuente es el
+   registro (Store): { movidos: { 'S5': { S: 'D' } }, extras: { id: { name, target } } }. */
+let fuenteCambios = () => ({});
+const setFuenteCambios = (fn) => { fuenteCambios = fn; };
 
-/* Día en que se hace, la semana n, lo que el plan pone en `letra` (V -> J y J -> X en una
-   semana sin viernes). */
+/* Días movidos la semana n: { origen: destino } (letras L…D). Solo vale si el origen tiene
+   sesión esa semana; el destino suma esa sesión a la suya. */
+const movidosDe = (n) => {
+  const m = ((fuenteCambios() || {}).movidos || {})[`S${n}`] || {};
+  return Object.fromEntries(Object.entries(m).filter(([de, a]) => DIAS_PLAN.includes(de) && DIAS_PLAN.includes(a) && de !== a));
+};
+
+/* Las sesiones de la semana n del plan de volumen, por día, con el viernes recolocado si
+   esa semana va sin viernes y después los días movidos desde Hoy. */
+const sesionesBase = (n) => (sinViernes(n) ? SESIONES_SIN_VIERNES[n - 1] : SESIONES_SEMANA[n - 1]);
+function sesionesDe(n) {
+  const base = sesionesBase(n);
+  const movidos = movidosDe(n);
+  const origenes = Object.keys(movidos).filter((de) => base[de] && base[de].exercises.length);
+  if (!origenes.length) return base;
+  const out = {};
+  for (const letra of DIAS_PLAN) {
+    const propia = base[letra] && !origenes.includes(letra) ? base[letra] : null;
+    const llegan = origenes.filter((de) => movidos[de] === letra);
+    if (origenes.includes(letra)) {
+      const a = NOMBRE_DIA[movidos[letra]].toLowerCase();
+      out[letra] = { ...base[letra], id: `VOL-${letra}`, dow: DOW[letra], name: NOMBRE_DIA[letra], title: `Libre (movido al ${a})`,
+        exercises: [], note: `Lo de este día se hace el ${a}.`, movidoA: movidos[letra] };
+    }
+    if (!llegan.length) {
+      if (!origenes.includes(letra) && base[letra]) out[letra] = base[letra];
+      continue;
+    }
+    const vistos = new Set(propia ? propia.exercises.map((x) => x.id) : []);
+    const extra = llegan.flatMap((de) => base[de].exercises).filter((x) => !vistos.has(x.id) && vistos.add(x.id));
+    const notaDe = llegan.map((de) => NOMBRE_DIA[de].toLowerCase()).join(' y del ');
+    const conTitulo = propia && propia.exercises.length ? `${tituloCorto(propia.title)} + lo` : 'Lo';
+    out[letra] = {
+      ...(propia || base[llegan[0]]), id: `VOL-${letra}`, dow: DOW[letra], name: NOMBRE_DIA[letra],
+      title: `${conTitulo} del ${notaDe}`,
+      exercises: [...(propia ? propia.exercises : []), ...extra],
+      note: [propia && propia.note, `Hoy también va lo del ${notaDe} (movido desde Hoy).`].filter(Boolean).join(' '),
+      movidosDe: llegan,
+    };
+  }
+  return out;
+}
+
+/* Día en que se hace, la semana n, lo que el plan pone en `letra`: V -> J y J -> X en una
+   semana sin viernes, y después el destino si ese día se movió desde Hoy. */
 const diaSinViernes = (n, letra) => (sinViernes(n) && SIN_VIERNES.mover[letra]) || letra;
+const diaEfectivo = (n, letra) => { const d = diaSinViernes(n, letra); return movidosDe(n)[d] || d; };
+
+/* Ejercicios añadidos a un día desde Hoy -------------------------------------------------
+   Cada uno es { id, sets, reps, rir } (rir: '', un número o '1/0'). El id es el de un
+   ejercicio del plan o el de uno creado en la app (`extras`). La prescripción se construye
+   aquí; el objeto es una copia del ejercicio con esa prescripción en la semana n y sin
+   progresión real (lo que se apunta es lo elegido al añadirlo). */
+function presAnadida(a) {
+  const sets = Math.max(1, Math.min(20, parseInt(a.sets, 10) || 1));
+  const reps = String(a.reps || '').trim().replace(/\s+/g, '');
+  const r = String(a.rir ?? '').trim();
+  if (a.plan) return null;   // cardio, isométrico…: con la prescripción del plan
+  if (r === '1/0') return { ...rir10(sets), reps, label: `${sets}${reps ? ` x${reps}` : ''} @ RIR1/0` };
+  if (/^\d$/.test(r)) return { ...rir(sets, +r), reps, label: `${sets}${reps ? ` x${reps}` : ''} @ RIR${r}` };
+  return fix(sets, reps);
+}
+
+function ejercicioAnadido(a, week) {
+  const extras = (fuenteCambios() || {}).extras || {};
+  const delPlan = Object.values(BLOCK_VOL).flatMap((s) => s.exercises).find((x) => x.id === a.id);
+  const base = delPlan || (extras[a.id] && { id: a.id, name: extras[a.id].name, target: extras[a.id].target, notes: '' });
+  if (!base) return null;
+  const propia = presAnadida(a);
+  const plan = delPlan ? delPlan.pres[week.n - 1] : null;
+  const p = propia || (plan && !plan.skip ? plan : (delPlan && delPlan.pres.find((x) => !x.skip))) || none();
+  const pres = VOL_WEEKS.map((w) => (w.n === week.n ? p : { ...none(), skip: true, label: '—' }));
+  const { prog, link, ...resto } = base;
+  return { ...resto, pres, added: true };
+}
+
+/* Catálogo para «Añadir ejercicio»: los del plan de volumen (sin el test) y los creados. */
+function catalogoAnadir() {
+  const vistos = new Set();
+  const delPlan = Object.values(BLOCK_VOL).flatMap((s) => s.exercises)
+    .filter((x) => !x.link && !vistos.has(x.id) && vistos.add(x.id));
+  const extras = Object.entries((fuenteCambios() || {}).extras || {}).map(([id, e]) => ({ id, name: e.name, target: e.target, propio: true }));
+  return [...delPlan, ...extras];
+}
 
 /* Entrada de la bici: la del calendario o, si su semana va sin viernes, la primera bici de
    las semanas siguientes ({ semana, dia, movida: true }). */
@@ -669,20 +751,26 @@ function sessionFor(dateStr) {
 /* Plan de volumen: la sesión de un día con lo que ya se registró ese día. Es la prevista y,
    al final, cada ejercicio registrado que no esté en ella (p. ej. una sesión hecha otro día),
    para que ni la pantalla ni la exportación pierdan nada. Sin sesión prevista ni registros,
-   descanso. `entries` = Store.day(fecha).entries. */
-function sesionDelDia(dateStr, entries) {
+   descanso. `entries` = Store.day(fecha).entries; `anadidos` = Store.day(fecha).added
+   (ejercicios añadidos desde Hoy, que van detrás de los del plan). */
+function sesionDelDia(dateStr, entries, anadidos) {
   const { week, options } = sessionFor(dateStr);
   if (!week || week.plan !== 'vol') return null;
   const prevista = options[0];
   const ids = new Set(prevista ? prevista.exercises.map((x) => x.id) : []);
+  const nuevos = (anadidos || []).filter((a) => a && !ids.has(a.id) && ids.add(a.id))
+    .map((a) => ejercicioAnadido(a, week)).filter(Boolean);
   const todos = [...sessionsFor(week), ...Object.values(BLOCK_VOL)].flatMap((s) => s.exercises);
+  const extras = (fuenteCambios() || {}).extras || {};
   const extra = Object.keys(entries || {}).filter((id) => entries[id].length && !ids.has(id))
-    .map((id) => todos.find((x) => x.id === id)).filter(Boolean);
-  if (!extra.length && prevista) return prevista;
+    .map((id) => todos.find((x) => x.id === id)
+      || (extras[id] && ejercicioAnadido({ id, sets: entries[id].length }, week))).filter(Boolean);
+  if (!extra.length && !nuevos.length && prevista) return prevista;
   const letra = DIAS_PLAN.split('').find((l) => DOW[l] === dowOf(dateStr));
   const base = prevista || { id: `VOL-${letra}`, dow: DOW[letra], name: NOMBRE_DIA[letra], title: '', exercises: [] };
-  if (!extra.length) return { ...base, title: 'Descanso', rest: true };
-  return { ...base, exercises: [...base.exercises, ...extra] };
+  if (!extra.length && !nuevos.length) return { ...base, title: base.title || 'Descanso', rest: !base.exercises.length };
+  const conTitulo = base.exercises.length ? base : { ...base, title: 'Entreno añadido' };
+  return { ...conTitulo, rest: false, exercises: [...base.exercises, ...nuevos, ...extra] };
 }
 
 /* Nombre y título de una sesión esa semana (el sábado de S1 conserva los de entonces). */
@@ -723,4 +811,5 @@ const PLAN = {
   PRENSA_NIVELES, CARRERA_NIVELES, PRENSA_MAX, CARRERA_MAX, PRENSA_SEMANA, ESCALERAS,
   LIBRO, etiquetasApp, DIAS_PLAN, NOMBRE_DIA, SEMANA_SEGUIMIENTO,
   SIN_VIERNES, setFuenteSinViernes, admiteSinViernes, sinViernes, diaSinViernes, entradaBici, letraDe,
+  setFuenteCambios, movidosDe, diaEfectivo, sesionesBase, ejercicioAnadido, presAnadida, catalogoAnadir, dowOf,
 };

@@ -69,7 +69,7 @@ function sessionById(id) {
    cambian de una semana a otra) con lo que se haya registrado ese día; en el de julio, por id. */
 function sesionDe(date, id) {
   const week = PLAN.weekFor(date);
-  if (week && week.plan === 'vol') return PLAN.sesionDelDia(date, (Store.all().days[date] || {}).entries);
+  if (week && week.plan === 'vol') { const r = Store.all().days[date] || {}; return PLAN.sesionDelDia(date, r.entries, r.added); }
   return sessionById(id);
 }
 
@@ -205,7 +205,7 @@ function renderToday() {
   }
 
   const session = week.block === 'B' ? sessionById(rec.sessionId)
-    : week.plan === 'vol' ? PLAN.sesionDelDia(date, rec.entries) : options[0];
+    : week.plan === 'vol' ? PLAN.sesionDelDia(date, rec.entries, rec.added) : options[0];
   if (!session) { view.appendChild(picker); return; }
   if (!rec.sessionId && !session.rest) Store.setSession(date, session.id);
 
@@ -217,6 +217,7 @@ function renderToday() {
     view.appendChild(el(`<div class="card"><p class="multi">${escapeHtml(session.note)}</p></div>`));
   }
   if (session.rest || !session.exercises.length) {
+    if (week.plan === 'vol') view.appendChild(cambiosCard(date, week, session));
     view.appendChild(picker);
     return;
   }
@@ -227,6 +228,7 @@ function renderToday() {
     if (presHoy(exercise, week, date).skip && !Store.sets(date, exercise.id).length) return;
     view.appendChild(exercise.link === 'test' ? testCard(exercise, week) : exerciseRow(exercise, week, date, session));
   });
+  if (week.plan === 'vol') view.appendChild(cambiosCard(date, week, session));
 
   const notes = el(`
     <div class="card">
@@ -245,6 +247,138 @@ function renderToday() {
   view.appendChild(picker);
 }
 
+/* --- Cambios desde Hoy: mover el entreno y añadir ejercicios (plan de volumen) ---------- */
+const fechaDeLetra = (date, letra) => {
+  const d = new Date(date + 'T12:00:00');
+  d.setDate(d.getDate() + PLAN.DIAS_PLAN.indexOf(letra) - PLAN.DIAS_PLAN.indexOf(PLAN.letraDe(date)));
+  return PLAN.isoDate(d);
+};
+
+function abrirSheet(titulo, contenido) {
+  document.getElementById('sheet-title').textContent = titulo;
+  const box = document.getElementById('sheet-content');
+  box.innerHTML = '';
+  box.appendChild(contenido);
+  sheet.hidden = false;
+}
+
+/* Tarjeta al final de Hoy: mover el entreno a otro día de la semana, deshacerlo y añadir
+   ejercicios. Lo movido se guarda por semana (Store.setMovido) y lo añadido por día. */
+function cambiosCard(date, week, session) {
+  const letra = PLAN.letraDe(date);
+  const base = PLAN.sesionesBase(week.n)[letra];
+  const movidos = PLAN.movidosDe(week.n);
+  const dia = (l) => PLAN.NOMBRE_DIA[l].toLowerCase();
+  const card = el('<div class="card cambios"><div class="section-label" style="margin:0 0 8px">Cambios de este día</div></div>');
+  if (movidos[letra]) {
+    card.appendChild(el(`<p class="multi">Lo de este día se hace el ${escapeHtml(dia(movidos[letra]))} (${escapeHtml(shortDate(fechaDeLetra(date, movidos[letra])))}).</p>`));
+    const des = el('<button class="btn line">Deshacer el cambio</button>');
+    des.addEventListener('click', () => { Store.setMovido(week.n, letra, null); toast('Cambio deshecho'); render(); });
+    card.appendChild(des);
+  }
+  for (const de of Object.keys(movidos).filter((x) => movidos[x] === letra)) {
+    const des = el(`<button class="btn line">Devolver lo del ${escapeHtml(dia(de))} a su día</button>`);
+    des.addEventListener('click', () => { Store.setMovido(week.n, de, null); toast(`Lo del ${dia(de)} vuelve a su día`); render(); });
+    card.appendChild(des);
+  }
+  const recibe = Object.values(movidos).includes(letra);
+  if (!movidos[letra] && !recibe && base && base.exercises.length) {
+    const mover = el('<button class="btn ghost">Mover este entreno a otro día</button>');
+    mover.addEventListener('click', () => abrirMover(date, week));
+    card.appendChild(mover);
+  }
+  const anadir = el('<button class="btn ghost">+ Añadir ejercicio</button>');
+  anadir.addEventListener('click', () => abrirAnadir(date, week, session));
+  card.appendChild(anadir);
+  return card;
+}
+
+function abrirMover(date, week) {
+  const letra = PLAN.letraDe(date);
+  const base = PLAN.sesionesBase(week.n);
+  const movidos = PLAN.movidosDe(week.n);
+  const box = el(`<div><p class="multi" style="margin:0 0 12px">${escapeHtml(PLAN.NOMBRE_DIA[letra])}: «${escapeHtml(base[letra].title)}». Elige el día de esta semana en que lo haces; se suma a lo que ya tenga ese día.</p></div>`);
+  for (const l of PLAN.DIAS_PLAN) {
+    if (l === letra || movidos[l]) continue;   // un día ya movido no recibe
+    const f = fechaDeLetra(date, l);
+    const suya = base[l] && base[l].exercises.length ? base[l].title : 'Sin entreno';
+    const b = el(`<button class="ex" data-mover="${l}"><div class="grow"><div class="nm">${escapeHtml(PLAN.NOMBRE_DIA[l])} ${escapeHtml(shortDate(f))}</div>
+      <div class="meta">${escapeHtml(suya)}</div></div></button>`);
+    b.addEventListener('click', () => {
+      Store.setMovido(week.n, letra, l);
+      sheet.hidden = true;
+      toast(`Movido al ${PLAN.NOMBRE_DIA[l].toLowerCase()}`);
+      render();
+    });
+    box.appendChild(b);
+  }
+  abrirSheet('Mover el entreno', box);
+}
+
+function abrirAnadir(date, week, session) {
+  const ya = new Set(session.exercises.map((x) => x.id));
+  const lista = PLAN.catalogoAnadir().filter((x) => !ya.has(x.id));
+  const grupos = [...new Set(lista.map((x) => x.target))];
+  const opciones = grupos.map((g) => `<optgroup label="${escapeHtml(g)}">${lista.filter((x) => x.target === g)
+    .map((x) => `<option value="${escapeHtml(x.id)}">${escapeHtml(x.name)}</option>`).join('')}</optgroup>`).join('');
+  const objetivos = [...PLAN.VOL_GRUPOS, 'Rehab', 'Otro'];
+  const box = el(`
+    <div class="anadir">
+      <label>Ejercicio
+        <select id="an-ej"><option value="">Elige uno…</option><option value="__nuevo">+ Ejercicio nuevo</option>${opciones}</select></label>
+      <div id="an-nuevo" hidden>
+        <label>Nombre <input id="an-nombre" type="text" autocomplete="off" placeholder="p. ej. Curl araña"></label>
+        <label>Grupo muscular <select id="an-grupo">${objetivos.map((g) => `<option>${escapeHtml(g)}</option>`).join('')}</select></label>
+      </div>
+      <div id="an-pres" hidden>
+        <div class="an-fila">
+          <label>Series <input id="an-series" inputmode="numeric" placeholder="3"></label>
+          <label>Reps <input id="an-reps" inputmode="text" placeholder="8-10"></label>
+          <label>RIR <input id="an-rir" inputmode="text" placeholder="1 o 1/0"></label>
+        </div>
+        <p class="an-ayuda">Sin RIR, las reps quedan fijas. «1/0» = todas a RIR 1 y la última a RIR 0.</p>
+      </div>
+      <p class="an-ayuda" id="an-plan" hidden></p>
+      <button class="btn" id="an-ok" disabled>Añadir a este día</button>
+    </div>`);
+  const $ = (s) => box.querySelector(s);
+  const n = week.n;
+  $('#an-ej').addEventListener('change', (e) => {
+    const id = e.target.value;
+    const nuevo = id === '__nuevo';
+    const delPlan = nuevo || !id ? null : Object.values(PLAN.BLOCK_VOL).flatMap((s) => s.exercises).find((x) => x.id === id) || null;
+    $('#an-nuevo').hidden = !nuevo;
+    // Lo del plan esa semana (o, si esa semana no se hace, su primera semana con algo).
+    const p = delPlan ? (delPlan.pres[n - 1].skip ? delPlan.pres.find((x) => !x.skip) : delPlan.pres[n - 1]) : null;
+    const editable = !!id && (!delPlan || (p && ['rir', 'fixed'].includes(p.kind)));
+    $('#an-pres').hidden = !editable;
+    $('#an-plan').hidden = !id || editable;
+    if (p && !editable) $('#an-plan').textContent = `Se añade como en el plan: ${p.label.replace(/\n/g, ' · ')}.`;
+    $('#an-series').value = p && editable ? p.sets : '';
+    $('#an-reps').value = p && editable && p.reps !== undefined ? p.reps : '';
+    $('#an-rir').value = p && p.kind === 'rir' ? (p.rirs ? '1/0' : p.rir) : '';
+    $('#an-ok').disabled = !id;
+  });
+  $('#an-ok').addEventListener('click', () => {
+    let id = $('#an-ej').value;
+    const editable = !$('#an-pres').hidden;
+    const rirTxt = $('#an-rir').value.trim();
+    if (editable && rirTxt && !/^(\d|1\/0)$/.test(rirTxt)) { toast('RIR: un número del 0 al 9, o 1/0'); return; }
+    try {
+      if (id === '__nuevo') id = Store.crearExtra($('#an-nombre').value, $('#an-grupo').value);
+    } catch (err) { toast(err.message === 'Falta el nombre' ? 'Escribe el nombre del ejercicio' : err.message); return; }
+    const item = editable
+      ? { id, sets: $('#an-series').value.trim() || '1', reps: $('#an-reps').value.trim(), rir: rirTxt }
+      : { id, plan: true };
+    Store.anadir(date, item);
+    sheet.hidden = true;
+    const nombre = (PLAN.catalogoAnadir().find((x) => x.id === id) || {}).name || 'Ejercicio';
+    toast(`«${nombre}» añadido`);
+    render();
+  });
+  abrirSheet('Añadir ejercicio', box);
+}
+
 function exerciseRow(exercise, week, date, session) {
   const pres = presHoy(exercise, week, date);
   const logged = Store.sets(date, exercise.id).filter(isLogged).length;
@@ -256,7 +390,7 @@ function exerciseRow(exercise, week, date, session) {
     <button class="ex ${typeClass(exercise)} ${done ? 'done' : ''}">
       <div class="grow">
         <div class="nm">${escapeHtml(exercise.name)}</div>
-        <div class="meta">${escapeHtml(exercise.target)}${shortNote(exercise.notes) ? ' · ' + escapeHtml(shortNote(exercise.notes)) : ''}</div>
+        <div class="meta">${exercise.added ? 'Añadido · ' : ''}${escapeHtml(exercise.target)}${shortNote(exercise.notes) ? ' · ' + escapeHtml(shortNote(exercise.notes)) : ''}</div>
       </div>
       <span class="pres">${logged ? `${logged}/${total}` : escapeHtml(pres.label)}</span>
     </button>`);
@@ -422,6 +556,19 @@ function renderExercise() {
   const back = el('<button class="btn">Hecho</button>');
   back.addEventListener('click', () => { state.exercise = null; render(); });
   view.appendChild(back);
+
+  if (exercise.added) {
+    const quitar = el('<button class="btn line">Quitar de este día</button>');
+    quitar.addEventListener('click', () => {
+      const n = Store.sets(date, exId).filter(isLogged).length;
+      if (n && !confirm(`Se borrarán también sus ${n} series apuntadas. ¿Quitar «${exercise.name}» de este día?`)) return;
+      Store.quitarAnadido(date, exId);
+      state.exercise = null;
+      toast(`«${exercise.name}» quitado`);
+      render();
+    });
+    view.appendChild(quitar);
+  }
 }
 
 /* Cronómetro manual. Es único para toda la app, así que sigue contando si sales

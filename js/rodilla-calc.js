@@ -132,6 +132,38 @@ const RodillaCalc = (() => {
      novedad pasa al día de su nueva entrada (PLAN.entradaBici). Sin `plan`, tal cual. */
   function diasEfectivos(dias, plan) {
     if (!plan || !plan.sinViernes) return dias;
+    const recolocados = diasSinViernes(dias, plan);
+    return plan.movidosDe ? diasMovidos(recolocados, plan) : recolocados;
+  }
+
+  /* Días movidos desde Hoy (PLAN.movidosDe): el destino suma la sesión, la regla y la novedad
+     del origen, y el origen queda libre. Con dos reglas el mismo día manda la más estricta
+     (la de carrera, ≤2/10). */
+  const DIA_NOMBRE = { L: 'lunes', M: 'martes', X: 'miércoles', J: 'jueves', V: 'viernes', S: 'sábado', D: 'domingo' };
+  function diasMovidos(dias, plan) {
+    const conRegla = (r) => r && r !== SIN_REGLA;
+    const regla = (a, b) => (!conRegla(a) ? b : !conRegla(b) ? a : (/carrera/i.test(a) ? a : /carrera/i.test(b) ? b : a));
+    const novedad = (a, b) => [a, b].filter((x) => x && x !== '—').join(' + ') || '—';
+    return dias.map((d) => {
+      const n = +String(d.sem).slice(1);
+      const m = plan.movidosDe(n);
+      if (!Object.keys(m).length) return d;
+      const de = (dia) => dias.find((x) => x.sem === d.sem && x.dia === dia);
+      let out = m[d.dia] ? { ...d, sesion: `Libre (movido al ${DIA_NOMBRE[m[d.dia]]})`, regla: SIN_REGLA, novedad: '—' } : d;
+      for (const o of Object.keys(m).filter((x) => m[x] === d.dia)) {
+        const src = de(o);
+        if (!src) continue;
+        const propia = m[d.dia] ? null : d;
+        out = { ...out,
+          sesion: [propia && propia.sesion && propia.sesion !== '—' ? propia.sesion : '', `${src.sesion} (del ${DIA_NOMBRE[o]})`].filter(Boolean).join(' + '),
+          regla: regla(propia ? out.regla : SIN_REGLA, src.regla),
+          novedad: novedad(propia ? out.novedad : '—', src.novedad) };
+      }
+      return out;
+    });
+  }
+
+  function diasSinViernes(dias, plan) {
     const entrada = plan.entradaBici ? plan.entradaBici() : null;
     return dias.map((d) => {
       const n = +String(d.sem).slice(1);
@@ -333,8 +365,8 @@ const RodillaCalc = (() => {
     const resumen = resumenes(filasCalculadas, [REF, 'S4']);
     const s2 = avisoS2(filasCalculadas, REF);
     const s4 = avisoS4(resumen[0], resumen[1], hoy);
-    // Semana sin viernes: lo del viernes se hace el jueves (PLAN.diaSinViernes).
-    const diaDe = (sem, d) => (plan.diaSinViernes ? plan.diaSinViernes(+sem.slice(1), d) : d);
+    // Semana sin viernes (lo del viernes se hace el jueves) y días movidos desde Hoy (PLAN.diaEfectivo).
+    const diaDe = (sem, d) => (plan.diaEfectivo ? plan.diaEfectivo(+sem.slice(1), d) : plan.diaSinViernes ? plan.diaSinViernes(+sem.slice(1), d) : d);
     const diasEn = (sem, L) => DIAS[L].map((d) => diaDe(sem, d));
     const ENTRADA_BICI = plan.entradaBici ? plan.entradaBici() : E.bici.entrada;
     const fila = (sem, dia) => filasCalculadas.find((x) => x.sem === sem && x.dia === diaDe(sem, dia));

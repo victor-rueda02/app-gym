@@ -22,7 +22,7 @@ function buildRows() {
 
     // La columna Bloque identifica el plan: A / B (4 semanas) o Volumen. En el de volumen, la
     // sesión de esa semana con todo lo registrado ese día (aunque la sesión cambiara de día).
-    const session = week.plan === 'vol' ? PLAN.sesionDelDia(date, rec.entries)
+    const session = week.plan === 'vol' ? PLAN.sesionDelDia(date, rec.entries, rec.added)
       : PLAN.sessionsFor(week).find((d) => d.id === rec.sessionId);
     if (!session) continue;
 
@@ -44,7 +44,9 @@ function buildRows() {
           exercise.target, i + 1,
           PLAN.sidesFor(exercise, week) ? (s.side || '') : '',
           num(s.kg), num(s.reps), num(s.secs), num(s.mins), num(s.rir),
-          pres.label, exercise.notes.length <= 40 ? exercise.notes : '',   // las pautas largas ya están en la hoja del plan
+          pres.label,
+          // Lo añadido desde Hoy se marca; las pautas largas ya están en la hoja del plan.
+          exercise.added ? 'Añadido en la app' : (exercise.notes.length <= 40 ? exercise.notes : ''),
         ]);
       });
     });

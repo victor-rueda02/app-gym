@@ -41,7 +41,9 @@ async function idbGet() {
 
 /* Estructura:
    { v, days: { "2026-07-20": { sessionId, notes, entries: { exId: [ {kg,reps,secs,rir,mins,side} ] } } },
-     knee: { days, weeks, entry, tests, depth }, sinViernes?: [4, …], peso?: { 'YYYY-MM-DD': kg } }
+     knee: { days, weeks, entry, tests, depth }, sinViernes?: [4, …], peso?: { 'YYYY-MM-DD': kg },
+     movidos?: { 'S5': { S: 'D' } }, extras?: { id: { name, target } } }
+   y en cada día, opcional, `added: [{ id, sets, reps, rir, plan? }]` (ver «Cambios desde Hoy»).
    `side` ('D' | 'I' | '') solo se usa en los unilaterales desde la semana 2 del plan de volumen.
    `knee` es el registro de la pestaña Rodilla (ver KNEE_SECCIONES y setKnee).
    `peso` es el peso corporal de cada día, copiado de la app Báscula (ver «Peso corporal»):
@@ -279,6 +281,56 @@ function setSinViernes(n, on) {
   persist();
 }
 
+/* Cambios desde Hoy ---------------------------------------------------------------------
+   Campos opcionales (ausentes = sin cambios), así que no hace falta migración:
+   - `movidos` { 'S5': { S: 'D' } }: lo de un día de la semana se hace otro día (js/plan.js,
+     sesionesDe). Un día que recibe no puede moverse a su vez.
+   - `extras` { id: { name, target } }: ejercicios creados en la app (id «extra-…»).
+   - `days[fecha].added` [{ id, sets, reps, rir, plan? }]: ejercicios añadidos a ese día. */
+const movidos = () => ((cache && cache.movidos && typeof cache.movidos === 'object') ? cache.movidos : {});
+
+/* Mueve lo del día `de` al día `a` en la semana n (a = null deshace). */
+function setMovido(n, de, a) {
+  const m = { ...movidos() };
+  const sem = { ...(m[`S${n}`] || {}) };
+  if (a) sem[de] = a; else delete sem[de];
+  if (Object.keys(sem).length) m[`S${n}`] = sem; else delete m[`S${n}`];
+  if (Object.keys(m).length) cache.movidos = m; else delete cache.movidos;
+  persist();
+}
+
+const extras = () => ((cache && cache.extras && typeof cache.extras === 'object') ? cache.extras : {});
+
+/* Crea (o reutiliza, si ya existe con ese nombre) un ejercicio propio. Devuelve su id. */
+function crearExtra(name, target) {
+  const nombre = String(name || '').trim();
+  if (!nombre) throw new Error('Falta el nombre');
+  const ya = Object.entries(extras()).find(([, e]) => e.name.toLowerCase() === nombre.toLowerCase());
+  if (ya) return ya[0];
+  const id = `extra-${PLAN.slug(nombre)}`;
+  cache.extras = { ...extras(), [id]: { name: nombre, target: target || 'Otro' } };
+  persist();
+  return id;
+}
+
+const anadidos = (dateStr) => ((cache.days[dateStr] && cache.days[dateStr].added) || []);
+
+/* Añade (o sustituye, si ya estaba) un ejercicio a ese día. */
+function anadir(dateStr, item) {
+  const d = day(dateStr);
+  d.added = [...(d.added || []).filter((a) => a.id !== item.id), item];
+  persist();
+}
+
+/* Quita un ejercicio añadido y sus series de ese día. */
+function quitarAnadido(dateStr, exId) {
+  const d = day(dateStr);
+  d.added = (d.added || []).filter((a) => a.id !== exId);
+  if (!d.added.length) delete d.added;
+  delete d.entries[exId];
+  persist();
+}
+
 /* Peso corporal ------------------------------------------------------------------------
    La app Báscula (victor-rueda02.github.io/bascula/) guarda sus pesajes en el localStorage
    del mismo origen, clave BASCULA_KEY = [{ t: ISO, kg }]. Si esta app se abre en el mismo
@@ -337,7 +389,11 @@ const Store = {
   init, all, day, setSession, sets, saveSets, setNotes, lastPerformance, importAll,
   knee, setKnee, semanasSinViernes, setSinViernes,
   pesos, sincronizarBascula, importarBascula,
+  movidos, setMovido, extras, crearExtra, anadidos, anadir, quitarAnadido,
 };
 
-// El plan lee de aquí qué semanas van sin viernes.
-if (typeof PLAN !== 'undefined') PLAN.setFuenteSinViernes(semanasSinViernes);
+// El plan lee de aquí qué semanas van sin viernes y los cambios hechos desde Hoy.
+if (typeof PLAN !== 'undefined') {
+  PLAN.setFuenteSinViernes(semanasSinViernes);
+  PLAN.setFuenteCambios(() => ({ movidos: movidos(), extras: extras() }));
+}

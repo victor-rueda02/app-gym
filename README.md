@@ -95,6 +95,11 @@ de inicio**. Se abre a pantalla completa, sin barra del navegador.
     los «Hitos y avisos» de la semana.
   - *4 semanas:* en las semanas 3 y 4 eliges cuál de los 3 días haces, porque
     el plan los deja libres.
+  - *Cambios de este día* (al final de Hoy): **mover el entreno** a otro día de la
+    misma semana (se suma a lo de ese día; se deshace desde cualquiera de los dos) y
+    **añadir ejercicios**, del plan o nuevos, con sus series, reps y RIR. Salen en la
+    exportación (hoja Registro, marcados «Añadido en la app»), en Progreso y, si el día
+    movido carga la rodilla, en el seguimiento. Decisiones 105-108.
 - **Cronómetro** — dentro de cada ejercicio, con *Iniciar / Pausar / A cero*.
   Cuenta hacia arriba y solo se mueve cuando tú lo dices: no hay cuenta atrás
   ni avisos. Es único para toda la app, así que puedes arrancarlo al acabar una
@@ -153,6 +158,7 @@ for t in tests/*.test.mjs; do node "$t"; done   # pruebas de Node sin dependenci
 node tests/contenido-ui.mjs     # Plan y Hoy contra el Excel en iPhone emulado (requiere playwright)
 node tests/progresion-ui.mjs    # progresión real, entrada a la carrera y test (requiere playwright)
 node tests/progreso-ui.mjs      # pestaña Progreso y periodos en iPhone emulado (requiere playwright)
+node tests/cambios-ui.mjs       # mover el entreno y añadir ejercicios desde Hoy (requiere playwright)
 ```
 
 `tests/rodilla-logica.test.mjs` y `tools/prueba_edicion.py` contrastan con las
