@@ -6,10 +6,11 @@ PWA para registrar el entrenamiento desde el iPhone y volcarlo al Excel
 La app lleva dos planes:
 
 - **Volumen 8 semanas**, del lunes 19/10/2026 al domingo 13/12/2026, sacado de
-  la hoja `Volumen (1910-1112)`. Desde S2 incluye el plan rodilla: rehab de
-  rodilla lunes y jueves, sábado en casa sin pierna, carrera miércoles y
-  domingo, y la hoja `Seguimiento rodilla` (pestaña Rodilla, del 26/10 al
-  27/12). Las semanas 9 (viaje = descarga) y 10 no están en el calendario de
+  la hoja `Volumen (1910-1112)`. Desde S2 incluye el plan rodilla (hoja
+  `Seguimiento rodilla`, pestaña Rodilla, del 26/10 al 27/12). Semana desde S3:
+  L pierna 1 + hombro + espalda · M push + bici · X solo carrera · J pull ·
+  V pierna 2 + test + bici · S torso en casa con peso libre + correctivos ·
+  D carrera (S1 y S2 se ven como se hicieron). Las semanas 9 (viaje = descarga) y 10 no están en el calendario de
   sesiones; sus indicaciones salen como notas en la pestaña Plan.
 - **4 semanas**, del 20/07 al 16/08/2026 (hojas `Bloque A` y `Bloque B`). Lo
   registrado en esas fechas se sigue viendo y exportando igual que antes.
@@ -83,7 +84,13 @@ de inicio**. Se abre a pantalla completa, sin barra del navegador.
     semana anterior), no con el calendario; dentro del ejercicio se ve el motivo
     y el máximo del calendario. La bici sale «Sin bici (quitada)» tras un brote
     o un fallo atribuido a ella, hasta una semana entera en verde. El test de
-    fuerza del jueves es un enlace a Rodilla › Test.
+    fuerza (viernes de S3, S5 y S7; desde el 6/11, una carga por pierna) es un
+    enlace a Rodilla › Test.
+  - *1RM estimado:* en los ejercicios con Kg, Reps y RIR, cada serie muestra a
+    la derecha el 1RM estimado (`~106,5`; reglas en `DECISIONES.md`, 79-81 y 102).
+    En dominadas, fondos y flexiones suma el peso corporal del día.
+  - *Sentadilla española:* 3 × 45 s al empezar lunes y viernes desde S4, con
+    columnas Kg/Seg y el cronómetro.
   - Arriba, la tarjeta de rodilla con las dos pruebas de la mañana, y desde S2
     los «Hitos y avisos» de la semana.
   - *4 semanas:* en las semanas 3 y 4 eliges cuál de los 3 días haces, porque
@@ -115,7 +122,14 @@ de inicio**. Se abre a pantalla completa, sin barra del navegador.
   carrera con casillas, una por semana hasta superarla; test de fuerza y
   escalones de profundidad. Los cálculos están en `js/rodilla-calc.js`
   (funciones puras) y las reglas, en `DECISIONES.md`.
-- **Datos** — exportar el .xlsx, copia de seguridad en JSON e historial.
+- **Progreso** — gráficas en SVG propio, con filtro 1 mes · 3 meses · 6 meses ·
+  Total: 1RM por ejercicio (D/I en dos líneas, récords), volumen semanal por
+  grupo (series o tonelaje, con el objetivo del plan y el cumplimiento), RIR
+  medio frente al prescrito y molestia de la rodilla con la simetría de los
+  tests. Se calcula al vuelo con lo registrado (`js/progreso-calc.js`).
+- **Datos** — exportar el .xlsx, copia de seguridad en JSON, historial y
+  **Peso corporal**: importa la copia de seguridad de la app Báscula (archivo o
+  texto pegado); si las dos apps comparten navegador, lee los pesos sola.
 
 Los ejercicios de rehab (y el test de fuerza) llevan una barra verde a la
 izquierda, los correctivos del sábado una ámbar y el **cardio** (bici martes y
@@ -138,6 +152,7 @@ node tools/shots.mjs            # capturas de pantalla
 for t in tests/*.test.mjs; do node "$t"; done   # pruebas de Node sin dependencias
 node tests/contenido-ui.mjs     # Plan y Hoy contra el Excel en iPhone emulado (requiere playwright)
 node tests/progresion-ui.mjs    # progresión real, entrada a la carrera y test (requiere playwright)
+node tests/progreso-ui.mjs      # pestaña Progreso y periodos en iPhone emulado (requiere playwright)
 ```
 
 `tests/rodilla-logica.test.mjs` y `tools/prueba_edicion.py` contrastan con las

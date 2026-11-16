@@ -515,6 +515,10 @@ Petición del usuario tras el informe de Progreso.
 
 ## Paseo de entrada como ejercicio y entrada el domingo (12/11)
 
+> **Ojo: esto NO está en la app.** El código se hizo y se probó, pero no llegó a hacerse
+> commit y se perdió al fusionar otra rama (ver decisión 103). Estos tres puntos describen lo
+> que se acordó, no lo que hay hoy en `main`.
+
 95. **El paseo del martes es un ejercicio de cardio.** Fila nueva en el Excel (`paseo`, `sesion=M`,
     «30 min» de S2 a S8) detrás de la bici: sale en Hoy y en Plan como el resto del cardio. En Hoy
     solo aparece mientras no se haya entrado a correr y el día que toca; si no, se oculta
@@ -531,12 +535,12 @@ Petición del usuario tras el informe de Progreso.
 
 ## Periodo de las gráficas (12/11)
 
-95. **Botones 1 mes · 3 meses · 6 meses · Total** debajo de las subpestañas de Progreso, comunes
+98. **Botones 1 mes · 3 meses · 6 meses · Total** debajo de las subpestañas de Progreso, comunes
     a las cuatro. Cuentan meses naturales hacia atrás desde hoy (12 nov, 1 mes → desde 12 oct;
     si el día no existe, el último del mes). Una semana entra si alguno de sus días entra. Por
     defecto, Total; la elección se recuerda en el móvil (`localStorage`, clave
     `gym.progreso.periodo`), no en el registro.
-96. **Qué se recorta.** Solo las gráficas: 1RM (y su «Mejor», que pasa a «Mejor del periodo»),
+99. **Qué se recorta.** Solo las gráficas: 1RM (y su «Mejor», que pasa a «Mejor del periodo»),
     Volumen con su Cumplimiento, Esfuerzo y la molestia semanal de Rodilla. Los récords se siguen
     marcando contra todo el historial, y las listas de Progresión y Récords recientes, el
     selector de ejercicios y la simetría de los tests (sin fecha) no cambian. Sin datos en el
@@ -544,19 +548,61 @@ Petición del usuario tras el informe de Progreso.
 
 ## Sentadilla española como ejercicio (13/11)
 
-97. **Fila nueva en el Excel, lunes y viernes.** «Sentadilla española» (`id=sentadilla-espanola`,
+100. **Fila nueva en el Excel, lunes y viernes.** «Sentadilla española» (`id=sentadilla-espanola`,
     objetivo Rehab) es lo primero de las dos sesiones de rodilla: el lunes delante de las
     laterales en polea y la abducción; el viernes delante del test (o de la sentadilla en las
     semanas sin test). En una semana sin viernes va con la pierna 2 al jueves. **3 x45 s** de S4 a
     S8 (antes, 2-3×45 s en las notas); «—» en S1-S3, que ya se hicieron. Las notas que la pedían
     (abducción del lunes, test y sentadilla del viernes) ya no la repiten.
-98. **Formato de celda nuevo `N xS s`** (isométrico: N series de S segundos) en `parsePres`: se
+101. **Formato de celda nuevo `N xS s`** (isométrico: N series de S segundos) en `parsePres`: se
     registra con columnas Kg/Seg y el botón de volcar el cronómetro. No cuenta en las series de
     hipertrofia (es Rehab). El brote sigue siendo 5×45 s diaria (regla, sin cambios).
 
 ## Reps con decimales (15/11)
 
-97. **Las reps con decimales cuentan hacia abajo** en el 1RM estimado: «10,5» (o «10.5») se
+102. **Las reps con decimales cuentan hacia abajo** en el 1RM estimado: «10,5» (o «10.5») se
     calcula como 10 reps, también para elegir fórmula (10,5 + RIR 0 = 10 → Brzycki). Menos de una
     rep entera (0,5) no calcula. Lo guardado no cambia (se sigue viendo 10,5) y el tonelaje usa
     las reps tal cual (kg × 10,5).
+
+## Revisión de la documentación (16/11)
+
+Se repasaron todos los chats del proyecto para que un chat nuevo tenga el mismo contexto
+(`CLAUDE.md` en la raíz resume cómo trabajar).
+
+103. **Numeración y paseo perdido.** Tres secciones repetían los números 95-97; se han
+    renumerado: periodo de las gráficas 98-99 (los commits `e6f0527`/`8789770` las citan como
+    95-96), sentadilla española 100-101 (el chat las citaba como 97-98) y reps con decimales 102.
+    El código del paseo de entrada (95-97) se hizo el 11-12/11 sin commit; el 12/11 la fusión de
+    `periodo-graficas` guardó los cambios del disco en un `stash` que luego se descartó. Solo se
+    salvó su texto de `DECISIONES.md`. El código completo (Excel con las filas `paseo` y
+    `paseo=D`, `js/rodilla-calc.js`, `js/rodilla.js`, `js/xlsx.js`, `js/plan.js`, `js/app.js`,
+    README y pruebas) sigue en el commit **`94b4d73`** («WIP on main: eaf42d1»), protegido con la rama local `rescate-paseo`. Para
+    recuperarlo hay que llevarlo encima del `main` actual (el Excel ha cambiado después con la
+    sentadilla española) y volver a pasar las pruebas.
+
+## Pendientes abiertos (16/11)
+
+Lista viva: quitar lo que se resuelva y añadir lo nuevo.
+
+- **Paseo de entrada y 1.ª carrera en domingo (95-97):** acordado pero no está en la app
+  (decisión 103). Recuperable desde la rama local `rescate-paseo` (`94b4d73`).
+- **Extensión de rodilla con escalera de rango (52):** sin definir por el usuario (series,
+  reps, semanas, qué pasa los días de test). Las escaleras genéricas (56) ya permiten meterla
+  solo desde el Excel.
+- **+1 serie de deltoides posterior en todas las semanas:** aceptado por el usuario el 17/10
+  (pasaría de 1→3 a 2→4), pero el Excel sigue con 1→3 (fila «Posterior polea», jueves).
+- **Semana S5 (16-22/11):** el usuario no puede entrenar de martes 17/11 a domingo 22/11
+  (motivo personal, sin fecha de vuelta cerrada). Acordado: dom 15/11 torso del sábado + espalda del lunes + 2 series de
+  pecho; lun 16/11 sesión del lunes (prensa x8 = novedad) + isquios sentado y aductores del
+  viernes, sin cajón, búlgara ni test; de martes a domingo, pausa (mediciones de la mañana y
+  española 5×45 s sin apnea en cuanto se pueda); el **test 2 pasa al viernes
+  27/11** (S6); al volver, ninguna novedad hasta revalidar. **No se ha pasado al Excel ni a la
+  app**: falta saber cuándo puede volver (formato: líneas «17/11: …» en las celdas de S5, como
+  el festivo del 2/11).
+- **Criterios para pasar a pliometría** tras llegar a ×6 (después del viaje): sin definir.
+- **Sustituciones del 24/10:** lo registrado del 19 al 24/10 en «Aperturas polea», «Pullover»
+  y «Dominadas medio abiertas» se pasó a «Contractora (Pec Deck)», «Pull-in» y «Jalón neutro».
+  El usuario no llegó a confirmarlo.
+- **Abrir un exportado con datos reales en Excel/Numbers del iPhone** para ver el recálculo
+  (punto 24): solo comprobado con `formulas` y openpyxl.
