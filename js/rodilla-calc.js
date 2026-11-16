@@ -227,9 +227,12 @@ const RodillaCalc = (() => {
   /* Entrada a la carrera de una semana. `reg` = Store.knee().entry[sem]. El criterio 1
      (paseo del día anterior a la carrera) es Sí si las dos casillas son Sí y la mañana del
      día de la carrera no es peor que la del paseo (solo 24 h); los criterios 2 y 3 son sus
-     casillas. `diaCarrera` = letra del día de la carrera (PLAN.ESCALERAS.carrera.dia). */
+     casillas. `diaCarrera` = letra del día de la carrera (PLAN.ESCALERAS.carrera.dia); si el
+     registro lleva `runDay`, la entrada se hace ese día (p. ej. el domingo, con el paseo del
+     sábado) en vez del de la carrera del plan. */
   function entradaSemana(filasCalculadas, sem, reg, diaCarrera = 'X') {
     reg = reg || {};
+    if (reg.runDay && 'LMXJVSD'.includes(reg.runDay)) diaCarrera = reg.runDay;
     const dia = (d) => filasCalculadas.find((x) => x.sem === sem && x.dia === d) || {};
     const anterior = 'LMXJVSD'['LMXJVSD'.indexOf(diaCarrera) - 1];
     const mar = dia(anterior).morning;
@@ -239,7 +242,7 @@ const RodillaCalc = (() => {
     const c1 = partes.includes('No') ? 'No' : partes.every((p) => p === 'Sí') ? 'Sí' : '';
     const c2 = reg.tdPain || '';
     const c3 = reg.hopsPain || '';
-    return { sem, manana, c1, c2, c3, ...entradaResultado([c1, c2, c3]) };
+    return { sem, manana, c1, c2, c3, runDay: diaCarrera, walkDay: anterior, ...entradaResultado([c1, c2, c3]) };
   }
 
   /* Fuerza estimada (Epley) = carga × (1 + reps/30), un decimal. */
@@ -473,6 +476,9 @@ const RodillaCalc = (() => {
       const inicio = delaSemana[0].fecha;
       const lunes = fila(sem, E.prensa.dia);         // día de la novedad de la prensa
       const miercoles = fila(sem, E.carrera.dia);    // día de la novedad de la carrera
+      // Entrada a la carrera: el día de la 1.ª carrera puede ser otro (`runDay`, p. ej. el domingo).
+      const diaEntrada = E.carrera.dias.includes((entradas[sem] || {}).runDay) ? entradas[sem].runDay : E.carrera.dia;
+      const diaEntradaF = fila(sem, diaEntrada);
 
       // Bici quitada: vuelve el lunes siguiente a una semana entera en verde.
       procesarFallos(`${inicio}T09`);
@@ -499,18 +505,21 @@ const RodillaCalc = (() => {
       // Carrera (miércoles): sin entrar, decide la entrada de esa semana.
       let c;
       if (carrera === 0) {
-        procesarFallos(`${miercoles.fecha}T09`);
-        const e = entradaSemana(filasCalculadas, sem, entradas[sem], E.carrera.dia);
+        procesarFallos(`${diaEntradaF.fecha}T09`);
+        const e = entradaSemana(filasCalculadas, sem, entradas[sem], diaEntrada);
         const real = reales[sem] && esNum(reales[sem].runLevel) ? reales[sem].runLevel : null;
         const propuesta = e.estado === 'si' ? 1 : 0;
         const nivel = real !== null ? real : propuesta;
         c = { plan: plan.CARRERA_MAX[n], propuesta, real, nivel, previo: 0, entrada: e,
           motivo: e.estado === 'si' ? 'Entrada superada: 1.ª carrera (N1)'
             : e.estado === 'no' ? 'Entrada no superada: esta semana no se corre' : 'Entrada a la carrera pendiente',
-          provisional: miercoles.fecha > hoy };
-        if (nivel > 0) novedades.push({ t: `${miercoles.fecha}T09`, fecha: miercoles.fecha, escalera: 'carrera', retrocedida: false });
+          provisional: diaEntradaF.fecha > hoy };
+        if (nivel > 0) novedades.push({ t: `${diaEntradaF.fecha}T09`, fecha: diaEntradaF.fecha, escalera: 'carrera', retrocedida: false });
       } else {
-        c = decidir('carrera', n, carrera, DIAS.carrera, miercoles.fecha, plan.CARRERA_MAX[n]);
+        // Si la semana anterior se entró un día distinto al del plan, solo ese día cuenta para avanzar.
+        const previa = out[`S${n - 1}`];
+        const diasPrevios = previa && previa.entradaDia && previa.entradaDia !== E.carrera.dia ? [previa.entradaDia] : DIAS.carrera;
+        c = decidir('carrera', n, carrera, diasPrevios, miercoles.fecha, plan.CARRERA_MAX[n]);
       }
       carrera = c.nivel;
 
@@ -532,7 +541,9 @@ const RodillaCalc = (() => {
       // Domingo: repite el nivel del miércoles; si el miércoles salió Retroceder, uno menos (mínimo N1).
       let domingo = c.nivel;
       let motivoDomingo = c.nivel ? 'Repite el nivel del miércoles' : 'No se corre (como mucho, un paseo)';
-      if (c.nivel > 0 && miercoles.semaforo === 'Retroceder') {
+      const entraDomingo = !!c.entrada && c.entrada.runDay === 'D' && c.nivel > 0;   // 1.ª carrera = la del domingo
+      if (entraDomingo) motivoDomingo = 'Entrada a la carrera: 1.ª carrera hoy';
+      if (c.nivel > 0 && !entraDomingo && miercoles.semaforo === 'Retroceder') {
         domingo = Math.max(1, c.nivel - 1);
         motivoDomingo = 'El miércoles salió Retroceder: un nivel menos';
       }
@@ -553,7 +564,8 @@ const RodillaCalc = (() => {
         }
         nivelSimple[L.nombre] = simples[L.nombre].nivel;
       }
-      out[sem] = { lunes: lunes.fecha, prensa: p, carrera: c, domingo: { nivel: domingo, motivo: motivoDomingo }, simples };
+      out[sem] = { lunes: lunes.fecha, prensa: p, carrera: c, domingo: { nivel: domingo, motivo: motivoDomingo, entrada: entraDomingo },
+        entradaDia: c.entrada ? c.entrada.runDay : null, simples };
     }
     // Fallos hasta hoy que aún no han llegado a ninguna decisión (para los avisos de brote y bici).
     procesarFallos(`${sumarDias(hoy, 1)}T00`);
@@ -600,6 +612,10 @@ const RodillaCalc = (() => {
       case 'prensa:sigue':
         return desdeCelda(plan.PRENSA_SEMANA[prensa.nivel], `escalón ${lvl.esc} (prof. del ${diaPrensa})`);
       case 'carrera': {
+        if (carrera.entrada && carrera.entrada.runDay !== plan.ESCALERAS.carrera.dia) {
+          const dia = plan.NOMBRE_DIA[carrera.entrada.runDay].toLowerCase();
+          return { sets: 1, kind: 'cardio', mins: '', label: `Hoy no se corre\n(entrada el ${dia})` };
+        }
         if (!carrera.nivel) {
           const e = carrera.entrada || {};
           const label = e.estado === 'no' ? 'No se corre esta semana\n(criterios de entrada no cumplidos)'
@@ -611,6 +627,10 @@ const RodillaCalc = (() => {
         return { sets: 1, kind: 'cardio', mins: '', label: `N${carrera.nivel} · ${N[carrera.nivel]}\n${cambio}` };
       }
       case 'carrera:domingo':
+        if (domingo.entrada) return { sets: 1, kind: 'cardio', mins: '', label: `N${domingo.nivel} · ${N[domingo.nivel]}\n1.ª carrera (entrada)` };
+        if (!domingo.nivel && carrera.entrada && carrera.entrada.runDay === 'D' && carrera.entrada.estado !== 'no') {
+          return { sets: 1, kind: 'cardio', mins: '', label: 'Criterios de entrada\n(10 TD + 20 saltitos ≤2/10)' };
+        }
         if (!domingo.nivel) return { sets: 1, kind: 'cardio', mins: '', label: 'No se corre\n(como mucho, un paseo)' };
         return { sets: 1, kind: 'cardio', mins: '', label: `N${domingo.nivel} · ${N[domingo.nivel]}\n${domingo.nivel === carrera.nivel ? `repite el ${diaCarrera}` : `un nivel menos que el ${diaCarrera}`}` };
       default: {

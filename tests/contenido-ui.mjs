@@ -204,7 +204,8 @@ for (let n = 1; n <= 8; n++) {
       igual(`Hoy ${fecha} (S${n}): sin sesión -> descanso`, [hoy.nombre, hoy.ex.length], ['Descanso', 0]);
       continue;
     }
-    const visibles = s.ejercicios.filter((e) => e.semanas[n - 1] !== '—');
+    // El paseo del sábado solo sale si esa semana se elige el domingo como día de la 1.ª carrera.
+    const visibles = s.ejercicios.filter((e) => e.semanas[n - 1] !== '—' && !/1\.ª carrera el domingo/.test(e.nombre));
     const tag = `Hoy ${fecha} (S${n}, ${s.label.split(' ')[0]})`;
     igual(`${tag}: semana`, hoy.semana, `Semana ${n} · Volumen`);
     igual(`${tag}: título`, hoy.nombre, s.titulo);

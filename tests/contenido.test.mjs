@@ -66,7 +66,7 @@ test('S1 idéntica: cada ejercicio que ya existía conserva su prescripción de 
 test('S1 y S2 como se hicieron: cada día, los mismos ejercicios y prescripciones que en el plan de antes', () => {
   // Excepciones pedidas (31/10): en S2 el torso del viernes 30/10 se hizo el sábado 31/10 en
   // casa (con sus tres filas de espalda), la pierna 2 del jueves 29/10 se hizo el viernes 30/10
-  // (el jueves, libre) y el test 1 pasó de S2 a S3 (viernes 6/11).
+  // (el jueves, libre) y el test 1 pasó de S2 a S3 (viernes 6/11); y (11/11) el paseo de entrada a la carrera, al final del martes y del sábado.
   const porDia = (P, w) => Object.fromEntries(P.sessionsFor(w).map((x) => [x.dow, x.exercises.map((e) => `${e.id} · ${e.pres[w.n - 1].label}`)]));
   for (const n of [1, 2]) {
     const antes = porDia(ANTES, ANTES.VOL_WEEKS[n - 1]);
@@ -76,6 +76,8 @@ test('S1 y S2 como se hicieron: cada día, los mismos ejercicios y prescripcione
       antes[5] = [...antes[4].map((e) => (e.startsWith('test-fuerza') ? e.replace(/ · [\s\S]*$/, ' · —') : e)), ...bici];
       delete antes[4];
     }
+    antes[2] = [...antes[2], `paseo-entrada · ${n === 1 ? '—' : '30 min'}`];
+    antes[6] = [...antes[6], `paseo-entrada-sabado · ${n === 1 ? '—' : '30 min'}`];
     // La sentadilla española (fila nueva, 13/11) entra en S4: en S1-S2 está con «—».
     const ahora = porDia(PLAN, PLAN.VOL_WEEKS[n - 1]);
     for (const d of Object.keys(ahora)) ahora[d] = ahora[d].filter((e) => e !== 'sentadilla-espanola · —');

@@ -285,6 +285,9 @@ function construirVolumen(hoja) {
     else if (semanas.slice(1).some((s) => /\/pierna|por pierna/.test(s))) extra.sides = true;   // D/I
     if (e.escalera) extra.prog = e.escalera;
     if (e.bici) extra.prog = 'bici';
+    // Paseo de entrada a la carrera: `paseo` (el día anterior a la carrera del plan) o `paseo=D`
+    // (el día anterior a la carrera del domingo); solo se hace si ese es el día de la entrada.
+    if (e.paseo) extra.prog = `paseo:${e.paseo === true ? 'X' : e.paseo}`;
     const x = vx(nombre, objetivo, semanas, t(`K${r}`), extra);
     if (e.id) x.id = e.id;
     return x;
@@ -439,7 +442,7 @@ function construirEscaleras(sesiones, desde) {
   // Su ejercicio guía marca cada subida con una línea «nov: …» en la celda; el nivel 0 es su
   // primera celda que no es «—»; en las semanas con «—» no hay sesión de esa escalera.
   // «escalera=<nombre>:sigue» = otro ejercicio que va al nivel de esa semana.
-  const ESPECIALES = ['prensa', 'carrera', 'bici'];
+  const ESPECIALES = ['prensa', 'carrera', 'bici', 'paseo'];
   const simples = [...new Set(todos.map(({ x }) => (x.prog || '').split(':')[0]))]
     .filter((nombre) => nombre && !ESPECIALES.includes(nombre))
     .map((nombre) => {

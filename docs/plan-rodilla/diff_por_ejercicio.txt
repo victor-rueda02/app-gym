@@ -41,7 +41,29 @@ ALTA CARDIO · 'Domingo · Carrera (repite) | Andar-correr en llano' (fila 103)
     I: 'repite el\nmiércoles'
     J: 'repite el\nmiércoles'
     K: 'Repite el nivel validado el miércoles. Si el miércoles no se cumplieron los criterios de entrada, esa semana no hay carrera: el domingo no se corre (como mucho, un paseo). Nunca dos días seguidos corriendo [LÓGICA]. El sábado no hay pierna: llegas descansado.'
-ALTA CARDIO · 'Hitos y avisos | Calendario' (fila 104)
+ALTA CARDIO · 'Martes (paseo de entrada) | Paseo rápido (entrada a la carrera)' (fila 104)
+    B: 'Paseo rápido (entrada a la carrera)'
+    C: '—'
+    D: '30 min'
+    E: '30 min'
+    F: '30 min'
+    G: '30 min'
+    H: '30 min'
+    I: '30 min'
+    J: '30 min'
+    K: 'Criterio 1 de la entrada a la carrera, con la 1.ª carrera el miércoles: 30 min a paso rápido, dolor ≤2/10, volver al nivel previo en ≤60 min y que el miércoles por la mañana no estés peor que esta mañana. Solo aparece mientras no hayas entrado a correr.'
+ALTA CARDIO · 'Sábado (paseo de entrada, si la 1.ª carrera es el domingo) | Paseo rápido (entrada, 1.ª carrera el domingo)' (fila 105)
+    B: 'Paseo rápido (entrada, 1.ª carrera el domingo)'
+    C: '—'
+    D: '30 min'
+    E: '30 min'
+    F: '30 min'
+    G: '30 min'
+    H: '30 min'
+    I: '30 min'
+    J: '30 min'
+    K: 'Lo mismo, si esa semana eliges el domingo como día de la 1.ª carrera (en Rodilla › Entrada a la carrera): paseo el sábado y, el domingo, touchdown y saltitos antes de correr. Solo aparece entonces.'
+ALTA CARDIO · 'Hitos y avisos | Calendario' (fila 106)
     B: 'Calendario'
     C: '—'
     D: "Mar: paseo 30'\nMié: TD + saltitos\n→ 1.ª carrera"
@@ -97,6 +119,7 @@ ALTA J · 'Jalón neutro' (fila 35)
     J: '2 @ RIR1/0'
     K: 'Plano sagital (Dorsal Sup.) · Agarre neutro ancho hombros, llevar codos a los bolsillos cortando a 90° (protege codo/bíceps).'
 BAJA/RENOMBRE J · 'Unilateral Abduction' (fila antigua 35)
+BAJA/RENOMBRE J · 'Touchdown squat' (fila antigua 36)
 ALTA J · 'Curl martillo scott' (fila 36)
     B: 'Bíceps'
     C: '2 @ RIR1/0'
@@ -108,7 +131,6 @@ ALTA J · 'Curl martillo scott' (fila 36)
     I: '3 @ RIR1/0'
     J: '3 @ RIR1/0'
     K: 'Prioridad 2 (Bíceps/Braquiorradial) · Agarre neutro (muy amigable para el codo). Bajar en 2-3 s y parar a ~15° de la extensión total para no sobrecargar tendón distal.'
-BAJA/RENOMBRE J · 'Touchdown squat' (fila antigua 36)
 BAJA/RENOMBRE J · 'Back squat' (fila antigua 37)
 ALTA J · 'Posterior polea' (fila 37)
     B: 'Hombro post.'
@@ -417,7 +439,6 @@ ALTA V · 'Sentadilla al cajón o desde pines · pesado y lento n.º 2' (fila 44
     I: '3 x8\nprof. del lunes'
     J: '3 x8\nrepite S7'
     K: 'Tras el test (S3/S5/S7), carga por RIR. Tempo 3-1-3, RIR 2. Profundidad = la validada el lunes en la prensa. Postura habitual: un chasquido sin dolor no cambia nada; el apoyo ancho solo si te reduce el DOLOR [LÓGICA].'
-BAJA/RENOMBRE V · 'Triceps conc polea (-15°)' (fila antigua 45)
 ALTA V · 'Bulgarian split squat' (fila 45)
     B: 'Rehab'
     C: '2 x12'
@@ -429,6 +450,8 @@ ALTA V · 'Bulgarian split squat' (fila 45)
     I: '2 x8/pierna'
     J: '2 x8/pierna\nrepite S7'
     K: 'D primero: RIR 2 y profundidad validada el lunes. I: RIR 1-2 y rango completo. Tempo 3-1-3. Alterna piernas, 60-90 s entre una y otra.'
+BAJA/RENOMBRE V · 'Triceps conc polea (-15°)' (fila antigua 45)
+BAJA/RENOMBRE V · 'Laterales polea' (fila antigua 46)
 ALTA V · 'Abducción de pie unilateral (máquina)' (fila 46)
     B: 'Rehab (cadera)'
     C: '2 x15–20'
@@ -440,7 +463,6 @@ ALTA V · 'Abducción de pie unilateral (máquina)' (fila 46)
     I: '3 x10-15/pierna\n@RIR1-2'
     J: '3 x10-15/pierna\n@RIR1-2'
     K: 'Misma máquina que el lunes; empieza por la D. Va DESPUÉS de la búlgara, para no fatigar el glúteo medio antes del trabajo a una pierna [LÓGICA]. Lunes + viernes = 72-96 h entre sesiones de cadera.'
-BAJA/RENOMBRE V · 'Laterales polea' (fila antigua 46)
 BAJA/RENOMBRE V · 'Press francés manc (banco plano)' (fila antigua 47)
 ALTA V · 'Touchdown squat' (fila 47)
     B: 'Rehab'
@@ -477,7 +499,6 @@ ALTA V · 'Aductores' (fila 49)
     I: '3 @ RIR1/0'
     J: '3 @ RIR1/0'
     K: 'Plano transversal/frontal · Pausa de 1 s en apertura máxima sin dolor inguinal/rodilla.'
-BAJA/RENOMBRE V · 'Dominada neutra dorsal' (fila antigua 50)
 ALTA V · 'Gemelos prensa' (fila 50)
     B: 'Gemelos'
     C: '2 @ RIR1/0'
@@ -489,6 +510,7 @@ ALTA V · 'Gemelos prensa' (fila 50)
     I: '4 @ RIR1/0'
     J: '5 @ RIR1/0'
     K: 'Prensa con pies abajo · Pausa estricta de 2 s en máximo estiramiento abajo (sin rebote elástico).'
+BAJA/RENOMBRE V · 'Dominada neutra dorsal' (fila antigua 50)
 BAJA/RENOMBRE V · 'Remo máquina (pecho apoyado 30°)' (fila antigua 51)
 BAJA/RENOMBRE V · 'Aducción unil. polea alta (Pull-in)' (fila antigua 52)
 BAJA/RENOMBRE X · 'Jalón ancho plano frontal' (fila antigua 25)

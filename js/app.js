@@ -224,7 +224,7 @@ function renderToday() {
   view.appendChild(el('<div class="section-label">Ejercicios</div>'));
   session.exercises.forEach((exercise) => {
     // «—»: esa semana no se hace (salvo que se haya registrado igualmente).
-    if (PLAN.presFor(exercise, week).skip && !Store.sets(date, exercise.id).length) return;
+    if (presHoy(exercise, week, date).skip && !Store.sets(date, exercise.id).length) return;
     view.appendChild(exercise.link === 'test' ? testCard(exercise, week) : exerciseRow(exercise, week, date, session));
   });
 

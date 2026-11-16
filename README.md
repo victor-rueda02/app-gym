@@ -194,6 +194,7 @@ Volumen, R en Seguimiento), con etiquetas `clave` o `clave=valor` separadas por 
 | `escalera=carrera` / `carrera:domingo` | los niveles salen de las celdas `N1 · 8×(1'/2')`; el domingo repite |
 | `escalera=<otra>` / `<otra>:sigue` | escalera nueva: primera línea `N x R`, segunda la descripción; cada subida, `nov: <descripción>` |
 | `bici` | la bici: entra en su primera celda con seguimiento, se quita en brote o fallo y vuelve |
+| `paseo` / `paseo=D` | paseo de entrada a la carrera: el día anterior a la 1.ª carrera (martes, o sábado con `D` si la elige el domingo); solo sale mientras no se ha entrado |
 | `sesion=X;titulo=…` | (bloque de cardio) fila que va al final de la sesión X |
 | `cardio`, `hitos`, `regla`, `nota`, `grupos`, `reglas-bloque` | títulos, hitos, reglas, notas, tabla de series y reglas del bloque (las de debajo, hasta una fila vacía) |
 | `desglose=id1,id2` | filas del desglose de espalda: qué ejercicios suman |

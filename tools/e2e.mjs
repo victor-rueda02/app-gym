@@ -354,8 +354,8 @@ check('El plan nombra el sábado y el domingo de carrera (S8) como en el Excel',
   // Desde S2 el sábado es el torso en casa, con las filas de abdominales y correctivos detrás.
   etiquetas.includes('Sábado · casa, peso libre  ·  Torso (desde S2 = 31/10; S1 se hizo el viernes en el gimnasio)')
   && etiquetas.includes('Domingo · Carrera'), etiquetas.join(' | '));
-check('El plan marca el cardio en azul (bici martes y viernes, carrera miércoles y domingo)',
-  (await page.locator('main .ex.cardio').count()) === 4);
+check('El plan marca el cardio en azul (bici y paseo de entrada el martes, paseo de entrada el sábado, bici el viernes, carrera miércoles y domingo)',
+  (await page.locator('main .ex.cardio').count()) === 6);
 check('Notas de semanas 9–10 en el plan',
   (await page.textContent('main')).includes('Semana 9 (14-20/12) · Viaje = descarga'));
 check('Reglas del plan nuevo (RIR1/0 y autorregulación)',

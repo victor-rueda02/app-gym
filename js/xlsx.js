@@ -114,13 +114,19 @@ function kneeCells(knee) {
 
   for (const [date, rec] of Object.entries(knee.days || {})) put(KNEE_DAY_COLS, kneeDayRow(date), rec);
   for (const [key, rec] of Object.entries(knee.weeks || {})) put(KNEE_WEEK_COLS, kneeWeekRow(key), rec);
-  // Paseo de entrada: el día anterior a la carrera (PLAN.ESCALERAS.carrera.dia).
+  // Paseo de entrada: el día anterior a la 1.ª carrera (la del plan, PLAN.ESCALERAS.carrera.dia,
+  // o la que se eligió para esa semana en `runDay`).
   const diaCarrera = PLAN.ESCALERAS.carrera.dia;
-  const diaPaseo = PLAN.DIAS_PLAN[PLAN.DIAS_PLAN.indexOf(diaCarrera) - 1];
-  const intentos = Object.keys(knee.entry || {}).filter((k) => RODILLA_DATA.dias.some((d) => d.sem === k && d.dia === diaPaseo))
+  const diaPaseoDe = (k) => {
+    const elegido = (knee.entry[k] || {}).runDay;
+    const run = PLAN.ESCALERAS.carrera.dias.includes(elegido) ? elegido : diaCarrera;
+    return PLAN.DIAS_PLAN[PLAN.DIAS_PLAN.indexOf(run) - 1];
+  };
+  const intentos = Object.keys(knee.entry || {}).filter((k) => RODILLA_DATA.dias.some((d) => d.sem === k && d.dia === diaPaseoDe(k)))
     .sort((a, b) => +a.slice(1) - +b.slice(1));
   if (intentos.length) {
     const sem = intentos[intentos.length - 1];
+    const diaPaseo = diaPaseoDe(sem);
     const rec = knee.entry[sem] || {};
     for (const [field, [criterio, col]] of Object.entries(KNEE_ENTRY_CELLS)) {
       const fila = filaDe(RODILLA_DATA.entrada, criterio);

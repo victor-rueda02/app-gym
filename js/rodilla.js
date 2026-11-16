@@ -98,6 +98,7 @@ const Rodilla = (() => {
         const v = seg.dataset.seg;
         Store.setKnee(g.dataset.sec, g.dataset.key, g.dataset.f, v === '' ? undefined : v);
         g.querySelectorAll('[data-seg]').forEach((b) => b.classList.toggle('on', b === seg));
+        if (g.dataset.f === 'runDay') { Rodilla.render(); return; }   // cambia los textos de toda la tarjeta
         refrescar();
         return;
       }
@@ -337,28 +338,37 @@ const Rodilla = (() => {
       return;
     }
     const [c1, c2, c3] = D.entrada;
-    for (const [sem] of intentos) {
+    const dia = (l) => PLAN.NOMBRE_DIA[l].toLowerCase();
+    const diaPlan = PLAN.ESCALERAS.carrera.dia;
+    for (const [sem, s] of intentos) {
       const r = knee().entry[sem] || {};
+      const { runDay: run, walkDay: paseo } = s.carrera.entrada;
+      // Los textos del Excel hablan del martes y el miércoles: con otro día de carrera se cambian.
+      const aDia = (t) => (run === diaPlan ? t : t.split(dia(diaPlan)).join('§§').split('martes').join(dia(paseo)).split('§§').join(dia(run)));
       const card = el(`
         <div class="card" data-entrada="${sem}"><h2>${sem}</h2>
-          <p class="rod-crit">1. ${esc(c1.texto)}</p><small class="rod-dia">${esc(c1.dia)}</small>
+          <div class="rod-f"><span>Día de la 1.ª carrera</span>
+            <div class="rod-seg" data-sec="entry" data-key="${sem}" data-f="runDay">
+              ${PLAN.ESCALERAS.carrera.dias.map((l) => `<button type="button" data-seg="${l}" class="${run === l ? 'on' : ''}">${esc(PLAN.NOMBRE_DIA[l])}</button>`).join('')}
+            </div></div>
+          <p class="rod-crit">1. ${esc(aDia(c1.texto))}</p><small class="rod-dia">${esc(run === diaPlan ? c1.dia : dia(paseo))}</small>
           <div class="rod-grid2">
             ${segSiNo('≤2/10 durante', 'entry', sem, 'walkPain', r.walkPain)}
             ${segSiNo('Nivel previo en ≤60 min', 'entry', sem, 'walkBack60', r.walkBack60)}
           </div>
           <div class="rod-grid2 rod-calc">
-            <div><small>Miércoles por la mañana no peor (24 h)</small><b data-e="manana"></b></div>
+            <div><small>${esc(PLAN.NOMBRE_DIA[run])} por la mañana no peor (24 h)</small><b data-e="manana"></b></div>
             <div><small>Criterio 1</small><b data-e="c1"></b></div>
           </div>
-          <p class="rod-crit">2. ${esc(c2.texto)}</p><small class="rod-dia">${esc(c2.dia)}</small>
+          <p class="rod-crit">2. ${esc(c2.texto)}</p><small class="rod-dia">${esc(run === diaPlan ? c2.dia : dia(run))}</small>
           ${segSiNo('≤2/10', 'entry', sem, 'tdPain', r.tdPain)}
-          <p class="rod-crit">3. ${esc(c3.texto)}</p><small class="rod-dia">${esc(c3.dia)}</small>
+          <p class="rod-crit">3. ${esc(c3.texto)}</p><small class="rod-dia">${esc(run === diaPlan ? c3.dia : dia(run))}</small>
           ${segSiNo('≤2/10', 'entry', sem, 'hopsPain', r.hopsPain)}
           ${notas('entry', sem, r.notes)}
           <div class="rod-res"><small>Resultado</small><b data-e="texto"></b></div>
         </div>`);
       const pintar = () => {
-        const e = C.entradaSemana(tabla(), sem, knee().entry[sem], PLAN.ESCALERAS.carrera.dia);
+        const e = C.entradaSemana(tabla(), sem, knee().entry[sem], diaPlan);
         card.querySelectorAll('[data-e]').forEach((n) => {
           const k = n.dataset.e;
           n.textContent = k === 'texto' ? e.texto : fmt(e[k]);   // el texto lleva «1.ª»: sin formato numérico
@@ -492,10 +502,10 @@ const Rodilla = (() => {
     const nSem = +plan.sem.slice(1);
     if (q && PLAN.ESCALERAS.bici.dias.map((d) => PLAN.diaSinViernes(nSem, d)).includes(plan.dia)) avisos.push(`Sin bici: ${q.motivo}.`);
     const semana = p.semanas[plan.sem];
-    // La entrada a la carrera se registra el día del paseo (el anterior a la carrera) y el de la carrera.
-    const diaCarrera = PLAN.ESCALERAS.carrera.dia;
-    const diaPaseo = PLAN.DIAS_PLAN[PLAN.DIAS_PLAN.indexOf(diaCarrera) - 1];
-    const entrada = semana && semana.carrera.entrada && (plan.dia === diaPaseo || plan.dia === diaCarrera);
+    // La entrada a la carrera se registra el día del paseo (el anterior a la carrera) y el de la carrera
+    // (el del plan, o el que se haya elegido para esa semana).
+    const ent = semana && semana.carrera.entrada;
+    const entrada = ent && (plan.dia === ent.walkDay || plan.dia === ent.runDay);
     const card = el(`
       <div class="card rod-hoy"><h2>Seguimiento rodilla</h2>
         <p>Pruebas de la mañana (0-10)</p>
@@ -524,6 +534,16 @@ const Rodilla = (() => {
     if (!exercise.prog || !week || week.plan !== 'vol' || week.n < 2) return null;
     const p = prog();
     const semana = p.semanas[`S${week.n}`];
+    if (exercise.prog.startsWith('paseo:')) {   // solo el día de la entrada a la carrera, y mientras no se haya entrado
+      const delPlan = PLAN.presFor(exercise, week);
+      const diaPaseo = exercise.prog.slice(6);
+      // Más allá de la semana que viene solo hay plan: el paseo del día habitual, y el otro solo si se elige.
+      if (!semana) return diaPaseo === PLAN.ESCALERAS.carrera.dia || delPlan.skip ? null : { ...delPlan, skip: true, label: '—' };
+      if (delPlan.skip) return null;
+      const entrada = semana.carrera.entrada;
+      if (entrada && entrada.runDay === diaPaseo) return null;
+      return { ...delPlan, skip: true, label: '—' };
+    }
     if (exercise.prog === 'bici') {
       const q = semana && date && C.biciQuitada(p.bici, date);
       const delPlan = PLAN.presFor(exercise, week);

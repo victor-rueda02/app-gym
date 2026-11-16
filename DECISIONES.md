@@ -515,9 +515,7 @@ Petición del usuario tras el informe de Progreso.
 
 ## Paseo de entrada como ejercicio y entrada el domingo (12/11)
 
-> **Ojo: esto NO está en la app.** El código se hizo y se probó, pero no llegó a hacerse
-> commit y se perdió al fusionar otra rama (ver decisión 103). Estos tres puntos describen lo
-> que se acordó, no lo que hay hoy en `main`.
+> El código se perdió el 12/11 y se recuperó el 16/11 (decisiones 103 y 104).
 
 95. **El paseo del martes es un ejercicio de cardio.** Fila nueva en el Excel (`paseo`, `sesion=M`,
     «30 min» de S2 a S8) detrás de la bici: sale en Hoy y en Plan como el resto del cardio. En Hoy
@@ -577,16 +575,19 @@ Se repasaron todos los chats del proyecto para que un chat nuevo tenga el mismo 
     `periodo-graficas` guardó los cambios del disco en un `stash` que luego se descartó. Solo se
     salvó su texto de `DECISIONES.md`. El código completo (Excel con las filas `paseo` y
     `paseo=D`, `js/rodilla-calc.js`, `js/rodilla.js`, `js/xlsx.js`, `js/plan.js`, `js/app.js`,
-    README y pruebas) sigue en el commit **`94b4d73`** («WIP on main: eaf42d1»), protegido con la rama local `rescate-paseo`. Para
-    recuperarlo hay que llevarlo encima del `main` actual (el Excel ha cambiado después con la
-    sentadilla española) y volver a pasar las pruebas.
+    README y pruebas) quedó en el commit **`94b4d73`** («WIP on main: eaf42d1»).
+104. **Paseo recuperado (16/11).** Se llevó el código de `94b4d73` encima de `main` (rama
+    `paseo-entrada`): los cambios de código entraron sin conflictos salvo una prueba
+    (`contenido.test.mjs`, que ahora admite a la vez el paseo y la sentadilla española con «—»
+    en S1-S2). En el Excel solo había dos filas nuevas, las de los paseos (`paseo` el martes y
+    `paseo=D` el sábado): se han vuelto a insertar tras la carrera del domingo con
+    `insertar_filas`, con los mismos textos, y se ha regenerado todo con `excel_app.py`. Pasan
+    todas las pruebas.
 
 ## Pendientes abiertos (16/11)
 
 Lista viva: quitar lo que se resuelva y añadir lo nuevo.
 
-- **Paseo de entrada y 1.ª carrera en domingo (95-97):** acordado pero no está en la app
-  (decisión 103). Recuperable desde la rama local `rescate-paseo` (`94b4d73`).
 - **Extensión de rodilla con escalera de rango (52):** sin definir por el usuario (series,
   reps, semanas, qué pasa los días de test). Las escaleras genéricas (56) ya permiten meterla
   solo desde el Excel.

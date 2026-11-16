@@ -21,7 +21,7 @@ Antes de tocar nada, lee:
 - Cuando pide un «prompt para un agente organizador/orquestador», los subagentes van con
   `model: "sonnet"` y `effort: "medium"`, y el orquestador no le consulta: decide, apunta la
   decisión en `DECISIONES.md` y sigue.
-- Cada decisión nueva va a `DECISIONES.md` con el siguiente número libre (el último es el 103).
+- Cada decisión nueva va a `DECISIONES.md` con el siguiente número libre (el último es el 104).
 
 ## Reglas técnicas que no se ven a simple vista
 
@@ -53,7 +53,7 @@ ficheros como modificados (`M`) sin que lo estén, y eso bloquea `merge`/`checko
 - **Nunca uses `git stash`, `git reset --hard` ni `git checkout -- .` para «limpiar» esos
   falsos cambios sin comprobar antes, fichero a fichero, que no hay trabajo sin commit de
   otro chat.** El 12/11 un `stash` hecho para fusionar se descartó y se perdió el código del
-  paseo de entrada (decisiones 95-97; recuperable en la rama local `rescate-paseo`).
+  paseo de entrada (decisiones 95-97; recuperado el 16/11, decisión 104).
 - Varios chats trabajan a la vez en esta carpeta: haz commit de tu trabajo en cuanto esté
   verificado, en vez de dejarlo sin guardar.
 - `gh` no tiene sesión iniciada; `git push` funciona con las credenciales de Windows.

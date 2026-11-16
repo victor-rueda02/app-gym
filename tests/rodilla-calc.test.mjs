@@ -402,5 +402,26 @@ test('RODILLA_DATA: 63 días del 26/10 al 27/12 con D/E/F del volcado', () => {
   DATA.tests.forEach((t) => { assert.equal(h['A' + t.fila].v, t.nombre); assert.equal(String(h['D' + t.fila].v).slice(0, 10), t.fecha); });
 });
 
+test('entrada a la carrera el domingo (paseo el sábado): día elegido por semana', () => {
+  const dias = { '2026-11-14': { decline: 1, steps: 1 }, '2026-11-15': { decline: 1, steps: 1, during: 1 } };
+  const ok = { walkPain: 'Sí', walkBack60: 'Sí', tdPain: 'Sí', hopsPain: 'Sí' };
+  const prog = (entry, hoy) => C.progresion(C.tablaDias(DATA.dias, dias, PLAN), PLAN, {}, entry, hoy);
+  // Sin elegir: la entrada es la del plan (paseo el martes, carrera el miércoles).
+  const a = prog({}, '2026-11-12').semanas.S4;
+  assert.equal(a.carrera.entrada.runDay, 'X'); assert.equal(a.carrera.entrada.walkDay, 'M');
+  // Elegido el domingo: paseo el sábado, y la 1.ª carrera (N1) es la del domingo.
+  const b = prog({ S4: { ...ok, runDay: 'D' } }, '2026-11-15').semanas.S4;
+  assert.equal(b.carrera.entrada.runDay, 'D'); assert.equal(b.carrera.entrada.walkDay, 'S');
+  assert.equal(b.carrera.entrada.manana, 'Sí');   // el domingo no peor que el sábado
+  assert.equal(b.carrera.nivel, 1); assert.equal(b.domingo.nivel, 1); assert.ok(b.domingo.entrada);
+  const dom = ej('carrera:domingo'), mie = ej('carrera');
+  assert.match(C.prescripcion(dom, b, PLAN, 4).label, /^N1 · [^\n]*\n1\.ª carrera \(entrada\)$/);
+  assert.equal(C.prescripcion(mie, b, PLAN, 4).label, 'Hoy no se corre\n(entrada el domingo)');
+  // Sin los tres Sí no hay carrera ese domingo.
+  const c = prog({ S4: { ...ok, hopsPain: 'No', runDay: 'D' } }, '2026-11-15').semanas.S4;
+  assert.equal(c.carrera.nivel, 0); assert.equal(c.domingo.nivel, 0);
+});
+
+
 console.log(fallos ? `\n${fallos} fallo(s)` : '\nTodo bien');
 process.exit(fallos ? 1 : 0);
