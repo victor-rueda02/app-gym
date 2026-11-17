@@ -33,14 +33,15 @@ for (const r of FILAS) {
     for (let f = r + 2; c(`A${f}`) && c(`B${f}`); f++) cab.filas.push({ nombre: c(`A${f}`).trim(), semanas: COLS.map((k) => c(`${k}${f}`)), dias: app(f) });
     CABS.push(cab);
   } else if (e.sesion) {
-    CARDIO.push({ clave: e.sesion, titulo: e.titulo || '', ej: { nombre: c(`B${r}`), semanas: COLS.map((k) => c(`${k}${r}`)) } });
+    CARDIO.push({ clave: e.sesion, titulo: e.titulo || '', dias: e, ej: { nombre: c(`B${r}`), semanas: COLS.map((k) => c(`${k}${r}`)) } });
   }
 }
 // Sesiones de la semana n. Cada cabecera va al día de su «Sn=» (columna App) o al de su letra;
 // una fila con su propio «Sn=» va ese día tras las filas de la primera cabecera de ese día, y el
-// cardio, al final de su día. Título: el de la primera cabecera con filas ese día. Un día sin
-// ejercicios, o solo con cardio que esa semana no se hace, no tiene sesión. En S1 el sábado (y
-// el domingo) se llama como entonces: «Sábado/Domingo», sin título.
+// cardio, al final de su día. Título: el de la primera cabecera con filas ese día, salvo un
+// «tituloSn=» de esa semana (en la cabecera o en una fila de cardio que se hace). Un día sin
+// ejercicios, o con todo en «—» esa semana, no tiene sesión. En S1 el sábado (y el domingo) se
+// llama como entonces: «Sábado/Domingo», sin título.
 const NOMBRE = { L: 'Lunes', M: 'Martes', X: 'Miércoles', J: 'Jueves', V: 'Viernes', S: 'Sábado', D: 'Domingo' };
 const DOW = { L: 1, M: 2, X: 3, J: 4, V: 5, S: 6, D: 0 };
 const S1_SABADO = 'Sábado/Domingo';
@@ -73,8 +74,11 @@ const sesionesDe = (n) => {
     if (!x.titulo) x.titulo = k.titulo;
     x.ejercicios.push({ ...k.ej, cardio: true });
   }
+  const t = `tituloS${n}`;
+  for (const cab of CABS) if (cab.dias[t]) de(dia(cab.dias, cab.clave)).titulo = cab.dias[t];
+  for (const k of CARDIO) if (k.dias[t] && k.ej.semanas[n - 1] !== '—') de(k.clave).titulo = k.dias[t];
   return 'LMXJVSD'.split('').map((l) => out[l]).filter((x) => x && x.ejercicios.length
-    && !x.ejercicios.every((e) => e.cardio && e.semanas[n - 1] === '—'))
+    && !x.ejercicios.every((e) => e.semanas[n - 1] === '—'))
     .map((x) => (x.nombreS1 ? { ...x, label: x.nombreS1, titulo: x.nombreS1 }
       : { ...x, label: x.titulo ? `${NOMBRE[x.clave]} · ${x.titulo}` : NOMBRE[x.clave] }));
 };

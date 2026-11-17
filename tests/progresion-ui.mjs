@@ -151,13 +151,14 @@ const BICI = {
 const page2 = await (await browser.newContext({ ...devices['iPhone 13'], locale: 'es-ES' })).newPage();
 page2.on('pageerror', (e) => errores.push(`pageerror: ${e}`));
 page2.on('console', (m) => { if (m.type() === 'error') errores.push(`console.error: ${m.text()}`); });
-await page2.clock.setFixedTime(new Date('2026-11-17T08:00:00'));
+// S5 (17-22/11) va sin bici (semana del chalazión): se mira el martes de S6.
+await page2.clock.setFixedTime(new Date('2026-11-24T08:00:00'));
 await page2.addInitScript((r) => localStorage.setItem('gym.log.v1', JSON.stringify(r)), BICI);
 await page2.goto(`http://localhost:${PORT}/index.html`);
 await page2.waitForSelector('main .ex');
 const bici = await page2.locator('main .ex', { hasText: 'Bici' }).first().locator('.pres').textContent();
-check('Hoy (mar 17/11): la bici sale quitada', bici === 'Sin bici\n(quitada)', bici);
-check('Hoy (mar 17/11): aviso de la bici en la tarjeta de rodilla', (await page2.textContent('.rod-hoy')).includes('Sin bici: fallo atribuido a la bici'));
+check('Hoy (mar 24/11): la bici sigue quitada (S5 sin sesiones en verde)', bici === 'Sin bici\n(quitada)', bici);
+check('Hoy (mar 24/11): aviso de la bici en la tarjeta de rodilla', (await page2.textContent('.rod-hoy')).includes('Sin bici: fallo atribuido a la bici'));
 
 check('Sin errores de consola ni pageerror', errores.length === 0, errores.join(' || '));
 await browser.close();

@@ -158,8 +158,11 @@ test('escaleras coherentes con sus celdas y días de cada una', () => {
     assert.ok(prensa.x.pres[n - 1].label.startsWith(`2 x${p.reps}`), `prensa S${n}`);
     const k = PLAN.CARRERA_MAX[n];
     const celda = carrera.x.pres[n - 1].label;
+    // «—» después de S1: semana sin carrera (el nivel se queda, p. ej. la del chalazión).
+    if (PLAN.ESCALERAS.carrera.sin.includes(n)) { assert.equal(celda, '—', `carrera S${n}`); continue; }
     assert.ok(k === 0 ? celda === '—' : celda === `N${k} · ${PLAN.CARRERA_NIVELES[k]}` || celda === `repite N${k}`, `carrera S${n}: ${celda}`);
   }
+  assert.deepEqual(PLAN.ESCALERAS.carrera.sin, [5]);
   // La semana de cada nivel de la prensa es la primera en que el calendario lo alcanza.
   PLAN.PRENSA_SEMANA.forEach((w, k) => assert.equal(PLAN.PRENSA_MAX[w], k));
   assert.equal(PLAN.ESCALERAS.prensa.dia, prensa.s.id.slice(-1));

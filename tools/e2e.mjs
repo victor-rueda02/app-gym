@@ -295,8 +295,9 @@ await page.waitForSelector('main .ex');
 check('Cardio registrado cuenta como hecho (1/1)',
   (await cardioRow.locator('.pres').textContent()) === '1/1'
   && (await cardioRow.getAttribute('class')).includes('done'));
-await goToDate('2026-11-20');
-check('20/11 (viernes, semana 5): bici de 10 min en Z2 (sin Z3)',
+// S5 (17-22/11) es la semana del chalazión, sin bici: se mira el viernes de S6.
+await goToDate('2026-11-27');
+check('27/11 (viernes, semana 6): bici de 10 min en Z2 (sin Z3)',
   (await page.locator('main .ex.cardio .pres').textContent()) === "10' Z2");
 
 await goToDate('2026-10-24');
@@ -318,7 +319,7 @@ check('25/10 (domingo, S1): comparte la sesión del sábado',
 await goToDate('2026-12-11');
 check('11/12: semana 8, viernes (pierna 2)',
   (await page.textContent('.hero .week')) === 'Semana 8 · Volumen'
-  && (await page.textContent('#hero-name')) === 'Rehab + Isquios + Aductores  ·  test de fuerza S3 / S5 / S7 (+ opcional S8)  (desde S2; S1 se hizo el jueves; en S2, el viernes 30/10)',
+  && (await page.textContent('#hero-name')) === 'Rehab + Isquios + Aductores  ·  test de fuerza S3 / S6 / S7 (+ opcional S8)  (desde S2; S1 se hizo el jueves; en S2, el viernes 30/10)',
   await page.textContent('#hero-name'));
 const SQ8 = ['3 x8', 'repite S7'].join(String.fromCharCode(10));
 const SENT = 'Sentadilla al cajón o desde pines · pesado y lento n.º 2';
@@ -354,8 +355,9 @@ check('El plan nombra el sábado y el domingo de carrera (S8) como en el Excel',
   // Desde S2 el sábado es el torso en casa, con las filas de abdominales y correctivos detrás.
   etiquetas.includes('Sábado · casa, peso libre  ·  Torso (desde S2 = 31/10; S1 se hizo el viernes en el gimnasio)')
   && etiquetas.includes('Domingo · Carrera'), etiquetas.join(' | '));
-check('El plan marca el cardio en azul (bici y paseo de entrada el martes, paseo de entrada el sábado, bici el viernes, carrera miércoles y domingo)',
-  (await page.locator('main .ex.cardio').count()) === 6);
+check('El plan marca el cardio en azul (bici y paseo de entrada el martes, paseo de entrada el sábado, bici el viernes, carrera miércoles y domingo, y los 4 paseos de S5 con «—»)',
+  (await page.locator('main .ex.cardio').count()) === 10
+  && (await page.locator('main .ex.cardio.skip').count()) === 4);
 check('Notas de semanas 9–10 en el plan',
   (await page.textContent('main')).includes('Semana 9 (14-20/12) · Viaje = descarga'));
 check('Reglas del plan nuevo (RIR1/0 y autorregulación)',

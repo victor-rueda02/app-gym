@@ -233,6 +233,7 @@ const RULES = [
      sesion=X[;titulo=…]      (bloque de cardio) a qué sesión va la fila, como último ejercicio
      S1=X;S2=X                día de esa semana, si no es el de la cabecera (en una cabecera,
                               toda la sesión; en un ejercicio, solo esa fila)
+     tituloS5=…               (cabecera o fila de cardio) título del día solo esa semana
      cardio · hitos · regla · nota · grupos · reglas-bloque · desglose=…   filas de texto/tablas
    Dos cabeceras con la misma letra son un mismo día (sus filas, seguidas).
    El sábado de S1 y el domingo sin sesión: si un domingo no tiene sesión esa semana,
@@ -264,6 +265,16 @@ function diasPorSemana(e, donde) {
     if (!/^S\d+$/.test(k)) continue;
     if (!(letra in DOW)) throw new Error(`Volumen!${donde}: «${k}=${letra}» no es un día (L M X J V S D)`);
     out[+k.slice(1)] = letra;
+  }
+  return out;
+}
+
+/* «tituloS5=Pausa» -> { 5: 'Pausa' } (título del día solo esa semana). */
+function titulosPorSemana(e) {
+  const out = {};
+  for (const [k, v] of Object.entries(e)) {
+    const m = /^tituloS(\d+)$/.exec(k);
+    if (m && typeof v === 'string') out[+m[1]] = v;
   }
   return out;
 }
@@ -300,7 +311,7 @@ function construirVolumen(hoja) {
     if (e.sesion === true) {
       const m = /^\(([LMXJVSD])\)\s*([^·]+?)\s*(?:·\s*([\s\S]*))?$/.exec(a);
       if (!m) throw new Error(`Volumen!A${r}: cabecera de sesión sin el formato «(L) Lunes · título»`);
-      sesion = { letra: m[1], title: (m[3] || '').trim(), dias: diasPorSemana(e, `L${r}`), nombreS1: e.nombreS1, filas: [] };
+      sesion = { letra: m[1], title: (m[3] || '').trim(), dias: diasPorSemana(e, `L${r}`), titulos: titulosPorSemana(e), nombreS1: e.nombreS1, filas: [] };
       vol.cabeceras.push(sesion);
       continue;
     }
@@ -311,7 +322,7 @@ function construirVolumen(hoja) {
     if (sesion && t(`B${r}`)) { sesion.filas.push({ x: ejercicio(r, a, t(`B${r}`), e), dias: diasPorSemana(e, `L${r}`) }); continue; }
     sesion = null;
     if (typeof e.sesion === 'string') {   // bloque de cardio y carrera
-      vol.cardio.push({ letra: e.sesion, titulo: e.titulo || '', x: ejercicio(r, t(`B${r}`).trim(), 'Cardio', e) });
+      vol.cardio.push({ letra: e.sesion, titulo: e.titulo || '', titulos: titulosPorSemana(e), x: ejercicio(r, t(`B${r}`).trim(), 'Cardio', e) });
     }
     if (e.regla) vol.rules.push(a);
     if (e.nota) vol.notes.push(a);
@@ -343,7 +354,7 @@ function construirVolumen(hoja) {
    cabecera de ese día. El cardio va al final de su día. Título: el de la primera cabecera
    con ejercicios ese día (si no hay, el de la cabecera de ese día o el de la fila de cardio).
    Con n = null no se aplica ningún cambio por semana ni se quita nada. Con n, se quita el
-   día que se queda sin ejercicios o solo con cardio que esa semana no se hace («—»). */
+   día que se queda sin ejercicios o con todo en «—» esa semana. */
 function sesionesDeSemana(vol, n) {
   const diaDe = (dias, letra) => (n && dias[n]) || letra;
   const out = {};
@@ -378,12 +389,18 @@ function sesionesDeSemana(vol, n) {
     if (!s.title) s.title = c.titulo;
     s.exercises.push(c.x);
   }
+  // Título solo de esa semana («tituloS5=…», p. ej. la semana del chalazión).
+  if (n) {
+    for (const c of vol.cabeceras) if ((c.titulos || {})[n]) dia(diaDe(c.dias, c.letra)).title = c.titulos[n];
+    for (const c of vol.cardio) if ((c.titulos || {})[n] && !c.x.pres[n - 1].skip) dia(c.letra).title = c.titulos[n];
+  }
   const ordenadas = {};
   for (const letra of DIAS_PLAN) {
     const s = out[letra];
     if (!s) continue;
     delete s.conFilas;
-    if (n && (!s.exercises.length || s.exercises.every((x) => x.target === 'Cardio' && x.pres[n - 1].skip))) continue;
+    // Fuera el día que esa semana no tiene nada que hacer (todo «—»).
+    if (n && (!s.exercises.length || s.exercises.every((x) => x.pres[n - 1].skip))) continue;
     ordenadas[letra] = s;
   }
   return ordenadas;
@@ -422,8 +439,10 @@ function construirEscaleras(sesiones, desde) {
   const carrera = uno('carrera');
   const CARRERA_NIVELES = [''];
   const CARRERA_MAX = [null];
-  carrera.x.pres.forEach((p) => {
+  const CARRERA_SIN = [];   // semanas con «—» después de S1: no se corre y el nivel se queda
+  carrera.x.pres.forEach((p, i) => {
     let m;
+    if (i > 0 && p.skip) { CARRERA_SIN.push(i + 1); CARRERA_MAX.push(CARRERA_MAX[i]); return; }
     if ((m = /^N(\d+) · (.+)$/.exec(p.label))) { CARRERA_NIVELES[+m[1]] = m[2]; CARRERA_MAX.push(+m[1]); }
     else if ((m = /^repite N(\d+)$/.exec(p.label))) CARRERA_MAX.push(+m[1]);
     else CARRERA_MAX.push(0);
@@ -464,7 +483,7 @@ function construirEscaleras(sesiones, desde) {
     });
   const ESCALERAS = {
     prensa: { dia: prensa.l, dias: dias('prensa', 'prensa:sigue') },
-    carrera: { dia: carrera.l, dias: dias('carrera', 'carrera:domingo') },
+    carrera: { dia: carrera.l, dias: dias('carrera', 'carrera:domingo'), sin: CARRERA_SIN },
     bici: { dias: dias('bici'), entrada: bici.length ? { semana: bici[0].semana, dia: bici[0].l } : null },
     simples,
   };

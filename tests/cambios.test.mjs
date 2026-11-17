@@ -52,20 +52,20 @@ test('S4: el sábado al domingo -> el domingo suma el torso a su carrera y el s�
 test('mover un día de pierna lleva la regla y la novedad de la rodilla al destino', () => {
   const dias = (c) => con(c, () => C.diasEfectivos(DATA.dias, PLAN));
   const normal = dias({});
-  const lunes = fila(normal, '2026-11-16');   // S5: pierna 1 con la novedad de la prensa
+  const lunes = fila(normal, '2026-11-23');   // S6: pierna 1 con la novedad de la prensa
   assert.notEqual(lunes.regla, '—');
-  const movido = dias({ movidos: { S5: { L: 'M' } } });
-  assert.equal(fila(movido, '2026-11-16').regla, '—');
-  assert.match(fila(movido, '2026-11-16').sesion, /^Libre \(movido al martes\)$/);
-  const martes = fila(movido, '2026-11-17');
+  const movido = dias({ movidos: { S6: { L: 'M' } } });
+  assert.equal(fila(movido, '2026-11-23').regla, '—');
+  assert.match(fila(movido, '2026-11-23').sesion, /^Libre \(movido al martes\)$/);
+  const martes = fila(movido, '2026-11-24');
   assert.equal(martes.regla, lunes.regla);
   assert.match(martes.sesion, /\(del lunes\)$/);
   assert.ok(martes.novedad.includes(lunes.novedad), martes.novedad);
   // Con la carrera el mismo día, manda la regla de carrera (≤2/10).
-  const conCarrera = dias({ movidos: { S5: { L: 'X' } } });
-  assert.match(fila(conCarrera, '2026-11-18').regla, /carrera/i);
+  const conCarrera = dias({ movidos: { S6: { L: 'X' } } });
+  assert.match(fila(conCarrera, '2026-11-25').regla, /carrera/i);
   // La progresión busca la prensa en el martes.
-  con({ movidos: { S5: { L: 'M' } } }, () => assert.equal(PLAN.diaEfectivo(5, 'L'), 'M'));
+  con({ movidos: { S6: { L: 'M' } } }, () => assert.equal(PLAN.diaEfectivo(6, 'L'), 'M'));
 });
 
 test('mover y semana sin viernes a la vez: se mueve lo que esa semana hay ese día', () => {

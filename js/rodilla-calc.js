@@ -440,7 +440,7 @@ const RodillaCalc = (() => {
       const malas = xs.filter((x) => x.semaforo !== 'Avanzar');
       if (!malas.length) return { ok: true };
       const x = malas[0];
-      const estado = x.semaforo || 'sin datos';
+      const estado = x.semaforo === '—' ? 'sin sesión' : x.semaforo || 'sin datos';
       return { ok: false, motivo: `${x.dia} ${ddmm(x.fecha)}: ${estado}` };
     }
 
@@ -547,6 +547,10 @@ const RodillaCalc = (() => {
             : e.estado === 'no' ? 'Entrada no superada: esta semana no se corre' : 'Entrada a la carrera pendiente',
           provisional: diaEntradaF.fecha > hoy };
         if (nivel > 0) novedades.push({ t: `${diaEntradaF.fecha}T09`, fecha: diaEntradaF.fecha, escalera: 'carrera', retrocedida: false });
+      } else if ((E.carrera.sin || []).includes(n)) {
+        // Semana sin carrera en el plan («—», p. ej. la del chalazión): el nivel se queda y no hay novedad.
+        c = { plan: plan.CARRERA_MAX[n], propuesta: carrera, real: null, nivel: carrera, previo: carrera, entrada: null,
+          motivo: 'Esta semana no se corre (plan): el nivel se queda', provisional: miercoles.fecha > hoy, sinSesion: true };
       } else {
         // Si la semana anterior se entró un día distinto al del plan, solo ese día cuenta para avanzar.
         const previa = out[`S${n - 1}`];
@@ -618,6 +622,7 @@ const RodillaCalc = (() => {
 
   function prescripcionNivel(exercise, semana, plan, n) {
     if (!semana || !exercise) return null;
+    if (exercise.pres[n - 1] && exercise.pres[n - 1].skip) return null;   // «—» esa semana: no se hace
     const P = plan.PRENSA_NIVELES;
     const N = plan.CARRERA_NIVELES;
     const { prensa, carrera, domingo } = semana;

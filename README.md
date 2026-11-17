@@ -206,7 +206,8 @@ Volumen, R en Seguimiento), con etiquetas `clave` o `clave=valor` separadas por 
 | `S1=X;S2=X` | día de esas semanas, si no es el de la cabecera: en una cabecera mueve toda la sesión; en un ejercicio, solo esa fila (p. ej. el pull, el miércoles en S1-S2 y el jueves desde S3) |
 | `id=…` | id estable del ejercicio: el historial cuelga de él, así que **renombrar es solo cambiar el nombre** |
 | `escalera=prensa` / `prensa:sigue` / `prensa:anterior` | la prensa marca reps y escalón (`nov: xN`, `nov: +1 escalón`); la sentadilla y la búlgara siguen su nivel; la touchdown va al de la semana anterior |
-| `escalera=carrera` / `carrera:domingo` | los niveles salen de las celdas `N1 · 8×(1'/2')`; el domingo repite |
+| `escalera=carrera` / `carrera:domingo` | los niveles salen de las celdas `N1 · 8×(1'/2')`; el domingo repite; «—» después de S1 = esa semana no se corre y el nivel se queda |
+| `tituloS5=…` | (cabecera o fila de cardio) título del día solo esa semana; un día con todo en «—» esa semana es descanso |
 | `escalera=<otra>` / `<otra>:sigue` | escalera nueva: primera línea `N x R`, segunda la descripción; cada subida, `nov: <descripción>` |
 | `bici` | la bici: entra en su primera celda con seguimiento, se quita en brote o fallo y vuelve |
 | `paseo` / `paseo=D` | paseo de entrada a la carrera: el día anterior a la 1.ª carrera (martes, o sábado con `D` si la elige el domingo); solo sale mientras no se ha entrado |

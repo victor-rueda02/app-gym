@@ -54,15 +54,15 @@ test('S4 sin viernes: pierna 2 el jueves, pull el miércoles tras la carrera y e
   });
 });
 
-test('S4 sin viernes: la bici no se estrena el jueves; entra en la primera bici de S5 (martes)', () => {
+test('S4 sin viernes: la bici no se estrena el jueves; entra en la primera bici siguiente (martes de S6: S5 va sin bici)', () => {
   con([4], () => {
     const bici = porDia(4).J.exercises.find((x) => x.prog === 'bici');
     assert.equal(PLAN.presFor(bici, W(4)).skip, true);
-    assert.equal(PLAN.presFor(bici, W(5)).skip, undefined, 'solo esa semana');
+    assert.equal(PLAN.presFor(bici, W(6)).skip, undefined, 'solo esa semana');
     assert.match(porDia(4).J.note, /bici no se estrena hoy/);
-    assert.deepEqual(PLAN.entradaBici(), { semana: 5, dia: 'M', movida: true, de: 4 });
+    assert.deepEqual(PLAN.entradaBici(), { semana: 6, dia: 'M', movida: true, de: 4 });
   });
-  con([4, 5], () => assert.deepEqual(PLAN.entradaBici(), { semana: 5, dia: 'M', movida: true, de: 4 }));
+  con([4, 5], () => assert.deepEqual(PLAN.entradaBici(), { semana: 6, dia: 'M', movida: true, de: 4 }));
   con([5], () => {
     assert.deepEqual(PLAN.entradaBici(), PLAN.ESCALERAS.bici.entrada);
     const bici = porDia(5).J.exercises.find((x) => x.prog === 'bici');
@@ -90,10 +90,10 @@ test('calendario de rodilla: el jueves con la regla y la sesión del viernes; el
   assert.deepEqual([de('2026-11-13').regla, de('2026-11-13').novedad], [C.SIN_REGLA, '—']);
   assert.match(de('2026-11-11').sesion, /\+ pull del jueves/);
   assert.equal(de('2026-11-11').regla, orig('2026-11-11').regla);
-  assert.match(de('2026-11-17').novedad, /^Bici \(1\.ª vez/);
+  assert.match(de('2026-11-24').novedad, /^Bici \(1\.ª vez/);
   // Las demás semanas, tal cual.
-  assert.deepEqual(d.filter((x) => !['S4'].includes(x.sem) && x.fecha !== '2026-11-17'),
-    DATA.dias.filter((x) => !['S4'].includes(x.sem) && x.fecha !== '2026-11-17'));
+  assert.deepEqual(d.filter((x) => !['S4'].includes(x.sem) && x.fecha !== '2026-11-24'),
+    DATA.dias.filter((x) => !['S4'].includes(x.sem) && x.fecha !== '2026-11-24'));
   assert.deepEqual(C.diasEfectivos(DATA.dias, PLAN), DATA.dias);
 });
 
@@ -127,18 +127,21 @@ test('progresión: con la pierna 2 del jueves en verde, la prensa de S5 avanza (
   assert.match(q.semanas.S5.prensa.motivo, /^Mantener \(V 13\/11/);
 });
 
-test('progresión: dolor durante la pierna 2 del jueves retrocede la prensa; la bici entra el martes de S5', () => {
+test('progresión: dolor durante la pierna 2 del jueves retrocede la prensa; la bici entra el martes de S6 (S5 va sin bici)', () => {
   const dias = { ...BASE, ...semana('2026-11-09', [2, 2, 2, 2, 2, 2, 2], { L: 1, X: 1, J: 4, D: 1 }), ...semana('2026-11-16', [2, 2]) };
   const p = con([4], () => progresar(dias, '2026-11-17'));
   assert.match(p.semanas.S5.prensa.motivo, /^Retroceder: dolor durante la sesión del J 12\/11/);
   assert.equal(p.bici.quitas.length, 1, 'S4 tuvo una sesión en Retroceder: la bici no entra');
-  assert.equal(p.bici.quitas[0].desde, '2026-11-17');
+  assert.equal(p.bici.quitas[0].desde, '2026-11-24');
 });
 
 test('progresión: mañana del viernes peor tras la pierna del jueves -> se retrocede la carrera (última novedad sin validar)', () => {
   const dias = { ...BASE, ...semana('2026-11-09', [2, 2, 2, 2, 3, 2, 2], { L: 1, X: 1, J: 1, D: 1 }), ...semana('2026-11-16', [2, 2, 2]) };
   const p = con([4], () => progresar(dias, '2026-11-18'));
-  assert.match(p.semanas.S5.carrera.motivo, /^Retroceder: mañana peor tras la sesión del J 12\/11/);
+  // S5 no tiene carrera (semana del chalazión): el retroceso espera a la carrera de S6.
+  assert.match(p.semanas.S5.carrera.motivo, /no se corre/);
+  assert.equal(p.semanas.S5.carrera.nivel, p.semanas.S4.carrera.nivel);
+  assert.match(p.semanas.S6.carrera.motivo, /^Retroceder: mañana peor tras la sesión del J 12\/11/);
   assert.equal(p.brotes.length, 0);
 });
 

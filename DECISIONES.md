@@ -662,7 +662,40 @@ exportar y en Progreso.
     en la primera serie de cada ejercicio y, en cada serie, sus columnas de profundidad («Steps 3 ·
     Discos 1»). Pruebas: `tests/ejercicios-ui.mjs`, `tests/selector-ui.mjs`, `tests/rodilla-hoy-ui.mjs`.
 
-## Pendientes abiertos (16/11)
+## Semana del chalazión: S5 de martes a domingo (17/11)
+
+Petición del usuario (17/11, día de la operación): mar nada · mié paseo · jue sentadilla iso
+unilateral 3×45 s + paseo · vie paseo · sáb iso 3×45 s + torso en casa a RPE muy bajo (o
+descanso) · dom paseo. El lunes 16/11 ya estaba hecho y no se toca.
+
+116. **En el Excel, columna de S5.** Push, pull, pierna 2, bici, carrera (miércoles y domingo),
+    paseos de entrada y abs wesley del sábado pasan a «—». El isométrico del viernes va el jueves
+    (`S5=J` en su fila) y el sábado lleva una fila nueva del mismo id (`sentadilla-espanola`, «—»
+    las demás semanas). Torso del sábado: las mismas series a **RIR 4** con la línea «21/11:
+    opcional · muy lejos del fallo, respirando, sin apnea» (el usuario aclaró que «RIR muy bajo»
+    era RPE muy bajo); correctivos sin cambios. Cuatro filas de cardio nuevas «Paseo suave»
+    (`id=paseo-suave`, X/J/V/D) con «30 min» solo en S5: el usuario no dijo cuánto; 30 min como el
+    paseo de entrada. En «Seguimiento rodilla», del 17 al 22/11 sin regla («—») y con lo que se
+    hace en Sesión. **Test 2 → viernes 27/11 (S6)**: celda del test en S6, fila del test con la
+    fecha nueva, hitos y notas «S3/S6/S7» (también la cabecera del viernes).
+117. **Título del día solo esa semana: `tituloS5=…`** en una cabecera o en una fila de cardio
+    (si esa semana se hace). Así el jueves no sale como «Pull» con un isométrico y un paseo:
+    «Isométrico + paseo · semana del chalazión», etc. Código nuevo en `js/plan.js`
+    (`sesionesDeSemana`).
+118. **Un día con todo en «—» esa semana no tiene sesión** (antes solo si era todo cardio): el
+    martes 17/11 sale «Descanso». En S1-S8 no cambia ningún otro día (pruebas de contenido).
+119. **Carrera en «—» después de S1 = semana sin carrera, el nivel se queda** (`ESCALERAS.carrera.sin`).
+    Antes una celda «—» se leía como «sin entrar» y habría bajado la carrera a N1. Esa semana no
+    hay novedad ni decisión; la siguiente decide con sus días, que salen «sin sesión» → Mantener.
+    Además, una escalera con «—» en su celda de esa semana no se prescribe (la sentadilla y la
+    búlgara del viernes). Resultado al volver (S6, lo acordado el 15/11): **carrera al último
+    nivel validado (N3, «mantiene») y prensa a x8 sin escalón nuevo**; un fallo pendiente de la
+    carrera espera a su siguiente carrera. La bici: S4 sin viernes la estrenaba el martes de S5;
+    ahora, el martes de S6 (24/11). Pruebas ajustadas: las que usaban S5 como semana normal miran
+    S6 (`cambios`, `sin-viernes`, `e2e`, `progresion-ui`, `rodilla-hoy-ui`); `contenido` excluye S5
+    de la comparación con el plan de antes (series de S5: 71 → 26).
+
+## Pendientes abiertos (17/11)
 
 Lista viva: quitar lo que se resuelva y añadir lo nuevo.
 
@@ -671,14 +704,9 @@ Lista viva: quitar lo que se resuelva y añadir lo nuevo.
   solo desde el Excel.
 - **+1 serie de deltoides posterior en todas las semanas:** aceptado por el usuario el 17/10
   (pasaría de 1→3 a 2→4), pero el Excel sigue con 1→3 (fila «Posterior polea», jueves).
-- **Semana S5 (16-22/11):** el usuario no puede entrenar de martes 17/11 a domingo 22/11
-  (motivo personal, sin fecha de vuelta cerrada). Acordado: dom 15/11 torso del sábado + espalda del lunes + 2 series de
-  pecho; lun 16/11 sesión del lunes (prensa x8 = novedad) + isquios sentado y aductores del
-  viernes, sin cajón, búlgara ni test; de martes a domingo, pausa (mediciones de la mañana y
-  española 5×45 s sin apnea en cuanto se pueda); el **test 2 pasa al viernes
-  27/11** (S6); al volver, ninguna novedad hasta revalidar. **No se ha pasado al Excel ni a la
-  app**: falta saber cuándo puede volver (formato: líneas «17/11: …» en las celdas de S5, como
-  el festivo del 2/11).
+- **Semana S5 (chalazión):** aplicada (116-119). Si el médico cambia algo o no hace el
+  isométrico/torso, nada que tocar: «Quitar de este día» en Hoy. Al volver, la española 5×45 s
+  del brote/viaje sigue sin cambiar de nombre (111).
 - **Criterios para pasar a pliometría** tras llegar a ×6 (después del viaje): sin definir.
 - **Sustituciones del 24/10:** lo registrado del 19 al 24/10 en «Aperturas polea», «Pullover»
   y «Dominadas medio abiertas» se pasó a «Contractora (Pec Deck)», «Pull-in» y «Jalón neutro».
