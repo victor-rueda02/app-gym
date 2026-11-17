@@ -619,6 +619,49 @@ exportar y en Progreso.
     cumplimiento (series hechas; las planificadas siguen siendo las del plan). Los ejercicios nuevos
     entran en el selector de 1RM. Pruebas: `tests/cambios.test.mjs` y `tests/cambios-ui.mjs`.
 
+## Plan › Ejercicios, pulsación larga, selector y rodilla en Hoy (17/11)
+
+109. **Plan › Ejercicios: qué muestra cada ejercicio en Hoy.** Subpestaña nueva en Plan
+    («Semanas | Ejercicios»). Por defecto lista los ejercicios con series apuntadas («Hechos»;
+    también «Todos»). Cada ejercicio tiene parámetros con modo: **cada serie** (columna en Hoy),
+    **fijo** (referencia en Hoy, sin campo), **recuerda el último** (un campo por día que sale con el
+    último valor) u **oculto**: peso, reps, RIR, segundos, tempo y profundidad (en serie, con
+    columnas con nombre, p. ej. «Steps, Discos»). Además, «Piernas por separado (D/I)» y la
+    **posición de la máquina** (ajustes con nombre, siempre «recuerda»). Lo ajustado se guarda en el
+    registro (`ejercicios: { id: config }`); lo de partida sale de la prescripción del plan y de lo
+    que dijo el usuario (`js/ejercicios.js`, `PROPIOS`). Campos opcionales: versión 5, sin migración.
+110. **Valores de partida (respuestas del usuario, 17/11).**
+    - Tempo por defecto de la hipertrofia: «Subida explosiva · bajada controlada · 0,5 s en las
+      pausas» (también gemelos, sin la pausa de 2 s de la nota del plan).
+    - Prensa: tempo 3-1-3, RIR fijo «D 2 · I 1-2», posición Profundidad D 6, Profundidad I 5, Altura
+      pies 3. Sentadilla al cajón: 3-1-3, RIR 2, Pines 6. Búlgara: 3-1-3, «D 2 · I 1-2», Altura pie de
+      apoyo (steps) 3.
+    - Touchdown: sin peso; la profundidad es lo que progresa: **Steps y Discos en cada serie**; tempo
+      2-0-2 y RIR 3 fijos.
+    - Abducción en máquina: RIR 1-2 de referencia; posición Altura 4, Profundidad 5.
+    - Isquios sentado: Asiento 5, Rodilla 1, Pies 2. Bici: Altura 6, Resistencia 7.
+    - Correctivos: RIR 3-4 fijo y su tempo («5 s arriba», «5-10 s fuera», «3 s / 3 s»).
+    - Peso libre: nada más que apuntar.
+111. **Sentadilla iso pared unilateral** sustituye a la sentadilla española (filas del lunes y el
+    viernes; mismo id `sentadilla-espanola`, así que el historial se conserva). Peso en cada serie,
+    45 s de referencia y **por pierna (D/I)**: 3 series de 45 s por pierna (supuesto: la celda dice
+    «3 x45 s»). Las notas del viaje y del brote siguen diciendo «sentadilla española 5×45 s»: no se
+    han cambiado.
+112. **Pulsación larga en Hoy.** Mantener pulsado un ejercicio abre «Quitar de este día» (avisa si
+    tiene series; los del plan se guardan en `days[fecha].removed` y se recuperan con «Volver a
+    poner…» en «Cambios de este día»; los añadidos se quitan del todo) y «Editar parámetros» (abre
+    Plan › Ejercicios en ese ejercicio).
+113. **Selector con buscador, grupos y recientes** (`js/selector.js`) en «Añadir ejercicio», en el
+    1RM de Progreso y en Plan › Ejercicios: buscador sin tildes, botones de grupo muscular que saltan
+    a su cabecera y «Recientes» arriba. Sigue agrupado por grupo muscular.
+114. **Rodilla como ítems en Hoy** (`Rodilla.itemsHoy`). Las pruebas de la mañana siguen en su
+    tarjeta. En la lista, bajo «Rodilla»: «Rodilla tras la sesión» (dolor durante y, en carrera, nivel
+    previo en ≤60 min; solo días con regla), «Entrada a la carrera: criterios» (cuando toca; sale de la
+    tarjeta) y «Rodilla: chasquido y notas» (cada día del seguimiento).
+115. **Exportación.** La hoja Registro gana la columna **Ajustes**: la posición de la máquina del día
+    en la primera serie de cada ejercicio y, en cada serie, sus columnas de profundidad («Steps 3 ·
+    Discos 1»). Pruebas: `tests/ejercicios-ui.mjs`, `tests/selector-ui.mjs`, `tests/rodilla-hoy-ui.mjs`.
+
 ## Pendientes abiertos (16/11)
 
 Lista viva: quitar lo que se resuelva y añadir lo nuevo.

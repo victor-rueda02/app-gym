@@ -108,7 +108,8 @@ check('El lunes muestra la serie ya registrada', visible === '1/2', visible);
 const filas = await page.evaluate(() => buildRows());
 // La hoja Registro ganó dos columnas: Lado (índice 7, tras Serie) y Min (tras Seg).
 // Se insertan vacías en las filas de antes.
-const conMin = (r) => { const a = [...r.slice(0, 7), '', ...r.slice(7)]; return [...a.slice(0, 11), '', ...a.slice(11)]; };
+// Y al final, Ajustes (17/11): vacía en las filas de antes.
+const conMin = (r) => { const a = [...r.slice(0, 7), '', ...r.slice(7)]; return [...a.slice(0, 11), '', ...a.slice(11), '']; };
 check('Se exporta igual que antes del plan de volumen',
   JSON.stringify(filas) === JSON.stringify(EXPORT_ANTES.map(conMin)), `${filas.length} filas`);
 

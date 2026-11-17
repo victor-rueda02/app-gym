@@ -21,7 +21,7 @@ Antes de tocar nada, lee:
 - Cuando pide un «prompt para un agente organizador/orquestador», los subagentes van con
   `model: "sonnet"` y `effort: "medium"`, y el orquestador no le consulta: decide, apunta la
   decisión en `DECISIONES.md` y sigue.
-- Cada decisión nueva va a `DECISIONES.md` con el siguiente número libre (el último es el 108).
+- Cada decisión nueva va a `DECISIONES.md` con el siguiente número libre (el último es el 115).
 
 ## Reglas técnicas que no se ven a simple vista
 

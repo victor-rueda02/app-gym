@@ -72,6 +72,12 @@ async function abrir(reg) {
 }
 const sub = async (page, id) => { await page.click(`[data-ptab="${id}"]`); await page.waitForTimeout(60); };
 const ancho = (page) => page.evaluate(() => document.documentElement.scrollWidth);
+// El ejercicio de 1RM se elige con el selector (js/selector.js); el grupo de Volumen sigue en un <select>.
+const elegirEj = async (page, id) => {
+  await page.click('.sel-boton');
+  await page.click(`#sheet .sel-item[data-id="${id}"]`);
+  await page.waitForTimeout(60);
+};
 const texto = (page, sel) => page.$eval(sel, (e) => e.textContent.trim()).catch(() => '');
 const cuenta = (page, sel) => page.$$eval(sel, (l) => l.length);
 
@@ -89,7 +95,7 @@ const cuenta = (page, sel) => page.$$eval(sel, (l) => l.length);
   await page.screenshot({ path: path.join(out, 'progreso-1rm.png'), fullPage: true });
   const aria0 = await page.$eval('.gr-svg', (e) => e.innerHTML.length);
   // Cambiar de ejercicio con el selector
-  await page.selectOption('.pg-select', 'prensa-unil-pesado-y-lento-n-1');
+  await elegirEj(page, 'prensa-unil-pesado-y-lento-n-1');
   await page.waitForTimeout(60);
   check('selector cambia el ejercicio', (await texto(page, '.pg-card h2')) !== nombre0, await texto(page, '.pg-card h2'));
   check('prensa: dos líneas D/I', (await cuenta(page, '.gr-line.c-d')) === 1 && (await cuenta(page, '.gr-line.c-i')) === 1);
@@ -182,7 +188,7 @@ const cuenta = (page, sel) => page.$$eval(sel, (l) => l.length);
   check('báscula: lee los pesajes del mismo navegador (primero del día)', JSON.stringify(await page.evaluate(() => Store.pesos())) === JSON.stringify({ '2026-10-20': 72, '2026-10-27': 72.6 }), JSON.stringify(await page.evaluate(() => Store.pesos())));
   await page.click('[data-tab="progress"]');
   await page.waitForSelector('.pg');
-  await page.selectOption('.pg-select', DOM);
+  await elegirEj(page, DOM);
   await page.waitForTimeout(60);
   check('báscula: aviso de peso + lastre', /peso de la báscula \+ el lastre/.test(await texto(page, '.pg-mejor')), await texto(page, '.pg-mejor'));
   await page.locator('.gr-hit').first().click({ force: true });
@@ -259,7 +265,7 @@ const cuenta = (page, sel) => page.$$eval(sel, (l) => l.length);
   const nombres = await page.$$eval('.pg-periodo .btn', (l) => l.map((b) => b.textContent.trim()));
   check('periodo: cuatro botones', nombres.join('|') === '1 mes|3 meses|6 meses|Total', nombres.join('|'));
   check('periodo: Total por defecto', (await activo()) === 'total');
-  await page.selectOption('.pg-select', 'jalon-neutro');
+  await elegirEj(page, 'jalon-neutro');
   await page.waitForTimeout(60);
   const pts = () => cuenta(page, '.gr-pt');
   check('periodo Total: 5 puntos de jalón', (await pts()) === 5, String(await pts()));
@@ -275,7 +281,7 @@ const cuenta = (page, sel) => page.$$eval(sel, (l) => l.length);
   check('periodo: subpestaña marcada', (await activo()) === '1m');
   await page.screenshot({ path: path.join(out, 'progreso-periodo-1m.png'), fullPage: true });
   // Ejercicio sin datos en el periodo
-  await page.selectOption('.pg-select', 'curl-bayesian');
+  await elegirEj(page, 'curl-bayesian');
   await page.waitForTimeout(60);
   check('periodo: ejercicio sin datos avisa', /Sin datos en el último mes/.test(await texto(page, '.pg-card')) && (await cuenta(page, '.gr-svg')) === 0, await texto(page, '.pg-card'));
   check('periodo: progresión sigue completa', (await cuenta(page, '.pg-fila')) >= 1);

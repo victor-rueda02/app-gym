@@ -134,8 +134,8 @@ check('Lado vacío en un unilateral de S1', prensaS1 && prensaS1[7] === '', JSON
 check('Lado D/I en un unilateral de S2',
   prensaS2.length === 2 && prensaS2[0][7] === 'D' && prensaS2[1][7] === 'I', JSON.stringify(prensaS2.map((r) => r[7])));
 check('Lado vacío en un ejercicio bilateral', rows.find((r) => r[4] === 'Isquios sentado')[7] === '');
-const lateralBien = rows.every((r) => r.length === 15);
-check('Todas las filas de Registro tienen 15 columnas', lateralBien);
+const lateralBien = rows.every((r) => r.length === 16);
+check('Todas las filas de Registro tienen 16 columnas (con Ajustes)', lateralBien);
 
 const outDir = path.join(root, 'tools', 'out');
 fs.mkdirSync(outDir, { recursive: true });

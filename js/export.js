@@ -22,7 +22,7 @@ function buildRows() {
 
     // La columna Bloque identifica el plan: A / B (4 semanas) o Volumen. En el de volumen, la
     // sesión de esa semana con todo lo registrado ese día (aunque la sesión cambiara de día).
-    const session = week.plan === 'vol' ? PLAN.sesionDelDia(date, rec.entries, rec.added)
+    const session = week.plan === 'vol' ? PLAN.sesionDelDia(date, rec.entries, rec.added, rec.removed)
       : PLAN.sessionsFor(week).find((d) => d.id === rec.sessionId);
     if (!session) continue;
 
@@ -38,7 +38,14 @@ function buildRows() {
       const real = typeof Rodilla !== 'undefined' ? Rodilla.prescripcion(exercise, week, date) : null;
       const pres = real || PLAN.presFor(exercise, week);
 
+      // Ajustes (col. Ajustes): la posición de la máquina del día en la primera serie, y en cada
+      // serie sus columnas de profundidad (p. ej. «Steps 3 · Discos 1»).
+      const conf = typeof Ejercicios !== 'undefined' ? Ejercicios : null;
+      const delDia = conf ? conf.ajustes(exercise).map(({ nombre }) => [nombre, conf.valorAjuste(exercise, nombre, date).valor])
+        .filter(([, v]) => v !== '' && v != null).map(([n, v]) => `${n} ${v}`) : [];
       list.forEach((s, i) => {
+        const porSerie = Object.entries(s.x || {}).filter(([, v]) => v !== '' && v != null).map(([n, v]) => `${n} ${v}`);
+        const ajustes = [...(i === 0 ? delDia : []), ...porSerie].join(' · ');
         rows.push([
           date, `Sem ${week.n}`, week.block, sessionLabel, exercise.name,
           exercise.target, i + 1,
@@ -47,6 +54,7 @@ function buildRows() {
           pres.label,
           // Lo añadido desde Hoy se marca; las pautas largas ya están en la hoja del plan.
           exercise.added ? 'Añadido en la app' : (exercise.notes.length <= 40 ? exercise.notes : ''),
+          ajustes,
         ]);
       });
     });

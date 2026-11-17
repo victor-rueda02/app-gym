@@ -118,3 +118,7 @@
 .rod-prog-l > b { font-size: 14.5px; }
 .rod-prog-g { display: grid; grid-template-columns: auto 1fr; gap: 2px 10px; margin: 6px 0; font-size: 14px; }
 .rod-prog-g small { color: var(--muted); font-size: 12.5px; align-self: center; }
+
+/* Ítems de rodilla en la lista de Hoy y su hoja */
+.rod-item { width: 100%; text-align: left; min-height: 44px; }
+#sheet-content [data-rod-listo] { width: 100%; margin-top: 14px; }

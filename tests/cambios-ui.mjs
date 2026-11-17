@@ -47,7 +47,7 @@ await page.goto(`http://localhost:${PORT}/index.html`);
 await page.waitForSelector('#hero-name');
 
 const reg = () => page.evaluate(() => JSON.parse(localStorage.getItem('gym.log.v1')));
-const nombres = () => page.$$eval('main .ex .nm', (l) => l.map((e) => e.textContent.trim()));
+const nombres = () => page.$$eval('main .ex:not(.rod-item) .nm', (l) => l.map((e) => e.textContent.trim()));
 const hero = () => page.textContent('#hero-name');
 const ancho = () => page.evaluate(() => document.documentElement.scrollWidth);
 const irA = async (fecha) => { await page.fill('#datepick', fecha); await page.dispatchEvent('#datepick', 'change'); await page.waitForTimeout(80); };
@@ -76,9 +76,11 @@ check('El domingo no ofrece moverse (ya recibe) y sí devolver lo del sábado',
 
 /* --- Añadir un ejercicio del plan y uno nuevo --- */
 await page.locator('.cambios .btn', { hasText: 'Añadir ejercicio' }).click();
-await page.waitForSelector('#an-ej');
-const opcion = await page.$$eval('#an-ej option', (l) => l.map((o) => [o.value, o.textContent]).find(([v, t]) => /press inclinado/i.test(t)));
-await page.selectOption('#an-ej', opcion[0]);
+await page.click('#an-boton');
+await page.waitForSelector('#sheet .sel-item');
+const opcion = await page.$$eval('#sheet .sel-item', (l) => l.map((o) => [o.dataset.id, o.querySelector('b').textContent]).find(([, t]) => /press inclinado/i.test(t)));
+await page.click(`#sheet .sel-item[data-id="${opcion[0]}"]`);
+await page.waitForSelector('#an-series');
 check('Al elegir un ejercicio del plan se rellenan series, reps y RIR del plan',
   (await page.inputValue('#an-series')) !== '' && !(await page.isHidden('#an-pres')));
 await page.fill('#an-series', '3');
@@ -89,10 +91,12 @@ await page.click('#an-ok');
 await page.waitForTimeout(80);
 const conPress = await nombres();
 check('El ejercicio añadido sale al final, marcado', conPress[conPress.length - 1] === opcion[1]
-  && (await page.locator('main .ex').last().textContent()).includes('Añadido'), conPress.join(', '));
+  && (await page.locator('main .ex:not(.rod-item)').last().textContent()).includes('Añadido'), conPress.join(', '));
 
 await page.locator('.cambios .btn', { hasText: 'Añadir ejercicio' }).click();
-await page.selectOption('#an-ej', '__nuevo');
+await page.click('#an-boton');
+await page.click('#sheet .sel-extra');
+await page.waitForSelector('#an-nombre');
 await page.fill('#an-nombre', 'Curl araña');
 await page.selectOption('#an-grupo', 'Bíceps');
 await page.fill('#an-series', '2');
@@ -153,7 +157,9 @@ check('Seguimiento rodilla: el sábado libre y el domingo con lo del sábado',
 /* --- Progreso: el nuevo con su 1RM y su volumen --- */
 await page.click('[data-tab="progress"]');
 await page.waitForSelector('.pg');
-const opciones1RM = await page.$$eval('.pg select option', (l) => l.map((o) => o.textContent));
+await page.click('.sel-boton');
+const opciones1RM = await page.$$eval('#sheet .sel-item b', (l) => l.map((o) => o.textContent));
+await page.click('#sheet-close');
 check('Progreso › 1RM ofrece el ejercicio nuevo', opciones1RM.some((t) => t.includes('Curl araña')), opciones1RM.slice(0, 5).join(', '));
 const vol = await page.evaluate(() => {
   const cat = ProgresoCalc.catalogo([...Object.values(PLAN.BLOCK_VOL), { exercises: [{ id: 'extra-curl-arana', name: 'Curl araña', target: 'Bíceps', pres: [{ kind: 'rir' }] }] }], PLAN.VOL_GRUPOS);

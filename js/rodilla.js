@@ -3,6 +3,8 @@
    `subtitleEl`, `el`, `escapeHtml`, `toast`, `render`, `state`, `fmtDate`, `shortDate`):
    - `Rodilla.render()`: pinta la pestaña (data-tab="knee") en `#view`.
    - `Rodilla.todayCard(date)`: tarjeta de rodilla de Hoy, o null fuera del 26/10–27/12.
+   - `Rodilla.itemsHoy(fecha, alCambiar)`: ítems (button.ex.rehab) de la lista de Hoy: tras la
+     sesión, entrada a la carrera y chasquido/notas; vacío fuera de rango. `alCambiar` repinta Hoy.
    - `Rodilla.abrir(sec, fecha)`: lleva a la pestaña, en esa sección (y día).
    - `Rodilla.prescripcion(exercise, week, date)`: prescripción con el nivel real para los
      ejercicios con `prog` (prensa, sentadilla, búlgara, touchdown, carrera) y la bici
@@ -505,11 +507,7 @@ const Rodilla = (() => {
     const q = C.biciQuitada(p.bici, date);
     const nSem = +plan.sem.slice(1);
     if (q && PLAN.ESCALERAS.bici.dias.map((d) => PLAN.diaEfectivo(nSem, d)).includes(plan.dia)) avisos.push(`Sin bici: ${q.motivo}.`);
-    const semana = p.semanas[plan.sem];
-    // La entrada a la carrera se registra el día del paseo (el anterior a la carrera) y el de la carrera
-    // (el del plan, o el que se haya elegido para esa semana).
-    const ent = semana && semana.carrera.entrada;
-    const entrada = ent && (plan.dia === ent.walkDay || plan.dia === ent.runDay);
+    // Los criterios de entrada a la carrera salen como ítem de la lista de Hoy (`itemsHoy`).
     const card = el(`
       <div class="card rod-hoy"><h2>Seguimiento rodilla</h2>
         <p>Pruebas de la mañana (0-10)</p>
@@ -522,15 +520,90 @@ const Rodilla = (() => {
           <div><small>Semáforo</small><b data-out="semaforo"></b></div>
         </div>
         ${avisos.map((a) => `<div class="rod-linea">${esc(a)}</div>`).join('')}
-        ${entrada ? '<button type="button" class="btn line" data-entrada>Entrada a la carrera: criterios</button>' : ''}
         <button type="button" class="btn ghost" data-abrir>Seguimiento rodilla</button>
       </div>`);
     pintarDia(card, date);
     enlazar(card, () => pintarDia(card, date));
     card.querySelector('[data-abrir]').addEventListener('click', () => abrir('dia', date));
-    const b = card.querySelector('[data-entrada]');
-    if (b) b.addEventListener('click', () => abrir('entrada'));
     return card;
+  }
+
+  /* Ítems de la lista de Hoy (misma estructura que `exerciseRow`: button.ex.rehab). */
+  function filaItem(nombre, meta, etiqueta, clase, alTocar) {
+    const b = el(`
+      <button type="button" class="ex rehab rod-item" data-rod-item="${clase}">
+        <div class="grow"><div class="nm">${esc(nombre)}</div><div class="meta">${esc(meta)}</div></div>
+        <span class="pres">${esc(etiqueta)}</span>
+      </button>`);
+    b.addEventListener('click', alTocar);
+    return b;
+  }
+
+  /* Hoja modal #sheet con `contenido`; «Listo» (o Cerrar / tocar fuera) la cierra y llama a `alCambiar`. */
+  function abrirHoja(titulo, contenido, alCambiar) {
+    const sheet = document.getElementById('sheet');
+    const caja = document.getElementById('sheet-content');
+    document.getElementById('sheet-title').textContent = titulo;
+    caja.innerHTML = '';
+    caja.appendChild(contenido);
+    const listo = el('<button type="button" class="btn" data-rod-listo>Listo</button>');
+    listo.addEventListener('click', () => { sheet.hidden = true; });
+    caja.appendChild(listo);
+    // Cualquier cierre (Listo, Cerrar, fondo) repinta Hoy una sola vez.
+    const obs = new MutationObserver(() => {
+      if (!sheet.hidden) return;
+      obs.disconnect();
+      if (alCambiar) alCambiar();
+    });
+    obs.observe(sheet, { attributes: true, attributeFilter: ['hidden'] });
+    sheet.hidden = false;
+  }
+
+  /* Ítems de rodilla que tocan en `fecha`: tras la sesión, entrada a la carrera, chasquido y notas. */
+  function itemsHoy(fecha, alCambiar) {
+    if (!enRango(fecha)) return [];
+    const items = [];
+    const reg = () => knee().days[fecha] || {};
+    const f = fila(fecha);
+    const plan = D.dias.find((d) => d.fecha === fecha);
+
+    if (f && f.rule && f.rule !== C.SIN_REGLA) {
+      const r = reg();
+      const carrera = f.rule === C.REGLA_CARRERA;
+      const pend = r.during === undefined || (carrera && !r.back60);
+      const resumen = `${r.during}/10${carrera ? ` · ${r.back60}` : ''}`;
+      const sem = f.semaforo && f.semaforo !== '—' ? ` · ${f.semaforo}` : '';
+      items.push(filaItem('Rodilla tras la sesión',
+        carrera ? 'Dolor durante (0-10) y nivel previo en ≤60 min' : 'Dolor durante (0-10)',
+        pend ? 'pendiente' : resumen + sem, 'tras',
+        () => {
+          const cont = el(`<div>
+            ${campoTxt('Dolor durante (0-10)', 'days', fecha, 'during', r.during, { num: 'numeric', kind: 'e010' })}
+            ${carrera ? segSiNo('Nivel previo en ≤60 min', 'days', fecha, 'back60', r.back60) : ''}</div>`);
+          enlazar(cont, () => {});
+          abrirHoja('Rodilla tras la sesión', cont, alCambiar);
+        }));
+    }
+
+    const p = prog();
+    const semana = p.semanas[plan.sem];
+    const ent = semana && semana.carrera.entrada;
+    if (ent && (plan.dia === ent.walkDay || plan.dia === ent.runDay)) {
+      const e = C.entradaSemana(tabla(), plan.sem, knee().entry[plan.sem], PLAN.ESCALERAS.carrera.dia);
+      items.push(filaItem('Entrada a la carrera: criterios', 'Se apunta en Rodilla › Entrada',
+        e.estado === 'si' || e.estado === 'no' ? e.texto : 'pendiente', 'entrada', () => abrir('entrada')));
+    }
+
+    const r0 = reg();
+    items.push(filaItem('Rodilla: chasquido y notas', r0.notes ? r0.notes : 'Chasquido doloroso y notas del día',
+      r0.click || '—', 'notas',
+      () => {
+        const r = reg();
+        const cont = el(`<div>${segSiNo('Chasquido', 'days', fecha, 'click', r.click)}${notas('days', fecha, r.notes)}</div>`);
+        enlazar(cont, () => {});
+        abrirHoja('Rodilla: chasquido y notas', cont, alCambiar);
+      }));
+    return items;
   }
 
   /* Prescripción real de un ejercicio con progresión (null: se usa la del calendario). */
@@ -581,5 +654,5 @@ const Rodilla = (() => {
     return out;
   }
 
-  return { render: renderRodilla, todayCard, abrir, prescripcion, nivelesReales };
+  return { render: renderRodilla, todayCard, itemsHoy, abrir, prescripcion, nivelesReales };
 })();

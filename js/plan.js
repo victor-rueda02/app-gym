@@ -752,17 +752,20 @@ function sessionFor(dateStr) {
    al final, cada ejercicio registrado que no esté en ella (p. ej. una sesión hecha otro día),
    para que ni la pantalla ni la exportación pierdan nada. Sin sesión prevista ni registros,
    descanso. `entries` = Store.day(fecha).entries; `anadidos` = Store.day(fecha).added
-   (ejercicios añadidos desde Hoy, que van detrás de los del plan). */
-function sesionDelDia(dateStr, entries, anadidos) {
+   (ejercicios añadidos desde Hoy, que van detrás de los del plan); `quitados` =
+   Store.day(fecha).removed (ejercicios del plan quitados ese día desde Hoy). */
+function sesionDelDia(dateStr, entries, anadidos, quitados) {
   const { week, options } = sessionFor(dateStr);
   if (!week || week.plan !== 'vol') return null;
-  const prevista = options[0];
+  const fuera = new Set(quitados || []);
+  const delPlan = options[0];
+  const prevista = delPlan && fuera.size ? { ...delPlan, exercises: delPlan.exercises.filter((x) => !fuera.has(x.id)) } : delPlan;
   const ids = new Set(prevista ? prevista.exercises.map((x) => x.id) : []);
   const nuevos = (anadidos || []).filter((a) => a && !ids.has(a.id) && ids.add(a.id))
     .map((a) => ejercicioAnadido(a, week)).filter(Boolean);
   const todos = [...sessionsFor(week), ...Object.values(BLOCK_VOL)].flatMap((s) => s.exercises);
   const extras = (fuenteCambios() || {}).extras || {};
-  const extra = Object.keys(entries || {}).filter((id) => entries[id].length && !ids.has(id))
+  const extra = Object.keys(entries || {}).filter((id) => entries[id].length && !ids.has(id) && !fuera.has(id))
     .map((id) => todos.find((x) => x.id === id)
       || (extras[id] && ejercicioAnadido({ id, sets: entries[id].length }, week))).filter(Boolean);
   if (!extra.length && !nuevos.length && prevista) return prevista;
@@ -784,7 +787,9 @@ function presFor(exercise, week) {
 
 /* ¿Se registra este ejercicio por pierna (D/I) esa semana? Solo desde S2 del plan
    de volumen: S1 ya está hecha y se ve como siempre. */
-const sidesFor = (exercise, week) => !!exercise.sides && week.plan === 'vol' && week.n >= 2;
+let ladoDe = null;   // js/ejercicios.js: la configuración del ejercicio dice si va por pierna
+const setLadoDe = (fn) => { ladoDe = fn; };
+const sidesFor = (exercise, week) => (ladoDe ? ladoDe(exercise, week) : !!exercise.sides && week.plan === 'vol' && week.n >= 2);
 
 /* Series de hipertrofia de la semana n (1–8) por grupo, como la fórmula del Excel
    (suma de IFERROR(VALUE(LEFT(C, FIND(" ", C&" ")-1)),0) de cada fila del grupo): el entero inicial
@@ -811,5 +816,5 @@ const PLAN = {
   PRENSA_NIVELES, CARRERA_NIVELES, PRENSA_MAX, CARRERA_MAX, PRENSA_SEMANA, ESCALERAS,
   LIBRO, etiquetasApp, DIAS_PLAN, NOMBRE_DIA, SEMANA_SEGUIMIENTO,
   SIN_VIERNES, setFuenteSinViernes, admiteSinViernes, sinViernes, diaSinViernes, entradaBici, letraDe,
-  setFuenteCambios, movidosDe, diaEfectivo, sesionesBase, ejercicioAnadido, presAnadida, catalogoAnadir, dowOf,
+  setFuenteCambios, setLadoDe, movidosDe, diaEfectivo, sesionesBase, ejercicioAnadido, presAnadida, catalogoAnadir, dowOf,
 };

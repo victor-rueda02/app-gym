@@ -1,0 +1,53 @@
+/* Selector de ejercicios (js/selector.js) */
+.sel-boton {
+  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  width: 100%; min-height: 48px; padding: 0 12px; margin-bottom: 12px;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 11px;
+  color: var(--text); font: inherit; font-size: 16px; text-align: left; cursor: pointer;
+}
+.sel-boton:focus-visible { outline: 2px solid var(--accent); border-color: transparent; }
+.sel-boton-t { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sel-boton-f { color: var(--muted); font-size: 14px; }
+
+.sel-buscar {
+  width: 100%; height: 48px; padding: 0 12px; margin-bottom: 10px;
+  background: var(--surface-2); border: 1px solid var(--line); border-radius: 11px;
+  color: var(--text); font: inherit; font-size: 16px;   /* 16px: iOS no hace zoom */
+  -webkit-appearance: none; appearance: none;
+}
+.sel-buscar:focus { outline: 2px solid var(--accent); border-color: transparent; }
+
+.sel-chips {
+  display: flex; gap: 8px; overflow-x: auto; margin: 0 -16px 8px; padding: 0 16px 4px;
+  -webkit-overflow-scrolling: touch; scrollbar-width: none;
+}
+.sel-chips::-webkit-scrollbar { display: none; }
+.sel-chips[hidden] { display: none; }
+.sel-chip {
+  flex: none; min-height: 44px; padding: 0 14px; border-radius: 22px;
+  background: var(--surface-2); border: 1px solid var(--line);
+  color: var(--text); font: inherit; font-size: 14px; white-space: nowrap; cursor: pointer;
+}
+.sel-chip:active { background: var(--accent-dim, var(--surface-2)); }
+
+.sel-lista {
+  position: relative; max-height: 52vh; overflow-y: auto; overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+.sel-grupo {
+  position: sticky; top: 0; z-index: 1;
+  padding: 8px 4px 6px; background: var(--surface);
+  color: var(--muted); font-size: 12px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase;
+}
+.sel-item, .sel-extra {
+  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  width: 100%; min-height: 48px; padding: 8px 12px; margin-bottom: 4px;
+  background: var(--surface-2); border: 1px solid var(--line); border-radius: 11px;
+  color: var(--text); font: inherit; font-size: 15px; text-align: left; cursor: pointer;
+}
+.sel-item.on { border-color: var(--accent); background: var(--accent-dim, var(--surface-2)); }
+.sel-item-t { display: flex; flex-direction: column; min-width: 0; }
+.sel-item-t small { color: var(--muted); font-size: 12px; margin-top: 2px; }
+.sel-check { color: var(--accent); font-weight: 700; }
+.sel-extra { color: var(--accent); font-weight: 600; margin-top: 4px; }
+.sel-vacio { color: var(--muted); text-align: center; padding: 24px 0; margin: 0; font-size: 14px; }

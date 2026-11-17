@@ -151,12 +151,12 @@ test('pierna en dos días: rodilla lunes y viernes (S1: jueves), abducción en m
   assert.match(pierna2(1, 4).exercises[2].name, /^Sentadilla al cajón/, 'S1: jueves');
   assert.match(pierna2(2, 5).exercises[2].name, /^Sentadilla al cajón/, 'S2: viernes 30/10');
   assert.equal(pierna2(2, 4), undefined, 'S2: el jueves 29/10, libre');
-  assert.equal(j[0].name, 'Sentadilla española');
+  assert.equal(j[0].name, 'Sentadilla iso pared unilateral');   // antes, sentadilla española (17/11)
   assert.match(j[1].name, /^TEST fuerza/);
   assert.match(j[2].name, /^Sentadilla al cajón/);
   assert.equal(j[3].name, 'Bulgarian split squat');
   assert.match(j[4].name, /^Abducción de pie unilateral \(máquina\)/);
-  assert.equal(PLAN.BLOCK_VOL.L.exercises[0].name, 'Sentadilla española');
+  assert.equal(PLAN.BLOCK_VOL.L.exercises[0].name, 'Sentadilla iso pared unilateral');
   assert.ok(PLAN.BLOCK_VOL.L.exercises.some((e) => /^Abducción de pie unilateral \(máquina\)/.test(e.name)));
   for (let n = 2; n <= 8; n++) {
     const sabado = PLAN.BLOCK_VOL.S.exercises.filter((e) => !e.pres[n - 1].skip);

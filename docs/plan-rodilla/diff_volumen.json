@@ -27,7 +27,7 @@
  {
   "celda": "A6",
   "antes": "Elev laterales polea",
-  "ahora": "Sentadilla española"
+  "ahora": "Sentadilla iso pared unilateral"
  },
  {
   "celda": "B6",
@@ -77,7 +77,7 @@
  {
   "celda": "K6",
   "antes": "Prioridad 1 · Polea altura muñeca/muslo en plano escapular (~30° adelante). Intercalar en superserie alterna con Unilateral abduction para dar 3-4 min de descanso al deltoides antes de las mancuernas.",
-  "ahora": "Isométrico de calentamiento del tendón, lo primero de la sesión y antes de la abducción. 3 series de 45 s (desde S4; antes, 2-3). En brote, 5×45 s cada día (ver reglas)."
+  "ahora": "Isométrico de calentamiento del tendón, lo primero de la sesión y antes de la abducción: sentadilla en pared a una pierna, D e I, con peso si hace falta. 3 series de 45 s por pierna (desde S4; antes, sentadilla española 2-3×45 s). En brote, 5×45 s cada día (ver reglas)."
  },
  {
   "celda": "L6",
@@ -2112,7 +2112,7 @@
  {
   "celda": "A42",
   "antes": null,
-  "ahora": "Sentadilla española"
+  "ahora": "Sentadilla iso pared unilateral"
  },
  {
   "celda": "B42",
@@ -2162,7 +2162,7 @@
  {
   "celda": "K42",
   "antes": null,
-  "ahora": "Isométrico de calentamiento del tendón, lo primero de la sesión: antes del test (S3/S5/S7) o de la sentadilla. 3 series de 45 s (desde S4; antes, 2-3)."
+  "ahora": "Isométrico de calentamiento del tendón, lo primero de la sesión: antes del test (S3/S5/S7) o de la sentadilla. Sentadilla en pared a una pierna, D e I, con peso si hace falta. 3 series de 45 s por pierna (desde S4; antes, sentadilla española 2-3×45 s)."
  },
  {
   "celda": "L42",
@@ -2222,7 +2222,7 @@
  {
   "celda": "K43",
   "antes": null,
-  "ahora": "Test 1 → vie 6/11 (S3): en S2 solo hubo una prueba orientativa (30/10). Al empezar la sesión, tras la española y 2 series de aproximación. Mismo asiento y SIEMPRE rango fijo 90→45° (si el rango cambia, la comparación entre semanas no vale). Cada pierna lleva su propio peso, buscando 10-12 reps al fallo técnico (orientativo: D ~30 kg, I ~40 kg); tempo 2-0-2, D primero, 3 min de descanso y luego la I; para si la D pasa de 3/10. Apunta carga y reps de cada pierna en «Seguimiento rodilla», que calcula la simetría. Objetivo ≥90% antes del balón [LÓGICA; el 90% viene de la vuelta al deporte tras LCA, no está validado en dolor femoropatelar: INCERTIDUMBRE]. Test en rango completo opcional en S8 y no en S7, para que sea la única novedad de su semana."
+  "ahora": "Test 1 → vie 6/11 (S3): en S2 solo hubo una prueba orientativa (30/10). Al empezar la sesión, tras la sentadilla iso en pared y 2 series de aproximación. Mismo asiento y SIEMPRE rango fijo 90→45° (si el rango cambia, la comparación entre semanas no vale). Cada pierna lleva su propio peso, buscando 10-12 reps al fallo técnico (orientativo: D ~30 kg, I ~40 kg); tempo 2-0-2, D primero, 3 min de descanso y luego la I; para si la D pasa de 3/10. Apunta carga y reps de cada pierna en «Seguimiento rodilla», que calcula la simetría. Objetivo ≥90% antes del balón [LÓGICA; el 90% viene de la vuelta al deporte tras LCA, no está validado en dolor femoropatelar: INCERTIDUMBRE]. Test en rango completo opcional en S8 y no en S7, para que sea la única novedad de su semana."
  },
  {
   "celda": "L43",

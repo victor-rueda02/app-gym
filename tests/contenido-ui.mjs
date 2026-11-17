@@ -191,7 +191,7 @@ const progDeHoy = (fecha) => page.evaluate((f) => {
 const leerHoy = () => page.evaluate(() => ({
   nombre: document.getElementById('hero-name').textContent,
   semana: document.querySelector('.hero .week').textContent,
-  ex: [...document.querySelectorAll('main .ex')].map((e) => ({ nombre: e.querySelector('.nm').textContent, pres: e.querySelector('.pres').textContent })),
+  ex: [...document.querySelectorAll('main .ex:not(.rod-item)')].map((e) => ({ nombre: e.querySelector('.nm').textContent, pres: e.querySelector('.pres').textContent })),
   hitos: (() => { const t = document.querySelector('main .card.hitos'); return t ? [...t.querySelectorAll('p')].map((p) => p.textContent) : null; })(),
 }));
 for (let n = 1; n <= 8; n++) {

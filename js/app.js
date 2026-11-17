@@ -14,6 +14,9 @@ const state = {
   exercise: null,     // {sessionId, exId} cuando estamos en el detalle
   planId: null,       // null: el plan en curso (o el próximo) según la fecha
   planWeek: null,     // null: la semana de la fecha si cae en ese plan, si no la 1
+  planVista: 'semana',   // Plan: 'semana' (el plan por semanas) o 'ejercicios' (Plan › Ejercicios)
+  ejercicioConf: null,   // Plan › Ejercicios: id del ejercicio abierto en el editor
+  ejTodos: false,        // Plan › Ejercicios: todos los del plan (true) o solo los hechos
   // Filas visibles por ejercicio. Las series vacías no se guardan, así que sin
   // esto un "+ Añadir serie" se perdería en el siguiente render.
   rows: {},
@@ -69,7 +72,7 @@ function sessionById(id) {
    cambian de una semana a otra) con lo que se haya registrado ese día; en el de julio, por id. */
 function sesionDe(date, id) {
   const week = PLAN.weekFor(date);
-  if (week && week.plan === 'vol') { const r = Store.all().days[date] || {}; return PLAN.sesionDelDia(date, r.entries, r.added); }
+  if (week && week.plan === 'vol') { const r = Store.all().days[date] || {}; return PLAN.sesionDelDia(date, r.entries, r.added, r.removed); }
   return sessionById(id);
 }
 
@@ -85,7 +88,7 @@ function setSummary(s, kind) {
   return parts.join(' ') || '—';
 }
 
-const isLogged = (s) => [s.kg, s.reps, s.secs, s.mins].some((v) => v !== '' && v != null);
+const isLogged = (s) => [s.kg, s.reps, s.secs, s.mins, ...Object.values(s.x || {})].some((v) => v !== '' && v != null);
 
 // Barra de color a la izquierda: verde = rehab y test, azul = cardio, ámbar = correctivos
 const typeClass = (exercise) => (exercise.target.startsWith('Rehab') || exercise.target === 'Test' ? 'rehab'
@@ -205,7 +208,7 @@ function renderToday() {
   }
 
   const session = week.block === 'B' ? sessionById(rec.sessionId)
-    : week.plan === 'vol' ? PLAN.sesionDelDia(date, rec.entries, rec.added) : options[0];
+    : week.plan === 'vol' ? PLAN.sesionDelDia(date, rec.entries, rec.added, rec.removed) : options[0];
   if (!session) { view.appendChild(picker); return; }
   if (!rec.sessionId && !session.rest) Store.setSession(date, session.id);
 
@@ -217,6 +220,7 @@ function renderToday() {
     view.appendChild(el(`<div class="card"><p class="multi">${escapeHtml(session.note)}</p></div>`));
   }
   if (session.rest || !session.exercises.length) {
+    itemsRodilla(date).forEach((n) => view.appendChild(n));
     if (week.plan === 'vol') view.appendChild(cambiosCard(date, week, session));
     view.appendChild(picker);
     return;
@@ -228,6 +232,7 @@ function renderToday() {
     if (presHoy(exercise, week, date).skip && !Store.sets(date, exercise.id).length) return;
     view.appendChild(exercise.link === 'test' ? testCard(exercise, week) : exerciseRow(exercise, week, date, session));
   });
+  itemsRodilla(date).forEach((n) => view.appendChild(n));
   if (week.plan === 'vol') view.appendChild(cambiosCard(date, week, session));
 
   const notes = el(`
@@ -287,6 +292,14 @@ function cambiosCard(date, week, session) {
     mover.addEventListener('click', () => abrirMover(date, week));
     card.appendChild(mover);
   }
+  const todos = Object.values(PLAN.BLOCK_VOL).flatMap((s) => s.exercises);
+  for (const id of Store.quitados(date)) {
+    const x = todos.find((e) => e.id === id);
+    if (!x) continue;
+    const b = el(`<button class="btn line">Volver a poner «${escapeHtml(x.name)}»</button>`);
+    b.addEventListener('click', () => { Store.devolverAlDia(date, id); toast(`«${x.name}» vuelve a este día`); render(); });
+    card.appendChild(b);
+  }
   const anadir = el('<button class="btn ghost">+ Añadir ejercicio</button>');
   anadir.addEventListener('click', () => abrirAnadir(date, week, session));
   card.appendChild(anadir);
@@ -343,6 +356,30 @@ function abrirAnadir(date, week, session) {
     </div>`);
   const $ = (s) => box.querySelector(s);
   const n = week.n;
+  // Con el selector (buscador, grupos y recientes), el desplegable queda oculto y lo maneja él.
+  if (typeof Selector !== 'undefined') {
+    const sel = $('#an-ej');
+    const nombreDe = (id) => (id === '__nuevo' ? '+ Ejercicio nuevo' : (lista.find((x) => x.id === id) || {}).name || 'Elige uno…');
+    const recientes = Object.entries(hechos()).sort((a, b) => (a[1] < b[1] ? 1 : -1)).map(([id]) => id).filter((id) => !ya.has(id));
+    const elegir = () => Selector.abrir({
+      titulo: 'Añadir ejercicio',
+      items: lista.map((x) => ({ id: x.id, nombre: x.name, grupo: x.target })),
+      recientes,
+      actual: sel.value || null,
+      extra: { texto: '+ Ejercicio nuevo', onClick: () => elegido('__nuevo') },
+      onElegir: (id) => elegido(id),
+    });
+    const boton = Selector.boton('Elige uno…', elegir);
+    boton.id = 'an-boton';
+    const elegido = (id) => {
+      abrirSheet('Añadir ejercicio', box);   // el selector usó la misma hoja: se vuelve al formulario
+      sel.value = id;
+      boton.firstChild.textContent = nombreDe(id);
+      sel.dispatchEvent(new Event('change'));
+    };
+    sel.hidden = true;
+    sel.parentNode.appendChild(boton);
+  }
   $('#an-ej').addEventListener('change', (e) => {
     const id = e.target.value;
     const nuevo = id === '__nuevo';
@@ -379,6 +416,13 @@ function abrirAnadir(date, week, session) {
   abrirSheet('Añadir ejercicio', box);
 }
 
+/* Tareas de rodilla del día como ítems de la lista (js/rodilla.js, itemsHoy). */
+function itemsRodilla(date) {
+  if (typeof Rodilla === 'undefined' || !Rodilla.itemsHoy) return [];
+  const items = Rodilla.itemsHoy(date, () => { if (state.tab === 'today' && !state.exercise) render(); }) || [];
+  return items.length ? [el('<div class="section-label">Rodilla</div>'), ...items] : [];
+}
+
 function exerciseRow(exercise, week, date, session) {
   const pres = presHoy(exercise, week, date);
   const logged = Store.sets(date, exercise.id).filter(isLogged).length;
@@ -395,12 +439,64 @@ function exerciseRow(exercise, week, date, session) {
       <span class="pres">${logged ? `${logged}/${total}` : escapeHtml(pres.label)}</span>
     </button>`);
 
+  let largo = false;
+  pulsacionLarga(row, () => { largo = true; menuEjercicio(exercise, week, date); });
   row.addEventListener('click', () => {
+    if (largo) { largo = false; return; }   // la pulsación larga ya abrió el menú
     state.exercise = { sessionId: session.id, exId: exercise.id, date };
     render();
     window.scrollTo(0, 0);
   });
   return row;
+}
+
+/* Llama a `fn` si se mantiene pulsado ~0,5 s sin mover el dedo (y con el botón derecho). */
+function pulsacionLarga(nodo, fn) {
+  let timer = null;
+  let x0 = 0;
+  let y0 = 0;
+  const parar = () => { clearTimeout(timer); timer = null; };
+  nodo.addEventListener('pointerdown', (e) => {
+    x0 = e.clientX; y0 = e.clientY;
+    parar();
+    timer = setTimeout(() => { timer = null; if (navigator.vibrate) navigator.vibrate(15); fn(); }, 500);
+  });
+  nodo.addEventListener('pointermove', (e) => { if (timer && Math.hypot(e.clientX - x0, e.clientY - y0) > 10) parar(); });
+  ['pointerup', 'pointercancel', 'pointerleave'].forEach((ev) => nodo.addEventListener(ev, parar));
+  nodo.addEventListener('contextmenu', (e) => { e.preventDefault(); if (timer !== null || e.pointerType !== 'touch') { parar(); fn(); } });
+}
+
+/* Menú de un ejercicio de Hoy (pulsación larga): quitarlo de ese día o editar sus parámetros. */
+function menuEjercicio(exercise, week, date) {
+  const box = el('<div class="menu-ej"></div>');
+  const quitar = el('<button class="btn line" data-menu="quitar">Quitar de este día</button>');
+  quitar.addEventListener('click', () => {
+    const n = Store.sets(date, exercise.id).filter(isLogged).length;
+    if (n && !confirm(`Se borrarán también sus ${n} series apuntadas. ¿Quitar «${exercise.name}» de este día?`)) return;
+    if (exercise.added) Store.quitarAnadido(date, exercise.id);
+    else Store.quitarDelDia(date, exercise.id);
+    sheet.hidden = true;
+    toast(`«${exercise.name}» quitado de este día`);
+    render();
+  });
+  const editar = el('<button class="btn ghost" data-menu="editar">Editar parámetros</button>');
+  editar.addEventListener('click', () => {
+    sheet.hidden = true;
+    abrirEjercicioConfig(exercise.id);
+  });
+  box.appendChild(quitar);
+  box.appendChild(editar);
+  abrirSheet(exercise.name, box);
+}
+
+/* Plan › Ejercicios con un ejercicio abierto. */
+function abrirEjercicioConfig(exId) {
+  state.exercise = null;
+  state.tab = 'plan';
+  state.planVista = 'ejercicios';
+  state.ejercicioConf = exId;
+  render();
+  window.scrollTo(0, 0);
 }
 
 /* --- Detalle de ejercicio -------------------------------------------------- */
@@ -435,9 +531,18 @@ function renderExercise() {
         <p class="multi" style="margin-top:6px">Máximo del calendario: ${escapeHtml(delPlan.label)}</p></div>`));
   }
 
+  const conf = Ejercicios.config(exercise);
+  const fijos = Ejercicios.fijos(exercise);
+  if (fijos.length) {
+    view.appendChild(el(`<div class="card ref-fija">${fijos.map(([n, v]) =>
+      `<div><small>${escapeHtml(n)}</small><b>${escapeHtml(v)}</b></div>`).join('')}</div>`));
+  }
+  const ajustes = Ejercicios.ajustes(exercise);
+  if (ajustes.length) view.appendChild(ajustesCard(exercise, date, ajustes));
+
   if (exercise.notes) view.appendChild(el(`<div class="card"><p class="multi">${escapeHtml(exercise.notes)}</p></div>`));
 
-  view.appendChild(stopwatch(pres, date, exId));
+  view.appendChild(stopwatch(pres, date, exId, conf.seg.modo === 'serie'));
 
   const prev = Store.lastPerformance(exId, date);
   if (prev) {
@@ -447,13 +552,14 @@ function renderExercise() {
   }
 
   const card = el('<div class="card"></div>');
-  const cols = pres.kind === 'cardio' ? ['Min']
-    : pres.kind === 'iso' ? ['Kg', 'Seg'] : pres.kind === 'rir' ? ['Kg', 'Reps', 'RIR'] : ['Kg', 'Reps'];
+  // Columnas según Plan › Ejercicios (peso, profundidad, reps, segundos, RIR).
+  const columnas = Ejercicios.columnas(exercise, pres);
+  const cols = columnas.map((c) => c.etiqueta);
 
   // Unilaterales desde S2: una columna con el botón de pierna (D = derecha, la afectada; I = izquierda).
   const sides = PLAN.sidesFor(exercise, week);
   // Con RIR hay además una columna «1RM» (estimado en vivo) antes del botón de borrar.
-  const con1RM = pres.kind === 'rir';
+  const con1RM = pres.kind === 'rir' && cols.includes('Kg') && cols.includes('Reps');
   // Dominadas y similares: el 1RM suma tu peso de la báscula al lastre (columna Kg).
   const pesoCorp = con1RM && ProgresoCalc.esPesoCorporal(exercise.name);
   if (pesoCorp) {
@@ -482,7 +588,9 @@ function renderExercise() {
     // "RIR1/0" lleva un objetivo por serie (1, 1, …, 0); el resto, uno común.
     const rirGoal = pres.rirs ? pres.rirs[index] : pres.rir;
     const placeholder = { Kg: '—', Reps: pres.reps || '', Seg: pres.secs || '', RIR: rirGoal ?? '', Min: pres.mins || '' };
-    const field = { Kg: 'kg', Reps: 'reps', Seg: 'secs', RIR: 'rir', Min: 'mins' };
+    const field = Object.fromEntries(columnas.map((c) => [c.etiqueta, c.campo]));
+    const esExtra = Object.fromEntries(columnas.map((c) => [c.etiqueta, !!c.extra]));
+    const valor = (c) => (esExtra[c] ? ((s.x || {})[field[c]] ?? '') : (s[field[c]] ?? ''));
 
     const row = el(`
       <div class="set-row${con1RM ? ' con-1rm' : ''}" style="${grid()}">
@@ -491,7 +599,7 @@ function renderExercise() {
                            aria-label="Pierna de la serie ${index + 1}">${s.side || '–'}</button>` : ''}
         ${cols.map((c) => `
           <input inputmode="decimal" enterkeyhint="next"
-                 data-f="${field[c]}" value="${s[field[c]] ?? ''}"
+                 data-f="${escapeHtml(field[c])}" ${esExtra[c] ? 'data-x="1"' : ''} value="${escapeHtml(String(valor(c)))}"
                  placeholder="${escapeHtml(String(placeholder[c] ?? ''))}"
                  aria-label="${c} serie ${index + 1}">`).join('')}
         ${con1RM ? `<span class="e1rm" aria-live="off" aria-label="1RM estimado serie ${index + 1}"
@@ -512,7 +620,12 @@ function renderExercise() {
 
     row.querySelectorAll('input').forEach((input) => {
       input.addEventListener('input', (e) => {
-        s[e.target.dataset.f] = e.target.value.replace(',', '.').trim();
+        const v = e.target.value.replace(',', '.').trim();
+        if (e.target.dataset.x) {
+          s.x = { ...(s.x || {}), [e.target.dataset.f]: v };
+          if (!v) delete s.x[e.target.dataset.f];
+          if (!Object.keys(s.x).length) delete s.x;
+        } else s[e.target.dataset.f] = v;
         save();
         pintar1RM();
       });
@@ -545,7 +658,8 @@ function renderExercise() {
       const last = list[list.length - 1] || {};
       // Copiamos la carga de la serie anterior: casi siempre se repite.
       const nextSide = sides ? (last.side === 'D' ? 'I' : 'D') : '';
-      list.push({ ...blankSet(nextSide), kg: last.kg ?? '' });
+      // Copiamos la carga (y la profundidad) de la serie anterior: casi siempre se repite.
+      list.push({ ...blankSet(nextSide), kg: last.kg ?? '', ...(last.x ? { x: { ...last.x } } : {}) });
       state.rows[rowsKey(date, exId)] = list.length;
       save();   // persiste la carga heredada; si va vacía, la mantiene state.rows
       renderExercise();
@@ -571,6 +685,25 @@ function renderExercise() {
   }
 }
 
+/* Posición de la máquina (y profundidad «recuerda») de ese día. Cada campo sale con lo de ese día
+   o, si no, con lo último apuntado; al cambiarlo se guarda en el día. */
+function ajustesCard(exercise, date, ajustes) {
+  const card = el(`<div class="card ajustes"><div class="section-label" style="margin:0 0 8px">Posición de la máquina</div>
+    <div class="aj-grid"></div><small class="aj-nota"></small></div>`);
+  const grid = card.querySelector('.aj-grid');
+  let heredados = 0;
+  ajustes.forEach(({ nombre }) => {
+    const v = Ejercicios.valorAjuste(exercise, nombre, date);
+    if (v.de !== 'hoy') heredados++;
+    const f = el(`<label class="aj-campo"><span>${escapeHtml(nombre)}</span>
+      <input inputmode="text" value="${escapeHtml(String(v.valor ?? ''))}" aria-label="${escapeHtml(nombre)}"></label>`);
+    f.querySelector('input').addEventListener('change', (e) => Store.setAjuste(date, exercise.id, nombre, e.target.value.trim()));
+    grid.appendChild(f);
+  });
+  card.querySelector('.aj-nota').textContent = heredados ? 'Con lo del último día. Cámbialo si hoy es distinto.' : '';
+  return card;
+}
+
 /* Cronómetro manual. Es único para toda la app, así que sigue contando si sales
    del ejercicio; el chip de la barra superior lo recuerda. */
 const toggleLabel = (ms, running) => (running ? 'Pausar' : (ms ? 'Seguir' : 'Iniciar'));
@@ -594,7 +727,7 @@ function paintTimer(ms = Timer.elapsed(), running = Timer.isRunning()) {
 
 Timer.subscribe(paintTimer);
 
-function stopwatch(pres, date, exId) {
+function stopwatch(pres, date, exId, conSegundos = true) {
   const ms = Timer.elapsed();
   const running = Timer.isRunning();
   const box = el(`
@@ -607,7 +740,7 @@ function stopwatch(pres, date, exId) {
   box.querySelector('#sw-toggle').addEventListener('click', () => Timer.toggle());
   box.querySelector('#sw-reset').addEventListener('click', () => Timer.reset());
 
-  if (pres.kind !== 'iso') return box;
+  if (pres.kind !== 'iso' || !conSegundos) return box;
 
   // En los isométricos el tiempo ES el dato, así que se puede volcar a la serie.
   const wrap = document.createDocumentFragment();
@@ -633,6 +766,163 @@ function stopwatch(pres, date, exId) {
   });
   wrap.appendChild(stamp);
   return wrap;
+}
+
+/* --- Plan › Ejercicios: qué muestra cada ejercicio en Hoy (js/ejercicios.js) ---------------- */
+
+/* Todos los ejercicios configurables: los del plan de volumen (sin el test) y los creados. */
+function catalogoEjercicios() {
+  const vistos = new Set();
+  const delPlan = Object.values(PLAN.BLOCK_VOL).flatMap((s) => s.exercises)
+    .filter((x) => !x.link && !vistos.has(x.id) && vistos.add(x.id));
+  const propios = Object.entries(Store.extras()).map(([id, e]) => ({ id, name: e.name, target: e.target, notes: '', propio: true }));
+  return [...delPlan, ...propios];
+}
+
+/* Ejercicios con series apuntadas, del más reciente al más antiguo: { id: último día }. */
+function hechos() {
+  const out = {};
+  for (const [f, d] of Object.entries(Store.all().days)) {
+    for (const [id, list] of Object.entries(d.entries || {})) {
+      if (list.some(isLogged) && (!out[id] || out[id] < f)) out[id] = f;
+    }
+  }
+  return out;
+}
+
+/* Resumen de una configuración: «Kg · Reps · RIR | tempo 3-1-3 | asiento, pies». */
+function resumenConfig(ex) {
+  const c = Ejercicios.config(ex);
+  const cols = Ejercicios.columnas(ex, { kind: (ex.target === 'Cardio' ? 'cardio' : '') }).map((x) => x.etiqueta);
+  const partes = [cols.join(' · ')];
+  if (c.lado) partes.push('D/I');
+  Ejercicios.fijos(ex).forEach(([n, v]) => partes.push(`${n.toLowerCase()} ${v}`));
+  if (c.posicion.length) partes.push(c.posicion.map((a) => a.nombre.toLowerCase()).join(', '));
+  return partes.join(' | ');
+}
+
+function renderEjercicios() {
+  const cat = catalogoEjercicios();
+  if (state.ejercicioConf) {
+    const ex = cat.find((x) => x.id === state.ejercicioConf);
+    if (ex) { editorEjercicio(ex); return; }
+    state.ejercicioConf = null;
+  }
+  const hechosPor = hechos();
+  const lista = state.ejTodos ? cat : cat.filter((x) => hechosPor[x.id]);
+  view.appendChild(el(`<div class="card"><p class="multi" style="margin:0">Qué se apunta de cada ejercicio en Hoy y qué se ve como referencia fija (tempo, RIR…). Mantén pulsado un ejercicio en Hoy y elige «Editar parámetros» para venir directo.</p></div>`));
+
+  const buscar = (typeof Selector !== 'undefined') ? Selector.boton('Buscar un ejercicio', () => Selector.abrir({
+    titulo: 'Ejercicio',
+    items: cat.map((x) => ({ id: x.id, nombre: x.name, grupo: x.target, detalle: hechosPor[x.id] ? `último: ${shortDate(hechosPor[x.id])}` : '' })),
+    recientes: Object.entries(hechosPor).sort((a, b) => (a[1] < b[1] ? 1 : -1)).map(([id]) => id),
+    onElegir: (id) => { state.ejercicioConf = id; render(); window.scrollTo(0, 0); },
+  })) : null;
+  if (buscar) view.appendChild(buscar);
+
+  const filtro = el(`<div class="card" style="display:flex;gap:6px;padding:6px">
+    <button class="btn ${state.ejTodos ? 'ghost' : ''}" data-ejtodos="0" style="height:40px;margin:0;font-size:14px">Hechos (${Object.keys(hechosPor).filter((id) => cat.some((x) => x.id === id)).length})</button>
+    <button class="btn ${state.ejTodos ? '' : 'ghost'}" data-ejtodos="1" style="height:40px;margin:0;font-size:14px">Todos (${cat.length})</button></div>`);
+  filtro.querySelectorAll('[data-ejtodos]').forEach((b) => b.addEventListener('click', () => { state.ejTodos = b.dataset.ejtodos === '1'; render(); }));
+  view.appendChild(filtro);
+
+  if (!lista.length) {
+    view.appendChild(el('<div class="empty">Todavía no hay ejercicios con series apuntadas. Mira «Todos».</div>'));
+    return;
+  }
+  const grupos = [...new Set(lista.map((x) => x.target))];
+  grupos.forEach((g) => {
+    view.appendChild(el(`<div class="section-label">${escapeHtml(g)}</div>`));
+    lista.filter((x) => x.target === g).forEach((x) => {
+      const b = el(`<button class="ex ${typeClass(x)}" data-conf="${escapeHtml(x.id)}"><div class="grow">
+        <div class="nm">${escapeHtml(x.name)}${Ejercicios.editado(x.id) ? ' <small class="ej-tag">ajustado</small>' : ''}</div>
+        <div class="meta">${escapeHtml(resumenConfig(x))}</div></div></button>`);
+      b.addEventListener('click', () => { state.ejercicioConf = x.id; render(); window.scrollTo(0, 0); });
+      view.appendChild(b);
+    });
+  });
+}
+
+/* Editor de un ejercicio. Cada cambio se guarda al momento (Store.setEjercicio). */
+function editorEjercicio(ex) {
+  const c = Ejercicios.config(ex);
+  const guardar = (cambio, repintar = true) => {
+    Store.setEjercicio(ex.id, Ejercicios.normalizar({ ...Ejercicios.config(ex), ...cambio }));
+    if (repintar) render();
+  };
+  const volver = el('<button class="btn line" style="margin-top:0">‹ Todos los ejercicios</button>');
+  volver.addEventListener('click', () => { state.ejercicioConf = null; render(); });
+  view.appendChild(volver);
+  view.appendChild(el(`<div class="card"><h2>${escapeHtml(ex.name)}</h2>
+    <p>${escapeHtml(ex.target)}${Ejercicios.editado(ex.id) ? ' · ajustado por ti' : ' · como viene por defecto'}</p>
+    <p class="multi ej-prev"><b>En Hoy:</b> ${escapeHtml(resumenConfig(ex))}</p></div>`));
+
+  const card = el('<div class="card ej-editor"></div>');
+  for (const prm of Ejercicios.PARAMS) {
+    const v = c[prm.k];
+    const fila = el(`<div class="ej-param"><div class="ej-titulo">${escapeHtml(prm.nombre)}</div>
+      <div class="ej-modos">${prm.modos.map((m) => `<button type="button" data-modo="${m}" class="${v.modo === m ? 'on' : ''}">${escapeHtml(Ejercicios.MODOS[m])}</button>`).join('')}</div></div>`);
+    fila.querySelectorAll('[data-modo]').forEach((b) => b.addEventListener('click', () => guardar({ [prm.k]: { ...v, modo: b.dataset.modo } })));
+    const conValor = v.modo === 'fijo' || (prm.k === 'prof' && v.modo === 'recuerda');
+    if (conValor) {
+      const ph = prm.k === 'tempo' ? Ejercicios.TEMPO_DEFECTO : prm.k === 'rir' ? 'p. ej. 2 o D 2 · I 1-2' : prm.k === 'seg' ? 'p. ej. 45 s' : '';
+      const inp = el(`<label class="ej-valor"><span>${v.modo === 'recuerda' ? 'Valor de partida' : 'Valor'}</span>
+        <input type="text" value="${escapeHtml(v.valor)}" placeholder="${escapeHtml(ph)}"></label>`);
+      inp.querySelector('input').addEventListener('change', (e) => guardar({ [prm.k]: { ...v, valor: e.target.value.trim() } }, false));
+      fila.appendChild(inp);
+    }
+    if (prm.k === 'prof' && v.modo === 'serie') {
+      const inp = el(`<label class="ej-valor"><span>Columnas (separadas por comas)</span>
+        <input type="text" value="${escapeHtml(c.prof.columnas.join(', '))}" placeholder="p. ej. Steps, Discos"></label>`);
+      inp.querySelector('input').addEventListener('change', (e) => guardar({ prof: { ...v, columnas: e.target.value.split(',').map((s) => s.trim()).filter(Boolean) } }, false));
+      fila.appendChild(inp);
+    }
+    card.appendChild(fila);
+  }
+  // Por pierna (D/I).
+  const lado = el(`<div class="ej-param"><div class="ej-titulo">Piernas por separado (D / I)</div>
+    <div class="ej-modos"><button type="button" data-lado="1" class="${c.lado ? 'on' : ''}">Sí</button>
+    <button type="button" data-lado="0" class="${c.lado ? '' : 'on'}">No</button></div></div>`);
+  lado.querySelectorAll('[data-lado]').forEach((b) => b.addEventListener('click', () => guardar({ lado: b.dataset.lado === '1' })));
+  card.appendChild(lado);
+  view.appendChild(card);
+
+  // Posición de la máquina: ajustes con nombre que en Hoy salen con el último valor.
+  const pos = el(`<div class="card ej-editor"><div class="ej-titulo">Posición de la máquina</div>
+    <p class="multi" style="margin:4px 0 8px;color:var(--muted)">En Hoy salen con lo del último día; el valor de aquí es el de partida.</p>
+    <div class="ej-pos"></div></div>`);
+  const box = pos.querySelector('.ej-pos');
+  c.posicion.forEach((a, i) => {
+    const f = el(`<div class="ej-pos-fila"><input type="text" data-p="nombre" value="${escapeHtml(a.nombre)}" aria-label="Ajuste">
+      <input type="text" data-p="valor" value="${escapeHtml(a.valor)}" aria-label="Valor de ${escapeHtml(a.nombre)}">
+      <button type="button" class="del" aria-label="Quitar ${escapeHtml(a.nombre)}">×</button></div>`);
+    f.querySelectorAll('input').forEach((inp) => inp.addEventListener('change', () => {
+      const lista = c.posicion.map((x, j) => (j === i ? { ...x, [inp.dataset.p]: inp.value.trim() } : x)).filter((x) => x.nombre);
+      guardar({ posicion: lista }, false);
+    }));
+    f.querySelector('.del').addEventListener('click', () => guardar({ posicion: c.posicion.filter((_, j) => j !== i) }));
+    box.appendChild(f);
+  });
+  const nuevo = el(`<div class="ej-pos-fila"><input type="text" data-nuevo placeholder="Nuevo ajuste (p. ej. Asiento)" aria-label="Nuevo ajuste">
+    <input type="text" data-nuevo-valor placeholder="Valor" aria-label="Valor del nuevo ajuste"><button type="button" class="add" aria-label="Añadir ajuste">+</button></div>`);
+  nuevo.querySelector('.add').addEventListener('click', () => {
+    const nombre = nuevo.querySelector('[data-nuevo]').value.trim();
+    if (!nombre) { toast('Escribe el nombre del ajuste'); return; }
+    guardar({ posicion: [...c.posicion, { nombre, valor: nuevo.querySelector('[data-nuevo-valor]').value.trim() }] });
+  });
+  box.appendChild(nuevo);
+  view.appendChild(pos);
+
+  if (Ejercicios.editado(ex.id)) {
+    const reset = el('<button class="btn line">Volver a lo de por defecto</button>');
+    reset.addEventListener('click', () => {
+      if (!confirm(`¿Volver a la configuración de partida de «${ex.name}»?`)) return;
+      Store.setEjercicio(ex.id, null);
+      render();
+    });
+    view.appendChild(reset);
+  }
+  if (ex.notes) view.appendChild(el(`<div class="card"><p class="multi">${escapeHtml(ex.notes)}</p></div>`));
 }
 
 /* --- Plan ------------------------------------------------------------------ */
@@ -669,6 +959,22 @@ function renderPlan() {
   titleEl.textContent = 'Plan';
   subtitleEl.textContent = `${plan.name} · ${plan.range}`;
   view.innerHTML = '';
+
+  // Plan › Semanas | Ejercicios.
+  const vistas = el(`<div class="card" style="display:flex;gap:6px;padding:6px">
+    <button class="btn ${state.planVista === 'ejercicios' ? 'ghost' : ''}" data-vista="semana" style="height:40px;margin:0;font-size:14px">Semanas</button>
+    <button class="btn ${state.planVista === 'ejercicios' ? '' : 'ghost'}" data-vista="ejercicios" style="height:40px;margin:0;font-size:14px">Ejercicios</button></div>`);
+  vistas.querySelectorAll('[data-vista]').forEach((b) => b.addEventListener('click', () => {
+    state.planVista = b.dataset.vista;
+    state.ejercicioConf = null;
+    render();
+  }));
+  view.appendChild(vistas);
+  if (state.planVista === 'ejercicios') {
+    subtitleEl.textContent = 'Ejercicios · qué se apunta en Hoy';
+    renderEjercicios();
+    return;
+  }
 
   const plans = el('<div class="card" style="display:flex;gap:6px;padding:6px"></div>');
   PLAN.PLANS.forEach((p) => {

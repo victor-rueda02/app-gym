@@ -100,6 +100,9 @@ de inicio**. Se abre a pantalla completa, sin barra del navegador.
     **añadir ejercicios**, del plan o nuevos, con sus series, reps y RIR. Salen en la
     exportación (hoja Registro, marcados «Añadido en la app»), en Progreso y, si el día
     movido carga la rodilla, en el seguimiento. Decisiones 105-108.
+  - *Pulsación larga* sobre un ejercicio: «Quitar de este día» o «Editar parámetros».
+  - *Rodilla* (al final de la lista): tras la sesión (dolor durante y nivel a los 60 min), criterios
+    de entrada a la carrera cuando tocan, y chasquido y notas.
 - **Cronómetro** — dentro de cada ejercicio, con *Iniciar / Pausar / A cero*.
   Cuenta hacia arriba y solo se mueve cuando tú lo dices: no hay cuenta atrás
   ni avisos. Es único para toda la app, así que puedes arrancarlo al acabar una
@@ -118,6 +121,9 @@ de inicio**. Se abre a pantalla completa, sin barra del navegador.
     Rodilla evalúa y progresa con el jueves, y la exportación lo escribe así en
     `Seguimiento rodilla`. Si era el estreno de la bici (S4), pasa a la primera
     bici de la semana siguiente. Se guarda en el registro (`sinViernes`).
+- **Plan › Ejercicios** — qué apunta cada ejercicio en Hoy (peso, reps, RIR, segundos,
+  profundidad: por serie, fijo como referencia, «recuerda el último» u oculto), tempo, D/I y la
+  posición de la máquina (sale con la del último día). Decisiones 109-115.
 - **Rodilla** — el seguimiento diario del 26/10 al 27/12: pruebas de la mañana,
   dolor durante, nivel previo en ≤60 min (carrera) y chasquido; calcula 24 h,
   48 h, peor 24-48 h y el semáforo (Avanzar / Mantener / Retroceder; solo en los
@@ -159,6 +165,9 @@ node tests/contenido-ui.mjs     # Plan y Hoy contra el Excel en iPhone emulado (
 node tests/progresion-ui.mjs    # progresión real, entrada a la carrera y test (requiere playwright)
 node tests/progreso-ui.mjs      # pestaña Progreso y periodos en iPhone emulado (requiere playwright)
 node tests/cambios-ui.mjs       # mover el entreno y añadir ejercicios desde Hoy (requiere playwright)
+node tests/ejercicios-ui.mjs    # Plan › Ejercicios, pulsación larga y ajustes en Hoy (requiere playwright)
+node tests/selector-ui.mjs      # selector con buscador, grupos y recientes (requiere playwright)
+node tests/rodilla-hoy-ui.mjs   # tareas de rodilla como ítems de Hoy (requiere playwright)
 ```
 
 `tests/rodilla-logica.test.mjs` y `tools/prueba_edicion.py` contrastan con las

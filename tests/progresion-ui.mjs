@@ -58,7 +58,7 @@ const presDe = (nombre) => page.locator('main .ex', { hasText: nombre }).first()
 // Miércoles de S2: criterios de entrada desde la tarjeta de Hoy, con casillas.
 check('Hoy (mié 28/10): la carrera pide los criterios de entrada',
   (await presDe('Andar-correr')).startsWith('Criterios de entrada'), await presDe('Andar-correr'));
-await page.click('[data-entrada]');
+await page.click('[data-rod-item="entrada"]');
 await page.waitForSelector('[data-entrada="S2"]');
 const card = page.locator('[data-entrada="S2"]');
 for (const f of ['walkPain', 'walkBack60', 'tdPain', 'hopsPain']) {

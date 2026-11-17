@@ -241,7 +241,20 @@ const Progreso = (() => {
       if (!g) grupos.push(g = { grupo: e.target || 'Otros', items: [] });
       g.items.push({ v: e.exId, t: `${e.name} · ${e.dias} ${e.dias === 1 ? 'día' : 'días'}` });
     });
-    raiz.appendChild(selector(grupos, st.ex, (v) => { st.ex = v; render(); }, 'Ejercicio'));
+    const elegirEx = (v) => { st.ex = v; render(); };
+    if (typeof Selector === 'undefined') {
+      raiz.appendChild(selector(grupos, st.ex, elegirEx, 'Ejercicio'));
+    } else {
+      const actualEj = lista.find((e) => e.exId === st.ex);
+      raiz.appendChild(Selector.boton(actualEj ? actualEj.name : 'Ejercicio', () => Selector.abrir({
+        titulo: 'Ejercicio',
+        items: lista.map((e) => ({ id: e.exId, nombre: e.name, grupo: e.target || 'Otros', detalle: `${e.dias} ${e.dias === 1 ? 'día' : 'días'}` })),
+        // `lista` ya viene ordenada por último día más reciente.
+        recientes: lista.slice(0, 6).map((e) => e.exId),
+        actual: st.ex,
+        onElegir: elegirEx,
+      })));
+    }
 
     const ex = cat[st.ex];
     const d0 = desde();

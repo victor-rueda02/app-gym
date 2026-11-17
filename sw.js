@@ -4,7 +4,7 @@
    (o `python tools/excel_app.py --solo-cache` tras tocar código), y al cambiar, el móvil
    descarga la versión nueva. */
 
-const CACHE = 'gym-939b5f33';
+const CACHE = 'gym-111271fc';
 const ASSETS = [
   './',
   './index.html',
@@ -12,11 +12,13 @@ const ASSETS = [
   './css/styles.css',
   './css/rodilla.css',
   './css/progreso.css',
+  './css/selector.css',
   './vendor/fflate.js',
   './js/original-xlsx.js',
   './js/lector-xlsx.js',
   './js/plan.js',
   './js/store.js',
+  './js/ejercicios.js',
   './js/timer.js',
   './js/xlsx.js',
   './js/export.js',
@@ -25,6 +27,7 @@ const ASSETS = [
   './js/rodilla.js',
   './js/reglas.js',
   './js/progreso-calc.js',
+  './js/selector.js',
   './js/progreso.js',
   './js/app.js',
   './icons/icon-180.png',
