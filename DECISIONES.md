@@ -695,7 +695,28 @@ descanso) · dom paseo. El lunes 16/11 ya estaba hecho y no se toca.
     S6 (`cambios`, `sin-viernes`, `e2e`, `progresion-ui`, `rodilla-hoy-ui`); `contenido` excluye S5
     de la comparación con el plan de antes (series de S5: 71 → 26).
 
-## Pendientes abiertos (17/11)
+## S6-S8 tras la pausa del chalazión (19/11)
+
+Propuesta en el chat y aceptada por el usuario («Sí, pásalo»).
+
+120. **Hipertrofia, una semana más tarde y sin el pico.** S6 lleva las series que tenía S5, S7 las
+    de S6 y S8 las de S7 (totales 71 · 76 · 80; el 88 de S8 desaparece: era la sobrecarga justo
+    antes de la descarga del viaje). Lunes 23 y martes 24/11, aún con la pomada: las mismas series
+    a **RIR 2** con la línea «RIR 2, sin apnea (vuelta tras el chalazión)». Rehab, correctivos y
+    cardio, sin cambios.
+121. **Rodilla, también una semana más tarde.** S6 sin novedad (prensa «sin novedad: vuelta tras el
+    chalazión», carrera «repite N3»); escalones de la prensa en S7 y S8, y el 4.º, después del
+    viaje; carrera N4 en S7 y N5 en S8 (N6, tras el viaje). Es lo que ya hacía el semáforo; ahora
+    el calendario del Excel marca lo mismo. Corrige además un fallo de la decisión 116: con la
+    celda de S5 en «—» nadie definía el nombre del N4 («N4 · undefined» en cuanto se llegara).
+    Notas de los escalones y de la carrera, hitos y «Novedad del día» de S6-S8, al día.
+122. **Test 3 → viernes 11/12 (S8)**, dos semanas después del test 2 (27/11); el 4/12 queda sin
+    test. El opcional de rango completo pasa a después del viaje (fila «Opcional (tras el viaje)»,
+    fecha orientativa 25/12: la app necesita una fecha). Cabecera del viernes: «test de fuerza
+    S3 / S6 / S8». Pruebas ajustadas: `contenido` compara S6-S8 con S5-S7 de antes, `e2e`,
+    `test-export` y `prueba_edicion` (la celda que define N5 es ahora la de S8).
+
+## Pendientes abiertos (19/11)
 
 Lista viva: quitar lo que se resuelva y añadir lo nuevo.
 
@@ -704,7 +725,7 @@ Lista viva: quitar lo que se resuelva y añadir lo nuevo.
   solo desde el Excel.
 - **+1 serie de deltoides posterior en todas las semanas:** aceptado por el usuario el 17/10
   (pasaría de 1→3 a 2→4), pero el Excel sigue con 1→3 (fila «Posterior polea», jueves).
-- **Semana S5 (chalazión):** aplicada (116-119). Si el médico cambia algo o no hace el
+- **Semana S5 (chalazión):** aplicada (116-119), y S6-S8 reajustadas (120-122). Si el médico cambia algo o no hace el
   isométrico/torso, nada que tocar: «Quitar de este día» en Hoy. Al volver, la española 5×45 s
   del brote/viaje sigue sin cambiar de nombre (111).
 - **Criterios para pasar a pliometría** tras llegar a ×6 (después del viaje): sin definir.

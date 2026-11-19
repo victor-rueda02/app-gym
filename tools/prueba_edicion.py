@@ -94,11 +94,13 @@ def main():
     r = fila(ws, "Elev laterales mancuerna")
     ws[f"A{r}"] = "Elevaciones laterales con mancuerna"
     # 3. Una prescripción.
-    ws[f"J{fila(ws, 'Elev laterales polea')}"] = "4 @ RIR1/0"
+    rp = fila(ws, 'Elev laterales polea')
+    lat_s8 = 4 - int(str(ws[f"J{rp}"].value).split(" ")[0])   # series que se añaden en S8
+    ws[f"J{rp}"] = "4 @ RIR1/0"
     # 4. Un nivel de carrera.
     rc = next(r for r in range(1, ws.max_row + 1) if "escalera=carrera" in str(ws[f"L{r}"].value or "")
               and "domingo" not in str(ws[f"L{r}"].value))
-    ws[f"H{rc}"] = "N5 · 3×(7'/1')"
+    ws[f"J{rc}"] = "N5 · 3×(7'/1')"   # S8 (desde el 19/11, la celda que define N5)
     # 5. Una regla más al final de las reglas del bloque.
     ultima = fila(ws, "Fases hacia el fútbol")
     insertar_filas(ws, ultima + 1, 1, estilo_de=ultima)
@@ -127,7 +129,7 @@ def main():
         abs_ = despues["series"][w]["Abs"] - antes["series"][w]["Abs"]
         lat = despues["series"][w]["Hombro lat."] - antes["series"][w]["Hombro lat."]
         check(abs_ == (2 if w else 0), f"Abs S{w + 1}: +{abs_}")
-        check(lat == (1 if w == 7 else 0), f"Hombro lat. S{w + 1}: +{lat}")
+        check(lat == (lat_s8 if w == 7 else 0), f"Hombro lat. S{w + 1}: +{lat}")
 
     # El Excel sigue bien: combinadas desplazadas y fórmulas de la tabla con la fila nueva.
     wb = openpyxl.load_workbook(COPIA)

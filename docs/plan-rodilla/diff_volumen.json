@@ -122,7 +122,7 @@
  {
   "celda": "H7",
   "antes": "2 x15–20",
-  "ahora": "2 @ RIR1/0"
+  "ahora": "2 @ RIR2\n23/11: RIR 2, sin apnea (vuelta tras el chalazión)"
  },
  {
   "celda": "I7",
@@ -132,7 +132,7 @@
  {
   "celda": "J7",
   "antes": "2 x15–20",
-  "ahora": "3 @ RIR1/0"
+  "ahora": "2 @ RIR1/0"
  },
  {
   "celda": "K7",
@@ -242,7 +242,7 @@
  {
   "celda": "H9",
   "antes": "2 x15–20",
-  "ahora": "2 @ RIR1/0"
+  "ahora": "2 @ RIR2\n23/11: RIR 2, sin apnea (vuelta tras el chalazión)"
  },
  {
   "celda": "I9",
@@ -307,7 +307,7 @@
  {
   "celda": "J10",
   "antes": "2 x8",
-  "ahora": "2 x10-15/pierna\nrepite S7"
+  "ahora": "2 x10-15/pierna"
  },
  {
   "celda": "K10",
@@ -357,7 +357,7 @@
  {
   "celda": "H11",
   "antes": "4 @ RIR1/0",
-  "ahora": "2 x8/pierna\nnov: +1 escalón"
+  "ahora": "2 x8/pierna\nsin novedad: vuelta tras el chalazión"
  },
  {
   "celda": "I11",
@@ -367,12 +367,12 @@
  {
   "celda": "J11",
   "antes": "5 @ RIR1/0",
-  "ahora": "2 x8/pierna\nnov: +1 escalón (4.º) solo si S6-S7 cumplieron; si no, repite S7"
+  "ahora": "2 x8/pierna\nnov: +1 escalón"
  },
  {
   "celda": "K11",
   "antes": "Prensa con pies abajo · Pausa estricta de 2 s en máximo estiramiento abajo (sin rebotar en el tendón de Aquiles) + rodilla semirrígida.",
-  "ahora": "Pesado y lento para el tendón [EVIDENCIA: Kongsgaard 2009; 1-2 veces/semana para mantenerlo: LÓGICA]. Tempo 3-1-3. D primero: RIR 2 y profundidad de su escalón. I: RIR 1-2, rango completo y mismas reps. Lunes = día de novedad (escalón o reps): solo si esa mañana estás igual o mejor y la touchdown no pasa de 3/10; si no, repite la semana anterior. En la sesión con novedad no cambies nada más (con escalón nuevo, mismo peso). S3 (2/11, festivo): búlgara en casa en el escalón 0, sin novedad; mantiene el estímulo pesado y lento sin cambiar dos cosas a la vez [LÓGICA]. Escalones en S4, S6 y S7; el 4.º en S8 solo si S6-S7 cumplieron (si no, después del viaje) [INCERTIDUMBRE: menos días para asentarlo antes del viaje]."
+  "ahora": "Pesado y lento para el tendón [EVIDENCIA: Kongsgaard 2009; 1-2 veces/semana para mantenerlo: LÓGICA]. Tempo 3-1-3. D primero: RIR 2 y profundidad de su escalón. I: RIR 1-2, rango completo y mismas reps. Lunes = día de novedad (escalón o reps): solo si esa mañana estás igual o mejor y la touchdown no pasa de 3/10; si no, repite la semana anterior. En la sesión con novedad no cambies nada más (con escalón nuevo, mismo peso). S3 (2/11, festivo): búlgara en casa en el escalón 0, sin novedad; mantiene el estímulo pesado y lento sin cambiar dos cosas a la vez [LÓGICA]. Escalones en S4, S7 y S8 (S6, vuelta tras la pausa del chalazión, sin novedad); el 4.º, después del viaje."
  },
  {
   "celda": "L11",
@@ -417,12 +417,12 @@
  {
   "celda": "H12",
   "antes": "3 @ RIR1/0",
-  "ahora": "4 @ RIR1/0"
+  "ahora": "4 @ RIR2\n23/11: RIR 2, sin apnea (vuelta tras el chalazión)"
  },
  {
   "celda": "I12",
   "antes": "3 @ RIR1/0",
-  "ahora": "5 @ RIR1/0"
+  "ahora": "4 @ RIR1/0"
  },
  {
   "celda": "J12",
@@ -477,7 +477,7 @@
  {
   "celda": "H13",
   "antes": null,
-  "ahora": "3 @ RIR1/0"
+  "ahora": "3 @ RIR2\n23/11: RIR 2, sin apnea (vuelta tras el chalazión)"
  },
  {
   "celda": "I13",
@@ -487,7 +487,7 @@
  {
   "celda": "J13",
   "antes": null,
-  "ahora": "4 @ RIR1/0"
+  "ahora": "3 @ RIR1/0"
  },
  {
   "celda": "K13",
@@ -537,7 +537,7 @@
  {
   "celda": "H14",
   "antes": null,
-  "ahora": "2 @ RIR1/0"
+  "ahora": "1 @ RIR2\n23/11: RIR 2, sin apnea (vuelta tras el chalazión)"
  },
  {
   "celda": "I14",
@@ -597,7 +597,7 @@
  {
   "celda": "H15",
   "antes": "Sem 6 (series@RIR)",
-  "ahora": "2 @ RIR1/0"
+  "ahora": "2 @ RIR2\n23/11: RIR 2, sin apnea (vuelta tras el chalazión)"
  },
  {
   "celda": "I15",
@@ -652,7 +652,7 @@
  {
   "celda": "H16",
   "antes": "3 @ RIR1/0",
-  "ahora": "2 @ RIR1/0"
+  "ahora": "2 @ RIR2\n23/11: RIR 2, sin apnea (vuelta tras el chalazión)"
  },
  {
   "celda": "I16",
@@ -872,7 +872,7 @@
  {
   "celda": "H20",
   "antes": "4 @ RIR1/0",
-  "ahora": "3 @ RIR1/0"
+  "ahora": "3 @ RIR2\n24/11: RIR 2, sin apnea (vuelta tras el chalazión)"
  },
  {
   "celda": "I20",
@@ -882,7 +882,7 @@
  {
   "celda": "J20",
   "antes": "5 @ RIR1/0",
-  "ahora": "4 @ RIR1/0"
+  "ahora": "3 @ RIR1/0"
  },
  {
   "celda": "K20",
@@ -932,7 +932,7 @@
  {
   "celda": "H21",
   "antes": null,
-  "ahora": "3 @ RIR1/0"
+  "ahora": "3 @ RIR2\n24/11: RIR 2, sin apnea (vuelta tras el chalazión)"
  },
  {
   "celda": "I21",
@@ -992,7 +992,7 @@
  {
   "celda": "H22",
   "antes": null,
-  "ahora": "3 @ RIR1/0"
+  "ahora": "3 @ RIR2\n24/11: RIR 2, sin apnea (vuelta tras el chalazión)"
  },
  {
   "celda": "I22",
@@ -1052,7 +1052,7 @@
  {
   "celda": "H23",
   "antes": null,
-  "ahora": "2 @ RIR1/0"
+  "ahora": "2 @ RIR2\n24/11: RIR 2, sin apnea (vuelta tras el chalazión)"
  },
  {
   "celda": "I23",
@@ -1062,7 +1062,7 @@
  {
   "celda": "J23",
   "antes": null,
-  "ahora": "3 @ RIR1/0"
+  "ahora": "2 @ RIR1/0"
  },
  {
   "celda": "K23",
@@ -1112,7 +1112,7 @@
  {
   "celda": "H24",
   "antes": "Sem 6 (series@RIR)",
-  "ahora": "1 @ RIR0"
+  "ahora": "1 @ RIR2\n24/11: RIR 2, sin apnea (vuelta tras el chalazión)"
  },
  {
   "celda": "I24",
@@ -1160,9 +1160,9 @@
   "ahora": "—"
  },
  {
-  "celda": "J25",
+  "celda": "H25",
   "antes": "3 @ RIR1/0",
-  "ahora": "4 @ RIR1/0"
+  "ahora": "3 @ RIR2\n24/11: RIR 2, sin apnea (vuelta tras el chalazión)"
  },
  {
   "celda": "K25",
@@ -1627,7 +1627,7 @@
  {
   "celda": "J33",
   "antes": null,
-  "ahora": "3 @ RIR1/0"
+  "ahora": "2 @ RIR1/0"
  },
  {
   "celda": "K33",
@@ -1682,7 +1682,7 @@
  {
   "celda": "I34",
   "antes": "Sem 7 (series@RIR)",
-  "ahora": "3 @ RIR1/0"
+  "ahora": "2 @ RIR1/0"
  },
  {
   "celda": "J34",
@@ -1857,7 +1857,7 @@
  {
   "celda": "H37",
   "antes": "3 x8",
-  "ahora": "3 @ RIR1/0"
+  "ahora": "2 @ RIR1/0"
  },
  {
   "celda": "I37",
@@ -1917,7 +1917,7 @@
  {
   "celda": "H38",
   "antes": "2 x8",
-  "ahora": "3 @ RIR1/0"
+  "ahora": "2 @ RIR1/0"
  },
  {
   "celda": "I38",
@@ -1927,7 +1927,7 @@
  {
   "celda": "J38",
   "antes": "2 x8",
-  "ahora": "4 @ RIR1/0"
+  "ahora": "3 @ RIR1/0"
  },
  {
   "celda": "K38",
@@ -1997,7 +1997,7 @@
  {
   "celda": "A40",
   "antes": "Aductores",
-  "ahora": "(V) Viernes  ·  Rehab + Isquios + Aductores  ·  test de fuerza S3 / S6 / S7 (+ opcional S8)  (desde S2; S1 se hizo el jueves; en S2, el viernes 30/10)"
+  "ahora": "(V) Viernes  ·  Rehab + Isquios + Aductores  ·  test de fuerza S3 / S6 / S8  (desde S2; S1 se hizo el jueves; en S2, el viernes 30/10)"
  },
  {
   "celda": "B40",
@@ -2167,7 +2167,7 @@
  {
   "celda": "K42",
   "antes": null,
-  "ahora": "Isométrico de calentamiento del tendón, lo primero de la sesión: antes del test (S3/S6/S7) o de la sentadilla. Sentadilla en pared a una pierna, D e I, con peso si hace falta. 3 series de 45 s por pierna (desde S4; antes, sentadilla española 2-3×45 s)."
+  "ahora": "Isométrico de calentamiento del tendón, lo primero de la sesión: antes del test (S3/S6/S8) o de la sentadilla. Sentadilla en pared a una pierna, D e I, con peso si hace falta. 3 series de 45 s por pierna (desde S4; antes, sentadilla española 2-3×45 s)."
  },
  {
   "celda": "L42",
@@ -2217,12 +2217,12 @@
  {
   "celda": "I43",
   "antes": null,
-  "ahora": "2 aprox. +\n1 al fallo\npor pierna"
+  "ahora": "—"
  },
  {
   "celda": "J43",
   "antes": null,
-  "ahora": "Opcional:\nrango completo"
+  "ahora": "2 aprox. +\n1 al fallo\npor pierna"
  },
  {
   "celda": "K43",
@@ -2282,12 +2282,12 @@
  {
   "celda": "J44",
   "antes": "Sem 8 (series@RIR)",
-  "ahora": "3 x8\nrepite S7"
+  "ahora": "3 x8\nprof. del lunes"
  },
  {
   "celda": "K44",
   "antes": "Notas",
-  "ahora": "Tras el test (S3/S6/S7), carga por RIR. Tempo 3-1-3, RIR 2. Profundidad = la validada el lunes en la prensa. Postura habitual: un chasquido sin dolor no cambia nada; el apoyo ancho solo si te reduce el DOLOR [LÓGICA]."
+  "ahora": "Tras el test (S3/S6/S8), carga por RIR. Tempo 3-1-3, RIR 2. Profundidad = la validada el lunes en la prensa. Postura habitual: un chasquido sin dolor no cambia nada; el apoyo ancho solo si te reduce el DOLOR [LÓGICA]."
  },
  {
   "celda": "L44",
@@ -2342,7 +2342,7 @@
  {
   "celda": "J45",
   "antes": "1 @ RIR0",
-  "ahora": "2 x8/pierna\nrepite S7"
+  "ahora": "2 x8/pierna"
  },
  {
   "celda": "K45",
@@ -2512,7 +2512,7 @@
  {
   "celda": "H48",
   "antes": "3 @ RIR1/0",
-  "ahora": "5 @ RIR1/0"
+  "ahora": "4 @ RIR1/0"
  },
  {
   "celda": "I48",
@@ -2607,7 +2607,7 @@
  {
   "celda": "J50",
   "antes": "2 @ RIR1/0",
-  "ahora": "5 @ RIR1/0"
+  "ahora": "4 @ RIR1/0"
  },
  {
   "celda": "K50",
@@ -3017,7 +3017,7 @@
  {
   "celda": "I57",
   "antes": "2 x15–20",
-  "ahora": "3 @ RIR1/0"
+  "ahora": "2 @ RIR1/0"
  },
  {
   "celda": "J57",
@@ -3118,6 +3118,11 @@
   "celda": "G59",
   "antes": "3 @ RIR1/0",
   "ahora": "2 @ RIR4\n21/11: opcional · muy lejos del fallo, respirando, sin apnea"
+ },
+ {
+  "celda": "H59",
+  "antes": "3 @ RIR1/0",
+  "ahora": "2 @ RIR1/0"
  },
  {
   "celda": "I59",
@@ -3482,7 +3487,7 @@
  {
   "celda": "I66",
   "antes": null,
-  "ahora": "4 @ RIR1/0"
+  "ahora": "3 @ RIR1/0"
  },
  {
   "celda": "J66",
@@ -5282,22 +5287,22 @@
  {
   "celda": "H103",
   "antes": null,
-  "ahora": "N5 · 3×(8'/1')"
+  "ahora": "repite N3"
  },
  {
   "celda": "I103",
   "antes": null,
-  "ahora": "N6 · 2×(12'/1')"
+  "ahora": "N4 · 4×(5'/1')"
  },
  {
   "celda": "J103",
   "antes": null,
-  "ahora": "repite N6"
+  "ahora": "N5 · 3×(8'/1')"
  },
  {
   "celda": "K103",
   "antes": null,
-  "ahora": "Formato: minutos trotando / minutos andando. Niveles: N1 8×(1'/2') · N2 6×(2'/1') · N3 4×(4'/1') · N4 4×(5'/1') · N5 3×(8'/1') · N6 2×(12'/1'); después del viaje, N7 18' · N8 25' · N9 30' seguidos. Desde N4 el tramo continuo más largo crece como mucho un 50 % por nivel (5 → 8 → 12 → 18 → 25 → 30 min); de N1 a N3 se dobla porque los tramos son muy cortos [LÓGICA]. El calendario marca el máximo de cada semana; el nivel real sale del semáforo: Avanzar = +1, Mantener = el mismo, Retroceder = −1. Nivel nuevo solo si esa mañana estás igual o mejor. 5 min andando antes; llano y firme. Regla de carrera: Retroceder si pasas de 2/10 durante, no vuelves al nivel previo en ≤60 min o la mañana siguiente estás peor; Mantener si cumple pero el peor valor 24-48 h supera la referencia; Avanzar si cumple y el peor 24-48 h ≤ referencia [EVIDENCIA de uso: TREK Education, basada en Esculier; no comparada con otros umbrales]. Cadencia +5-10% opcional [EVIDENCIA mixta: Bramah 2019, serie de 12 corredores con mejora de dolor y función mantenida a 3 meses; Esculier 2018, sin beneficio extra sobre la educación]."
+  "ahora": "Formato: minutos trotando / minutos andando. Niveles: N1 8×(1'/2') · N2 6×(2'/1') · N3 4×(4'/1') · N4 4×(5'/1') · N5 3×(8'/1') · N6 2×(12'/1') (tras la pausa del chalazión, ya después del viaje); después del viaje, N7 18' · N8 25' · N9 30' seguidos. Desde N4 el tramo continuo más largo crece como mucho un 50 % por nivel (5 → 8 → 12 → 18 → 25 → 30 min); de N1 a N3 se dobla porque los tramos son muy cortos [LÓGICA]. El calendario marca el máximo de cada semana; el nivel real sale del semáforo: Avanzar = +1, Mantener = el mismo, Retroceder = −1. Nivel nuevo solo si esa mañana estás igual o mejor. 5 min andando antes; llano y firme. Regla de carrera: Retroceder si pasas de 2/10 durante, no vuelves al nivel previo en ≤60 min o la mañana siguiente estás peor; Mantener si cumple pero el peor valor 24-48 h supera la referencia; Avanzar si cumple y el peor 24-48 h ≤ referencia [EVIDENCIA de uso: TREK Education, basada en Esculier; no comparada con otros umbrales]. Cadencia +5-10% opcional [EVIDENCIA mixta: Bramah 2019, serie de 12 corredores con mejora de dolor y función mantenida a 3 meses; Esculier 2018, sin beneficio extra sobre la educación]."
  },
  {
   "celda": "L103",
@@ -5762,17 +5767,17 @@
  {
   "celda": "H111",
   "antes": null,
-  "ahora": "Vie 27/11: test 2"
+  "ahora": "Vuelta: sin novedades\nVie 27/11: test 2"
  },
  {
   "celda": "I111",
   "antes": null,
-  "ahora": "Vie: test 3"
+  "ahora": "Lun: +1 escalón\nMié: N4"
  },
  {
   "celda": "J111",
   "antes": null,
-  "ahora": "Lun: 4.º escalón solo si S6-S7 OK\nVie: test opc.\nrango completo"
+  "ahora": "Lun: +1 escalón\nMié: N5\nVie: test 3"
  },
  {
   "celda": "K111",
@@ -5827,7 +5832,7 @@
  {
   "celda": "A120",
   "antes": null,
-  "ahora": "Escalones de profundidad de la D [LÓGICA; no hay pautas de rango validadas para la rótula: INCERTIDUMBRE]: escalón 0 = la profundidad que ya usas con la D; escalón 4 = la de la I. Reparte la diferencia en 4 partes iguales (como mucho ~15° cada una; si sale más, se termina después del bloque). Se sube, como mucho, los lunes de S4, S6 y S7 en la prensa (según el semáforo), y el 4.º escalón el lunes de S8 solo si S6 y S7 cumplieron la regla (si no, después del viaje); el lunes de S3 fue festivo y no hubo escalón; la touchdown del lunes va a la profundidad ya validada y hace de filtro. Apunta las marcas en «Seguimiento rodilla»."
+  "ahora": "Escalones de profundidad de la D [LÓGICA; no hay pautas de rango validadas para la rótula: INCERTIDUMBRE]: escalón 0 = la profundidad que ya usas con la D; escalón 4 = la de la I. Reparte la diferencia en 4 partes iguales (como mucho ~15° cada una; si sale más, se termina después del bloque). Se sube, como mucho, los lunes de S4, S7 y S8 en la prensa (según el semáforo; S6, vuelta tras la pausa del chalazión, sin novedad), y el 4.º escalón después del viaje; el lunes de S3 fue festivo y no hubo escalón; la touchdown del lunes va a la profundidad ya validada y hace de filtro. Apunta las marcas en «Seguimiento rodilla»."
  },
  {
   "celda": "A121",

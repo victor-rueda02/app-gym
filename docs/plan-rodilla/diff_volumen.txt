@@ -72,13 +72,13 @@ G7
   ahora: '2 @ RIR1/0'
 H7
   antes: '2 x15–20'
-  ahora: '2 @ RIR1/0'
+  ahora: '2 @ RIR2\n23/11: RIR 2, sin apnea (vuelta tras el chalazión)'
 I7
   antes: '2 x15–20'
   ahora: '2 @ RIR1/0'
 J7
   antes: '2 x15–20'
-  ahora: '3 @ RIR1/0'
+  ahora: '2 @ RIR1/0'
 K7
   antes: 'Antes del rehab: sentadilla española 5×45 s'
   ahora: 'Prioridad 1 · Polea altura muñeca/muslo en plano escapular (~30° adelante). Intercalar en superserie alterna con la abducción (máquina) para dar 3-4 min de descanso al deltoides antes de las mancuernas.'
@@ -144,7 +144,7 @@ G9
   ahora: '2 @ RIR1/0'
 H9
   antes: '2 x15–20'
-  ahora: '2 @ RIR1/0'
+  ahora: '2 @ RIR2\n23/11: RIR 2, sin apnea (vuelta tras el chalazión)'
 I9
   antes: '2 x15–20'
   ahora: '2 @ RIR1/0'
@@ -183,7 +183,7 @@ I10
   ahora: '2 x10-15/pierna'
 J10
   antes: '2 x8'
-  ahora: '2 x10-15/pierna\nrepite S7'
+  ahora: '2 x10-15/pierna'
 K10
   antes: 'fijo · Tempo 3-1-3 · dolor ≤3/10'
   ahora: 'Control antes de la prensa. D a la profundidad YA validada (la de la semana anterior), I completa; tempo 2-0-2, RIR 3; pelvis nivelada y rodilla hacia el 2.º-4.º dedo. Hace de filtro: si la D pasa de 3/10 aquí, ese lunes no se sube escalón en la prensa [LÓGICA].'
@@ -213,16 +213,16 @@ G11
   ahora: '2 x8/pierna\nnov: x8'
 H11
   antes: '4 @ RIR1/0'
-  ahora: '2 x8/pierna\nnov: +1 escalón'
+  ahora: '2 x8/pierna\nsin novedad: vuelta tras el chalazión'
 I11
   antes: '5 @ RIR1/0'
   ahora: '2 x8/pierna\nnov: +1 escalón'
 J11
   antes: '5 @ RIR1/0'
-  ahora: '2 x8/pierna\nnov: +1 escalón (4.º) solo si S6-S7 cumplieron; si no, repite S7'
+  ahora: '2 x8/pierna\nnov: +1 escalón'
 K11
   antes: 'Prensa con pies abajo · Pausa estricta de 2 s en máximo estiramiento abajo (sin rebotar en el tendón de Aquiles) + rodilla semirrígida.'
-  ahora: 'Pesado y lento para el tendón [EVIDENCIA: Kongsgaard 2009; 1-2 veces/semana para mantenerlo: LÓGICA]. Tempo 3-1-3. D primero: RIR 2 y profundidad de su escalón. I: RIR 1-2, rango completo y mismas reps. Lunes = día de novedad (escalón o reps): solo si esa mañana estás igual o mejor y la touchdown no pasa de 3/10; si no, repite la semana anterior. En la sesión con novedad no cambies nada más (con escalón nuevo, mismo peso). S3 (2/11, festivo): búlgara en casa en el escalón 0, sin novedad; mantiene el estímulo pesado y lento sin cambiar dos cosas a la vez [LÓGICA]. Escalones en S4, S6 y S7; el 4.º en S8 solo si S6-S7 cumplieron (si no, después del viaje) [INCERTIDUMBRE: menos días para asentarlo antes del viaje].'
+  ahora: 'Pesado y lento para el tendón [EVIDENCIA: Kongsgaard 2009; 1-2 veces/semana para mantenerlo: LÓGICA]. Tempo 3-1-3. D primero: RIR 2 y profundidad de su escalón. I: RIR 1-2, rango completo y mismas reps. Lunes = día de novedad (escalón o reps): solo si esa mañana estás igual o mejor y la touchdown no pasa de 3/10; si no, repite la semana anterior. En la sesión con novedad no cambies nada más (con escalón nuevo, mismo peso). S3 (2/11, festivo): búlgara en casa en el escalón 0, sin novedad; mantiene el estímulo pesado y lento sin cambiar dos cosas a la vez [LÓGICA]. Escalones en S4, S7 y S8 (S6, vuelta tras la pausa del chalazión, sin novedad); el 4.º, después del viaje.'
 L11
   antes: None
   ahora: 'id=prensa-unil-pesado-y-lento-n-1;escalera=prensa'
@@ -249,10 +249,10 @@ G12
   ahora: '4 @ RIR1/0'
 H12
   antes: '3 @ RIR1/0'
-  ahora: '4 @ RIR1/0'
+  ahora: '4 @ RIR2\n23/11: RIR 2, sin apnea (vuelta tras el chalazión)'
 I12
   antes: '3 @ RIR1/0'
-  ahora: '5 @ RIR1/0'
+  ahora: '4 @ RIR1/0'
 J12
   antes: '4 @ RIR1/0'
   ahora: '5 @ RIR1/0'
@@ -285,13 +285,13 @@ G13
   ahora: '3 @ RIR1/0'
 H13
   antes: None
-  ahora: '3 @ RIR1/0'
+  ahora: '3 @ RIR2\n23/11: RIR 2, sin apnea (vuelta tras el chalazión)'
 I13
   antes: None
   ahora: '3 @ RIR1/0'
 J13
   antes: None
-  ahora: '4 @ RIR1/0'
+  ahora: '3 @ RIR1/0'
 K13
   antes: None
   ahora: 'Extensión de cadera · Rodillas con ligera flexión fija (~10-15°), subir empujando talones sin hiperextender zona lumbar.'
@@ -321,7 +321,7 @@ G14
   ahora: '1 @ RIR0'
 H14
   antes: None
-  ahora: '2 @ RIR1/0'
+  ahora: '1 @ RIR2\n23/11: RIR 2, sin apnea (vuelta tras el chalazión)'
 I14
   antes: None
   ahora: '2 @ RIR1/0'
@@ -357,7 +357,7 @@ G15
   ahora: '2 @ RIR1/0'
 H15
   antes: 'Sem 6 (series@RIR)'
-  ahora: '2 @ RIR1/0'
+  ahora: '2 @ RIR2\n23/11: RIR 2, sin apnea (vuelta tras el chalazión)'
 I15
   antes: 'Sem 7 (series@RIR)'
   ahora: '2 @ RIR1/0'
@@ -390,7 +390,7 @@ G16
   ahora: '2 @ RIR1/0'
 H16
   antes: '3 @ RIR1/0'
-  ahora: '2 @ RIR1/0'
+  ahora: '2 @ RIR2\n23/11: RIR 2, sin apnea (vuelta tras el chalazión)'
 I16
   antes: '3 @ RIR1/0'
   ahora: '2 @ RIR1/0'
@@ -522,13 +522,13 @@ G20
   ahora: '—'
 H20
   antes: '4 @ RIR1/0'
-  ahora: '3 @ RIR1/0'
+  ahora: '3 @ RIR2\n24/11: RIR 2, sin apnea (vuelta tras el chalazión)'
 I20
   antes: '4 @ RIR1/0'
   ahora: '3 @ RIR1/0'
 J20
   antes: '5 @ RIR1/0'
-  ahora: '4 @ RIR1/0'
+  ahora: '3 @ RIR1/0'
 K20
   antes: 'Colgado con depresión escapular (activa dorsal) · Enrollar pelvis hacia costillas (retroversión). Usar straps si el agarre molesta al codo.'
   ahora: 'Prioridad 4 (Haz clavicular) · Agarre ~1.3x ancho hombros y codos a 45–60° (plano escapular) para proteger hombro y codo.'
@@ -558,7 +558,7 @@ G21
   ahora: '—'
 H21
   antes: None
-  ahora: '3 @ RIR1/0'
+  ahora: '3 @ RIR2\n24/11: RIR 2, sin apnea (vuelta tras el chalazión)'
 I21
   antes: None
   ahora: '3 @ RIR1/0'
@@ -594,7 +594,7 @@ G22
   ahora: '—'
 H22
   antes: None
-  ahora: '3 @ RIR1/0'
+  ahora: '3 @ RIR2\n24/11: RIR 2, sin apnea (vuelta tras el chalazión)'
 I22
   antes: None
   ahora: '3 @ RIR1/0'
@@ -630,13 +630,13 @@ G23
   ahora: '—'
 H23
   antes: None
-  ahora: '2 @ RIR1/0'
+  ahora: '2 @ RIR2\n24/11: RIR 2, sin apnea (vuelta tras el chalazión)'
 I23
   antes: None
   ahora: '2 @ RIR1/0'
 J23
   antes: None
-  ahora: '3 @ RIR1/0'
+  ahora: '2 @ RIR1/0'
 K23
   antes: None
   ahora: 'Prioridad 2 (Tríceps en estiramiento) · Dejar que el codo apunte ligeramente hacia fuera (~20-30° plano escapular) para no forzar cápsula del hombro ni tendón olecraniano.'
@@ -666,7 +666,7 @@ G24
   ahora: '—'
 H24
   antes: 'Sem 6 (series@RIR)'
-  ahora: '1 @ RIR0'
+  ahora: '1 @ RIR2\n24/11: RIR 2, sin apnea (vuelta tras el chalazión)'
 I24
   antes: 'Sem 7 (series@RIR)'
   ahora: '1 @ RIR0'
@@ -694,9 +694,9 @@ F25
 G25
   antes: '3 @ RIR1/0'
   ahora: '—'
-J25
+H25
   antes: '3 @ RIR1/0'
-  ahora: '4 @ RIR1/0'
+  ahora: '3 @ RIR2\n24/11: RIR 2, sin apnea (vuelta tras el chalazión)'
 K25
   antes: 'Prioridad 3 (Dorsal Bajo) · 1º fresco · Torso vertical, codos abiertos en plano frontal hasta ~90° · No encoger hombros.'
   ahora: 'Desde S2 recoge las series del colgado (que se queda en 1) · Pies enganchados y cadera fija: enrollar el tronco llevando costillas hacia pelvis, sin tirar con los brazos ni flexionar la cadera. Bajar controlado, 2 s.'
@@ -975,7 +975,7 @@ I33
   ahora: '2 @ RIR1/0'
 J33
   antes: None
-  ahora: '3 @ RIR1/0'
+  ahora: '2 @ RIR1/0'
 K33
   antes: None
   ahora: 'Plano transversal (Espalda Alta) · Codos abiertos y retracción escapular completa.'
@@ -1008,7 +1008,7 @@ H34
   ahora: '2 @ RIR1/0'
 I34
   antes: 'Sem 7 (series@RIR)'
-  ahora: '3 @ RIR1/0'
+  ahora: '2 @ RIR1/0'
 J34
   antes: 'Sem 8 (series@RIR)'
   ahora: '3 @ RIR1/0'
@@ -1113,7 +1113,7 @@ G37
   ahora: '—'
 H37
   antes: '3 x8'
-  ahora: '3 @ RIR1/0'
+  ahora: '2 @ RIR1/0'
 I37
   antes: '3 x8'
   ahora: '3 @ RIR1/0'
@@ -1149,13 +1149,13 @@ G38
   ahora: '—'
 H38
   antes: '2 x8'
-  ahora: '3 @ RIR1/0'
+  ahora: '2 @ RIR1/0'
 I38
   antes: '2 x8'
   ahora: '3 @ RIR1/0'
 J38
   antes: '2 x8'
-  ahora: '4 @ RIR1/0'
+  ahora: '3 @ RIR1/0'
 K38
   antes: 'Tempo 3-1-3 · empieza por la lesionada'
   ahora: 'Prioridad 2 (Bíceps en estiramiento) · Hombro en extensión detrás del torso; no dejar que el hombro rote hacia delante al subir.'
@@ -1197,7 +1197,7 @@ K39
   ahora: None
 A40
   antes: 'Aductores'
-  ahora: '(V) Viernes  ·  Rehab + Isquios + Aductores  ·  test de fuerza S3 / S6 / S7 (+ opcional S8)  (desde S2; S1 se hizo el jueves; en S2, el viernes 30/10)'
+  ahora: '(V) Viernes  ·  Rehab + Isquios + Aductores  ·  test de fuerza S3 / S6 / S8  (desde S2; S1 se hizo el jueves; en S2, el viernes 30/10)'
 B40
   antes: 'Aductores'
   ahora: None
@@ -1299,7 +1299,7 @@ J42
   ahora: '3 x45 s'
 K42
   antes: None
-  ahora: 'Isométrico de calentamiento del tendón, lo primero de la sesión: antes del test (S3/S6/S7) o de la sentadilla. Sentadilla en pared a una pierna, D e I, con peso si hace falta. 3 series de 45 s por pierna (desde S4; antes, sentadilla española 2-3×45 s).'
+  ahora: 'Isométrico de calentamiento del tendón, lo primero de la sesión: antes del test (S3/S6/S8) o de la sentadilla. Sentadilla en pared a una pierna, D e I, con peso si hace falta. 3 series de 45 s por pierna (desde S4; antes, sentadilla española 2-3×45 s).'
 L42
   antes: None
   ahora: 'id=sentadilla-espanola;S5=J'
@@ -1329,10 +1329,10 @@ H43
   ahora: '2 aprox. +\n1 al fallo\npor pierna'
 I43
   antes: None
-  ahora: '2 aprox. +\n1 al fallo\npor pierna'
+  ahora: '—'
 J43
   antes: None
-  ahora: 'Opcional:\nrango completo'
+  ahora: '2 aprox. +\n1 al fallo\npor pierna'
 K43
   antes: None
   ahora: 'Test 1 → vie 6/11 (S3): en S2 solo hubo una prueba orientativa (30/10). Al empezar la sesión, tras la sentadilla iso en pared y 2 series de aproximación. Mismo asiento y SIEMPRE rango fijo 90→45° (si el rango cambia, la comparación entre semanas no vale). Cada pierna lleva su propio peso, buscando 10-12 reps al fallo técnico (orientativo: D ~30 kg, I ~40 kg); tempo 2-0-2, D primero, 3 min de descanso y luego la I; para si la D pasa de 3/10. Apunta carga y reps de cada pierna en «Seguimiento rodilla», que calcula la simetría. Objetivo ≥90% antes del balón [LÓGICA; el 90% viene de la vuelta al deporte tras LCA, no está validado en dolor femoropatelar: INCERTIDUMBRE]. Test en rango completo opcional en S8 y no en S7, para que sea la única novedad de su semana.'
@@ -1368,10 +1368,10 @@ I44
   ahora: '3 x8\nprof. del lunes'
 J44
   antes: 'Sem 8 (series@RIR)'
-  ahora: '3 x8\nrepite S7'
+  ahora: '3 x8\nprof. del lunes'
 K44
   antes: 'Notas'
-  ahora: 'Tras el test (S3/S6/S7), carga por RIR. Tempo 3-1-3, RIR 2. Profundidad = la validada el lunes en la prensa. Postura habitual: un chasquido sin dolor no cambia nada; el apoyo ancho solo si te reduce el DOLOR [LÓGICA].'
+  ahora: 'Tras el test (S3/S6/S8), carga por RIR. Tempo 3-1-3, RIR 2. Profundidad = la validada el lunes en la prensa. Postura habitual: un chasquido sin dolor no cambia nada; el apoyo ancho solo si te reduce el DOLOR [LÓGICA].'
 L44
   antes: None
   ahora: 'id=sentadilla-al-cajon-o-desde-pines-pesado-y-lento-n-2;escalera=prensa:sigue'
@@ -1404,7 +1404,7 @@ I45
   ahora: '2 x8/pierna'
 J45
   antes: '1 @ RIR0'
-  ahora: '2 x8/pierna\nrepite S7'
+  ahora: '2 x8/pierna'
 K45
   antes: 'Prioridad 2 + Potenciación de codo · Hombro a -15° (extensión): máximo acortamiento de cabeza larga con torque nulo en flexión máxima de codo (calienta tendón para el francés).'
   ahora: 'D primero: RIR 2 y profundidad validada el lunes. I: RIR 1-2 y rango completo. Tempo 3-1-3. Alterna piernas, 60-90 s entre una y otra.'
@@ -1506,7 +1506,7 @@ G48
   ahora: '—'
 H48
   antes: '3 @ RIR1/0'
-  ahora: '5 @ RIR1/0'
+  ahora: '4 @ RIR1/0'
 I48
   antes: '3 @ RIR1/0'
   ahora: '5 @ RIR1/0'
@@ -1563,7 +1563,7 @@ I50
   ahora: '4 @ RIR1/0'
 J50
   antes: '2 @ RIR1/0'
-  ahora: '5 @ RIR1/0'
+  ahora: '4 @ RIR1/0'
 K50
   antes: 'Plano sagital (Dorsal Sup.) · Usar STRAPS obligatoriamente para anular fatiga previa de bíceps y proteger codos.'
   ahora: 'Prensa con pies abajo · Pausa estricta de 2 s en máximo estiramiento abajo (sin rebote elástico).'
@@ -1809,7 +1809,7 @@ H57
   ahora: '2 @ RIR1/0'
 I57
   antes: '2 x15–20'
-  ahora: '3 @ RIR1/0'
+  ahora: '2 @ RIR1/0'
 J57
   antes: '2 x15–20'
   ahora: '3 @ RIR1/0'
@@ -1870,6 +1870,9 @@ F59
 G59
   antes: '3 @ RIR1/0'
   ahora: '2 @ RIR4\n21/11: opcional · muy lejos del fallo, respirando, sin apnea'
+H59
+  antes: '3 @ RIR1/0'
+  ahora: '2 @ RIR1/0'
 I59
   antes: '4 @ RIR1/0'
   ahora: '3 @ RIR1/0'
@@ -2088,7 +2091,7 @@ H66
   ahora: '3 @ RIR1/0'
 I66
   antes: None
-  ahora: '4 @ RIR1/0'
+  ahora: '3 @ RIR1/0'
 J66
   antes: None
   ahora: '4 @ RIR1/0'
@@ -3168,16 +3171,16 @@ G103
   ahora: '—'
 H103
   antes: None
-  ahora: "N5 · 3×(8'/1')"
+  ahora: 'repite N3'
 I103
   antes: None
-  ahora: "N6 · 2×(12'/1')"
+  ahora: "N4 · 4×(5'/1')"
 J103
   antes: None
-  ahora: 'repite N6'
+  ahora: "N5 · 3×(8'/1')"
 K103
   antes: None
-  ahora: "Formato: minutos trotando / minutos andando. Niveles: N1 8×(1'/2') · N2 6×(2'/1') · N3 4×(4'/1') · N4 4×(5'/1') · N5 3×(8'/1') · N6 2×(12'/1'); después del viaje, N7 18' · N8 25' · N9 30' seguidos. Desde N4 el tramo continuo más largo crece como mucho un 50 % por nivel (5 → 8 → 12 → 18 → 25 → 30 min); de N1 a N3 se dobla porque los tramos son muy cortos [LÓGICA]. El calendario marca el máximo de cada semana; el nivel real sale del semáforo: Avanzar = +1, Mantener = el mismo, Retroceder = −1. Nivel nuevo solo si esa mañana estás igual o mejor. 5 min andando antes; llano y firme. Regla de carrera: Retroceder si pasas de 2/10 durante, no vuelves al nivel previo en ≤60 min o la mañana siguiente estás peor; Mantener si cumple pero el peor valor 24-48 h supera la referencia; Avanzar si cumple y el peor 24-48 h ≤ referencia [EVIDENCIA de uso: TREK Education, basada en Esculier; no comparada con otros umbrales]. Cadencia +5-10% opcional [EVIDENCIA mixta: Bramah 2019, serie de 12 corredores con mejora de dolor y función mantenida a 3 meses; Esculier 2018, sin beneficio extra sobre la educación]."
+  ahora: "Formato: minutos trotando / minutos andando. Niveles: N1 8×(1'/2') · N2 6×(2'/1') · N3 4×(4'/1') · N4 4×(5'/1') · N5 3×(8'/1') · N6 2×(12'/1') (tras la pausa del chalazión, ya después del viaje); después del viaje, N7 18' · N8 25' · N9 30' seguidos. Desde N4 el tramo continuo más largo crece como mucho un 50 % por nivel (5 → 8 → 12 → 18 → 25 → 30 min); de N1 a N3 se dobla porque los tramos son muy cortos [LÓGICA]. El calendario marca el máximo de cada semana; el nivel real sale del semáforo: Avanzar = +1, Mantener = el mismo, Retroceder = −1. Nivel nuevo solo si esa mañana estás igual o mejor. 5 min andando antes; llano y firme. Regla de carrera: Retroceder si pasas de 2/10 durante, no vuelves al nivel previo en ≤60 min o la mañana siguiente estás peor; Mantener si cumple pero el peor valor 24-48 h supera la referencia; Avanzar si cumple y el peor 24-48 h ≤ referencia [EVIDENCIA de uso: TREK Education, basada en Esculier; no comparada con otros umbrales]. Cadencia +5-10% opcional [EVIDENCIA mixta: Bramah 2019, serie de 12 corredores con mejora de dolor y función mantenida a 3 meses; Esculier 2018, sin beneficio extra sobre la educación]."
 L103
   antes: None
   ahora: 'id=andar-correr-en-llano;sesion=X;escalera=carrera'
@@ -3456,13 +3459,13 @@ G111
   ahora: 'Lun: x8\nMar-dom: pausa (chalazión)\nJue y sáb: isométrico\nTest 2 → vie 27/11'
 H111
   antes: None
-  ahora: 'Vie 27/11: test 2'
+  ahora: 'Vuelta: sin novedades\nVie 27/11: test 2'
 I111
   antes: None
-  ahora: 'Vie: test 3'
+  ahora: 'Lun: +1 escalón\nMié: N4'
 J111
   antes: None
-  ahora: 'Lun: 4.º escalón solo si S6-S7 OK\nVie: test opc.\nrango completo'
+  ahora: 'Lun: +1 escalón\nMié: N5\nVie: test 3'
 K111
   antes: None
   ahora: 'Entrada a la carrera (S2), con la regla de carrera: martes, paseo de 30 min a paso rápido (≤2/10, nivel previo en ≤60 min y el miércoles por la mañana no peor: el criterio 1 se evalúa solo con esa mañana, sin esperar a las 48 h); miércoles antes de correr, 10 touchdown con cada pierna y 20 saltitos a dos piernas (≤2/10). Si se cumplen los tres, 1.ª carrera ese miércoles (N1). Si no, esa semana no hay carrera (el domingo, como mucho, un paseo) y los criterios se repiten el miércoles siguiente [LÓGICA].'
@@ -3495,7 +3498,7 @@ A119
   ahora: 'S2: la pierna 2 y la prueba del test pasaron al viernes 30/10 (el jueves 29 fue libre), dentro de las 48 h de la 1.ª carrera. Si la mañana del sábado 31/10 sale peor, cuenta para las dos: el domingo repites N1 y el miércoles de S3 no subes de nivel [LÓGICA].'
 A120
   antes: None
-  ahora: 'Escalones de profundidad de la D [LÓGICA; no hay pautas de rango validadas para la rótula: INCERTIDUMBRE]: escalón 0 = la profundidad que ya usas con la D; escalón 4 = la de la I. Reparte la diferencia en 4 partes iguales (como mucho ~15° cada una; si sale más, se termina después del bloque). Se sube, como mucho, los lunes de S4, S6 y S7 en la prensa (según el semáforo), y el 4.º escalón el lunes de S8 solo si S6 y S7 cumplieron la regla (si no, después del viaje); el lunes de S3 fue festivo y no hubo escalón; la touchdown del lunes va a la profundidad ya validada y hace de filtro. Apunta las marcas en «Seguimiento rodilla».'
+  ahora: 'Escalones de profundidad de la D [LÓGICA; no hay pautas de rango validadas para la rótula: INCERTIDUMBRE]: escalón 0 = la profundidad que ya usas con la D; escalón 4 = la de la I. Reparte la diferencia en 4 partes iguales (como mucho ~15° cada una; si sale más, se termina después del bloque). Se sube, como mucho, los lunes de S4, S7 y S8 en la prensa (según el semáforo; S6, vuelta tras la pausa del chalazión, sin novedad), y el 4.º escalón después del viaje; el lunes de S3 fue festivo y no hubo escalón; la touchdown del lunes va a la profundidad ya validada y hace de filtro. Apunta las marcas en «Seguimiento rodilla».'
 A121
   antes: None
   ahora: 'Chasquido: si no duele, no se quita ni se cambia nada. Si duele, cuenta como dolor.'

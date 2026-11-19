@@ -112,7 +112,7 @@ check('Fila del plan nuevo: semana, bloque, sesión y prescripción',
 // exporta igual, al final de la sesión del día.
 const squat = rows.find((r) => r[0] === '2026-12-10' && r[4].startsWith('Sentadilla al cajón'));
 check('Semana 8: sentadilla al cajón, prescripción con salto de línea intacta',
-  squat && squat[1] === 'Sem 8' && squat[13] === '3 x8\nrepite S7',
+  squat && squat[1] === 'Sem 8' && squat[13] === '3 x8\nprof. del lunes',
   squat && squat[13]);
 const bici = rows.find((r) => r[0] === '2026-10-20' && r[4].startsWith('Bici Z2'));
 check('Cardio: una fila con los minutos en la columna Min',

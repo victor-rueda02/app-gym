@@ -100,7 +100,13 @@ test('hipertrofia como antes: los ejercicios con series @RIR conservan las 8 pre
   // Excepción pedida (27/10): desde S2 el abs colgado del martes se queda en 1 serie y el
   // resto pasa al abs en máquina, justo debajo. Se comprueba que entre los dos suman lo
   // de antes, con el mismo RIR; el total de Abs no cambia (ver «series por grupo»).
+  // Excepciones del chalazión: S5 (17/11) es la semana de pausa y no se compara; desde el 19/11
+  // S6-S8 llevan las series de S5-S7 de antes (sin el pico de S8), y el lunes y el martes de S6, a
+  // RIR 2 (vuelta tras la operación).
   const repartidos = { M: { 'abs-colgado-retroversion': 'abs-maquina-crunch' } };
+  const deAntes = (s) => (s >= 5 ? s - 1 : s);
+  const lm = (x) => ['L', 'M'].some((d) => PLAN.BLOCK_VOL[d].exercises.includes(x));   // día de ahora, no el de antes
+  const ajuste = (x, s, label) => (s === 5 && lm(x) ? label.replace(/@ RIR.*$/, '@ RIR2') : label);
   let n = 0;
   for (const [k, vieja] of Object.entries(VIEJO.BLOCK_VOL)) {
     for (const e of vieja.exercises) {
@@ -114,17 +120,17 @@ test('hipertrofia como antes: los ejercicios con series @RIR conservan las 8 pre
         assert.equal(maquina.pres[0].label, '—', `${k} ${maquina.name}: S1`);
         for (let s = 1; s < 8; s++) {
           if (s === 4) continue;   // S5: semana del chalazión
-          const antes = e.pres[s].label.match(/^(\d+) @ (RIR.*)$/);
-          assert.equal(nuevo.pres[s].label, '1 @ RIR0', `${k} ${e.name}: S${s + 1}`);
-          assert.equal(maquina.pres[s].label, `${antes[1] - 1} @ ${antes[2]}`, `${k} ${maquina.name}: S${s + 1}`);
+          const antes = e.pres[deAntes(s)].label.match(/^(\d+) @ (RIR.*)$/);
+          assert.equal(sinFecha(nuevo.pres[s].label), ajuste(nuevo, s, '1 @ RIR0'), `${k} ${e.name}: S${s + 1}`);
+          assert.equal(sinFecha(maquina.pres[s].label), ajuste(maquina, s, `${antes[1] - 1} @ ${antes[2]}`), `${k} ${maquina.name}: S${s + 1}`);
         }
         assert.equal(maquina.target, e.target, `${k} ${maquina.name}: objetivo`);
         n++;
         continue;
       }
-      // Excepción (17/11): S5 es la semana del chalazión (pausa; torso del sábado a RIR 4).
-      const sinS5 = (xs) => xs.filter((_, i) => i !== 4);
-      assert.deepEqual(sinS5(nuevo.pres.map((p) => sinFecha(p.label))), sinS5(e.pres.map((p) => p.label)), `${k} ${e.name}`);
+      const semanas = [0, 1, 2, 3, 5, 6, 7];
+      assert.deepEqual(semanas.map((s) => sinFecha(nuevo.pres[s].label)),
+        semanas.map((s) => ajuste(nuevo, s, e.pres[deAntes(s)].label)), `${k} ${e.name}`);
       assert.equal(nuevo.target, e.target, `${k} ${e.name}: objetivo`);
       n++;
     }
@@ -132,9 +138,10 @@ test('hipertrofia como antes: los ejercicios con series @RIR conservan las 8 pre
   assert.ok(n >= 20, `solo ${n} ejercicios @RIR`);
 });
 
-test('series por grupo: 52 → 88', () => {
-  // S5 (semana del chalazión, 17/11): solo el lunes y el torso suave del sábado (antes, 71).
-  assert.deepEqual([1, 2, 3, 4, 5, 6, 7, 8].map((n) => PLAN.seriesPorGrupo(n).TOTAL), [52, 57, 62, 66, 26, 76, 80, 88]);
+test('series por grupo: 52 → 80 (antes, 88)', () => {
+  // S5 (semana del chalazión, 17/11): solo el lunes y el torso suave del sábado (antes, 71); desde
+  // el 19/11, S6-S8 con las series de S5-S7 de antes (sin el pico de 88).
+  assert.deepEqual([1, 2, 3, 4, 5, 6, 7, 8].map((n) => PLAN.seriesPorGrupo(n).TOTAL), [52, 57, 62, 66, 26, 71, 76, 80]);
 });
 
 test('correctivos (T en prono, W con banda, curl de muñeca): objetivo correctivo y fuera del recuento', () => {

@@ -384,7 +384,7 @@ test('RODILLA_DATA: 63 días del 26/10 al 27/12 con D/E/F del volcado', () => {
   assert.equal(DATA.tests.length, 4);
   // La prueba del 30/10 va aparte: no es ningún test.
   assert.deepEqual(DATA.pruebas.map((x) => [x.fecha, x.loadD, x.repsD, x.loadI, x.repsI]), [['2026-10-30', 22.5, 26, 32.5, 22]]);
-  assert.deepEqual(DATA.tests.map((x) => x.fecha), ['2026-11-06', '2026-11-27', '2026-12-04', '2026-12-11']);
+  assert.deepEqual(DATA.tests.map((x) => x.fecha), ['2026-11-06', '2026-11-27', '2026-12-11', '2026-12-25']);
   assert.equal(DATA.escalones.length, 5);
   assert.ok(!/columna|celda/i.test(DATA.textos.ayuda), 'la ayuda de la app no habla del Excel');
 
