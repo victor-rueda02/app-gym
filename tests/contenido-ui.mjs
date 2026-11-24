@@ -77,11 +77,39 @@ const sesionesDe = (n) => {
   const t = `tituloS${n}`;
   for (const cab of CABS) if (cab.dias[t]) de(dia(cab.dias, cab.clave)).titulo = cab.dias[t];
   for (const k of CARDIO) if (k.dias[t] && k.ej.semanas[n - 1] !== '—') de(k.clave).titulo = k.dias[t];
-  return 'LMXJVSD'.split('').map((l) => out[l]).filter((x) => x && x.ejercicios.length
-    && !x.ejercicios.every((e) => e.semanas[n - 1] === '—'))
+  const lista = 'LMXJVSD'.split('').map((l) => out[l]).filter((x) => x && x.ejercicios.length
+    && !x.ejercicios.every((e) => e.semanas[n - 1] === '—'));
+  return moverDias(lista, n)
     .map((x) => (x.nombreS1 ? { ...x, label: x.nombreS1, titulo: x.nombreS1 }
       : { ...x, label: x.titulo ? `${NOMBRE[x.clave]} · ${x.titulo}` : NOMBRE[x.clave] }));
 };
+// «moverS6=X» en una cabecera: esa semana, lo de ese día se hace el día X, como al moverlo desde
+// Hoy: el origen queda «Libre (movido al …)» y el destino suma lo que llega («Lo del lunes»,
+// «Espalda + lo del miércoles»), sin repetir un ejercicio que ya tenga.
+const tituloCorto = (t) => t.split(/\s+·\s+/)[0].replace(/\s*\(.*\)\s*$/, '').trim();
+function moverDias(lista, n) {
+  const mover = {};
+  for (const cab of CABS) if (cab.dias[`moverS${n}`]) mover[cab.clave] = cab.dias[`moverS${n}`];
+  if (!Object.keys(mover).length) return lista;
+  const base = Object.fromEntries(lista.map((x) => [x.clave, x]));
+  const origenes = Object.keys(mover).filter((de) => base[de] && base[de].ejercicios.length);
+  const res = [];
+  for (const l of 'LMXJVSD') {
+    const propia = base[l] && !origenes.includes(l) ? base[l] : null;
+    const llegan = origenes.filter((de) => mover[de] === l);
+    if (!llegan.length) {
+      if (origenes.includes(l)) res.push({ clave: l, titulo: `Libre (movido al ${NOMBRE[mover[l]].toLowerCase()})`, ejercicios: [] });
+      else if (base[l]) res.push(base[l]);
+      continue;
+    }
+    const vistos = new Set(propia ? propia.ejercicios.map((e) => e.nombre) : []);
+    const extra = llegan.flatMap((de) => base[de].ejercicios).filter((e) => !vistos.has(e.nombre) && vistos.add(e.nombre));
+    const notaDe = llegan.map((de) => NOMBRE[de].toLowerCase()).join(' y del ');
+    const con = propia && propia.ejercicios.length ? `${tituloCorto(propia.titulo)} + lo` : 'Lo';
+    res.push({ clave: l, titulo: `${con} del ${notaDe}`, ejercicios: [...(propia ? propia.ejercicios : []), ...extra] });
+  }
+  return res;
+}
 const inicioSemana = (n) => new Date(Date.UTC(2026, 9, 19 + 7 * (n - 1), 12));
 const iso = (d) => d.toISOString().slice(0, 10);
 const fechaDe = (n, dow) => iso(new Date(inicioSemana(n).getTime() + ((dow + 6) % 7) * 86400000));

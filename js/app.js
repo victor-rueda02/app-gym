@@ -273,15 +273,18 @@ function cambiosCard(date, week, session) {
   const letra = PLAN.letraDe(date);
   const base = PLAN.sesionesBase(week.n)[letra];
   const movidos = PLAN.movidosDe(week.n);
+  const propios = PLAN.movidosUsuario(week.n);   // los del plan (Excel) no se deshacen desde aquí
   const dia = (l) => PLAN.NOMBRE_DIA[l].toLowerCase();
   const card = el('<div class="card cambios"><div class="section-label" style="margin:0 0 8px">Cambios de este día</div></div>');
   if (movidos[letra]) {
-    card.appendChild(el(`<p class="multi">Lo de este día se hace el ${escapeHtml(dia(movidos[letra]))} (${escapeHtml(shortDate(fechaDeLetra(date, movidos[letra])))}).</p>`));
-    const des = el('<button class="btn line">Deshacer el cambio</button>');
-    des.addEventListener('click', () => { Store.setMovido(week.n, letra, null); toast('Cambio deshecho'); render(); });
-    card.appendChild(des);
+    card.appendChild(el(`<p class="multi">Lo de este día se hace el ${escapeHtml(dia(movidos[letra]))} (${escapeHtml(shortDate(fechaDeLetra(date, movidos[letra])))})${propios[letra] ? '' : ', como dice el plan'}.</p>`));
+    if (propios[letra]) {
+      const des = el('<button class="btn line">Deshacer el cambio</button>');
+      des.addEventListener('click', () => { Store.setMovido(week.n, letra, null); toast('Cambio deshecho'); render(); });
+      card.appendChild(des);
+    }
   }
-  for (const de of Object.keys(movidos).filter((x) => movidos[x] === letra)) {
+  for (const de of Object.keys(movidos).filter((x) => movidos[x] === letra && propios[x])) {
     const des = el(`<button class="btn line">Devolver lo del ${escapeHtml(dia(de))} a su día</button>`);
     des.addEventListener('click', () => { Store.setMovido(week.n, de, null); toast(`Lo del ${dia(de)} vuelve a su día`); render(); });
     card.appendChild(des);

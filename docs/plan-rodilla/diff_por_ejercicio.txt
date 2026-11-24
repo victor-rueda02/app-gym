@@ -4,7 +4,7 @@ CAMBIA CARDIO · 'Martes (Post-Push) | Bici Z2 (65–75% FC)' (fila 92 -> 101)
     E: '18 min' -> '—'
     F: '20 min' -> '—'
     G: '20 min' -> '—'
-    H: '22 min' -> "10' Z2"
+    H: '22 min' -> '—'
     I: '25 min' -> "10' Z2"
     J: '20 min' -> "10' Z2"
     K: 'Cadencia alta 85–90 rpm, sillín alto (rodilla a 20-25° abajo), 100% sentado. Cero impacto.' -> 'No se hizo en S1: estímulo NUEVO [LÓGICA]. Entra en S4 (el viernes) solo si S2 y S3 cumplieron la regla; desde S5, martes y viernes. Sin Z3 en este bloque. Lo primero que se quita si hay brote. Sillín alto (rodilla a 20-25° abajo), 85-90 rpm, sentado. 10 min fijos en el bloque; subir a 15 después del viaje, como novedad única.'
@@ -15,7 +15,7 @@ ALTA CARDIO · 'Viernes (tras pierna 2) | Bici Z2 (sin Z3 en este bloque)' (fila
     E: '—'
     F: "10' Z2\nnov: 1.ª vez"
     G: '—'
-    H: "10' Z2"
+    H: '—'
     I: "10' Z2"
     J: "10' Z2"
     K: 'S4: primera vez, solo si esa mañana estás igual o mejor. Va después de la pierna 2, que repite la profundidad ya validada, así que la bici es la única novedad del día. Se valida con las mediciones del sábado y del domingo (el sábado no hay pierna) [LÓGICA]. Ver la nota del martes.'
@@ -37,7 +37,7 @@ ALTA CARDIO · 'Domingo · Carrera (repite) | Andar-correr en llano' (fila 104)
     E: 'repite el\nmiércoles'
     F: 'repite el\nmiércoles'
     G: '—'
-    H: 'repite el\nmiércoles'
+    H: '—'
     I: 'repite el\nmiércoles'
     J: 'repite el\nmiércoles'
     K: 'Repite el nivel validado el miércoles. Si el miércoles no se cumplieron los criterios de entrada, esa semana no hay carrera: el domingo no se corre (como mucho, un paseo). Nunca dos días seguidos corriendo [LÓGICA]. El sábado no hay pierna: llegas descansado.'
@@ -107,16 +107,38 @@ ALTA CARDIO · 'Domingo (paseo, semana del chalazión) | Paseo suave' (fila 110)
     I: '—'
     J: '—'
     K: 'Semana del chalazión (S5, 17-22/11): sin carrera ni gimnasio; paseo tranquilo, sin apretar.'
-ALTA CARDIO · 'Hitos y avisos | Calendario' (fila 111)
+ALTA CARDIO · 'Jueves (tras la carrera) · prueba del partido | Prueba del partido: saltitos y cambios de dirección' (fila 111)
+    B: 'Prueba del partido: saltitos y cambios de dirección'
+    C: '—'
+    D: '—'
+    E: '—'
+    F: '—'
+    G: '—'
+    H: '10 saltitos a una pierna con la D\n+ 6-8 cambios de dirección al 50-70 %\nsi pasa de 2/10, el domingo no juegas'
+    I: '—'
+    J: '—'
+    K: 'Antes del partido del 29/11: tras la carrera del jueves. Si duele más de 2/10, o el viernes por la mañana estás peor, no juegas.'
+ALTA CARDIO · 'Domingo · partido de fútbol 7 | Partido de fútbol 7' (fila 112)
+    B: 'Partido de fútbol 7'
+    C: '—'
+    D: '—'
+    E: '—'
+    F: '—'
+    G: '—'
+    H: '25-30 min por tramos\nantes: iso 5×45 s + 15 min de calentamiento\nsi pasa de 2/10, al banquillo'
+    I: '—'
+    J: '—'
+    K: 'Con la regla de carrera: ≤2/10 durante, volver al nivel previo en ≤60 min y las mañanas del lunes y el martes, no peor. Nada de sprints a tope al principio ni chuts largos.'
+ALTA CARDIO · 'Hitos y avisos | Calendario' (fila 113)
     B: 'Calendario'
     C: '—'
     D: "Mar: paseo 30'\nMié: TD + saltitos\n→ 1.ª carrera"
     E: 'Lun 2/11 festivo: en casa, sin escalón\nVie 6/11: test 1'
     F: 'AVISO fisio\n(ver Seguimiento)\nVie: bici'
     G: 'Lun: x8\nMar-dom: pausa (chalazión)\nJue y sáb: isométrico\nTest 2 → vie 27/11'
-    H: 'Vuelta: sin novedades\nVie 27/11: test 2'
-    I: 'Lun: +1 escalón\nMié: N4'
-    J: 'Lun: +1 escalón\nMié: N5\nVie: test 3'
+    H: 'Mié: lo del lunes\nJue: carrera N3 + prueba\nDom: partido\nTest 2 → vie 4/12'
+    I: 'Lun: +1 escalón\nMié: N4\nVie: test 2'
+    J: 'Lun: +1 escalón\nMié: N5'
     K: 'Entrada a la carrera (S2), con la regla de carrera: martes, paseo de 30 min a paso rápido (≤2/10, nivel previo en ≤60 min y el miércoles por la mañana no peor: el criterio 1 se evalúa solo con esa mañana, sin esperar a las 48 h); miércoles antes de correr, 10 touchdown con cada pierna y 20 saltitos a dos piernas (≤2/10). Si se cumplen los tres, 1.ª carrera ese miércoles (N1). Si no, esa semana no hay carrera (el domingo, como mucho, un paseo) y los criterios se repiten el miércoles siguiente [LÓGICA].'
 ALTA J · 'Jalón ancho plano frontal' (fila 32)
     B: 'Espalda'
@@ -147,11 +169,10 @@ ALTA J · 'Laterales sentado' (fila 34)
     E: '2 @ RIR1/0'
     F: '2 @ RIR1/0'
     G: '—'
-    H: '2 @ RIR1/0'
+    H: '—'
     I: '2 @ RIR1/0'
     J: '3 @ RIR1/0'
     K: 'Prioridad 1 (Hombro Lat.) · Sentado en banco a 75–80°, abducir en plano escapular (~30° adelante) sin rotar internamente el hombro.'
-BAJA/RENOMBRE J · 'Unilateral Abduction' (fila antigua 35)
 ALTA J · 'Jalón neutro' (fila 35)
     B: 'Espalda'
     C: '1 @ RIR0'
@@ -163,6 +184,7 @@ ALTA J · 'Jalón neutro' (fila 35)
     I: '2 @ RIR1/0'
     J: '2 @ RIR1/0'
     K: 'Plano sagital (Dorsal Sup.) · Agarre neutro ancho hombros, llevar codos a los bolsillos cortando a 90° (protege codo/bíceps).'
+BAJA/RENOMBRE J · 'Unilateral Abduction' (fila antigua 35)
 BAJA/RENOMBRE J · 'Touchdown squat' (fila antigua 36)
 ALTA J · 'Curl martillo scott' (fila 36)
     B: 'Bíceps'
@@ -171,10 +193,11 @@ ALTA J · 'Curl martillo scott' (fila 36)
     E: '3 @ RIR1/0'
     F: '3 @ RIR1/0'
     G: '—'
-    H: '3 @ RIR1/0'
+    H: '—'
     I: '3 @ RIR1/0'
     J: '3 @ RIR1/0'
     K: 'Prioridad 2 (Bíceps/Braquiorradial) · Agarre neutro (muy amigable para el codo). Bajar en 2-3 s y parar a ~15° de la extensión total para no sobrecargar tendón distal.'
+BAJA/RENOMBRE J · 'Back squat' (fila antigua 37)
 ALTA J · 'Posterior polea' (fila 37)
     B: 'Hombro post.'
     C: '1 @ RIR0'
@@ -182,12 +205,10 @@ ALTA J · 'Posterior polea' (fila 37)
     E: '2 @ RIR1/0'
     F: '2 @ RIR1/0'
     G: '—'
-    H: '2 @ RIR1/0'
+    H: '—'
     I: '3 @ RIR1/0'
     J: '3 @ RIR1/0'
     K: 'Salud Hombro / Transversal · Clave para centrar cabeza humeral y compensar presses.'
-BAJA/RENOMBRE J · 'Back squat' (fila antigua 37)
-BAJA/RENOMBRE J · 'Bulgarian split squat' (fila antigua 38)
 ALTA J · 'Curl bayesian' (fila 38)
     B: 'Bíceps'
     C: '2 @ RIR1/0'
@@ -195,10 +216,11 @@ ALTA J · 'Curl bayesian' (fila 38)
     E: '2 @ RIR1/0'
     F: '2 @ RIR1/0'
     G: '—'
-    H: '2 @ RIR1/0'
+    H: '—'
     I: '3 @ RIR1/0'
     J: '3 @ RIR1/0'
     K: 'Prioridad 2 (Bíceps en estiramiento) · Hombro en extensión detrás del torso; no dejar que el hombro rote hacia delante al subir.'
+BAJA/RENOMBRE J · 'Bulgarian split squat' (fila antigua 38)
 BAJA/RENOMBRE J · 'Isquios sentado' (fila antigua 39)
 BAJA/RENOMBRE J · 'Aductores' (fila antigua 40)
 BAJA/RENOMBRE J · 'Gemelos prensa' (fila antigua 41)
@@ -215,7 +237,6 @@ ALTA L · 'Sentadilla iso pared unilateral' (fila 6)
     K: 'Isométrico de calentamiento del tendón, lo primero de la sesión y antes de la abducción: sentadilla en pared a una pierna, D e I, con peso si hace falta. 3 series de 45 s por pierna (desde S4; antes, sentadilla española 2-3×45 s). En brote, 5×45 s cada día (ver reglas).'
 CAMBIA L · 'Elev laterales polea' (fila 6 -> 7)
     E: '2 @ RIR1/0' -> '2 @ RIR1/0\n2/11: con goma'
-    H: '2 @ RIR1/0' -> '2 @ RIR2\n23/11: RIR 2, sin apnea (vuelta tras el chalazión)'
     J: '3 @ RIR1/0' -> '2 @ RIR1/0'
     K: 'Prioridad 1 · Polea altura muñeca/muslo en plano escapular (~30° adelante). Intercalar en superserie alterna con Unilateral abduction para dar 3-4 min de descanso al deltoides antes de las mancuernas.' -> 'Prioridad 1 · Polea altura muñeca/muslo en plano escapular (~30° adelante). Intercalar en superserie alterna con la abducción (máquina) para dar 3-4 min de descanso al deltoides antes de las mancuernas.'
 BAJA/RENOMBRE L · 'Unilateral abduction' (fila antigua 7)
@@ -231,7 +252,6 @@ ALTA L · 'Abducción de pie unilateral (máquina)' (fila 8)
     J: '3 x10-15/pierna\n@RIR1-2'
     K: 'Cadera: de pie, unilateral, en máquina; empieza por la D y sube carga cuando llegues a 15 con RIR 1-2. Cadera + rodilla combinadas = primera línea en los consensos de 2016 y 2018 [EVIDENCIA]. No cuenta como novedad: apenas carga la rodilla [LÓGICA].'
 CAMBIA L · 'Elev laterales mancuerna' (fila 8 -> 9)
-    H: '2 @ RIR1/0' -> '2 @ RIR2\n23/11: RIR 2, sin apnea (vuelta tras el chalazión)'
     K: 'Prioridad 1 · Hacer tras el 1er bloque de Unilateral abduction · Perfil en acortamiento, controlar bajada sin rebotar.' -> 'Prioridad 1 · Hacer tras el 1er bloque de la abducción (máquina) · Perfil en acortamiento, controlar bajada sin rebotar.'
 BAJA/RENOMBRE L · 'Prensa unil' (fila antigua 10)
 CAMBIA L · 'Touchdown squat' (fila 9 -> 10)
@@ -256,11 +276,11 @@ ALTA L · 'Prensa unil · pesado y lento n.º 1' (fila 11)
     K: 'Pesado y lento para el tendón [EVIDENCIA: Kongsgaard 2009; 1-2 veces/semana para mantenerlo: LÓGICA]. Tempo 3-1-3. D primero: RIR 2 y profundidad de su escalón. I: RIR 1-2, rango completo y mismas reps. Lunes = día de novedad (escalón o reps): solo si esa mañana estás igual o mejor y la touchdown no pasa de 3/10; si no, repite la semana anterior. En la sesión con novedad no cambies nada más (con escalón nuevo, mismo peso). S3 (2/11, festivo): búlgara en casa en el escalón 0, sin novedad; mantiene el estímulo pesado y lento sin cambiar dos cosas a la vez [LÓGICA]. Escalones en S4, S7 y S8 (S6, vuelta tras la pausa del chalazión, sin novedad); el 4.º, después del viaje.'
 CAMBIA L · 'Gemelos prensa' (fila 11 -> 12)
     E: '4 @ RIR1/0' -> '4 @ RIR1/0\n2/11: de pie, 1 pierna, mancuerna'
-    H: '4 @ RIR1/0' -> '4 @ RIR2\n23/11: RIR 2, sin apnea (vuelta tras el chalazión)'
+    H: '4 @ RIR1/0' -> '4 @ RIR2\n25/11: RIR 2-3, lejos del fallo (partido el domingo)'
     I: '5 @ RIR1/0' -> '4 @ RIR1/0'
 CAMBIA L · 'Hiperextensiones' (fila 12 -> 13)
     E: '2 @ RIR1/0' -> '2 @ RIR1/0\n2/11: PM rumano con barra (RIR 2)'
-    H: '3 @ RIR1/0' -> '3 @ RIR2\n23/11: RIR 2, sin apnea (vuelta tras el chalazión)'
+    H: '3 @ RIR1/0' -> '3 @ RIR2\n25/11: RIR 2-3, lejos del fallo (partido el domingo)'
     J: '4 @ RIR1/0' -> '3 @ RIR1/0'
 ALTA L · 'Dominada neutra dorsal' (fila 14)
     B: 'Espalda'
@@ -269,7 +289,7 @@ ALTA L · 'Dominada neutra dorsal' (fila 14)
     E: '1 @ RIR0'
     F: '1 @ RIR0'
     G: '1 @ RIR0'
-    H: '1 @ RIR2\n23/11: RIR 2, sin apnea (vuelta tras el chalazión)'
+    H: '1 @ RIR0'
     I: '2 @ RIR1/0'
     J: '2 @ RIR1/0'
     K: 'Desde S3 va el lunes, después de la pierna y el hombro (S1: viernes en el gimnasio; S2: sábado 31/10 en casa con peso libre). Si llegas muy cansado al final del lunes, haz la espalda justo después de la prensa y deja gemelos e hiperextensiones para el final [LÓGICA]. Plano sagital (Dorsal Sup.) · Usar STRAPS obligatoriamente para anular fatiga previa de bíceps y proteger codos.'
@@ -280,7 +300,7 @@ ALTA L · 'Remo máquina (pecho apoyado 30°)' (fila 15)
     E: '2 @ RIR1/0\n2/11: mancuerna, pecho apoyado'
     F: '2 @ RIR1/0'
     G: '2 @ RIR1/0'
-    H: '2 @ RIR2\n23/11: RIR 2, sin apnea (vuelta tras el chalazión)'
+    H: '2 @ RIR1/0'
     I: '2 @ RIR1/0'
     J: '2 @ RIR1/0'
     K: 'Desde S3 va el lunes, después de la pierna y el hombro (S1: viernes en el gimnasio; S2: sábado 31/10 en casa con peso libre). Plano sagital/híbrido (Dorsal Sup.) · Usar STRAPS, codos a ~30° hasta línea del torso.'
@@ -291,30 +311,26 @@ ALTA L · 'Aducción unil. polea alta (Pull-in)' (fila 16)
     E: '2 @ RIR1/0\n2/11: con goma en la barra'
     F: '2 @ RIR1/0'
     G: '2 @ RIR1/0'
-    H: '2 @ RIR2\n23/11: RIR 2, sin apnea (vuelta tras el chalazión)'
+    H: '2 @ RIR1/0'
     I: '2 @ RIR1/0'
     J: '2 @ RIR1/0'
     K: 'Desde S3 va el lunes, después de la pierna y el hombro (S1: viernes en el gimnasio; S2: sábado 31/10 en casa con peso libre). Prioridad 3 (Dorsal Bajo) · De lado a la polea (con tobillera en muñeca o codo semirrígido) para aislar haz inferior sin usar bíceps ni codo · Sem 1-2 a RIR 1-2.'
 CAMBIA M · 'Press inclinado barra (30–40°)' (fila 16 -> 20)
     G: '3 @ RIR1/0' -> '—'
-    H: '3 @ RIR1/0' -> '3 @ RIR2\n24/11: RIR 2, sin apnea (vuelta tras el chalazión)'
     J: '4 @ RIR1/0' -> '3 @ RIR1/0'
 CAMBIA M · 'Extensión tríceps unil polea' (fila 17 -> 21)
     G: '3 @ RIR1/0' -> '—'
-    H: '3 @ RIR1/0' -> '3 @ RIR2\n24/11: RIR 2, sin apnea (vuelta tras el chalazión)'
 CAMBIA M · 'Contractora (Pec Deck)' (fila 18 -> 22)
     G: '3 @ RIR1/0' -> '—'
-    H: '3 @ RIR1/0' -> '3 @ RIR2\n24/11: RIR 2, sin apnea (vuelta tras el chalazión)'
 CAMBIA M · 'Triceps tras nuca unil polea' (fila 19 -> 23)
     G: '2 @ RIR1/0' -> '—'
-    H: '2 @ RIR1/0' -> '2 @ RIR2\n24/11: RIR 2, sin apnea (vuelta tras el chalazión)'
     J: '3 @ RIR1/0' -> '2 @ RIR1/0'
 CAMBIA M · 'Abs colgado (retroversión)' (fila 20 -> 24)
     D: '3 @ RIR1/0' -> '1 @ RIR0'
     E: '3 @ RIR1/0' -> '1 @ RIR0'
     F: '3 @ RIR1/0' -> '1 @ RIR0'
     G: '4 @ RIR1/0' -> '—'
-    H: '4 @ RIR1/0' -> '1 @ RIR2\n24/11: RIR 2, sin apnea (vuelta tras el chalazión)'
+    H: '4 @ RIR1/0' -> '1 @ RIR0'
     I: '4 @ RIR1/0' -> '1 @ RIR0'
     J: '5 @ RIR1/0' -> '1 @ RIR0'
 ALTA M · 'Abs en máquina (crunch)' (fila 25)
@@ -324,7 +340,7 @@ ALTA M · 'Abs en máquina (crunch)' (fila 25)
     E: '2 @ RIR1/0'
     F: '2 @ RIR1/0'
     G: '—'
-    H: '3 @ RIR2\n24/11: RIR 2, sin apnea (vuelta tras el chalazión)'
+    H: '3 @ RIR1/0'
     I: '3 @ RIR1/0'
     J: '3 @ RIR1/0'
     K: 'Desde S2 recoge las series del colgado (que se queda en 1) · Pies enganchados y cadera fija: enrollar el tronco llevando costillas hacia pelvis, sin tirar con los brazos ni flexionar la cadera. Bajar controlado, 2 s.'
@@ -335,7 +351,7 @@ ALTA S · 'Sentadilla iso pared unilateral' (fila 54)
     E: '—'
     F: '—'
     G: '3 x45 s'
-    H: '—'
+    H: '3 x45 s'
     I: '—'
     J: '—'
     K: 'Semana del chalazión (S5): el isométrico va el jueves (el del viernes) y el sábado. Respirando, sin apnea.'
@@ -492,7 +508,7 @@ ALTA V · 'Sentadilla iso pared unilateral' (fila 42)
     H: '3 x45 s'
     I: '3 x45 s'
     J: '3 x45 s'
-    K: 'Isométrico de calentamiento del tendón, lo primero de la sesión: antes del test (S3/S6/S8) o de la sentadilla. Sentadilla en pared a una pierna, D e I, con peso si hace falta. 3 series de 45 s por pierna (desde S4; antes, sentadilla española 2-3×45 s).'
+    K: 'Isométrico de calentamiento del tendón, lo primero de la sesión: antes del test (S3/S7) o de la sentadilla. Sentadilla en pared a una pierna, D e I, con peso si hace falta. 3 series de 45 s por pierna (desde S4; antes, sentadilla española 2-3×45 s).'
 ALTA V · 'TEST fuerza · extensión unilateral en máquina 90→45°' (fila 43)
     B: 'Test'
     C: '—'
@@ -500,9 +516,9 @@ ALTA V · 'TEST fuerza · extensión unilateral en máquina 90→45°' (fila 43)
     E: '2 aprox. +\n1 al fallo\npor pierna'
     F: '—'
     G: '—'
-    H: '2 aprox. +\n1 al fallo\npor pierna'
-    I: '—'
-    J: '2 aprox. +\n1 al fallo\npor pierna'
+    H: '—'
+    I: '2 aprox. +\n1 al fallo\npor pierna'
+    J: '—'
     K: 'Test 1 → vie 6/11 (S3): en S2 solo hubo una prueba orientativa (30/10). Al empezar la sesión, tras la sentadilla iso en pared y 2 series de aproximación. Mismo asiento y SIEMPRE rango fijo 90→45° (si el rango cambia, la comparación entre semanas no vale). Cada pierna lleva su propio peso, buscando 10-12 reps al fallo técnico (orientativo: D ~30 kg, I ~40 kg); tempo 2-0-2, D primero, 3 min de descanso y luego la I; para si la D pasa de 3/10. Apunta carga y reps de cada pierna en «Seguimiento rodilla», que calcula la simetría. Objetivo ≥90% antes del balón [LÓGICA; el 90% viene de la vuelta al deporte tras LCA, no está validado en dolor femoropatelar: INCERTIDUMBRE]. Test en rango completo opcional en S8 y no en S7, para que sea la única novedad de su semana.'
 ALTA V · 'Sentadilla al cajón o desde pines · pesado y lento n.º 2' (fila 44)
     B: 'Rehab'
@@ -511,11 +527,10 @@ ALTA V · 'Sentadilla al cajón o desde pines · pesado y lento n.º 2' (fila 44
     E: '3 x10\nprof. del lunes'
     F: '3 x10\nprof. del lunes'
     G: '—'
-    H: '3 x8\nprof. del lunes'
+    H: '—'
     I: '3 x8\nprof. del lunes'
     J: '3 x8\nprof. del lunes'
-    K: 'Tras el test (S3/S6/S8), carga por RIR. Tempo 3-1-3, RIR 2. Profundidad = la validada el lunes en la prensa. Postura habitual: un chasquido sin dolor no cambia nada; el apoyo ancho solo si te reduce el DOLOR [LÓGICA].'
-BAJA/RENOMBRE V · 'Triceps conc polea (-15°)' (fila antigua 45)
+    K: 'Tras el test (S3/S7), carga por RIR. Tempo 3-1-3, RIR 2. Profundidad = la validada el lunes en la prensa. Postura habitual: un chasquido sin dolor no cambia nada; el apoyo ancho solo si te reduce el DOLOR [LÓGICA].'
 ALTA V · 'Bulgarian split squat' (fila 45)
     B: 'Rehab'
     C: '2 x12'
@@ -523,11 +538,11 @@ ALTA V · 'Bulgarian split squat' (fila 45)
     E: '2 x10/pierna'
     F: '2 x10/pierna'
     G: '—'
-    H: '2 x8/pierna'
+    H: '—'
     I: '2 x8/pierna'
     J: '2 x8/pierna'
     K: 'D primero: RIR 2 y profundidad validada el lunes. I: RIR 1-2 y rango completo. Tempo 3-1-3. Alterna piernas, 60-90 s entre una y otra.'
-BAJA/RENOMBRE V · 'Laterales polea' (fila antigua 46)
+BAJA/RENOMBRE V · 'Triceps conc polea (-15°)' (fila antigua 45)
 ALTA V · 'Abducción de pie unilateral (máquina)' (fila 46)
     B: 'Rehab (cadera)'
     C: '2 x15–20'
@@ -535,10 +550,12 @@ ALTA V · 'Abducción de pie unilateral (máquina)' (fila 46)
     E: '3 x10-15/pierna\n@RIR1-2'
     F: '3 x10-15/pierna\n@RIR1-2'
     G: '—'
-    H: '3 x10-15/pierna\n@RIR1-2'
+    H: '—'
     I: '3 x10-15/pierna\n@RIR1-2'
     J: '3 x10-15/pierna\n@RIR1-2'
     K: 'Misma máquina que el lunes; empieza por la D. Va DESPUÉS de la búlgara, para no fatigar el glúteo medio antes del trabajo a una pierna [LÓGICA]. Lunes + viernes = 72-96 h entre sesiones de cadera.'
+BAJA/RENOMBRE V · 'Laterales polea' (fila antigua 46)
+BAJA/RENOMBRE V · 'Press francés manc (banco plano)' (fila antigua 47)
 ALTA V · 'Touchdown squat' (fila 47)
     B: 'Rehab'
     C: '2 x15–20'
@@ -550,7 +567,6 @@ ALTA V · 'Touchdown squat' (fila 47)
     I: '—'
     J: '—'
     K: 'Sale de este día desde S2: va el lunes, antes de la prensa [LÓGICA].'
-BAJA/RENOMBRE V · 'Press francés manc (banco plano)' (fila antigua 47)
 BAJA/RENOMBRE V · 'Curl biceps barra z' (fila antigua 48)
 ALTA V · 'Isquios sentado' (fila 48)
     B: 'Isquios'
@@ -559,11 +575,10 @@ ALTA V · 'Isquios sentado' (fila 48)
     E: '4 @ RIR1/0'
     F: '4 @ RIR1/0'
     G: '—'
-    H: '4 @ RIR1/0'
+    H: '3 @ RIR2\n25/11: RIR 2-3, lejos del fallo (partido el domingo)'
     I: '5 @ RIR1/0'
     J: '5 @ RIR1/0'
     K: 'Isquios en estiramiento máximo (cadera a 90°) · Controlar fase excéntrica.'
-BAJA/RENOMBRE V · 'Press máquina neutro ascendente' (fila antigua 49)
 ALTA V · 'Aductores' (fila 49)
     B: 'Aductores'
     C: '2 @ RIR1/0'
@@ -571,10 +586,12 @@ ALTA V · 'Aductores' (fila 49)
     E: '2 @ RIR1/0'
     F: '2 @ RIR1/0'
     G: '—'
-    H: '3 @ RIR1/0'
+    H: '2 @ RIR2\n25/11: RIR 2-3, lejos del fallo (partido el domingo)'
     I: '3 @ RIR1/0'
     J: '3 @ RIR1/0'
     K: 'Plano transversal/frontal · Pausa de 1 s en apertura máxima sin dolor inguinal/rodilla.'
+BAJA/RENOMBRE V · 'Press máquina neutro ascendente' (fila antigua 49)
+BAJA/RENOMBRE V · 'Dominada neutra dorsal' (fila antigua 50)
 ALTA V · 'Gemelos prensa' (fila 50)
     B: 'Gemelos'
     C: '2 @ RIR1/0'
@@ -582,11 +599,10 @@ ALTA V · 'Gemelos prensa' (fila 50)
     E: '3 @ RIR1/0'
     F: '3 @ RIR1/0'
     G: '—'
-    H: '4 @ RIR1/0'
+    H: '—'
     I: '4 @ RIR1/0'
     J: '4 @ RIR1/0'
     K: 'Prensa con pies abajo · Pausa estricta de 2 s en máximo estiramiento abajo (sin rebote elástico).'
-BAJA/RENOMBRE V · 'Dominada neutra dorsal' (fila antigua 50)
 BAJA/RENOMBRE V · 'Remo máquina (pecho apoyado 30°)' (fila antigua 51)
 BAJA/RENOMBRE V · 'Aducción unil. polea alta (Pull-in)' (fila antigua 52)
 BAJA/RENOMBRE X · 'Jalón ancho plano frontal' (fila antigua 25)

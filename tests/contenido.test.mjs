@@ -81,7 +81,8 @@ test('S1 y S2 como se hicieron: cada día, los mismos ejercicios y prescripcione
     // La sentadilla española (fila nueva, 13/11) entra en S4 y los paseos de la semana del
     // chalazión (17/11) solo están en S5: en S1-S2 van con «—».
     const ahora = porDia(PLAN, PLAN.VOL_WEEKS[n - 1]);
-    for (const d of Object.keys(ahora)) ahora[d] = ahora[d].filter((e) => !['sentadilla-espanola · —', 'paseo-suave · —'].includes(e));
+    // Lo mismo con la prueba del partido y el partido de fútbol (S6, 24/11).
+    for (const d of Object.keys(ahora)) ahora[d] = ahora[d].filter((e) => !['sentadilla-espanola · —', 'paseo-suave · —', 'prueba-partido · —', 'partido-futbol-7 · —'].includes(e));
     assert.deepEqual(ahora, antes, `S${n}`);
   }
 });
@@ -100,13 +101,11 @@ test('hipertrofia como antes: los ejercicios con series @RIR conservan las 8 pre
   // Excepción pedida (27/10): desde S2 el abs colgado del martes se queda en 1 serie y el
   // resto pasa al abs en máquina, justo debajo. Se comprueba que entre los dos suman lo
   // de antes, con el mismo RIR; el total de Abs no cambia (ver «series por grupo»).
-  // Excepciones del chalazión: S5 (17/11) es la semana de pausa y no se compara; desde el 19/11
-  // S6-S8 llevan las series de S5-S7 de antes (sin el pico de S8), y el lunes y el martes de S6, a
-  // RIR 2 (vuelta tras la operación).
+  // Excepciones del chalazión: S5 (17/11) es la semana de pausa y S6 (24/11) la de vuelta con el
+  // partido de fútbol del domingo; no se comparan. Desde el 19/11, S7-S8 llevan las series de
+  // S6-S7 de antes (sin el pico de S8).
   const repartidos = { M: { 'abs-colgado-retroversion': 'abs-maquina-crunch' } };
   const deAntes = (s) => (s >= 5 ? s - 1 : s);
-  const lm = (x) => ['L', 'M'].some((d) => PLAN.BLOCK_VOL[d].exercises.includes(x));   // día de ahora, no el de antes
-  const ajuste = (x, s, label) => (s === 5 && lm(x) ? label.replace(/@ RIR.*$/, '@ RIR2') : label);
   let n = 0;
   for (const [k, vieja] of Object.entries(VIEJO.BLOCK_VOL)) {
     for (const e of vieja.exercises) {
@@ -119,18 +118,18 @@ test('hipertrofia como antes: los ejercicios con series @RIR conservan las 8 pre
         assert.equal(nuevo.pres[0].label, e.pres[0].label, `${k} ${e.name}: S1`);
         assert.equal(maquina.pres[0].label, '—', `${k} ${maquina.name}: S1`);
         for (let s = 1; s < 8; s++) {
-          if (s === 4) continue;   // S5: semana del chalazión
+          if (s === 4 || s === 5) continue;   // S5-S6: chalazión y vuelta con partido
           const antes = e.pres[deAntes(s)].label.match(/^(\d+) @ (RIR.*)$/);
-          assert.equal(sinFecha(nuevo.pres[s].label), ajuste(nuevo, s, '1 @ RIR0'), `${k} ${e.name}: S${s + 1}`);
-          assert.equal(sinFecha(maquina.pres[s].label), ajuste(maquina, s, `${antes[1] - 1} @ ${antes[2]}`), `${k} ${maquina.name}: S${s + 1}`);
+          assert.equal(sinFecha(nuevo.pres[s].label), '1 @ RIR0', `${k} ${e.name}: S${s + 1}`);
+          assert.equal(sinFecha(maquina.pres[s].label), `${antes[1] - 1} @ ${antes[2]}`, `${k} ${maquina.name}: S${s + 1}`);
         }
         assert.equal(maquina.target, e.target, `${k} ${maquina.name}: objetivo`);
         n++;
         continue;
       }
-      const semanas = [0, 1, 2, 3, 5, 6, 7];
+      const semanas = [0, 1, 2, 3, 6, 7];
       assert.deepEqual(semanas.map((s) => sinFecha(nuevo.pres[s].label)),
-        semanas.map((s) => ajuste(nuevo, s, e.pres[deAntes(s)].label)), `${k} ${e.name}`);
+        semanas.map((s) => e.pres[deAntes(s)].label), `${k} ${e.name}`);
       assert.equal(nuevo.target, e.target, `${k} ${e.name}: objetivo`);
       n++;
     }
@@ -139,9 +138,10 @@ test('hipertrofia como antes: los ejercicios con series @RIR conservan las 8 pre
 });
 
 test('series por grupo: 52 → 80 (antes, 88)', () => {
+  // S6 (24/11): vuelta tras 2 semanas sin entrenar con partido el domingo: sin pierna 2 ni brazos del pull (56).
   // S5 (semana del chalazión, 17/11): solo el lunes y el torso suave del sábado (antes, 71); desde
   // el 19/11, S6-S8 con las series de S5-S7 de antes (sin el pico de 88).
-  assert.deepEqual([1, 2, 3, 4, 5, 6, 7, 8].map((n) => PLAN.seriesPorGrupo(n).TOTAL), [52, 57, 62, 66, 26, 71, 76, 80]);
+  assert.deepEqual([1, 2, 3, 4, 5, 6, 7, 8].map((n) => PLAN.seriesPorGrupo(n).TOTAL), [52, 57, 62, 66, 26, 56, 76, 80]);
 });
 
 test('correctivos (T en prono, W con banda, curl de muñeca): objetivo correctivo y fuera del recuento', () => {
@@ -171,9 +171,9 @@ test('pierna en dos días: rodilla lunes y viernes (S1: jueves), abducción en m
   assert.equal(PLAN.BLOCK_VOL.L.exercises[0].name, 'Sentadilla iso pared unilateral');
   assert.ok(PLAN.BLOCK_VOL.L.exercises.some((e) => /^Abducción de pie unilateral \(máquina\)/.test(e.name)));
   for (let n = 2; n <= 8; n++) {
-    if (n === 5) {   // semana del chalazión (17/11): el sábado, solo el isométrico de rodilla
-      const rehab = PLAN.BLOCK_VOL.S.exercises.filter((e) => !e.pres[4].skip && /Rehab/.test(e.target));
-      assert.deepEqual(rehab.map((e) => e.id), ['sentadilla-espanola'], 'S5: sábado');
+    if (n === 5 || n === 6) {   // chalazión (17/11) y vuelta con partido (24/11): el sábado, solo el isométrico
+      const rehab = PLAN.BLOCK_VOL.S.exercises.filter((e) => !e.pres[n - 1].skip && /Rehab/.test(e.target));
+      assert.deepEqual(rehab.map((e) => e.id), ['sentadilla-espanola'], `S${n}: sábado`);
       continue;
     }
     const sabado = PLAN.BLOCK_VOL.S.exercises.filter((e) => !e.pres[n - 1].skip);

@@ -436,7 +436,10 @@ const RodillaCalc = (() => {
 
     // Avanzar solo si todas las sesiones decisivas de la semana anterior dieron Avanzar.
     function sesionesAvanzan(sem, dias) {
-      const xs = dias.map((d) => fila(sem, d)).filter(Boolean);
+      const todas = dias.map((d) => fila(sem, d)).filter(Boolean);
+      // Un día sin sesión («—», p. ej. un viernes sin pierna) no cuenta si hubo otra sesión decisiva.
+      const conSesion = todas.filter((x) => x.semaforo !== '—');
+      const xs = conSesion.length ? conSesion : todas;
       const malas = xs.filter((x) => x.semaforo !== 'Avanzar');
       if (!malas.length) return { ok: true };
       const x = malas[0];

@@ -207,6 +207,7 @@ Volumen, R en Seguimiento), con etiquetas `clave` o `clave=valor` separadas por 
 | `id=…` | id estable del ejercicio: el historial cuelga de él, así que **renombrar es solo cambiar el nombre** |
 | `escalera=prensa` / `prensa:sigue` / `prensa:anterior` | la prensa marca reps y escalón (`nov: xN`, `nov: +1 escalón`); la sentadilla y la búlgara siguen su nivel; la touchdown va al de la semana anterior |
 | `escalera=carrera` / `carrera:domingo` | los niveles salen de las celdas `N1 · 8×(1'/2')`; el domingo repite; «—» después de S1 = esa semana no se corre y el nivel se queda |
+| `moverS6=X` | (cabecera) esa semana, todo lo de ese día se hace el día X, como «Mover este entreno» de Hoy; la rodilla también lo sigue |
 | `tituloS5=…` | (cabecera o fila de cardio) título del día solo esa semana; un día con todo en «—» esa semana es descanso |
 | `escalera=<otra>` / `<otra>:sigue` | escalera nueva: primera línea `N x R`, segunda la descripción; cada subida, `nov: <descripción>` |
 | `bici` | la bici: entra en su primera celda con seguimiento, se quita en brote o fallo y vuelve |

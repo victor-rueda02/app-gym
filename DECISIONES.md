@@ -716,7 +716,40 @@ Propuesta en el chat y aceptada por el usuario («Sí, pásalo»).
     S3 / S6 / S8». Pruebas ajustadas: `contenido` compara S6-S8 con S5-S7 de antes, `e2e`,
     `test-export` y `prueba_edicion` (la celda que define N5 es ahora la de S8).
 
-## Pendientes abiertos (19/11)
+## S6: vuelta con partido de fútbol 7 el domingo 29/11 (24/11)
+
+El usuario no entrenó del 17 al 23/11 (tampoco el lunes 23) y el domingo 29/11 juega un partido
+de fútbol 7. Plan acordado en el chat (24/11), con sus dos cambios: el jueves solo espalda (sin
+brazos ni hombro, que van el viernes con el torso) y el torso del viernes en el gimnasio.
+
+123. **La semana, en el Excel (columna de S6).** Mar 24 push a RIR 1/0 + sentadilla iso 3×45 s
+    (la fila del viernes, `S6=M`), sin bici. Mié 25: lo del lunes (`moverS6=X`) con isquios
+    sentado 3 y aductores 2 (`S6=L`), y gemelo, hiperextensiones, isquios y aductores a RIR 2 con
+    «RIR 2-3, lejos del fallo (partido el domingo)»; el tren superior, a RIR 1/0. Jue 26: la
+    carrera (`moverS6=J` en la cabecera del miércoles, «repite N3») + una fila nueva «Prueba del
+    partido» (10 saltitos a una pierna con la D + 6-8 cambios de dirección al 50-70 %; >2/10 = no
+    juega) + espalda sin laterales sentado, curl martillo, posterior ni bayesian. Vie 27: el torso
+    del sábado en el gimnasio (`S6=V` en las dos cabeceras del sábado), sin pierna 2 ni bici.
+    Sáb 28: solo el iso (`S6=S` en su fila). Dom 29: fila nueva «Partido de fútbol 7» (25-30 min
+    por tramos, antes iso 5×45 s y 15 min de calentamiento; >2/10, al banquillo), sin carrera.
+    Series de S6: 56. En «Seguimiento rodilla», el domingo lleva la **regla de carrera** (el
+    partido decide la carrera de S7 con las mañanas del lunes y el martes) y el viernes y el
+    sábado, sin regla.
+124. **`moverS6=X` (código nuevo).** En una cabecera: esa semana todo lo de ese día se hace el día
+    X, igual que «Mover este entreno» de Hoy (`PLAN.movidosPlan`, que `movidosDe` junta con los de
+    Hoy; los de Hoy mandan). La rodilla lo sigue: regla, novedad y día efectivo de la progresión.
+    En «Cambios de este día» se ve «como dice el plan», sin botón de deshacer, y la nota del
+    destino dice «cambio del plan». Además, **un día decisivo sin sesión («—») ya no frena la
+    progresión si hubo otra sesión decisiva esa semana**: el viernes 27/11 sin pierna no impide el
+    escalón de S7 si el miércoles salió en verde (con todo en «—», como en S5, sigue Mantener).
+125. **Tests:** test 2 → **viernes 4/12 (S7)**: a 48 h del partido, un test al fallo cargaría el
+    tendón y no se sabría a qué culpar el dolor. El test 3 y el opcional pasan a después del viaje
+    (fechas orientativas 25/12 y 27/12; la app necesita una). Cabecera del viernes: «test de fuerza
+    S3 / S7 (el 3.º, tras el viaje)». La bici, si S4 fue sin viernes, se estrena el martes 1/12.
+    Pruebas ajustadas: las que usaban S6 como semana normal miran S7; `contenido` y `contenido-ui`
+    entienden `moverSn`; prueba nueva en `cambios.test.mjs`.
+
+## Pendientes abiertos (24/11)
 
 Lista viva: quitar lo que se resuelva y añadir lo nuevo.
 
@@ -725,7 +758,9 @@ Lista viva: quitar lo que se resuelva y añadir lo nuevo.
   solo desde el Excel.
 - **+1 serie de deltoides posterior en todas las semanas:** aceptado por el usuario el 17/10
   (pasaría de 1→3 a 2→4), pero el Excel sigue con 1→3 (fila «Posterior polea», jueves).
-- **Semana S5 (chalazión):** aplicada (116-119), y S6-S8 reajustadas (120-122). Si el médico cambia algo o no hace el
+- **Semana S5 (chalazión):** aplicada (116-119), y S6-S8 reajustadas (120-122).
+- **Después del partido (29/11):** mirar las mañanas del 30/11 y el 1/12 antes de las novedades de
+  S7; si el partido fue mal, la app lo trata como brote (no había novedad sin validar). Si el médico cambia algo o no hace el
   isométrico/torso, nada que tocar: «Quitar de este día» en Hoy. Al volver, la española 5×45 s
   del brote/viaje sigue sin cambiar de nombre (111).
 - **Criterios para pasar a pliometría** tras llegar a ×6 (después del viaje): sin definir.

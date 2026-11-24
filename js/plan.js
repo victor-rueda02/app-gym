@@ -234,6 +234,8 @@ const RULES = [
      S1=X;S2=X                día de esa semana, si no es el de la cabecera (en una cabecera,
                               toda la sesión; en un ejercicio, solo esa fila)
      tituloS5=…               (cabecera o fila de cardio) título del día solo esa semana
+     moverS6=X                (cabecera) esa semana, todo lo de ese día se hace el día X: como
+                              «Mover este entreno» de Hoy, y la rodilla también lo sigue
      cardio · hitos · regla · nota · grupos · reglas-bloque · desglose=…   filas de texto/tablas
    Dos cabeceras con la misma letra son un mismo día (sus filas, seguidas).
    El sábado de S1 y el domingo sin sesión: si un domingo no tiene sesión esa semana,
@@ -286,7 +288,7 @@ function construirVolumen(hoja) {
   const max = ultimaFila(hoja);
   const vol = {
     cabeceras: [], cardio: [], rules: [], notes: [], hitos: [], hitosNote: '', blockRules: [], blockRulesTitle: '',
-    cardioTitle: '', grupos: [],
+    cardioTitle: '', grupos: [], mover: {},
   };
 
   const ejercicio = (r, nombre, objetivo, e) => {
@@ -313,6 +315,12 @@ function construirVolumen(hoja) {
       if (!m) throw new Error(`Volumen!A${r}: cabecera de sesión sin el formato «(L) Lunes · título»`);
       sesion = { letra: m[1], title: (m[3] || '').trim(), dias: diasPorSemana(e, `L${r}`), titulos: titulosPorSemana(e), nombreS1: e.nombreS1, filas: [] };
       vol.cabeceras.push(sesion);
+      for (const [k, a] of Object.entries(e)) {
+        const mm = /^moverS(\d+)$/.exec(k);
+        if (!mm) continue;
+        if (!(a in DOW)) throw new Error(`Volumen!L${r}: «${k}=${a}» no es un día (L M X J V S D)`);
+        (vol.mover[+mm[1]] = vol.mover[+mm[1]] || {})[m[1]] = a;
+      }
       continue;
     }
     if (!a) { sesion = null; continue; }
@@ -604,9 +612,12 @@ let fuenteCambios = () => ({});
 const setFuenteCambios = (fn) => { fuenteCambios = fn; };
 
 /* Días movidos la semana n: { origen: destino } (letras L…D). Solo vale si el origen tiene
-   sesión esa semana; el destino suma esa sesión a la suya. */
+   sesión esa semana; el destino suma esa sesión a la suya. Primero los del Excel («moverS6=X»
+   en una cabecera) y encima los movidos desde Hoy. */
+const movidosPlan = (n) => ({ ...(VOLUMEN.mover[n] || {}) });
+const movidosUsuario = (n) => ((fuenteCambios() || {}).movidos || {})[`S${n}`] || {};
 const movidosDe = (n) => {
-  const m = ((fuenteCambios() || {}).movidos || {})[`S${n}`] || {};
+  const m = { ...movidosPlan(n), ...movidosUsuario(n) };
   return Object.fromEntries(Object.entries(m).filter(([de, a]) => DIAS_PLAN.includes(de) && DIAS_PLAN.includes(a) && de !== a));
 };
 
@@ -639,7 +650,7 @@ function sesionesDe(n) {
       ...(propia || base[llegan[0]]), id: `VOL-${letra}`, dow: DOW[letra], name: NOMBRE_DIA[letra],
       title: `${conTitulo} del ${notaDe}`,
       exercises: [...(propia ? propia.exercises : []), ...extra],
-      note: [propia && propia.note, `Hoy también va lo del ${notaDe} (movido desde Hoy).`].filter(Boolean).join(' '),
+      note: [propia && propia.note, `Hoy también va lo del ${notaDe} (${llegan.every((de) => movidosPlan(n)[de] === letra && !movidosUsuario(n)[de]) ? 'cambio del plan' : 'movido desde Hoy'}).`].filter(Boolean).join(' '),
       movidosDe: llegan,
     };
   }
@@ -835,5 +846,5 @@ const PLAN = {
   PRENSA_NIVELES, CARRERA_NIVELES, PRENSA_MAX, CARRERA_MAX, PRENSA_SEMANA, ESCALERAS,
   LIBRO, etiquetasApp, DIAS_PLAN, NOMBRE_DIA, SEMANA_SEGUIMIENTO,
   SIN_VIERNES, setFuenteSinViernes, admiteSinViernes, sinViernes, diaSinViernes, entradaBici, letraDe,
-  setFuenteCambios, setLadoDe, movidosDe, diaEfectivo, sesionesBase, ejercicioAnadido, presAnadida, catalogoAnadir, dowOf,
+  setFuenteCambios, setLadoDe, movidosDe, movidosPlan, movidosUsuario, diaEfectivo, sesionesBase, ejercicioAnadido, presAnadida, catalogoAnadir, dowOf,
 };

@@ -17,7 +17,7 @@
  {
   "celda": "L4",
   "antes": null,
-  "ahora": "sesion"
+  "ahora": "sesion;moverS6=X"
  },
  {
   "celda": "L5",
@@ -122,7 +122,7 @@
  {
   "celda": "H7",
   "antes": "2 x15–20",
-  "ahora": "2 @ RIR2\n23/11: RIR 2, sin apnea (vuelta tras el chalazión)"
+  "ahora": "2 @ RIR1/0"
  },
  {
   "celda": "I7",
@@ -242,7 +242,7 @@
  {
   "celda": "H9",
   "antes": "2 x15–20",
-  "ahora": "2 @ RIR2\n23/11: RIR 2, sin apnea (vuelta tras el chalazión)"
+  "ahora": "2 @ RIR1/0"
  },
  {
   "celda": "I9",
@@ -417,7 +417,7 @@
  {
   "celda": "H12",
   "antes": "3 @ RIR1/0",
-  "ahora": "4 @ RIR2\n23/11: RIR 2, sin apnea (vuelta tras el chalazión)"
+  "ahora": "4 @ RIR2\n25/11: RIR 2-3, lejos del fallo (partido el domingo)"
  },
  {
   "celda": "I12",
@@ -477,7 +477,7 @@
  {
   "celda": "H13",
   "antes": null,
-  "ahora": "3 @ RIR2\n23/11: RIR 2, sin apnea (vuelta tras el chalazión)"
+  "ahora": "3 @ RIR2\n25/11: RIR 2-3, lejos del fallo (partido el domingo)"
  },
  {
   "celda": "I13",
@@ -537,7 +537,7 @@
  {
   "celda": "H14",
   "antes": null,
-  "ahora": "1 @ RIR2\n23/11: RIR 2, sin apnea (vuelta tras el chalazión)"
+  "ahora": "1 @ RIR0"
  },
  {
   "celda": "I14",
@@ -597,7 +597,7 @@
  {
   "celda": "H15",
   "antes": "Sem 6 (series@RIR)",
-  "ahora": "2 @ RIR2\n23/11: RIR 2, sin apnea (vuelta tras el chalazión)"
+  "ahora": "2 @ RIR1/0"
  },
  {
   "celda": "I15",
@@ -652,7 +652,7 @@
  {
   "celda": "H16",
   "antes": "3 @ RIR1/0",
-  "ahora": "2 @ RIR2\n23/11: RIR 2, sin apnea (vuelta tras el chalazión)"
+  "ahora": "2 @ RIR1/0"
  },
  {
   "celda": "I16",
@@ -872,7 +872,7 @@
  {
   "celda": "H20",
   "antes": "4 @ RIR1/0",
-  "ahora": "3 @ RIR2\n24/11: RIR 2, sin apnea (vuelta tras el chalazión)"
+  "ahora": "3 @ RIR1/0"
  },
  {
   "celda": "I20",
@@ -932,7 +932,7 @@
  {
   "celda": "H21",
   "antes": null,
-  "ahora": "3 @ RIR2\n24/11: RIR 2, sin apnea (vuelta tras el chalazión)"
+  "ahora": "3 @ RIR1/0"
  },
  {
   "celda": "I21",
@@ -992,7 +992,7 @@
  {
   "celda": "H22",
   "antes": null,
-  "ahora": "3 @ RIR2\n24/11: RIR 2, sin apnea (vuelta tras el chalazión)"
+  "ahora": "3 @ RIR1/0"
  },
  {
   "celda": "I22",
@@ -1052,7 +1052,7 @@
  {
   "celda": "H23",
   "antes": null,
-  "ahora": "2 @ RIR2\n24/11: RIR 2, sin apnea (vuelta tras el chalazión)"
+  "ahora": "2 @ RIR1/0"
  },
  {
   "celda": "I23",
@@ -1112,7 +1112,7 @@
  {
   "celda": "H24",
   "antes": "Sem 6 (series@RIR)",
-  "ahora": "1 @ RIR2\n24/11: RIR 2, sin apnea (vuelta tras el chalazión)"
+  "ahora": "1 @ RIR0"
  },
  {
   "celda": "I24",
@@ -1158,11 +1158,6 @@
   "celda": "G25",
   "antes": "3 @ RIR1/0",
   "ahora": "—"
- },
- {
-  "celda": "H25",
-  "antes": "3 @ RIR1/0",
-  "ahora": "3 @ RIR2\n24/11: RIR 2, sin apnea (vuelta tras el chalazión)"
  },
  {
   "celda": "K25",
@@ -1342,7 +1337,7 @@
  {
   "celda": "L28",
   "antes": null,
-  "ahora": "sesion;tituloS5=Paseo · semana del chalazión"
+  "ahora": "sesion;tituloS5=Paseo · semana del chalazión;moverS6=J"
  },
  {
   "celda": "A29",
@@ -1457,7 +1452,7 @@
  {
   "celda": "L30",
   "antes": null,
-  "ahora": "sesion;S1=X;S2=X;tituloS5=Isométrico + paseo · semana del chalazión"
+  "ahora": "sesion;S1=X;S2=X;tituloS5=Isométrico + paseo · semana del chalazión;tituloS6=Espalda (sin brazos ni hombro)"
  },
  {
   "celda": "A31",
@@ -1677,7 +1672,7 @@
  {
   "celda": "H34",
   "antes": "Sem 6 (series@RIR)",
-  "ahora": "2 @ RIR1/0"
+  "ahora": "—"
  },
  {
   "celda": "I34",
@@ -1797,7 +1792,7 @@
  {
   "celda": "H36",
   "antes": "2 x15–20",
-  "ahora": "3 @ RIR1/0"
+  "ahora": "—"
  },
  {
   "celda": "I36",
@@ -1857,7 +1852,7 @@
  {
   "celda": "H37",
   "antes": "3 x8",
-  "ahora": "2 @ RIR1/0"
+  "ahora": "—"
  },
  {
   "celda": "I37",
@@ -1917,7 +1912,7 @@
  {
   "celda": "H38",
   "antes": "2 x8",
-  "ahora": "2 @ RIR1/0"
+  "ahora": "—"
  },
  {
   "celda": "I38",
@@ -1997,7 +1992,7 @@
  {
   "celda": "A40",
   "antes": "Aductores",
-  "ahora": "(V) Viernes  ·  Rehab + Isquios + Aductores  ·  test de fuerza S3 / S6 / S8  (desde S2; S1 se hizo el jueves; en S2, el viernes 30/10)"
+  "ahora": "(V) Viernes  ·  Rehab + Isquios + Aductores  ·  test de fuerza S3 / S7 (el 3.º, tras el viaje)  (desde S2; S1 se hizo el jueves; en S2, el viernes 30/10)"
  },
  {
   "celda": "B40",
@@ -2052,7 +2047,7 @@
  {
   "celda": "L40",
   "antes": null,
-  "ahora": "sesion;S1=J;tituloS5=Paseo · semana del chalazión"
+  "ahora": "sesion;S1=J;tituloS5=Paseo · semana del chalazión;tituloS6=Torso (el del sábado), en el gimnasio"
  },
  {
   "celda": "A41",
@@ -2167,12 +2162,12 @@
  {
   "celda": "K42",
   "antes": null,
-  "ahora": "Isométrico de calentamiento del tendón, lo primero de la sesión: antes del test (S3/S6/S8) o de la sentadilla. Sentadilla en pared a una pierna, D e I, con peso si hace falta. 3 series de 45 s por pierna (desde S4; antes, sentadilla española 2-3×45 s)."
+  "ahora": "Isométrico de calentamiento del tendón, lo primero de la sesión: antes del test (S3/S7) o de la sentadilla. Sentadilla en pared a una pierna, D e I, con peso si hace falta. 3 series de 45 s por pierna (desde S4; antes, sentadilla española 2-3×45 s)."
  },
  {
   "celda": "L42",
   "antes": null,
-  "ahora": "id=sentadilla-espanola;S5=J"
+  "ahora": "id=sentadilla-espanola;S5=J;S6=M"
  },
  {
   "celda": "A43",
@@ -2212,17 +2207,17 @@
  {
   "celda": "H43",
   "antes": null,
-  "ahora": "2 aprox. +\n1 al fallo\npor pierna"
+  "ahora": "—"
  },
  {
   "celda": "I43",
   "antes": null,
-  "ahora": "—"
+  "ahora": "2 aprox. +\n1 al fallo\npor pierna"
  },
  {
   "celda": "J43",
   "antes": null,
-  "ahora": "2 aprox. +\n1 al fallo\npor pierna"
+  "ahora": "—"
  },
  {
   "celda": "K43",
@@ -2272,7 +2267,7 @@
  {
   "celda": "H44",
   "antes": "Sem 6 (series@RIR)",
-  "ahora": "3 x8\nprof. del lunes"
+  "ahora": "—"
  },
  {
   "celda": "I44",
@@ -2287,7 +2282,7 @@
  {
   "celda": "K44",
   "antes": "Notas",
-  "ahora": "Tras el test (S3/S6/S8), carga por RIR. Tempo 3-1-3, RIR 2. Profundidad = la validada el lunes en la prensa. Postura habitual: un chasquido sin dolor no cambia nada; el apoyo ancho solo si te reduce el DOLOR [LÓGICA]."
+  "ahora": "Tras el test (S3/S7), carga por RIR. Tempo 3-1-3, RIR 2. Profundidad = la validada el lunes en la prensa. Postura habitual: un chasquido sin dolor no cambia nada; el apoyo ancho solo si te reduce el DOLOR [LÓGICA]."
  },
  {
   "celda": "L44",
@@ -2332,7 +2327,7 @@
  {
   "celda": "H45",
   "antes": "1 @ RIR0",
-  "ahora": "2 x8/pierna"
+  "ahora": "—"
  },
  {
   "celda": "I45",
@@ -2392,7 +2387,7 @@
  {
   "celda": "H46",
   "antes": "2 @ RIR1/0",
-  "ahora": "3 x10-15/pierna\n@RIR1-2"
+  "ahora": "—"
  },
  {
   "celda": "I46",
@@ -2512,7 +2507,7 @@
  {
   "celda": "H48",
   "antes": "3 @ RIR1/0",
-  "ahora": "4 @ RIR1/0"
+  "ahora": "3 @ RIR2\n25/11: RIR 2-3, lejos del fallo (partido el domingo)"
  },
  {
   "celda": "I48",
@@ -2532,7 +2527,7 @@
  {
   "celda": "L48",
   "antes": null,
-  "ahora": "id=isquios-sentado"
+  "ahora": "id=isquios-sentado;S6=L"
  },
  {
   "celda": "A49",
@@ -2550,6 +2545,11 @@
   "ahora": "—"
  },
  {
+  "celda": "H49",
+  "antes": "3 @ RIR1/0",
+  "ahora": "2 @ RIR2\n25/11: RIR 2-3, lejos del fallo (partido el domingo)"
+ },
+ {
   "celda": "K49",
   "antes": "Prioridad 4 (Haz clavicular) · 10/10 tras brazos: el agarre neutro y la trayectoria convergente ascendente aíslan el haz clavicular sin estrés en hombro ni codo.",
   "ahora": "Plano transversal/frontal · Pausa de 1 s en apertura máxima sin dolor inguinal/rodilla."
@@ -2557,7 +2557,7 @@
  {
   "celda": "L49",
   "antes": null,
-  "ahora": "id=aductores"
+  "ahora": "id=aductores;S6=L"
  },
  {
   "celda": "A50",
@@ -2597,7 +2597,7 @@
  {
   "celda": "H50",
   "antes": "2 @ RIR1/0",
-  "ahora": "4 @ RIR1/0"
+  "ahora": "—"
  },
  {
   "celda": "I50",
@@ -2732,7 +2732,7 @@
  {
   "celda": "L52",
   "antes": null,
-  "ahora": "sesion;S1=V;tituloS5=Isométrico + torso suave · semana del chalazión"
+  "ahora": "sesion;S1=V;tituloS5=Isométrico + torso suave · semana del chalazión;S6=V"
  },
  {
   "celda": "A53",
@@ -2832,7 +2832,7 @@
  {
   "celda": "H54",
   "antes": null,
-  "ahora": "—"
+  "ahora": "3 x45 s"
  },
  {
   "celda": "I54",
@@ -2852,7 +2852,7 @@
  {
   "celda": "L54",
   "antes": null,
-  "ahora": "id=sentadilla-espanola"
+  "ahora": "id=sentadilla-espanola;S6=S"
  },
  {
   "celda": "A55",
@@ -3202,7 +3202,7 @@
  {
   "celda": "L61",
   "antes": null,
-  "ahora": "sesion;nombreS1=Sábado/Domingo"
+  "ahora": "sesion;nombreS1=Sábado/Domingo;S6=V"
  },
  {
   "celda": "A62",
@@ -5167,7 +5167,7 @@
  {
   "celda": "H101",
   "antes": null,
-  "ahora": "10' Z2"
+  "ahora": "—"
  },
  {
   "celda": "I101",
@@ -5227,7 +5227,7 @@
  {
   "celda": "H102",
   "antes": null,
-  "ahora": "10' Z2"
+  "ahora": "—"
  },
  {
   "celda": "I102",
@@ -5347,7 +5347,7 @@
  {
   "celda": "H104",
   "antes": null,
-  "ahora": "repite el\nmiércoles"
+  "ahora": "—"
  },
  {
   "celda": "I104",
@@ -5487,7 +5487,7 @@
  {
   "celda": "L106",
   "antes": null,
-  "ahora": "id=paseo-entrada-sabado;sesion=S;paseo=D"
+  "ahora": "id=paseo-entrada-sabado;sesion=S;paseo=D;tituloS6=Descanso antes del partido"
  },
  {
   "celda": "A107",
@@ -5732,12 +5732,12 @@
  {
   "celda": "A111",
   "antes": null,
-  "ahora": "Hitos y avisos"
+  "ahora": "Jueves (tras la carrera) · prueba del partido"
  },
  {
   "celda": "B111",
   "antes": null,
-  "ahora": "Calendario"
+  "ahora": "Prueba del partido: saltitos y cambios de dirección"
  },
  {
   "celda": "C111",
@@ -5747,115 +5747,235 @@
  {
   "celda": "D111",
   "antes": null,
-  "ahora": "Mar: paseo 30'\nMié: TD + saltitos\n→ 1.ª carrera"
+  "ahora": "—"
  },
  {
   "celda": "E111",
   "antes": null,
-  "ahora": "Lun 2/11 festivo: en casa, sin escalón\nVie 6/11: test 1"
+  "ahora": "—"
  },
  {
   "celda": "F111",
   "antes": null,
-  "ahora": "AVISO fisio\n(ver Seguimiento)\nVie: bici"
+  "ahora": "—"
  },
  {
   "celda": "G111",
   "antes": null,
-  "ahora": "Lun: x8\nMar-dom: pausa (chalazión)\nJue y sáb: isométrico\nTest 2 → vie 27/11"
+  "ahora": "—"
  },
  {
   "celda": "H111",
   "antes": null,
-  "ahora": "Vuelta: sin novedades\nVie 27/11: test 2"
+  "ahora": "10 saltitos a una pierna con la D\n+ 6-8 cambios de dirección al 50-70 %\nsi pasa de 2/10, el domingo no juegas"
  },
  {
   "celda": "I111",
   "antes": null,
-  "ahora": "Lun: +1 escalón\nMié: N4"
+  "ahora": "—"
  },
  {
   "celda": "J111",
   "antes": null,
-  "ahora": "Lun: +1 escalón\nMié: N5\nVie: test 3"
+  "ahora": "—"
  },
  {
   "celda": "K111",
   "antes": null,
-  "ahora": "Entrada a la carrera (S2), con la regla de carrera: martes, paseo de 30 min a paso rápido (≤2/10, nivel previo en ≤60 min y el miércoles por la mañana no peor: el criterio 1 se evalúa solo con esa mañana, sin esperar a las 48 h); miércoles antes de correr, 10 touchdown con cada pierna y 20 saltitos a dos piernas (≤2/10). Si se cumplen los tres, 1.ª carrera ese miércoles (N1). Si no, esa semana no hay carrera (el domingo, como mucho, un paseo) y los criterios se repiten el miércoles siguiente [LÓGICA]."
+  "ahora": "Antes del partido del 29/11: tras la carrera del jueves. Si duele más de 2/10, o el viernes por la mañana estás peor, no juegas."
  },
  {
   "celda": "L111",
   "antes": null,
-  "ahora": "hitos"
+  "ahora": "id=prueba-partido;sesion=X"
+ },
+ {
+  "celda": "A112",
+  "antes": null,
+  "ahora": "Domingo · partido de fútbol 7"
+ },
+ {
+  "celda": "B112",
+  "antes": null,
+  "ahora": "Partido de fútbol 7"
+ },
+ {
+  "celda": "C112",
+  "antes": null,
+  "ahora": "—"
+ },
+ {
+  "celda": "D112",
+  "antes": null,
+  "ahora": "—"
+ },
+ {
+  "celda": "E112",
+  "antes": null,
+  "ahora": "—"
+ },
+ {
+  "celda": "F112",
+  "antes": null,
+  "ahora": "—"
+ },
+ {
+  "celda": "G112",
+  "antes": null,
+  "ahora": "—"
+ },
+ {
+  "celda": "H112",
+  "antes": null,
+  "ahora": "25-30 min por tramos\nantes: iso 5×45 s + 15 min de calentamiento\nsi pasa de 2/10, al banquillo"
+ },
+ {
+  "celda": "I112",
+  "antes": null,
+  "ahora": "—"
+ },
+ {
+  "celda": "J112",
+  "antes": null,
+  "ahora": "—"
+ },
+ {
+  "celda": "K112",
+  "antes": null,
+  "ahora": "Con la regla de carrera: ≤2/10 durante, volver al nivel previo en ≤60 min y las mañanas del lunes y el martes, no peor. Nada de sprints a tope al principio ni chuts largos."
+ },
+ {
+  "celda": "L112",
+  "antes": null,
+  "ahora": "id=partido-futbol-7;sesion=D;tituloS6=Partido de fútbol 7"
  },
  {
   "celda": "A113",
   "antes": null,
-  "ahora": "REGLAS DEL BLOQUE RODILLA (S2-S8)"
+  "ahora": "Hitos y avisos"
+ },
+ {
+  "celda": "B113",
+  "antes": null,
+  "ahora": "Calendario"
+ },
+ {
+  "celda": "C113",
+  "antes": null,
+  "ahora": "—"
+ },
+ {
+  "celda": "D113",
+  "antes": null,
+  "ahora": "Mar: paseo 30'\nMié: TD + saltitos\n→ 1.ª carrera"
+ },
+ {
+  "celda": "E113",
+  "antes": null,
+  "ahora": "Lun 2/11 festivo: en casa, sin escalón\nVie 6/11: test 1"
+ },
+ {
+  "celda": "F113",
+  "antes": null,
+  "ahora": "AVISO fisio\n(ver Seguimiento)\nVie: bici"
+ },
+ {
+  "celda": "G113",
+  "antes": null,
+  "ahora": "Lun: x8\nMar-dom: pausa (chalazión)\nJue y sáb: isométrico\nTest 2 → vie 27/11"
+ },
+ {
+  "celda": "H113",
+  "antes": null,
+  "ahora": "Mié: lo del lunes\nJue: carrera N3 + prueba\nDom: partido\nTest 2 → vie 4/12"
+ },
+ {
+  "celda": "I113",
+  "antes": null,
+  "ahora": "Lun: +1 escalón\nMié: N4\nVie: test 2"
+ },
+ {
+  "celda": "J113",
+  "antes": null,
+  "ahora": "Lun: +1 escalón\nMié: N5"
+ },
+ {
+  "celda": "K113",
+  "antes": null,
+  "ahora": "Entrada a la carrera (S2), con la regla de carrera: martes, paseo de 30 min a paso rápido (≤2/10, nivel previo en ≤60 min y el miércoles por la mañana no peor: el criterio 1 se evalúa solo con esa mañana, sin esperar a las 48 h); miércoles antes de correr, 10 touchdown con cada pierna y 20 saltitos a dos piernas (≤2/10). Si se cumplen los tres, 1.ª carrera ese miércoles (N1). Si no, esa semana no hay carrera (el domingo, como mucho, un paseo) y los criterios se repiten el miércoles siguiente [LÓGICA]."
  },
  {
   "celda": "L113",
   "antes": null,
-  "ahora": "reglas-bloque"
- },
- {
-  "celda": "A114",
-  "antes": null,
-  "ahora": "Base [EVIDENCIA]: ejercicio combinado de cadera y rodilla (consensos de 2016 y 2018). Rodilla en 2 días, lunes y viernes (72-96 h entre sesiones, dentro de la ventana de 2-3 días de recuperación del tendón que describe el libro), pesado y lento en ambos; sábado sin pierna para llegar descansado a la carrera del domingo [LÓGICA]."
+  "ahora": "hitos"
  },
  {
   "celda": "A115",
   "antes": null,
-  "ahora": "Mediciones: cada mañana, en casa, con las mismas pruebas: test en declive y 10 subidas con la D al mismo escalón o banco. Vale la peor de las dos (el declive solo no basta: te sale 0 aunque haya molestia). Si falta la medición de la mañana, ese día no se evalúa y la primera medición disponible hace de referencia (en S2, la del martes). Se apuntan en «Seguimiento rodilla»."
+  "ahora": "REGLAS DEL BLOQUE RODILLA (S2-S8)"
+ },
+ {
+  "celda": "L115",
+  "antes": null,
+  "ahora": "reglas-bloque"
  },
  {
   "celda": "A116",
   "antes": null,
-  "ahora": "Regla de gimnasio [LÓGICA], en semáforo (solo días con carga de rodilla: lunes y viernes): Retroceder si pasas de 3/10 durante o la mañana siguiente estás peor que la de la sesión; Mantener si cumple, pero el peor valor entre 24 y 48 h supera la referencia (no avanzas, pero no has fallado); Avanzar si cumple y el peor valor 24-48 h es igual o mejor que la referencia. Los días sin carga de rodilla no se evalúan («—»)."
+  "ahora": "Base [EVIDENCIA]: ejercicio combinado de cadera y rodilla (consensos de 2016 y 2018). Rodilla en 2 días, lunes y viernes (72-96 h entre sesiones, dentro de la ventana de 2-3 días de recuperación del tendón que describe el libro), pesado y lento en ambos; sábado sin pierna para llegar descansado a la carrera del domingo [LÓGICA]."
  },
  {
   "celda": "A117",
   "antes": null,
-  "ahora": "Regla de carrera [EVIDENCIA de uso], en semáforo (miércoles y domingo): Retroceder si pasas de 2/10 durante, no vuelves al nivel previo en ≤60 min o la mañana siguiente estás peor; Mantener si cumple, pero el peor valor 24-48 h supera la referencia; Avanzar si cumple y el peor valor 24-48 h ≤ referencia. El paseo de entrada se valida solo con la mañana siguiente. Se aplica también a las fases hacia el fútbol [LÓGICA]."
+  "ahora": "Mediciones: cada mañana, en casa, con las mismas pruebas: test en declive y 10 subidas con la D al mismo escalón o banco. Vale la peor de las dos (el declive solo no basta: te sale 0 aunque haya molestia). Si falta la medición de la mañana, ese día no se evalúa y la primera medición disponible hace de referencia (en S2, la del martes). Se apuntan en «Seguimiento rodilla»."
  },
  {
   "celda": "A118",
   "antes": null,
-  "ahora": "Novedades [LÓGICA]: una por día y validada a las 24 y 48 h antes de repetirla. Lunes: escalón o reps (prensa) · miércoles: nivel de carrera · viernes de S4: bici. Solo si esa mañana estás igual o mejor que la referencia (la mañana del mismo día de la semana anterior; en S3, la primera medición de S2), no que el día anterior: así un empeoramiento lento también salta. El calendario marca el máximo de cada semana; el nivel real sale del semáforo: Avanzar = nivel +1 (sin pasar del calendario), Mantener = el mismo, Retroceder = nivel −1. Lo validado se repite: el viernes usa la profundidad del lunes y el domingo repite el nivel del miércoles."
+  "ahora": "Regla de gimnasio [LÓGICA], en semáforo (solo días con carga de rodilla: lunes y viernes): Retroceder si pasas de 3/10 durante o la mañana siguiente estás peor que la de la sesión; Mantener si cumple, pero el peor valor entre 24 y 48 h supera la referencia (no avanzas, pero no has fallado); Avanzar si cumple y el peor valor 24-48 h es igual o mejor que la referencia. Los días sin carga de rodilla no se evalúan («—»)."
  },
  {
   "celda": "A119",
   "antes": null,
-  "ahora": "S2: la pierna 2 y la prueba del test pasaron al viernes 30/10 (el jueves 29 fue libre), dentro de las 48 h de la 1.ª carrera. Si la mañana del sábado 31/10 sale peor, cuenta para las dos: el domingo repites N1 y el miércoles de S3 no subes de nivel [LÓGICA]."
+  "ahora": "Regla de carrera [EVIDENCIA de uso], en semáforo (miércoles y domingo): Retroceder si pasas de 2/10 durante, no vuelves al nivel previo en ≤60 min o la mañana siguiente estás peor; Mantener si cumple, pero el peor valor 24-48 h supera la referencia; Avanzar si cumple y el peor valor 24-48 h ≤ referencia. El paseo de entrada se valida solo con la mañana siguiente. Se aplica también a las fases hacia el fútbol [LÓGICA]."
  },
  {
   "celda": "A120",
   "antes": null,
-  "ahora": "Escalones de profundidad de la D [LÓGICA; no hay pautas de rango validadas para la rótula: INCERTIDUMBRE]: escalón 0 = la profundidad que ya usas con la D; escalón 4 = la de la I. Reparte la diferencia en 4 partes iguales (como mucho ~15° cada una; si sale más, se termina después del bloque). Se sube, como mucho, los lunes de S4, S7 y S8 en la prensa (según el semáforo; S6, vuelta tras la pausa del chalazión, sin novedad), y el 4.º escalón después del viaje; el lunes de S3 fue festivo y no hubo escalón; la touchdown del lunes va a la profundidad ya validada y hace de filtro. Apunta las marcas en «Seguimiento rodilla»."
+  "ahora": "Novedades [LÓGICA]: una por día y validada a las 24 y 48 h antes de repetirla. Lunes: escalón o reps (prensa) · miércoles: nivel de carrera · viernes de S4: bici. Solo si esa mañana estás igual o mejor que la referencia (la mañana del mismo día de la semana anterior; en S3, la primera medición de S2), no que el día anterior: así un empeoramiento lento también salta. El calendario marca el máximo de cada semana; el nivel real sale del semáforo: Avanzar = nivel +1 (sin pasar del calendario), Mantener = el mismo, Retroceder = nivel −1. Lo validado se repite: el viernes usa la profundidad del lunes y el domingo repite el nivel del miércoles."
  },
  {
   "celda": "A121",
   "antes": null,
-  "ahora": "Chasquido: si no duele, no se quita ni se cambia nada. Si duele, cuenta como dolor."
+  "ahora": "S2: la pierna 2 y la prueba del test pasaron al viernes 30/10 (el jueves 29 fue libre), dentro de las 48 h de la 1.ª carrera. Si la mañana del sábado 31/10 sale peor, cuenta para las dos: el domingo repites N1 y el miércoles de S3 no subes de nivel [LÓGICA]."
  },
  {
   "celda": "A122",
   "antes": null,
-  "ahora": "Retroceso y brote [LÓGICA]: un dolor durante la sesión retrocede la escalera de esa sesión. Si una mañana sale peor, se retrocede la última novedad aún no validada (la que todavía no tiene en verde sus dos mañanas, 24 y 48 h; p. ej., en S4, sábado peor tras el viernes → se quita la bici, la novedad de ese viernes, y el escalón del lunes, ya validado, se mantiene); una novedad ya validada no se culpa. Si tras el retroceso vuelve a fallar, se retrocede la novedad anterior sin validar. Brote = un fallo sin ninguna novedad sin validar, o dos sesiones seguidas en Retroceder: lo primero que se quita es la bici; 48-72 h solo isométricos (sentadilla española 5×45 s diaria) y caminar, sin bici; luego se retoma un escalón por debajo en todo. La bici vuelve al nivel del calendario cuando lleves una semana entera en verde."
+  "ahora": "Escalones de profundidad de la D [LÓGICA; no hay pautas de rango validadas para la rótula: INCERTIDUMBRE]: escalón 0 = la profundidad que ya usas con la D; escalón 4 = la de la I. Reparte la diferencia en 4 partes iguales (como mucho ~15° cada una; si sale más, se termina después del bloque). Se sube, como mucho, los lunes de S4, S7 y S8 en la prensa (según el semáforo; S6, vuelta tras la pausa del chalazión, sin novedad), y el 4.º escalón después del viaje; el lunes de S3 fue festivo y no hubo escalón; la touchdown del lunes va a la profundidad ya validada y hace de filtro. Apunta las marcas en «Seguimiento rodilla»."
  },
  {
   "celda": "A123",
   "antes": null,
-  "ahora": "Alarma: bloqueo real, fallos repetidos de la rodilla o hinchazón visible → se para la progresión y toca valoración clínica."
+  "ahora": "Chasquido: si no duele, no se quita ni se cambia nada. Si duele, cuenta como dolor."
  },
  {
   "celda": "A124",
   "antes": null,
-  "ahora": "AVISO S4 (fisio deportivo pendiente): se calcula al cerrar S4 (domingo 15/11) si hay al menos 5 mañanas registradas en S2 y en S4. Compara la media de las mañanas: PEOR si la de S4 supera en 0,5 o más a la de S2; MEJOR si queda 0,5 o más por debajo; si no, IGUAL. IGUAL o PEOR, o un chasquido que empieza a doler: la valoración del fisio pasa a ser prioritaria; PEOR además para la progresión [LÓGICA]. «Seguimiento rodilla» lo calcula."
+  "ahora": "Retroceso y brote [LÓGICA]: un dolor durante la sesión retrocede la escalera de esa sesión. Si una mañana sale peor, se retrocede la última novedad aún no validada (la que todavía no tiene en verde sus dos mañanas, 24 y 48 h; p. ej., en S4, sábado peor tras el viernes → se quita la bici, la novedad de ese viernes, y el escalón del lunes, ya validado, se mantiene); una novedad ya validada no se culpa. Si tras el retroceso vuelve a fallar, se retrocede la novedad anterior sin validar. Brote = un fallo sin ninguna novedad sin validar, o dos sesiones seguidas en Retroceder: lo primero que se quita es la bici; 48-72 h solo isométricos (sentadilla española 5×45 s diaria) y caminar, sin bici; luego se retoma un escalón por debajo en todo. La bici vuelve al nivel del calendario cuando lleves una semana entera en verde."
  },
  {
   "celda": "A125",
+  "antes": null,
+  "ahora": "Alarma: bloqueo real, fallos repetidos de la rodilla o hinchazón visible → se para la progresión y toca valoración clínica."
+ },
+ {
+  "celda": "A126",
+  "antes": null,
+  "ahora": "AVISO S4 (fisio deportivo pendiente): se calcula al cerrar S4 (domingo 15/11) si hay al menos 5 mañanas registradas en S2 y en S4. Compara la media de las mañanas: PEOR si la de S4 supera en 0,5 o más a la de S2; MEJOR si queda 0,5 o más por debajo; si no, IGUAL. IGUAL o PEOR, o un chasquido que empieza a doler: la valoración del fisio pasa a ser prioritaria; PEOR además para la progresión [LÓGICA]. «Seguimiento rodilla» lo calcula."
+ },
+ {
+  "celda": "A127",
   "antes": null,
   "ahora": "Fases hacia el fútbol, después del viaje [LÓGICA], siempre con la regla de carrera: cambios de dirección ← 30 min seguidos dos veces sin reacción y rango D = I · pliometría ← 2 semanas de cambios de dirección y 10 saltos a una pierna sin dolor · balón ← cuádriceps D ≥90% de la I en el test y pliometría media sin reacción · equipo ← 2 semanas de balón sin reacción."
  }

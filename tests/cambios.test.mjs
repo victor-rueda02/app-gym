@@ -52,20 +52,54 @@ test('S4: el sábado al domingo -> el domingo suma el torso a su carrera y el s�
 test('mover un día de pierna lleva la regla y la novedad de la rodilla al destino', () => {
   const dias = (c) => con(c, () => C.diasEfectivos(DATA.dias, PLAN));
   const normal = dias({});
-  const lunes = fila(normal, '2026-11-23');   // S6: pierna 1 con la novedad de la prensa
+  const lunes = fila(normal, '2026-11-30');   // S7: pierna 1 con la novedad de la prensa
   assert.notEqual(lunes.regla, '—');
-  const movido = dias({ movidos: { S6: { L: 'M' } } });
-  assert.equal(fila(movido, '2026-11-23').regla, '—');
-  assert.match(fila(movido, '2026-11-23').sesion, /^Libre \(movido al martes\)$/);
-  const martes = fila(movido, '2026-11-24');
+  const movido = dias({ movidos: { S7: { L: 'M' } } });
+  assert.equal(fila(movido, '2026-11-30').regla, '—');
+  assert.match(fila(movido, '2026-11-30').sesion, /^Libre \(movido al martes\)$/);
+  const martes = fila(movido, '2026-12-01');
   assert.equal(martes.regla, lunes.regla);
   assert.match(martes.sesion, /\(del lunes\)$/);
   assert.ok(martes.novedad.includes(lunes.novedad), martes.novedad);
   // Con la carrera el mismo día, manda la regla de carrera (≤2/10).
-  const conCarrera = dias({ movidos: { S6: { L: 'X' } } });
-  assert.match(fila(conCarrera, '2026-11-25').regla, /carrera/i);
+  const conCarrera = dias({ movidos: { S7: { L: 'X' } } });
+  assert.match(fila(conCarrera, '2026-12-02').regla, /carrera/i);
   // La progresión busca la prensa en el martes.
-  con({ movidos: { S6: { L: 'M' } } }, () => assert.equal(PLAN.diaEfectivo(6, 'L'), 'M'));
+  con({ movidos: { S7: { L: 'M' } } }, () => assert.equal(PLAN.diaEfectivo(7, 'L'), 'M'));
+});
+
+test('días movidos desde el Excel («moverS6=X»): S6, lunes al miércoles y carrera al jueves; la rodilla los sigue', () => {
+  assert.deepEqual(PLAN.movidosPlan(6), { L: 'X', X: 'J' });
+  assert.deepEqual(PLAN.movidosDe(6), { L: 'X', X: 'J' });
+  assert.deepEqual(PLAN.movidosPlan(7), {});
+  const s = porDia(6);
+  assert.deepEqual(ids(s.L), []);
+  assert.ok(ids(s.X).includes('prensa-unil-pesado-y-lento-n-1') && ids(s.X).includes('isquios-sentado'), ids(s.X).join());
+  assert.ok(ids(s.J).includes('andar-correr-en-llano') && ids(s.J).includes('jalon-ancho-plano-frontal'));
+  assert.match(s.X.note, /cambio del plan/);
+  assert.equal(PLAN.diaEfectivo(6, 'L'), 'X');
+  assert.equal(PLAN.diaEfectivo(6, 'X'), 'J');
+  const d = C.diasEfectivos(DATA.dias, PLAN);
+  assert.equal(fila(d, '2026-11-23').regla, '—');
+  assert.match(fila(d, '2026-11-25').regla, /Gimnasio/);
+  assert.match(fila(d, '2026-11-26').regla, /carrera/i);
+  // Uno movido desde Hoy manda sobre el del plan para ese día.
+  con({ movidos: { S6: { L: 'M' } } }, () => assert.deepEqual(PLAN.movidosDe(6), { L: 'M', X: 'J' }));
+  // Progresión: con la pierna del miércoles y la carrera del jueves en verde, S7 avanza aunque
+  // el viernes (día de prensa) no tenga sesión.
+  const dias = {};
+  for (const x of d) {
+    if (x.fecha > '2026-12-01') break;   // el partido del domingo se valida con las mañanas del lunes y el martes
+    if (x.sem === 'S5') continue;
+    const r = { decline: 2 };
+    if (x.regla !== '—') { r.during = 1; if (/carrera/i.test(x.regla)) r.back60 = 'Sí'; }
+    dias[x.fecha] = r;
+  }
+  const entrada = { S2: { walkPain: 'Sí', walkBack60: 'Sí', tdPain: 'Sí', hopsPain: 'Sí' } };
+  const p = C.progresion(C.tablaDias(DATA.dias, dias, PLAN), PLAN, {}, entrada, '2026-12-01');
+  assert.match(p.semanas.S7.prensa.motivo, /^Avanzar/, p.semanas.S7.prensa.motivo);
+  assert.match(p.semanas.S7.carrera.motivo, /^Avanzar/, p.semanas.S7.carrera.motivo);
+  assert.equal(p.semanas.S7.carrera.nivel, p.semanas.S6.carrera.nivel + 1);
 });
 
 test('mover y semana sin viernes a la vez: se mueve lo que esa semana hay ese día', () => {

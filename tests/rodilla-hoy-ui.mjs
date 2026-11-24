@@ -55,8 +55,8 @@ check('Orden: tras la sesión antes que chasquido', nombres(l).indexOf(TRAS) < n
 check('Pendiente al principio', l.find((x) => x[0] === TRAS)[1] === 'pendiente' && l.find((x) => x[0] === CHAS)[1] === '—');
 check('Filas con clase rehab', (await page.locator('#rod-test .ex.rehab').count()) === l.length);
 
-// Miércoles de carrera (S6: el de S5, 18/11, es de pausa por el chalazión)
-l = await montar('2026-11-25');
+// Miércoles de carrera (S7: el 18/11 fue de pausa y el 25/11 la carrera pasó al jueves)
+l = await montar('2026-12-02');
 await page.locator('#rod-test .ex', { hasText: TRAS }).click();
 check('Miércoles de carrera: aparece «Nivel previo en ≤60 min»', (await page.locator('#sheet-content', { hasText: 'Nivel previo en ≤60 min' }).count()) === 1);
 await page.click('#sheet-content [data-rod-listo]');

@@ -99,8 +99,8 @@ check('Sentadilla iso: por pierna, con peso y 45 s de referencia', JSON.stringif
   && (await page.textContent('.ref-fija')).includes('45 s') && await page.locator('.stamp').count() === 0, JSON.stringify(await cabecera()));
 await hecho();
 
-/* --- El lunes siguiente recuerda la posición --- */
-await irA('2026-11-23');
+/* --- Otro lunes recuerda la posición (el 30/11: el lunes 23/11 pasó al miércoles) --- */
+await irA('2026-11-30');
 await abrirEj('Prensa unil');
 const aj2 = await page.$$eval('.aj-campo input', (l) => l.map((e) => e.value));
 check('El lunes siguiente la prensa sale con la profundidad D del último día (7)', aj2[0] === '7', aj2.join(','));

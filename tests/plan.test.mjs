@@ -73,10 +73,18 @@ test('días por semana: cada ejercicio va, cada semana, al día de su «Sn=» (f
   for (const w of PLAN.VOL_WEEKS) {
     const sesiones = PLAN.sessionsFor(w);
     const enApp = sesiones.flatMap((s) => s.exercises.map((x) => `${s.dow}:${x.id}`)).sort();
-    const previstos = Object.entries(esperado).flatMap(([l, fs]) => fs.map((f) => {
+    // «moverS6=X» en una cabecera: esa semana, todo lo de ese día va al día X (como mover desde Hoy).
+    const mover = {};
+    for (const r of filas((e) => e.sesion === true)) {
+      const m = app(r)[`moverS${w.n}`];
+      if (m) mover[/^\(([LMXJVSD])\)/.exec(cell('A', r))[1]] = m;
+    }
+    const todos = Object.entries(esperado).flatMap(([l, fs]) => fs.map((f) => {
       const dia = f.cab ? (app(f.r)[`S${w.n}`] || app(f.cab)[`S${w.n}`] || l) : l;
-      return { dia, f };
-    }))
+      return { dia: mover[dia] || dia, movido: !!mover[dia], f };
+    }));
+    // Lo que llega movido no repite un ejercicio que ese día ya tiene (p. ej. el paseo).
+    const previstos = todos.filter((x) => !x.movido || !todos.some((y) => !y.movido && y.dia === x.dia && y.f.id === x.f.id))
       // un día que esa semana solo tiene cardio que no se hace («—») no es sesión
       .filter(({ dia }) => sesiones.some((s) => s.dow === DOW[dia]))
       .map(({ dia, f }) => `${DOW[dia]}:${f.id}`).sort();
